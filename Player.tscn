@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://bfogorninf4af"]
+
+[ext_resource type="Script" path="res://PlayerTopDown.gd" id="1_u1f2m"]
+[ext_resource type="Texture2D" uid="uid://bt87ccisbhprr" path="res://icon.svg" id="2_umv70"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_msbb2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8q5p8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_umv70")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[node name="PlayerTopDown" type="CharacterBody2D"]
+script = ExtResource("1_u1f2m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2.5, 2.5)
+shape = SubResource("RectangleShape2D_msbb2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_8q5p8")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="Node2D"]
+position = Vector2(50, 0)
