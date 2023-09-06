@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="enemyResource" load_steps=5 format=3 uid="uid://dj771wggflmv6"]
+
+[ext_resource type="Script" path="res://scripts/enemyResource.gd" id="1_aq3xk"]
+[ext_resource type="Texture2D" uid="uid://nm60sm6hcvxw" path="res://art/demon_skeleton.png" id="2_2mh3j"]
+[ext_resource type="Texture2D" uid="uid://clyycn7uujclo" path="res://art/icon.svg" id="2_51w1r"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2eonu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_2mh3j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_51w1r")
+}],
+"loop": true,
+"name": &"skeleton",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("1_aq3xk")
+ANIMATION = SubResource("SpriteFrames_2eonu")
+SPEED = 90
+MAX_HP = 15
+DAMAGE = 2
+VALUE = 2

@@ -23,6 +23,6 @@ func _physics_process(delta):
 	if _traveled_distance > range:
 		queue_free()
 
-
 func _on_self_destruct_timeout():
 	queue_free()
+
