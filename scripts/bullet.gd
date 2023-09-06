@@ -1,9 +1,8 @@
-extends Area2D
+extends Hitbox
 
 @export var speed: int = 400
 @export var lifetime: int = 20
 @export var range: int = 1000
-@export var damage: int = 1
 var direction: Vector2 = Vector2(0,0)
 var _traveled_distance: float = 0.0
 
@@ -26,10 +25,3 @@ func _physics_process(delta):
 
 func _on_self_destruct_timeout():
 	queue_free()
-
-
-func _on_body_entered(body):
-	if body != GameState.player:
-		if body.has_method("hurt"):
-			body.hurt(self)
-		queue_free()

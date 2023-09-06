@@ -1,25 +1,25 @@
 [gd_scene load_steps=7 format=3 uid="uid://dfe6bc7mdpexj"]
 
-[ext_resource type="Script" path="res://main.gd" id="1_aj1i0"]
-[ext_resource type="PackedScene" uid="uid://bkjtywx8bewfh" path="res://player.tscn" id="1_khclm"]
-[ext_resource type="PackedScene" uid="uid://dpjckt12ipcw2" path="res://enemy.tscn" id="2_yupeh"]
-[ext_resource type="Texture2D" uid="uid://dkgw6o04xoqp3" path="res://art/woodsSummer01.png" id="3_4mgtr"]
-[ext_resource type="PackedScene" uid="uid://dxs5yefoboyqi" path="res://bullet.tscn" id="3_n2ks3"]
-[ext_resource type="PackedScene" uid="uid://yaht8i4bkv2u" path="res://HUD.tscn" id="4_mi06j"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_jwdk3"]
+[ext_resource type="PackedScene" uid="uid://dpjckt12ipcw2" path="res://scenes/enemy.tscn" id="2_xwny4"]
+[ext_resource type="PackedScene" uid="uid://dldkm6m8ux87t" path="res://scenes/bullet.tscn" id="3_q0qd8"]
+[ext_resource type="Texture2D" uid="uid://dkgw6o04xoqp3" path="res://art/woodsSummer01.png" id="4_mmhf2"]
+[ext_resource type="PackedScene" uid="uid://cnepphpba8e8u" path="res://scenes/player.tscn" id="5_a3mdk"]
+[ext_resource type="PackedScene" uid="uid://yaht8i4bkv2u" path="res://scenes/HUD.tscn" id="6_6alhd"]
 
 [node name="Main" type="Node"]
-script = ExtResource("1_aj1i0")
-enemy_scene = ExtResource("2_yupeh")
-bullet_scene = ExtResource("3_n2ks3")
+script = ExtResource("1_jwdk3")
+enemy_scene = ExtResource("2_xwny4")
+bullet_scene = ExtResource("3_q0qd8")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_right = 1226.0
 offset_bottom = 1226.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("3_4mgtr")
+texture = ExtResource("4_mmhf2")
 
-[node name="Player" parent="." instance=ExtResource("1_khclm")]
+[node name="Player" parent="." instance=ExtResource("5_a3mdk")]
 
 [node name="SpawnTimer" type="Timer" parent="."]
 
@@ -30,7 +30,7 @@ one_shot = true
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(576, 325)
 
-[node name="HUD" parent="." instance=ExtResource("4_mi06j")]
+[node name="HUD" parent="." instance=ExtResource("6_6alhd")]
 
 [connection signal="enemy_killed" from="Player" to="." method="_on_player_enemy_killed"]
 [connection signal="fire_bullet" from="Player" to="." method="_on_player_fire_bullet"]

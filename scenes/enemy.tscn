@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dpjckt12ipcw2"]
+[gd_scene load_steps=9 format=3 uid="uid://dpjckt12ipcw2"]
 
-[ext_resource type="Script" path="res://enemy.gd" id="1_4btx8"]
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_oyorq"]
 [ext_resource type="Texture2D" uid="uid://d0qgo0jnuolls" path="res://art/demon_dog_run_1.png" id="2_1l0gx"]
 [ext_resource type="Texture2D" uid="uid://pmeorsjas4tw" path="res://art/demon_dog_run_2.png" id="3_uf2d1"]
+[ext_resource type="Script" path="res://scripts/hitbox.gd" id="4_s0kts"]
+[ext_resource type="Script" path="res://scripts/hurtbox.gd" id="5_rch1e"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_h2nmm"]
 animations = [{
@@ -29,7 +31,7 @@ height = 110.0
 [node name="Enemy" type="CharacterBody2D"]
 scale = Vector2(0.6, 0.6)
 motion_mode = 1
-script = ExtResource("1_4btx8")
+script = ExtResource("1_oyorq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.07, 0.07)
@@ -41,8 +43,15 @@ rotation = 1.5708
 scale = Vector2(0.75, 0.75)
 shape = SubResource("CapsuleShape2D_vkhqn")
 
+[node name="Hitbox" type="Area2D" parent="."]
+script = ExtResource("4_s0kts")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_3hnr1")
+
 [node name="Hurtbox" type="Area2D" parent="."]
-monitorable = false
+script = ExtResource("5_rch1e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 rotation = 1.5708

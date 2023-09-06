@@ -40,7 +40,7 @@ func _physics_process(delta):
 	elif animation_delay == 0:
 		$AnimatedSprite2D.play(mode)
 		animation_delay -= 1
-
+	
 	if $Hurtbox.overlaps_body(GameState.player):
 		GameState.player.hurt(self)
 

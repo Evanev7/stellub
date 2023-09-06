@@ -1,13 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://bkjtywx8bewfh"]
+[gd_scene load_steps=6 format=3 uid="uid://cnepphpba8e8u"]
 
-[ext_resource type="Script" path="res://player.gd" id="1_p8yqq"]
-[ext_resource type="Texture2D" uid="uid://clyycn7uujclo" path="res://icon.svg" id="2_2d88f"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_m0lvq"]
+[ext_resource type="Texture2D" uid="uid://clyycn7uujclo" path="res://art/icon.svg" id="2_fuo0j"]
+[ext_resource type="Script" path="res://scripts/hurtbox.gd" id="3_4d4eq"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_whc3w"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_2d88f")
+"texture": ExtResource("2_fuo0j")
 }],
 "loop": true,
 "name": &"up",
@@ -19,7 +20,7 @@ size = Vector2(50, 50)
 
 [node name="Player" type="CharacterBody2D"]
 motion_mode = 1
-script = ExtResource("1_p8yqq")
+script = ExtResource("1_m0lvq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
@@ -31,3 +32,9 @@ shape = SubResource("RectangleShape2D_odef0")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 enabled = false
+
+[node name="Hurtbox" type="Area2D" parent="."]
+script = ExtResource("3_4d4eq")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("RectangleShape2D_odef0")
