@@ -32,6 +32,17 @@ func _ready():
 func _physics_process(delta):
 	velocity.x = Input.get_axis("move_left", "move_right")
 	velocity.y = Input.get_axis("move_up", "move_down")
+	
+	if Input.is_action_just_pressed("walk"):
+		walking = true
+	if Input.is_action_just_released("walk"):
+		walking = false
+		
+	if Input.is_action_just_pressed("primary_fire"):
+		firing = true
+	if Input.is_action_just_released("primary_fire"):
+		firing = false
+		
 	if velocity.length() > 0:
 		if walking == true:
 			velocity = velocity.normalized() * SPEED/2
@@ -54,20 +65,12 @@ func _physics_process(delta):
 	else:
 		$AnimatedSprite2D.pause()
 	
-	if Input.is_action_just_pressed("primary_fire"):
-		firing = true
-	if Input.is_action_just_released("primary_fire"):
-		firing = false
 	if firing:
 		_fire_timer += 1
 		while _fire_timer >= fire_delay:
 			fire_bullet.emit(multishot, shot_spread, shot_inaccuracy)
 			_fire_timer -= fire_delay
 		
-	if Input.is_action_just_pressed("walk"):
-		walking = true
-	if Input.is_action_just_released("walk"):
-		walking = false
 
 
 func start(pos):
