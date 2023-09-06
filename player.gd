@@ -1,21 +1,23 @@
 extends CharacterBody2D
 
 signal taken_damage
+signal enemy_killed
 signal player_death
-signal fire_bullet(number,spread,innacuracy)
+signal fire_bullet(number,spread,inaccuracy)
 
-@export var SPEED = 200.0
+@export var SPEED = 380.0
 @export var ROTATION_SPEED = 20
 @export var HP_MAX: int = 50
 @export var fire_delay: int = 15
 @export var multishot: int = 3
 @export var shot_spread: float = PI/12
-@export var shot_innacuracy: float = PI/32
+@export var shot_inaccuracy: float = PI/32
 
 var screen_size: Vector2i
-var hp: int
-var firing: bool
-
+var hp
+var score
+var firing
+var walking
 var _fire_timer: float = 0.0
 
 # Called when the node enters the scene tree for the first time.
@@ -31,7 +33,10 @@ func _physics_process(delta):
 	velocity.x = Input.get_axis("move_left", "move_right")
 	velocity.y = Input.get_axis("move_up", "move_down")
 	if velocity.length() > 0:
-		velocity = velocity.normalized() * SPEED
+		if walking == true:
+			velocity = velocity.normalized() * SPEED/2
+		else:
+			velocity = velocity.normalized() * SPEED
 		
 		var angle_difference = velocity.angle() - rotation + PI/2
 		
@@ -56,22 +61,26 @@ func _physics_process(delta):
 	if firing:
 		_fire_timer += 1
 		while _fire_timer >= fire_delay:
-			fire_bullet.emit(multishot, shot_spread, shot_innacuracy)
+			fire_bullet.emit(multishot, shot_spread, shot_inaccuracy)
 			_fire_timer -= fire_delay
 		
-	
+	if Input.is_action_just_pressed("walk"):
+		walking = true
+	if Input.is_action_just_released("walk"):
+		walking = false
+
 
 func start(pos):
 	position = pos
 	show()
 	hp = HP_MAX
+	score = 0
 	set_physics_process(true)
 	$CollisionShape2D.disabled = false
 	$Camera2D.enabled = true
-	
 
 
-func hit(body):
+func hurt(body):
 	hp -= body.damage
 	taken_damage.emit()
 	if hp <= 0:
@@ -80,4 +89,8 @@ func hit(body):
 		$CollisionShape2D.set_deferred("disabled", true)
 		$Camera2D.set_deferred("enabled", false)
 		player_death.emit()
+		
+func hit(value):
+	score += value
+	enemy_killed.emit()
 

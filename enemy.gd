@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var SPEED: int = 100
 @export var MAX_HP: int = 10
 @export var DAMAGE: int = 1
+@export var value: int = 1
 
 var health
 var damage
@@ -27,9 +28,11 @@ func _physics_process(delta):
 		$AnimatedSprite2D.flip_h = false
 	velocity = direction * SPEED
 	move_and_slide()
-		
+
 	if health <= 0:
 		queue_free()
+		GameState.player.hit(value)
+
 	if animation_delay < 0:
 		pass
 	elif animation_delay > 0:
@@ -37,10 +40,9 @@ func _physics_process(delta):
 	elif animation_delay == 0:
 		$AnimatedSprite2D.play(mode)
 		animation_delay -= 1
-		
-	
+
 	if $Hurtbox.overlaps_body(GameState.player):
-		GameState.player.hit(self)
+		GameState.player.hurt(self)
 
 func hit(bullet):
 	health -= bullet.damage

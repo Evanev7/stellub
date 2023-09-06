@@ -22,10 +22,10 @@ func _on_spawn_timer_timeout():
 	
 	add_child(enemy)
 
-func _on_player_fire_bullet(number, spread, innacuracy):
-	var innacuracy_offset = randf_range(-innacuracy/2,innacuracy/2)
+func _on_player_fire_bullet(number, spread, inaccuracy):
+	var inaccuracy_offset = randf_range(-inaccuracy/2,inaccuracy/2)
 	for index in range(number):
-		var direction_offset = innacuracy_offset + remap(index, 0, number-1, -spread/2, spread/2)
+		var direction_offset = inaccuracy_offset + remap(index, 0, number-1, -spread/2, spread/2)
 		var bullet = bullet_scene.instantiate()
 		var target_direction: Vector2
 		var player = GameState.player
@@ -44,7 +44,8 @@ func start_game():
 	$Player.start($Marker2D.position)
 	$Player.screen_size = $TextureRect.get_size()
 	$HUD.show_message("Begin")
-	$HUD.show_val(GameState.player.hp)
+	$HUD.show_health(GameState.player.hp)
+	$HUD.show_score(GameState.player.score)
 	
 func _on_player_player_death():
 	game_over()
@@ -59,4 +60,7 @@ func _on_hud_start_game():
 	start_game() # Replace with function body.
 
 func _on_player_taken_damage():
-	$HUD.show_val(GameState.player.hp)
+	$HUD.show_health(GameState.player.hp)
+
+func _on_player_enemy_killed():
+	$HUD.show_score(GameState.player.score)

@@ -23,8 +23,11 @@ func _on_start_button_pressed():
 	start_game.emit() # Replace with function body.
 	$StartButton.hide()
 
-func show_val(number):
-	$NumberDisplay.text = str(number)
+func show_health(number):
+	$HealthDisplay.text = str(number)
+	
+func show_score(number):
+	$ScoreDisplay.text = str(number)
 
 func game_over():
 	show_message("You suck!")
