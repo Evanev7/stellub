@@ -2,7 +2,7 @@ extends Area2D
 
 @export var speed: int = 400
 @export var lifetime: int = 20
-@export var range: int = 1000
+@export var bullet_range: int = 1000
 @export var damage: int = 1
 var direction: Vector2 = Vector2(0,0)
 var _traveled_distance: float = 0.0
@@ -20,7 +20,7 @@ func _physics_process(delta):
 	position += direction * distance
 	
 	_traveled_distance += distance
-	if _traveled_distance > range:
+	if _traveled_distance > bullet_range:
 		queue_free()
 
 

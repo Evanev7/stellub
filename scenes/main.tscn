@@ -1,25 +1,16 @@
 [gd_scene load_steps=7 format=3 uid="uid://dfe6bc7mdpexj"]
 
-<<<<<<< Updated upstream
-[ext_resource type="Script" path="res://scripts/main.gd" id="1_m66cr"]
-[ext_resource type="PackedScene" uid="uid://dpjckt12ipcw2" path="res://scenes/enemy.tscn" id="2_orln7"]
-[ext_resource type="PackedScene" uid="uid://dxs5yefoboyqi" path="res://scenes/bullet.tscn" id="3_hv13u"]
-[ext_resource type="Texture2D" uid="uid://dkgw6o04xoqp3" path="res://art/woodsSummer01.png" id="4_pqqns"]
-[ext_resource type="PackedScene" uid="uid://d16bt18r2ws6h" path="res://scenes/Player.tscn" id="5_jwmwd"]
-[ext_resource type="PackedScene" uid="uid://yaht8i4bkv2u" path="res://scenes/HUD.tscn" id="6_pvavj"]
-=======
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_jwdk3"]
 [ext_resource type="PackedScene" uid="uid://dpjckt12ipcw2" path="res://scenes/enemy.tscn" id="2_xwny4"]
 [ext_resource type="PackedScene" uid="uid://dxs5yefoboyqi" path="res://scenes/bullet.tscn" id="3_q0qd8"]
 [ext_resource type="Texture2D" uid="uid://dkgw6o04xoqp3" path="res://art/woodsSummer01.png" id="4_mmhf2"]
-[ext_resource type="PackedScene" uid="uid://cnepphpba8e8u" path="res://scenes/player.tscn" id="5_a3mdk"]
+[ext_resource type="PackedScene" uid="uid://d16bt18r2ws6h" path="res://scenes/player.tscn" id="5_a3mdk"]
 [ext_resource type="PackedScene" uid="uid://yaht8i4bkv2u" path="res://scenes/HUD.tscn" id="6_6alhd"]
->>>>>>> Stashed changes
 
 [node name="Main" type="Node"]
-script = ExtResource("1_m66cr")
-enemy_scene = ExtResource("2_orln7")
-bullet_scene = ExtResource("3_hv13u")
+script = ExtResource("1_jwdk3")
+enemy_scene = ExtResource("2_xwny4")
+bullet_scene = ExtResource("3_q0qd8")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = -5500.0
@@ -28,10 +19,10 @@ offset_right = 6174.0
 offset_bottom = 3362.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("4_pqqns")
+texture = ExtResource("4_mmhf2")
 stretch_mode = 1
 
-[node name="Player" parent="." instance=ExtResource("5_jwmwd")]
+[node name="Player" parent="." instance=ExtResource("5_a3mdk")]
 
 [node name="SpawnTimer" type="Timer" parent="."]
 
@@ -42,7 +33,7 @@ one_shot = true
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(576, 325)
 
-[node name="HUD" parent="." instance=ExtResource("6_pvavj")]
+[node name="HUD" parent="." instance=ExtResource("6_6alhd")]
 
 [connection signal="enemy_killed" from="Player" to="." method="_on_player_enemy_killed"]
 [connection signal="fire_bullet" from="Player" to="." method="_on_player_fire_bullet"]

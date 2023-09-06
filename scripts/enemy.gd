@@ -20,7 +20,7 @@ func _ready():
 	health = MAX_HP
 	damage = DAMAGE
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	var direction = (GameState.player.position - position).normalized()
 	if direction.x < 0:
 		$AnimatedSprite2D.flip_h = true
