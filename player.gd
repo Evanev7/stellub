@@ -2,15 +2,20 @@ extends CharacterBody2D
 
 signal taken_damage
 signal player_death
-signal fire_bullet
+signal fire_bullet(number,spread,innacuracy)
 
 @export var SPEED = 200.0
 @export var ROTATION_SPEED = 20
-@export var fire_delay: int = 5
+@export var HP_MAX: int = 50
+@export var fire_delay: int = 15
+@export var multishot: int = 3
+@export var shot_spread: float = PI/12
+@export var shot_innacuracy: float = PI/32
+
 var screen_size: Vector2i
-var HP_MAX: int = 50
-var hp
-var firing
+var hp: int
+var firing: bool
+
 var _fire_timer: float = 0.0
 
 # Called when the node enters the scene tree for the first time.
@@ -51,7 +56,7 @@ func _physics_process(delta):
 	if firing:
 		_fire_timer += 1
 		while _fire_timer >= fire_delay:
-			fire_bullet.emit()
+			fire_bullet.emit(multishot, shot_spread, shot_innacuracy)
 			_fire_timer -= fire_delay
 		
 	
@@ -67,7 +72,7 @@ func start(pos):
 
 
 func hit(body):
-	hp -= 1
+	hp -= body.damage
 	taken_damage.emit()
 	if hp <= 0:
 		hide()

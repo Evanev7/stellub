@@ -22,11 +22,18 @@ func _on_spawn_timer_timeout():
 	
 	add_child(enemy)
 
-func _on_player_fire_bullet():
-	var bullet = bullet_scene.instantiate()
-	bullet.position = GameState.player.position
-	bullet.direction = (GameState.player.get_global_mouse_position() - bullet.position).normalized()
-	add_child(bullet)
+func _on_player_fire_bullet(number, spread, innacuracy):
+	var innacuracy_offset = randf_range(-innacuracy/2,innacuracy/2)
+	for index in range(number):
+		var direction_offset = innacuracy_offset + remap(index, 0, number-1, -spread/2, spread/2)
+		var bullet = bullet_scene.instantiate()
+		var target_direction: Vector2
+		var player = GameState.player
+		target_direction = (player.get_global_mouse_position() - player.position).normalized()
+		bullet.position = GameState.player.position
+		bullet.direction = target_direction.rotated(direction_offset)
+		
+		add_child(bullet)
 	
 
 func _on_start_timer_timeout():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dpjckt12ipcw2"]
+[gd_scene load_steps=7 format=3 uid="uid://dpjckt12ipcw2"]
 
 [ext_resource type="Script" path="res://enemy.gd" id="1_4btx8"]
 [ext_resource type="Texture2D" uid="uid://d0qgo0jnuolls" path="res://art/demon_dog_run_1.png" id="2_1l0gx"]
@@ -19,8 +19,12 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vkhqn"]
-radius = 54.6667
-height = 178.667
+radius = 33.3333
+height = 102.222
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3hnr1"]
+radius = 40.0
+height = 110.0
 
 [node name="Enemy" type="CharacterBody2D"]
 scale = Vector2(0.6, 0.6)
@@ -36,3 +40,10 @@ frame_progress = 0.684781
 rotation = 1.5708
 scale = Vector2(0.75, 0.75)
 shape = SubResource("CapsuleShape2D_vkhqn")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_3hnr1")
