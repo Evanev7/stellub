@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://yaht8i4bkv2u"]
 
-[ext_resource type="Script" path="res://HUD.gd" id="1_om6pf"]
+[ext_resource type="Script" path="res://scripts/HUD.gd" id="1_40ucn"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_gf5y4"]
 action = &"start_game"
@@ -9,7 +9,7 @@ action = &"start_game"
 events = [SubResource("InputEventAction_gf5y4")]
 
 [node name="HUD" type="CanvasLayer"]
-script = ExtResource("1_om6pf")
+script = ExtResource("1_40ucn")
 
 [node name="TextDisplay" type="Label" parent="."]
 anchors_preset = 8
