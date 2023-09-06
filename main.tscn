@@ -1,11 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://b0xcydctrn5qc"]
+[gd_scene load_steps=7 format=3 uid="uid://dfe6bc7mdpexj"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_aj1i0"]
-[ext_resource type="PackedScene" uid="uid://bkjtywx8bewfh" path="res://Player.tscn" id="1_khclm"]
+[ext_resource type="PackedScene" uid="uid://bkjtywx8bewfh" path="res://player.tscn" id="1_khclm"]
 [ext_resource type="PackedScene" uid="uid://dpjckt12ipcw2" path="res://enemy.tscn" id="2_yupeh"]
 [ext_resource type="Texture2D" uid="uid://dkgw6o04xoqp3" path="res://art/woodsSummer01.png" id="3_4mgtr"]
 [ext_resource type="PackedScene" uid="uid://dxs5yefoboyqi" path="res://bullet.tscn" id="3_n2ks3"]
-[ext_resource type="PackedScene" uid="uid://cp7mndoqid666" path="res://HUD.tscn" id="4_mi06j"]
+[ext_resource type="PackedScene" uid="uid://yaht8i4bkv2u" path="res://HUD.tscn" id="4_mi06j"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_aj1i0")

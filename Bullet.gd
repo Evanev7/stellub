@@ -30,6 +30,6 @@ func _on_self_destruct_timeout():
 
 func _on_body_entered(body):
 	if body != GameState.player:
-		if body.has_method("hit"):
-			body.hit(self)
+		if body.has_method("hurt"):
+			body.hurt(self)
 		queue_free()

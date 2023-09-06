@@ -44,7 +44,7 @@ func _physics_process(delta):
 	if $Hurtbox.overlaps_body(GameState.player):
 		GameState.player.hurt(self)
 
-func hit(bullet):
+func hurt(bullet):
 	health -= bullet.damage
 	scale = Vector2(0.1, 0.1)
 	var tween := create_tween()
