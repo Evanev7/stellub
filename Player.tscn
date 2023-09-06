@@ -29,11 +29,5 @@ animation = &"up"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_odef0")
 
-[node name="ShotTimer" type="Timer" parent="."]
-process_callback = 0
-wait_time = 0.01
-
 [node name="Camera2D" type="Camera2D" parent="."]
 enabled = false
-
-[connection signal="timeout" from="ShotTimer" to="." method="_on_shot_timer_timeout"]

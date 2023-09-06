@@ -3,6 +3,7 @@ extends Node
 @export var enemy_scene: PackedScene
 @export var bullet_scene: PackedScene
 @export var safe_range: int = 500
+var _firing: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,7 +26,6 @@ func _on_player_fire_bullet():
 	var bullet = bullet_scene.instantiate()
 	bullet.position = GameState.player.position
 	bullet.direction = (GameState.player.get_global_mouse_position() - bullet.position).normalized()
-	
 	add_child(bullet)
 	
 
@@ -50,9 +50,6 @@ func game_over():
 
 func _on_hud_start_game():
 	start_game() # Replace with function body.
-
-	
-
 
 func _on_player_taken_damage():
 	$HUD.show_val(GameState.player.hp)

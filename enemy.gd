@@ -2,7 +2,10 @@ extends CharacterBody2D
 
 @export var SPEED: int = 100
 @export var MAX_HP: int = 10
+@export var DAMAGE: int = 1
+
 var health
+var damage
 
 func _ready():	
 	# Select mob texture variants for later
@@ -10,6 +13,7 @@ func _ready():
 	$AnimatedSprite2D.play(variants[randi() % variants.size()]) 
 	add_to_group("enemy")
 	health = MAX_HP
+	damage = DAMAGE
 	
 func _physics_process(delta):
 	var direction = (GameState.player.position - position).normalized()
