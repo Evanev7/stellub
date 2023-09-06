@@ -6,7 +6,7 @@ signal fire_bullet
 
 @export var SPEED = 200.0
 @export var ROTATION_SPEED = 20
-@export var fire_rate: int = 1
+@export var fire_delay: int = 5
 var screen_size: Vector2i
 var HP_MAX: int = 50
 var hp
@@ -49,10 +49,10 @@ func _physics_process(delta):
 	if Input.is_action_just_released("primary_fire"):
 		firing = false
 	if firing:
-		_fire_timer += fire_rate
-		while _fire_timer >= 1:
+		_fire_timer += 1
+		while _fire_timer >= fire_delay:
 			fire_bullet.emit()
-			_fire_timer -= 1
+			_fire_timer -= fire_delay
 		
 	
 
