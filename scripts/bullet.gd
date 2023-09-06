@@ -1,8 +1,9 @@
-extends Hitbox
+extends Area2D
 
 @export var speed: int = 400
 @export var lifetime: int = 20
 @export var range: int = 1000
+@export var damage: int = 1
 var direction: Vector2 = Vector2(0,0)
 var _traveled_distance: float = 0.0
 

@@ -70,7 +70,10 @@ func _physics_process(delta):
 		while _fire_timer >= fire_delay:
 			fire_bullet.emit(multishot, shot_spread, shot_inaccuracy)
 			_fire_timer -= fire_delay
-		
+	
+	for area in $Hurtbox.get_overlapping_areas():
+		if area.owner.is_in_group("enemy"):
+			hurt(area.owner)
 
 
 func start(pos):

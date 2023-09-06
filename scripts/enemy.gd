@@ -19,7 +19,8 @@ func _ready():
 	add_to_group("enemy")
 	health = MAX_HP
 	damage = DAMAGE
-	
+
+
 func _physics_process(delta):
 	var direction = (GameState.player.position - position).normalized()
 	if direction.x < 0:
@@ -44,9 +45,15 @@ func _physics_process(delta):
 	if $Hurtbox.overlaps_body(GameState.player):
 		GameState.player.hurt(self)
 
+
 func hurt(bullet):
 	health -= bullet.damage
 	scale = Vector2(0.1, 0.1)
 	var tween := create_tween()
 	tween.tween_property(self, "global_scale", Vector2(0.6, 0.6), 0.02)
 
+
+
+func _on_hurtbox_area_entered(area: Area2D):
+	if area.is_in_group("bullet"):
+		hurt(area)

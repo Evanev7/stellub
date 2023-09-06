@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cnepphpba8e8u"]
+[gd_scene load_steps=5 format=3 uid="uid://cnepphpba8e8u"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_m0lvq"]
 [ext_resource type="Texture2D" uid="uid://clyycn7uujclo" path="res://art/icon.svg" id="2_fuo0j"]
-[ext_resource type="Script" path="res://scripts/hurtbox.gd" id="3_4d4eq"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_whc3w"]
 animations = [{
@@ -34,7 +33,8 @@ shape = SubResource("RectangleShape2D_odef0")
 enabled = false
 
 [node name="Hurtbox" type="Area2D" parent="."]
-script = ExtResource("3_4d4eq")
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("RectangleShape2D_odef0")
