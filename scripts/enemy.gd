@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var SPEED: int = 100
 @export var MAX_HP: int = 10
 @export var DAMAGE: int = 1
-@export var value: int = 1
+@export var VALUE: int = 1
 
 var health
 var damage
@@ -31,7 +31,7 @@ func _physics_process(delta):
 
 	if health <= 0:
 		queue_free()
-		GameState.player.hit(value)
+		GameState.player.hit(VALUE)
 
 	if animation_delay < 0:
 		pass

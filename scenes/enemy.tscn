@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dpjckt12ipcw2"]
+[gd_scene load_steps=10 format=3 uid="uid://dpjckt12ipcw2"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_oyorq"]
 [ext_resource type="Texture2D" uid="uid://d0qgo0jnuolls" path="res://art/demon_dog_run_1.png" id="2_1l0gx"]
 [ext_resource type="Texture2D" uid="uid://pmeorsjas4tw" path="res://art/demon_dog_run_2.png" id="3_uf2d1"]
 [ext_resource type="Script" path="res://scripts/hitbox.gd" id="4_s0kts"]
+[ext_resource type="Texture2D" uid="uid://bk3vxhcckppe1" path="res://art/demon_dog.png" id="4_vvkjo"]
 [ext_resource type="Script" path="res://scripts/hurtbox.gd" id="5_rch1e"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_h2nmm"]
@@ -18,6 +19,14 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_vvkjo")
+}],
+"loop": true,
+"name": &"dog",
+"speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vkhqn"]
@@ -29,14 +38,13 @@ radius = 40.0
 height = 110.0
 
 [node name="Enemy" type="CharacterBody2D"]
-scale = Vector2(0.6, 0.6)
 motion_mode = 1
 script = ExtResource("1_oyorq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.07, 0.07)
 sprite_frames = SubResource("SpriteFrames_h2nmm")
-frame_progress = 0.684781
+animation = &"dog"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
