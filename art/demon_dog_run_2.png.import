@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c52kcflrbklqy"
-path="res://.godot/imported/demon_dog_run_1.png-4a7608acbe7cf67caf5576f22fab0a01.ctex"
+uid="uid://pmeorsjas4tw"
+path="res://.godot/imported/demon_dog_run_2.png-b24af11bf7d70e97dd643ec3eed682ad.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://demon_dog_run_1.png"
-dest_files=["res://.godot/imported/demon_dog_run_1.png-4a7608acbe7cf67caf5576f22fab0a01.ctex"]
+source_file="res://art/demon_dog_run_2.png"
+dest_files=["res://.godot/imported/demon_dog_run_2.png-b24af11bf7d70e97dd643ec3eed682ad.ctex"]
 
 [params]
 

@@ -1,25 +1,35 @@
-extends StaticBody2D
+extends Area2D
 
-var velocity = Vector2(0, 0)
-var speed = 300
-var timer = 0
+@export var speed: int = 400
+@export var lifetime: int = 20
+@export var range: int = 1000
+@export var damage: int = 1
+var direction: Vector2 = Vector2(0,0)
+var _traveled_distance: float = 0.0
 
+# Called when the node enters the scene tree for the first time.
 func _ready():
 	add_to_group("bullet")
+	$SelfDestruct.wait_time = lifetime
+	$SelfDestruct.start()
+	rotation = direction.angle()
 
+# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	var collision_info = move_and_collide(velocity.normalized() * delta * speed)
+	var distance = speed * delta
+	position += direction * distance
 	
-	if timer < 400:
-		timer += 1
-	else:
+	_traveled_distance += distance
+	if _traveled_distance > range:
 		queue_free()
-		timer = 0
 
 
-func _on_area_2d_body_entered(body):
-	if body.name == "PlayerTopDown":
-		pass
-	else:
+func _on_self_destruct_timeout():
+	queue_free()
+
+
+func _on_body_entered(body):
+	if body != GameState.player:
+		if body.has_method("hit"):
+			body.hit(self)
 		queue_free()
-	pass

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cl1h7gasf4lpx"
-path="res://.godot/imported/woodsSummer01.png-b7f2a53c7ff7ba2cdbf32c32486d600c.ctex"
+uid="uid://dkgw6o04xoqp3"
+path="res://.godot/imported/woodsSummer01.png-a82e2f3084b2a34d506daae39161d1ae.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://woodsSummer01.png"
-dest_files=["res://.godot/imported/woodsSummer01.png-b7f2a53c7ff7ba2cdbf32c32486d600c.ctex"]
+source_file="res://art/woodsSummer01.png"
+dest_files=["res://.godot/imported/woodsSummer01.png-a82e2f3084b2a34d506daae39161d1ae.ctex"]
 
 [params]
 
