@@ -30,7 +30,7 @@ func _on_player_fire_bullet():
 	
 
 func _on_start_timer_timeout():
-	$SpawnTimer.start() 
+	$SpawnTimer.start()
 	
 func start_game():
 	$StartTimer.start()

@@ -31,7 +31,7 @@ shape = SubResource("RectangleShape2D_odef0")
 
 [node name="ShotTimer" type="Timer" parent="."]
 process_callback = 0
-wait_time = 0.05
+wait_time = 0.01
 
 [node name="Camera2D" type="Camera2D" parent="."]
 enabled = false
