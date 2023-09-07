@@ -3,6 +3,7 @@ extends CharacterBody2D
 signal taken_damage
 signal enemy_killed
 signal player_death
+signal level_up
 signal fire_bullet(number,spread,inaccuracy)
 
 @export var SPEED = 380.0
@@ -14,6 +15,9 @@ signal fire_bullet(number,spread,inaccuracy)
 @export var shot_inaccuracy: float = PI/32
 
 var screen_size: Vector2i
+var level_threshold = [10, 20, 30, 50, 80, 130, 210, 340, 550, 999]
+var level_cap = []
+var current_level
 var hp
 var score
 var firing
@@ -77,6 +81,9 @@ func _physics_process(delta):
 
 
 func start(pos):
+	for i in level_threshold:
+		level_cap.append(i + i/2)
+	current_level = 0
 	position = pos
 	show()
 	hp = HP_MAX
@@ -98,5 +105,18 @@ func hurt(body):
 		
 func hit(value):
 	score += value
+	var index = 0
+	for i in level_threshold:
+		index += 1
+		if score >= i:
+			for j in level_cap:
+				if index <= current_level:
+					break
+				if score < j:
+					current_level = index
+					level(current_level)
 	enemy_killed.emit()
+	
+func level(level):
+	level_up.emit(level)
 

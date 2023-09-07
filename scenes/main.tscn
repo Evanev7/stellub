@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dfe6bc7mdpexj"]
+[gd_scene load_steps=10 format=3 uid="uid://dfe6bc7mdpexj"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_jwdk3"]
 [ext_resource type="PackedScene" uid="uid://bmy8t7esngcf0" path="res://scenes/enemy.tscn" id="2_xwny4"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cnepphpba8e8u" path="res://scenes/player.tscn" id="5_a3mdk"]
 [ext_resource type="Resource" uid="uid://dj771wggflmv6" path="res://resources/demon_skeleton.tres" id="5_hv5rk"]
 [ext_resource type="PackedScene" uid="uid://yaht8i4bkv2u" path="res://scenes/HUD.tscn" id="6_6alhd"]
+[ext_resource type="PackedScene" uid="uid://1dmnavilcwx5" path="res://scenes/upgradeHUD.tscn" id="9_bkewp"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_jwdk3")
@@ -35,10 +36,16 @@ position = Vector2(576, 325)
 
 [node name="HUD" parent="." instance=ExtResource("6_6alhd")]
 
+[node name="UpgradeHUD" parent="." instance=ExtResource("9_bkewp")]
+
 [connection signal="enemy_killed" from="Player" to="." method="_on_player_enemy_killed"]
 [connection signal="fire_bullet" from="Player" to="." method="_on_player_fire_bullet"]
+[connection signal="level_up" from="Player" to="." method="_on_player_level_up"]
 [connection signal="player_death" from="Player" to="." method="_on_player_player_death"]
 [connection signal="taken_damage" from="Player" to="." method="_on_player_taken_damage"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
 [connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
+[connection signal="upgrade_1_pressed" from="UpgradeHUD" to="." method="_on_upgrade_hud_upgrade_1_pressed"]
+[connection signal="upgrade_2_pressed" from="UpgradeHUD" to="." method="_on_upgrade_hud_upgrade_2_pressed"]
+[connection signal="upgrade_3_pressed" from="UpgradeHUD" to="." method="_on_upgrade_hud_upgrade_3_pressed"]
