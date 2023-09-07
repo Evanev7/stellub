@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://dfe6bc7mdpexj"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_jwdk3"]
-[ext_resource type="PackedScene" uid="uid://bmy8t7esngcf0" path="res://scenes/enemy.tscn" id="2_xwny4"]
+[ext_resource type="PackedScene" uid="uid://dpjckt12ipcw2" path="res://scenes/enemy.tscn" id="2_xwny4"]
 [ext_resource type="PackedScene" uid="uid://dldkm6m8ux87t" path="res://scenes/bullet.tscn" id="3_q0qd8"]
 [ext_resource type="Texture2D" uid="uid://dkgw6o04xoqp3" path="res://art/woodsSummer01.png" id="4_mmhf2"]
 [ext_resource type="Resource" uid="uid://d24yolxme86jg" path="res://resources/demon_dog.tres" id="4_rj6mf"]

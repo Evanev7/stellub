@@ -1,5 +1,4 @@
 extends CharacterBody2D
-@export var resource_list: Array[enemyResource]
 
 #@export var SPEED: int = 100
 #@export var MAX_HP: int = 10
@@ -11,22 +10,31 @@ extends CharacterBody2D
 @onready var damage : int
 @onready var value : int
 @onready var speed : int
-@onready var resource : Resource = resource_list[randi() % resource_list.size()]
+@onready var flipped : bool
+@onready var resource : enemyResource
 
 var animation_delay
 var mode
 
 func _ready():
-	sprite.sprite_frames = resource.ANIMATION
 	health = resource.MAX_HP
 	damage = resource.DAMAGE
 	value = resource.VALUE
 	speed = resource.SPEED
+	flipped = resource.FLIP_H
+	sprite.sprite_frames = resource.ANIMATION
+	sprite.flip_h = flipped
+	$CollisionShape2D.shape = resource.COLLIDER
+	$CollisionShape2D.rotation = resource.COLLISION_ROTATION
+	$Hitbox/CollisionShape2D.shape = resource.HITBOX
+	$Hitbox/CollisionShape2D.rotation = resource.COLLISION_ROTATION
+	$Hurtbox/CollisionShape2D.shape = resource.HURTBOX
+	$Hurtbox/CollisionShape2D.rotation = resource.COLLISION_ROTATION
 	
 	# Select mob texture variants for later
-#	var variants = $AnimatedSprite2D.sprite_frames.get_animation_names()
-#	mode = variants[randi() % variants.size()]
-#	animation_delay = randi_range(0,20)
+	var variants = sprite.sprite_frames.get_animation_names()
+	mode = variants[randi() % variants.size()]
+	animation_delay = randi_range(0,20)
 	
 	add_to_group("enemy")
 
@@ -34,9 +42,9 @@ func _ready():
 func _physics_process(delta):
 	var direction = (GameState.player.position - position).normalized()
 	if direction.x < 0:
-		$AnimatedSprite2D.flip_h = true
+		sprite.flip_h = (true != flipped)
 	else:
-		$AnimatedSprite2D.flip_h = false
+		sprite.flip_h = (false != flipped)
 	velocity = direction * speed
 	move_and_slide()
 
@@ -44,13 +52,13 @@ func _physics_process(delta):
 		queue_free()
 		GameState.player.hit(value)
 
-#	if animation_delay < 0:
-#		pass
-#	elif animation_delay > 0:
-#		animation_delay -= 1
-#	elif animation_delay == 0:
-#		$AnimatedSprite2D.play(mode)
-#		animation_delay -= 1
+	if animation_delay < 0:
+		pass
+	elif animation_delay > 0:
+		animation_delay -= 1
+	elif animation_delay == 0:
+		sprite.play(mode)
+		animation_delay -= 1
 	
 	if $Hurtbox.overlaps_body(GameState.player):
 		GameState.player.hurt(self)

@@ -1,60 +1,37 @@
-[gd_scene load_steps=7 format=3 uid="uid://dpjckt12ipcw2"]
+[gd_scene load_steps=5 format=3 uid="uid://bmy8t7esngcf0"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_oyorq"]
-[ext_resource type="Resource" uid="uid://d24yolxme86jg" path="res://resources/demon_dog.tres" id="2_o6t1k"]
-[ext_resource type="Resource" uid="uid://dj771wggflmv6" path="res://resources/demon_skeleton.tres" id="3_v2qws"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_b2ikr"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": null
-}, {
-"duration": 1.0,
-"texture": null
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vkhqn"]
-radius = 33.3333
-height = 102.222
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3hnr1"]
-radius = 40.0
-height = 110.0
+[ext_resource type="SpriteFrames" uid="uid://bpernxx6xbtyn" path="res://resources/demon_skeleton_spriteframes.tres" id="2_60lhk"]
+[ext_resource type="Shape2D" uid="uid://0e7jt1gqqywj" path="res://resources/hitboxes/demon_skeleton_collisionbox.tres" id="3_vgymb"]
+[ext_resource type="Shape2D" uid="uid://q26ka3qri44y" path="res://resources/hitboxes/demon_skeleton_hitbox.tres" id="4_yc22m"]
 
 [node name="Enemy" type="CharacterBody2D"]
 scale = Vector2(0.6, 0.6)
 motion_mode = 1
 script = ExtResource("1_oyorq")
-resource_list = Array[Resource("res://scripts/enemyResource.gd")]([ExtResource("2_o6t1k"), ExtResource("3_v2qws")])
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(35, 63.3333)
 scale = Vector2(0.07, 0.07)
-sprite_frames = SubResource("SpriteFrames_b2ikr")
+sprite_frames = ExtResource("2_60lhk")
+animation = &"skeleton"
+offset = Vector2(-500, -904.762)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-rotation = 1.5708
-scale = Vector2(0.75, 0.75)
-shape = SubResource("CapsuleShape2D_vkhqn")
+shape = ExtResource("3_vgymb")
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_3hnr1")
+shape = ExtResource("4_yc22m")
 
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_3hnr1")
+shape = ExtResource("4_yc22m")
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

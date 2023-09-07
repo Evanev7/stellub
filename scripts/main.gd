@@ -5,6 +5,8 @@ extends Node
 @export var safe_range: int = 500
 var _firing: bool = false
 
+@export var enemy_resource_list: Array[enemyResource]
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -17,9 +19,9 @@ func _process(delta):
 
 func _on_spawn_timer_timeout():
 	var enemy = enemy_scene.instantiate()
+	enemy.resource = enemy_resource_list[randi() % enemy_resource_list.size()]
 	var spawn_position = Vector2(safe_range,0).rotated(randf_range(0, 2*PI))
 	enemy.position = GameState.player.position + spawn_position
-	
 	add_child(enemy)
 
 func _on_player_fire_bullet(number, spread, inaccuracy):
