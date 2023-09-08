@@ -11,17 +11,46 @@ extends CharacterBody2D
 @onready var damage : int
 @onready var value : int
 @onready var speed : int
+<<<<<<< Updated upstream
 @onready var resource : Resource = resource_list[randi() % resource_list.size()]
+=======
+@onready var unique_scale : Vector2
+@onready var flipped : bool
+@onready var resource : enemyResource
+>>>>>>> Stashed changes
 
 var animation_delay
+var default_scale
 var mode
+var default_angle
+var floating
 
 func _ready():
+<<<<<<< Updated upstream
 	sprite.sprite_frames = resource.ANIMATION
+=======
+	name = resource.NAME
+>>>>>>> Stashed changes
 	health = resource.MAX_HP
 	damage = resource.DAMAGE
 	value = resource.VALUE
 	speed = resource.SPEED
+<<<<<<< Updated upstream
+=======
+	flipped = resource.FLIP_H
+	sprite.sprite_frames = resource.ANIMATION
+	sprite.flip_h = flipped
+	default_angle = self.rotation_degrees
+	scale = resource.SCALE
+	default_scale = get_scale()
+	floating = resource.FLOATING
+	$CollisionShape2D.shape = resource.COLLIDER
+	$CollisionShape2D.rotation = resource.COLLISION_ROTATION
+	$Hitbox/CollisionShape2D.shape = resource.HITBOX
+	$Hitbox/CollisionShape2D.rotation = resource.COLLISION_ROTATION
+	$Hurtbox/CollisionShape2D.shape = resource.HURTBOX
+	$Hurtbox/CollisionShape2D.rotation = resource.COLLISION_ROTATION
+>>>>>>> Stashed changes
 	
 	# Select mob texture variants for later
 #	var variants = $AnimatedSprite2D.sprite_frames.get_animation_names()
@@ -29,9 +58,21 @@ func _ready():
 #	animation_delay = randi_range(0,20)
 	
 	add_to_group("enemy")
+	sway()
+
+func sway() -> void:
+	var tween: Tween = create_tween()
+	if floating:
+		tween.tween_property(sprite, "position", Vector2(sprite.position.x, sprite.position.y + 2/default_scale.length()), 0.4).set_ease(Tween.EASE_IN)
+		tween.tween_property(sprite, "position", Vector2(sprite.position.x, sprite.position.y - 2/default_scale.length()), 0.4).set_ease(Tween.EASE_OUT)
+		tween.tween_callback(sway)
+	else:
+		tween.tween_property(self, "rotation_degrees", default_angle + 2/default_scale.length(), 0.4).set_ease(Tween.EASE_IN)
+		tween.tween_property(self, "rotation_degrees", default_angle - 2/default_scale.length(), 0.4).set_ease(Tween.EASE_OUT)
+		tween.tween_callback(sway)
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	var direction = (GameState.player.position - position).normalized()
 	if direction.x < 0:
 		$AnimatedSprite2D.flip_h = true
@@ -59,9 +100,9 @@ func _physics_process(delta):
 func hurt(bullet):
 	health -= bullet.damage
 	bullet.queue_free()
-	scale = Vector2(0.1, 0.1)
+	scale = default_scale * 0.65 
 	var tween := create_tween()
-	tween.tween_property(self, "global_scale", Vector2(0.6, 0.6), 0.02)
+	tween.tween_property(self, "global_scale", default_scale, 0.05)
 
 
 

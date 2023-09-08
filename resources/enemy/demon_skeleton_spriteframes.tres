@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://bpernxx6xbtyn"]
+
+[ext_resource type="Texture2D" uid="uid://nm60sm6hcvxw" path="res://art/demon_skeleton.png" id="1_br76i"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_br76i")
+}],
+"loop": true,
+"name": &"skeleton",
+"speed": 5.0
+}]

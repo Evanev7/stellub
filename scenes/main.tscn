@@ -1,16 +1,36 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=7 format=3 uid="uid://dfe6bc7mdpexj"]
+=======
+[gd_scene load_steps=14 format=3 uid="uid://dfe6bc7mdpexj"]
+>>>>>>> Stashed changes
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_jwdk3"]
 [ext_resource type="PackedScene" uid="uid://dpjckt12ipcw2" path="res://scenes/enemy.tscn" id="2_xwny4"]
 [ext_resource type="PackedScene" uid="uid://dldkm6m8ux87t" path="res://scenes/bullet.tscn" id="3_q0qd8"]
 [ext_resource type="Texture2D" uid="uid://dkgw6o04xoqp3" path="res://art/woodsSummer01.png" id="4_mmhf2"]
+<<<<<<< Updated upstream
 [ext_resource type="PackedScene" uid="uid://cnepphpba8e8u" path="res://scenes/player.tscn" id="5_a3mdk"]
 [ext_resource type="PackedScene" uid="uid://yaht8i4bkv2u" path="res://scenes/HUD.tscn" id="6_6alhd"]
+=======
+[ext_resource type="Resource" uid="uid://d24yolxme86jg" path="res://resources/enemy/demon_dog.tres" id="4_rj6mf"]
+[ext_resource type="PackedScene" uid="uid://cnepphpba8e8u" path="res://scenes/player.tscn" id="5_a3mdk"]
+[ext_resource type="Resource" uid="uid://dj771wggflmv6" path="res://resources/enemy/demon_skeleton.tres" id="5_hv5rk"]
+[ext_resource type="PackedScene" uid="uid://yaht8i4bkv2u" path="res://scenes/HUD.tscn" id="6_6alhd"]
+[ext_resource type="Resource" uid="uid://dh8xipsw2bu5w" path="res://resources/enemy/demon_skull.tres" id="6_bd75f"]
+[ext_resource type="Resource" uid="uid://djjvchiit0f0n" path="res://resources/enemy/angel_worshipper.tres" id="7_ogva3"]
+[ext_resource type="Resource" uid="uid://bnoj3uq3e6s17" path="res://resources/enemy/angel_warrior.tres" id="8_1gvkt"]
+[ext_resource type="Resource" uid="uid://daslelns8qmfv" path="res://resources/enemy/angel_crusader.tres" id="9_27ird"]
+[ext_resource type="PackedScene" uid="uid://1dmnavilcwx5" path="res://scenes/upgradeHUD.tscn" id="9_bkewp"]
+>>>>>>> Stashed changes
 
 [node name="Main" type="Node"]
 script = ExtResource("1_jwdk3")
 enemy_scene = ExtResource("2_xwny4")
 bullet_scene = ExtResource("3_q0qd8")
+<<<<<<< Updated upstream
+=======
+enemy_resource_list = Array[Resource("res://scripts/enemyResource.gd")]([ExtResource("4_rj6mf"), ExtResource("5_hv5rk"), ExtResource("6_bd75f"), ExtResource("7_ogva3"), ExtResource("8_1gvkt"), ExtResource("9_27ird")])
+>>>>>>> Stashed changes
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_right = 1226.0
@@ -22,6 +42,7 @@ texture = ExtResource("4_mmhf2")
 [node name="Player" parent="." instance=ExtResource("5_a3mdk")]
 
 [node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 2.0
 
 [node name="StartTimer" type="Timer" parent="."]
 wait_time = 2.0
