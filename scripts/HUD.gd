@@ -25,7 +25,7 @@ func _on_start_button_pressed():
 
 func show_health(number):
 	$HealthDisplay.text = str(number)
-	
+
 func show_score(number):
 	$ScoreDisplay.text = str(number)
 

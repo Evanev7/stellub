@@ -5,6 +5,8 @@ extends Node
 @export var safe_range: int = 500
 var _firing: bool = false
 
+@export var enemy_resource_list: Array[enemyResource]
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -17,9 +19,9 @@ func _process(_delta):
 
 func _on_spawn_timer_timeout():
 	var enemy = enemy_scene.instantiate()
+	enemy.resource = enemy_resource_list[randi() % enemy_resource_list.size()]
 	var spawn_position = Vector2(safe_range,0).rotated(randf_range(0, 2*PI))
 	enemy.position = GameState.player.position + spawn_position
-	
 	add_child(enemy)
 
 func _on_player_fire_bullet(number, spread, inaccuracy):
@@ -65,8 +67,33 @@ func game_over():
 func _on_hud_start_game():
 	start_game() # Replace with function body.
 
+
 func _on_player_taken_damage():
 	$HUD.show_health(GameState.player.hp)
 
+
 func _on_player_enemy_killed():
 	$HUD.show_score(GameState.player.score)
+
+func _on_player_level_up(current_level):
+	get_tree().paused = true
+	$SpawnTimer.set_wait_time($SpawnTimer.get_wait_time() / 1.2)
+	$UpgradeHUD.set_visible(true)
+	$UpgradeHUD.show_level(GameState.player.current_level)
+
+func _on_upgrade_hud_upgrade_1_pressed():
+	GameState.player.multishot += 1
+	get_tree().paused = false
+	$UpgradeHUD.set_visible(false)
+
+
+func _on_upgrade_hud_upgrade_2_pressed():
+	GameState.player.shot_spread /= 1.2
+	get_tree().paused = false
+	$UpgradeHUD.set_visible(false)
+
+
+func _on_upgrade_hud_upgrade_3_pressed():
+	GameState.player.fire_delay /= 1.2
+	get_tree().paused = false
+	$UpgradeHUD.set_visible(false)

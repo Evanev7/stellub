@@ -1,0 +1,44 @@
+[gd_scene load_steps=9 format=3 uid="uid://dfe6bc7mdpexj"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_jwdk3"]
+[ext_resource type="PackedScene" uid="uid://dpjckt12ipcw2" path="res://scenes/enemy.tscn" id="2_xwny4"]
+[ext_resource type="PackedScene" uid="uid://dldkm6m8ux87t" path="res://scenes/bullet.tscn" id="3_q0qd8"]
+[ext_resource type="Texture2D" uid="uid://dkgw6o04xoqp3" path="res://art/woodsSummer01.png" id="4_mmhf2"]
+[ext_resource type="Resource" uid="uid://d24yolxme86jg" path="res://resources/demon_dog.tres" id="4_rj6mf"]
+[ext_resource type="PackedScene" uid="uid://cnepphpba8e8u" path="res://scenes/player.tscn" id="5_a3mdk"]
+[ext_resource type="Resource" uid="uid://dj771wggflmv6" path="res://resources/demon_skeleton.tres" id="5_hv5rk"]
+[ext_resource type="PackedScene" uid="uid://yaht8i4bkv2u" path="res://scenes/HUD.tscn" id="6_6alhd"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_jwdk3")
+enemy_scene = ExtResource("2_xwny4")
+bullet_scene = ExtResource("3_q0qd8")
+enemy_resource_list = Array[Resource("res://scripts/enemyResource.gd")]([ExtResource("4_rj6mf"), ExtResource("5_hv5rk")])
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1226.0
+offset_bottom = 1226.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_mmhf2")
+
+[node name="Player" parent="." instance=ExtResource("5_a3mdk")]
+
+[node name="SpawnTimer" type="Timer" parent="."]
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(576, 325)
+
+[node name="HUD" parent="." instance=ExtResource("6_6alhd")]
+
+[connection signal="enemy_killed" from="Player" to="." method="_on_player_enemy_killed"]
+[connection signal="fire_bullet" from="Player" to="." method="_on_player_fire_bullet"]
+[connection signal="player_death" from="Player" to="." method="_on_player_player_death"]
+[connection signal="taken_damage" from="Player" to="." method="_on_player_taken_damage"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
+[connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]

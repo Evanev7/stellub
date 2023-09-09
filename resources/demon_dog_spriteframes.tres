@@ -1,0 +1,18 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://6xmqo1j5gqfr"]
+
+[ext_resource type="Texture2D" uid="uid://bk3vxhcckppe1" path="res://art/demon_dog.png" id="1_utlhd"]
+[ext_resource type="Texture2D" uid="uid://d0qgo0jnuolls" path="res://art/demon_dog_run_1.png" id="2_7xiw7"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_utlhd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_7xiw7")
+}],
+"loop": true,
+"name": &"dog",
+"speed": 5.0
+}]
