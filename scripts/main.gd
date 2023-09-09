@@ -13,7 +13,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 
@@ -27,13 +27,18 @@ func _on_spawn_timer_timeout():
 func _on_player_fire_bullet(number, spread, inaccuracy):
 	var inaccuracy_offset = randf_range(-inaccuracy/2,inaccuracy/2)
 	for index in range(number):
-		var direction_offset = inaccuracy_offset + remap(index, 0, number-1, -spread/2, spread/2)
+		var direction_offset
+		if number > 1:
+			direction_offset = inaccuracy_offset + remap(index, 0, number-1, -spread/2, spread/2)
 		var bullet = bullet_scene.instantiate()
 		var target_direction: Vector2
 		var player = GameState.player
 		target_direction = (player.get_global_mouse_position() - player.position).normalized()
 		bullet.position = GameState.player.position
-		bullet.direction = target_direction.rotated(direction_offset)
+		if number > 1:
+			bullet.direction = target_direction.rotated(direction_offset)
+		else:
+			bullet.direction = target_direction
 		
 		add_child(bullet)
 	
@@ -45,7 +50,8 @@ func start_game():
 	$StartTimer.start()
 	$Player.start($Marker2D.position)
 	$Player.screen_size = $TextureRect.get_size()
-	$HUD.show_message("Begin")
+	$SpawnTimer.set_wait_time(2.0)
+	$HUD.show_message("All Hell Breaks Loose")
 	$HUD.show_health(GameState.player.hp)
 	$HUD.show_score(GameState.player.score)
 	
