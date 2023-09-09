@@ -4,7 +4,7 @@ signal taken_damage
 signal enemy_killed
 signal player_death
 signal level_up
-signal fire_bullet(number,spread,inaccuracy)
+signal fire_bullet(number,spread,inaccuracy,speed)
 
 @export var STARTING_SPEED = 380.0
 @export var STARTING_ROTATION_SPEED = 20
@@ -18,6 +18,8 @@ signal fire_bullet(number,spread,inaccuracy)
 ## Format: PI/x, default PI/32
 @export var STARTING_shot_inaccuracy: float = PI/32
 
+@export var STARTING_shot_speed: float = 0.99
+
 var screen_size: Vector2i
 var level_threshold = [10, 20, 30, 50, 80, 130, 210, 340, 550, 999]
 var level_cap = []
@@ -29,6 +31,7 @@ var fire_delay
 var multishot
 var shot_spread
 var shot_inaccuracy
+var shot_speed
 var hp
 var score
 var firing
@@ -98,7 +101,7 @@ func _physics_process(_delta):
 	if firing:
 		_fire_timer += 1
 		while _fire_timer >= fire_delay:
-			fire_bullet.emit(multishot, shot_spread, shot_inaccuracy)
+			fire_bullet.emit(multishot, shot_spread, shot_inaccuracy, shot_speed)
 			_fire_timer -= fire_delay
 	
 	for area in $Hurtbox.get_overlapping_areas():
@@ -130,6 +133,7 @@ func default_stats():
 	multishot = STARTING_multishot
 	shot_spread = STARTING_shot_spread
 	shot_inaccuracy = STARTING_shot_inaccuracy
+	shot_speed = STARTING_shot_speed
 	
 
 func hurt(body):

@@ -22,7 +22,7 @@ func _on_spawn_timer_timeout():
 	enemy.position = GameState.player.position + spawn_position
 	add_child(enemy)
 
-func _on_player_fire_bullet(number, spread, inaccuracy):
+func _on_player_fire_bullet(number, spread, inaccuracy, speed):
 	var inaccuracy_offset = randf_range(-inaccuracy/2,inaccuracy/2)
 	for index in range(number):
 		var direction_offset
@@ -36,7 +36,7 @@ func _on_player_fire_bullet(number, spread, inaccuracy):
 		if number > 1:
 			bullet.direction = target_direction.rotated(direction_offset)
 		else:
-			bullet.direction = target_direction
+			bullet.direction = target_direction * speed
 		
 		add_child(bullet)
 	

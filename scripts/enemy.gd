@@ -65,9 +65,9 @@ func sway() -> void:
 func _physics_process(_delta):
 	var direction = (GameState.player.position - position).normalized()
 	if direction.x < 0:
-		$AnimatedSprite2D.flip_h = true
+		sprite.flip_h = (true != flipped)
 	else:
-		$AnimatedSprite2D.flip_h = false
+		sprite.flip_h = (false != flipped)
 	velocity = direction * speed
 	move_and_slide()
 
