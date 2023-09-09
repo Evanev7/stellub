@@ -1,43 +1,33 @@
-<<<<<<< Updated upstream
-[gd_scene load_steps=7 format=3 uid="uid://dfe6bc7mdpexj"]
-=======
 [gd_scene load_steps=14 format=3 uid="uid://dfe6bc7mdpexj"]
->>>>>>> Stashed changes
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_jwdk3"]
-[ext_resource type="PackedScene" uid="uid://dpjckt12ipcw2" path="res://scenes/enemy.tscn" id="2_xwny4"]
-[ext_resource type="PackedScene" uid="uid://dldkm6m8ux87t" path="res://scenes/bullet.tscn" id="3_q0qd8"]
+[ext_resource type="PackedScene" uid="uid://dpjckt12ipcw2" path="res://scenes/enemy.tscn" id="2_abhdw"]
+[ext_resource type="PackedScene" uid="uid://yaht8i4bkv2u" path="res://scenes/HUD.tscn" id="3_8qfpp"]
+[ext_resource type="PackedScene" uid="uid://dldkm6m8ux87t" path="res://scenes/bullet.tscn" id="3_8vuuc"]
+[ext_resource type="Resource" uid="uid://dh8xipsw2bu5w" path="res://resources/enemy/demon_skull.tres" id="4_ikhts"]
+[ext_resource type="PackedScene" uid="uid://1dmnavilcwx5" path="res://scenes/upgradeHUD.tscn" id="4_ls5jb"]
 [ext_resource type="Texture2D" uid="uid://dkgw6o04xoqp3" path="res://art/woodsSummer01.png" id="4_mmhf2"]
-<<<<<<< Updated upstream
+[ext_resource type="Resource" uid="uid://doalqpgaptgxa" path="res://resources/enemy/demon_dog.tres" id="5_3s043"]
 [ext_resource type="PackedScene" uid="uid://cnepphpba8e8u" path="res://scenes/player.tscn" id="5_a3mdk"]
-[ext_resource type="PackedScene" uid="uid://yaht8i4bkv2u" path="res://scenes/HUD.tscn" id="6_6alhd"]
-=======
-[ext_resource type="Resource" uid="uid://d24yolxme86jg" path="res://resources/enemy/demon_dog.tres" id="4_rj6mf"]
-[ext_resource type="PackedScene" uid="uid://cnepphpba8e8u" path="res://scenes/player.tscn" id="5_a3mdk"]
-[ext_resource type="Resource" uid="uid://dj771wggflmv6" path="res://resources/enemy/demon_skeleton.tres" id="5_hv5rk"]
-[ext_resource type="PackedScene" uid="uid://yaht8i4bkv2u" path="res://scenes/HUD.tscn" id="6_6alhd"]
-[ext_resource type="Resource" uid="uid://dh8xipsw2bu5w" path="res://resources/enemy/demon_skull.tres" id="6_bd75f"]
-[ext_resource type="Resource" uid="uid://djjvchiit0f0n" path="res://resources/enemy/angel_worshipper.tres" id="7_ogva3"]
-[ext_resource type="Resource" uid="uid://bnoj3uq3e6s17" path="res://resources/enemy/angel_warrior.tres" id="8_1gvkt"]
-[ext_resource type="Resource" uid="uid://daslelns8qmfv" path="res://resources/enemy/angel_crusader.tres" id="9_27ird"]
-[ext_resource type="PackedScene" uid="uid://1dmnavilcwx5" path="res://scenes/upgradeHUD.tscn" id="9_bkewp"]
->>>>>>> Stashed changes
+[ext_resource type="Resource" uid="uid://bqyg0clrpkdim" path="res://resources/enemy/demon_skeleton.tres" id="6_8vwn2"]
+[ext_resource type="Resource" uid="uid://djjvchiit0f0n" path="res://resources/enemy/angel_worshipper.tres" id="7_c5yt3"]
+[ext_resource type="Resource" uid="uid://bnoj3uq3e6s17" path="res://resources/enemy/angel_warrior.tres" id="8_vk0tv"]
+[ext_resource type="Resource" uid="uid://daslelns8qmfv" path="res://resources/enemy/angel_crusader.tres" id="9_d18g6"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_jwdk3")
-enemy_scene = ExtResource("2_xwny4")
-bullet_scene = ExtResource("3_q0qd8")
-<<<<<<< Updated upstream
-=======
-enemy_resource_list = Array[Resource("res://scripts/enemyResource.gd")]([ExtResource("4_rj6mf"), ExtResource("5_hv5rk"), ExtResource("6_bd75f"), ExtResource("7_ogva3"), ExtResource("8_1gvkt"), ExtResource("9_27ird")])
->>>>>>> Stashed changes
+enemy_scene = ExtResource("2_abhdw")
+bullet_scene = ExtResource("3_8vuuc")
+enemy_resource_list = Array[Resource("res://scripts/enemyResource.gd")]([ExtResource("4_ikhts"), ExtResource("5_3s043"), ExtResource("6_8vwn2"), ExtResource("7_c5yt3"), ExtResource("8_vk0tv"), ExtResource("9_d18g6")])
 
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_right = 1226.0
-offset_bottom = 1226.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
+offset_left = -24563.0
+offset_top = -23486.0
+offset_right = 26566.0
+offset_bottom = 27643.0
 texture = ExtResource("4_mmhf2")
+expand_mode = 4
+stretch_mode = 1
 
 [node name="Player" parent="." instance=ExtResource("5_a3mdk")]
 
@@ -45,18 +35,23 @@ texture = ExtResource("4_mmhf2")
 wait_time = 2.0
 
 [node name="StartTimer" type="Timer" parent="."]
-wait_time = 2.0
 one_shot = true
 
-[node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(576, 325)
+[node name="HUD" parent="." instance=ExtResource("3_8qfpp")]
 
-[node name="HUD" parent="." instance=ExtResource("6_6alhd")]
+[node name="upgradeHUD" parent="." instance=ExtResource("4_ls5jb")]
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(576, 324)
 
 [connection signal="enemy_killed" from="Player" to="." method="_on_player_enemy_killed"]
 [connection signal="fire_bullet" from="Player" to="." method="_on_player_fire_bullet"]
+[connection signal="level_up" from="Player" to="." method="_on_player_level_up"]
 [connection signal="player_death" from="Player" to="." method="_on_player_player_death"]
 [connection signal="taken_damage" from="Player" to="." method="_on_player_taken_damage"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
 [connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
+[connection signal="upgrade_1_pressed" from="upgradeHUD" to="." method="_on_upgrade_hud_upgrade_1_pressed"]
+[connection signal="upgrade_2_pressed" from="upgradeHUD" to="." method="_on_upgrade_hud_upgrade_2_pressed"]
+[connection signal="upgrade_3_pressed" from="upgradeHUD" to="." method="_on_upgrade_hud_upgrade_3_pressed"]

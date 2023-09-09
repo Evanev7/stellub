@@ -1,5 +1,4 @@
 extends CharacterBody2D
-@export var resource_list: Array[enemyResource]
 
 #@export var SPEED: int = 100
 #@export var MAX_HP: int = 10
@@ -11,13 +10,9 @@ extends CharacterBody2D
 @onready var damage : int
 @onready var value : int
 @onready var speed : int
-<<<<<<< Updated upstream
-@onready var resource : Resource = resource_list[randi() % resource_list.size()]
-=======
+@onready var resource : enemyResource
 @onready var unique_scale : Vector2
 @onready var flipped : bool
-@onready var resource : enemyResource
->>>>>>> Stashed changes
 
 var animation_delay
 var default_scale
@@ -26,17 +21,12 @@ var default_angle
 var floating
 
 func _ready():
-<<<<<<< Updated upstream
 	sprite.sprite_frames = resource.ANIMATION
-=======
 	name = resource.NAME
->>>>>>> Stashed changes
 	health = resource.MAX_HP
 	damage = resource.DAMAGE
 	value = resource.VALUE
 	speed = resource.SPEED
-<<<<<<< Updated upstream
-=======
 	flipped = resource.FLIP_H
 	sprite.sprite_frames = resource.ANIMATION
 	sprite.flip_h = flipped
@@ -50,7 +40,7 @@ func _ready():
 	$Hitbox/CollisionShape2D.rotation = resource.COLLISION_ROTATION
 	$Hurtbox/CollisionShape2D.shape = resource.HURTBOX
 	$Hurtbox/CollisionShape2D.rotation = resource.COLLISION_ROTATION
->>>>>>> Stashed changes
+
 	
 	# Select mob texture variants for later
 #	var variants = $AnimatedSprite2D.sprite_frames.get_animation_names()
