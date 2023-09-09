@@ -6,18 +6,29 @@ signal player_death
 signal level_up
 signal fire_bullet(number,spread,inaccuracy)
 
-@export var SPEED = 380.0
-@export var ROTATION_SPEED = 20
-@export var HP_MAX: int = 50
-@export var fire_delay: int = 15
-@export var multishot: int = 3
-@export var shot_spread: float = PI/12
-@export var shot_inaccuracy: float = PI/32
+@export var STARTING_SPEED = 380.0
+@export var STARTING_ROTATION_SPEED = 20
+@export var STARTING_HP_MAX: int = 100
+@export var STARTING_fire_delay: int = 15
+@export var STARTING_multishot: int = 1
+
+## Format: PI/x, default PI/12
+@export var STARTING_shot_spread: float = PI/12
+
+## Format: PI/x, default PI/32
+@export var STARTING_shot_inaccuracy: float = PI/32
 
 var screen_size: Vector2i
 var level_threshold = [10, 20, 30, 50, 80, 130, 210, 340, 550, 999]
 var level_cap = []
 var current_level
+var hp_max
+var speed
+var rotation_speed
+var fire_delay
+var multishot
+var shot_spread
+var shot_inaccuracy
 var hp
 var score
 var firing
@@ -38,6 +49,15 @@ func _ready():
 func _physics_process(_delta):
 	velocity.x = Input.get_axis("move_left", "move_right")
 	velocity.y = Input.get_axis("move_up", "move_down")
+	
+	##Debug ###############################
+	
+	if Input.is_key_pressed(KEY_R): ## Increase score by 10
+		hit(10)
+	
+	
+	#######################################
+	
 	if Input.is_action_just_pressed("walk"):
 		walking = true
 	if Input.is_action_just_released("walk"):
@@ -55,14 +75,14 @@ func _physics_process(_delta):
 	
 	if velocity.length() > 0:
 		if walking == true:
-			velocity = velocity.normalized() * SPEED/2
+			velocity = velocity.normalized() * speed/2
 		else:
-			velocity = velocity.normalized() * SPEED
+			velocity = velocity.normalized() * speed
 		
-		var angle_difference = velocity.angle() - rotation + PI/2
-		
-		angle_difference = fposmod(angle_difference + PI, 2*PI)-PI
-		
+#		var angle_difference = velocity.angle() - rotation + PI/2
+#
+#		angle_difference = fposmod(angle_difference + PI, 2*PI)-PI
+#		
 #		if ROTATION_SPEED * delta > abs(angle_difference):
 #			rotation += angle_difference
 #		else: 
@@ -87,17 +107,30 @@ func _physics_process(_delta):
 
 
 func start(pos):
+	default_stats()
 	for i in level_threshold:
 		level_cap.append(i + i/2)
 	current_level = 0
 	position = pos
 	show()
-	hp = HP_MAX
+	hp = hp_max
 	score = 0
 	set_physics_process(true)
 	$CollisionShape2D.disabled = false
 	$Camera2D.enabled = true
 
+func default_stats():
+	## Player Stats
+	speed = STARTING_SPEED
+	rotation_speed = STARTING_ROTATION_SPEED
+	hp_max = STARTING_HP_MAX
+	
+	## Weapon Stats
+	fire_delay = STARTING_fire_delay
+	multishot = STARTING_multishot
+	shot_spread = STARTING_shot_spread
+	shot_inaccuracy = STARTING_shot_inaccuracy
+	
 
 func hurt(body):
 	hp -= body.damage

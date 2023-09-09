@@ -16,7 +16,6 @@ func _physics_process(_delta):
 	pass
 
 func _on_spawn_timer_timeout():
-	print("spawned")
 	var enemy = enemy_scene.instantiate()
 	enemy.resource = enemy_resource_list[randi() % enemy_resource_list.size()]
 	var spawn_position = Vector2(safe_range,0).rotated(randf_range(0, 2*PI))

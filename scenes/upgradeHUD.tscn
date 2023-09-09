@@ -63,7 +63,7 @@ offset_right = 267.5
 offset_bottom = -55.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "Shot speed increase"
+text = "Fire rate increase"
 
 [node name="LevelUpDisplay" type="Label" parent="ColorRect"]
 layout_mode = 1
