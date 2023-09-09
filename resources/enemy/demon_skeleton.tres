@@ -1,49 +1,22 @@
-[gd_resource type="Resource" script_class="enemyResource" load_steps=5 format=3 uid="uid://dj771wggflmv6"]
+[gd_resource type="Resource" script_class="enemyResource" load_steps=5 format=3 uid="uid://bqyg0clrpkdim"]
 
-<<<<<<< Updated upstream:resources/demon_skeleton.tres
-[ext_resource type="Script" path="res://scripts/enemyResource.gd" id="1_aq3xk"]
-[ext_resource type="Texture2D" uid="uid://nm60sm6hcvxw" path="res://art/demon_skeleton.png" id="2_2mh3j"]
-[ext_resource type="Texture2D" uid="uid://clyycn7uujclo" path="res://art/icon.svg" id="2_51w1r"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_2eonu"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_2mh3j")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_51w1r")
-}],
-"loop": true,
-"name": &"skeleton",
-"speed": 5.0
-}]
+[ext_resource type="SpriteFrames" uid="uid://bpernxx6xbtyn" path="res://resources/enemy/demon_skeleton_spriteframes.tres" id="1_h2j8b"]
+[ext_resource type="Shape2D" uid="uid://0e7jt1gqqywj" path="res://resources/hitboxes/demon_skeleton_collisionbox.tres" id="2_ms3en"]
+[ext_resource type="Shape2D" uid="uid://q26ka3qri44y" path="res://resources/hitboxes/demon_skeleton_hitbox.tres" id="3_yanws"]
+[ext_resource type="Script" path="res://scripts/enemyResource.gd" id="4_ejpil"]
 
 [resource]
-script = ExtResource("1_aq3xk")
-ANIMATION = SubResource("SpriteFrames_2eonu")
-SPEED = 90
-MAX_HP = 15
-DAMAGE = 2
-VALUE = 2
-=======
-[ext_resource type="SpriteFrames" uid="uid://bpernxx6xbtyn" path="res://resources/enemy/demon_skeleton_spriteframes.tres" id="1_0jmka"]
-[ext_resource type="Shape2D" uid="uid://0e7jt1gqqywj" path="res://resources/hitboxes/demon_skeleton_collisionbox.tres" id="2_do6p4"]
-[ext_resource type="Shape2D" uid="uid://q26ka3qri44y" path="res://resources/hitboxes/demon_skeleton_hitbox.tres" id="3_lc5p7"]
-[ext_resource type="Script" path="res://scripts/enemyResource.gd" id="4_pr8pr"]
-
-[resource]
-script = ExtResource("4_pr8pr")
+script = ExtResource("4_ejpil")
 NAME = "demon_skeleton"
-ANIMATION = ExtResource("1_0jmka")
+ANIMATION = ExtResource("1_h2j8b")
 SPEED = 90
 MAX_HP = 15
 DAMAGE = 2
 VALUE = 3
-FLIP_H = true
+FLIP_H = false
+FLOATING = false
 SCALE = Vector2(0.7, 0.7)
 COLLISION_ROTATION = 0.0
-HITBOX = ExtResource("3_lc5p7")
-HURTBOX = ExtResource("3_lc5p7")
-COLLIDER = ExtResource("2_do6p4")
->>>>>>> Stashed changes:resources/enemy/demon_skeleton.tres
+HITBOX = ExtResource("3_yanws")
+HURTBOX = ExtResource("3_yanws")
+COLLIDER = ExtResource("2_ms3en")

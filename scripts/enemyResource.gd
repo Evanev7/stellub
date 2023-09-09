@@ -8,8 +8,6 @@ class_name enemyResource
 @export var MAX_HP: int
 @export var DAMAGE: int
 @export var VALUE: int
-<<<<<<< Updated upstream
-=======
 @export var FLIP_H: bool
 @export var FLOATING: bool
 @export var SCALE: Vector2 = Vector2(2, 2)
@@ -17,4 +15,3 @@ class_name enemyResource
 @export var HITBOX: Shape2D
 @export var HURTBOX: Shape2D
 @export var COLLIDER: Shape2D
->>>>>>> Stashed changes

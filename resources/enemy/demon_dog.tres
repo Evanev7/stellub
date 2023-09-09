@@ -1,49 +1,22 @@
-[gd_resource type="Resource" script_class="enemyResource" load_steps=5 format=3 uid="uid://d24yolxme86jg"]
+[gd_resource type="Resource" script_class="enemyResource" load_steps=5 format=3 uid="uid://doalqpgaptgxa"]
 
-<<<<<<< Updated upstream:resources/demon_dog.tres
 [ext_resource type="Script" path="res://scripts/enemyResource.gd" id="1_hqusm"]
-[ext_resource type="Texture2D" uid="uid://d0qgo0jnuolls" path="res://art/demon_dog_run_1.png" id="2_ia7ha"]
-[ext_resource type="Texture2D" uid="uid://bk3vxhcckppe1" path="res://art/demon_dog.png" id="2_vnh3q"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_vunp3"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_vnh3q")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_ia7ha")
-}],
-"loop": true,
-"name": &"dog",
-"speed": 5.0
-}]
+[ext_resource type="SpriteFrames" uid="uid://6xmqo1j5gqfr" path="res://resources/enemy/demon_dog_spriteframes.tres" id="1_ocmja"]
+[ext_resource type="Shape2D" uid="uid://cttd8doc3fysn" path="res://resources/hitboxes/demon_dog_collisionbox.tres" id="2_56py6"]
+[ext_resource type="Shape2D" uid="uid://uhegj44ubxiq" path="res://resources/hitboxes/demon_dog_hitbox.tres" id="3_qc0to"]
 
 [resource]
 script = ExtResource("1_hqusm")
-ANIMATION = SubResource("SpriteFrames_vunp3")
-SPEED = 100
-MAX_HP = 5
-DAMAGE = 1
-VALUE = 1
-=======
-[ext_resource type="SpriteFrames" uid="uid://6xmqo1j5gqfr" path="res://resources/enemy/demon_dog_spriteframes.tres" id="1_fvb0l"]
-[ext_resource type="Shape2D" uid="uid://cttd8doc3fysn" path="res://resources/hitboxes/demon_dog_collisionbox.tres" id="2_dhoqx"]
-[ext_resource type="Shape2D" uid="uid://uhegj44ubxiq" path="res://resources/hitboxes/demon_dog_hitbox.tres" id="3_6mn5y"]
-[ext_resource type="Script" path="res://scripts/enemyResource.gd" id="4_0tnn1"]
-
-[resource]
-script = ExtResource("4_0tnn1")
 NAME = "demon_dog"
-ANIMATION = ExtResource("1_fvb0l")
-SPEED = 150
+ANIMATION = ExtResource("1_ocmja")
+SPEED = 100
 MAX_HP = 5
 DAMAGE = 1
 VALUE = 2
 FLIP_H = false
-SCALE = Vector2(0.7, 0.7)
-COLLISION_ROTATION = 90.0
-HITBOX = ExtResource("3_6mn5y")
-HURTBOX = ExtResource("3_6mn5y")
-COLLIDER = ExtResource("2_dhoqx")
->>>>>>> Stashed changes:resources/enemy/demon_dog.tres
+FLOATING = false
+SCALE = Vector2(0.5, 0.5)
+COLLISION_ROTATION = 0.0
+HITBOX = ExtResource("3_qc0to")
+HURTBOX = ExtResource("3_qc0to")
+COLLIDER = ExtResource("2_56py6")
