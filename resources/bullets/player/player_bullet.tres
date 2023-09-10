@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="BulletResource" load_steps=3 format=3 uid="uid://ccpb4udi5owpj"]
+
+[ext_resource type="Script" path="res://scripts/bullet_resource.gd" id="1_dmiyo"]
+[ext_resource type="SpriteFrames" uid="uid://cbfq7bqkgh3ti" path="res://resources/bullets/player/player_bullet_spriteframes.tres" id="1_eteat"]
+
+[resource]
+script = ExtResource("1_dmiyo")
+source = "player"
+animation = ExtResource("1_eteat")
+speed = 0.99
+lifetime = 20
+bullet_range = 1000
+damage = 1
+fire_delay = 60
+multishot = 1
+shot_spread = 0.0
+shot_inaccuracy = 0.0
+shot_speed = 1.0

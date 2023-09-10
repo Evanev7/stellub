@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://cnepphpba8e8u"]
+[gd_scene load_steps=10 format=3 uid="uid://cnepphpba8e8u"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_m0lvq"]
+[ext_resource type="Resource" uid="uid://ccpb4udi5owpj" path="res://resources/bullets/player/player_bullet.tres" id="2_02d8s"]
 [ext_resource type="Texture2D" uid="uid://c5nb4anhp1gyj" path="res://art/player/player_test_1.png" id="2_bfyyv"]
 [ext_resource type="Texture2D" uid="uid://ckgv2hbkgpbtn" path="res://art/player/player_test_2.png" id="3_36yfj"]
 [ext_resource type="Texture2D" uid="uid://y6yq787ii3ci" path="res://art/player/player_test_3.png" id="4_laehl"]
@@ -56,6 +57,7 @@ size = Vector2(50, 50)
 [node name="Player" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_m0lvq")
+bullet = ExtResource("2_02d8s")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-4, 0)

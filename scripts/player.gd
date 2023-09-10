@@ -23,7 +23,7 @@ signal fire_bullet(bullet: BulletResource)
 
 @export var STARTING_shot_speed: float = 0.99
 
-var bullet: BulletResource
+@export var bullet: BulletResource
 
 var screen_size: Vector2i
 var level_threshold = [10, 20, 30, 50, 80, 130, 210, 340, 550, 999]
@@ -42,7 +42,7 @@ var _h_flipped: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	bullet = BulletResource.new()
+	# bullet = BulletResource.new()
 	GameState.player = self
 	default_scale = self.scale
 	if not screen_size:

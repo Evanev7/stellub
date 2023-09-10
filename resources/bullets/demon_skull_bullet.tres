@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="BulletResource" load_steps=2 format=3 uid="uid://d1bfxwthry8hx"]
+
+[ext_resource type="Script" path="res://scripts/bullet_resource.gd" id="1_eenvt"]
+
+[resource]
+script = ExtResource("1_eenvt")
+source = "demon_skull"
+speed = 400
+lifetime = 20
+bullet_range = 1000
+damage = 1
+fire_delay = 60
+multishot = 1
+shot_spread = 0.0
+shot_inaccuracy = 0.0
+shot_speed = 1.0
