@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dldkm6m8ux87t"]
 
 [ext_resource type="Script" path="res://scripts/bullet.gd" id="1_vy7io"]
-[ext_resource type="Texture2D" uid="uid://clyycn7uujclo" path="res://art/icon.svg" id="2_xvrui"]
+[ext_resource type="Texture2D" uid="uid://3wvm0dvgypbl" path="res://art/bullet.png" id="2_2a7jc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rwjyl"]
 
@@ -14,8 +14,8 @@ script = ExtResource("1_vy7io")
 shape = SubResource("CircleShape2D_rwjyl")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_xvrui")
+scale = Vector2(0.01, 0.01)
+texture = ExtResource("2_2a7jc")
 
 [node name="SelfDestruct" type="Timer" parent="."]
 one_shot = true

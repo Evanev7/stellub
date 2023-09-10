@@ -46,23 +46,27 @@ func _ready():
 
 	
 	# Select mob texture variants for later (This code is functional just unnecessary)
-#	var variants = $AnimatedSprite2D.sprite_frames.get_animation_names()
-#	mode = variants[randi() % variants.size()]
-#	animation_delay = randi_range(0,20)
+	var variants = $AnimatedSprite2D.sprite_frames.get_animation_names()
+	mode = variants[randi() % variants.size()]
+	animation_delay = randi_range(0,20)
 	
 	add_to_group("enemy")
 	sway()
 
 func sway() -> void:
 	var tween: Tween = create_tween()
+	var variance = 2/default_scale.length()
+	tween.tween_callback(sway)
 	if floating:
-		tween.tween_property(sprite, "position", Vector2(sprite.position.x, sprite.position.y + 2/default_scale.length()), 0.4).set_ease(Tween.EASE_IN)
-		tween.tween_property(sprite, "position", Vector2(sprite.position.x, sprite.position.y - 2/default_scale.length()), 0.4).set_ease(Tween.EASE_OUT)
-		tween.tween_callback(sway)
+		tween.tween_property(sprite, "position", sprite.position + Vector2(0, variance), 0.4) \
+			.set_ease(Tween.EASE_IN)
+		tween.tween_property(sprite, "position", sprite.position - Vector2(0, variance), 0.4) \
+			.set_ease(Tween.EASE_OUT)
 	else:
-		tween.tween_property(self, "rotation_degrees", default_angle + 2/default_scale.length(), 0.4).set_ease(Tween.EASE_IN)
-		tween.tween_property(self, "rotation_degrees", default_angle - 2/default_scale.length(), 0.4).set_ease(Tween.EASE_OUT)
-		tween.tween_callback(sway)
+		tween.tween_property(self, "rotation_degrees", default_angle + variance, 0.4) \
+			.set_ease(Tween.EASE_IN)
+		tween.tween_property(self, "rotation_degrees", default_angle - variance, 0.4) \
+			.set_ease(Tween.EASE_OUT)
 
 
 func _physics_process(_delta):
@@ -78,13 +82,13 @@ func _physics_process(_delta):
 		queue_free()
 		GameState.player.hit(value)
 
-#	if animation_delay < 0:
-#		pass
-#	elif animation_delay > 0:
-#		animation_delay -= 1
-#	elif animation_delay == 0:
-#		$AnimatedSprite2D.play(mode)
-#		animation_delay -= 1
+	if animation_delay < 0:
+		pass
+	elif animation_delay > 0:
+		animation_delay -= 1
+	elif animation_delay == 0:
+		$AnimatedSprite2D.play(mode)
+		animation_delay -= 1
 	
 	if $Hurtbox.overlaps_body(GameState.player):
 		GameState.player.hurt(self)
