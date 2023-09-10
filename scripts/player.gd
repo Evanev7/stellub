@@ -40,6 +40,7 @@ var default_scale
 var _fire_timer: float = 0.0
 var _h_flipped: bool = false
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	bullet = BulletResource.new()
@@ -167,6 +168,7 @@ func process_hurtbox(area):
 	if area.is_in_group("bullet"):
 		if area.origin != GameState.player:
 			hurt(area.data)
+			area.queue_free()
 		return
 	if area.owner.is_in_group("enemy"):
 			hurt(area.owner)
