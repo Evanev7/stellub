@@ -100,7 +100,6 @@ func _physics_process(_delta):
 
 func hurt(area):
 	health -= area.data.damage
-	area.queue_free()
 	scale = default_scale * 0.65 
 	var tween := create_tween()
 	tween.tween_property(self, "global_scale", default_scale, 0.05)
@@ -109,3 +108,4 @@ func hurt(area):
 func _on_hurtbox_area_entered(area: Area2D):
 	if area.is_in_group("bullet") and area.origin == GameState.player:
 		hurt(area)
+		area.queue_free()
