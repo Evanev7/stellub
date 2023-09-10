@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 signal fire_bullet(bullet: BulletResource)
+signal spawn
 
 @onready var sprite = $AnimatedSprite2D
 @onready var health : int
@@ -19,6 +20,7 @@ var floating
 var fire_delay
 var _fire_timer: int = 0
 var bullet
+var spawn_time: float
 
 func _ready():
 	# we shouldn't need any of these, the resource can be more than a list of default constants
@@ -109,3 +111,9 @@ func _on_hurtbox_area_entered(area: Area2D):
 	if area.is_in_group("bullet") and area.origin == GameState.player:
 		hurt(area)
 		area.queue_free()
+
+func create_timer():
+	var timer:= Timer.new()
+	add_child(timer)
+	timer.wait_time = spawn_time
+	timer.one_shot = true

@@ -16,3 +16,4 @@ class_name EnemyResource
 @export var HURTBOX: Shape2D
 @export var COLLIDER: Shape2D
 @export var BULLET: BulletResource
+@export var SPAWN_RATE: float

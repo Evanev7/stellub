@@ -63,6 +63,26 @@ func start_game():
 	$HUD.show_health(GameState.player.hp)
 	$HUD.show_score(GameState.player.score)
 	
+#	create_spawn_timers()
+#
+#func create_spawn_timers():
+#	var enemy = enemy_scene.instantiate()
+#	for i in enemy_resource_list:
+#		enemy.resource = i
+#		var timer:= Timer.new()
+#		add_child(timer)
+#		timer.wait_time = enemy.resource.SPAWN_RATE
+#		var func_name = "_on_" + enemy.resource.NAME + "_timeout"
+#		print(func_name)
+#		var callable = Callable(self, func_name)
+#		timer.timeout.connect(callable.call())
+#
+#func _on_demon_skull_timeout() -> void:
+#	print("demon_skull spawned")
+#
+#func _on_demon_dog_timeout() -> void:
+#	print("demon_dog spawned")
+
 func _on_player_player_death():
 	game_over()
 	
