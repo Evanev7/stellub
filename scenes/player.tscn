@@ -1,9 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://cnepphpba8e8u"]
+[gd_scene load_steps=24 format=3 uid="uid://cnepphpba8e8u"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_m0lvq"]
 [ext_resource type="Resource" uid="uid://ccpb4udi5owpj" path="res://resources/bullets/player/player_bullet.tres" id="2_02d8s"]
 [ext_resource type="Texture2D" uid="uid://kwiitmwbn82r" path="res://art/player/level 0/player_0_1.png" id="3_ik71x"]
-[ext_resource type="Texture2D" uid="uid://y6yq787ii3ci" path="res://art/player/player_test_3.png" id="4_laehl"]
 [ext_resource type="Texture2D" uid="uid://6fmtfmpb5kvf" path="res://art/player/level 0/player_0_2.png" id="4_p28ir"]
 [ext_resource type="Texture2D" uid="uid://q4hnsccll683" path="res://art/player/level 0/player_0_3.png" id="5_3s83j"]
 [ext_resource type="Texture2D" uid="uid://jiw1ymwlkxj6" path="res://art/player/player_test_4.png" id="5_nvavr"]
@@ -17,7 +16,11 @@
 [ext_resource type="Texture2D" uid="uid://d38sqt6g8no0c" path="res://art/player/level 1/player_1_3.png" id="12_b5eo3"]
 [ext_resource type="Texture2D" uid="uid://dgd3v4um63ilg" path="res://art/player/level 1/player_1_4.png" id="13_t3qt6"]
 [ext_resource type="Texture2D" uid="uid://b61euv0sv1s35" path="res://art/player/level 1/player_1_5.png" id="14_60gpg"]
+[ext_resource type="Texture2D" uid="uid://3s2qtawumngc" path="res://art/player/level 2/player_2_1.png" id="16_anm1o"]
 [ext_resource type="Texture2D" uid="uid://bmth7utk22aok" path="res://art/player/level 1/player_1_7.png" id="16_j4f7o"]
+[ext_resource type="Texture2D" uid="uid://bc020wmqxwd1x" path="res://art/player/level 2/player_2_2.png" id="17_o3b57"]
+[ext_resource type="Texture2D" uid="uid://b74demdp666as" path="res://art/player/level 2/player_2_3.png" id="18_cpjt2"]
+[ext_resource type="Texture2D" uid="uid://do6k7k2wf53fx" path="res://art/player/level 2/player_2_4.png" id="19_or65r"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_whc3w"]
 animations = [{
@@ -72,7 +75,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_laehl")
+"texture": ExtResource("16_anm1o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_o3b57")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_cpjt2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_or65r")
 }],
 "loop": true,
 "name": &"level 2",
@@ -106,7 +118,7 @@ bullet = ExtResource("2_02d8s")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.05, 0.05)
 sprite_frames = SubResource("SpriteFrames_whc3w")
-animation = &"level 1"
+animation = &"level 0"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(0.6, 0.6)

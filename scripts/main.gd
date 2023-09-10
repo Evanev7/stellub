@@ -84,30 +84,33 @@ func _on_player_enemy_killed():
 	$HUD.show_score(GameState.player.score)
 
 func _on_player_level_up(current_level):
-	pause_game()
+	open_upgrade_hud()
 	$upgradeHUD.show_level(GameState.player.current_level)
 
 func _on_upgrade_hud_upgrade_1_pressed():
 	GameState.player.bullet.multishot += 1
-	unpause_game()
+	close_upgrade_hud()
 
 
 func _on_upgrade_hud_upgrade_2_pressed():
 	GameState.player.bullet.shot_spread /= 1.2
-	unpause_game()
+	close_upgrade_hud()
 
 
 func _on_upgrade_hud_upgrade_3_pressed():
 	GameState.player.bullet.fire_delay /= 1.2
-	unpause_game()
+	close_upgrade_hud()
 
-func pause_game():
+func open_upgrade_hud():
 	get_tree().paused = true
 	$SpawnTimer.set_wait_time($SpawnTimer.get_wait_time() / 1.2)
 	$upgradeHUD.set_visible(true)
 	
 
-func unpause_game():
+func close_upgrade_hud():
 	get_tree().paused = false
 	$upgradeHUD.set_visible(false)
+	var level = GameState.player.current_level
+	if level % 3 == 0:
+		GameState.player.current_animation = "level " + str(level/3)
 	

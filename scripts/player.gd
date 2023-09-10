@@ -11,18 +11,6 @@ signal fire_bullet(bullet: BulletResource)
 @export var STARTING_ROTATION_SPEED = 20
 @export var STARTING_HP_MAX: int = 100
 
-## Weapon Stats
-#@export var STARTING_fire_delay: int = 15
-#@export var STARTING_multishot: int = 1
-#
-### Format: PI/x, default PI/12
-#@export var STARTING_shot_spread: float = PI/12
-#
-### Format: PI/x, default PI/32
-#@export var STARTING_shot_inaccuracy: float = PI/32
-#
-#@export var STARTING_shot_speed: float = 0.99
-
 @export var bullet: BulletResource
 
 var screen_size: Vector2i
@@ -39,6 +27,7 @@ var walking
 var default_scale
 var _fire_timer: float = 0.0
 var _h_flipped: bool = false
+var current_animation
 
 
 # Called when the node enters the scene tree for the first time.
@@ -88,9 +77,9 @@ func _physics_process(_delta):
 		move_and_slide()
 		
 		# Walk animation
-		$AnimatedSprite2D.play()
+		$AnimatedSprite2D.play(current_animation)
 	else:
-		$AnimatedSprite2D.play()
+		$AnimatedSprite2D.play(current_animation)
 	
 	if _fire_timer <= bullet.fire_delay:
 		_fire_timer += 1
@@ -121,14 +110,7 @@ func default_stats():
 	speed = STARTING_SPEED
 	rotation_speed = STARTING_ROTATION_SPEED
 	hp_max = STARTING_HP_MAX
-	
-	## Weapon Stats
-#	bullet.fire_delay = STARTING_fire_delay
-#	bullet.multishot = STARTING_multishot
-#	bullet.shot_spread = STARTING_shot_spread
-#	bullet.shot_inaccuracy = STARTING_shot_inaccuracy
-#	bullet.shot_speed = STARTING_shot_speed
-	
+	current_animation = "level 0"
 
 func hurt(body):
 	hp -= body.damage
