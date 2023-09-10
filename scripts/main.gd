@@ -3,9 +3,9 @@ extends Node
 @export var enemy_scene: PackedScene
 @export var bullet_scene: PackedScene
 @export var safe_range: int = 500
-var _firing: bool = false
 
-@export var enemy_resource_list: Array[enemyResource]
+@export var enemy_resource_list: Array[EnemyResource]
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,23 +20,29 @@ func _on_spawn_timer_timeout():
 	enemy.resource = enemy_resource_list[randi() % enemy_resource_list.size()]
 	var spawn_position = Vector2(safe_range,0).rotated(randf_range(0, 2*PI))
 	enemy.position = GameState.player.position + spawn_position
+	enemy.fire_bullet.connect(_on_fire_bullet)
 	add_child(enemy)
 
-func _on_player_fire_bullet(number, spread, inaccuracy, speed):
-	var inaccuracy_offset = randf_range(-inaccuracy/2,inaccuracy/2)
-	for index in range(number):
-		var direction_offset
-		if number > 1:
-			direction_offset = inaccuracy_offset + remap(index, 0, number-1, -spread/2, spread/2)
+func _on_fire_bullet(origin, bullet_type: BulletResource):
+	var inaccuracy_offset = randf_range(-bullet_type.shot_inaccuracy/2,bullet_type.shot_inaccuracy/2)
+	for index in range(bullet_type.multishot):
 		var bullet = bullet_scene.instantiate()
 		var target_direction: Vector2
 		var player = GameState.player
-		target_direction = (player.get_global_mouse_position() - player.position).normalized()
-		bullet.position = GameState.player.position
-		if number > 1:
-			bullet.direction = target_direction.rotated(direction_offset)
+		if origin == player:
+			target_direction = (player.get_global_mouse_position() - player.position).normalized()
 		else:
-			bullet.direction = target_direction * speed
+			target_direction = (player.position - origin.position).normalized()
+		
+		var direction_offset = inaccuracy_offset
+		if bullet_type.multishot > 1:
+			direction_offset += remap(index, 0, bullet_type.multishot-1, -bullet_type.shot_spread/2, bullet_type.shot_spread/2)
+		target_direction = target_direction.rotated(direction_offset)
+		
+		bullet.set("direction", target_direction)
+		bullet.set("data", bullet_type)
+		bullet.set("origin", origin)
+		bullet.set("position", origin.position)
 		
 		add_child(bullet)
 	
@@ -74,24 +80,30 @@ func _on_player_enemy_killed():
 	$HUD.show_score(GameState.player.score)
 
 func _on_player_level_up(current_level):
-	get_tree().paused = true
-	$SpawnTimer.set_wait_time($SpawnTimer.get_wait_time() / 1.2)
-	$upgradeHUD.set_visible(true)
+	pause_game()
 	$upgradeHUD.show_level(GameState.player.current_level)
 
 func _on_upgrade_hud_upgrade_1_pressed():
-	GameState.player.multishot += 1
-	get_tree().paused = false
-	$upgradeHUD.set_visible(false)
+	GameState.player.bullet.multishot += 1
+	unpause_game()
 
 
 func _on_upgrade_hud_upgrade_2_pressed():
-	GameState.player.shot_spread /= 1.2
-	get_tree().paused = false
-	$upgradeHUD.set_visible(false)
+	GameState.player.bullet.shot_spread /= 1.2
+	unpause_game()
 
 
 func _on_upgrade_hud_upgrade_3_pressed():
-	GameState.player.fire_delay /= 1.2
+	GameState.player.bullet.fire_delay /= 1.2
+	unpause_game()
+
+func pause_game():
+	get_tree().paused = true
+	$SpawnTimer.set_wait_time($SpawnTimer.get_wait_time() / 1.2)
+	$upgradeHUD.set_visible(true)
+	
+
+func unpause_game():
 	get_tree().paused = false
 	$upgradeHUD.set_visible(false)
+	

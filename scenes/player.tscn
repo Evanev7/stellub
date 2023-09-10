@@ -54,7 +54,6 @@ animations = [{
 size = Vector2(50, 50)
 
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(1, 0)
 motion_mode = 1
 script = ExtResource("1_m0lvq")
 
@@ -82,3 +81,5 @@ position = Vector2(8, -1)
 rotation = 0.23911
 scale = Vector2(0.5, 1.2)
 shape = SubResource("RectangleShape2D_odef0")
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

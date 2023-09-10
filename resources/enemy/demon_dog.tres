@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="enemyResource" load_steps=5 format=3 uid="uid://doalqpgaptgxa"]
 
-[ext_resource type="Script" path="res://scripts/enemyResource.gd" id="1_hqusm"]
+[ext_resource type="Script" path="res://scripts/enemy_resource.gd" id="1_hqusm"]
 [ext_resource type="SpriteFrames" uid="uid://6xmqo1j5gqfr" path="res://resources/enemy/demon_dog_spriteframes.tres" id="1_ocmja"]
 [ext_resource type="Shape2D" uid="uid://cttd8doc3fysn" path="res://resources/hitboxes/demon_dog_collisionbox.tres" id="2_56py6"]
 [ext_resource type="Shape2D" uid="uid://uhegj44ubxiq" path="res://resources/hitboxes/demon_dog_hitbox.tres" id="3_qc0to"]

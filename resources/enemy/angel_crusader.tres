@@ -1,12 +1,12 @@
-[gd_resource type="Resource" script_class="enemyResource" load_steps=5 format=3 uid="uid://daslelns8qmfv"]
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=5 format=3 uid="uid://daslelns8qmfv"]
 
-[ext_resource type="Script" path="res://scripts/enemyResource.gd" id="1_n5y1u"]
 [ext_resource type="SpriteFrames" uid="uid://c5w2hlo8p3tfl" path="res://resources/enemy/angel_crusader_spriteframes.tres" id="1_xk1uw"]
 [ext_resource type="Shape2D" uid="uid://yeov000gmwil" path="res://resources/hitboxes/angel_crusader_collisionbox.tres" id="2_odh6b"]
 [ext_resource type="Shape2D" uid="uid://d3xxud6dm5v4" path="res://resources/hitboxes/angel_crusader_hitbox.tres" id="3_cxyca"]
+[ext_resource type="Script" path="res://scripts/enemy_resource.gd" id="4_0qbpw"]
 
 [resource]
-script = ExtResource("1_n5y1u")
+script = ExtResource("4_0qbpw")
 NAME = "angel_crusader"
 ANIMATION = ExtResource("1_xk1uw")
 SPEED = 50
@@ -20,3 +20,4 @@ COLLISION_ROTATION = 0.0
 HITBOX = ExtResource("3_cxyca")
 HURTBOX = ExtResource("3_cxyca")
 COLLIDER = ExtResource("2_odh6b")
+FIRE_DELAY = -1

@@ -1,6 +1,6 @@
 extends Resource
 
-class_name enemyResource
+class_name EnemyResource
 
 @export var NAME: String
 @export var ANIMATION: SpriteFrames
@@ -15,3 +15,4 @@ class_name enemyResource
 @export var HITBOX: Shape2D
 @export var HURTBOX: Shape2D
 @export var COLLIDER: Shape2D
+@export var BULLET: BulletResource

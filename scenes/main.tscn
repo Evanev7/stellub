@@ -18,7 +18,7 @@
 script = ExtResource("1_jwdk3")
 enemy_scene = ExtResource("2_abhdw")
 bullet_scene = ExtResource("3_8vuuc")
-enemy_resource_list = Array[Resource("res://scripts/enemyResource.gd")]([ExtResource("4_ikhts"), ExtResource("5_3s043"), ExtResource("6_8vwn2"), ExtResource("7_c5yt3"), ExtResource("8_vk0tv"), ExtResource("9_d18g6")])
+enemy_resource_list = Array[Resource("res://scripts/enemy_resource.gd")]([ExtResource("4_ikhts"), ExtResource("5_3s043"), ExtResource("6_8vwn2"), ExtResource("7_c5yt3"), ExtResource("8_vk0tv"), ExtResource("9_d18g6")])
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = -24563.0
@@ -45,7 +45,7 @@ one_shot = true
 position = Vector2(576, 324)
 
 [connection signal="enemy_killed" from="Player" to="." method="_on_player_enemy_killed"]
-[connection signal="fire_bullet" from="Player" to="." method="_on_player_fire_bullet"]
+[connection signal="fire_bullet" from="Player" to="." method="_on_fire_bullet"]
 [connection signal="level_up" from="Player" to="." method="_on_player_level_up"]
 [connection signal="player_death" from="Player" to="." method="_on_player_player_death"]
 [connection signal="taken_damage" from="Player" to="." method="_on_player_taken_damage"]
