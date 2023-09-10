@@ -1,8 +1,8 @@
 [gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://ca587shs88m53"]
 
-[ext_resource type="Texture2D" uid="uid://dgyj58e4c5d1a" path="res://art/demon_skull_1.png" id="1_aet8f"]
-[ext_resource type="Texture2D" uid="uid://cno1swqj8u1b5" path="res://art/demon_skull_2.png" id="2_k5lcy"]
-[ext_resource type="Texture2D" uid="uid://d2umxemh1oo7r" path="res://art/demon_skull_3.png" id="3_kery1"]
+[ext_resource type="Texture2D" uid="uid://dgyj58e4c5d1a" path="res://art/enemies/demon_skull_1.png" id="1_aet8f"]
+[ext_resource type="Texture2D" uid="uid://cno1swqj8u1b5" path="res://art/enemies/demon_skull_2.png" id="2_k5lcy"]
+[ext_resource type="Texture2D" uid="uid://d2umxemh1oo7r" path="res://art/enemies/demon_skull_3.png" id="3_kery1"]
 
 [resource]
 animations = [{

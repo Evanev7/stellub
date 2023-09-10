@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dldkm6m8ux87t"]
 
 [ext_resource type="Script" path="res://scripts/bullet.gd" id="1_vy7io"]
-[ext_resource type="Texture2D" uid="uid://clyycn7uujclo" path="res://art/icon.svg" id="2_xvrui"]
+[ext_resource type="SpriteFrames" uid="uid://cbfq7bqkgh3ti" path="res://resources/bullets/player/player_bullet_spriteframes.tres" id="2_p3jja"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rwjyl"]
 
@@ -11,13 +11,15 @@ collision_mask = 0
 script = ExtResource("1_vy7io")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.5, 1.5)
 shape = SubResource("CircleShape2D_rwjyl")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_xvrui")
 
 [node name="SelfDestruct" type="Timer" parent="."]
 one_shot = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.03, 0.03)
+sprite_frames = ExtResource("2_p3jja")
+animation = &"simple"
 
 [connection signal="timeout" from="SelfDestruct" to="." method="_on_self_destruct_timeout"]

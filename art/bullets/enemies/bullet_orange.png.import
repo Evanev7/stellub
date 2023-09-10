@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bk3vxhcckppe1"
-path="res://.godot/imported/demon_dog.png-0cbd7bc791cdfa99ac0f1974b8a75e15.ctex"
+uid="uid://b6y7giikvs0aa"
+path="res://.godot/imported/bullet_orange.png-f10d2daa88ee26eb68b1240a722fcb21.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/demon_dog.png"
-dest_files=["res://.godot/imported/demon_dog.png-0cbd7bc791cdfa99ac0f1974b8a75e15.ctex"]
+source_file="res://art/bullets/enemies/bullet_orange.png"
+dest_files=["res://.godot/imported/bullet_orange.png-f10d2daa88ee26eb68b1240a722fcb21.ctex"]
 
 [params]
 

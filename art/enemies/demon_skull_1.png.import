@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dm0cohiqw3sbk"
-path="res://.godot/imported/angel_warrior.png-be7e056046114f1684a090f1fc39455a.ctex"
+uid="uid://dgyj58e4c5d1a"
+path="res://.godot/imported/demon_skull_1.png-509eb3605ed4e743e210eb67ab411ebb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/angel_warrior.png"
-dest_files=["res://.godot/imported/angel_warrior.png-be7e056046114f1684a090f1fc39455a.ctex"]
+source_file="res://art/enemies/demon_skull_1.png"
+dest_files=["res://.godot/imported/demon_skull_1.png-509eb3605ed4e743e210eb67ab411ebb.ctex"]
 
 [params]
 

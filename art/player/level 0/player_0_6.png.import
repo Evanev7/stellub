@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqiq7m00kuq25"
-path="res://.godot/imported/angel_crusader.png-29bdfe4e4d2b0d1619d13cc08cb67310.ctex"
+uid="uid://tmp2otav6p5l"
+path="res://.godot/imported/player_0_6.png-cbcb0ddfda2f9f7cb1832f74dc693ac9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/angel_crusader.png"
-dest_files=["res://.godot/imported/angel_crusader.png-29bdfe4e4d2b0d1619d13cc08cb67310.ctex"]
+source_file="res://art/player/level 0/player_0_6.png"
+dest_files=["res://.godot/imported/player_0_6.png-cbcb0ddfda2f9f7cb1832f74dc693ac9.ctex"]
 
 [params]
 

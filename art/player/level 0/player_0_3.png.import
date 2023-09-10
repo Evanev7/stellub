@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6y7giikvs0aa"
-path="res://.godot/imported/bullet_orange.png-b45d3c5b581f8275e756fd9e685a9f93.ctex"
+uid="uid://q4hnsccll683"
+path="res://.godot/imported/player_0_3.png-db5ab656a41c61a934e164590c914c30.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/player/bullet_orange.png"
-dest_files=["res://.godot/imported/bullet_orange.png-b45d3c5b581f8275e756fd9e685a9f93.ctex"]
+source_file="res://art/player/level 0/player_0_3.png"
+dest_files=["res://.godot/imported/player_0_3.png-db5ab656a41c61a934e164590c914c30.ctex"]
 
 [params]
 

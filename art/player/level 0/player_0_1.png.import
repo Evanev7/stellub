@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nm60sm6hcvxw"
-path="res://.godot/imported/demon_skeleton.png-5eacd8a71e35a882e4b7140d2f67d6b4.ctex"
+uid="uid://kwiitmwbn82r"
+path="res://.godot/imported/player_0_1.png-c75537de16367c16109f803452063983.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/demon_skeleton.png"
-dest_files=["res://.godot/imported/demon_skeleton.png-5eacd8a71e35a882e4b7140d2f67d6b4.ctex"]
+source_file="res://art/player/level 0/player_0_1.png"
+dest_files=["res://.godot/imported/player_0_1.png-c75537de16367c16109f803452063983.ctex"]
 
 [params]
 

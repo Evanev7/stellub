@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cno1swqj8u1b5"
-path="res://.godot/imported/demon_skull_2.png-2254546697334a3e63c2c9acb4af5040.ctex"
+uid="uid://cab5vj2s3sthp"
+path="res://.godot/imported/player_1_6.png-7aa8cf8bb73f3ed1450178d90ef01814.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/demon_skull_2.png"
-dest_files=["res://.godot/imported/demon_skull_2.png-2254546697334a3e63c2c9acb4af5040.ctex"]
+source_file="res://art/player/level 1/player_1_6.png"
+dest_files=["res://.godot/imported/player_1_6.png-7aa8cf8bb73f3ed1450178d90ef01814.ctex"]
 
 [params]
 

@@ -12,16 +12,16 @@ signal fire_bullet(bullet: BulletResource)
 @export var STARTING_HP_MAX: int = 100
 
 ## Weapon Stats
-@export var STARTING_fire_delay: int = 15
-@export var STARTING_multishot: int = 1
-
-## Format: PI/x, default PI/12
-@export var STARTING_shot_spread: float = PI/12
-
-## Format: PI/x, default PI/32
-@export var STARTING_shot_inaccuracy: float = PI/32
-
-@export var STARTING_shot_speed: float = 0.99
+#@export var STARTING_fire_delay: int = 15
+#@export var STARTING_multishot: int = 1
+#
+### Format: PI/x, default PI/12
+#@export var STARTING_shot_spread: float = PI/12
+#
+### Format: PI/x, default PI/32
+#@export var STARTING_shot_inaccuracy: float = PI/32
+#
+#@export var STARTING_shot_speed: float = 0.99
 
 @export var bullet: BulletResource
 
@@ -43,7 +43,6 @@ var _h_flipped: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	# bullet = BulletResource.new()
 	GameState.player = self
 	default_scale = self.scale
 	if not screen_size:
@@ -73,11 +72,6 @@ func _physics_process(_delta):
 	if Input.is_action_just_released("primary_fire"):
 		firing = false
 
-#	if self.velocity.x == -1:
-#		self.scale = Vector2(-default_scale.x, default_scale.y)
-#	elif self.velocity.x == 1:
-#		self.scale = default_scale
-	
 	if velocity.length() > 0:
 		if walking:
 			velocity = velocity.normalized() * speed/2
@@ -96,7 +90,7 @@ func _physics_process(_delta):
 		# Walk animation
 		$AnimatedSprite2D.play()
 	else:
-		$AnimatedSprite2D.pause()
+		$AnimatedSprite2D.play()
 	
 	if _fire_timer <= bullet.fire_delay:
 		_fire_timer += 1
@@ -129,11 +123,11 @@ func default_stats():
 	hp_max = STARTING_HP_MAX
 	
 	## Weapon Stats
-	bullet.fire_delay = STARTING_fire_delay
-	bullet.multishot = STARTING_multishot
-	bullet.shot_spread = STARTING_shot_spread
-	bullet.shot_inaccuracy = STARTING_shot_inaccuracy
-	bullet.shot_speed = STARTING_shot_speed
+#	bullet.fire_delay = STARTING_fire_delay
+#	bullet.multishot = STARTING_multishot
+#	bullet.shot_spread = STARTING_shot_spread
+#	bullet.shot_inaccuracy = STARTING_shot_inaccuracy
+#	bullet.shot_speed = STARTING_shot_speed
 	
 
 func hurt(body):

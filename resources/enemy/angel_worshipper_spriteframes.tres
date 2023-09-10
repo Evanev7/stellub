@@ -1,6 +1,6 @@
 [gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://b1je1icd33jis"]
 
-[ext_resource type="Texture2D" uid="uid://bjs8nkf0k72xg" path="res://art/angel_worshipper.png" id="1_2o5g4"]
+[ext_resource type="Texture2D" uid="uid://bjs8nkf0k72xg" path="res://art/enemies/angel_worshipper.png" id="1_2o5g4"]
 
 [resource]
 animations = [{

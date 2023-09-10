@@ -46,9 +46,9 @@ func _ready():
 
 	
 	# Select mob texture variants for later (This code is functional just unnecessary)
-#	var variants = $AnimatedSprite2D.sprite_frames.get_animation_names()
-#	mode = variants[randi() % variants.size()]
-#	animation_delay = randi_range(0,20)
+	var variants = $AnimatedSprite2D.sprite_frames.get_animation_names()
+	mode = variants[randi() % variants.size()]
+	animation_delay = randi_range(0,10)
 	
 	add_to_group("enemy")
 	sway()
@@ -78,13 +78,13 @@ func _physics_process(_delta):
 		queue_free()
 		GameState.player.hit(value)
 
-#	if animation_delay < 0:
-#		pass
-#	elif animation_delay > 0:
-#		animation_delay -= 1
-#	elif animation_delay == 0:
-#		$AnimatedSprite2D.play(mode)
-#		animation_delay -= 1
+	if animation_delay < 0:
+		pass
+	elif animation_delay > 0:
+		animation_delay -= 1
+	elif animation_delay == 0:
+		$AnimatedSprite2D.play(mode)
+		animation_delay -= 1
 	
 	if $Hurtbox.overlaps_body(GameState.player):
 		GameState.player.hurt(self)

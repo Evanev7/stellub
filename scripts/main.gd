@@ -39,10 +39,14 @@ func _on_fire_bullet(origin, bullet_type: BulletResource):
 			direction_offset += remap(index, 0, bullet_type.multishot-1, -bullet_type.shot_spread/2, bullet_type.shot_spread/2)
 		target_direction = target_direction.rotated(direction_offset)
 		
+		var start_range = Vector2(bullet_type.start_range, bullet_type.start_range)
+		start_range *= target_direction
+		
 		bullet.set("direction", target_direction)
 		bullet.set("data", bullet_type)
 		bullet.set("origin", origin)
-		bullet.set("position", origin.position)
+		bullet.set("position", origin.position + start_range)
+		bullet.set("scale", bullet_type.size)
 		
 		add_child(bullet)
 	

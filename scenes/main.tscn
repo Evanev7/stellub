@@ -6,13 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://dldkm6m8ux87t" path="res://scenes/bullet.tscn" id="3_8vuuc"]
 [ext_resource type="Resource" uid="uid://dh8xipsw2bu5w" path="res://resources/enemy/demon_skull.tres" id="4_ikhts"]
 [ext_resource type="PackedScene" uid="uid://1dmnavilcwx5" path="res://scenes/upgradeHUD.tscn" id="4_ls5jb"]
-[ext_resource type="Texture2D" uid="uid://dkgw6o04xoqp3" path="res://art/woodsSummer01.png" id="4_mmhf2"]
 [ext_resource type="Resource" uid="uid://doalqpgaptgxa" path="res://resources/enemy/demon_dog.tres" id="5_3s043"]
 [ext_resource type="PackedScene" uid="uid://cnepphpba8e8u" path="res://scenes/player.tscn" id="5_a3mdk"]
 [ext_resource type="Resource" uid="uid://bqyg0clrpkdim" path="res://resources/enemy/demon_skeleton.tres" id="6_8vwn2"]
 [ext_resource type="Resource" uid="uid://djjvchiit0f0n" path="res://resources/enemy/angel_worshipper.tres" id="7_c5yt3"]
 [ext_resource type="Resource" uid="uid://bnoj3uq3e6s17" path="res://resources/enemy/angel_warrior.tres" id="8_vk0tv"]
 [ext_resource type="Resource" uid="uid://daslelns8qmfv" path="res://resources/enemy/angel_crusader.tres" id="9_d18g6"]
+[ext_resource type="Texture2D" uid="uid://dkgw6o04xoqp3" path="res://art/backgrounds/woodsSummer01.png" id="10_etv84"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_jwdk3")
@@ -25,7 +25,7 @@ offset_left = -24563.0
 offset_top = -23486.0
 offset_right = 26566.0
 offset_bottom = 27643.0
-texture = ExtResource("4_mmhf2")
+texture = ExtResource("10_etv84")
 expand_mode = 4
 stretch_mode = 1
 

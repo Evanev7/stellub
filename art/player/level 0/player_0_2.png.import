@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjs8nkf0k72xg"
-path="res://.godot/imported/angel_worshipper.png-e0d7f98a0d0c62caef1ccfea0cca1718.ctex"
+uid="uid://6fmtfmpb5kvf"
+path="res://.godot/imported/player_0_2.png-505653ab7fd6945e94f39ee41d9352e4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/angel_worshipper.png"
-dest_files=["res://.godot/imported/angel_worshipper.png-e0d7f98a0d0c62caef1ccfea0cca1718.ctex"]
+source_file="res://art/player/level 0/player_0_2.png"
+dest_files=["res://.godot/imported/player_0_2.png-505653ab7fd6945e94f39ee41d9352e4.ctex"]
 
 [params]
 
