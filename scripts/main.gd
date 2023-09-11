@@ -57,7 +57,6 @@ func _on_start_timer_timeout():
 func start_game():
 	$StartTimer.start()
 	$Player.start($Marker2D.position)
-	$Player.screen_size = $TextureRect.get_size()
 	$SpawnTimer.set_wait_time(2.0)
 	$HUD.show_message("All Hell Breaks Loose")
 	$HUD.show_health(GameState.player.hp)
@@ -93,7 +92,7 @@ func game_over():
 	$HUD.game_over()
 
 func _on_hud_start_game():
-	start_game() # Replace with function body.
+	start_game()
 
 
 func _on_player_taken_damage():
@@ -103,19 +102,19 @@ func _on_player_taken_damage():
 func _on_player_enemy_killed():
 	$HUD.show_score(GameState.player.score)
 
+
 func _on_player_level_up(current_level):
 	open_upgrade_hud()
 	$upgradeHUD.show_level(GameState.player.current_level)
+
 
 func _on_upgrade_hud_upgrade_1_pressed():
 	GameState.player.bullet.multishot += 1
 	close_upgrade_hud()
 
-
 func _on_upgrade_hud_upgrade_2_pressed():
 	GameState.player.bullet.shot_spread /= 1.2
 	close_upgrade_hud()
-
 
 func _on_upgrade_hud_upgrade_3_pressed():
 	GameState.player.bullet.fire_delay /= 1.2

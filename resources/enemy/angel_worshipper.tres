@@ -22,3 +22,4 @@ HITBOX = ExtResource("3_7orl6")
 HURTBOX = ExtResource("3_7orl6")
 COLLIDER = ExtResource("2_elxt0")
 BULLET = ExtResource("2_6537s")
+SPAWN_RATE = 0.0

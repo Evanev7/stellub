@@ -13,7 +13,6 @@ signal fire_bullet(bullet: BulletResource)
 
 @export var bullet: BulletResource
 
-var screen_size: Vector2i
 var level_threshold = [10, 20, 30, 50, 80, 130, 210, 340, 550, 999]
 var level_cap = []
 var current_level
@@ -34,8 +33,6 @@ var current_animation
 func _ready():
 	GameState.player = self
 	default_scale = self.scale
-	if not screen_size:
-		screen_size = get_viewport_rect().size
 	hide()
 	set_physics_process(false)
 
@@ -47,7 +44,7 @@ func _physics_process(_delta):
 	##Debug ###############################
 	
 	if Input.is_key_pressed(KEY_R): ## Increase score by 10
-		hit(10)
+		on_enemy_killed(10)
 	
 	#######################################
 	
@@ -112,6 +109,7 @@ func default_stats():
 	hp_max = STARTING_HP_MAX
 	current_animation = "level 0"
 
+
 func hurt(body):
 	hp -= body.damage
 	taken_damage.emit()
@@ -121,23 +119,28 @@ func hurt(body):
 		$CollisionShape2D.set_deferred("disabled", true)
 		$Camera2D.set_deferred("enabled", false)
 		player_death.emit()
-		
-func hit(value):
+
+
+func on_enemy_killed(value):
 	score += value
-	var index = 0
-	for i in level_threshold:
-		index += 1
-		if score >= i:
-			for j in level_cap:
-				if index <= current_level:
-					break
-				if score < j:
-					current_level = index
-					on_level_up(current_level)
 	enemy_killed.emit()
 	
-func on_level_up(level):
-	level_up.emit(level)
+
+	if current_level < 10 and score >= level_threshold[current_level]:
+		current_level += 1
+		level_up.emit(current_level)
+
+	# I really don't undestand this code, can you tell me what's preventing us from using above?
+#	var index = 0
+#	for i in level_threshold:
+#		index += 1
+#		if score >= i:
+#			for j in level_cap:
+#				if index <= current_level:
+#					break
+#				if score < j:
+#					current_level = index
+#					level_up.emit(current_level)
 
 
 func process_hurtbox(area):
