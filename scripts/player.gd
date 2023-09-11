@@ -99,6 +99,7 @@ func start(pos):
 	$CollisionShape2D.disabled = false
 	$Camera2D.enabled = true
 
+
 func default_stats():
 	## Player Stats
 	speed = STARTING_SPEED
@@ -122,7 +123,6 @@ func on_enemy_killed(value):
 	score += value
 	enemy_killed.emit()
 	
-
 	if current_level < 10 and score >= level_threshold[current_level]:
 		current_level += 1
 		level_up.emit(current_level)

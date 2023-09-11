@@ -14,11 +14,16 @@ var resource: EnemyResource
 @onready var flipped: bool = resource.FLIP_H
 @onready var floating: bool = resource.FLOATING
 @onready var default_angle: float = self.rotation
+<<<<<<< Updated upstream
 @onready var default_scale: Vector2
 
+=======
+@onready var default_scale: Vector2 = resource.SCALE
+>>>>>>> Stashed changes
 
 var _fire_timer: int = 0
 var spawn_time: float
+
 
 func _ready():
 	name = resource.NAME
@@ -33,7 +38,7 @@ func _ready():
 	$Hurtbox/CollisionShape2D.shape = resource.HURTBOX
 	$Hurtbox/CollisionShape2D.rotation = resource.COLLISION_ROTATION
 
-	
+
 	# Select mob texture variants (This code is functional just unnecessary since no enemies have variants)
 	var variants = sprite.sprite_frames.get_animation_names()
 	var mode = variants[randi() % variants.size()]
@@ -45,13 +50,18 @@ func _ready():
 
 func sway():
 	var tween: Tween = create_tween()
+	var variance = 1/default_scale.length()
 	if floating:
-		tween.tween_property(sprite, "position", Vector2(sprite.position.x, sprite.position.y + 2/default_scale.length()), 0.4).set_ease(Tween.EASE_IN)
-		tween.tween_property(sprite, "position", Vector2(sprite.position.x, sprite.position.y - 2/default_scale.length()), 0.4).set_ease(Tween.EASE_OUT)
+		tween.tween_property(sprite, "position", sprite.position + Vector2(0, 2*variance), 0.4) \
+				.set_ease(Tween.EASE_IN)
+		tween.tween_property(sprite, "position", sprite.position - Vector2(0, 2*variance), 0.4) \
+				.set_ease(Tween.EASE_OUT)
 		tween.tween_callback(sway)
 	else:
-		tween.tween_property(self, "rotation", default_angle + 0.03/default_scale.length(), 0.4).set_ease(Tween.EASE_IN)
-		tween.tween_property(self, "rotation", default_angle - 0.03/default_scale.length(), 0.4).set_ease(Tween.EASE_OUT)
+		tween.tween_property(self, "rotation", default_angle + 0.03*variance, 0.4) \
+				.set_ease(Tween.EASE_IN)
+		tween.tween_property(self, "rotation", default_angle - 0.03*variance, 0.4) \
+				.set_ease(Tween.EASE_OUT)
 		tween.tween_callback(sway)
 
 
@@ -63,7 +73,7 @@ func _physics_process(_delta):
 		sprite.flip_h = (false != flipped)
 	velocity = player_direction.normalized() * speed
 	move_and_slide()
-
+	
 	if health <= 0:
 		queue_free()
 		GameState.player.on_enemy_killed(value)
@@ -77,6 +87,7 @@ func _physics_process(_delta):
 				_fire_timer -= bullet.fire_delay
 				fire_bullet.emit(self, bullet)
 
+
 func hurt(area):
 	health -= area.data.damage
 	scale = default_scale * 0.65 
@@ -88,6 +99,7 @@ func _on_hurtbox_area_entered(area: Area2D):
 	if area.is_in_group("bullet") and area.origin == GameState.player:
 		hurt(area)
 #		area.queue_free()
+
 
 func create_timer():
 	var timer:= Timer.new()

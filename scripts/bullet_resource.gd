@@ -2,7 +2,6 @@ extends Resource
 
 class_name BulletResource
 
-@export var source: String
 @export var animation: SpriteFrames
 
 #@export var starting_start_range: int = 0
