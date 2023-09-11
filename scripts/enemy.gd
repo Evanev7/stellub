@@ -87,7 +87,7 @@ func hurt(area):
 func _on_hurtbox_area_entered(area: Area2D):
 	if area.is_in_group("bullet") and area.origin == GameState.player:
 		hurt(area)
-		area.queue_free()
+#		area.queue_free()
 
 func create_timer():
 	var timer:= Timer.new()

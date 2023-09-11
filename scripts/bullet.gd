@@ -35,3 +35,9 @@ func _physics_process(delta):
 
 func _on_self_destruct_timeout():
 	queue_free()
+
+func _on_area_entered(area):
+	queue_free()
+
+func _on_body_entered(body):
+	queue_free()

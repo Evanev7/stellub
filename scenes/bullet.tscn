@@ -22,4 +22,6 @@ scale = Vector2(0.03, 0.03)
 sprite_frames = ExtResource("2_p3jja")
 animation = &"simple"
 
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="SelfDestruct" to="." method="_on_self_destruct_timeout"]
