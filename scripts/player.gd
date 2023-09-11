@@ -14,7 +14,6 @@ signal fire_bullet(bullet: BulletResource)
 @export var bullet: BulletResource
 
 var level_threshold = [10, 20, 30, 50, 80, 130, 210, 340, 550, 999]
-var level_cap = []
 var current_level
 var hp_max
 var speed
@@ -91,8 +90,6 @@ func _physics_process(_delta):
 
 func start(pos):
 	default_stats()
-	for i in level_threshold:
-		level_cap.append(i + i/2)
 	current_level = 0
 	position = pos
 	show()
@@ -129,18 +126,6 @@ func on_enemy_killed(value):
 	if current_level < 10 and score >= level_threshold[current_level]:
 		current_level += 1
 		level_up.emit(current_level)
-
-	# I really don't undestand this code, can you tell me what's preventing us from using above?
-#	var index = 0
-#	for i in level_threshold:
-#		index += 1
-#		if score >= i:
-#			for j in level_cap:
-#				if index <= current_level:
-#					break
-#				if score < j:
-#					current_level = index
-#					level_up.emit(current_level)
 
 
 func process_hurtbox(area):

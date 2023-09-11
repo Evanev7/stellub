@@ -14,7 +14,7 @@ var resource: EnemyResource
 @onready var flipped: bool = resource.FLIP_H
 @onready var floating: bool = resource.FLOATING
 @onready var default_angle: float = self.rotation
-@onready var default_scale: Vector2 = get_scale()
+@onready var default_scale: Vector2
 
 
 var _fire_timer: int = 0
@@ -23,6 +23,7 @@ var spawn_time: float
 func _ready():
 	name = resource.NAME
 	scale = resource.SCALE
+	default_scale = get_scale()
 	sprite.sprite_frames = resource.ANIMATION
 	sprite.flip_h = flipped
 	$CollisionShape2D.shape = resource.COLLIDER

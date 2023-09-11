@@ -118,7 +118,7 @@ bullet = ExtResource("2_02d8s")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.05, 0.05)
 sprite_frames = SubResource("SpriteFrames_whc3w")
-animation = &"level 4"
+animation = &"level 2"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(0.6, 0.6)
