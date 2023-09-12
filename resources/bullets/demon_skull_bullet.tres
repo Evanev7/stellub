@@ -5,7 +5,6 @@
 
 [resource]
 script = ExtResource("1_eenvt")
-source = "demon_skull"
 animation = ExtResource("1_hlmbc")
 start_range = 100
 lifetime = 1.0
@@ -15,5 +14,6 @@ fire_delay = 60
 multishot = 20
 size = Vector2(3, 1)
 shot_spread = 6.283
-shot_inaccuracy = 3.142
-shot_speed = 1.0
+shot_inaccuracy = 0.0
+shot_speed = 0.0
+angular_velocity = 1.0

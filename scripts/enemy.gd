@@ -14,12 +14,7 @@ var resource: EnemyResource
 @onready var flipped: bool = resource.FLIP_H
 @onready var floating: bool = resource.FLOATING
 @onready var default_angle: float = self.rotation
-<<<<<<< Updated upstream
-@onready var default_scale: Vector2
-
-=======
 @onready var default_scale: Vector2 = resource.SCALE
->>>>>>> Stashed changes
 
 var _fire_timer: int = 0
 var spawn_time: float
@@ -86,19 +81,16 @@ func _physics_process(_delta):
 			if _fire_timer > bullet.fire_delay:
 				_fire_timer -= bullet.fire_delay
 				fire_bullet.emit(self, bullet)
+	
+	for area in $Hitbox.get_overlapping_areas():
+		hit(area)
 
 
 func hurt(area):
-	health -= area.data.damage
+	health -= area.damage
 	scale = default_scale * 0.65 
 	var tween := create_tween()
 	tween.tween_property(self, "global_scale", default_scale, 0.05)
-
-
-func _on_hurtbox_area_entered(area: Area2D):
-	if area.is_in_group("bullet") and area.origin == GameState.player:
-		hurt(area)
-#		area.queue_free()
 
 
 func create_timer():
@@ -106,3 +98,8 @@ func create_timer():
 	add_child(timer)
 	timer.wait_time = spawn_time
 	timer.one_shot = true
+
+
+func hit(area):
+	if area.owner == GameState.player:
+		area.owner.hurt(self)

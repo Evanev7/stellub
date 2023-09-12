@@ -10,8 +10,9 @@ signal fire_bullet(bullet: BulletResource)
 @export var STARTING_SPEED = 380.0
 @export var STARTING_ROTATION_SPEED = 20
 @export var STARTING_HP_MAX: int = 100
-
 @export var bullet: BulletResource
+
+@onready var default_scale = self.scale
 
 var level_threshold = [10, 20, 30, 50, 80, 130, 210, 340, 550, 999]
 var current_level
@@ -22,7 +23,8 @@ var hp
 var score
 var firing
 var walking
-var default_scale
+
+var invuln: bool = false
 var _fire_timer: float = 0.0
 var _h_flipped: bool = false
 var current_animation
@@ -31,7 +33,6 @@ var current_animation
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GameState.player = self
-	default_scale = self.scale
 	hide()
 	set_physics_process(false)
 
@@ -84,8 +85,6 @@ func _physics_process(_delta):
 		fire_bullet.emit(self, bullet)
 		_fire_timer -= bullet.fire_delay
 	
-	for area in $Hurtbox.get_overlapping_areas():
-		process_hurtbox(area)
 
 
 func start(pos):
@@ -109,8 +108,12 @@ func default_stats():
 
 
 func hurt(body):
-	hp -= body.damage
-	taken_damage.emit()
+	if not invuln:
+		hp -= body.damage
+		taken_damage.emit()
+		invuln = true
+		$IFrames.start()
+		$AnimatedSprite2D.modulate = Color(1,0,0,0.5)
 	if hp <= 0:
 		hide()
 		set_physics_process(false)
@@ -129,10 +132,16 @@ func on_enemy_killed(value):
 
 
 func process_hurtbox(area):
-	if area.is_in_group("bullet"):
-		if area.origin != GameState.player:
-			hurt(area.data)
-			area.queue_free()
-		return
-	if area.owner.is_in_group("enemy"):
-			hurt(area.owner)
+	#if area.is_in_group("bullet"):
+	#	if area.origin != GameState.player:
+	#		hurt(area.data)
+	#		area.queue_free()
+	#	return
+	#if area.owner.is_in_group("enemy"):
+	#		hurt(area.owner)
+	pass
+
+
+func _on_i_frames_timeout():
+	$AnimatedSprite2D.modulate = Color(1,1,1,1)
+	invuln = false
