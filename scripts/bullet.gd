@@ -1,11 +1,16 @@
 extends Area2D
 
+signal fire_bullet(spawned_bullet: BulletResource)
+
 @onready var data: BulletResource
+@onready var spawned_bullet: BulletResource = data.spawned_bullet_resource
 @onready var sprite = $AnimatedSprite2D
 @onready var _traveled_distance: float = data.start_range
 
+var piercing_cooldown = 0
 var direction: Vector2 = Vector2(0,0)
 var origin_ref: WeakRef
+var prev_ref
 var relative_position
 var origin_position
 var origin_velocity
@@ -18,7 +23,7 @@ var damage
 # enemy bullets.
 func _ready():
 	add_to_group("bullet")
-	if origin_ref.get_ref() == GameState.player:
+	if origin_ref.get_ref() == GameState.player || prev_ref == "player":
 		set_collision_mask(4)
 	else:
 		set_collision_mask(2)
@@ -53,4 +58,17 @@ func _on_self_destruct_timeout():
 
 func _on_area_entered(area):
 	area.owner.hurt(self)
-	queue_free()
+	if piercing_cooldown == 0:
+		if spawned_bullet:
+			if origin_ref.get_ref() == GameState.player:
+				fire_bullet.emit(self, spawned_bullet, "player")
+			else:
+				fire_bullet.emit(self, spawned_bullet, "enemy")
+		if data.piercing == 0:
+			queue_free()
+		else:
+			data.piercing -= 1
+			piercing_cooldown = 30
+	else:
+		piercing_cooldown -= 1
+	

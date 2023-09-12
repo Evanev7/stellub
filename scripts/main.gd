@@ -37,18 +37,21 @@ func _on_spawn_timer_timeout():
 # When a bullet is fired (by the player or an enemy) this function is "called". 
 # We iterate over every bullet to be fired, instantiate them and point them at the player
 # OR at where the player is clicking.
-func _on_fire_bullet(origin, bullet_type: BulletResource):
+func _on_fire_bullet(origin, bullet_type: BulletResource, prev_ref:=""):
 	var inaccuracy_offset = randf_range(-bullet_type.shot_inaccuracy/2,bullet_type.shot_inaccuracy/2)
 		
 	# Iterate over every bullet that's being fired (the number of bullets to fire
 	# is stored in .multishot)
 	for index in range(bullet_type.multishot):
 		var bullet = bullet_scene.instantiate()
+		bullet.fire_bullet.connect(_on_fire_bullet)
 		var target_direction: Vector2
 		var player = GameState.player
 		
 		if origin == player:
 			target_direction = (player.get_global_mouse_position() - player.position).normalized()
+		elif origin.get_class() == "Area2D":
+			target_direction = origin.position.normalized()
 		else:
 			target_direction = (player.position - origin.position).normalized()
 		
@@ -66,8 +69,9 @@ func _on_fire_bullet(origin, bullet_type: BulletResource):
 		bullet.set("origin_ref", weakref(origin))
 		bullet.set("position", origin.position + start_range)
 		bullet.set("scale", bullet_type.size)
+		bullet.set("prev_ref", prev_ref)
 		
-		add_child(bullet)
+		call_deferred("add_child", bullet)
 	
 
 func _on_start_timer_timeout():

@@ -13,8 +13,12 @@ class_name BulletResource
 @export var size: Vector2 = Vector2(1, 1)
 @export var shot_spread: float =  PI/12
 @export var angular_velocity: float = 0
+@export var piercing: int = 0
+
 ## 2*PI for a full circle
 @export var shot_inaccuracy: float = PI/32
+
+## Set to 0 to make bullets follow the source
 @export var shot_speed: float = 400
 
 ## Bullet type that will spawn from this bullet
