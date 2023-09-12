@@ -1,19 +1,22 @@
-[gd_resource type="Resource" script_class="BulletResource" load_steps=3 format=3 uid="uid://djfx5xxn1qv5u"]
+[gd_resource type="Resource" script_class="BulletResource" load_steps=4 format=3 uid="uid://djfx5xxn1qv5u"]
 
 [ext_resource type="SpriteFrames" uid="uid://d35p6avthydix" path="res://resources/bullets/angel_worshipper_spriteframes.tres" id="1_apf0g"]
 [ext_resource type="Script" path="res://scripts/bullet_resource.gd" id="1_ntmv1"]
+[ext_resource type="Resource" uid="uid://d1bfxwthry8hx" path="res://resources/bullets/demon_skull_bullet.tres" id="3_o4v8u"]
 
 [resource]
 script = ExtResource("1_ntmv1")
 source = "angel_worshipper"
 animation = ExtResource("1_apf0g")
-starting_start_range = 0
-starting_lifetime = 20.0
-starting_bullet_range = 1000
-starting_damage = 2
-starting_fire_delay = 20
-starting_multishot = 1
-starting_size = Vector2(1.2, 1.2)
-starting_shot_spread = 0.261799
-starting_shot_inaccuracy = 0.0981748
-starting_shot_speed = 350.0
+start_range = 0
+lifetime = 20.0
+bullet_range = 1000
+damage = 1
+fire_delay = 15
+multishot = 1
+size = Vector2(1, 1)
+shot_spread = 0.261799
+shot_inaccuracy = 0.0981748
+shot_speed = 400.0
+angular_velocity = 0.0
+spawned_bullet_resource = ExtResource("3_o4v8u")

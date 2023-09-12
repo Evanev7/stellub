@@ -1,5 +1,7 @@
 extends Area2D
 
+signal fire_bullet(bullet: BulletResource)
+
 @onready var data: BulletResource
 @onready var sprite = $AnimatedSprite2D
 
@@ -35,3 +37,10 @@ func _physics_process(delta):
 
 func _on_self_destruct_timeout():
 	queue_free()
+
+func _on_area_entered(area):
+	area.owner.hurt(self.data)
+	if data.spawned_bullet_resource:
+		fire_bullet.emit(self, data.spawned_bullet_resource)
+	else:
+		queue_free()
