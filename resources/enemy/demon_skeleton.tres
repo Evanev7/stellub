@@ -20,3 +20,4 @@ COLLISION_ROTATION = 0.0
 HITBOX = ExtResource("3_yanws")
 HURTBOX = ExtResource("3_yanws")
 COLLIDER = ExtResource("2_ms3en")
+SPAWN_RATE = 0.0

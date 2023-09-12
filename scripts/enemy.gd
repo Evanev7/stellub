@@ -3,42 +3,29 @@ extends CharacterBody2D
 signal fire_bullet(bullet: BulletResource)
 signal spawn
 
+var resource: EnemyResource
 @onready var sprite = $AnimatedSprite2D
-@onready var health : int
-@onready var damage : int
-@onready var value : int
-@onready var speed : int
-@onready var unique_scale : Vector2
-@onready var flipped : bool
-@onready var resource : EnemyResource
+@onready var health: int = resource.MAX_HP
+@onready var damage: int = resource.DAMAGE
+@onready var value: int = resource.VALUE
+@onready var speed: int = resource.SPEED
+@onready var bullet: BulletResource = resource.BULLET
+@onready var unique_scale: Vector2
+@onready var flipped: bool = resource.FLIP_H
+@onready var floating: bool = resource.FLOATING
+@onready var default_angle: float = self.rotation
+@onready var default_scale: Vector2 = resource.SCALE
 
-var animation_delay
-var default_scale
-var mode
-var default_angle
-var floating
-var fire_delay
 var _fire_timer: int = 0
-var bullet
 var spawn_time: float
 
+
 func _ready():
-	# we shouldn't need any of these, the resource can be more than a list of default constants
 	name = resource.NAME
-	health = resource.MAX_HP
-	damage = resource.DAMAGE
-	value = resource.VALUE
-	speed = resource.SPEED
-	flipped = resource.FLIP_H
-	floating = resource.FLOATING
-	bullet = resource.BULLET
-	
-	# these are fine
-	sprite.sprite_frames = resource.ANIMATION
-	sprite.flip_h = flipped
-	default_angle = self.rotation_degrees
 	scale = resource.SCALE
 	default_scale = get_scale()
+	sprite.sprite_frames = resource.ANIMATION
+	sprite.flip_h = flipped
 	$CollisionShape2D.shape = resource.COLLIDER
 	$CollisionShape2D.rotation = resource.COLLISION_ROTATION
 	$Hitbox/CollisionShape2D.shape = resource.HITBOX
@@ -46,24 +33,30 @@ func _ready():
 	$Hurtbox/CollisionShape2D.shape = resource.HURTBOX
 	$Hurtbox/CollisionShape2D.rotation = resource.COLLISION_ROTATION
 
-	
-	# Select mob texture variants for later (This code is functional just unnecessary)
-	var variants = $AnimatedSprite2D.sprite_frames.get_animation_names()
-	mode = variants[randi() % variants.size()]
-	animation_delay = randi_range(0,10)
+
+	# Select mob texture variants (This code is functional just unnecessary since no enemies have variants)
+	var variants = sprite.sprite_frames.get_animation_names()
+	var mode = variants[randi() % variants.size()]
+	sprite.frame_progress = randf()
+	sprite.play(mode)
 	
 	add_to_group("enemy")
 	sway()
 
-func sway() -> void:
+func sway():
 	var tween: Tween = create_tween()
+	var variance = 1/default_scale.length()
 	if floating:
-		tween.tween_property(sprite, "position", Vector2(sprite.position.x, sprite.position.y + 2/default_scale.length()), 0.4).set_ease(Tween.EASE_IN)
-		tween.tween_property(sprite, "position", Vector2(sprite.position.x, sprite.position.y - 2/default_scale.length()), 0.4).set_ease(Tween.EASE_OUT)
+		tween.tween_property(sprite, "position", sprite.position + Vector2(0, 2*variance), 0.4) \
+				.set_ease(Tween.EASE_IN)
+		tween.tween_property(sprite, "position", sprite.position - Vector2(0, 2*variance), 0.4) \
+				.set_ease(Tween.EASE_OUT)
 		tween.tween_callback(sway)
 	else:
-		tween.tween_property(self, "rotation_degrees", default_angle + 2/default_scale.length(), 0.4).set_ease(Tween.EASE_IN)
-		tween.tween_property(self, "rotation_degrees", default_angle - 2/default_scale.length(), 0.4).set_ease(Tween.EASE_OUT)
+		tween.tween_property(self, "rotation", default_angle + 0.03*variance, 0.4) \
+				.set_ease(Tween.EASE_IN)
+		tween.tween_property(self, "rotation", default_angle - 0.03*variance, 0.4) \
+				.set_ease(Tween.EASE_OUT)
 		tween.tween_callback(sway)
 
 
@@ -75,21 +68,10 @@ func _physics_process(_delta):
 		sprite.flip_h = (false != flipped)
 	velocity = player_direction.normalized() * speed
 	move_and_slide()
-
+	
 	if health <= 0:
 		queue_free()
-		GameState.player.hit(value)
-
-	if animation_delay < 0:
-		pass
-	elif animation_delay > 0:
-		animation_delay -= 1
-	elif animation_delay == 0:
-		$AnimatedSprite2D.play(mode)
-		animation_delay -= 1
-	
-	if $Hurtbox.overlaps_body(GameState.player):
-		GameState.player.hurt(self)
+		GameState.player.on_enemy_killed(value)
 	
 	if bullet != null:
 		if player_direction.length() > 500:
@@ -99,21 +81,25 @@ func _physics_process(_delta):
 			if _fire_timer > bullet.fire_delay:
 				_fire_timer -= bullet.fire_delay
 				fire_bullet.emit(self, bullet)
+	
+	for area in $Hitbox.get_overlapping_areas():
+		hit(area)
+
 
 func hurt(area):
-	health -= area.data.damage
+	health -= area.damage
 	scale = default_scale * 0.65 
 	var tween := create_tween()
 	tween.tween_property(self, "global_scale", default_scale, 0.05)
 
-
-func _on_hurtbox_area_entered(area: Area2D):
-	if area.is_in_group("bullet") and area.origin == GameState.player:
-		hurt(area)
-		area.queue_free()
 
 func create_timer():
 	var timer:= Timer.new()
 	add_child(timer)
 	timer.wait_time = spawn_time
 	timer.one_shot = true
+
+
+func hit(area):
+	if area.owner == GameState.player:
+		area.owner.hurt(self)

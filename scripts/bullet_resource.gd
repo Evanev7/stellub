@@ -2,7 +2,6 @@ extends Resource
 
 class_name BulletResource
 
-@export var source: String
 @export var animation: SpriteFrames
 
 #@export var starting_start_range: int = 0
@@ -40,7 +39,13 @@ class_name BulletResource
 @export var damage: int = 1
 @export var fire_delay: int = 15
 @export var multishot: int = 1
-@export var size:= Vector2(1, 1)
+@export var size: Vector2 = Vector2(1, 1)
 @export var shot_spread: float =  PI/12
+
+## 2*PI for a full circle
 @export var shot_inaccuracy: float = PI/32
 @export var shot_speed: float = 400
+@export var angular_velocity: float = 0
+
+## Bullet type that will spawn from this bullet
+@export var spawned_bullet_resource: BulletResource

@@ -10,12 +10,11 @@ signal fire_bullet(bullet: BulletResource)
 @export var STARTING_SPEED = 380.0
 @export var STARTING_ROTATION_SPEED = 20
 @export var STARTING_HP_MAX: int = 100
-
 @export var bullet: BulletResource
 
-var screen_size: Vector2i
+@onready var default_scale = self.scale
+
 var level_threshold = [10, 20, 30, 50, 80, 130, 210, 340, 550, 999]
-var level_cap = []
 var current_level
 var hp_max
 var speed
@@ -24,7 +23,8 @@ var hp
 var score
 var firing
 var walking
-var default_scale
+
+var invuln: bool = false
 var _fire_timer: float = 0.0
 var _h_flipped: bool = false
 var current_animation
@@ -33,9 +33,6 @@ var current_animation
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GameState.player = self
-	default_scale = self.scale
-	if not screen_size:
-		screen_size = get_viewport_rect().size
 	hide()
 	set_physics_process(false)
 
@@ -47,7 +44,7 @@ func _physics_process(_delta):
 	##Debug ###############################
 	
 	if Input.is_key_pressed(KEY_R): ## Increase score by 10
-		hit(10)
+		on_enemy_killed(10)
 	
 	#######################################
 	
@@ -88,14 +85,10 @@ func _physics_process(_delta):
 		fire_bullet.emit(self, bullet)
 		_fire_timer -= bullet.fire_delay
 	
-	for area in $Hurtbox.get_overlapping_areas():
-		process_hurtbox(area)
 
 
 func start(pos):
 	default_stats()
-	for i in level_threshold:
-		level_cap.append(i + i/2)
 	current_level = 0
 	position = pos
 	show()
@@ -105,6 +98,7 @@ func start(pos):
 	$CollisionShape2D.disabled = false
 	$Camera2D.enabled = true
 
+
 func default_stats():
 	## Player Stats
 	speed = STARTING_SPEED
@@ -112,39 +106,31 @@ func default_stats():
 	hp_max = STARTING_HP_MAX
 	current_animation = "level 0"
 
+
 func hurt(body):
-	hp -= body.damage
-	taken_damage.emit()
+	if not invuln:
+		hp -= body.damage
+		taken_damage.emit()
+		invuln = true
+		$IFrames.start()
+		$AnimatedSprite2D.modulate = Color(1,0,0,0.5)
 	if hp <= 0:
 		hide()
 		set_physics_process(false)
 		$CollisionShape2D.set_deferred("disabled", true)
 		$Camera2D.set_deferred("enabled", false)
 		player_death.emit()
-		
-func hit(value):
+
+
+func on_enemy_killed(value):
 	score += value
-	var index = 0
-	for i in level_threshold:
-		index += 1
-		if score >= i:
-			for j in level_cap:
-				if index <= current_level:
-					break
-				if score < j:
-					current_level = index
-					on_level_up(current_level)
 	enemy_killed.emit()
 	
-func on_level_up(level):
-	level_up.emit(level)
+	if current_level < 10 and score >= level_threshold[current_level]:
+		current_level += 1
+		level_up.emit(current_level)
 
 
-func process_hurtbox(area):
-	if area.is_in_group("bullet"):
-		if area.origin != GameState.player:
-			hurt(area.data)
-			area.queue_free()
-		return
-	if area.owner.is_in_group("enemy"):
-			hurt(area.owner)
+func _on_i_frames_timeout():
+	$AnimatedSprite2D.modulate = Color(1,1,1,1)
+	invuln = false

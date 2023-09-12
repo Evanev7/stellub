@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5nb4anhp1gyj"
-path="res://.godot/imported/player_test_1.png-493a89c851f47f2d8ca98cb248ec2235.ctex"
+uid="uid://8rgqksla1p8r"
+path="res://.godot/imported/hell_level_1_temp.png-d6edeec5cfa3fcf05e8aec69d8d57630.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/player/player_test_1.png"
-dest_files=["res://.godot/imported/player_test_1.png-493a89c851f47f2d8ca98cb248ec2235.ctex"]
+source_file="res://art/backgrounds/hell_level_1_temp.png"
+dest_files=["res://.godot/imported/hell_level_1_temp.png-d6edeec5cfa3fcf05e8aec69d8d57630.ctex"]
 
 [params]
 
