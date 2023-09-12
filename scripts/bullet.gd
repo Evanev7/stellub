@@ -7,6 +7,8 @@ extends Area2D
 var direction: Vector2 = Vector2(0,0)
 var origin_ref: WeakRef
 var relative_position
+var origin_position
+var origin_velocity
 
 var damage
 
@@ -32,12 +34,14 @@ func _physics_process(delta):
 	var _direction = direction * data.shot_speed
 	var origin = origin_ref.get_ref()
 	if origin:
-		if data.angular_velocity != 0:
-			_direction += (position - origin.position).rotated(PI/2)*data.angular_velocity
-		if data.shot_speed == 0:
-			_direction += origin.velocity
-		if _traveled_distance < 200:
-			rotation = (position - origin.position).angle()
+		origin_position = origin.position
+		origin_velocity = origin.velocity
+	if data.angular_velocity != 0:
+		_direction += (position - origin_position).rotated(PI/2)*data.angular_velocity
+	if data.shot_speed == 0:
+		_direction += origin_velocity
+	if _traveled_distance < 200:
+		rotation = (position - origin_position).angle()
 	position += _direction * delta
 	_traveled_distance += data.shot_speed*delta
 	
