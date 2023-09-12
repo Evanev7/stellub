@@ -44,7 +44,7 @@ func _on_fire_bullet(origin, bullet_type: BulletResource):
 		
 		bullet.set("direction", target_direction)
 		bullet.set("data", bullet_type)
-		bullet.set("origin", origin)
+		bullet.set("origin_ref", weakref(origin))
 		bullet.set("position", origin.position + start_range)
 		bullet.set("scale", bullet_type.size)
 		

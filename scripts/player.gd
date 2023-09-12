@@ -131,17 +131,6 @@ func on_enemy_killed(value):
 		level_up.emit(current_level)
 
 
-func process_hurtbox(area):
-	#if area.is_in_group("bullet"):
-	#	if area.origin != GameState.player:
-	#		hurt(area.data)
-	#		area.queue_free()
-	#	return
-	#if area.owner.is_in_group("enemy"):
-	#		hurt(area.owner)
-	pass
-
-
 func _on_i_frames_timeout():
 	$AnimatedSprite2D.modulate = Color(1,1,1,1)
 	invuln = false
