@@ -1,9 +1,8 @@
 extends CharacterBody2D
 
-signal taken_damage
-signal enemy_killed
+signal taken_damage(hp)
 signal player_death
-signal level_up
+signal level_up(level)
 signal fire_bullet(bullet: BulletResource)
 
 ## Player Stats
@@ -41,13 +40,6 @@ func _ready():
 func _physics_process(_delta):
 	velocity.x = Input.get_axis("move_left", "move_right")
 	velocity.y = Input.get_axis("move_up", "move_down")
-	
-	##Debug ###############################
-	
-	if Input.is_key_pressed(KEY_R): ## Increase score by 10
-		on_enemy_killed(10)
-	
-	#######################################
 	
 	# Handle user input
 	if Input.is_action_just_pressed("walk"):
@@ -88,9 +80,8 @@ func _physics_process(_delta):
 	if firing and _fire_timer >= bullet.fire_delay:
 		fire_bullet.emit(self, bullet)
 		_fire_timer -= bullet.fire_delay
-	
 
-# When the game starts, set the default values and show the player!
+# When the game starts, set the default values and show the player.
 func start(pos):
 	set_default_stats()
 	current_level = 0
@@ -114,7 +105,7 @@ func set_default_stats():
 func hurt(body):
 	if not invuln:
 		hp -= body.damage
-		taken_damage.emit()
+		taken_damage.emit(hp)
 		invuln = true
 		$IFrames.start()
 		$AnimatedSprite2D.modulate = Color(1,0,0,0.5)
@@ -126,15 +117,16 @@ func hurt(body):
 		player_death.emit()
 
 
-# Called when we've kille an enemy, and we can add to our score!
-func on_enemy_killed(value):
+# Called when we've killed an enemy, and we can add to our score.
+func gain_score(value):
 	score += value
-	enemy_killed.emit()
 	
 	# TODO: At the moment, we can't level up past level 10 (without cheating).
 	if current_level < 10 and score >= level_threshold[current_level]:
 		current_level += 1
 		level_up.emit(current_level)
+		if current_level % 3 == 0:
+			current_animation = "level " + str(current_level/3)
 
 
 func _on_i_frames_timeout():

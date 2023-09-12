@@ -2,6 +2,7 @@ extends Node
 
 @export var enemy_scene: PackedScene
 @export var bullet_scene: PackedScene
+@export var pickup_scene: PackedScene
 @export var safe_range: int = 500
 
 @export var enemy_resource_list: Array[EnemyResource]
@@ -14,6 +15,13 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
 	pass
+	##Debug ###############################
+	
+	if Input.is_key_pressed(KEY_R): ## Increase score by 10
+		$Player.gain_score(10)
+		$HUD.show_score($Player.score)
+	
+	#######################################
 
 # When the spawn timer times out, spawn a new random enemy!
 func _on_spawn_timer_timeout():
@@ -22,6 +30,7 @@ func _on_spawn_timer_timeout():
 	var relative_spawn_position = Vector2(safe_range,0).rotated(randf_range(0, 2*PI))
 	enemy.position = GameState.player.position + relative_spawn_position
 	enemy.fire_bullet.connect(_on_fire_bullet)
+	enemy.enemy_killed.connect(_on_enemy_killed)
 	add_child(enemy)
 
 
@@ -107,17 +116,28 @@ func _on_hud_start_game():
 	start_game()
 
 
-func _on_player_taken_damage():
-	$HUD.show_health(GameState.player.hp)
+func _on_player_taken_damage(hp):
+	$HUD.show_health(hp)
 
 
-func _on_player_enemy_killed():
-	$HUD.show_score(GameState.player.score)
+func _on_enemy_killed(enemy):
+	for i in range(enemy.value):
+		spawn_pickup(enemy.position)
 
+
+func spawn_pickup(pos):
+	var pickup = pickup_scene.instantiate()
+	pickup.credit_player.connect(_on_pickup_credit_player)
+	pickup.position = pos
+	add_child(pickup)
+
+func _on_pickup_credit_player(value):
+	$Player.gain_score(value)
+	$HUD.show_score($Player.score)
 
 func _on_player_level_up(current_level):
 	open_upgrade_hud()
-	$upgradeHUD.show_level(GameState.player.current_level)
+	$upgradeHUD.show_level(current_level)
 
 
 func _on_upgrade_hud_upgrade_1_pressed():
@@ -140,7 +160,4 @@ func open_upgrade_hud():
 func close_upgrade_hud():
 	get_tree().paused = false
 	$upgradeHUD.set_visible(false)
-	var level = GameState.player.current_level
-	if level % 3 == 0:
-		GameState.player.current_animation = "level " + str(level/3)
 	

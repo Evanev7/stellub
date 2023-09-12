@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://dfe6bc7mdpexj"]
+[gd_scene load_steps=15 format=3 uid="uid://dfe6bc7mdpexj"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_jwdk3"]
 [ext_resource type="PackedScene" uid="uid://dpjckt12ipcw2" path="res://scenes/enemy.tscn" id="2_abhdw"]
 [ext_resource type="PackedScene" uid="uid://yaht8i4bkv2u" path="res://scenes/HUD.tscn" id="3_8qfpp"]
 [ext_resource type="PackedScene" uid="uid://dldkm6m8ux87t" path="res://scenes/bullet.tscn" id="3_8vuuc"]
+[ext_resource type="PackedScene" uid="uid://cjuw1uddg4foi" path="res://scenes/pickup.tscn" id="4_3g6v5"]
 [ext_resource type="Resource" uid="uid://dh8xipsw2bu5w" path="res://resources/enemy/demon_skull.tres" id="4_ikhts"]
 [ext_resource type="PackedScene" uid="uid://1dmnavilcwx5" path="res://scenes/upgradeHUD.tscn" id="4_ls5jb"]
 [ext_resource type="Resource" uid="uid://doalqpgaptgxa" path="res://resources/enemy/demon_dog.tres" id="5_3s043"]
@@ -18,6 +19,7 @@
 script = ExtResource("1_jwdk3")
 enemy_scene = ExtResource("2_abhdw")
 bullet_scene = ExtResource("3_8vuuc")
+pickup_scene = ExtResource("4_3g6v5")
 enemy_resource_list = Array[Resource("res://scripts/enemy_resource.gd")]([ExtResource("4_ikhts"), ExtResource("5_3s043"), ExtResource("6_8vwn2"), ExtResource("7_c5yt3"), ExtResource("8_vk0tv"), ExtResource("9_d18g6")])
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -44,7 +46,6 @@ one_shot = true
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(576, 324)
 
-[connection signal="enemy_killed" from="Player" to="." method="_on_player_enemy_killed"]
 [connection signal="fire_bullet" from="Player" to="." method="_on_fire_bullet"]
 [connection signal="level_up" from="Player" to="." method="_on_player_level_up"]
 [connection signal="player_death" from="Player" to="." method="_on_player_player_death"]

@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://cjuw1uddg4foi"]
+
+[ext_resource type="Script" path="res://scripts/pickup.gd" id="1_rqpcu"]
+[ext_resource type="Texture2D" uid="uid://clyycn7uujclo" path="res://art/icon.svg" id="2_6adgm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uigp4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6adgm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rwjyl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d24iy"]
+radius = 400.0
+
+[node name="Pickup" type="Area2D"]
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("1_rqpcu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_uigp4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.5, 1.5)
+shape = SubResource("CircleShape2D_rwjyl")
+
+[node name="SelfDestruct" type="Timer" parent="."]
+wait_time = 100.0
+one_shot = true
+autostart = true
+
+[node name="ActivationRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActivationRange"]
+shape = SubResource("CircleShape2D_d24iy")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="SelfDestruct" to="." method="_on_self_destruct_timeout"]
+[connection signal="area_entered" from="ActivationRange" to="." method="_on_activation_range_entered"]

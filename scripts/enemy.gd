@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 signal fire_bullet(bullet: BulletResource)
 signal spawn
+signal enemy_killed(enemy)
 
 var resource: EnemyResource
 @onready var sprite = $AnimatedSprite2D
@@ -71,8 +72,8 @@ func _physics_process(_delta):
 	move_and_slide()
 	
 	if health <= 0:
+		enemy_killed.emit(self)
 		queue_free()
-		GameState.player.on_enemy_killed(value)
 	
 	# The enemy doesn't know what type of bullet it's firing.
 	# We emit a fire_bullet event, which the main script handles.
