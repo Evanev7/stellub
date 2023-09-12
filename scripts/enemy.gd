@@ -14,12 +14,7 @@ var resource: EnemyResource
 @onready var flipped: bool = resource.FLIP_H
 @onready var floating: bool = resource.FLOATING
 @onready var default_angle: float = self.rotation
-<<<<<<< Updated upstream
-@onready var default_scale: Vector2
-
-=======
 @onready var default_scale: Vector2 = resource.SCALE
->>>>>>> Stashed changes
 
 var _fire_timer: int = 0
 var spawn_time: float
@@ -38,7 +33,6 @@ func _ready():
 	$Hurtbox/CollisionShape2D.shape = resource.HURTBOX
 	$Hurtbox/CollisionShape2D.rotation = resource.COLLISION_ROTATION
 
-
 	# Select mob texture variants (This code is functional just unnecessary since no enemies have variants)
 	var variants = sprite.sprite_frames.get_animation_names()
 	var mode = variants[randi() % variants.size()]
@@ -48,6 +42,7 @@ func _ready():
 	add_to_group("enemy")
 	sway()
 
+# Function for easing sprites between two positions while 'idle'. I.e. enemy rotation.
 func sway():
 	var tween: Tween = create_tween()
 	var variance = 1/default_scale.length()
@@ -64,7 +59,8 @@ func sway():
 				.set_ease(Tween.EASE_OUT)
 		tween.tween_callback(sway)
 
-
+# Move the enemy towards the player, handle deletion on death and fire bullets
+# if the fire_delay has elapsed.
 func _physics_process(_delta):
 	var player_direction: Vector2 = (GameState.player.position - position)
 	if player_direction.x < 0:
@@ -78,6 +74,8 @@ func _physics_process(_delta):
 		queue_free()
 		GameState.player.on_enemy_killed(value)
 	
+	# The enemy doesn't know what type of bullet it's firing.
+	# We emit a fire_bullet event, which the main script handles.
 	if bullet != null:
 		if player_direction.length() > 500:
 			_fire_timer = 0
@@ -88,17 +86,19 @@ func _physics_process(_delta):
 				fire_bullet.emit(self, bullet)
 
 
-func hurt(area):
-	health -= area.data.damage
+# Called by _on_hurtbox_area_entered - will only be called if the Area2D is in the bullet group
+# Change the enemies health and tween to shrink the enemy briefly.
+func hurt(bullet: Area2D):
+	health -= bullet.data.damage
 	scale = default_scale * 0.65 
 	var tween := create_tween()
 	tween.tween_property(self, "global_scale", default_scale, 0.05)
 
 
+# Called when the enemy encounters something that hurts it.
 func _on_hurtbox_area_entered(area: Area2D):
 	if area.is_in_group("bullet") and area.origin == GameState.player:
 		hurt(area)
-#		area.queue_free()
 
 
 func create_timer():

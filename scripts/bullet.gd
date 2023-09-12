@@ -6,10 +6,11 @@ extends Area2D
 var direction: Vector2 = Vector2(0,0)
 var origin
 var _traveled_distance: float = 0.0
- 
 
 
 # Called when the node enters the scene tree for the first time.
+# Set some initial rotations, and set different collision layer for player and
+# enemy bullets.
 func _ready():
 	add_to_group("bullet")
 	if origin == GameState.player:
@@ -37,6 +38,7 @@ func _on_self_destruct_timeout():
 	queue_free()
 
 func _on_area_entered(area):
+	print(area)
 	queue_free()
 
 func _on_body_entered(body):

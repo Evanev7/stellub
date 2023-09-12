@@ -32,6 +32,7 @@ var current_animation
 func _ready():
 	GameState.player = self
 	default_scale = self.scale
+	# Hide the player when we start the game
 	hide()
 	set_physics_process(false)
 
@@ -47,6 +48,7 @@ func _physics_process(_delta):
 	
 	#######################################
 	
+	# Handle user input
 	if Input.is_action_just_pressed("walk"):
 		walking = true
 	if Input.is_action_just_released("walk"):
@@ -56,13 +58,14 @@ func _physics_process(_delta):
 		firing = true
 	if Input.is_action_just_released("primary_fire"):
 		firing = false
-
+	
 	if velocity.length() > 0:
 		if walking:
 			velocity = velocity.normalized() * speed/2
 		else:
 			velocity = velocity.normalized() * speed
 		
+		# Flip the player sprite depending on the direction we're facing
 		if velocity.x < 0 and not _h_flipped:
 			scale = Vector2i(-1,1)
 			_h_flipped = true
@@ -77,19 +80,21 @@ func _physics_process(_delta):
 	else:
 		$AnimatedSprite2D.play(current_animation)
 	
-	if _fire_timer <= bullet.fire_delay:
+	# If we aren't ready to fire yet - just increment the fire_timer
+	if _fire_timer < bullet.fire_delay:
 		_fire_timer += 1
 	
 	if firing and _fire_timer >= bullet.fire_delay:
 		fire_bullet.emit(self, bullet)
 		_fire_timer -= bullet.fire_delay
 	
+	# If we walk into an enemy, get hurt!
 	for area in $Hurtbox.get_overlapping_areas():
 		process_hurtbox(area)
 
-
+# When the game starts, set the default values and show the player!
 func start(pos):
-	default_stats()
+	set_default_stats()
 	current_level = 0
 	position = pos
 	show()
@@ -99,15 +104,15 @@ func start(pos):
 	$CollisionShape2D.disabled = false
 	$Camera2D.enabled = true
 
-
-func default_stats():
+# Set default player stats
+func set_default_stats():
 	## Player Stats
 	speed = STARTING_SPEED
 	rotation_speed = STARTING_ROTATION_SPEED
 	hp_max = STARTING_HP_MAX
 	current_animation = "level 0"
 
-
+# Called when the player gets hurt. Body can be either a bullet OR an enemy.
 func hurt(body):
 	hp -= body.damage
 	taken_damage.emit()
@@ -119,20 +124,22 @@ func hurt(body):
 		player_death.emit()
 
 
+# Called when we've kille an enemy, and we can add to our score!
 func on_enemy_killed(value):
 	score += value
 	enemy_killed.emit()
 	
+	# TODO: At the moment, we can't level up past level 10 (without cheating).
 	if current_level < 10 and score >= level_threshold[current_level]:
 		current_level += 1
 		level_up.emit(current_level)
 
-
-func process_hurtbox(area):
+# Called if our hurtbox intersects with anything that will hurt us
+func process_hurtbox(area: Area2D):
 	if area.is_in_group("bullet"):
 		if area.origin != GameState.player:
 			hurt(area.data)
 			area.queue_free()
 		return
 	if area.owner.is_in_group("enemy"):
-			hurt(area.owner)
+		hurt(area.owner)

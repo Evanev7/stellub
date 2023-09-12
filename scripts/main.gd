@@ -15,20 +15,29 @@ func _ready():
 func _physics_process(_delta):
 	pass
 
+# When the spawn timer times out, spawn a new random enemy!
 func _on_spawn_timer_timeout():
 	var enemy = enemy_scene.instantiate()
 	enemy.resource = enemy_resource_list[randi() % enemy_resource_list.size()]
-	var spawn_position = Vector2(safe_range,0).rotated(randf_range(0, 2*PI))
-	enemy.position = GameState.player.position + spawn_position
+	var relative_spawn_position = Vector2(safe_range,0).rotated(randf_range(0, 2*PI))
+	enemy.position = GameState.player.position + relative_spawn_position
 	enemy.fire_bullet.connect(_on_fire_bullet)
 	add_child(enemy)
 
+
+# When a bullet is fired (by the player or an enemy) this function is "called". 
+# We iterate over every bullet to be fired, instantiate them and point them at the player
+# OR at where the player is clicking.
 func _on_fire_bullet(origin, bullet_type: BulletResource):
 	var inaccuracy_offset = randf_range(-bullet_type.shot_inaccuracy/2,bullet_type.shot_inaccuracy/2)
+		
+	# Iterate over every bullet that's being fired (the number of bullets to fire
+	# is stored in .multishot)
 	for index in range(bullet_type.multishot):
 		var bullet = bullet_scene.instantiate()
 		var target_direction: Vector2
 		var player = GameState.player
+		
 		if origin == player:
 			target_direction = (player.get_global_mouse_position() - player.position).normalized()
 		else:
@@ -39,6 +48,7 @@ func _on_fire_bullet(origin, bullet_type: BulletResource):
 			direction_offset += remap(index, 0, bullet_type.multishot-1, -bullet_type.shot_spread/2, bullet_type.shot_spread/2)
 		target_direction = target_direction.rotated(direction_offset)
 		
+		# The distance from the 'firer' that the bullet starts at.
 		var start_range = Vector2(bullet_type.start_range, bullet_type.start_range)
 		start_range *= target_direction
 		
@@ -53,7 +63,9 @@ func _on_fire_bullet(origin, bullet_type: BulletResource):
 
 func _on_start_timer_timeout():
 	$SpawnTimer.start()
-	
+
+
+# Start the timers we need, instantiate the HUD and get the player in the right spot.
 func start_game():
 	$StartTimer.start()
 	$Player.start($Marker2D.position)
@@ -125,7 +137,6 @@ func open_upgrade_hud():
 	$SpawnTimer.set_wait_time($SpawnTimer.get_wait_time() / 1.2)
 	$upgradeHUD.set_visible(true)
 	
-
 func close_upgrade_hud():
 	get_tree().paused = false
 	$upgradeHUD.set_visible(false)

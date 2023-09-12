@@ -4,6 +4,22 @@ class_name BulletResource
 
 @export var animation: SpriteFrames
 
+@export var start_range: int = 0
+@export var lifetime: float = 20.0
+@export var bullet_range: int = 1000
+@export var damage: int = 1
+@export var fire_delay: int = 15
+@export var multishot: int = 1
+@export var size: Vector2 = Vector2(1, 1)
+@export var shot_spread: float =  PI/12
+
+## 2*PI for a full circle
+@export var shot_inaccuracy: float = PI/32
+@export var shot_speed: float = 400
+
+## Bullet type that will spawn from this bullet
+@export var spawned_bullet_resource: BulletResource
+
 #@export var starting_start_range: int = 0
 #
 ### In seconds
@@ -32,19 +48,3 @@ class_name BulletResource
 #var shot_spread =  starting_shot_spread
 #var shot_inaccuracy = starting_shot_inaccuracy
 #var shot_speed = starting_shot_speed
-
-@export var start_range: int = 0
-@export var lifetime: float = 20.0
-@export var bullet_range: int = 1000
-@export var damage: int = 1
-@export var fire_delay: int = 15
-@export var multishot: int = 1
-@export var size: Vector2 = Vector2(1, 1)
-@export var shot_spread: float =  PI/12
-
-## 2*PI for a full circle
-@export var shot_inaccuracy: float = PI/32
-@export var shot_speed: float = 400
-
-## Bullet type that will spawn from this bullet
-@export var spawned_bullet_resource: BulletResource
