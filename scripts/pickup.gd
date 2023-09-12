@@ -16,6 +16,7 @@ var velocity: float = 0
 
 func _ready():
 	#Randomly distribute launch_angle according to proper distribution
+	$AnimatedSprite2D.play()
 	launch_angle = (randi_range(0,1)*2-1)*acos(1-randf()*(1-cos(launch_angle)))
 
 
