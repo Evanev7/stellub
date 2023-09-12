@@ -5,7 +5,6 @@
 
 [resource]
 script = ExtResource("1_ntmv1")
-source = "angel_worshipper"
 animation = ExtResource("1_apf0g")
 start_range = 0
 lifetime = 20.0

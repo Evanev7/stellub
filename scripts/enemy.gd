@@ -84,21 +84,17 @@ func _physics_process(_delta):
 			if _fire_timer > bullet.fire_delay:
 				_fire_timer -= bullet.fire_delay
 				fire_bullet.emit(self, bullet)
-
+	
+	for area in $Hitbox.get_overlapping_areas():
+		hit(area)
 
 # Called by _on_hurtbox_area_entered - will only be called if the Area2D is in the bullet group
 # Change the enemies health and tween to shrink the enemy briefly.
-func hurt(bullet: Area2D):
-	health -= bullet.data.damage
+func hurt(area):
+	health -= area.damage
 	scale = default_scale * 0.65 
 	var tween := create_tween()
 	tween.tween_property(self, "global_scale", default_scale, 0.05)
-
-
-# Called when the enemy encounters something that hurts it.
-func _on_hurtbox_area_entered(area: Area2D):
-	if area.is_in_group("bullet") and area.origin == GameState.player:
-		hurt(area)
 
 
 func create_timer():
@@ -106,3 +102,8 @@ func create_timer():
 	add_child(timer)
 	timer.wait_time = spawn_time
 	timer.one_shot = true
+
+# Called when the enemy encounters something that hurts it.
+func hit(area):
+	if area.owner == GameState.player:
+		area.owner.hurt(self)

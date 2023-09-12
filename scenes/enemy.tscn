@@ -21,19 +21,20 @@ offset = Vector2(-500, -904.762)
 shape = ExtResource("3_vgymb")
 
 [node name="Hitbox" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 0
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = ExtResource("4_yc22m")
 
 [node name="Hurtbox" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 4
+collision_layer = 4
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = ExtResource("4_yc22m")
 
 [node name="enemySpawner" type="Node2D" parent="."]
 
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
