@@ -13,21 +13,23 @@
 [ext_resource type="Resource" uid="uid://djjvchiit0f0n" path="res://resources/enemy/angel_worshipper.tres" id="7_c5yt3"]
 [ext_resource type="Resource" uid="uid://bnoj3uq3e6s17" path="res://resources/enemy/angel_warrior.tres" id="8_vk0tv"]
 [ext_resource type="Resource" uid="uid://daslelns8qmfv" path="res://resources/enemy/angel_crusader.tres" id="9_d18g6"]
-[ext_resource type="Texture2D" uid="uid://8rgqksla1p8r" path="res://art/backgrounds/hell_level_1_temp.png" id="10_fpi41"]
+[ext_resource type="Texture2D" uid="uid://dvrx1ijrwk8a2" path="res://art/backgrounds/hell_level_1.png" id="11_ytepx"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_jwdk3")
 enemy_scene = ExtResource("2_abhdw")
 bullet_scene = ExtResource("3_8vuuc")
 pickup_scene = ExtResource("4_3g6v5")
+safe_range = 800
 enemy_resource_list = Array[Resource("res://scripts/enemy_resource.gd")]([ExtResource("4_ikhts"), ExtResource("5_3s043"), ExtResource("6_8vwn2"), ExtResource("7_c5yt3"), ExtResource("8_vk0tv"), ExtResource("9_d18g6")])
 
 [node name="TextureRect" type="TextureRect" parent="."]
+light_mask = 3
 offset_left = -23173.0
 offset_top = -23366.0
 offset_right = 27956.0
 offset_bottom = 27763.0
-texture = ExtResource("10_fpi41")
+texture = ExtResource("11_ytepx")
 expand_mode = 4
 stretch_mode = 1
 

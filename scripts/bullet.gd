@@ -9,6 +9,7 @@ signal fire_bullet(spawned_bullet: BulletResource)
 
 var piercing
 var piercing_cooldown
+var default_piercing_cooldown = 10000
 var direction: Vector2 = Vector2(0,0)
 var origin_ref: WeakRef
 var prev_ref
@@ -74,4 +75,4 @@ func _on_area_entered(area):
 			queue_free()
 		else:
 			piercing -= 1
-			piercing_cooldown = 10000
+			piercing_cooldown = default_piercing_cooldown

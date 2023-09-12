@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cnepphpba8e8u"]
+[gd_scene load_steps=25 format=3 uid="uid://cnepphpba8e8u"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_m0lvq"]
 [ext_resource type="Resource" uid="uid://ccpb4udi5owpj" path="res://resources/bullets/player/player_bullet.tres" id="2_02d8s"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://bc020wmqxwd1x" path="res://art/player/level 2/player_2_2.png" id="17_o3b57"]
 [ext_resource type="Texture2D" uid="uid://b74demdp666as" path="res://art/player/level 2/player_2_3.png" id="18_cpjt2"]
 [ext_resource type="Texture2D" uid="uid://do6k7k2wf53fx" path="res://art/player/level 2/player_2_4.png" id="19_or65r"]
+[ext_resource type="Texture2D" uid="uid://clyycn7uujclo" path="res://art/icon.svg" id="22_unij0"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_whc3w"]
 animations = [{
@@ -115,13 +116,19 @@ motion_mode = 1
 script = ExtResource("1_m0lvq")
 bullet = ExtResource("2_02d8s")
 
+[node name="PointLight2D" type="PointLight2D" parent="."]
+rotation = 0.785398
+energy = 2.33
+range_item_cull_mask = 2
+texture = ExtResource("22_unij0")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.05, 0.05)
 sprite_frames = SubResource("SpriteFrames_whc3w")
-animation = &"level 2"
+animation = &"level 0"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(0.6, 0.6)
+scale = Vector2(0.3, 0.3)
 shape = SubResource("RectangleShape2D_odef0")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -132,12 +139,12 @@ collision_layer = 26
 collision_mask = 0
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Hurtbox"]
-scale = Vector2(0.6, 0.6)
+scale = Vector2(0.3, 0.3)
 shape = SubResource("RectangleShape2D_odef0")
 
 [node name="IFrames" type="Timer" parent="."]
 process_callback = 0
-wait_time = 0.333
+wait_time = 0.1
 one_shot = true
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

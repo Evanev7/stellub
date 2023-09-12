@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=5 format=3 uid="uid://dsohorrvm3oyi"]
+
+[ext_resource type="Script" path="res://scripts/enemy_resource.gd" id="1_0n1ll"]
+[ext_resource type="SpriteFrames" uid="uid://deadwh4a4bg0" path="res://resources/enemy/big_guy_spriteframes.tres" id="1_1tbam"]
+[ext_resource type="Shape2D" uid="uid://b7f6lyn73q1su" path="res://resources/hitboxes/angel_warrior_collisionbox.tres" id="2_wuwbw"]
+[ext_resource type="Shape2D" uid="uid://d3xxud6dm5v4" path="res://resources/hitboxes/angel_crusader_hitbox.tres" id="3_n6qir"]
+
+[resource]
+script = ExtResource("1_0n1ll")
+NAME = "big_Guy"
+ANIMATION = ExtResource("1_1tbam")
+SPEED = 10
+MAX_HP = 10000
+DAMAGE = 1
+VALUE = 1000
+FLIP_H = false
+FLOATING = false
+SCALE = Vector2(5, 5)
+COLLISION_ROTATION = 0.0
+HITBOX = ExtResource("3_n6qir")
+HURTBOX = ExtResource("3_n6qir")
+COLLIDER = ExtResource("2_wuwbw")
+SPAWN_RATE = 0.0
