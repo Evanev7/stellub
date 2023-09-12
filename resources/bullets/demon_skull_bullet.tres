@@ -14,6 +14,6 @@ fire_delay = 60
 multishot = 20
 size = Vector2(3, 1)
 shot_spread = 6.283
+angular_velocity = 1.0
 shot_inaccuracy = 0.0
 shot_speed = 0.0
-angular_velocity = 1.0

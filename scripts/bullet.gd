@@ -41,7 +41,6 @@ func _physics_process(delta):
 	position += _direction * delta
 	_traveled_distance += data.shot_speed*delta
 	
-	
 	if _traveled_distance > data.bullet_range:
 		queue_free()
 
