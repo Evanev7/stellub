@@ -82,4 +82,4 @@ func _on_area_entered(area):
 
 
 func _on_body_entered(body):
-	print("mountain")
+	print("mountain") # Replace with function body.

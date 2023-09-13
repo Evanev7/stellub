@@ -28,10 +28,11 @@ enemy_resource_list = Array[Resource("res://scripts/enemy_resource.gd")]([ExtRes
 
 [node name="TextureRect" type="TextureRect" parent="."]
 light_mask = 3
-offset_left = -23173.0
-offset_top = -23366.0
-offset_right = 27956.0
-offset_bottom = 27763.0
+offset_left = -17921.0
+offset_top = -17734.0
+offset_right = 33208.0
+offset_bottom = 33395.0
+scale = Vector2(0.75, 0.75)
 texture = ExtResource("11_ytepx")
 expand_mode = 4
 stretch_mode = 1
