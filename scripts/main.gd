@@ -110,6 +110,7 @@ func game_over():
 	$SpawnTimer.stop()
 	get_tree().call_group("enemy", "queue_free")
 	get_tree().call_group("bullet", "queue_free")
+	get_tree().call_group("pickup", "queue_free")
 	$HUD.game_over()
 
 func _on_hud_start_game():

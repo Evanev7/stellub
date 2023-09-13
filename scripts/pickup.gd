@@ -18,6 +18,7 @@ func _ready():
 	#Randomly distribute launch_angle according to proper distribution
 	$AnimatedSprite2D.play()
 	launch_angle = (randi_range(0,1)*2-1)*acos(1-randf()*(1-cos(launch_angle)))
+	add_to_group("pickup")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

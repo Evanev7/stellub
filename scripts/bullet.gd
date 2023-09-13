@@ -9,7 +9,7 @@ signal fire_bullet(spawned_bullet: BulletResource)
 
 var piercing
 var piercing_cooldown
-var default_piercing_cooldown = 10000
+var default_piercing_cooldown = 60
 var direction: Vector2 = Vector2(0,0)
 var origin_ref: WeakRef
 var relative_position
@@ -43,17 +43,17 @@ func _ready():
 func _physics_process(delta):
 	var _direction = direction * data.shot_speed
 	var origin = origin_ref.get_ref()
-	while piercing_cooldown > 0:
+	if piercing_cooldown > 0:
 		piercing_cooldown -= 1
 	if origin:
 		origin_position = origin.position
 		origin_velocity = origin.velocity
-		if data.angular_velocity != 0:
-			_direction += (position - origin_position).rotated(PI/2)*data.angular_velocity
-		if data.shot_speed == 0:
-			_direction += origin_velocity
+	if data.angular_velocity != 0:
+		_direction += (position - origin_position).rotated(PI/2)*data.angular_velocity
 		if _traveled_distance < 200:
 			rotation = (position - origin_position).angle()
+	if data.shot_speed == 0:
+		_direction += origin_velocity
 	position += _direction * delta
 	_traveled_distance += data.shot_speed*delta
 	
@@ -76,4 +76,10 @@ func _on_area_entered(area):
 			queue_free()
 		else:
 			piercing -= 1
+			if piercing == 0:
+				queue_free()
 			piercing_cooldown = default_piercing_cooldown
+
+
+func _on_body_entered(body):
+	print("mountain")
