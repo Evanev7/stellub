@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-signal fire_bullet(bullet: BulletResource)
+signal fire_bullet(origin, bullet: BulletResource, init: FireFrom)
 signal spawn
 signal enemy_killed(enemy)
 
@@ -83,8 +83,10 @@ func _physics_process(_delta):
 		else:
 			_fire_timer += 1
 			if _fire_timer > bullet.fire_delay:
+				var fire_from = FireFrom.new()
+				fire_from.toward(position, GameState.player.position)
+				fire_bullet.emit(self, bullet, fire_from)
 				_fire_timer -= bullet.fire_delay
-				fire_bullet.emit(self, bullet)
 	
 	for area in $Hitbox.get_overlapping_areas():
 		hit(area)

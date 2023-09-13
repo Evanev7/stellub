@@ -12,7 +12,6 @@ var piercing_cooldown
 var default_piercing_cooldown = 10000
 var direction: Vector2 = Vector2(0,0)
 var origin_ref: WeakRef
-var prev_ref
 var relative_position
 var origin_position
 var origin_velocity
@@ -24,11 +23,12 @@ var damage
 # Set some initial rotations, and set different collision layer for player and
 # enemy bullets.
 func _ready():
+	scale = data.size
 	if data.piercing:
 		piercing = data.piercing
 	add_to_group("bullet")
 	piercing_cooldown = 0
-	if origin_ref.get_ref() == GameState.player || prev_ref == "player":
+	if origin_ref.get_ref() == GameState.player:
 		set_collision_mask(4)
 	else:
 		set_collision_mask(2)
@@ -67,10 +67,11 @@ func _on_area_entered(area):
 	if piercing_cooldown == 0:
 		area.owner.hurt(self)
 		if spawned_bullet:
+			var fire_from = FireFrom.new()
+			fire_from.toward(position, GameState.player.position)
 			if origin_ref.get_ref() == GameState.player:
-				fire_bullet.emit(self, spawned_bullet, "player")
-			else:
-				fire_bullet.emit(self, spawned_bullet, "enemy")
+				fire_from.direction *= -1
+			fire_bullet.emit(origin_ref, spawned_bullet, fire_from)
 		if data.piercing == 0 or piercing == 0:
 			queue_free()
 		else:

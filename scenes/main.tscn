@@ -39,7 +39,7 @@ stretch_mode = 1
 wait_time = 2.0
 
 [node name="StartTimer" type="Timer" parent="."]
-wait_time = 0.001
+wait_time = 0.05
 one_shot = true
 
 [node name="HUD" parent="." instance=ExtResource("3_8qfpp")]

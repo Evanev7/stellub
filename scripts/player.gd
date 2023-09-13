@@ -3,7 +3,7 @@ extends CharacterBody2D
 signal taken_damage(hp)
 signal player_death
 signal level_up(level)
-signal fire_bullet(bullet: BulletResource)
+signal fire_bullet(origin, bullet: BulletResource, init: FireFrom)
 
 ## Player Stats
 @export var STARTING_SPEED = 380.0
@@ -78,7 +78,9 @@ func _physics_process(_delta):
 		_fire_timer += 1
 	
 	if firing and _fire_timer >= bullet.fire_delay:
-		fire_bullet.emit(self, bullet)
+		var fire_from = FireFrom.new()
+		fire_from.toward(position, get_global_mouse_position())
+		fire_bullet.emit(self, bullet, fire_from)
 		_fire_timer -= bullet.fire_delay
 
 # When the game starts, set the default values and show the player.
@@ -105,6 +107,8 @@ func set_default_stats():
 func hurt(body):
 	if not invuln:
 		hp -= body.damage
+		if hp < 0:
+			hp = 0
 		taken_damage.emit(hp)
 		invuln = true
 		$IFrames.start()
