@@ -1,23 +1,23 @@
 [gd_scene load_steps=4 format=3 uid="uid://j8g4suxt2pa2"]
 
 [ext_resource type="Texture2D" uid="uid://cjvdy45l44e6u" path="res://art/objects/mountain_large.png" id="1_2w6ix"]
+[ext_resource type="Script" path="res://scripts/object_spawn_resource.gd" id="1_18eee"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cinqj"]
-size = Vector2(464.5, 171)
+[sub_resource type="Resource" id="Resource_ggss2"]
+script = ExtResource("1_18eee")
+poisson_coefficient = 0.3
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sg1qc"]
-size = Vector2(368, 87.5)
+[node name="LargeMountain" type="Node2D"]
+position = Vector2(0, 100)
+metadata/spawn_information = SubResource("Resource_ggss2")
 
-[node name="mountain_large" type="StaticBody2D"]
-z_index = 2
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 7
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(10, -218)
 texture = ExtResource("1_2w6ix")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-4.25, 192)
-shape = SubResource("RectangleShape2D_cinqj")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(0, 64)
-shape = SubResource("RectangleShape2D_sg1qc")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(-78, -123)
+polygon = PackedVector2Array(86.2, -179, 23.2, -142, -77, 14, -137.8, 159, -9.79999, 188, 346.2, 182, 297, 106, 266, 1, 229.2, -69, 171.2, -122, 139, -150)

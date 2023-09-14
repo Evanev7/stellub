@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dfe6bc7mdpexj"]
+[gd_scene load_steps=19 format=3 uid="uid://dfe6bc7mdpexj"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_jwdk3"]
 [ext_resource type="PackedScene" uid="uid://dpjckt12ipcw2" path="res://scenes/characters/enemy.tscn" id="2_abhdw"]
@@ -13,7 +13,8 @@
 [ext_resource type="Resource" uid="uid://djjvchiit0f0n" path="res://resources/enemy/angel_worshipper.tres" id="7_c5yt3"]
 [ext_resource type="Resource" uid="uid://bnoj3uq3e6s17" path="res://resources/enemy/angel_warrior.tres" id="8_vk0tv"]
 [ext_resource type="Resource" uid="uid://daslelns8qmfv" path="res://resources/enemy/angel_crusader.tres" id="9_d18g6"]
-[ext_resource type="Texture2D" uid="uid://dvrx1ijrwk8a2" path="res://art/backgrounds/hell_level_1.png" id="11_ytepx"]
+[ext_resource type="PackedScene" uid="uid://41p1qgrud4ej" path="res://scenes/levels/terrain_generator.tscn" id="11_0axk0"]
+[ext_resource type="TileSet" uid="uid://bmawjll8sdo63" path="res://art/backgrounds/background_tileset.tres" id="12_hvjod"]
 [ext_resource type="PackedScene" uid="uid://cu0upewcndo61" path="res://scenes/objects/mountain_small.tscn" id="15_c0t5p"]
 [ext_resource type="PackedScene" uid="uid://7pekoii3l4xw" path="res://scenes/objects/pillar.tscn" id="16_msr33"]
 [ext_resource type="PackedScene" uid="uid://j8g4suxt2pa2" path="res://scenes/objects/mountain_large.tscn" id="17_7v7se"]
@@ -26,18 +27,36 @@ pickup_scene = ExtResource("4_3g6v5")
 safe_range = 800
 enemy_resource_list = Array[Resource("res://scripts/enemy_resource.gd")]([ExtResource("4_ikhts"), ExtResource("5_3s043"), ExtResource("6_8vwn2"), ExtResource("7_c5yt3"), ExtResource("8_vk0tv"), ExtResource("9_d18g6")])
 
-[node name="TextureRect" type="TextureRect" parent="."]
-light_mask = 3
-offset_left = -17921.0
-offset_top = -17734.0
-offset_right = 33208.0
-offset_bottom = 33395.0
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("11_ytepx")
-expand_mode = 4
-stretch_mode = 1
+[node name="YSort" type="Node2D" parent="."]
+y_sort_enabled = true
 
-[node name="Player" parent="." instance=ExtResource("5_a3mdk")]
+[node name="TerrainGenerator" parent="YSort" node_paths=PackedStringArray("tile_map", "ysorter") instance=ExtResource("11_0axk0")]
+tile_map = NodePath("../TileMap")
+ysorter = NodePath("..")
+
+[node name="TileMap" type="TileMap" parent="YSort"]
+z_index = -1
+scale = Vector2(0.75, 0.75)
+tile_set = ExtResource("12_hvjod")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 1, 0)
+
+[node name="Player" parent="YSort" instance=ExtResource("5_a3mdk")]
+z_index = 0
+position = Vector2(640, 360)
+
+[node name="Marker2D" type="Marker2D" parent="YSort"]
+position = Vector2(576, 324)
+
+[node name="mountain_small" parent="YSort" instance=ExtResource("15_c0t5p")]
+position = Vector2(373, -282)
+
+[node name="pillar" parent="YSort" instance=ExtResource("16_msr33")]
+y_sort_enabled = false
+position = Vector2(1529, 208)
+
+[node name="mountain_large" parent="YSort" instance=ExtResource("17_7v7se")]
+position = Vector2(-323, 580)
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 2.0
@@ -50,24 +69,10 @@ one_shot = true
 
 [node name="upgradeHUD" parent="." instance=ExtResource("4_ls5jb")]
 
-[node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(576, 324)
-
-[node name="mountain_small" parent="." instance=ExtResource("15_c0t5p")]
-z_index = 2
-position = Vector2(373, -282)
-
-[node name="pillar" parent="." instance=ExtResource("16_msr33")]
-z_index = 2
-position = Vector2(1529, 208)
-
-[node name="mountain_large" parent="." instance=ExtResource("17_7v7se")]
-position = Vector2(-323, 580)
-
-[connection signal="fire_bullet" from="Player" to="." method="_on_fire_bullet"]
-[connection signal="level_up" from="Player" to="." method="_on_player_level_up"]
-[connection signal="player_death" from="Player" to="." method="_on_player_player_death"]
-[connection signal="taken_damage" from="Player" to="." method="_on_player_taken_damage"]
+[connection signal="fire_bullet" from="YSort/Player" to="." method="_on_fire_bullet"]
+[connection signal="level_up" from="YSort/Player" to="." method="_on_player_level_up"]
+[connection signal="player_death" from="YSort/Player" to="." method="_on_player_player_death"]
+[connection signal="taken_damage" from="YSort/Player" to="." method="_on_player_taken_damage"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
 [connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]

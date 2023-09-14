@@ -50,10 +50,10 @@ func _physics_process(delta):
 		origin_velocity = origin.velocity
 	if data.angular_velocity != 0:
 		_direction += (position - origin_position).rotated(PI/2)*data.angular_velocity
-		if _traveled_distance < 200:
-			rotation = (position - origin_position).angle()
+		rotation = _direction.angle()
 	if data.shot_speed == 0:
 		_direction += origin_velocity
+		rotation = (position - origin_position).angle()
 	position += _direction * delta
 	_traveled_distance += data.shot_speed*delta
 	

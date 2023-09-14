@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://41p1qgrud4ej"]
+
+[ext_resource type="Script" path="res://scripts/terrain_generator.gd" id="1_oddss"]
+[ext_resource type="PackedScene" uid="uid://j8g4suxt2pa2" path="res://scenes/objects/mountain_large.tscn" id="2_r0ulq"]
+[ext_resource type="PackedScene" uid="uid://cu0upewcndo61" path="res://scenes/objects/mountain_small.tscn" id="3_whv4c"]
+[ext_resource type="PackedScene" uid="uid://7pekoii3l4xw" path="res://scenes/objects/pillar.tscn" id="4_85cp0"]
+
+[node name="TerrainGenerator" type="Node"]
+script = ExtResource("1_oddss")
+update_range = Vector2i(2, 2)
+objects = Array[PackedScene]([ExtResource("2_r0ulq"), ExtResource("3_whv4c"), ExtResource("4_85cp0")])
+object_spawn_rate = Array[float]([0.3, 0.2, 0.6])
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

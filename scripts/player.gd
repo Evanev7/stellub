@@ -84,14 +84,13 @@ func _physics_process(_delta):
 		_fire_timer -= bullet.fire_delay
 
 # When the game starts, set the default values and show the player.
-func start(pos):
+func start():
 	set_default_stats()
-	current_level = 0
-	position = pos
 	show()
+	set_physics_process(true)
 	hp = hp_max
 	score = 0
-	set_physics_process(true)
+	current_level = 0
 	$CollisionShape2D.disabled = false
 	$Camera2D.enabled = true
 

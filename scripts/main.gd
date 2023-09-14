@@ -10,7 +10,7 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$YSort/TerrainGenerator.generate()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
@@ -18,8 +18,8 @@ func _physics_process(_delta):
 	##Debug ###############################
 	
 	if Input.is_key_pressed(KEY_R): ## Increase score by 10
-		$Player.gain_score(10)
-		$HUD.show_score($Player.score)
+		GameState.player.gain_score(10)
+		$HUD.show_score(GameState.player.score)
 	
 	#######################################
 
@@ -47,7 +47,6 @@ func _on_fire_bullet(origin, bullet_type: BulletResource, fire_from: FireFrom):
 	for index in range(bullet_type.multishot):
 		var bullet = bullet_scene.instantiate()
 		bullet.fire_bullet.connect(_on_fire_bullet)
-		var player = GameState.player
 		
 		var start_position = fire_from.position
 		
@@ -77,7 +76,7 @@ func _on_start_timer_timeout():
 # Start the timers we need, instantiate the HUD and get the player in the right spot.
 func start_game():
 	$StartTimer.start()
-	$Player.start($Marker2D.position)
+	GameState.player.start()
 	$SpawnTimer.set_wait_time(2.0)
 	$HUD.show_message("All Hell Breaks Loose")
 	$HUD.show_health(GameState.player.hp)
@@ -130,11 +129,11 @@ func spawn_pickup(pos):
 	var pickup = pickup_scene.instantiate()
 	pickup.credit_player.connect(_on_pickup_credit_player)
 	pickup.position = pos
-	add_child(pickup)
+	$YSort.add_child(pickup)
 
 func _on_pickup_credit_player(value):
-	$Player.gain_score(value)
-	$HUD.show_score($Player.score)
+	GameState.player.gain_score(value)
+	$HUD.show_score(GameState.player.score)
 
 func _on_player_level_up(current_level):
 	open_upgrade_hud()
