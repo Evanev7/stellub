@@ -115,6 +115,7 @@ size = Vector2(50, 50)
 z_index = 1
 y_sort_enabled = true
 motion_mode = 1
+platform_on_leave = 2
 script = ExtResource("1_m0lvq")
 bullet = ExtResource("2_02d8s")
 

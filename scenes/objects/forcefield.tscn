@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://nyks4nq7rk4"]
+
+[ext_resource type="Script" path="res://scripts/OvalMaker.gd" id="1_vgjsl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_drgm3"]
+radius = 150.0
+
+[sub_resource type="Gradient" id="Gradient_p1atk"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_220sm"]
+gradient = SubResource("Gradient_p1atk")
+width = 600
+
+[sub_resource type="Gradient" id="Gradient_0qdvi"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_b3av0"]
+gradient = SubResource("Gradient_0qdvi")
+height = 300
+
+[node name="Forcefield" type="StaticBody2D"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+build_mode = 1
+
+[node name="OvalMaker" type="Node" parent="CollisionPolygon2D" node_paths=PackedStringArray("collisionshape")]
+script = ExtResource("1_vgjsl")
+axis = Vector2(300, 150)
+collisionshape = NodePath("..")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+scale = Vector2(2, 1)
+shape = SubResource("CircleShape2D_drgm3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_220sm")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_b3av0")

@@ -31,7 +31,7 @@ func _on_spawn_timer_timeout():
 	enemy.position = GameState.player.position + relative_spawn_position
 	enemy.fire_bullet.connect(_on_fire_bullet)
 	enemy.enemy_killed.connect(_on_enemy_killed)
-	add_child(enemy)
+	$YSort.add_child(enemy)
 
 
 # When a bullet is fired (by the player or an enemy) this function is "called". 
@@ -60,14 +60,13 @@ func _on_fire_bullet(origin, bullet_type: BulletResource, fire_from: FireFrom):
 		start_range *= start_direction
 		start_position += start_range
 		
-		bullet.set("direction", start_direction)
-		bullet.set("data", bullet_type)
-		bullet.set("origin_ref", origin)
-		bullet.set("position", start_position)
+		bullet.direction = start_direction
+		bullet.data = bullet_type
+		bullet.origin_ref = origin
+		bullet.position = start_position
 		
+		add_child(bullet)
 		
-		call_deferred("add_child", bullet)
-	
 
 func _on_start_timer_timeout():
 	$SpawnTimer.start()

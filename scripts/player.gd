@@ -86,7 +86,6 @@ func _physics_process(_delta):
 # When the game starts, set the default values and show the player.
 func start():
 	set_default_stats()
-	print("the thing")
 	show()
 	set_physics_process(true)
 	hp = hp_max

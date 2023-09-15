@@ -30,14 +30,16 @@ func _ready():
 	piercing_cooldown = 0
 	if origin_ref.get_ref() == GameState.player:
 		set_collision_mask(4)
-	else:
-		set_collision_mask(2)
 	$AnimatedSprite2D.play()
 	damage = data.damage
 	sprite.sprite_frames = data.animation
 	$SelfDestruct.wait_time = data.lifetime
 	$SelfDestruct.start()
 	rotation = direction.angle()
+	var origin = origin_ref.get_ref()
+	origin_position = origin.position
+	origin_velocity = origin.velocity
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -65,7 +67,8 @@ func _on_self_destruct_timeout():
 
 func _on_area_entered(area):
 	if piercing_cooldown == 0:
-		area.owner.hurt(self)
+		if area.owner.has_method("hurt"):
+			area.owner.hurt(self)
 		if spawned_bullet:
 			var fire_from = FireFrom.new()
 			fire_from.toward(position, GameState.player.position)
@@ -82,4 +85,5 @@ func _on_area_entered(area):
 
 
 func _on_body_entered(body):
-	print("mountain") # Replace with function body.
+	print("mountain")
+	queue_free()

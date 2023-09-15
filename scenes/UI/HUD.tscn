@@ -29,13 +29,22 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HealthDisplay" type="Label" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 78.0
-grow_horizontal = 2
+offset_right = 40.0
+offset_bottom = 88.0
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreDisplay" type="Label" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -88.0
+grow_horizontal = 0
+grow_vertical = 0
 theme_override_font_sizes/font_size = 64
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -60,21 +69,6 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 64
 shortcut = SubResource("Shortcut_lxmoi")
 text = "Play"
-
-[node name="ScoreDisplay" type="Label" parent="."]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -88.0
-offset_right = 20.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 64
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [connection signal="timeout" from="DisplayTimer" to="." method="_on_display_timer_timeout"]
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
