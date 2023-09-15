@@ -47,6 +47,7 @@ func populate(coords):
 			coords.x += randf_range(0,tile_size.x)
 			coords.y += randf_range(0,tile_size.y)
 			var object = objects[index].instantiate()
+			object.add_to_group("terrain")
 			object.position = coords
 			ysorter.add_child(object)
 

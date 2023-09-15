@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://d05swenhbbosd"]
+
+[ext_resource type="Script" path="res://scripts/objective_marker.gd" id="1_c6rh4"]
+[ext_resource type="Texture2D" uid="uid://bw0olwfct1s4n" path="res://art/objects/arrow-temp.png" id="1_uirfi"]
+
+[node name="ObjectiveMarker" type="CanvasLayer"]
+script = ExtResource("1_c6rh4")
+
+[node name="Arrow-temp-scale" type="Node2D" parent="."]
+scale = Vector2(0.2, 1)
+
+[node name="Arrow-temp" type="Sprite2D" parent="Arrow-temp-scale"]
+rotation = -2.35619
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("1_uirfi")
