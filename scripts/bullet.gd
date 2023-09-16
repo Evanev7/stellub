@@ -80,6 +80,3 @@ func _on_area_entered(area):
 				queue_free()
 			piercing_cooldown = default_piercing_cooldown
 
-
-func _on_body_entered(body):
-	print("mountain") # Replace with function body.

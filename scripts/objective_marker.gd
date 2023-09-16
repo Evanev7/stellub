@@ -13,7 +13,7 @@ func _ready():
 	get_viewport().connect("size_changed",_on_screen_size_changed)
 	_on_screen_size_changed()
 
-func _process(delta):
+func _process(_delta):
 	var direction = arrow_target.position - GameState.player.position
 	distance = direction.length()
 	rotation = direction.angle()
