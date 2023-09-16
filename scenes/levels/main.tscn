@@ -77,6 +77,7 @@ one_shot = true
 [node name="ObjectiveMarker" parent="." node_paths=PackedStringArray("arrow_target") instance=ExtResource("20_tncsu")]
 arrow_target = NodePath("../YSort/Shop")
 
+[connection signal="shop_entered" from="YSort/Shop" to="." method="_on_shop_shop_entered"]
 [connection signal="fire_bullet" from="YSort/Player" to="." method="_on_fire_bullet"]
 [connection signal="level_up" from="YSort/Player" to="." method="_on_player_level_up"]
 [connection signal="player_death" from="YSort/Player" to="." method="_on_player_player_death"]

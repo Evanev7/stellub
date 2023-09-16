@@ -132,7 +132,6 @@ func gain_score(value):
 	
 	# TODO: At the moment, we can't level up past level 10 (without cheating).
 	if current_level < 10 and score >= level_threshold[current_level]:
-		current_level += 1
 		level_up.emit(current_level)
 		if current_level % 1 == 0:
 			current_animation = "level " + str(current_level/1)

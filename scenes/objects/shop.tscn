@@ -1,16 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://cp7lho542gmeu"]
+[gd_scene load_steps=6 format=3 uid="uid://cp7lho542gmeu"]
 
+[ext_resource type="Script" path="res://scripts/shop.gd" id="1_57dqm"]
 [ext_resource type="Texture2D" uid="uid://b7im0npiawyyl" path="res://art/objects/shop_closed_temp.png" id="1_q80nc"]
 [ext_resource type="Texture2D" uid="uid://vr1crqammxvo" path="res://art/objects/shop_open_temp.png" id="2_kfiwc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ylayl"]
-radius = 2152.21
+radius = 1079.59
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u23kn"]
 radius = 366.27
 
 [node name="Shop" type="Node2D"]
 scale = Vector2(0.25, 0.25)
+script = ExtResource("1_57dqm")
 
 [node name="Shop_Closed" type="Sprite2D" parent="."]
 texture = ExtResource("1_q80nc")
@@ -25,5 +27,12 @@ texture = ExtResource("2_kfiwc")
 [node name="OpenArea" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_ylayl")
 
-[node name="InteractArea" type="CollisionShape2D" parent="Area2D"]
+[node name="Area2D2" type="Area2D" parent="."]
+
+[node name="InteractArea" type="CollisionShape2D" parent="Area2D2"]
 shape = SubResource("CircleShape2D_u23kn")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_2_body_entered"]
+[connection signal="body_exited" from="Area2D2" to="." method="_on_area_2d_2_body_exited"]
