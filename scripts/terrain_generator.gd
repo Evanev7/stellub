@@ -49,6 +49,10 @@ func populate(coords):
 			var object = objects[index].instantiate()
 			object.add_to_group("terrain")
 			object.position = coords
+			var random = randf_range(0.9, 1.3)
+			var flip_direction = randi() % 2 == 0
+			object.scale = Vector2(random, random)
+			object.get_node("StaticBody2D/Sprite2D").flip_h = flip_direction
 			ysorter.add_child(object)
 
 

@@ -36,7 +36,7 @@ script = ExtResource("1_rqpcu")
 position = Vector2(0, -13)
 scale = Vector2(0.05, 0.05)
 sprite_frames = SubResource("SpriteFrames_uigp4")
-frame_progress = 0.276519
+frame_progress = 0.94902
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(1.5, 1.5)

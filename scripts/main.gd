@@ -82,6 +82,13 @@ func start_game():
 	$HUD.show_health(GameState.player.hp)
 	$HUD.show_score(GameState.player.score)
 	
+	move_shop()
+	
+	
+func move_shop():
+	$YSort/Shop.position = Vector2($YSort/Shop.position.x, GameState.player.position.y - 1000)
+	
+	
 #	create_spawn_timers()
 #
 #func create_spawn_timers():
