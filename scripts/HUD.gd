@@ -27,10 +27,10 @@ func _on_start_button_pressed():
 func show_health(number):
 	$HealthDisplay.text = str(number)
 
-func show_score(number, max):
-	if number >= max:
+func show_score(number, max_number):
+	if number >= max_number:
 		$XPBar.min_value = int(number)
-	$XPBar.max_value = int(max)
+	$XPBar.max_value = int(max_number)
 	$XPBar.value = int(number)
 	
 func change_min_XP(number):
