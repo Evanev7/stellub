@@ -1,25 +1,25 @@
 [gd_scene load_steps=8 format=3 uid="uid://cjuw1uddg4foi"]
 
 [ext_resource type="Script" path="res://scripts/pickup.gd" id="1_rqpcu"]
-[ext_resource type="Texture2D" uid="uid://cy2ajprj0e7h5" path="res://art/bullets/player/simple_bullet_1.png" id="2_7hu7a"]
-[ext_resource type="Texture2D" uid="uid://b1vinjcjjtwic" path="res://art/bullets/player/simple_bullet_2.png" id="3_5yi5t"]
-[ext_resource type="Texture2D" uid="uid://3u505qc8u7bp" path="res://art/bullets/player/simple_bullet_3.png" id="4_613qk"]
+[ext_resource type="Texture2D" uid="uid://caoxahmkiussb" path="res://art/objects/soul_1.png" id="2_m0cjb"]
+[ext_resource type="Texture2D" uid="uid://of2rwvlfcior" path="res://art/objects/soul_2.png" id="3_1e1v6"]
+[ext_resource type="Texture2D" uid="uid://dsshthdbyucq" path="res://art/objects/soul_3.png" id="4_4mau0"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_uigp4"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_7hu7a")
+"texture": ExtResource("2_m0cjb")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_5yi5t")
+"texture": ExtResource("3_1e1v6")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_613qk")
+"texture": ExtResource("4_4mau0")
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 6.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rwjyl"]
@@ -33,9 +33,10 @@ collision_mask = 16
 script = ExtResource("1_rqpcu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-rotation = 1.5708
+position = Vector2(0, -13)
 scale = Vector2(0.05, 0.05)
 sprite_frames = SubResource("SpriteFrames_uigp4")
+frame_progress = 0.276519
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(1.5, 1.5)

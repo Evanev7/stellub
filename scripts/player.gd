@@ -60,10 +60,10 @@ func _physics_process(_delta):
 		
 		# Flip the player sprite depending on the direction we're facing
 		if velocity.x < 0 and not _h_flipped:
-			scale = Vector2i(-1,1)
+			scale = Vector2(-scale.x,scale.y)
 			_h_flipped = true
 		elif velocity.x > 0 and _h_flipped:
-			scale = Vector2i(-1,-1)
+			scale = Vector2(-scale.x,scale.y)
 			_h_flipped = false
 		
 		move_and_slide()
@@ -86,7 +86,6 @@ func _physics_process(_delta):
 # When the game starts, set the default values and show the player.
 func start():
 	set_default_stats()
-	print("the thing")
 	show()
 	set_physics_process(true)
 	hp = hp_max
@@ -102,6 +101,7 @@ func set_default_stats():
 	rotation_speed = STARTING_ROTATION_SPEED
 	hp_max = STARTING_HP_MAX
 	current_animation = "level 0"
+	scale = default_scale
 
 # Called when the player gets hurt. Body can be either a bullet OR an enemy.
 func hurt(body):
@@ -124,14 +124,18 @@ func hurt(body):
 # Called when we've killed an enemy, and we can add to our score.
 func gain_score(value):
 	score += value
+	var tween: Tween = create_tween()
+	if current_level < 2:
+		tween.tween_property($AnimatedSprite2D, "self_modulate:v", 1, 0.25).from(50)
+	else:
+		tween.tween_property($AnimatedSprite2D, "self_modulate:v", 1, 0.25).from(5)
 	
 	# TODO: At the moment, we can't level up past level 10 (without cheating).
 	if current_level < 10 and score >= level_threshold[current_level]:
 		current_level += 1
 		level_up.emit(current_level)
-		if current_level % 3 == 0:
-			current_animation = "level " + str(current_level/3)
-
+		if current_level % 1 == 0:
+			current_animation = "level " + str(current_level/1)
 
 func _on_i_frames_timeout():
 	$AnimatedSprite2D.modulate = Color(1,1,1,1)

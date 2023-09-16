@@ -160,4 +160,8 @@ func open_upgrade_hud():
 func close_upgrade_hud():
 	get_tree().paused = false
 	$upgradeHUD.set_visible(false)
+	if GameState.player.current_level < 2:
+		GameState.player.scale = Vector2(GameState.player.scale.x * 1.3, GameState.player.scale.y * 1.3)
+	else:
+		GameState.player.scale = Vector2(GameState.player.scale.x * 1.1, GameState.player.scale.y * 1.1)
 	
