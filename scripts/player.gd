@@ -15,6 +15,8 @@ signal fire_bullet(origin, bullet: BulletResource, init: FireFrom)
 
 var level_threshold = [10, 20, 30, 50, 80, 130, 210, 340, 550, 999]
 var current_level
+var current_evolution
+var souls
 var hp_max
 var speed
 var rotation_speed
@@ -86,11 +88,9 @@ func _physics_process(_delta):
 # When the game starts, set the default values and show the player.
 func start():
 	set_default_stats()
+	hp = hp_max
 	show()
 	set_physics_process(true)
-	hp = hp_max
-	score = 0
-	current_level = 0
 	$CollisionShape2D.disabled = false
 	$Camera2D.enabled = true
 
@@ -100,7 +100,11 @@ func set_default_stats():
 	speed = STARTING_SPEED
 	rotation_speed = STARTING_ROTATION_SPEED
 	hp_max = STARTING_HP_MAX
+	score = 0
+	current_level = 0
 	current_animation = "level 0"
+	current_evolution = 0
+	souls = 0
 	scale = default_scale
 
 # Called when the player gets hurt. Body can be either a bullet OR an enemy.
@@ -133,8 +137,24 @@ func gain_score(value):
 	# TODO: At the moment, we can't level up past level 10 (without cheating).
 	if current_level < 10 and score >= level_threshold[current_level]:
 		level_up.emit(current_level)
-		if current_level % 1 == 0:
-			current_animation = "level " + str(current_level/1)
+			
+func evolve():
+	current_evolution += 1
+	current_animation = "level " + str(current_evolution)
+	if GameState.player.current_level < 2:
+		GameState.player.scale = Vector2(GameState.player.scale.x * 1.3, GameState.player.scale.y * 1.3)
+	else:
+		GameState.player.scale = Vector2(GameState.player.scale.x * 1.1, GameState.player.scale.y * 1.1)
+
+func stat_upgrade(stat):
+	if stat == "Piercing":
+		bullet.piercing += 1
+	if stat == "Multi Shot":
+		bullet.multishot += 1
+	if stat == "Movement Speed":
+		self.speed *= 1.5
+	if stat == "Shot Speed":
+		bullet.shot_speed *= 1.5
 
 func _on_i_frames_timeout():
 	$AnimatedSprite2D.modulate = Color(1,1,1,1)

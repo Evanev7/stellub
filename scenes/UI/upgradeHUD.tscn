@@ -20,6 +20,29 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.192157, 0.454902, 0.67451, 0.537255)
 
+[node name="Upgrade1" type="Button" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -285.0
+offset_top = -89.0
+offset_right = -133.0
+offset_bottom = -55.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Multishot Increase"
+
+[node name="Label1" type="Label" parent="ColorRect/Upgrade1"]
+layout_mode = 0
+offset_left = 134.0
+offset_top = 39.0
+offset_right = 151.0
+offset_bottom = 65.0
+text = "0"
+
 [node name="Upgrade2" type="Button" parent="ColorRect"]
 layout_mode = 1
 anchors_preset = 7
@@ -35,20 +58,13 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Shot spread decrease"
 
-[node name="Upgrade1" type="Button" parent="ColorRect"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -271.5
-offset_top = -89.0
-offset_right = -146.5
-offset_bottom = -55.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "Multishot Increase"
+[node name="Label2" type="Label" parent="ColorRect/Upgrade2"]
+layout_mode = 0
+offset_left = 159.5
+offset_top = 36.0
+offset_right = 176.5
+offset_bottom = 62.0
+text = "0"
 
 [node name="Upgrade3" type="Button" parent="ColorRect"]
 layout_mode = 1
@@ -65,22 +81,53 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Fire rate increase"
 
-[node name="LevelUpDisplay" type="Label" parent="ColorRect"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -35.5
-offset_top = -13.0
-offset_right = 35.5
-offset_bottom = 13.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 50
-text = "Level Up!"
+[node name="Label3" type="Label" parent="ColorRect/Upgrade3"]
+layout_mode = 0
+offset_left = 126.5
+offset_top = 36.0
+offset_right = 143.5
+offset_bottom = 62.0
+text = "0"
 
-[connection signal="pressed" from="ColorRect/Upgrade2" to="." method="_on_upgrade_2_pressed"]
+[node name="Cost" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 117.0
+offset_top = 349.0
+offset_right = 469.0
+offset_bottom = 375.0
+text = "Cost:                                      Cost:                                            Cost:"
+
+[node name="TitleDisplay" type="Label" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -129.5
+offset_top = 10.0
+offset_right = 129.5
+offset_bottom = 48.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 25
+text = "Welcome to my shop!"
+
+[node name="Error" type="Label" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -102.5
+offset_top = -124.0
+offset_right = 102.5
+offset_bottom = -97.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ErrorTimer" type="Timer" parent="."]
+wait_time = 1.5
+
 [connection signal="pressed" from="ColorRect/Upgrade1" to="." method="_on_upgrade_1_pressed"]
+[connection signal="pressed" from="ColorRect/Upgrade2" to="." method="_on_upgrade_2_pressed"]
 [connection signal="pressed" from="ColorRect/Upgrade3" to="." method="_on_upgrade_3_pressed"]
+[connection signal="timeout" from="ErrorTimer" to="." method="_on_error_timer_timeout"]

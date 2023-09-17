@@ -14,6 +14,8 @@ func _ready():
 	_on_screen_size_changed()
 
 func _process(_delta):
+	if not arrow_target:
+		return
 	var direction = arrow_target.position - GameState.player.position
 	distance = direction.length()
 	rotation = direction.angle()

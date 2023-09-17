@@ -1,8 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://cp7lho542gmeu"]
+[gd_scene load_steps=10 format=3 uid="uid://cp7lho542gmeu"]
 
 [ext_resource type="Script" path="res://scripts/shop.gd" id="1_57dqm"]
 [ext_resource type="Texture2D" uid="uid://b7im0npiawyyl" path="res://art/objects/shop_closed_temp.png" id="1_q80nc"]
+[ext_resource type="Resource" uid="uid://bqdpnkdrgpa8m" path="res://resources/upgrades/multi_shot.tres" id="2_f0gju"]
 [ext_resource type="Texture2D" uid="uid://vr1crqammxvo" path="res://art/objects/shop_open_temp.png" id="2_kfiwc"]
+[ext_resource type="Resource" uid="uid://bka87xlceqp34" path="res://resources/upgrades/piercing.tres" id="3_ij06j"]
+[ext_resource type="Resource" uid="uid://jb4n38ecfldl" path="res://resources/upgrades/shot_speed.tres" id="4_q05oq"]
+[ext_resource type="Resource" uid="uid://bo8wou7utuqm4" path="res://resources/upgrades/player_speed.tres" id="5_py3kw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ylayl"]
 radius = 1079.59
@@ -13,6 +17,7 @@ radius = 366.27
 [node name="Shop" type="Node2D"]
 scale = Vector2(0.25, 0.25)
 script = ExtResource("1_57dqm")
+shop_resource_list = Array[Resource("res://scripts/shop_resource.gd")]([ExtResource("2_f0gju"), ExtResource("3_ij06j"), ExtResource("4_q05oq"), ExtResource("5_py3kw")])
 
 [node name="Shop_Closed" type="Sprite2D" parent="."]
 texture = ExtResource("1_q80nc")
@@ -35,4 +40,3 @@ shape = SubResource("CircleShape2D_u23kn")
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_2_body_entered"]
-[connection signal="body_exited" from="Area2D2" to="." method="_on_area_2d_2_body_exited"]

@@ -8,6 +8,7 @@ extends Node
 @export var enemy_resource_list: Array[EnemyResource]
 
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$YSort/TerrainGenerator.generate()
@@ -88,9 +89,11 @@ func spawn_shop():
 	$YSort/Shop.set_process(true)
 	$YSort/Shop.position = Vector2($YSort/Shop.position.x, GameState.player.position.y - 000)
 	
-func _on_shop_shop_entered():
+func _on_shop_shop_entered(stat_upgrades):
 	$YSort/Shop.shop_entries += 1
-	open_upgrade_hud()
+	print($YSort/Shop.shop_entries)
+	print($YSort/Shop.shop_limit)
+	open_upgrade_hud(stat_upgrades)
 
 
 func _on_player_player_death():
@@ -129,34 +132,36 @@ func _on_pickup_credit_player(value):
 func _on_player_level_up(current_level):
 	$HUD.change_min_XP(GameState.player.level_threshold[GameState.player.current_level])
 	GameState.player.current_level += 1
-	if GameState.player.current_level < 2:
-		GameState.player.scale = Vector2(GameState.player.scale.x * 1.3, GameState.player.scale.y * 1.3)
-	else:
-		GameState.player.scale = Vector2(GameState.player.scale.x * 1.1, GameState.player.scale.y * 1.1)
+	GameState.player.souls += 1
 	$SpawnTimer.set_wait_time($SpawnTimer.get_wait_time() / 1.2)
-#	open_upgrade_hud()
-#	$upgradeHUD.show_level(current_level + 1)
 
 
-func _on_upgrade_hud_upgrade_1_pressed():
-	GameState.player.bullet.multishot += 1
+func _on_upgrade_hud_upgrade_1_pressed(stat):
+	GameState.player.stat_upgrade(stat)
 	close_upgrade_hud()
 
-func _on_upgrade_hud_upgrade_2_pressed():
-	GameState.player.bullet.shot_spread /= 1.2
+func _on_upgrade_hud_upgrade_2_pressed(stat):
+	GameState.player.stat_upgrade(stat)
 	close_upgrade_hud()
 
-func _on_upgrade_hud_upgrade_3_pressed():
-	GameState.player.bullet.fire_delay /= 1.2
+func _on_upgrade_hud_upgrade_3_pressed(stat):
+	GameState.player.stat_upgrade(stat)
 	close_upgrade_hud()
 
-func open_upgrade_hud():
+func open_upgrade_hud(stat_upgrades):
 	get_tree().paused = true
 	$upgradeHUD.set_visible(true)
+	$upgradeHUD.show_HUD(stat_upgrades)
 	
 func close_upgrade_hud():
 	get_tree().paused = false
 	$upgradeHUD.set_visible(false)
-	
+	if $YSort/Shop.shop_entries >= $YSort/Shop.shop_limit:
+		$YSort/Shop.disable()
+		$ObjectiveMarker.arrow_target = null
+	else:
+		$YSort/Shop.move_shop()
+		
+	GameState.player.evolve()
 
 

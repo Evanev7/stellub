@@ -26,8 +26,7 @@ func _on_timer_timeout():
 
 func generate():
 	var player_atlas_coords: Vector2i
-	player_atlas_coords.x = floori(GameState.player.position.x/tile_size.x)
-	player_atlas_coords.y = floori(GameState.player.position.y/tile_size.y)
+	player_atlas_coords = Vector2(floori(GameState.player.position.x/tile_size.x), floori(GameState.player.position.y/tile_size.y))
 	for x in range(-update_range.x,update_range.x+1):
 		for y in range(-update_range.y,update_range.y+1):
 			var update_coords = player_atlas_coords + Vector2i(x,y)
