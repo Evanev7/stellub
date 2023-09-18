@@ -43,3 +43,14 @@ func _on_interact_area_entered(body):
 func disable():
 	process_mode = Node.PROCESS_MODE_DISABLED
 	hide()
+
+
+func _on_upgrade_hud_leave():
+	get_tree().paused = false
+	if shop_entries >= shop_limit:
+		disable()
+#		$ObjectiveMarker.arrow_target = null
+	else:
+		move_shop()
+		
+	GameState.player.evolve()

@@ -147,14 +147,16 @@ func evolve():
 		GameState.player.scale = Vector2(GameState.player.scale.x * 1.1, GameState.player.scale.y * 1.1)
 
 func stat_upgrade(stat):
+	print(stat)
+	#current_evolution += stat
 	if stat == "Piercing":
 		bullet.piercing += 1
 	if stat == "Multi Shot":
 		bullet.multishot += 1
 	if stat == "Movement Speed":
-		self.speed *= 1.5
+		self.speed *= 1.1
 	if stat == "Shot Speed":
-		bullet.shot_speed *= 1.5
+		bullet.shot_speed *= 1.1
 
 func _on_i_frames_timeout():
 	$AnimatedSprite2D.modulate = Color(1,1,1,1)

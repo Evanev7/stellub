@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dfe6bc7mdpexj"]
+[gd_scene load_steps=21 format=3 uid="uid://dfe6bc7mdpexj"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_jwdk3"]
 [ext_resource type="PackedScene" uid="uid://dpjckt12ipcw2" path="res://scenes/characters/enemy.tscn" id="2_abhdw"]
@@ -20,7 +20,6 @@
 [ext_resource type="PackedScene" uid="uid://j8g4suxt2pa2" path="res://scenes/objects/mountain_large.tscn" id="17_7v7se"]
 [ext_resource type="PackedScene" uid="uid://cp7lho542gmeu" path="res://scenes/objects/shop.tscn" id="19_7dm3m"]
 [ext_resource type="PackedScene" uid="uid://d05swenhbbosd" path="res://scenes/UI/objective_marker.tscn" id="20_tncsu"]
-[ext_resource type="PackedScene" uid="uid://nyks4nq7rk4" path="res://scenes/objects/forcefield.tscn" id="21_d1lkw"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_jwdk3")
@@ -34,7 +33,7 @@ enemy_resource_list = Array[Resource("res://scripts/enemy_resource.gd")]([ExtRes
 y_sort_enabled = true
 
 [node name="Shop" parent="YSort" instance=ExtResource("19_7dm3m")]
-position = Vector2(145, 274)
+position = Vector2(526, 1006)
 
 [node name="TerrainGenerator" parent="YSort" node_paths=PackedStringArray("tile_map", "ysorter") instance=ExtResource("11_0axk0")]
 tile_map = NodePath("../TileMap")
@@ -78,9 +77,6 @@ one_shot = true
 [node name="ObjectiveMarker" parent="." node_paths=PackedStringArray("arrow_target") instance=ExtResource("20_tncsu")]
 arrow_target = NodePath("../YSort/Shop")
 
-[node name="Forcefield" parent="." instance=ExtResource("21_d1lkw")]
-position = Vector2(495, 704)
-
 [connection signal="shop_entered" from="YSort/Shop" to="." method="_on_shop_shop_entered"]
 [connection signal="fire_bullet" from="YSort/Player" to="." method="_on_fire_bullet"]
 [connection signal="level_up" from="YSort/Player" to="." method="_on_player_level_up"]
@@ -89,6 +85,4 @@ position = Vector2(495, 704)
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
 [connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
-[connection signal="upgrade_1_pressed" from="upgradeHUD" to="." method="_on_upgrade_hud_upgrade_1_pressed"]
-[connection signal="upgrade_2_pressed" from="upgradeHUD" to="." method="_on_upgrade_hud_upgrade_2_pressed"]
-[connection signal="upgrade_3_pressed" from="upgradeHUD" to="." method="_on_upgrade_hud_upgrade_3_pressed"]
+[connection signal="leave" from="upgradeHUD" to="YSort/Shop" method="_on_upgrade_hud_leave"]

@@ -90,8 +90,6 @@ func spawn_shop():
 	
 func _on_shop_shop_entered(stat_upgrades):
 	$YSort/Shop.shop_entries += 1
-	print($YSort/Shop.shop_entries)
-	print($YSort/Shop.shop_limit)
 	open_upgrade_hud(stat_upgrades)
 
 
@@ -137,21 +135,23 @@ func _on_player_level_up(current_level):
 
 func _on_upgrade_hud_upgrade_1_pressed(stat):
 	GameState.player.stat_upgrade(stat)
-	close_upgrade_hud()
 
 func _on_upgrade_hud_upgrade_2_pressed(stat):
 	GameState.player.stat_upgrade(stat)
-	close_upgrade_hud()
 
 func _on_upgrade_hud_upgrade_3_pressed(stat):
 	GameState.player.stat_upgrade(stat)
-	close_upgrade_hud()
 
 func open_upgrade_hud(stat_upgrades):
 	get_tree().paused = true
 	$upgradeHUD.set_visible(true)
 	$upgradeHUD.show_HUD(stat_upgrades)
-	
+
+
+func _on_upgrade_hud_leave():
+	close_upgrade_hud()
+
+
 func close_upgrade_hud():
 	get_tree().paused = false
 	$upgradeHUD.set_visible(false)
@@ -162,5 +162,4 @@ func close_upgrade_hud():
 		$YSort/Shop.move_shop()
 		
 	GameState.player.evolve()
-
 

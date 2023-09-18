@@ -9,7 +9,6 @@ signal fire_bullet(spawned_bullet: BulletResource)
 
 var piercing
 var piercing_cooldown
-var default_piercing_cooldown = 60
 var direction: Vector2 = Vector2(0,0)
 var origin_ref: WeakRef
 var relative_position
@@ -81,9 +80,8 @@ func _on_area_entered(area):
 			piercing -= 1
 			if piercing == 0:
 				queue_free()
-			piercing_cooldown = default_piercing_cooldown
+			piercing_cooldown = data.piercing_cooldown
 
 
 func _on_body_entered(body):
-	print("mountain")
 	queue_free()

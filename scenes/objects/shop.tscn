@@ -40,7 +40,7 @@ shop_resource_list = Array[Resource("res://scripts/shop_resource.gd")]([ExtResou
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_r6dcq")
-animation = &"shop_closed"
+animation = &"shop_open"
 
 [node name="Shop_Closed" type="Sprite2D" parent="."]
 visible = false

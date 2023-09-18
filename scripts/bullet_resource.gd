@@ -13,7 +13,8 @@ class_name BulletResource
 @export var size: Vector2 = Vector2(1, 1)
 @export var shot_spread: float =  PI/12
 @export var angular_velocity: float = 0
-@export var piercing: int = 0
+@export var piercing: int = 1
+@export var piercing_cooldown: int = 30
 
 ## 2*PI for a full circle
 @export var shot_inaccuracy: float = PI/32
