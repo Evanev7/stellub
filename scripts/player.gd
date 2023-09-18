@@ -139,7 +139,6 @@ func gain_score(value):
 		level_up.emit(current_level)
 			
 func evolve():
-	current_evolution += 1
 	current_animation = "level " + str(current_evolution)
 	if GameState.player.current_level < 2:
 		GameState.player.scale = Vector2(GameState.player.scale.x * 1.3, GameState.player.scale.y * 1.3)
@@ -147,8 +146,6 @@ func evolve():
 		GameState.player.scale = Vector2(GameState.player.scale.x * 1.1, GameState.player.scale.y * 1.1)
 
 func stat_upgrade(stat):
-	print(stat)
-	#current_evolution += stat
 	if stat == "Piercing":
 		bullet.piercing += 1
 	if stat == "Multi Shot":

@@ -76,6 +76,7 @@ one_shot = true
 
 [node name="ObjectiveMarker" parent="." instance=ExtResource("20_tncsu")]
 
+[connection signal="remove_target" from="YSort/Shop" to="ObjectiveMarker" method="delete_target"]
 [connection signal="shop_entered" from="YSort/Shop" to="." method="_on_shop_shop_entered"]
 [connection signal="fire_bullet" from="YSort/Player" to="." method="_on_fire_bullet"]
 [connection signal="level_up" from="YSort/Player" to="." method="_on_player_level_up"]

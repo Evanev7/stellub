@@ -1,6 +1,7 @@
 extends Node2D
 
 signal shop_entered
+signal remove_target
 
 @export var shop_limit: int = 5
 @export var shop_resource_list: Array[ShopResource]
@@ -49,7 +50,7 @@ func _on_upgrade_hud_leave():
 	get_tree().paused = false
 	if shop_entries >= shop_limit:
 		disable()
-#		$ObjectiveMarker.arrow_target = null
+		remove_target.emit(self)
 	else:
 		move_shop()
 		

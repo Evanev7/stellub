@@ -133,34 +133,9 @@ func _on_player_level_up(current_level):
 	GameState.player.souls += 1
 	$SpawnTimer.set_wait_time($SpawnTimer.get_wait_time() / 1.2)
 
-
-func _on_upgrade_hud_upgrade_1_pressed(stat):
-	GameState.player.stat_upgrade(stat)
-
-func _on_upgrade_hud_upgrade_2_pressed(stat):
-	GameState.player.stat_upgrade(stat)
-
-func _on_upgrade_hud_upgrade_3_pressed(stat):
-	GameState.player.stat_upgrade(stat)
-
 func open_upgrade_hud(stat_upgrades):
 	get_tree().paused = true
 	$upgradeHUD.set_visible(true)
 	$upgradeHUD.show_HUD(stat_upgrades)
 
-
-func _on_upgrade_hud_leave():
-	close_upgrade_hud()
-
-
-func close_upgrade_hud():
-	get_tree().paused = false
-	$upgradeHUD.set_visible(false)
-	if $YSort/Shop.shop_entries >= $YSort/Shop.shop_limit:
-		$YSort/Shop.disable()
-		$ObjectiveMarker.arrow_target = null
-	else:
-		$YSort/Shop.move_shop()
-		
-	GameState.player.evolve()
 

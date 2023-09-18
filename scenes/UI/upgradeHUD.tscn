@@ -151,8 +151,8 @@ text = "LEAVE"
 [node name="ErrorTimer" type="Timer" parent="."]
 wait_time = 1.5
 
-[connection signal="pressed" from="ColorRect/Upgrade1" to="." method="_on_upgrade_1_pressed"]
-[connection signal="pressed" from="ColorRect/Upgrade2" to="." method="_on_upgrade_2_pressed"]
-[connection signal="pressed" from="ColorRect/Upgrade3" to="." method="_on_upgrade_3_pressed"]
+[connection signal="pressed" from="ColorRect/Upgrade1" to="." method="_on_upgrade_pressed" binds= [1]]
+[connection signal="pressed" from="ColorRect/Upgrade2" to="." method="_on_upgrade_pressed" binds= [2]]
+[connection signal="pressed" from="ColorRect/Upgrade3" to="." method="_on_upgrade_pressed" binds= [3]]
 [connection signal="pressed" from="ColorRect/Leave" to="." method="_on_leave_pressed"]
 [connection signal="timeout" from="ErrorTimer" to="." method="_on_error_timer_timeout"]

@@ -18,32 +18,23 @@ func show_HUD(stat_upgrades):
 	$ColorRect/Upgrade2/Label2.text = str(stat_upgrades[1].COST)
 	$ColorRect/Upgrade3/Label3.text = str(stat_upgrades[2].COST)
 
-func _on_upgrade_1_pressed():
-	if GameState.player.souls < int($ColorRect/Upgrade1/Label1.text):
-		$ColorRect/Error.text = "You can't afford this."
-		$ErrorTimer.start()
-	else:
-		GameState.player.souls -= int($ColorRect/Upgrade1/Label1.text)
-		GameState.player.current_evolution += int($ColorRect/Upgrade1/Label1.text)
-		GameState.player.stat_upgrade($ColorRect/Upgrade1.text)
-	
-func _on_upgrade_2_pressed():
-	if GameState.player.souls < int($ColorRect/Upgrade2/Label2.text):
-		$ColorRect/Error.text = "You can't afford this."
-		$ErrorTimer.start()
-	else:
-		GameState.player.souls -= int($ColorRect/Upgrade2/Label2.text)
-		GameState.player.current_evolution += int($ColorRect/Upgrade2/Label2.text)
-		GameState.player.stat_upgrade($ColorRect/Upgrade2.text)
 
-func _on_upgrade_3_pressed():
-	if GameState.player.souls < int($ColorRect/Upgrade3/Label3.text):
+func _on_upgrade_pressed(upgrade_number):
+	var upgrade_label = "ColorRect/Upgrade" + str(upgrade_number) + "/Label" + str(upgrade_number)
+	var upgrade_text = "ColorRect/Upgrade" + str(upgrade_number)
+	var cost = int(get_node(upgrade_label).text)
+	
+	if GameState.player.souls < cost:
 		$ColorRect/Error.text = "You can't afford this."
 		$ErrorTimer.start()
 	else:
-		GameState.player.souls -= int($ColorRect/Upgrade3/Label3.text)
-		GameState.player.current_evolution += int($ColorRect/Upgrade3/Label3.text)
-		GameState.player.stat_upgrade($ColorRect/Upgrade3.text)
+		GameState.player.souls -= cost
+		
+		# Eventually this should be a calculation that figures out what evolution
+		# the character should be on
+		GameState.player.current_evolution += cost
+		
+		GameState.player.stat_upgrade(get_node(upgrade_text).text)
 
 func _on_leave_pressed():
 	leave.emit()
