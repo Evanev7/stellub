@@ -19,7 +19,6 @@ func _ready():
 	$Timer.wait_time = update_tick_rate
 	$Timer.start()
 
-
 func _on_timer_timeout():
 	generate()
 

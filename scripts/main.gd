@@ -86,6 +86,7 @@ func start_game():
 	
 func spawn_shop():
 	$YSort/Shop.set_process(true)
+	$ObjectiveMarker.add_target($YSort/Shop)
 	#$YSort/Shop.position = Vector2($YSort/Shop.position.x, GameState.player.position.y - 000)
 	
 func _on_shop_shop_entered(stat_upgrades):

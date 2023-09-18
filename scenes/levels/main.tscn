@@ -74,8 +74,7 @@ one_shot = true
 
 [node name="upgradeHUD" parent="." instance=ExtResource("4_ls5jb")]
 
-[node name="ObjectiveMarker" parent="." node_paths=PackedStringArray("arrow_target") instance=ExtResource("20_tncsu")]
-arrow_target = NodePath("../YSort/Shop")
+[node name="ObjectiveMarker" parent="." instance=ExtResource("20_tncsu")]
 
 [connection signal="shop_entered" from="YSort/Shop" to="." method="_on_shop_shop_entered"]
 [connection signal="fire_bullet" from="YSort/Player" to="." method="_on_fire_bullet"]
