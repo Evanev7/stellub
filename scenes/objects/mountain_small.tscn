@@ -2,12 +2,15 @@
 
 [ext_resource type="Texture2D" uid="uid://cl8wobw8moqvi" path="res://art/objects/mountain_small.png" id="1_tsp51"]
 
-[node name="SmallMountain" type="StaticBody2D"]
+[node name="SmallMountain" type="Node2D"]
+y_sort_enabled = true
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 position = Vector2(-79.2, -120)
 polygon = PackedVector2Array(150, -130, 26, -117, -77, 14, -99, 131, -16, 152, 180, 147, 297, 106, 266, 1, 226, -18, 196, -47, 180, -77)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
 position = Vector2(0, -199)
 texture = ExtResource("1_tsp51")

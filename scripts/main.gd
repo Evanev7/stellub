@@ -66,7 +66,7 @@ func _on_fire_bullet(origin, bullet_type: BulletResource, fire_from: FireFrom):
 		bullet.origin_ref = origin
 		bullet.position = start_position
 		
-		add_child(bullet)
+		call_deferred("add_child",bullet)
 		
 
 func _on_start_timer_timeout():
@@ -86,7 +86,7 @@ func start_game():
 	
 func spawn_shop():
 	$YSort/Shop.set_process(true)
-	$YSort/Shop.position = Vector2($YSort/Shop.position.x, GameState.player.position.y - 000)
+	#$YSort/Shop.position = Vector2($YSort/Shop.position.x, GameState.player.position.y - 000)
 	
 func _on_shop_shop_entered(stat_upgrades):
 	$YSort/Shop.shop_entries += 1

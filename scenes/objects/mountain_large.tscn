@@ -8,11 +8,11 @@ script = ExtResource("1_18eee")
 poisson_coefficient = 0.3
 
 [node name="LargeMountain" type="Node2D"]
+y_sort_enabled = true
 position = Vector2(0, 100)
 metadata/spawn_information = SubResource("Resource_ggss2")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-collision_layer = 7
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
 position = Vector2(10, -218)

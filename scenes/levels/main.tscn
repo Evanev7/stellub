@@ -34,8 +34,7 @@ enemy_resource_list = Array[Resource("res://scripts/enemy_resource.gd")]([ExtRes
 y_sort_enabled = true
 
 [node name="Shop" parent="YSort" instance=ExtResource("19_7dm3m")]
-position = Vector2(526, 1006)
-shop_limit = 1
+position = Vector2(145, 274)
 
 [node name="TerrainGenerator" parent="YSort" node_paths=PackedStringArray("tile_map", "ysorter") instance=ExtResource("11_0axk0")]
 tile_map = NodePath("../TileMap")

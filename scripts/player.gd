@@ -6,7 +6,7 @@ signal level_up(level)
 signal fire_bullet(origin, bullet: BulletResource, init: FireFrom)
 
 ## Player Stats
-@export var STARTING_SPEED = 380.0
+@export var STARTING_SPEED = 300.0
 @export var STARTING_ROTATION_SPEED = 20
 @export var STARTING_HP_MAX: int = 100
 @export var bullet: BulletResource
@@ -88,6 +88,7 @@ func _physics_process(_delta):
 # When the game starts, set the default values and show the player.
 func start():
 	set_default_stats()
+	hp = hp_max
 	show()
 	set_physics_process(true)
 	$CollisionShape2D.disabled = false

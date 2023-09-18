@@ -6,31 +6,32 @@ signal shop_entered
 @export var shop_resource_list: Array[ShopResource]
 
 var shop_entries: int = 0
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	shop_entries = 0
-	print(shop_limit)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	pass
 	
 func move_shop():
-	position = Vector2(position.x + randf_range(-2000, 2000), GameState.player.position.y + randf_range(-2000, -5000))
+	position = Vector2(
+		position.x + randf_range(-2000, 2000),
+		GameState.player.position.y + randf_range(-2000, -5000)
+	)
 
-func _on_area_2d_body_entered(body):
+func _on_open_area_entered(body):
 	if body == GameState.player:
-		$Shop_Closed.hide()
-		$Shop_Open.show()
+		sprite.play("shop_open")
 			
 		
-func _on_area_2d_body_exited(body):
+func _on_open_area_exited(body):
 	if body == GameState.player:
-		$Shop_Open.hide()
-		$Shop_Closed.show()
+		sprite.play("shop_closed")
 
-func _on_area_2d_2_body_entered(body):
+func _on_interact_area_entered(body):
 	if body == GameState.player:
 		var stat_upgrades = []
 		for i in 3:
@@ -42,7 +43,3 @@ func _on_area_2d_2_body_entered(body):
 func disable():
 	process_mode = Node.PROCESS_MODE_DISABLED
 	hide()
-
-
-
-
