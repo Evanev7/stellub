@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ShopResource" load_steps=2 format=3 uid="uid://bqdpnkdrgpa8m"]
+
+[ext_resource type="Script" path="res://scripts/shop_resource.gd" id="1_0351v"]
+
+[resource]
+script = ExtResource("1_0351v")
+NAME = "Multi Shot"
+COST = 1

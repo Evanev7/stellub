@@ -15,6 +15,8 @@ signal fire_bullet(origin, bullet: BulletResource, init: FireFrom)
 
 var level_threshold = [10, 20, 30, 50, 80, 130, 210, 340, 550, 999]
 var current_level
+var current_evolution
+var souls
 var hp_max
 var speed
 var rotation_speed
@@ -60,10 +62,10 @@ func _physics_process(_delta):
 		
 		# Flip the player sprite depending on the direction we're facing
 		if velocity.x < 0 and not _h_flipped:
-			scale = Vector2i(-1,1)
+			scale = Vector2(-scale.x,scale.y)
 			_h_flipped = true
 		elif velocity.x > 0 and _h_flipped:
-			scale = Vector2i(-1,-1)
+			scale = Vector2(-scale.x,scale.y)
 			_h_flipped = false
 		
 		move_and_slide()
@@ -88,9 +90,6 @@ func start():
 	set_default_stats()
 	show()
 	set_physics_process(true)
-	hp = hp_max
-	score = 0
-	current_level = 0
 	$CollisionShape2D.disabled = false
 	$Camera2D.enabled = true
 
@@ -100,7 +99,12 @@ func set_default_stats():
 	speed = STARTING_SPEED
 	rotation_speed = STARTING_ROTATION_SPEED
 	hp_max = STARTING_HP_MAX
+	score = 0
+	current_level = 0
 	current_animation = "level 0"
+	current_evolution = 0
+	souls = 0
+	scale = default_scale
 
 # Called when the player gets hurt. Body can be either a bullet OR an enemy.
 func hurt(body):
@@ -123,14 +127,33 @@ func hurt(body):
 # Called when we've killed an enemy, and we can add to our score.
 func gain_score(value):
 	score += value
+	var tween: Tween = create_tween()
+	if current_level < 2:
+		tween.tween_property($AnimatedSprite2D, "self_modulate:v", 1, 0.25).from(50)
+	else:
+		tween.tween_property($AnimatedSprite2D, "self_modulate:v", 1, 0.25).from(5)
 	
 	# TODO: At the moment, we can't level up past level 10 (without cheating).
 	if current_level < 10 and score >= level_threshold[current_level]:
-		current_level += 1
 		level_up.emit(current_level)
-		if current_level % 3 == 0:
-			current_animation = "level " + str(current_level/3)
+			
+func evolve():
+	current_evolution += 1
+	current_animation = "level " + str(current_evolution)
+	if GameState.player.current_level < 2:
+		GameState.player.scale = Vector2(GameState.player.scale.x * 1.3, GameState.player.scale.y * 1.3)
+	else:
+		GameState.player.scale = Vector2(GameState.player.scale.x * 1.1, GameState.player.scale.y * 1.1)
 
+func stat_upgrade(stat):
+	if stat == "Piercing":
+		bullet.piercing += 1
+	if stat == "Multi Shot":
+		bullet.multishot += 1
+	if stat == "Movement Speed":
+		self.speed *= 1.5
+	if stat == "Shot Speed":
+		bullet.shot_speed *= 1.5
 
 func _on_i_frames_timeout():
 	$AnimatedSprite2D.modulate = Color(1,1,1,1)

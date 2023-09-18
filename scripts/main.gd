@@ -8,6 +8,7 @@ extends Node
 @export var enemy_resource_list: Array[EnemyResource]
 
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$YSort/TerrainGenerator.generate()
@@ -19,7 +20,7 @@ func _physics_process(_delta):
 	
 	if Input.is_key_pressed(KEY_R): ## Increase score by 10
 		GameState.player.gain_score(10)
-		$HUD.show_score(GameState.player.score)
+		$HUD.show_score(GameState.player.score, GameState.player.level_threshold[GameState.player.current_level])
 	
 	#######################################
 
@@ -79,27 +80,20 @@ func start_game():
 	$SpawnTimer.set_wait_time(2.0)
 	$HUD.show_message("All Hell Breaks Loose")
 	$HUD.show_health(GameState.player.hp)
-	$HUD.show_score(GameState.player.score)
+	$HUD.show_score(GameState.player.score, GameState.player.level_threshold[GameState.player.current_level])
+	spawn_shop()
 	
-#	create_spawn_timers()
-#
-#func create_spawn_timers():
-#	var enemy = enemy_scene.instantiate()
-#	for i in enemy_resource_list:
-#		enemy.resource = i
-#		var timer:= Timer.new()
-#		add_child(timer)
-#		timer.wait_time = enemy.resource.SPAWN_RATE
-#		var func_name = "_on_" + enemy.resource.NAME + "_timeout"
-#		print(func_name)
-#		var callable = Callable(self, func_name)
-#		timer.timeout.connect(callable.call())
-#
-#func _on_demon_skull_timeout() -> void:
-#	print("demon_skull spawned")
-#
-#func _on_demon_dog_timeout() -> void:
-#	print("demon_dog spawned")
+	
+func spawn_shop():
+	$YSort/Shop.set_process(true)
+	$YSort/Shop.position = Vector2($YSort/Shop.position.x, GameState.player.position.y - 000)
+	
+func _on_shop_shop_entered(stat_upgrades):
+	$YSort/Shop.shop_entries += 1
+	print($YSort/Shop.shop_entries)
+	print($YSort/Shop.shop_limit)
+	open_upgrade_hud(stat_upgrades)
+
 
 func _on_player_player_death():
 	game_over()
@@ -132,31 +126,41 @@ func spawn_pickup(pos):
 
 func _on_pickup_credit_player(value):
 	GameState.player.gain_score(value)
-	$HUD.show_score(GameState.player.score)
+	$HUD.show_score(GameState.player.score, GameState.player.level_threshold[GameState.player.current_level])
 
 func _on_player_level_up(current_level):
-	open_upgrade_hud()
-	$upgradeHUD.show_level(current_level)
-
-
-func _on_upgrade_hud_upgrade_1_pressed():
-	GameState.player.bullet.multishot += 1
-	close_upgrade_hud()
-
-func _on_upgrade_hud_upgrade_2_pressed():
-	GameState.player.bullet.shot_spread /= 1.2
-	close_upgrade_hud()
-
-func _on_upgrade_hud_upgrade_3_pressed():
-	GameState.player.bullet.fire_delay /= 1.2
-	close_upgrade_hud()
-
-func open_upgrade_hud():
-	get_tree().paused = true
+	$HUD.change_min_XP(GameState.player.level_threshold[GameState.player.current_level])
+	GameState.player.current_level += 1
+	GameState.player.souls += 1
 	$SpawnTimer.set_wait_time($SpawnTimer.get_wait_time() / 1.2)
+
+
+func _on_upgrade_hud_upgrade_1_pressed(stat):
+	GameState.player.stat_upgrade(stat)
+	close_upgrade_hud()
+
+func _on_upgrade_hud_upgrade_2_pressed(stat):
+	GameState.player.stat_upgrade(stat)
+	close_upgrade_hud()
+
+func _on_upgrade_hud_upgrade_3_pressed(stat):
+	GameState.player.stat_upgrade(stat)
+	close_upgrade_hud()
+
+func open_upgrade_hud(stat_upgrades):
+	get_tree().paused = true
 	$upgradeHUD.set_visible(true)
+	$upgradeHUD.show_HUD(stat_upgrades)
 	
 func close_upgrade_hud():
 	get_tree().paused = false
 	$upgradeHUD.set_visible(false)
-	
+	if $YSort/Shop.shop_entries >= $YSort/Shop.shop_limit:
+		$YSort/Shop.disable()
+		$ObjectiveMarker.arrow_target = null
+	else:
+		$YSort/Shop.move_shop()
+		
+	GameState.player.evolve()
+
+

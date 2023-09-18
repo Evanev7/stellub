@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ShopResource" load_steps=2 format=3 uid="uid://jb4n38ecfldl"]
+
+[ext_resource type="Script" path="res://scripts/shop_resource.gd" id="1_yj337"]
+
+[resource]
+script = ExtResource("1_yj337")
+NAME = "Shot Speed"
+COST = 1

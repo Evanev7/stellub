@@ -1,12 +1,20 @@
-[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://6xmqo1j5gqfr"]
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://6xmqo1j5gqfr"]
 
-[ext_resource type="Texture2D" uid="uid://bk3vxhcckppe1" path="res://art/enemies/demon_dog.png" id="1_gc1lh"]
+[ext_resource type="Texture2D" uid="uid://b1v2frr5pvse5" path="res://art/enemies/demon_dog_1.png" id="1_arn0v"]
+[ext_resource type="Texture2D" uid="uid://c8k6llnm85118" path="res://art/enemies/demon_dog_2.png" id="2_kf06a"]
+[ext_resource type="Texture2D" uid="uid://c43m1iqkiaxqc" path="res://art/enemies/demon_dog_3.png" id="3_ss71a"]
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_gc1lh")
+"texture": ExtResource("1_arn0v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_kf06a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ss71a")
 }],
 "loop": true,
 "name": &"dog",

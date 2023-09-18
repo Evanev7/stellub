@@ -35,6 +35,7 @@ y_sort_enabled = true
 
 [node name="Shop" parent="YSort" instance=ExtResource("19_7dm3m")]
 position = Vector2(526, 1006)
+shop_limit = 1
 
 [node name="TerrainGenerator" parent="YSort" node_paths=PackedStringArray("tile_map", "ysorter") instance=ExtResource("11_0axk0")]
 tile_map = NodePath("../TileMap")
@@ -81,6 +82,7 @@ arrow_target = NodePath("../YSort/Shop")
 [node name="Forcefield" parent="." instance=ExtResource("21_d1lkw")]
 position = Vector2(495, 704)
 
+[connection signal="shop_entered" from="YSort/Shop" to="." method="_on_shop_shop_entered"]
 [connection signal="fire_bullet" from="YSort/Player" to="." method="_on_fire_bullet"]
 [connection signal="level_up" from="YSort/Player" to="." method="_on_player_level_up"]
 [connection signal="player_death" from="YSort/Player" to="." method="_on_player_player_death"]

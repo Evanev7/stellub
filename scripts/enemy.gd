@@ -97,7 +97,7 @@ func hurt(area):
 	health -= area.damage
 	scale = default_scale * 0.65 
 	var tween := create_tween()
-	tween.tween_property(self, "global_scale", default_scale, 0.05)
+	tween.tween_property(self, "global_scale", default_scale, 0.1)
 
 
 func create_timer():
