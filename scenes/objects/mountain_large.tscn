@@ -1,23 +1,33 @@
-[gd_scene load_steps=4 format=3 uid="uid://j8g4suxt2pa2"]
+[gd_scene load_steps=5 format=3 uid="uid://j8g4suxt2pa2"]
 
 [ext_resource type="Texture2D" uid="uid://cjvdy45l44e6u" path="res://art/objects/mountain_large.png" id="1_2w6ix"]
 [ext_resource type="Script" path="res://scripts/object_spawn_resource.gd" id="1_18eee"]
+[ext_resource type="PackedScene" uid="uid://cicwqsj3byj4u" path="res://scenes/components/spawn_collision_handler.tscn" id="2_71e2b"]
 
 [sub_resource type="Resource" id="Resource_ggss2"]
 script = ExtResource("1_18eee")
 poisson_coefficient = 0.3
 
-[node name="LargeMountain" type="Node2D"]
+[node name="LargeMountain" type="StaticBody2D"]
 y_sort_enabled = true
-position = Vector2(0, 100)
+collision_layer = 7
 metadata/spawn_information = SubResource("Resource_ggss2")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="SpawnCollisionHandler" parent="." node_paths=PackedStringArray("spawn_collider") instance=ExtResource("2_71e2b")]
+spawn_collider = NodePath("../SpawnCollider")
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
-position = Vector2(10, -218)
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_2w6ix")
+offset = Vector2(10, -218)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-78, -123)
+polygon = PackedVector2Array(86.2, -179, 23.2, -142, -77, 14, -137.8, 159, -9.79999, 188, 346.2, 182, 297, 106, 266, 1, 229.2, -69, 171.2, -122, 139, -150)
+
+[node name="SpawnCollider" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SpawnCollider"]
 position = Vector2(-78, -123)
 polygon = PackedVector2Array(86.2, -179, 23.2, -142, -77, 14, -137.8, 159, -9.79999, 188, 346.2, 182, 297, 106, 266, 1, 229.2, -69, 171.2, -122, 139, -150)

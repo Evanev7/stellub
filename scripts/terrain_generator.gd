@@ -15,15 +15,27 @@ extends Node
 @onready var tile_size: Vector2 = tile_map.scale * Vector2(tile_map.tile_set.tile_size)
 @onready var used_cells = tile_map.get_used_cells(0)
 
+var landing_attempts = 10
+
 func _ready():
 	$Timer.wait_time = update_tick_rate
 	$Timer.start()
+
+
+func _process(_delta):
+	##Debug ###############################
+	
+	if Input.is_key_pressed(KEY_M): ## Increase score by 10
+		populate(Vector2i(0,0))
+	
+	#######################################
+
 
 func _on_timer_timeout():
 	generate()
 
 
-func generate():
+func generate() -> void:
 	var player_atlas_coords: Vector2i = Vector2i(
 			floori(GameState.player.position.x/tile_size.x),
 			floori(GameState.player.position.y/tile_size.y))
@@ -36,27 +48,31 @@ func generate():
 				used_cells = tile_map.get_used_cells(0)
 
 
-func populate(coords):
+func populate(coords) -> void:
 	tile_map.set_cell(0,coords,1,Vector2i(0,0),0)
+	coords = Vector2(coords) * tile_size
 	#This could use better handling, it's finnicky right now in a bad way.
 	for index in range(len(objects)):
 		var poisson_coefficient = object_spawn_rate[index]
 		var number = poisson(poisson_coefficient)
 		for i in range(number):
-			coords = Vector2(coords) * tile_size
+			var object = objects[index].instantiate()
+			
+			#This shouldn't be here, it's hard to find later.
+			var random_size_scale = randf_range(0.9, 1.3)
+			var flip_direction = randi_range(0,1)
+			object.scale = Vector2(int(flip_direction)*2-1, 1) * random_size_scale
+			
 			coords.x += randf_range(0,tile_size.x)
 			coords.y += randf_range(0,tile_size.y)
-			var object = objects[index].instantiate()
-			object.add_to_group("terrain")
+			
 			object.position = coords
-			var random = randf_range(0.9, 1.3)
-			var flip_direction = randi() % 2 == 0
-			object.scale = Vector2(random, random)
-			object.get_node("StaticBody2D/Sprite2D").flip_h = flip_direction
+			
 			ysorter.add_child(object)
+			object.add_to_group("terrain")
+			
 
-
-func poisson(lambda):
+func poisson(lambda) -> int:
 	var total = 0
 	var result = -1
 	while total < 1:

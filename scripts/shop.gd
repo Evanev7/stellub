@@ -22,6 +22,7 @@ func move_shop():
 		position.x + randf_range(-2000, 2000),
 		GameState.player.position.y + randf_range(-2000, -5000)
 	)
+	$SpawnCollisionHandler.find_safe_landing()
 
 func _on_open_area_entered(body):
 	if body == GameState.player:
