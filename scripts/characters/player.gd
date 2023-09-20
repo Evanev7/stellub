@@ -16,6 +16,7 @@ signal fire_bullet(origin, bullet: BulletResource, init: FireFrom)
 var level_threshold = [10, 20, 30, 50, 80, 130, 210, 340, 550, 999]
 var current_level
 var current_evolution
+var current_wave
 var souls
 var hp_max
 var speed
@@ -89,6 +90,7 @@ func _physics_process(_delta):
 func start():
 	set_default_stats()
 	hp = hp_max
+	current_wave = 1
 	show()
 	set_physics_process(true)
 	$CollisionShape2D.disabled = false

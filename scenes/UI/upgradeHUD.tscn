@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://1dmnavilcwx5"]
 
-[ext_resource type="Script" path="res://scripts/upgradeHUD.gd" id="1_2ikgy"]
+[ext_resource type="Script" path="res://scripts/UI/upgradeHUD.gd" id="1_2ikgy"]
 
 [node name="upgradeHUD" type="CanvasLayer"]
 visible = false

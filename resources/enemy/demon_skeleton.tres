@@ -3,7 +3,7 @@
 [ext_resource type="SpriteFrames" uid="uid://bpernxx6xbtyn" path="res://resources/enemy/demon_skeleton_spriteframes.tres" id="1_h2j8b"]
 [ext_resource type="Shape2D" uid="uid://0e7jt1gqqywj" path="res://resources/hitboxes/demon_skeleton_collisionbox.tres" id="2_ms3en"]
 [ext_resource type="Shape2D" uid="uid://q26ka3qri44y" path="res://resources/hitboxes/demon_skeleton_hitbox.tres" id="3_yanws"]
-[ext_resource type="Script" path="res://scripts/enemy_resource.gd" id="4_gkli7"]
+[ext_resource type="Script" path="res://scripts/characters/enemy_resource.gd" id="4_gkli7"]
 
 [resource]
 script = ExtResource("4_gkli7")

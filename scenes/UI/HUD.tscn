@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://yaht8i4bkv2u"]
 
-[ext_resource type="Script" path="res://scripts/HUD.gd" id="1_tsnwf"]
+[ext_resource type="Script" path="res://scripts/UI/HUD.gd" id="1_tsnwf"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_gf5y4"]
 action = &"start_game"

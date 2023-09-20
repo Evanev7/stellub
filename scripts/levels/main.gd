@@ -2,6 +2,7 @@ extends Node
 
 @export var enemy_scene: PackedScene
 @export var bullet_scene: PackedScene
+@export var magic_circle_scene: PackedScene
 @export var pickup_scene: PackedScene
 @export var safe_range: int = 500
 
@@ -78,17 +79,34 @@ func _on_start_timer_timeout():
 func start_game():
 	$StartTimer.start()
 	GameState.player.start()
+	GameState.player.position = $YSort/Marker2D.position
 	$SpawnTimer.set_wait_time(2.0)
-	$HUD.show_message("All Hell Breaks Loose")
+	$HUD.show_message("All Hell Breaks Loose!")
 	$HUD.show_health(GameState.player.hp)
 	$HUD.show_score(GameState.player.score, GameState.player.level_threshold[GameState.player.current_level])
-	spawn_shop()
+#	spawn_shop()
+	spawn_magic_circles()
 	
 	
-func spawn_shop():
-	$YSort/Shop.set_process(true)
-	$ObjectiveMarker.add_target($YSort/Shop)
-	#$YSort/Shop.position = Vector2($YSort/Shop.position.x, GameState.player.position.y - 000)
+#func spawn_shop():
+#	$YSort/Shop.set_process(true)
+#	$ObjectiveMarker.add_target($YSort/Shop)
+#	$YSort/Shop.position = Vector2($YSort/Shop.position.x, GameState.player.position.y - 000)
+	
+	
+func spawn_magic_circles():
+	var count = 10
+	var radius = Vector2(400, 0)
+	var center = Vector2(0, 0)
+	var step = 2 * PI / count
+	
+	for i in range(count):
+		var spawn_pos = center + radius.rotated(step*i)
+		var magic_circle = magic_circle_scene.instantiate()
+		magic_circle.position = spawn_pos
+		add_child(magic_circle)
+		$ObjectiveMarker.add_target(magic_circle)
+	
 	
 func _on_shop_shop_entered(stat_upgrades):
 	$YSort/Shop.shop_entries += 1
@@ -103,6 +121,12 @@ func game_over():
 	get_tree().call_group("enemy", "queue_free")
 	get_tree().call_group("bullet", "queue_free")
 	get_tree().call_group("pickup", "queue_free")
+	
+	var magic_circles = get_tree().get_nodes_in_group("magic_circle")
+	for magic_circle in magic_circles:
+		$ObjectiveMarker.delete_target(magic_circle)
+		magic_circle.queue_free()
+		
 	$HUD.game_over()
 
 func _on_hud_start_game():

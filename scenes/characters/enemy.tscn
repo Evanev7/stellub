@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dpjckt12ipcw2"]
 
-[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_oyorq"]
+[ext_resource type="Script" path="res://scripts/characters/enemy.gd" id="1_oyorq"]
 [ext_resource type="SpriteFrames" uid="uid://bpernxx6xbtyn" path="res://resources/enemy/demon_skeleton_spriteframes.tres" id="2_60lhk"]
 [ext_resource type="Shape2D" uid="uid://0e7jt1gqqywj" path="res://resources/hitboxes/demon_skeleton_collisionbox.tres" id="3_vgymb"]
 [ext_resource type="Shape2D" uid="uid://q26ka3qri44y" path="res://resources/hitboxes/demon_skeleton_hitbox.tres" id="4_yc22m"]

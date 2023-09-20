@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://d1bfxwthry8hx" path="res://resources/bullets/demon_skull_bullet.tres" id="2_f1cd4"]
 [ext_resource type="Shape2D" uid="uid://dr5jvbncl03hq" path="res://resources/hitboxes/demon_skull_collisionbox.tres" id="2_tus1j"]
 [ext_resource type="Shape2D" uid="uid://djf6iuj2avegd" path="res://resources/hitboxes/demon_skull_hitbox.tres" id="3_ar40s"]
-[ext_resource type="Script" path="res://scripts/enemy_resource.gd" id="5_o1wk7"]
+[ext_resource type="Script" path="res://scripts/characters/enemy_resource.gd" id="5_o1wk7"]
 
 [resource]
 script = ExtResource("5_o1wk7")

@@ -17,12 +17,17 @@ func _ready():
 func _process(_delta):
 	pass
 	
-func move_shop():
-	position = Vector2(
-		position.x + randf_range(-2000, 2000),
-		GameState.player.position.y + randf_range(-2000, -5000)
-	)
-	$SpawnCollisionHandler.find_safe_landing()
+#func move_shop():
+#	position = Vector2(
+#		position.x + randf_range(-2000, 2000),
+#		GameState.player.position.y + randf_range(-2000, -5000)
+#	)
+#	$SpawnCollisionHandler.find_safe_landing()
+
+#func spawn_shop(magic_circle):
+#	set_process(true)
+#	$ObjectiveMarker.add_target($YSort/Shop)
+#	position = magic_circle.position
 
 func _on_open_area_entered(body):
 	if body == GameState.player:
@@ -52,7 +57,7 @@ func _on_upgrade_hud_leave():
 	if shop_entries >= shop_limit:
 		disable()
 		remove_target.emit(self)
-	else:
-		move_shop()
+#	else:
+#		move_shop()
 		
 	GameState.player.evolve()

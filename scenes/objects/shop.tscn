@@ -1,13 +1,13 @@
 [gd_scene load_steps=12 format=3 uid="uid://cp7lho542gmeu"]
 
-[ext_resource type="Script" path="res://scripts/shop.gd" id="1_57dqm"]
+[ext_resource type="Script" path="res://scripts/objects/shop.gd" id="1_57dqm"]
 [ext_resource type="Texture2D" uid="uid://b7im0npiawyyl" path="res://art/objects/shop_closed_temp.png" id="1_q80nc"]
 [ext_resource type="Resource" uid="uid://bqdpnkdrgpa8m" path="res://resources/upgrades/multi_shot.tres" id="2_f0gju"]
 [ext_resource type="Texture2D" uid="uid://vr1crqammxvo" path="res://art/objects/shop_open_temp.png" id="2_kfiwc"]
 [ext_resource type="Resource" uid="uid://bka87xlceqp34" path="res://resources/upgrades/piercing.tres" id="3_ij06j"]
 [ext_resource type="Resource" uid="uid://jb4n38ecfldl" path="res://resources/upgrades/shot_speed.tres" id="4_q05oq"]
 [ext_resource type="Resource" uid="uid://bo8wou7utuqm4" path="res://resources/upgrades/player_speed.tres" id="5_py3kw"]
-[ext_resource type="Script" path="res://scripts/spawn_collision_handler.gd" id="6_wtni0"]
+[ext_resource type="Script" path="res://scripts/components/spawn_collision_handler.gd" id="6_wtni0"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_r6dcq"]
 animations = [{
@@ -37,11 +37,13 @@ radius = 366.27
 [node name="Shop" type="Node2D"]
 scale = Vector2(0.25, 0.25)
 script = ExtResource("1_57dqm")
-shop_resource_list = Array[Resource("res://scripts/shop_resource.gd")]([ExtResource("2_f0gju"), ExtResource("3_ij06j"), ExtResource("4_q05oq"), ExtResource("5_py3kw")])
+shop_resource_list = Array[Resource("res://scripts/objects/shop_resource.gd")]([ExtResource("2_f0gju"), ExtResource("3_ij06j"), ExtResource("4_q05oq"), ExtResource("5_py3kw")])
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(4, 19.25)
+scale = Vector2(1, 1.02782)
 sprite_frames = SubResource("SpriteFrames_r6dcq")
-animation = &"shop_open"
+animation = &"shop_closed"
 
 [node name="OpenArea" type="Area2D" parent="."]
 collision_layer = 9

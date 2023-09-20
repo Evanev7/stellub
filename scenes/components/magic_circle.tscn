@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=3 uid="uid://bdsxfxpria0gp"]
+
+[ext_resource type="Script" path="res://scripts/components/magic_circle.gd" id="1_114ni"]
+[ext_resource type="PackedScene" uid="uid://cp7lho542gmeu" path="res://scenes/objects/shop.tscn" id="2_ercwo"]
+[ext_resource type="Texture2D" uid="uid://clyycn7uujclo" path="res://art/icon.svg" id="2_ismyd"]
+[ext_resource type="PackedScene" uid="uid://cicwqsj3byj4u" path="res://scenes/components/spawn_collision_handler.tscn" id="3_4838f"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xm67y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ismyd")
+}],
+"loop": true,
+"name": &"disabled",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qlfrf"]
+radius = 131.015
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yuvbf"]
+radius = 1515.27
+
+[node name="magic_circle" type="Node2D"]
+script = ExtResource("1_114ni")
+shop_scene = ExtResource("2_ercwo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1.99999, 0)
+scale = Vector2(3.46875, 1)
+sprite_frames = SubResource("SpriteFrames_xm67y")
+animation = &"disabled"
+
+[node name="Circle" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Circle"]
+scale = Vector2(2, 1)
+shape = SubResource("CircleShape2D_qlfrf")
+
+[node name="Time" type="Label" parent="."]
+visible = false
+offset_left = -14.0
+offset_top = -221.0
+offset_right = 15.0
+offset_bottom = -149.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "0"
+
+[node name="SuccessTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="WaveTimer" type="Timer" parent="."]
+wait_time = 4.99
+
+[node name="SpawnCollisionHandler" parent="." node_paths=PackedStringArray("spawn_collider") instance=ExtResource("3_4838f")]
+spawn_collider = NodePath("../SpawnCollision")
+
+[node name="SpawnCollision" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnCollision"]
+shape = SubResource("CircleShape2D_yuvbf")
+
+[connection signal="body_entered" from="Circle" to="." method="_on_circle_body_entered"]
+[connection signal="body_exited" from="Circle" to="." method="_on_circle_body_exited"]
+[connection signal="timeout" from="SuccessTimer" to="." method="_on_success_timer_timeout"]
+[connection signal="timeout" from="WaveTimer" to="." method="_on_wave_timer_timeout"]

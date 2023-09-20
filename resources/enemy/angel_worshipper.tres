@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://djfx5xxn1qv5u" path="res://resources/bullets/angel_worshipper_bullet.tres" id="2_6537s"]
 [ext_resource type="Shape2D" uid="uid://7xwt0rsj0o65" path="res://resources/hitboxes/angel_worshipper_collisionbox.tres" id="2_elxt0"]
 [ext_resource type="Shape2D" uid="uid://cxbqrv8nixb3k" path="res://resources/hitboxes/angel_worshipper_hitbox.tres" id="3_7orl6"]
-[ext_resource type="Script" path="res://scripts/enemy_resource.gd" id="5_7h6hr"]
+[ext_resource type="Script" path="res://scripts/characters/enemy_resource.gd" id="5_7h6hr"]
 
 [resource]
 script = ExtResource("5_7h6hr")

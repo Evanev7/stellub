@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="BulletResource" load_steps=3 format=3 uid="uid://d1bfxwthry8hx"]
 
-[ext_resource type="Script" path="res://scripts/bullet_resource.gd" id="1_eenvt"]
+[ext_resource type="Script" path="res://scripts/objects/bullet_resource.gd" id="1_eenvt"]
 [ext_resource type="SpriteFrames" uid="uid://d35p6avthydix" path="res://resources/bullets/angel_worshipper_spriteframes.tres" id="1_hlmbc"]
 
 [resource]
