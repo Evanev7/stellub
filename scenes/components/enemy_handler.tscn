@@ -1,0 +1,23 @@
+[gd_scene load_steps=9 format=3 uid="uid://cnrpegq0voiht"]
+
+[ext_resource type="Script" path="res://scripts/components/EnemyHandler.gd" id="1_cf55n"]
+[ext_resource type="PackedScene" uid="uid://dpjckt12ipcw2" path="res://scenes/characters/enemy.tscn" id="2_pkjwx"]
+[ext_resource type="Resource" uid="uid://daslelns8qmfv" path="res://resources/enemy/angel_crusader.tres" id="3_4eu8f"]
+[ext_resource type="Resource" uid="uid://bnoj3uq3e6s17" path="res://resources/enemy/angel_warrior.tres" id="4_x12ry"]
+[ext_resource type="Resource" uid="uid://djjvchiit0f0n" path="res://resources/enemy/angel_worshipper.tres" id="5_a5jlr"]
+[ext_resource type="Resource" uid="uid://bqyg0clrpkdim" path="res://resources/enemy/demon_skeleton.tres" id="6_0fggt"]
+[ext_resource type="Resource" uid="uid://dh8xipsw2bu5w" path="res://resources/enemy/demon_skull.tres" id="7_is6nv"]
+[ext_resource type="Resource" uid="uid://doalqpgaptgxa" path="res://resources/enemy/demon_dog.tres" id="8_dvjnc"]
+
+[node name="EnemyHandler" type="Node" node_paths=PackedStringArray("ysorter", "bullet_handler", "pickup_handler")]
+script = ExtResource("1_cf55n")
+enemy_scene = ExtResource("2_pkjwx")
+enemy_resource_list = Array[Resource("res://scripts/characters/enemy_resource.gd")]([ExtResource("3_4eu8f"), ExtResource("4_x12ry"), ExtResource("5_a5jlr"), ExtResource("6_0fggt"), ExtResource("7_is6nv"), ExtResource("8_dvjnc")])
+ysorter = NodePath("")
+bullet_handler = NodePath("")
+pickup_handler = NodePath("")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

@@ -1,14 +1,14 @@
 extends Node
 
-@export var enemy_scene: PackedScene
-@export var bullet_scene: PackedScene
+
 @export var magic_circle_scene: PackedScene
 @export var pickup_scene: PackedScene
 @export var safe_range: int = 500
 
 @export var enemy_resource_list: Array[EnemyResource]
 
-
+@export var bullet_handler: Node
+@export var enemy_handler: Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -26,61 +26,12 @@ func _physics_process(_delta):
 	
 	#######################################
 
-# When the spawn timer times out, spawn a new random enemy!
-func _on_spawn_timer_timeout():
-	var enemy = enemy_scene.instantiate()
-	enemy.resource = enemy_resource_list[randi() % enemy_resource_list.size()]
-	var relative_spawn_position = Vector2(safe_range,0).rotated(randf_range(0, 2*PI))
-	enemy.position = GameState.player.position + relative_spawn_position
-	enemy.fire_bullet.connect(_on_fire_bullet)
-	enemy.enemy_killed.connect(_on_enemy_killed)
-	$YSort.add_child(enemy)
-
-
-# When a bullet is fired (by the player or an enemy) this function is "called". 
-# We iterate over every bullet to be fired, instantiate them and point them at the player
-# OR at where the player is clicking.
-func _on_fire_bullet(origin, bullet_type: BulletResource, fire_from: FireFrom):
-	if not (origin is WeakRef):
-		origin = weakref(origin)
-	var inaccuracy_offset = randf_range(-bullet_type.shot_inaccuracy/2,bullet_type.shot_inaccuracy/2)
-		
-	# Iterate over every bullet that's being fired (the number of bullets to fire
-	# is stored in .multishot)
-	for index in range(bullet_type.multishot):
-		var bullet = bullet_scene.instantiate()
-		bullet.fire_bullet.connect(_on_fire_bullet)
-		
-		var start_position = fire_from.position
-		
-		var direction_offset = inaccuracy_offset
-		if bullet_type.multishot > 1:
-			direction_offset += remap(index, 0, bullet_type.multishot-1, -bullet_type.shot_spread/2, bullet_type.shot_spread/2)
-		var start_direction = fire_from.direction.rotated(direction_offset)
-		
-		# The distance from the 'firer' that the bullet starts at.
-		var start_range = Vector2(bullet_type.start_range, bullet_type.start_range)
-		start_range *= start_direction
-		start_position += start_range
-		
-		bullet.direction = start_direction
-		bullet.data = bullet_type
-		bullet.origin_ref = origin
-		bullet.position = start_position
-		
-		call_deferred("add_child",bullet)
-		
-
-func _on_start_timer_timeout():
-	$SpawnTimer.start()
-
 
 # Start the timers we need, instantiate the HUD and get the player in the right spot.
 func start_game():
-	$StartTimer.start()
+	enemy_handler.start_spawning()
 	GameState.player.start()
 	GameState.player.position = $YSort/Marker2D.position
-	$SpawnTimer.set_wait_time(2.0)
 	$HUD.show_message("All Hell Breaks Loose!")
 	$HUD.show_health(GameState.player.hp)
 	$HUD.show_score(GameState.player.score, GameState.player.level_threshold[GameState.player.current_level])
@@ -117,7 +68,7 @@ func _on_player_player_death():
 	game_over()
 	
 func game_over():
-	$SpawnTimer.stop()
+	enemy_handler.stop_spawning()
 	get_tree().call_group("enemy", "queue_free")
 	get_tree().call_group("bullet", "queue_free")
 	get_tree().call_group("pickup", "queue_free")
@@ -137,26 +88,12 @@ func _on_player_taken_damage(hp):
 	$HUD.show_health(hp)
 
 
-func _on_enemy_killed(enemy):
-	for i in range(enemy.value):
-		spawn_pickup(enemy.position)
-
-
-func spawn_pickup(pos):
-	var pickup = pickup_scene.instantiate()
-	pickup.credit_player.connect(_on_pickup_credit_player)
-	pickup.position = pos
-	$YSort.add_child(pickup)
-
-func _on_pickup_credit_player(value):
-	GameState.player.gain_score(value)
-	$HUD.show_score(GameState.player.score, GameState.player.level_threshold[GameState.player.current_level])
 
 func _on_player_level_up(current_level):
 	$HUD.change_min_XP(GameState.player.level_threshold[GameState.player.current_level])
 	GameState.player.current_level += 1
 	GameState.player.souls += 1
-	$SpawnTimer.set_wait_time($SpawnTimer.get_wait_time() / 1.2)
+	enemy_handler.wait_time = (enemy_handler.wait_time / 1.2)
 
 func open_upgrade_hud(stat_upgrades):
 	get_tree().paused = true

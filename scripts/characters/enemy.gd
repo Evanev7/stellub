@@ -64,12 +64,11 @@ func sway():
 # if the fire_delay has elapsed.
 func _physics_process(_delta):
 	var player_direction: Vector2 = (GameState.player.position - position)
+	var player_distance = player_direction.length()
 	if player_direction.x < 0:
 		sprite.flip_h = (true != flipped)
 	else:
 		sprite.flip_h = (false != flipped)
-	velocity = player_direction.normalized() * speed
-	move_and_slide()
 	
 	if health <= 0:
 		enemy_killed.emit(self)
@@ -78,7 +77,7 @@ func _physics_process(_delta):
 	# The enemy doesn't know what type of bullet it's firing.
 	# We emit a fire_bullet event, which the main script handles.
 	if bullet != null:
-		if player_direction.length() > 500:
+		if player_distance > 500:
 			_fire_timer = 0
 		else:
 			_fire_timer += 1
@@ -90,6 +89,10 @@ func _physics_process(_delta):
 	
 	for area in $Hitbox.get_overlapping_areas():
 		hit(area)
+	
+	velocity = player_direction.normalized() * speed
+	move_and_slide()
+
 
 # Called by _on_hurtbox_area_entered - will only be called if the Area2D is in the bullet group
 # Change the enemies health and tween to shrink the enemy briefly.
@@ -110,3 +113,5 @@ func create_timer():
 func hit(area):
 	if area.owner == GameState.player:
 		area.owner.hurt(self)
+
+ # Replace with function body.
