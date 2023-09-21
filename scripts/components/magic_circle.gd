@@ -1,5 +1,6 @@
 extends Node2D
 
+signal shop_entered
 @export var shop_scene: PackedScene
 static var current_wave
 var wave_active
@@ -46,7 +47,14 @@ func _on_success_timer_timeout():
 	spawn_shop(self)
 
 func spawn_shop(magic_circle):
+	print("shop spawn attempt")
 	var shop = shop_scene.instantiate()
-	shop.process_mode = Node.PROCESS_MODE_PAUSABLE
 	shop.show()
-	shop.position = magic_circle.position
+	shop.position = Vector2(magic_circle.position.x, magic_circle.position.y)
+	print(shop.position)
+	print(magic_circle.position)
+	add_child(shop)
+	shop.connect('shop_entered', shop_entered_signal)
+
+func shop_entered_signal():
+	shop_entered.emit()

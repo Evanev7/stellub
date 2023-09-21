@@ -6,7 +6,7 @@ extends Node
 @export var score_display: CanvasLayer
 
 func spawn_pickup(pos):
-var pickup = pickup_scene.instantiate()
+	var pickup = pickup_scene.instantiate()
 	pickup.credit_player.connect(_on_pickup_credit_player)
 	pickup.position = pos
 	ysorter.add_child(pickup)

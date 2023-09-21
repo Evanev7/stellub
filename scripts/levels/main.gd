@@ -12,7 +12,7 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	spawn_magic_circles()
 	$YSort/TerrainGenerator.generate()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -36,7 +36,6 @@ func start_game():
 	$HUD.show_health(GameState.player.hp)
 	$HUD.show_score(GameState.player.score, GameState.player.level_threshold[GameState.player.current_level])
 #	spawn_shop()
-	spawn_magic_circles()
 	
 	
 #func spawn_shop():
@@ -47,7 +46,7 @@ func start_game():
 	
 func spawn_magic_circles():
 	var count = 10
-	var radius = Vector2(400, 0)
+	var radius = Vector2(1000, 0)
 	var center = Vector2(0, 0)
 	var step = 2 * PI / count
 	
@@ -57,10 +56,10 @@ func spawn_magic_circles():
 		magic_circle.position = spawn_pos
 		add_child(magic_circle)
 		$ObjectiveMarker.add_target(magic_circle)
+		magic_circle.connect("shop_entered_signal", _on_shop_entered)
 	
 	
-func _on_shop_shop_entered(stat_upgrades):
-	$YSort/Shop.shop_entries += 1
+func _on_shop_entered(stat_upgrades):
 	open_upgrade_hud(stat_upgrades)
 
 
@@ -93,7 +92,7 @@ func _on_player_level_up(current_level):
 	$HUD.change_min_XP(GameState.player.level_threshold[GameState.player.current_level])
 	GameState.player.current_level += 1
 	GameState.player.souls += 1
-	enemy_handler.wait_time = (enemy_handler.wait_time / 1.2)
+	enemy_handler.spawn_timer.wait_time /= 1.2
 
 func open_upgrade_hud(stat_upgrades):
 	get_tree().paused = true

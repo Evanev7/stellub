@@ -1,11 +1,13 @@
 extends Node
 
+@onready var spawn_timer = $SpawnTimer
+
 @export var safe_range: float = 1000
 @export var spawn_time: float = 2.0:
 	get:
 		return spawn_time
 	set(value):
-		$SpawnTimer.wait_time = value
+		spawn_timer.wait_time = value
 		spawn_time = value
 
 @export var enemy_scene: PackedScene

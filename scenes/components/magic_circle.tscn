@@ -20,7 +20,7 @@ animations = [{
 radius = 131.015
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yuvbf"]
-radius = 1515.27
+radius = 629.35
 
 [node name="magic_circle" type="Node2D"]
 script = ExtResource("1_114ni")
@@ -56,6 +56,7 @@ wait_time = 4.99
 
 [node name="SpawnCollisionHandler" parent="." node_paths=PackedStringArray("spawn_collider") instance=ExtResource("3_4838f")]
 spawn_collider = NodePath("../SpawnCollision")
+land_on_ready = false
 
 [node name="SpawnCollision" type="Area2D" parent="."]
 

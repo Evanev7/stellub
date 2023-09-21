@@ -67,9 +67,6 @@ position = Vector2(576, 324)
 
 [node name="ObjectiveMarker" parent="." instance=ExtResource("20_tncsu")]
 
-[node name="magic_circle" parent="." instance=ExtResource("21_4yjc3")]
-position = Vector2(283, 924)
-
 [connection signal="fire_bullet" from="YSort/Player" to="YSort/BulletHandler" method="_on_fire_bullet"]
 [connection signal="level_up" from="YSort/Player" to="." method="_on_player_level_up"]
 [connection signal="player_death" from="YSort/Player" to="." method="_on_player_player_death"]
