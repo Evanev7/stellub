@@ -72,3 +72,4 @@ position = Vector2(576, 324)
 [connection signal="player_death" from="YSort/Player" to="." method="_on_player_player_death"]
 [connection signal="taken_damage" from="YSort/Player" to="." method="_on_player_taken_damage"]
 [connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
+[connection signal="leave" from="upgradeHUD" to="." method="_on_upgrade_hud_leave"]

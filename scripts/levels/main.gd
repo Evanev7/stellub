@@ -35,15 +35,8 @@ func start_game():
 	$HUD.show_message("All Hell Breaks Loose!")
 	$HUD.show_health(GameState.player.hp)
 	$HUD.show_score(GameState.player.score, GameState.player.level_threshold[GameState.player.current_level])
-#	spawn_shop()
-	
-	
-#func spawn_shop():
-#	$YSort/Shop.set_process(true)
-#	$ObjectiveMarker.add_target($YSort/Shop)
-#	$YSort/Shop.position = Vector2($YSort/Shop.position.x, GameState.player.position.y - 000)
-	
-	
+
+
 func spawn_magic_circles():
 	var count = 10
 	var radius = Vector2(1000, 0)
@@ -56,16 +49,17 @@ func spawn_magic_circles():
 		magic_circle.position = spawn_pos
 		add_child(magic_circle)
 		$ObjectiveMarker.add_target(magic_circle)
-		magic_circle.connect("shop_entered_signal", _on_shop_entered)
-	
-	
+		magic_circle.connect("shop_entered", _on_shop_entered)
+
+
 func _on_shop_entered(stat_upgrades):
 	open_upgrade_hud(stat_upgrades)
 
 
 func _on_player_player_death():
 	game_over()
-	
+
+
 func game_over():
 	enemy_handler.stop_spawning()
 	get_tree().call_group("enemy", "queue_free")
@@ -79,6 +73,7 @@ func game_over():
 		
 	$HUD.game_over()
 
+
 func _on_hud_start_game():
 	start_game()
 
@@ -87,16 +82,15 @@ func _on_player_taken_damage(hp):
 	$HUD.show_health(hp)
 
 
-
 func _on_player_level_up(current_level):
 	$HUD.change_min_XP(GameState.player.level_threshold[GameState.player.current_level])
 	GameState.player.current_level += 1
 	GameState.player.souls += 1
-	enemy_handler.spawn_timer.wait_time /= 1.2
+	enemy_handler.spawn_timer.wait_time /= 1.08
+
 
 func open_upgrade_hud(stat_upgrades):
 	get_tree().paused = true
 	$upgradeHUD.set_visible(true)
 	$upgradeHUD.show_HUD(stat_upgrades)
-
 

@@ -3,12 +3,7 @@ extends Node
 @onready var spawn_timer = $SpawnTimer
 
 @export var safe_range: float = 1000
-@export var spawn_time: float = 2.0:
-	get:
-		return spawn_time
-	set(value):
-		spawn_timer.wait_time = value
-		spawn_time = value
+@export var default_spawn_time: float = 2.0
 
 @export var enemy_scene: PackedScene
 @export var enemy_resource_list: Array[EnemyResource]
@@ -32,7 +27,8 @@ func _on_enemy_killed(enemy):
 		pickup_handler.spawn_pickup(enemy.position)
 
 func start_spawning():
-	$SpawnTimer.start()
+	spawn_timer.wait_time = default_spawn_time
+	spawn_timer.start()
 
 func stop_spawning():
-	$SpawnTimer.stop()
+	spawn_timer.stop()

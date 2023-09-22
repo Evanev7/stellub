@@ -13,7 +13,7 @@ signal fire_bullet(origin, bullet: BulletResource, init: FireFrom)
 
 @onready var default_scale = self.scale
 
-var level_threshold = [10, 20, 30, 50, 80, 130, 210, 340, 550, 999]
+var level_threshold = [10, 20, 30, 50]
 var current_level
 var current_evolution
 var current_wave
@@ -137,8 +137,18 @@ func gain_score(value):
 		tween.tween_property($AnimatedSprite2D, "self_modulate:v", 1, 0.25).from(5)
 	
 	# TODO: At the moment, we can't level up past level 10 (without cheating).
-	if current_level < 10 and score >= level_threshold[current_level]:
+	if score >= level_threshold[current_level]:
 		level_up.emit(current_level)
+		if level_threshold[current_level] > 2000:
+			level_threshold.append(level_threshold[current_level] + 500)
+		elif level_threshold[current_level] > 1000:
+			level_threshold.append(level_threshold[current_level] + 200)	
+		elif level_threshold[current_level] > 500:
+			level_threshold.append(level_threshold[current_level] + 100)
+		elif level_threshold[current_level] > 200:
+			level_threshold.append(level_threshold[current_level] + 50)
+		elif level_threshold[current_level] > 49:
+			level_threshold.append(level_threshold[current_level] + 30) 
 			
 func evolve():
 	current_animation = "level " + str(current_evolution)

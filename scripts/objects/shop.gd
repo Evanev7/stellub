@@ -12,7 +12,7 @@ var shop_entries: int = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	shop_entries = 0
-	print("spawned shop")
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -40,7 +40,6 @@ func _on_open_area_exited(body):
 		sprite.play("shop_closed")
 
 func _on_interact_area_entered(body):
-	print("entered")
 	if body == GameState.player:
 		var stat_upgrades = []
 		for i in 3:
@@ -56,10 +55,5 @@ func disable():
 
 func _on_upgrade_hud_leave():
 	get_tree().paused = false
-	if shop_entries >= shop_limit:
-		disable()
-		remove_target.emit(self)
-#	else:
-#		move_shop()
-		
 	GameState.player.evolve()
+	queue_free()

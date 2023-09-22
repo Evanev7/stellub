@@ -16,7 +16,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	$Time.text = str(int($WaveTimer.get_time_left()) + 1)
+	$Time.text = str(int($WaveTimer.get_time_left() + 0.99))
 
 
 func _on_circle_body_entered(body):
@@ -38,23 +38,20 @@ func _on_wave_timer_timeout():
 
 
 func spawn_enemies(wave):
-	print("wave " + str(wave))
 	current_wave += 1
 	$SuccessTimer.start()
 	
 
 func _on_success_timer_timeout():
-	spawn_shop(self)
+	spawn_shop()
 
-func spawn_shop(magic_circle):
-	print("shop spawn attempt")
+func spawn_shop():
 	var shop = shop_scene.instantiate()
 	shop.show()
-	shop.position = Vector2(magic_circle.position.x, magic_circle.position.y)
-	print(shop.position)
-	print(magic_circle.position)
+	shop.position = position
 	add_child(shop)
 	shop.connect('shop_entered', shop_entered_signal)
+	get_parent().get_node("upgradeHUD").remove_shop.connect(shop._on_upgrade_hud_leave)
 
-func shop_entered_signal():
-	shop_entered.emit()
+func shop_entered_signal(stat_upgrades):
+	shop_entered.emit(stat_upgrades)

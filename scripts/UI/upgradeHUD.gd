@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 signal leave
+signal remove_shop
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -37,8 +38,9 @@ func _on_upgrade_pressed(upgrade_number):
 		GameState.player.stat_upgrade(get_node(upgrade_text).text)
 
 func _on_leave_pressed():
-	leave.emit()
+	get_parent().get_tree().paused = false
 	set_visible(false)
+	remove_shop.emit()
 
 func _on_error_timer_timeout():
 	$ColorRect/Error.text = ""
