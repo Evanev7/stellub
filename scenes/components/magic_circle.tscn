@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://bdsxfxpria0gp"]
+[gd_scene load_steps=7 format=3 uid="uid://bdsxfxpria0gp"]
 
 [ext_resource type="Script" path="res://scripts/components/magic_circle.gd" id="1_114ni"]
-[ext_resource type="PackedScene" uid="uid://cp7lho542gmeu" path="res://scenes/objects/shop.tscn" id="2_ercwo"]
 [ext_resource type="Texture2D" uid="uid://clyycn7uujclo" path="res://art/icon.svg" id="2_ismyd"]
 [ext_resource type="PackedScene" uid="uid://cicwqsj3byj4u" path="res://scenes/components/spawn_collision_handler.tscn" id="3_4838f"]
 
@@ -23,8 +22,8 @@ radius = 131.015
 radius = 629.35
 
 [node name="magic_circle" type="Node2D"]
+z_index = -1
 script = ExtResource("1_114ni")
-shop_scene = ExtResource("2_ercwo")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1.99999, 0)

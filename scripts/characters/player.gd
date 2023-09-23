@@ -3,13 +3,12 @@ extends CharacterBody2D
 signal taken_damage(hp)
 signal player_death
 signal level_up(level)
-signal fire_bullet(origin, bullet: BulletResource, init: FireFrom)
 
 ## Player Stats
 @export var STARTING_SPEED = 300.0
 @export var STARTING_ROTATION_SPEED = 20
 @export var STARTING_HP_MAX: int = 100
-@export var bullet: BulletResource
+@export var starting_bullet: BulletResource
 
 @onready var default_scale = self.scale
 
@@ -27,23 +26,11 @@ var firing
 var walking
 
 var invuln: bool = false
-var _fire_timer: float = 0.0
+var _fire_timer: int = 0
 var _h_flipped: bool = false
 var current_animation
 
-var start_range
-var lifetime
-var bullet_range
-var damage
-var fire_delay 
-var multishot
-var size 
-var shot_spread
-var angular_velocity
-var piercing 
-var piercing_cooldown
-var shot_inaccuracy
-var shot_speed
+var bullet
 
 
 # Called when the node enters the scene tree for the first time.
@@ -52,20 +39,7 @@ func _ready():
 	# Hide the player when we start the game
 	hide()
 	set_physics_process(false)
-	
-	start_range = bullet.start_range
-	lifetime  = bullet.lifetime
-	bullet_range = bullet.bullet_range
-	damage = bullet.damage
-	fire_delay = bullet.fire_delay
-	multishot = bullet.multishot
-	size = bullet.size
-	shot_spread = bullet.shot_spread
-	angular_velocity = bullet.angular_velocity
-	piercing = bullet.piercing
-	piercing_cooldown = bullet.piercing_cooldown
-	shot_inaccuracy = bullet.shot_inaccuracy
-	shot_speed = bullet.shot_speed
+	bullet = starting_bullet.duplicate(true)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
@@ -107,11 +81,12 @@ func _physics_process(_delta):
 	# If we aren't ready to fire yet - just increment the fire_timer
 	if _fire_timer < bullet.fire_delay:
 		_fire_timer += 1
+		$ProgressBar.value = _fire_timer
 	
 	if firing and _fire_timer >= bullet.fire_delay:
 		var fire_from = FireFrom.new()
 		fire_from.toward(position, get_global_mouse_position())
-		fire_bullet.emit(self, bullet, fire_from)
+		GameState.fire_bullet.emit(self, bullet, fire_from)
 		_fire_timer -= bullet.fire_delay
 
 # When the game starts, set the default values and show the player.
@@ -136,28 +111,15 @@ func set_default_stats():
 	current_evolution = 0
 	souls = 0
 	scale = default_scale
-	
+	$ProgressBar.max_value = bullet.fire_delay
+
 	## Weapon Stats
-	bullet.start_range = start_range
-	bullet.lifetime = lifetime
-	bullet.bullet_range = bullet_range
-	bullet.damage = damage
-	bullet.fire_delay = fire_delay
-	bullet.multishot = multishot
-	bullet.size = size
-	bullet.shot_spread = shot_spread 
-	bullet.angular_velocity = angular_velocity
-	bullet.piercing = piercing
-	bullet.piercing_cooldown = piercing_cooldown
-	bullet.shot_inaccuracy = shot_inaccuracy
-	bullet.shot_speed = shot_speed
+	bullet = starting_bullet.duplicate(true)
 
 # Called when the player gets hurt. Body can be either a bullet OR an enemy.
 func hurt(body):
 	if not invuln:
-		hp -= body.damage
-		if hp < 0:
-			hp = 0
+		hp = clamp(hp - body.damage, 0, hp_max)
 		taken_damage.emit(hp)
 		invuln = true
 		$IFrames.start()
@@ -185,7 +147,7 @@ func gain_score(value):
 		if level_threshold[current_level] > 2000:
 			level_threshold.append(level_threshold[current_level] + 500)
 		elif level_threshold[current_level] > 1000:
-			level_threshold.append(level_threshold[current_level] + 200)	
+			level_threshold.append(level_threshold[current_level] + 200)
 		elif level_threshold[current_level] > 500:
 			level_threshold.append(level_threshold[current_level] + 100)
 		elif level_threshold[current_level] > 200:

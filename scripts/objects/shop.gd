@@ -30,10 +30,10 @@ func _on_open_area_exited(body):
 
 func _on_interact_area_entered(body):
 	if body == GameState.player:
-		var stat_upgrades = []
-		for i in 3:
-			var rand_item = shop_resource_list[randi() % shop_resource_list.size()]
-			stat_upgrades.append(rand_item)
+		var stat_upgrades = shop_resource_list.duplicate()
+		stat_upgrades.shuffle()
+		stat_upgrades.resize(3)
+		
 		shop_entered.emit(stat_upgrades)
 
 

@@ -1,4 +1,5 @@
 extends Node
+class_name PickupHandler
 
 @export var pickup_scene: PackedScene
 
@@ -19,3 +20,4 @@ func _on_pickup_credit_player(value):
 			player.score,
 			player.level_threshold[player.current_level]
 		)
+

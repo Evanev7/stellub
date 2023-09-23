@@ -31,7 +31,8 @@ func _process(_delta):
 			arrow.show()
 		else:
 			arrow.hide()
-	
+
+
 func _on_screen_size_changed():
 	screen_size = get_viewport().size
 	screen_centre = Vector2(screen_size / 2)

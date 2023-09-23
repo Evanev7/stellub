@@ -1,6 +1,10 @@
 extends Node
+class_name BulletHandler
 
 @export var bullet_scene: PackedScene
+
+func _ready():
+		GameState.fire_bullet.connect(_on_fire_bullet)
 
 # When a bullet is fired (by the player or an enemy) this function is "called". 
 # We iterate over every bullet to be fired, instantiate them and point them at the player
@@ -35,6 +39,3 @@ func _on_fire_bullet(origin, bullet_type: BulletResource, fire_from: FireFrom):
 		
 		call_deferred("add_child",bullet)
 		
-
-func add(enemy):
-	enemy.fire_bullet.connect(_on_fire_bullet)

@@ -1,39 +1,29 @@
 extends CharacterBody2D
+class_name EnemyBehaviour
 
-signal fire_bullet(origin, bullet: BulletResource, init: FireFrom)
-signal spawn
 signal enemy_killed(enemy)
 
-var resource: EnemyResource
+@export var resource: EnemyResource
+
+@onready var attack: Attack = $Attack
 @onready var sprite = $AnimatedSprite2D
 @onready var health: int = resource.MAX_HP
 @onready var damage: int = resource.DAMAGE
 @onready var value: int = resource.VALUE
 @onready var speed: int = resource.SPEED
-@onready var bullet: BulletResource = resource.BULLET
 @onready var unique_scale: Vector2
 @onready var flipped: bool = resource.FLIP_H
 @onready var floating: bool = resource.FLOATING
 @onready var default_angle: float = self.rotation
 @onready var default_scale: Vector2 = resource.SCALE
 
-var _fire_timer: int = 0
+
 var spawn_time: float
 
 
 func _ready():
-	name = resource.NAME
-	scale = resource.SCALE
-	default_scale = get_scale()
-	sprite.sprite_frames = resource.ANIMATION
-	sprite.flip_h = flipped
-	$CollisionShape2D.shape = resource.COLLIDER
-	$CollisionShape2D.rotation = resource.COLLISION_ROTATION
-	$Hitbox/CollisionShape2D.shape = resource.HITBOX
-	$Hitbox/CollisionShape2D.rotation = resource.COLLISION_ROTATION
-	$Hurtbox/CollisionShape2D.shape = resource.HURTBOX
-	$Hurtbox/CollisionShape2D.rotation = resource.COLLISION_ROTATION
-
+	load_resource(resource)
+	
 	# Select mob texture variants (This code is functional just unnecessary since no enemies have variants)
 	var variants = sprite.sprite_frames.get_animation_names()
 	var mode = variants[randi() % variants.size()]
@@ -42,6 +32,20 @@ func _ready():
 	
 	add_to_group("enemy")
 	sway()
+
+func load_resource(resource_to_load: EnemyResource):
+	name = resource_to_load.NAME
+	scale = resource_to_load.SCALE
+	sprite.sprite_frames = resource_to_load.ANIMATION
+	sprite.flip_h = flipped
+	attack.bullet = resource_to_load.BULLET
+	$CollisionShape2D.shape = resource_to_load.COLLIDER
+	$CollisionShape2D.rotation = resource_to_load.COLLISION_ROTATION
+	$Hitbox/CollisionShape2D.shape = resource_to_load.HITBOX
+	$Hitbox/CollisionShape2D.rotation = resource_to_load.COLLISION_ROTATION
+	$Hurtbox/CollisionShape2D.shape = resource_to_load.HURTBOX
+	$Hurtbox/CollisionShape2D.rotation = resource_to_load.COLLISION_ROTATION
+
 
 # Function for easing sprites between two positions while 'idle'. I.e. enemy rotation.
 func sway():
@@ -64,34 +68,20 @@ func sway():
 # if the fire_delay has elapsed.
 func _physics_process(_delta):
 	var player_direction: Vector2 = (GameState.player.position - position)
-	var player_distance = player_direction.length()
 	if player_direction.x < 0:
 		sprite.flip_h = (true != flipped)
 	else:
 		sprite.flip_h = (false != flipped)
+	velocity = player_direction.normalized() * speed
+	move_and_slide()
 	
+	#Die when health is zero
 	if health <= 0:
 		enemy_killed.emit(self)
 		queue_free()
 	
-	# The enemy doesn't know what type of bullet it's firing.
-	# We emit a fire_bullet event, which the main script handles.
-	if bullet != null:
-		if player_distance > 500:
-			_fire_timer = 0
-		else:
-			_fire_timer += 1
-			if _fire_timer > bullet.fire_delay:
-				var fire_from = FireFrom.new()
-				fire_from.toward(position, GameState.player.position)
-				fire_bullet.emit(self, bullet, fire_from)
-				_fire_timer -= bullet.fire_delay
-	
 	for area in $Hitbox.get_overlapping_areas():
 		hit(area)
-	
-	velocity = player_direction.normalized() * speed
-	move_and_slide()
 
 
 # Called by _on_hurtbox_area_entered - will only be called if the Area2D is in the bullet group
@@ -103,15 +93,9 @@ func hurt(area):
 	tween.tween_property(self, "global_scale", default_scale, 0.1)
 
 
-func create_timer():
-	var timer:= Timer.new()
-	add_child(timer)
-	timer.wait_time = spawn_time
-	timer.one_shot = true
-
 # Called when the enemy encounters something that hurts it.
 func hit(area):
 	if area.owner == GameState.player:
 		area.owner.hurt(self)
 
- # Replace with function body.
+

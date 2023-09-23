@@ -1,8 +1,10 @@
 extends Node2D
 
-signal shop_entered
-@export var shop_scene: PackedScene
-static var current_wave
+#This can be re-enabled if we want to change magic_circle behaviour
+#signal shop_entered
+signal spawn_shop(location: Vector2)
+
+var current_wave
 var wave_active
 
 # Called when the node enters the scene tree for the first time.
@@ -20,7 +22,7 @@ func _process(_delta):
 
 
 func _on_circle_body_entered(body):
-	if body == GameState.player && wave_active == false:
+	if body == GameState.player and wave_active == false:
 		$Time.show()
 		$WaveTimer.start()
 
@@ -34,27 +36,13 @@ func _on_circle_body_exited(body):
 func _on_wave_timer_timeout():
 	$Time.hide()
 	wave_active = true
-	spawn_enemies(current_wave)
+	spawn_enemies()
+
+
+func spawn_enemies():
+	current_wave += 1
+	$SuccessTimer.start()
 
 
 func _on_success_timer_timeout():
-	spawn_shop()
-
-
-func spawn_shop():
-	var shop = shop_scene.instantiate()
-	shop.show()
-	shop.position = position
-	add_child(shop)
-	shop.connect('shop_entered', shop_entered_signal)
-	get_parent().get_node("upgradeHUD").remove_shop.connect(shop._on_upgrade_hud_leave)
-
-
-func shop_entered_signal(stat_upgrades):
-	shop_entered.emit(stat_upgrades)
-
-
-func spawn_enemies(wave):
-	current_wave += 1
-	$SuccessTimer.start()
-	
+	spawn_shop.emit(position)

@@ -1,6 +1,7 @@
-extends Node
+extends Node 
+class_name EnemyHandler
 
-@onready var spawn_timer = $SpawnTimer
+@onready var spawn_timer: Timer = $SpawnTimer
 
 @export var safe_range: float = 1000
 @export var default_spawn_time: float = 2.0
@@ -9,8 +10,8 @@ extends Node
 @export var enemy_resource_list: Array[EnemyResource]
 
 @export var ysorter: Node2D
-@export var bullet_handler: Node
-@export var pickup_handler: Node
+@export var bullet_handler: BulletHandler
+@export var pickup_handler: PickupHandler
 
 
 func _on_spawn_timer_timeout():
@@ -18,9 +19,8 @@ func _on_spawn_timer_timeout():
 	enemy.resource = enemy_resource_list[randi() % enemy_resource_list.size()]
 	var relative_spawn_position = Vector2(safe_range,0).rotated(randf_range(0, 2*PI))
 	enemy.position = GameState.player.position + relative_spawn_position
-	bullet_handler.add(enemy)
 	enemy.enemy_killed.connect(_on_enemy_killed)
-	add_child(enemy) # Replace with function body.
+	ysorter.add_child(enemy) # Replace with function body.
 
 func _on_enemy_killed(enemy):
 	for i in range(enemy.value):

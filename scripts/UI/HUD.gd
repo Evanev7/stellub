@@ -1,40 +1,38 @@
 extends CanvasLayer
 
 signal start_game
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
 
 func show_message(text):
 	$TextDisplay.text = text
 	$TextDisplay.show()
 	$DisplayTimer.start()
 
+
 func _on_display_timer_timeout():
-	$TextDisplay.hide() # Replace with function body.
+	$TextDisplay.hide() 
 
 
 func _on_start_button_pressed():
-	start_game.emit() # Replace with function body.
+	start_game.emit() 
 	$StartButton.hide()
 	$XPBar.show()
 
+
 func show_health(number):
 	$HealthDisplay.text = str(number)
+
 
 func show_score(number, max_number):
 	if number >= max_number:
 		$XPBar.min_value = int(number)
 	$XPBar.max_value = int(max_number)
 	$XPBar.value = int(number)
-	
+
+
 func change_min_XP(number):
 	$XPBar.min_value = int(number)
+
 
 func game_over():
 	show_message("You suck!")

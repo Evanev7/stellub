@@ -1,9 +1,9 @@
 extends Node
+class_name TerrainGenerator
 
 @export var tile_map: TileMap 
 @export var ysorter: Node2D
 @export var update_range: Vector2i
-
 
 #This could use better handling down the line but it'll do
 #What to generate
@@ -70,7 +70,7 @@ func populate(coords) -> void:
 			
 			ysorter.add_child(object)
 			object.add_to_group("terrain")
-			
+
 
 func poisson(lambda) -> int:
 	var total = 0

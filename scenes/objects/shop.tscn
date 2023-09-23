@@ -7,7 +7,7 @@
 [ext_resource type="Resource" uid="uid://bka87xlceqp34" path="res://resources/upgrades/piercing.tres" id="3_ij06j"]
 [ext_resource type="Resource" uid="uid://jb4n38ecfldl" path="res://resources/upgrades/shot_speed.tres" id="4_q05oq"]
 [ext_resource type="Resource" uid="uid://bo8wou7utuqm4" path="res://resources/upgrades/player_speed.tres" id="5_py3kw"]
-[ext_resource type="Resource" uid="uid://dy031eh6o2sje" path="res://resources/upgrades/fire_delay.tres" id="6_eg2mr"]
+[ext_resource type="Resource" path="res://resources/upgrades/fire_delay.tres" id="6_eg2mr"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_r6dcq"]
 animations = [{
