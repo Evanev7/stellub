@@ -86,7 +86,7 @@ func _on_player_level_up(current_level):
 	$HUD.change_min_XP(GameState.player.level_threshold[GameState.player.current_level])
 	GameState.player.current_level += 1
 	GameState.player.souls += 1
-	enemy_handler.spawn_timer.wait_time /= 1.08
+	enemy_handler.spawn_timer.wait_time /= 1.02
 
 
 func open_upgrade_hud(stat_upgrades):

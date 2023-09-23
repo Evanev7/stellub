@@ -37,13 +37,9 @@ func _on_wave_timer_timeout():
 	spawn_enemies(current_wave)
 
 
-func spawn_enemies(wave):
-	current_wave += 1
-	$SuccessTimer.start()
-	
-
 func _on_success_timer_timeout():
 	spawn_shop()
+
 
 func spawn_shop():
 	var shop = shop_scene.instantiate()
@@ -53,5 +49,12 @@ func spawn_shop():
 	shop.connect('shop_entered', shop_entered_signal)
 	get_parent().get_node("upgradeHUD").remove_shop.connect(shop._on_upgrade_hud_leave)
 
+
 func shop_entered_signal(stat_upgrades):
 	shop_entered.emit(stat_upgrades)
+
+
+func spawn_enemies(wave):
+	current_wave += 1
+	$SuccessTimer.start()
+	

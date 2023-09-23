@@ -24,4 +24,3 @@ class_name BulletResource
 
 ## Bullet type that will spawn from this bullet
 @export var spawned_bullet_resource: BulletResource
-

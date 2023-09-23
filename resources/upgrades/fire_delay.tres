@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ShopResource" load_steps=2 format=3 uid="uid://dy031eh6o2sje"]
+
+[ext_resource type="Script" path="res://scripts/objects/shop_resource.gd" id="1_ifku4"]
+
+[resource]
+script = ExtResource("1_ifku4")
+NAME = "Fire Delay"
+COST = 1

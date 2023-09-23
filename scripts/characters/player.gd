@@ -31,6 +31,20 @@ var _fire_timer: float = 0.0
 var _h_flipped: bool = false
 var current_animation
 
+var start_range
+var lifetime
+var bullet_range
+var damage
+var fire_delay 
+var multishot
+var size 
+var shot_spread
+var angular_velocity
+var piercing 
+var piercing_cooldown
+var shot_inaccuracy
+var shot_speed
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -38,6 +52,20 @@ func _ready():
 	# Hide the player when we start the game
 	hide()
 	set_physics_process(false)
+	
+	start_range = bullet.start_range
+	lifetime  = bullet.lifetime
+	bullet_range = bullet.bullet_range
+	damage = bullet.damage
+	fire_delay = bullet.fire_delay
+	multishot = bullet.multishot
+	size = bullet.size
+	shot_spread = bullet.shot_spread
+	angular_velocity = bullet.angular_velocity
+	piercing = bullet.piercing
+	piercing_cooldown = bullet.piercing_cooldown
+	shot_inaccuracy = bullet.shot_inaccuracy
+	shot_speed = bullet.shot_speed
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
@@ -108,6 +136,21 @@ func set_default_stats():
 	current_evolution = 0
 	souls = 0
 	scale = default_scale
+	
+	## Weapon Stats
+	bullet.start_range = start_range
+	bullet.lifetime = lifetime
+	bullet.bullet_range = bullet_range
+	bullet.damage = damage
+	bullet.fire_delay = fire_delay
+	bullet.multishot = multishot
+	bullet.size = size
+	bullet.shot_spread = shot_spread 
+	bullet.angular_velocity = angular_velocity
+	bullet.piercing = piercing
+	bullet.piercing_cooldown = piercing_cooldown
+	bullet.shot_inaccuracy = shot_inaccuracy
+	bullet.shot_speed = shot_speed
 
 # Called when the player gets hurt. Body can be either a bullet OR an enemy.
 func hurt(body):
@@ -166,6 +209,8 @@ func stat_upgrade(stat):
 		self.speed *= 1.1
 	if stat == "Shot Speed":
 		bullet.shot_speed *= 1.1
+	if stat == "Fire Delay":
+		bullet.fire_delay /= 1.1
 
 func _on_i_frames_timeout():
 	$AnimatedSprite2D.modulate = Color(1,1,1,1)

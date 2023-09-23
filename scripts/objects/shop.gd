@@ -17,18 +17,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	pass
-	
-#func move_shop():
-#	position = Vector2(
-#		position.x + randf_range(-2000, 2000),
-#		GameState.player.position.y + randf_range(-2000, -5000)
-#	)
-#	$SpawnCollisionHandler.find_safe_landing()
 
-#func spawn_shop(magic_circle):
-#	set_process(true)
-#	$ObjectiveMarker.add_target($YSort/Shop)
-#	position = magic_circle.position
 
 func _on_open_area_entered(body):
 	if body == GameState.player:
