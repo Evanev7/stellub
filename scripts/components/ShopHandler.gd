@@ -3,6 +3,7 @@ extends Node
 @export var shop_scene: PackedScene
 @export var magic_circle_scene: PackedScene
 
+@export var enemyHandler: EnemyHandler
 @export var ysorter: Node2D
 @export var objective_marker: CanvasLayer
 @export var upgrade_hud: CanvasLayer
@@ -22,6 +23,7 @@ func spawn_magic_circles():
 #		Removed this as we currently spawn a shop.
 #		magic_circle.connect("shop_entered", _on_shop_entered)
 		magic_circle.connect("spawn_shop", _on_spawn_shop)
+		magic_circle.connect("spawn_enemy_in_wave", _on_spawn_enemy_in_wave)
 
 
 func _on_shop_entered(stat_upgrades):
@@ -41,3 +43,7 @@ func _on_spawn_shop(position):
 	ysorter.add_child(shop)
 	shop.connect('shop_entered', _on_shop_entered)
 	upgrade_hud.remove_shop.connect(shop._on_upgrade_hud_leave)
+
+
+func _on_spawn_enemy_in_wave(resource):
+	enemyHandler.spawn_enemy(resource)

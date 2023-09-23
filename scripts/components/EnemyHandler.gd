@@ -15,8 +15,12 @@ class_name EnemyHandler
 
 
 func _on_spawn_timer_timeout():
+	var resourceID = randi() % enemy_resource_list.size()
+	spawn_enemy(resourceID)
+	
+func spawn_enemy(resourceID):
 	var enemy = enemy_scene.instantiate()
-	enemy.resource = enemy_resource_list[randi() % enemy_resource_list.size()]
+	enemy.resource = enemy_resource_list[resourceID]
 	var relative_spawn_position = Vector2(safe_range,0).rotated(randf_range(0, 2*PI))
 	enemy.position = GameState.player.position + relative_spawn_position
 	enemy.enemy_killed.connect(_on_enemy_killed)

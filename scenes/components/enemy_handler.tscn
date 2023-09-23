@@ -12,7 +12,7 @@
 [node name="EnemyHandler" type="Node"]
 script = ExtResource("1_cf55n")
 enemy_scene = ExtResource("2_pkjwx")
-enemy_resource_list = Array[Resource("res://scripts/characters/enemy_resource.gd")]([ExtResource("3_4eu8f"), ExtResource("4_x12ry"), ExtResource("5_a5jlr"), ExtResource("6_0fggt"), ExtResource("7_is6nv"), ExtResource("8_dvjnc")])
+enemy_resource_list = Array[Resource("res://scripts/characters/enemy_resource.gd")]([ExtResource("7_is6nv"), ExtResource("8_dvjnc"), ExtResource("6_0fggt"), ExtResource("5_a5jlr"), ExtResource("4_x12ry"), ExtResource("3_4eu8f")])
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 2.0

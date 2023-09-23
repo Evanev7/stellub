@@ -68,7 +68,8 @@ ysorter = NodePath("../../YSort")
 bullet_handler = NodePath("../BulletHandler")
 pickup_handler = NodePath("../PickupHandler")
 
-[node name="ShopHandler" parent="LogicComponents" node_paths=PackedStringArray("ysorter", "objective_marker", "upgrade_hud") instance=ExtResource("19_4xjky")]
+[node name="ShopHandler" parent="LogicComponents" node_paths=PackedStringArray("enemyHandler", "ysorter", "objective_marker", "upgrade_hud") instance=ExtResource("19_4xjky")]
+enemyHandler = NodePath("../EnemyHandler")
 ysorter = NodePath("../../YSort")
 objective_marker = NodePath("../../ObjectiveMarker")
 upgrade_hud = NodePath("../../UpgradeHUD")

@@ -3,6 +3,7 @@ extends Node2D
 #This can be re-enabled if we want to change magic_circle behaviour
 #signal shop_entered
 signal spawn_shop(location: Vector2)
+signal spawn_enemy_in_wave(resource)
 
 var current_wave
 var wave_active
@@ -39,10 +40,14 @@ func _on_wave_timer_timeout():
 	spawn_enemies()
 
 
+func _on_success_timer_timeout():
+	spawn_shop.emit(position)
+
+
 func spawn_enemies():
 	current_wave += 1
 	$SuccessTimer.start()
+	var resourceID = 0
+	for i in 20:
+		spawn_enemy_in_wave.emit(resourceID)
 
-
-func _on_success_timer_timeout():
-	spawn_shop.emit(position)

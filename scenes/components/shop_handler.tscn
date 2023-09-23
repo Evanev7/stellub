@@ -4,10 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cp7lho542gmeu" path="res://scenes/objects/shop.tscn" id="2_y806g"]
 [ext_resource type="PackedScene" uid="uid://bdsxfxpria0gp" path="res://scenes/components/magic_circle.tscn" id="3_ol2yg"]
 
-[node name="ShopHandler" type="Node" node_paths=PackedStringArray("ysorter", "objective_marker", "upgrade_hud")]
+[node name="ShopHandler" type="Node"]
 script = ExtResource("1_l28hg")
 shop_scene = ExtResource("2_y806g")
 magic_circle_scene = ExtResource("3_ol2yg")
-ysorter = NodePath("")
-objective_marker = NodePath("")
-upgrade_hud = NodePath("")
