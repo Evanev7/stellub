@@ -3,8 +3,11 @@ extends CanvasLayer
 signal leave
 signal remove_shop
 
+var evolutions = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	evolutions = 0
 	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -30,16 +33,17 @@ func _on_upgrade_pressed(upgrade_number):
 		$ErrorTimer.start()
 	else:
 		GameState.player.souls -= cost
-		
+		evolutions += cost
 		# Eventually this should be a calculation that figures out what evolution
-		# the character should be on
-		GameState.player.current_evolution += cost
-		
+		# the character should be on		
 		GameState.player.stat_upgrade(get_node(upgrade_text).text)
 
 func _on_leave_pressed():
 	get_parent().get_tree().paused = false
 	set_visible(false)
+	while (evolutions - 5) > 0:
+		GameState.player.current_evolution += 1
+		evolutions -= 5
 	remove_shop.emit()
 
 func _on_error_timer_timeout():

@@ -22,6 +22,7 @@ var damage
 # Set some initial rotations, and set different collision layer for player and
 # enemy bullets.
 func _ready():
+	$AnimatedSprite2D.play()
 	scale = data.size
 	if data.piercing:
 		piercing = data.piercing
@@ -29,7 +30,6 @@ func _ready():
 	piercing_cooldown = 0
 	if origin_ref.get_ref() == GameState.player:
 		set_collision_mask(4)
-	$AnimatedSprite2D.play()
 	damage = data.damage
 	sprite.sprite_frames = data.animation
 	$SelfDestruct.wait_time = data.lifetime

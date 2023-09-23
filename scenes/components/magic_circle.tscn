@@ -48,6 +48,7 @@ theme_override_font_sizes/font_size = 50
 text = "0"
 
 [node name="SuccessTimer" type="Timer" parent="."]
+wait_time = 30.0
 one_shot = true
 
 [node name="WaveTimer" type="Timer" parent="."]

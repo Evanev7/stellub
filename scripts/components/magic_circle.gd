@@ -5,7 +5,7 @@ extends Node2D
 signal spawn_shop(location: Vector2)
 signal spawn_enemy_in_wave(resource)
 
-var current_wave
+static var current_wave
 var wave_active
 
 # Called when the node enters the scene tree for the first time.
@@ -20,10 +20,16 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	$Time.text = str(int($WaveTimer.get_time_left() + 0.99))
+	
+	if wave_active:
+		if is_equal_approx($SuccessTimer.get_time_left(), 10):
+			spawn_enemies(2)
+		elif is_equal_approx($SuccessTimer.get_time_left(), 20):
+			spawn_enemies(1)
 
 
 func _on_circle_body_entered(body):
-	if body == GameState.player and wave_active == false:
+	if body == GameState.player and not wave_active:
 		$Time.show()
 		$WaveTimer.start()
 
@@ -37,17 +43,29 @@ func _on_circle_body_exited(body):
 func _on_wave_timer_timeout():
 	$Time.hide()
 	wave_active = true
-	spawn_enemies()
+	$SuccessTimer.start()
+	spawn_enemies(0)
 
 
 func _on_success_timer_timeout():
 	spawn_shop.emit(position)
 
-
-func spawn_enemies():
+#NOT WORKING
+func spawn_enemies(timerValue):
+	var skull = 0
+	var dog = 1
+	var skeleton = 2
+	print(timerValue)
+	if current_wave == 1:
+		if timerValue == 0:
+			for i in 5:
+				spawn_enemy_in_wave.emit(skull)
+		if timerValue == 1:
+			for i in 5:
+				spawn_enemy_in_wave.emit(skull)
+		if timerValue == 2:
+			for i in 5:
+				spawn_enemy_in_wave.emit(dog)
+				
 	current_wave += 1
-	$SuccessTimer.start()
-	var resourceID = 0
-	for i in 20:
-		spawn_enemy_in_wave.emit(resourceID)
 

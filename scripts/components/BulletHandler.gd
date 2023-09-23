@@ -4,7 +4,7 @@ class_name BulletHandler
 @export var bullet_scene: PackedScene
 
 func _ready():
-		GameState.fire_bullet.connect(_on_fire_bullet)
+	GameState.fire_bullet.connect(_on_fire_bullet)
 
 # When a bullet is fired (by the player or an enemy) this function is "called". 
 # We iterate over every bullet to be fired, instantiate them and point them at the player

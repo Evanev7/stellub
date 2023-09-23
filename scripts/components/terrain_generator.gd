@@ -68,6 +68,9 @@ func populate(coords) -> void:
 			
 			object.position = coords
 			
+			#Experimental darkening
+			object.modulate = Color(0.5,0.5,0.5)
+			
 			ysorter.add_child(object)
 			object.add_to_group("terrain")
 
