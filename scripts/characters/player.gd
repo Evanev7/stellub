@@ -6,7 +6,6 @@ signal level_up(level)
 
 ## Player Stats
 @export var STARTING_SPEED = 300.0
-@export var STARTING_ROTATION_SPEED = 20
 @export var STARTING_HP_MAX: int = 100
 @export var starting_bullet: BulletResource
 
@@ -19,7 +18,6 @@ var current_wave
 var souls
 var hp_max
 var speed
-var rotation_speed
 var hp
 var score
 var firing
@@ -81,7 +79,7 @@ func _physics_process(_delta):
 	# If we aren't ready to fire yet - just increment the fire_timer
 	if _fire_timer < bullet.fire_delay:
 		_fire_timer += 1
-		$ProgressBar.value = _fire_timer
+		$ShotRecharge.value = _fire_timer
 	
 	if firing and _fire_timer >= bullet.fire_delay:
 		var fire_from = FireFrom.new()
@@ -92,7 +90,6 @@ func _physics_process(_delta):
 # When the game starts, set the default values and show the player.
 func start():
 	set_default_stats()
-	hp = hp_max
 	current_wave = 1
 	show()
 	set_physics_process(true)
@@ -103,16 +100,17 @@ func start():
 func set_default_stats():
 	## Player Stats
 	speed = STARTING_SPEED
-	rotation_speed = STARTING_ROTATION_SPEED
 	hp_max = STARTING_HP_MAX
+	hp = hp_max
 	score = 0
 	current_level = 0
 	current_animation = "level 0"
 	current_evolution = 0
 	souls = 0
+	$ShotRecharge.max_value = bullet.fire_delay
 	scale = default_scale
-	$ProgressBar.max_value = bullet.fire_delay
-
+	rotation = 0
+	
 	## Weapon Stats
 	bullet = starting_bullet.duplicate(true)
 
@@ -157,10 +155,10 @@ func gain_score(value):
 			
 func evolve():
 	current_animation = "level " + str(current_evolution)
-	if GameState.player.current_level < 2:
-		GameState.player.scale = Vector2(GameState.player.scale.x * 1.3, GameState.player.scale.y * 1.3)
+	if current_level < 2:
+		scale *= 1.3
 	else:
-		GameState.player.scale = Vector2(GameState.player.scale.x * 1.1, GameState.player.scale.y * 1.1)
+		scale *= 1.1
 
 func stat_upgrade(stat):
 	if stat == "Piercing":

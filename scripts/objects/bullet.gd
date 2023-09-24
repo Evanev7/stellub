@@ -1,7 +1,5 @@
 extends Area2D
 
-signal fire_bullet(spawned_bullet: BulletResource)
-
 @onready var data: BulletResource
 @onready var spawned_bullet: BulletResource = data.spawned_bullet_resource
 @onready var sprite = $AnimatedSprite2D
@@ -73,7 +71,7 @@ func _on_area_entered(area):
 			fire_from.toward(position, GameState.player.position)
 			if origin_ref.get_ref() == GameState.player:
 				fire_from.direction *= -1
-			fire_bullet.emit(origin_ref, spawned_bullet, fire_from)
+			GameState.fire_bullet.emit(origin_ref, spawned_bullet, fire_from)
 		if data.piercing == 0 or piercing == 0:
 			queue_free()
 		else:

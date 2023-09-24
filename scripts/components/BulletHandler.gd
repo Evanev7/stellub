@@ -18,7 +18,6 @@ func _on_fire_bullet(origin, bullet_type: BulletResource, fire_from: FireFrom):
 	# is stored in .multishot)
 	for index in range(bullet_type.multishot):
 		var bullet = bullet_scene.instantiate()
-		bullet.fire_bullet.connect(_on_fire_bullet)
 		
 		var start_position = fire_from.position
 		

@@ -25,7 +25,7 @@ func _ready():
 func _process(_delta):
 	##Debug ###############################
 	
-	if Input.is_key_pressed(KEY_M): ## Increase score by 10
+	if GameState.debug and Input.is_key_pressed(KEY_M): ## Increase score by 10
 		populate(Vector2i(0,0))
 	
 	#######################################

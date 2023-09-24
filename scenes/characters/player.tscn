@@ -172,9 +172,16 @@ script = ExtResource("1_m0lvq")
 starting_bullet = ExtResource("2_02d8s")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+z_index = 1
 rotation = 0.785398
 energy = 2.33
-range_item_cull_mask = 2
+texture = ExtResource("22_unij0")
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+z_index = 1
+rotation = 0.785398
+scale = Vector2(0.295, 0.295)
+energy = 2.33
 texture = ExtResource("22_unij0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -202,7 +209,7 @@ process_callback = 0
 wait_time = 0.1
 one_shot = true
 
-[node name="ProgressBar" type="TextureProgressBar" parent="."]
+[node name="ShotRecharge" type="TextureProgressBar" parent="."]
 offset_left = -30.0
 offset_top = 29.0
 offset_right = 30.0

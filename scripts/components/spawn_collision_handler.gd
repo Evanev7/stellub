@@ -17,7 +17,8 @@ func _ready():
 		var collider = CollisionShape2D.new()
 		circle.radius = 100
 		collider.shape = circle
-		spawn_collider.add_child(collider)
+		add_child(collider)
+		spawn_collider = collider
 	await get_tree().physics_frame
 	if land_on_ready:
 		find_safe_landing(on_ready_variance, on_ready_attempts)

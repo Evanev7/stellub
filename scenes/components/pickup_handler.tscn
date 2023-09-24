@@ -4,3 +4,5 @@
 
 [node name="PickupHandler" type="Node"]
 script = ExtResource("1_w77vg")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

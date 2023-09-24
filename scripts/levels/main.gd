@@ -18,7 +18,7 @@ func _physics_process(_delta):
 	pass
 	##Debug ###############################
 	
-	if Input.is_key_pressed(KEY_R): ## Increase score by 10
+	if GameState.debug and Input.is_key_pressed(KEY_R): ## Increase score by 10
 		GameState.player.gain_score(10)
 		$HUD.show_score(GameState.player.score, GameState.player.level_threshold[GameState.player.current_level])
 	
