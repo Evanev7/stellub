@@ -3,7 +3,7 @@ class_name Attack
 
 @export var bullet: BulletResource
 
-var _fire_timer
+var _fire_timer = 0
 
 func _physics_process(_delta):
 	var player_vector = GameState.player.position - owner.position

@@ -45,5 +45,5 @@ func _on_spawn_shop(position):
 	upgrade_hud.remove_shop.connect(shop._on_upgrade_hud_leave)
 
 
-func _on_spawn_enemy_in_wave(resource):
-	enemyHandler.spawn_enemy(resource)
+func _on_spawn_enemy_in_wave(resourceID, center, spawn_range):
+	enemyHandler.spawn_enemy(resourceID, center, spawn_range)

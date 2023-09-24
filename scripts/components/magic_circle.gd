@@ -8,6 +8,13 @@ signal spawn_enemy_in_wave(resource)
 static var current_wave
 var wave_active
 
+var first_wave: bool = false
+var second_wave: bool = false
+var third_wave: bool = false
+var fourth_wave: bool = false
+var fifth_wave: bool = false
+var sixth_wave: bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	add_to_group("magic_circle")
@@ -15,6 +22,16 @@ func _ready():
 	wave_active = false
 	$WaveTimer.stop()
 	$Time.hide()
+	$SuccessTimer.wait_time = 30
+	reset_bools()
+	
+func reset_bools():
+	first_wave = false
+	second_wave = false
+	third_wave = false
+	fourth_wave = false
+	fifth_wave = false
+	sixth_wave = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -22,10 +39,22 @@ func _process(_delta):
 	$Time.text = str(int($WaveTimer.get_time_left() + 0.99))
 	
 	if wave_active:
-		if is_equal_approx($SuccessTimer.get_time_left(), 10):
-			spawn_enemies(2)
-		elif is_equal_approx($SuccessTimer.get_time_left(), 20):
+		$Time.text = str(int($SuccessTimer.get_time_left()))
+		if $SuccessTimer.get_time_left() < 10:
 			spawn_enemies(1)
+			print("11")
+		if $SuccessTimer.get_time_left() < 20:
+			spawn_enemies(2)
+			print("21")
+		if $SuccessTimer.get_time_left() < 30:
+			spawn_enemies(3)
+			print("31")
+		if $SuccessTimer.get_time_left() < 40:
+			spawn_enemies(4)
+		if $SuccessTimer.get_time_left() < 50:
+			spawn_enemies(5)
+		if $SuccessTimer.get_time_left() < 60:
+			spawn_enemies(6)
 
 
 func _on_circle_body_entered(body):
@@ -36,36 +65,60 @@ func _on_circle_body_entered(body):
 
 func _on_circle_body_exited(body):
 	if body == GameState.player:
-		$Time.hide()
+		if not wave_active:
+			$Time.hide()
 		$WaveTimer.stop()
 
 
 func _on_wave_timer_timeout():
-	$Time.hide()
 	wave_active = true
+	$SuccessTimer.wait_time = 20 + (10 * current_wave)
 	$SuccessTimer.start()
 	spawn_enemies(0)
 
 
 func _on_success_timer_timeout():
 	spawn_shop.emit(position)
+	reset_bools()
+	current_wave += 1
 
-#NOT WORKING
+
 func spawn_enemies(timerValue):
 	var skull = 0
 	var dog = 1
 	var skeleton = 2
-	print(timerValue)
+	print(current_wave)
 	if current_wave == 1:
 		if timerValue == 0:
 			for i in 5:
-				spawn_enemy_in_wave.emit(skull)
-		if timerValue == 1:
+				spawn_enemy_in_wave.emit(skull, position, 500)
+		if timerValue == 2 and first_wave == false:
+			print("skulls")
 			for i in 5:
-				spawn_enemy_in_wave.emit(skull)
-		if timerValue == 2:
+				spawn_enemy_in_wave.emit(skull, position, 500)
+			first_wave = true
+		if timerValue == 1 and second_wave == false:
+			print("dogs")
 			for i in 5:
-				spawn_enemy_in_wave.emit(dog)
-				
-	current_wave += 1
+				spawn_enemy_in_wave.emit(dog, position, 500)
+			second_wave = true
+	if current_wave == 2:
+		if timerValue == 0:
+			for i in 5:
+				spawn_enemy_in_wave.emit(skull, position, 500)
+		if timerValue == 3 and first_wave == false:
+			print("skulls")
+			for i in 5:
+				spawn_enemy_in_wave.emit(skull, position, 500)
+			first_wave = true
+		if timerValue == 2 and second_wave == false:
+			print("dogs")
+			for i in 5:
+				spawn_enemy_in_wave.emit(dog, position, 500)
+			second_wave = true
+		if timerValue == 3 and third_wave == false:
+			print("skeleton")
+			for i in 5:
+				spawn_enemy_in_wave.emit(skeleton, position, 500)
+			third_wave = true
 

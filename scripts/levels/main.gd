@@ -45,10 +45,10 @@ func game_over():
 	get_tree().call_group("bullet", "queue_free")
 	get_tree().call_group("pickup", "queue_free")
 	
-	var magic_circles = get_tree().get_nodes_in_group("magic_circle")
-	for magic_circle in magic_circles:
-		$ObjectiveMarker.delete_target(magic_circle)
-		magic_circle.queue_free()
+#	var magic_circles = get_tree().get_nodes_in_group("magic_circle")
+#	for magic_circle in magic_circles:
+#		$ObjectiveMarker.delete_target(magic_circle)
+#		magic_circle.queue_free()
 		
 	$HUD.game_over()
 

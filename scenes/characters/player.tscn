@@ -172,6 +172,7 @@ script = ExtResource("1_m0lvq")
 starting_bullet = ExtResource("2_02d8s")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
 z_index = 1
 rotation = 0.785398
 energy = 2.33
@@ -179,10 +180,10 @@ texture = ExtResource("22_unij0")
 
 [node name="PointLight2D2" type="PointLight2D" parent="."]
 z_index = 1
-rotation = 0.785398
-scale = Vector2(0.295, 0.295)
-energy = 2.33
-texture = ExtResource("22_unij0")
+scale = Vector2(0.049, 0.049)
+energy = 16.0
+shadow_enabled = true
+texture = ExtResource("3_ik71x")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.05, 0.05)

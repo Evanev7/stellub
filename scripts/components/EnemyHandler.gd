@@ -3,7 +3,7 @@ class_name EnemyHandler
 
 @onready var spawn_timer: Timer = $SpawnTimer
 
-@export var safe_range: float = 1000
+@export var safe_range: float = 800
 @export var default_spawn_time: float = 2.0
 
 @export var enemy_scene: PackedScene
@@ -16,13 +16,13 @@ class_name EnemyHandler
 
 func _on_spawn_timer_timeout():
 	var resourceID = randi() % enemy_resource_list.size()
-	spawn_enemy(resourceID)
+	spawn_enemy(resourceID, GameState.player.position, safe_range)
 	
-func spawn_enemy(resourceID):
+func spawn_enemy(resourceID, center, spawn_range):
 	var enemy = enemy_scene.instantiate()
 	enemy.resource = enemy_resource_list[resourceID]
-	var relative_spawn_position = Vector2(safe_range,0).rotated(randf_range(0, 2*PI))
-	enemy.position = GameState.player.position + relative_spawn_position
+	var relative_spawn_position = Vector2(spawn_range,0).rotated(randf_range(0, 2*PI))
+	enemy.position = center + relative_spawn_position
 	enemy.enemy_killed.connect(_on_enemy_killed)
 	ysorter.add_child(enemy) # Replace with function body.
 
