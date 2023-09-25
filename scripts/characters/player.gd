@@ -139,7 +139,6 @@ func gain_score(value):
 	else:
 		tween.tween_property($AnimatedSprite2D, "self_modulate:v", 1, 0.25).from(5)
 	
-	# TODO: At the moment, we can't level up past level 10 (without cheating).
 	if score >= level_threshold[current_level]:
 		level_up.emit(current_level)
 		if level_threshold[current_level] > 2000:
@@ -154,11 +153,19 @@ func gain_score(value):
 			level_threshold.append(level_threshold[current_level] + 30) 
 			
 func evolve():
-	current_animation = "level " + str(current_evolution)
-	if current_level < 2:
-		scale *= 1.3
+	current_animation = "level " + str(min(current_evolution, 6))
+	
+	var scaling_factors = {
+		1: 1.5,
+		2: 1.1,
+		3: 0.9,
+		6: 1.1
+	}
+	
+	if current_evolution in scaling_factors:
+		scale *= scaling_factors[current_evolution]
 	else:
-		scale *= 1.1
+		scale *= 1.08
 
 func stat_upgrade(stat):
 	if stat == "Piercing":
@@ -169,8 +176,12 @@ func stat_upgrade(stat):
 		self.speed *= 1.1
 	if stat == "Shot Speed":
 		bullet.shot_speed *= 1.1
-	if stat == "Fire Delay":
+	if stat == "Fire Rate":
 		bullet.fire_delay /= 1.1
+	if stat == "Piercing Frequency":
+		bullet.piercing_cooldown /= 1.1
+	if stat == "Shot Size":
+		bullet.scale *= 1.1
 
 func _on_i_frames_timeout():
 	$AnimatedSprite2D.modulate = Color(1,1,1,1)

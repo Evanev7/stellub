@@ -18,10 +18,13 @@ func _physics_process(_delta):
 	pass
 	##Debug ###############################
 	
-	if GameState.debug and Input.is_key_pressed(KEY_R): ## Increase score by 10
+	if GameState.debug and Input.is_action_pressed("debug_gain_score"): ## Increase score by 10
 		GameState.player.gain_score(10)
 		$HUD.show_score(GameState.player.score, GameState.player.level_threshold[GameState.player.current_level])
 	
+	if GameState.debug and Input.is_action_just_pressed("debug_evolve"): ## Increase evolution by 1
+		GameState.player.current_evolution += 1
+		GameState.player.evolve()
 	#######################################
 
 
@@ -45,11 +48,6 @@ func game_over():
 	get_tree().call_group("bullet", "queue_free")
 	get_tree().call_group("pickup", "queue_free")
 	
-#	var magic_circles = get_tree().get_nodes_in_group("magic_circle")
-#	for magic_circle in magic_circles:
-#		$ObjectiveMarker.delete_target(magic_circle)
-#		magic_circle.queue_free()
-		
 	$HUD.game_over()
 
 

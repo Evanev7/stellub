@@ -20,7 +20,6 @@ var damage
 # Set some initial rotations, and set different collision layer for player and
 # enemy bullets.
 func _ready():
-	$AnimatedSprite2D.play()
 	scale = data.size
 	if data.piercing:
 		piercing = data.piercing
@@ -40,6 +39,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
+	$AnimatedSprite2D.play()
 	var _direction = direction * data.shot_speed
 	var origin = origin_ref.get_ref()
 	if piercing_cooldown > 0:

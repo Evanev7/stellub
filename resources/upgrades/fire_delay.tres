@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_ifku4")
-NAME = "Fire Delay"
+NAME = "Fire Rate"
 COST = 1

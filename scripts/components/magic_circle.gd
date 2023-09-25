@@ -42,13 +42,10 @@ func _process(_delta):
 		$Time.text = str(int($SuccessTimer.get_time_left()))
 		if $SuccessTimer.get_time_left() < 10:
 			spawn_enemies(1)
-			print("11")
 		if $SuccessTimer.get_time_left() < 20:
 			spawn_enemies(2)
-			print("21")
 		if $SuccessTimer.get_time_left() < 30:
 			spawn_enemies(3)
-			print("31")
 		if $SuccessTimer.get_time_left() < 40:
 			spawn_enemies(4)
 		if $SuccessTimer.get_time_left() < 50:
@@ -80,25 +77,25 @@ func _on_wave_timer_timeout():
 func _on_success_timer_timeout():
 	spawn_shop.emit(position)
 	reset_bools()
+	wave_active = false
+	$Time.hide()
 	current_wave += 1
+	get_node("Circle/CollisionShape2D").disabled = true
 
 
 func spawn_enemies(timerValue):
 	var skull = 0
 	var dog = 1
 	var skeleton = 2
-	print(current_wave)
 	if current_wave == 1:
 		if timerValue == 0:
 			for i in 5:
 				spawn_enemy_in_wave.emit(skull, position, 500)
 		if timerValue == 2 and first_wave == false:
-			print("skulls")
 			for i in 5:
 				spawn_enemy_in_wave.emit(skull, position, 500)
 			first_wave = true
 		if timerValue == 1 and second_wave == false:
-			print("dogs")
 			for i in 5:
 				spawn_enemy_in_wave.emit(dog, position, 500)
 			second_wave = true
@@ -107,17 +104,14 @@ func spawn_enemies(timerValue):
 			for i in 5:
 				spawn_enemy_in_wave.emit(skull, position, 500)
 		if timerValue == 3 and first_wave == false:
-			print("skulls")
 			for i in 5:
 				spawn_enemy_in_wave.emit(skull, position, 500)
 			first_wave = true
 		if timerValue == 2 and second_wave == false:
-			print("dogs")
 			for i in 5:
 				spawn_enemy_in_wave.emit(dog, position, 500)
 			second_wave = true
-		if timerValue == 3 and third_wave == false:
-			print("skeleton")
+		if timerValue == 1 and third_wave == false:
 			for i in 5:
 				spawn_enemy_in_wave.emit(skeleton, position, 500)
 			third_wave = true

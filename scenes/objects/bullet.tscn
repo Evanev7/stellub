@@ -14,6 +14,7 @@ script = ExtResource("1_vy7io")
 scale = Vector2(0.03, 0.03)
 sprite_frames = ExtResource("2_p3jja")
 animation = &"simple"
+frame_progress = 0.259495
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(1.5, 1.5)

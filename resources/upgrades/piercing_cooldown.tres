@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ShopResource" load_steps=2 format=3 uid="uid://4jk8sjhmsuf"]
+
+[ext_resource type="Script" path="res://scripts/objects/shop_resource.gd" id="1_viodv"]
+
+[resource]
+script = ExtResource("1_viodv")
+NAME = "Piercing Frequency"
+COST = 1
