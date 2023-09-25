@@ -1,9 +1,11 @@
-[gd_scene load_steps=36 format=3 uid="uid://cnepphpba8e8u"]
+[gd_scene load_steps=38 format=3 uid="uid://cnepphpba8e8u"]
 
 [ext_resource type="Script" path="res://scripts/characters/player.gd" id="1_m0lvq"]
-[ext_resource type="Resource" uid="uid://ccpb4udi5owpj" path="res://resources/bullets/player/player_bullet.tres" id="2_02d8s"]
+[ext_resource type="Resource" uid="uid://mj43n3p12xvv" path="res://resources/bullets/player/melee_bullet_example.tres" id="2_1guwq"]
 [ext_resource type="Texture2D" uid="uid://kwiitmwbn82r" path="res://art/player/level 0/player_0_1.png" id="3_ik71x"]
+[ext_resource type="Resource" uid="uid://ccpb4udi5owpj" path="res://resources/bullets/player/player_bullet.tres" id="3_uow5j"]
 [ext_resource type="Texture2D" uid="uid://6fmtfmpb5kvf" path="res://art/player/level 0/player_0_2.png" id="4_p28ir"]
+[ext_resource type="Resource" uid="uid://d1bfxwthry8hx" path="res://resources/bullets/demon_skull_bullet.tres" id="4_s1d68"]
 [ext_resource type="Texture2D" uid="uid://q4hnsccll683" path="res://art/player/level 0/player_0_3.png" id="5_3s83j"]
 [ext_resource type="Texture2D" uid="uid://bjg8vyygbxi04" path="res://art/player/level 0/player_0_4.png" id="6_g2igm"]
 [ext_resource type="Texture2D" uid="uid://o0msfnfm4y7o" path="res://art/player/level 0/player_0_5.png" id="7_4eppl"]
@@ -169,7 +171,9 @@ y_sort_enabled = true
 motion_mode = 1
 platform_on_leave = 2
 script = ExtResource("1_m0lvq")
-starting_bullet = ExtResource("2_02d8s")
+starting_bullet = ExtResource("2_1guwq")
+starting_bullet_list = Array[Resource("res://scripts/objects/bullet_resource.gd")]([ExtResource("3_uow5j"), ExtResource("4_s1d68"), null])
+starting_passive_bullet_list = Array[Resource("res://scripts/objects/bullet_resource.gd")]([ExtResource("4_s1d68"), null, null])
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 visible = false
@@ -211,6 +215,7 @@ wait_time = 0.1
 one_shot = true
 
 [node name="ShotRecharge" type="TextureProgressBar" parent="."]
+visible = false
 offset_left = -30.0
 offset_top = 29.0
 offset_right = 30.0

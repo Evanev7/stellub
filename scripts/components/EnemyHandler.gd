@@ -22,7 +22,6 @@ func _on_phase_up_timer_timeout():
 	
 func _on_spawn_timer_timeout():
 	var resourceID = min(randi() % enemy_resource_list.size(), phase_limit)
-	print("spawned " + str(resourceID))
 	spawn_enemy(resourceID)
 	
 	

@@ -77,8 +77,6 @@ func _on_self_destruct_timeout():
 func _on_area_entered(area):
 	var area_owner = area.owner
 	if area_owner not in _hit_targets:
-		print(area_owner.name, " aka ", area, " aka ", area.owner)
-		
 		#First hit on a new enemy should always count.
 		successful_hit(area_owner)
 		piercing_cooldown = data.piercing_cooldown

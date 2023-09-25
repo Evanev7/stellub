@@ -8,6 +8,8 @@ signal level_up(level)
 @export var STARTING_SPEED = 300.0
 @export var STARTING_HP_MAX: int = 100
 @export var starting_bullet: BulletResource
+@export var starting_bullet_list: Array[BulletResource]
+@export var starting_passive_bullet_list: Array[BulletResource]
 
 @onready var default_scale = self.scale
 
@@ -20,40 +22,47 @@ var hp_max
 var speed
 var hp
 var score
-var firing
 var walking
 
+
 var invuln: bool = false
-var _fire_timer: int = 0
 var _h_flipped: bool = false
 var current_animation
 
-var bullet
+var bullets
+var passive_bullets
+var firing_one
+var firing_two
+var firing_three
+var fire_timer_one: int = 0
+var fire_timer_two: int = 0
+var fire_timer_three: int = 0
+var fire_timer_passive_one: int = 0
+var fire_timer_passive_two: int = 0
+var fire_timer_passive_three: int = 0
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GameState.player = self
-	# Hide the player when we start the game
 	hide()
 	set_physics_process(false)
-	bullet = starting_bullet.duplicate(true)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
+	handle_passive_weapons()
+	
 	velocity.x = Input.get_axis("move_left", "move_right")
 	velocity.y = Input.get_axis("move_up", "move_down")
+	
+	if Input.is_key_pressed(KEY_T):
+		bullets[2] = starting_bullet
 	
 	# Handle user input
 	if Input.is_action_just_pressed("walk"):
 		walking = true
 	if Input.is_action_just_released("walk"):
 		walking = false
-		
-	if Input.is_action_just_pressed("primary_fire"):
-		firing = true
-	if Input.is_action_just_released("primary_fire"):
-		firing = false
 	
 	if velocity.length() > 0:
 		if walking:
@@ -76,16 +85,77 @@ func _physics_process(_delta):
 	else:
 		$AnimatedSprite2D.play(current_animation)
 	
-	# If we aren't ready to fire yet - just increment the fire_timer
-	if _fire_timer < bullet.fire_delay:
-		_fire_timer += 1
-		$ShotRecharge.value = _fire_timer
+	if Input.is_action_just_pressed("primary_fire"):
+		firing_one = true
+	if Input.is_action_just_released("primary_fire"):
+		firing_one = false
+		
+	if Input.is_action_just_pressed("secondary_fire"):
+		firing_two = true
+	if Input.is_action_just_released("secondary_fire"):
+		firing_two = false
+		
+	if Input.is_action_just_pressed("tertiary_fire"):
+		firing_three = true
+	if Input.is_action_just_released("tertiary_fire"):
+		firing_three = false
+
 	
-	if firing and _fire_timer >= bullet.fire_delay:
+	# If we aren't ready to fire yet - just increment the fire_timer
+	if bullets[0] and fire_timer_one < bullets[0].fire_delay:
+		fire_timer_one += 1
+		#$ShotRecharge.value = fire_timer_one
+		
+	if bullets[1] and fire_timer_two < bullets[1].fire_delay:
+		fire_timer_two += 1
+		#$ShotRecharge.value = fire_timer_two
+		
+	if bullets[2] and fire_timer_three < bullets[2].fire_delay:
+		fire_timer_three += 1
+		#$ShotRecharge.value = fire_timer_three
+	
+	if bullets[0] and firing_one and fire_timer_one >= bullets[0].fire_delay:
 		var fire_from = FireFrom.new()
 		fire_from.toward(position, get_global_mouse_position())
-		GameState.fire_bullet.emit(self, bullet, fire_from)
-		_fire_timer -= bullet.fire_delay
+		GameState.fire_bullet.emit(self, bullets[0], fire_from)
+		fire_timer_one -= bullets[0].fire_delay
+		
+	if bullets[1] and firing_two and fire_timer_two >= bullets[1].fire_delay:
+		var fire_from = FireFrom.new()
+		fire_from.toward(position, get_global_mouse_position())
+		GameState.fire_bullet.emit(self, bullets[1], fire_from)
+		fire_timer_two -= bullets[1].fire_delay
+		
+	if bullets[2] and firing_three and fire_timer_three >= bullets[2].fire_delay:
+		var fire_from = FireFrom.new()
+		fire_from.toward(position, get_global_mouse_position())
+		GameState.fire_bullet.emit(self, bullets[2], fire_from)
+		fire_timer_three -= bullets[2].fire_delay
+
+func handle_passive_weapons():
+	if passive_bullets[0]:
+		fire_timer_passive_one += 1
+		if fire_timer_passive_one > passive_bullets[0].fire_delay:
+			var fire_from = FireFrom.new()
+			fire_from.toward(position, get_global_mouse_position())
+			GameState.fire_bullet.emit(self, passive_bullets[0], fire_from)
+			fire_timer_passive_one -= passive_bullets[0].fire_delay
+	
+	if passive_bullets[1]:
+		fire_timer_passive_one += 1
+		if fire_timer_passive_one > passive_bullets[1].fire_delay:
+			var fire_from = FireFrom.new()
+			fire_from.toward(position, get_global_mouse_position())
+			GameState.fire_bullet.emit(self, passive_bullets[1], fire_from)
+			fire_timer_passive_one -= passive_bullets[1].fire_delay
+	
+	if passive_bullets[2]:
+		fire_timer_passive_one += 1
+		if fire_timer_passive_one > passive_bullets[2].fire_delay:
+			var fire_from = FireFrom.new()
+			fire_from.toward(position, get_global_mouse_position())
+			GameState.fire_bullet.emit(self, passive_bullets[2], fire_from)
+			fire_timer_passive_one -= passive_bullets[2].fire_delay
 
 # When the game starts, set the default values and show the player.
 func start():
@@ -107,13 +177,22 @@ func set_default_stats():
 	current_animation = "level 0"
 	current_evolution = 0
 	souls = 0
-	$ShotRecharge.max_value = bullet.fire_delay
+	#$ShotRecharge.max_value = bullet.fire_delay
 	scale = default_scale
 	rotation = 0
 	
 	## Weapon Stats
-	bullet = starting_bullet.duplicate(true)
-
+	bullets = starting_bullet_list.duplicate(true)
+	passive_bullets = starting_passive_bullet_list.duplicate(true)
+	
+	
+func add_bullet_type(bullet_type):
+	if bullet_type.control == "right":
+		bullets[1] = bullet_type
+	if bullet_type.control == "space":
+		bullets[2] = bullet_type
+	
+	
 # Called when the player gets hurt. Body can be either a bullet OR an enemy.
 func hurt(body):
 	if not invuln:
@@ -168,20 +247,22 @@ func evolve():
 		scale *= 1.08
 
 func stat_upgrade(stat):
-	if stat == "Piercing":
-		bullet.piercing += 1
-	if stat == "Multi Shot":
-		bullet.multishot += 1
-	if stat == "Movement Speed":
-		self.speed *= 1.1
-	if stat == "Shot Speed":
-		bullet.shot_speed *= 1.1
-	if stat == "Fire Rate":
-		bullet.fire_delay /= 1.1
-	if stat == "Piercing Frequency":
-		bullet.piercing_cooldown /= 1.1
-	if stat == "Shot Size":
-		bullet.scale *= 1.1
+	for bullet in bullets:
+		if bullet:
+			if stat == "Piercing":
+				bullet.piercing += 1
+			if stat == "Multi Shot":
+				bullet.multishot += 1
+			if stat == "Movement Speed":
+				self.speed *= 1.1
+			if stat == "Shot Speed":
+				bullet.shot_speed *= 1.1
+			if stat == "Fire Rate":
+				bullet.fire_delay /= 1.1
+			if stat == "Piercing Frequency":
+				bullet.piercing_cooldown /= 1.1
+			if stat == "Shot Size":
+				bullet.size *= 1.1
 
 func _on_i_frames_timeout():
 	$AnimatedSprite2D.modulate = Color(1,1,1,1)
