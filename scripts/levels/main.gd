@@ -15,6 +15,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
+	randomize()
 	pass
 	##Debug ###############################
 	
@@ -25,6 +26,9 @@ func _physics_process(_delta):
 	if GameState.debug and Input.is_action_just_pressed("debug_evolve"): ## Increase evolution by 1
 		GameState.player.current_evolution += 1
 		GameState.player.evolve()
+	
+	if GameState.debug and Input.is_action_just_pressed("debug_spawn_enemy"):
+		$LogicComponents/EnemyHandler.spawn_enemy(randi() % 6)
 	#######################################
 
 

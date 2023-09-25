@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dfe6bc7mdpexj"]
+[gd_scene load_steps=21 format=3 uid="uid://dfe6bc7mdpexj"]
 
 [ext_resource type="Script" path="res://scripts/levels/main.gd" id="1_u8uym"]
 [ext_resource type="PackedScene" uid="uid://yaht8i4bkv2u" path="res://scenes/UI/HUD.tscn" id="3_8qfpp"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://cnrpegq0voiht" path="res://scenes/components/enemy_handler.tscn" id="13_d7lq7"]
 [ext_resource type="PackedScene" uid="uid://bxmk1htarl4v5" path="res://scenes/components/shop_handler.tscn" id="19_4xjky"]
 [ext_resource type="PackedScene" uid="uid://d05swenhbbosd" path="res://scenes/UI/objective_marker.tscn" id="20_tncsu"]
+[ext_resource type="PackedScene" uid="uid://cp7lho542gmeu" path="res://scenes/objects/shop.tscn" id="20_vbjc5"]
 [ext_resource type="PackedScene" uid="uid://bdsxfxpria0gp" path="res://scenes/components/magic_circle.tscn" id="21_4yjc3"]
 
 [node name="Main" type="Node" node_paths=PackedStringArray("bullet_handler", "enemy_handler")]
@@ -43,6 +44,9 @@ position = Vector2(640, 360)
 
 [node name="Marker2D" type="Marker2D" parent="YSort"]
 position = Vector2(576, 324)
+
+[node name="Shop" parent="YSort" instance=ExtResource("20_vbjc5")]
+position = Vector2(1162, 552)
 
 [node name="HUD" parent="." instance=ExtResource("3_8qfpp")]
 
@@ -77,5 +81,6 @@ upgrade_hud = NodePath("../../UpgradeHUD")
 [connection signal="level_up" from="YSort/Player" to="." method="_on_player_level_up"]
 [connection signal="player_death" from="YSort/Player" to="." method="_on_player_player_death"]
 [connection signal="taken_damage" from="YSort/Player" to="." method="_on_player_taken_damage"]
+[connection signal="shop_entered" from="YSort/Shop" to="LogicComponents/ShopHandler" method="_on_shop_entered"]
 [connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
 [connection signal="leave" from="UpgradeHUD" to="." method="_on_upgrade_hud_leave"]

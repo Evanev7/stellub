@@ -14,7 +14,7 @@ class_name BulletResource
 @export var shot_spread: float =  PI/12
 @export var angular_velocity: float = 0
 @export var piercing: int = 1
-@export var piercing_cooldown: int = 30
+@export var piercing_cooldown: int = 0
 @export var deactivation_range: int = 500
 
 ## 2*PI for a full circle

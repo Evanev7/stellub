@@ -23,10 +23,10 @@ func _on_phase_up_timer_timeout():
 func _on_spawn_timer_timeout():
 	var resourceID = min(randi() % enemy_resource_list.size(), phase_limit)
 	print("spawned " + str(resourceID))
-	spawn_enemy(resourceID, GameState.player.position, safe_range)
+	spawn_enemy(resourceID)
 	
 	
-func spawn_enemy(resourceID, center, spawn_range):
+func spawn_enemy(resourceID, center = GameState.player.position, spawn_range = safe_range):
 	var enemy = enemy_scene.instantiate()
 	enemy.resource = enemy_resource_list[resourceID]
 	var relative_spawn_position = Vector2(spawn_range,0).rotated(randf_range(0, 2*PI))
