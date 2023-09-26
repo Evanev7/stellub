@@ -5,7 +5,7 @@ signal enemy_killed(enemy)
 
 @export var resource: EnemyResource
 
-@onready var attack: Attack = $Attack
+@onready var attack: EnemyAttack = $Attack
 @onready var sprite = $AnimatedSprite2D
 @onready var health: int = resource.MAX_HP
 @onready var damage: int = resource.DAMAGE
@@ -93,7 +93,7 @@ func hurt(area):
 	tween.tween_property(self, "global_scale", default_scale, 0.1)
 
 
-# Called when the enemy encounters something that hurts it.
+# Called when the enemy encounters something that it hurts.
 func hit(area):
 	if area.owner == GameState.player:
 		area.owner.hurt(self)

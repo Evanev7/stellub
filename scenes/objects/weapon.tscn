@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cgv8mmrupk5ag"]
+
+[ext_resource type="Texture2D" uid="uid://8sqypof0cjjv" path="res://art/objects/pillar.png" id="1_5ktuh"]
+[ext_resource type="Script" path="res://scripts/objects/weapon.gd" id="1_qxh8w"]
+[ext_resource type="Resource" uid="uid://mj43n3p12xvv" path="res://resources/bullets/player/melee_bullet_example.tres" id="2_ycxpi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ef0ui"]
+size = Vector2(66, 22)
+
+[node name="Weapon" type="Area2D"]
+script = ExtResource("1_qxh8w")
+weapon = ExtResource("2_ycxpi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 1, 1, 1)
+rotation = 1.5708
+scale = Vector2(0.101, 0.1)
+texture = ExtResource("1_5ktuh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ef0ui")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

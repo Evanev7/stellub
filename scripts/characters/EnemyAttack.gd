@@ -1,5 +1,5 @@
 extends Node
-class_name Attack
+class_name EnemyAttack
 
 @export var bullet: BulletResource
 

@@ -1,0 +1,11 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2tef800ecm8u"]
+
+[ext_resource type="Script" path="res://scripts/components/weapon_handler.gd" id="1_xrpi0"]
+[ext_resource type="PackedScene" uid="uid://cgv8mmrupk5ag" path="res://scenes/objects/weapon.tscn" id="2_rkk1t"]
+[ext_resource type="Resource" uid="uid://mj43n3p12xvv" path="res://resources/bullets/player/melee_bullet_example.tres" id="3_etos8"]
+[ext_resource type="Resource" uid="uid://d1bfxwthry8hx" path="res://resources/bullets/demon_skull_bullet.tres" id="4_d4evi"]
+
+[node name="WeaponHandler" type="Node"]
+script = ExtResource("1_xrpi0")
+weapon_scene = ExtResource("2_rkk1t")
+weapon_resource_list = Array[Resource("res://scripts/objects/bullet_resource.gd")]([ExtResource("3_etos8"), ExtResource("4_d4evi")])

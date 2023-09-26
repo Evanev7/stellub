@@ -4,6 +4,9 @@ class_name BulletResource
 
 @export var animation: SpriteFrames
 
+## right or space
+@export var control: String
+
 @export var start_range: int = 0
 @export var lifetime: float = 20.0
 @export var bullet_range: int = 1000

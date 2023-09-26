@@ -11,7 +11,7 @@ func spawn_pickup(pos):
 	pickup.credit_player.connect(_on_pickup_credit_player)
 	pickup.position = pos
 	ysorter.add_child(pickup)
-
+	
 func _on_pickup_credit_player(value):
 	var player = GameState.player
 	player.gain_score(value)

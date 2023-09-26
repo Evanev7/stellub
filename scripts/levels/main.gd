@@ -12,6 +12,7 @@ extends Node
 func _ready():
 	$LogicComponents/ShopHandler.spawn_magic_circles()
 	$LogicComponents/TerrainGenerator.generate()
+	$LogicComponents/WeaponHandler.spawn_weapon(Vector2(10, 10))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):

@@ -7,11 +7,14 @@ signal level_up(level)
 ## Player Stats
 @export var STARTING_SPEED = 300.0
 @export var STARTING_HP_MAX: int = 100
-@export var starting_bullet: BulletResource
+
 @export var starting_bullet_list: Array[BulletResource]
 @export var starting_passive_bullet_list: Array[BulletResource]
 
 @onready var default_scale = self.scale
+@onready var passive_attack_1: PlayerAttack = $Passive_Attack_1
+@onready var passive_attack_2: PlayerAttack = $Passive_Attack_2
+@onready var passive_attack_3: PlayerAttack = $Passive_Attack_3
 
 var level_threshold = [10, 20, 30, 50]
 var current_level
@@ -50,13 +53,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
-	handle_passive_weapons()
-	
 	velocity.x = Input.get_axis("move_left", "move_right")
 	velocity.y = Input.get_axis("move_up", "move_down")
 	
-	if Input.is_key_pressed(KEY_T):
-		bullets[2] = starting_bullet
+#	if Input.is_key_pressed(KEY_T):
+#		bullets[2] = starting_bullet
 	
 	# Handle user input
 	if Input.is_action_just_pressed("walk"):
@@ -132,30 +133,6 @@ func _physics_process(_delta):
 		GameState.fire_bullet.emit(self, bullets[2], fire_from)
 		fire_timer_three -= bullets[2].fire_delay
 
-func handle_passive_weapons():
-	if passive_bullets[0]:
-		fire_timer_passive_one += 1
-		if fire_timer_passive_one > passive_bullets[0].fire_delay:
-			var fire_from = FireFrom.new()
-			fire_from.toward(position, get_global_mouse_position())
-			GameState.fire_bullet.emit(self, passive_bullets[0], fire_from)
-			fire_timer_passive_one -= passive_bullets[0].fire_delay
-	
-	if passive_bullets[1]:
-		fire_timer_passive_one += 1
-		if fire_timer_passive_one > passive_bullets[1].fire_delay:
-			var fire_from = FireFrom.new()
-			fire_from.toward(position, get_global_mouse_position())
-			GameState.fire_bullet.emit(self, passive_bullets[1], fire_from)
-			fire_timer_passive_one -= passive_bullets[1].fire_delay
-	
-	if passive_bullets[2]:
-		fire_timer_passive_one += 1
-		if fire_timer_passive_one > passive_bullets[2].fire_delay:
-			var fire_from = FireFrom.new()
-			fire_from.toward(position, get_global_mouse_position())
-			GameState.fire_bullet.emit(self, passive_bullets[2], fire_from)
-			fire_timer_passive_one -= passive_bullets[2].fire_delay
 
 # When the game starts, set the default values and show the player.
 func start():
@@ -184,14 +161,18 @@ func set_default_stats():
 	## Weapon Stats
 	bullets = starting_bullet_list.duplicate(true)
 	passive_bullets = starting_passive_bullet_list.duplicate(true)
+	passive_attack_1.bullet = passive_bullets[0]
+	passive_attack_2.bullet = passive_bullets[1]
+	passive_attack_3.bullet = passive_bullets[2]
 	
 	
-func add_bullet_type(bullet_type):
-	if bullet_type.control == "right":
-		bullets[1] = bullet_type
-	if bullet_type.control == "space":
-		bullets[2] = bullet_type
-	
+func add_weapon(weapon):
+	if weapon.control == "right" and not bullets[1]:
+		bullets[1] = weapon
+	elif weapon.control == "space" and not bullets[2]:
+		bullets[2] = weapon
+	else:
+		print("filled")
 	
 # Called when the player gets hurt. Body can be either a bullet OR an enemy.
 func hurt(body):

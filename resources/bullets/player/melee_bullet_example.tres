@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_4p8so")
 animation = ExtResource("1_6pbky")
+control = "right"
 start_range = 100
 lifetime = 0.05
 bullet_range = 1000
@@ -13,9 +14,9 @@ damage = 1
 fire_delay = 20
 multishot = 1
 size = Vector2(7, 1.5)
-shot_spread = 0.261799
+shot_spread = 6.283
 angular_velocity = 0.0
-piercing = 999
+piercing = 10
 piercing_cooldown = 0
 deactivation_range = 500
 shot_inaccuracy = 0.0981748
