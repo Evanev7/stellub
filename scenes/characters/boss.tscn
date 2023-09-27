@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://0osqqfy0epsq"]
+
+[ext_resource type="Texture2D" uid="uid://d4hct8jpb8rpj" path="res://art/player/level 6/player_6_1.png" id="1_ebk6h"]
+[ext_resource type="Script" path="res://scripts/characters/boss.gd" id="1_vq2wp"]
+[ext_resource type="Script" path="res://scripts/characters/EnemyAttack.gd" id="3_y3sde"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5slt2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ebk6h")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bpme4"]
+radius = 98.0306
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ncnn4"]
+radius = 232.002
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ji61x"]
+radius = 232.138
+
+[node name="boss" type="CharacterBody2D"]
+script = ExtResource("1_vq2wp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(2, -1.5)
+scale = Vector2(0.149221, 0.132671)
+sprite_frames = SubResource("SpriteFrames_5slt2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bpme4")
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_ncnn4")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_ji61x")
+
+[node name="Attack_1" type="Node" parent="."]
+script = ExtResource("3_y3sde")
+
+[node name="Attack_2" type="Node" parent="."]
+script = ExtResource("3_y3sde")
+
+[node name="Attack_3" type="Node" parent="."]
+script = ExtResource("3_y3sde")
+
+[node name="Attack_4" type="Node" parent="."]
+script = ExtResource("3_y3sde")

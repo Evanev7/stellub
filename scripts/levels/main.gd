@@ -30,6 +30,9 @@ func _physics_process(_delta):
 	
 	if GameState.debug and Input.is_action_just_pressed("debug_spawn_enemy"):
 		$LogicComponents/EnemyHandler.spawn_enemy(randi() % 6)
+		
+	if GameState.debug and Input.is_action_just_pressed("debug_spawn_boss"):
+		$LogicComponents/BossHandler.spawn_boss()
 	#######################################
 
 
@@ -38,6 +41,7 @@ func start_game():
 	enemy_handler.start_spawning()
 	GameState.player.start()
 	GameState.player.position = $YSort/Marker2D.position
+	#$LogicComponents/BossHandler.spawn_boss()
 	$HUD.show_message("All Hell Breaks Loose!")
 	$HUD.show_health(GameState.player.hp)
 	$HUD.show_score(GameState.player.score, GameState.player.level_threshold[GameState.player.current_level])

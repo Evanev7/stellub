@@ -34,6 +34,7 @@ var current_animation
 
 var bullets
 var passive_bullets
+var all_bullets
 var firing_one
 var firing_two
 var firing_three
@@ -165,6 +166,15 @@ func set_default_stats():
 	passive_attack_2.bullet = passive_bullets[1]
 	passive_attack_3.bullet = passive_bullets[2]
 	
+	all_bullets = []
+	for bullet_list in [bullets, passive_bullets]:
+		for i in range(bullet_list.size()):
+			var bullet = bullet_list[i]
+			if bullet:
+				all_bullets.append(bullet)
+	
+	print("player")
+	print(all_bullets)
 	
 func add_weapon(weapon):
 	if weapon.control == "right" and not bullets[1]:
@@ -228,7 +238,7 @@ func evolve():
 		scale *= 1.08
 
 func stat_upgrade(stat):
-	for bullet in bullets:
+	for bullet in all_bullets:
 		if bullet:
 			if stat == "Piercing":
 				bullet.piercing += 1
