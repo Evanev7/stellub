@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_ntmv1")
 animation = ExtResource("1_apf0g")
+name = ""
 start_range = 0
 lifetime = 20.0
 bullet_range = 1000

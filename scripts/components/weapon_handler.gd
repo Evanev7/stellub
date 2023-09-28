@@ -14,5 +14,4 @@ func spawn_weapon(pos):
 	ysorter.add_child(weapon)
 	
 func _on_weapon_pickup(weapon):
-	var player = GameState.player
-	player.add_weapon(weapon)
+	GameState.player.add_attack_from_resource(weapon)

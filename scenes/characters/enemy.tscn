@@ -4,7 +4,7 @@
 [ext_resource type="SpriteFrames" uid="uid://bpernxx6xbtyn" path="res://resources/enemy/demon_skeleton_spriteframes.tres" id="2_60lhk"]
 [ext_resource type="Shape2D" uid="uid://0e7jt1gqqywj" path="res://resources/hitboxes/demon_skeleton_collisionbox.tres" id="3_vgymb"]
 [ext_resource type="Shape2D" uid="uid://q26ka3qri44y" path="res://resources/hitboxes/demon_skeleton_hitbox.tres" id="4_yc22m"]
-[ext_resource type="Script" path="res://scripts/characters/EnemyAttack.gd" id="5_fujkv"]
+[ext_resource type="Script" path="res://scripts/characters/AttackHandler.gd" id="6_hcyh0"]
 
 [node name="Enemy" type="CharacterBody2D"]
 scale = Vector2(0.7, 0.7)
@@ -35,7 +35,7 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = ExtResource("4_yc22m")
 
-[node name="Attack" type="Node" parent="."]
-script = ExtResource("5_fujkv")
+[node name="AttackHandler" type="Node2D" parent="."]
+script = ExtResource("6_hcyh0")
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

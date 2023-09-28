@@ -22,7 +22,8 @@ var _hit_targets: Array
 # enemy bullets.
 func _ready():
 	add_to_group("bullet")
-	if origin_ref.get_ref() == GameState.player:
+	var origin: Node2D = origin_ref.get_ref()
+	if origin == GameState.player:
 		set_collision_mask(4)
 	scale = data.size
 	piercing = data.piercing
@@ -31,10 +32,11 @@ func _ready():
 	$SelfDestruct.wait_time = data.lifetime
 	$SelfDestruct.start()
 	rotation = direction.angle()
-	var origin = origin_ref.get_ref()
 	origin_position = origin.position
 	origin_velocity = origin.velocity
 	$AnimatedSprite2D.play()
+	
+	disabled = true
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -90,13 +92,12 @@ func successful_hit(target):
 	if target.has_method("hurt"):
 		target.hurt(self)
 	
-	#Spawn child bullets, currently aimed toward the player.
+	#Spawn child bullets, currently continuing in the bullets direction.
 	if spawned_bullet:
-			var fire_from = FireFrom.new()
-			fire_from.toward(position, GameState.player.position)
-			if origin_ref.get_ref() == GameState.player:
-				fire_from.direction *= -1
-			GameState.fire_bullet.emit(origin_ref, spawned_bullet, fire_from)
+		var fire_from = FireFrom.new()
+		fire_from.position = position
+		fire_from.direction = direction
+		GameState.fire_bullet.emit(origin_ref, spawned_bullet, fire_from)
 	
 	#Handle bullet destruction.
 	piercing -= 1

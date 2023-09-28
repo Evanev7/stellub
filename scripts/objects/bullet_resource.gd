@@ -4,13 +4,12 @@ class_name BulletResource
 
 @export var animation: SpriteFrames
 
-## right or space
-@export var control: String
+@export var name: String
 
 @export var start_range: int = 0
 @export var lifetime: float = 20.0
 @export var bullet_range: int = 1000
-@export var damage: int = 1
+@export var damage: float = 1
 @export var fire_delay: int = 15
 @export var multishot: int = 1
 @export var size: Vector2 = Vector2(1, 1)
@@ -18,6 +17,7 @@ class_name BulletResource
 @export var angular_velocity: float = 0
 @export var piercing: int = 1
 @export var piercing_cooldown: int = 0
+@export var activation_delay: float = 0
 @export var deactivation_range: int = 500
 
 ## 2*PI for a full circle

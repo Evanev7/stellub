@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://cnepphpba8e8u"]
+[gd_scene load_steps=38 format=3 uid="uid://cnepphpba8e8u"]
 
 [ext_resource type="Script" path="res://scripts/characters/player.gd" id="1_m0lvq"]
 [ext_resource type="Texture2D" uid="uid://kwiitmwbn82r" path="res://art/player/level 0/player_0_1.png" id="3_ik71x"]
@@ -32,13 +32,8 @@
 [ext_resource type="Texture2D" uid="uid://b4drtmyr37f11" path="res://art/player/level 5/player_5_1.png" id="31_v4gbo"]
 [ext_resource type="Texture2D" uid="uid://d4hct8jpb8rpj" path="res://art/player/level 6/player_6_1.png" id="32_jmb7j"]
 [ext_resource type="PackedScene" uid="uid://u1hhvearq4oy" path="res://scenes/components/attack_handler.tscn" id="32_ju527"]
-[ext_resource type="PackedScene" uid="uid://be4i0yo3jsk42" path="res://scenes/components/attack.tscn" id="33_cq3a6"]
-[ext_resource type="PackedScene" uid="uid://bpkxt2uvnf57n" path="res://upgrades/triple_shot.tscn" id="34_v0qrd"]
-[ext_resource type="Resource" uid="uid://ccpb4udi5owpj" path="res://resources/bullets/player/player_bullet.tres" id="34_wf4sv"]
-[ext_resource type="PackedScene" uid="uid://c33wxtyp6pcj5" path="res://upgrades/split_shot.tscn" id="36_cmyqn"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_odef0"]
-size = Vector2(50, 50)
+[ext_resource type="Script" path="res://scripts/characters/Attack.gd" id="33_3ut0d"]
+[ext_resource type="Script" path="res://scripts/components/UpgradeBase.gd" id="34_jui4i"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_whc3w"]
 animations = [{
@@ -165,6 +160,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_odef0"]
+size = Vector2(50, 50)
+
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2e4j2"]
 
 [node name="Player" type="CharacterBody2D"]
@@ -173,23 +171,6 @@ y_sort_enabled = true
 motion_mode = 1
 platform_on_leave = 2
 script = ExtResource("1_m0lvq")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(0.3, 0.3)
-shape = SubResource("RectangleShape2D_odef0")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.05, 0.05)
-sprite_frames = SubResource("SpriteFrames_whc3w")
-animation = &"level 0"
-
-[node name="Hurtbox" type="Area2D" parent="."]
-collision_layer = 26
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-scale = Vector2(0.3, 0.3)
-shape = SubResource("RectangleShape2D_odef0")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 visible = false
@@ -205,8 +186,25 @@ energy = 16.0
 shadow_enabled = true
 texture = ExtResource("3_ik71x")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_whc3w")
+animation = &"level 0"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.3, 0.3)
+shape = SubResource("RectangleShape2D_odef0")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 enabled = false
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 26
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+scale = Vector2(0.3, 0.3)
+shape = SubResource("RectangleShape2D_odef0")
 
 [node name="IFrames" type="Timer" parent="."]
 process_callback = 0
@@ -226,15 +224,18 @@ nine_patch_stretch = true
 texture_progress = SubResource("PlaceholderTexture2D_2e4j2")
 
 [node name="AttackHandler" parent="." instance=ExtResource("32_ju527")]
-target_mode = 1
 
-[node name="Attack" parent="AttackHandler" instance=ExtResource("33_cq3a6")]
-control_mode = 1
-initial_bullet = ExtResource("34_wf4sv")
+[node name="Attack1" type="Node" parent="AttackHandler"]
+script = ExtResource("33_3ut0d")
 
-[node name="Split Shot" parent="AttackHandler/Attack" instance=ExtResource("36_cmyqn")]
+[node name="Upgrade1" type="Node" parent="AttackHandler/Attack1"]
+script = ExtResource("34_jui4i")
 
-[node name="Triple Shot" parent="AttackHandler/Attack" instance=ExtResource("34_v0qrd")]
+[node name="Upgrade2" type="Node" parent="AttackHandler/Attack1"]
+
+[node name="Attack2" type="Node" parent="AttackHandler"]
+
+[node name="Upgrade1" type="Node" parent="AttackHandler/Attack2"]
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="timeout" from="IFrames" to="." method="_on_i_frames_timeout"]
