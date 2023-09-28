@@ -36,7 +36,10 @@ func _ready():
 	origin_velocity = origin.velocity
 	$AnimatedSprite2D.play()
 	
-	disabled = true
+	if data.activation_delay > 0:
+		$CollisionShape2D.disabled = true
+		$Activator.wait_time = data.activation_delay
+		$Activator.start()
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -108,3 +111,7 @@ func successful_hit(target):
 func _on_body_entered(body):
 	if body.is_in_group("terrain"):
 		queue_free()
+
+
+func _on_activator_timeout():
+	$CollisionShape2D.disabled = false
