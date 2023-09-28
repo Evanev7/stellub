@@ -3,6 +3,7 @@ extends CharacterBody2D
 signal taken_damage(hp)
 signal player_death
 signal level_up(level)
+signal send_loadout(loadout)
 
 ## Player Stats
 @export var STARTING_SPEED = 300.0
@@ -106,22 +107,20 @@ func set_default_stats():
 	
 func add_attack_from_resource(bullet: BulletResource):
 	$AttackHandler.add_attack_from_resource(bullet)
+	
 	## Weapon Stats
-	bullets = starting_bullet_list.duplicate(true)
-	passive_bullets = starting_passive_bullet_list.duplicate(true)
-	passive_attack_1.bullet = passive_bullets[0]
-	passive_attack_2.bullet = passive_bullets[1]
-	passive_attack_3.bullet = passive_bullets[2]
-	
-	all_bullets = []
-	for bullet_list in [bullets, passive_bullets]:
-		for i in range(bullet_list.size()):
-			var bullet = bullet_list[i]
-			if bullet:
-				all_bullets.append(bullet)
-	
-	print("player")
-	print(all_bullets)
+#	bullets = starting_bullet_list.duplicate(true)
+#	passive_bullets = starting_passive_bullet_list.duplicate(true)
+#	passive_attack_1.bullet = passive_bullets[0]
+#	passive_attack_2.bullet = passive_bullets[1]
+#	passive_attack_3.bullet = passive_bullets[2]
+#
+#	all_bullets = []
+#	for bullet_list in [bullets, passive_bullets]:
+#		for i in range(bullet_list.size()):
+#			var bullet = bullet_list[i]
+#			if bullet:
+#				all_bullets.append(bullet)
 	
 func add_weapon(weapon):
 	if weapon.control == "right" and not bullets[1]:
@@ -206,3 +205,6 @@ func stat_upgrade(stat):
 func _on_i_frames_timeout():
 	$AnimatedSprite2D.modulate = Color(1,1,1,1)
 	invuln = false
+	
+func send_loadout_to_boss():
+	send_loadout.emit($AttackHandler)

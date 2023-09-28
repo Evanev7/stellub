@@ -38,6 +38,9 @@ func get_attack_direction() -> FireFrom:
 	
 	return attack_direction
 
+func passive_all_attacks():
+	for attack in get_children():
+		attack.control_mode = Attack.CONTROL_MODE.PASSIVE
 
 func stop() -> void:
 	for attack in get_children():
