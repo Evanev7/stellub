@@ -16,7 +16,5 @@ class_name BossHandler
 func _on_player_send_loadout(loadout):
 	var boss = boss_scene.instantiate()
 	var boss_loadout = loadout.duplicate()
-	boss_loadout.target_mode = AttackHandler.TARGET_MODE.PLAYER
-	boss_loadout.passive_all_attacks()
-	boss.add_child(boss_loadout)
+	boss.get_node("AttackHandler").add_child(boss_loadout)
 	ysorter.add_child(boss)

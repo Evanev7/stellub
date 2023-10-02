@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://0osqqfy0epsq"]
+[gd_scene load_steps=8 format=3 uid="uid://d23ddhgery8pq"]
 
 [ext_resource type="Texture2D" uid="uid://d4hct8jpb8rpj" path="res://art/player/level 6/player_6_1.png" id="1_ebk6h"]
 [ext_resource type="Script" path="res://scripts/characters/boss.gd" id="1_vq2wp"]
+[ext_resource type="Script" path="res://scripts/characters/AttackHandler.gd" id="3_6ii6e"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5slt2"]
 animations = [{
@@ -43,3 +44,6 @@ shape = SubResource("CircleShape2D_ncnn4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("CircleShape2D_ji61x")
+
+[node name="AttackHandler" type="Node2D" parent="."]
+script = ExtResource("3_6ii6e")

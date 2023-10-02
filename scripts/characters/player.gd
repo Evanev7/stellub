@@ -207,4 +207,4 @@ func _on_i_frames_timeout():
 	invuln = false
 	
 func send_loadout_to_boss():
-	send_loadout.emit($AttackHandler)
+	send_loadout.emit($AttackHandler.get_child(0))

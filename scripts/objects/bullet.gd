@@ -5,13 +5,13 @@ extends Area2D
 @onready var sprite = $AnimatedSprite2D
 @onready var _traveled_distance: float = data.start_range
 
-var piercing
-var piercing_cooldown = 0
+var piercing: int
+var piercing_cooldown: int = 0
 var direction: Vector2 = Vector2(0,0)
 var origin_ref: WeakRef
-var relative_position
-var origin_position
-var origin_velocity
+#var relative_position
+var origin_position: Vector2
+var origin_velocity: Vector2
 
 var damage
 var _hit_targets: Array
@@ -38,7 +38,7 @@ func _ready():
 	
 	if data.activation_delay > 0:
 		$CollisionShape2D.disabled = true
-		$Activator.wait_time = data.activation_delay
+		$Activator.set_wait_time(data.activation_delay)
 		$Activator.start()
 	
 

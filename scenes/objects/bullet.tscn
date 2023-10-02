@@ -7,14 +7,14 @@
 
 [node name="Bullet" type="Area2D"]
 collision_layer = 0
-collision_mask = 2
+collision_mask = 0
+monitorable = false
 script = ExtResource("1_vy7io")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.03, 0.03)
 sprite_frames = ExtResource("2_p3jja")
 animation = &"simple"
-frame_progress = 0.259495
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(1.5, 1.5)
@@ -24,8 +24,8 @@ shape = SubResource("CircleShape2D_rwjyl")
 one_shot = true
 
 [node name="Activator" type="Timer" parent="."]
+wait_time = 0.05
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="SelfDestruct" to="." method="_on_self_destruct_timeout"]
-[connection signal="timeout" from="Activator" to="." method="_on_activator_timeout"]
