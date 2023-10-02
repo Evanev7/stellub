@@ -36,11 +36,15 @@ sprite_frames = SubResource("SpriteFrames_5slt2")
 shape = SubResource("CircleShape2D_bpme4")
 
 [node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CircleShape2D_ncnn4")
 
 [node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("CircleShape2D_ji61x")

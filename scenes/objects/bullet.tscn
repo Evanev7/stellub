@@ -7,7 +7,7 @@
 
 [node name="Bullet" type="Area2D"]
 collision_layer = 0
-collision_mask = 0
+collision_mask = 2
 monitorable = false
 script = ExtResource("1_vy7io")
 
