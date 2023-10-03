@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dfe6bc7mdpexj"]
+[gd_scene load_steps=27 format=3 uid="uid://dfe6bc7mdpexj"]
 
 [ext_resource type="Script" path="res://scripts/levels/main.gd" id="1_u8uym"]
 [ext_resource type="PackedScene" uid="uid://yaht8i4bkv2u" path="res://scenes/UI/HUD.tscn" id="3_8qfpp"]
@@ -14,10 +14,8 @@
 [ext_resource type="Resource" uid="uid://daslelns8qmfv" path="res://resources/enemy/angel_crusader.tres" id="9_d18g6"]
 [ext_resource type="PackedScene" uid="uid://kdeab812xwhx" path="res://scenes/components/bullet_handler.tscn" id="10_2c13m"]
 [ext_resource type="PackedScene" uid="uid://41p1qgrud4ej" path="res://scenes/components/terrain_generator.tscn" id="11_0axk0"]
-[ext_resource type="Resource" uid="uid://ccpb4udi5owpj" path="res://resources/bullets/player/player_bullet.tres" id="11_tlee2"]
 [ext_resource type="PackedScene" uid="uid://ugulpxhu6v48" path="res://scenes/components/pickup_handler.tscn" id="12_hxykb"]
-[ext_resource type="Resource" uid="uid://d1bfxwthry8hx" path="res://resources/bullets/demon_skull_bullet.tres" id="12_vsxjf"]
-[ext_resource type="PackedScene" uid="uid://0osqqfy0epsq" path="res://scenes/characters/boss.tscn" id="13_1hk1q"]
+[ext_resource type="PackedScene" uid="uid://d23ddhgery8pq" path="res://scenes/characters/boss.tscn" id="13_1hk1q"]
 [ext_resource type="PackedScene" uid="uid://cnrpegq0voiht" path="res://scenes/components/enemy_handler.tscn" id="13_d7lq7"]
 [ext_resource type="PackedScene" uid="uid://bxmk1htarl4v5" path="res://scenes/components/shop_handler.tscn" id="19_4xjky"]
 [ext_resource type="PackedScene" uid="uid://d05swenhbbosd" path="res://scenes/UI/objective_marker.tscn" id="20_tncsu"]
@@ -56,8 +54,6 @@ layer_0/tile_data = PackedInt32Array(0, 1, 0)
 [node name="Player" parent="YSort" instance=ExtResource("5_a3mdk")]
 z_index = 0
 position = Vector2(640, 360)
-starting_bullet_list = Array[Resource("res://scripts/objects/bullet_resource.gd")]([ExtResource("11_tlee2"), null, null])
-starting_passive_bullet_list = Array[Resource("res://scripts/objects/bullet_resource.gd")]([ExtResource("12_vsxjf"), null, null])
 
 [node name="Marker2D" type="Marker2D" parent="YSort"]
 position = Vector2(576, 324)
@@ -105,6 +101,7 @@ ysorter = NodePath("../../YSort")
 
 [connection signal="level_up" from="YSort/Player" to="." method="_on_player_level_up"]
 [connection signal="player_death" from="YSort/Player" to="." method="_on_player_player_death"]
+[connection signal="send_loadout" from="YSort/Player" to="LogicComponents/BossHandler" method="_on_player_send_loadout"]
 [connection signal="taken_damage" from="YSort/Player" to="." method="_on_player_taken_damage"]
 [connection signal="shop_entered" from="YSort/Shop" to="LogicComponents/ShopHandler" method="_on_shop_entered"]
 [connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
