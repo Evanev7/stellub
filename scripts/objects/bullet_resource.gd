@@ -13,6 +13,7 @@ class_name BulletResource
 @export var fire_delay: int = 15
 @export var multishot: int = 1
 @export var size: Vector2 = Vector2(1, 1)
+@export var colour: Color = Color(1,1,1,1)
 @export var shot_spread: float =  PI/12
 @export var angular_velocity: float = 0
 @export var piercing: int = 1
@@ -28,3 +29,4 @@ class_name BulletResource
 
 ## Bullet type that will spawn from this bullet
 @export var spawned_bullet_resource: BulletResource
+@export var spawn_on_timeout: bool = false

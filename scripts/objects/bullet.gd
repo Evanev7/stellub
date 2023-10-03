@@ -34,6 +34,7 @@ func _ready():
 	rotation = direction.angle()
 	origin_position = origin.position
 	origin_velocity = origin.velocity
+	$AnimatedSprite2D.modulate = data.colour
 	$AnimatedSprite2D.play()
 	
 	if data.activation_delay > 0:
@@ -47,8 +48,9 @@ func _physics_process(delta):
 	transport(delta)
 	
 	if _traveled_distance > data.bullet_range:
+		if data.spawn_on_timeout and spawned_bullet:
+			spawn_child()
 		queue_free()
-	
 	
 	if piercing_cooldown > 0:
 		piercing_cooldown -= 1
@@ -76,6 +78,8 @@ func transport(delta):
 
 
 func _on_self_destruct_timeout():
+	if data.spawn_on_timeout and spawned_bullet:
+		spawn_child()
 	queue_free()
 
 
@@ -95,17 +99,21 @@ func successful_hit(target):
 	if target.has_method("hurt"):
 		target.hurt(self)
 	
-	#Spawn child bullets, currently continuing in the bullets direction.
 	if spawned_bullet:
-		var fire_from = FireFrom.new()
-		fire_from.position = position
-		fire_from.direction = direction
-		GameState.fire_bullet.emit(origin_ref, spawned_bullet, fire_from)
+		spawn_child()
+	
 	
 	#Handle bullet destruction.
 	piercing -= 1
 	if piercing == 0:
 		queue_free()
+
+func spawn_child() -> void:
+	#Spawn child bullets, currently continuing in the bullets direction.
+	var fire_from = FireFrom.new()
+	fire_from.position = position
+	fire_from.direction = direction
+	GameState.fire_bullet.emit(origin_ref, spawned_bullet, fire_from)
 
 
 func _on_body_entered(body):

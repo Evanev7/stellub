@@ -27,19 +27,6 @@ var invuln: bool = false
 var _h_flipped: bool = false
 var current_animation
 
-var bullets
-var passive_bullets
-var all_bullets
-var firing_one
-var firing_two
-var firing_three
-var fire_timer_one: int = 0
-var fire_timer_two: int = 0
-var fire_timer_three: int = 0
-var fire_timer_passive_one: int = 0
-var fire_timer_passive_two: int = 0
-var fire_timer_passive_three: int = 0
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -80,6 +67,7 @@ func _physics_process(_delta):
 	else:
 		$AnimatedSprite2D.play(current_animation)
 
+
 # When the game starts, set the default values and show the player.
 func start():
 	set_default_stats()
@@ -89,6 +77,7 @@ func start():
 	$CollisionShape2D.disabled = false
 	$Camera2D.enabled = true
 	$AttackHandler.start()
+
 
 # Set default player stats
 func set_default_stats():
@@ -104,32 +93,12 @@ func set_default_stats():
 	#$ShotRecharge.max_value = bullet.fire_delay
 	scale = default_scale
 	rotation = 0
-	
+
+
 func add_attack_from_resource(bullet: BulletResource):
 	$AttackHandler.add_attack_from_resource(bullet)
-	
-	## Weapon Stats
-#	bullets = starting_bullet_list.duplicate(true)
-#	passive_bullets = starting_passive_bullet_list.duplicate(true)
-#	passive_attack_1.bullet = passive_bullets[0]
-#	passive_attack_2.bullet = passive_bullets[1]
-#	passive_attack_3.bullet = passive_bullets[2]
-#
-#	all_bullets = []
-#	for bullet_list in [bullets, passive_bullets]:
-#		for i in range(bullet_list.size()):
-#			var bullet = bullet_list[i]
-#			if bullet:
-#				all_bullets.append(bullet)
-	
-func add_weapon(weapon):
-	if weapon.control == "right" and not bullets[1]:
-		bullets[1] = weapon
-	elif weapon.control == "space" and not bullets[2]:
-		bullets[2] = weapon
-	else:
-		print("filled")
-	
+
+
 # Called when the player gets hurt. Body can be either a bullet OR an enemy.
 func hurt(body):
 	if not invuln:
@@ -168,7 +137,8 @@ func gain_score(value):
 			level_threshold.append(level_threshold[current_level] + 50)
 		elif level_threshold[current_level] > 49:
 			level_threshold.append(level_threshold[current_level] + 30) 
-			
+
+
 func evolve():
 	current_animation = "level " + str(min(current_evolution, 6))
 	
@@ -184,27 +154,11 @@ func evolve():
 	else:
 		scale *= 1.08
 
-func stat_upgrade(stat):
-	for bullet in all_bullets:
-		if bullet:
-			if stat == "Piercing":
-				bullet.piercing += 1
-			if stat == "Multi Shot":
-				bullet.multishot += 1
-			if stat == "Movement Speed":
-				self.speed *= 1.1
-			if stat == "Shot Speed":
-				bullet.shot_speed *= 1.1
-			if stat == "Fire Rate":
-				bullet.fire_delay /= 1.1
-			if stat == "Piercing Frequency":
-				bullet.piercing_cooldown /= 1.1
-			if stat == "Shot Size":
-				bullet.size *= 1.1
 
 func _on_i_frames_timeout():
 	$AnimatedSprite2D.modulate = Color(1,1,1,1)
 	invuln = false
-	
+
+
 func send_loadout_to_boss():
 	send_loadout.emit($AttackHandler.get_child(0))

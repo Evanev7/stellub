@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://doyhlebmabr1l"]
+
+[ext_resource type="Script" path="res://upgrades/Minigun.gd" id="1_xqwxe"]
+
+[node name="Minigun" type="Node"]
+script = ExtResource("1_xqwxe")
