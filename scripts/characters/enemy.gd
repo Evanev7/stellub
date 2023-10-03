@@ -5,12 +5,12 @@ signal enemy_killed(enemy)
 
 @export var resource: EnemyResource
 
-@onready var attack_handler: AttackHandler = $AttackHandler
+@onready var attack: EnemyAttack = $Attack
 @onready var sprite = $AnimatedSprite2D
-@onready var health: float = resource.MAX_HP
-@onready var damage: float = resource.DAMAGE
-@onready var value: float = resource.VALUE
-@onready var speed: float = resource.SPEED
+@onready var health: int = resource.MAX_HP
+@onready var damage: int = resource.DAMAGE
+@onready var value: int = resource.VALUE
+@onready var speed: int = resource.SPEED
 @onready var unique_scale: Vector2
 @onready var flipped: bool = resource.FLIP_H
 @onready var floating: bool = resource.FLOATING
@@ -38,8 +38,7 @@ func load_resource(resource_to_load: EnemyResource):
 	scale = resource_to_load.SCALE
 	sprite.sprite_frames = resource_to_load.ANIMATION
 	sprite.flip_h = flipped
-	if resource_to_load.BULLET:
-		attack_handler.add_attack_from_resource(resource_to_load.BULLET)
+	attack.bullet = resource_to_load.BULLET
 	$CollisionShape2D.shape = resource_to_load.COLLIDER
 	$CollisionShape2D.rotation = resource_to_load.COLLISION_ROTATION
 	$Hitbox/CollisionShape2D.shape = resource_to_load.HITBOX

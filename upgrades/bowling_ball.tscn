@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://ditc7t3eclvaw"]
-
-[ext_resource type="Script" path="res://upgrades/BowlingBall.gd" id="1_slldn"]
-
-[node name="Bowling Ball" type="Node"]
-script = ExtResource("1_slldn")

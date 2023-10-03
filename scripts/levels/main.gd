@@ -32,7 +32,7 @@ func _physics_process(_delta):
 		$LogicComponents/EnemyHandler.spawn_enemy(randi() % 6)
 		
 	if GameState.debug and Input.is_action_just_pressed("debug_spawn_boss"):
-		GameState.player.send_loadout_to_boss()
+		$LogicComponents/BossHandler.spawn_boss()
 	#######################################
 
 

@@ -5,13 +5,13 @@ extends Area2D
 @onready var sprite = $AnimatedSprite2D
 @onready var _traveled_distance: float = data.start_range
 
-var piercing: int
-var piercing_cooldown: int = 0
+var piercing
+var piercing_cooldown = 0
 var direction: Vector2 = Vector2(0,0)
 var origin_ref: WeakRef
-#var relative_position
-var origin_position: Vector2
-var origin_velocity: Vector2
+var relative_position
+var origin_position
+var origin_velocity
 
 var damage
 var _hit_targets: Array
@@ -22,8 +22,7 @@ var _hit_targets: Array
 # enemy bullets.
 func _ready():
 	add_to_group("bullet")
-	var origin: Node2D = origin_ref.get_ref()
-	if origin == GameState.player:
+	if origin_ref.get_ref() == GameState.player:
 		set_collision_mask(4)
 	scale = data.size
 	piercing = data.piercing
@@ -32,15 +31,10 @@ func _ready():
 	$SelfDestruct.wait_time = data.lifetime
 	$SelfDestruct.start()
 	rotation = direction.angle()
+	var origin = origin_ref.get_ref()
 	origin_position = origin.position
 	origin_velocity = origin.velocity
-	$AnimatedSprite2D.modulate = data.colour
 	$AnimatedSprite2D.play()
-	
-	if data.activation_delay > 0:
-		$CollisionShape2D.disabled = true
-		$Activator.set_wait_time(data.activation_delay)
-		$Activator.start()
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -48,9 +42,8 @@ func _physics_process(delta):
 	transport(delta)
 	
 	if _traveled_distance > data.bullet_range:
-		if data.spawn_on_timeout and spawned_bullet:
-			spawn_child()
 		queue_free()
+	
 	
 	if piercing_cooldown > 0:
 		piercing_cooldown -= 1
@@ -78,8 +71,6 @@ func transport(delta):
 
 
 func _on_self_destruct_timeout():
-	if data.spawn_on_timeout and spawned_bullet:
-		spawn_child()
 	queue_free()
 
 
@@ -99,27 +90,20 @@ func successful_hit(target):
 	if target.has_method("hurt"):
 		target.hurt(self)
 	
+	#Spawn child bullets, currently aimed toward the player.
 	if spawned_bullet:
-		spawn_child()
-	
+			var fire_from = FireFrom.new()
+			fire_from.toward(position, GameState.player.position)
+			if origin_ref.get_ref() == GameState.player:
+				fire_from.direction *= -1
+			GameState.fire_bullet.emit(origin_ref, spawned_bullet, fire_from)
 	
 	#Handle bullet destruction.
 	piercing -= 1
 	if piercing == 0:
 		queue_free()
 
-func spawn_child() -> void:
-	#Spawn child bullets, currently continuing in the bullets direction.
-	var fire_from = FireFrom.new()
-	fire_from.position = position
-	fire_from.direction = direction
-	GameState.fire_bullet.emit(origin_ref, spawned_bullet, fire_from)
-
 
 func _on_body_entered(body):
 	if body.is_in_group("terrain"):
 		queue_free()
-
-
-func _on_activator_timeout():
-	$CollisionShape2D.disabled = false

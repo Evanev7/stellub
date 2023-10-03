@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_4p8so")
 animation = ExtResource("1_6pbky")
-name = ""
+control = "right"
 start_range = 100
 lifetime = 0.05
 bullet_range = 1000
