@@ -9,6 +9,7 @@ signal send_loadout(loadout)
 @export var STARTING_SPEED = 300.0
 @export var STARTING_HP_MAX: float = 100
 
+@export var stat_upgrade: PackedScene
 @onready var default_scale = self.scale
 
 var level_threshold = [10, 20, 30, 50]
@@ -127,6 +128,7 @@ func gain_score(value):
 	
 	if score >= level_threshold[current_level]:
 		level_up.emit(current_level)
+		player_level_up()
 		if level_threshold[current_level] > 2000:
 			level_threshold.append(level_threshold[current_level] + 500)
 		elif level_threshold[current_level] > 1000:
@@ -139,10 +141,20 @@ func gain_score(value):
 			level_threshold.append(level_threshold[current_level] + 30) 
 
 
+func player_level_up():
+	hp_max *= 1.02
+	if hp >= hp_max * 0.9:
+		hp = hp_max
+	else:
+		hp += hp_max * 0.1
+	speed *= 1.02
+	
+	upgrade_attacks(stat_upgrade.instantiate())
+
+
 func upgrade_attacks(upgrade):
 	$AttackHandler/Attack.add_child(upgrade)
 	$AttackHandler/Attack.refresh_bullet_resource()
-	
 
 func evolve():
 	current_animation = "level " + str(min(current_evolution, 6))

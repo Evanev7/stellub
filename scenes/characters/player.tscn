@@ -1,6 +1,7 @@
-[gd_scene load_steps=38 format=3 uid="uid://cnepphpba8e8u"]
+[gd_scene load_steps=39 format=3 uid="uid://cnepphpba8e8u"]
 
 [ext_resource type="Script" path="res://scripts/characters/player.gd" id="1_m0lvq"]
+[ext_resource type="PackedScene" uid="uid://cgjvip03rh3b4" path="res://upgrades/stat_upgrade.tscn" id="2_50n7q"]
 [ext_resource type="Texture2D" uid="uid://kwiitmwbn82r" path="res://art/player/level 0/player_0_1.png" id="3_ik71x"]
 [ext_resource type="Texture2D" uid="uid://6fmtfmpb5kvf" path="res://art/player/level 0/player_0_2.png" id="4_p28ir"]
 [ext_resource type="Texture2D" uid="uid://q4hnsccll683" path="res://art/player/level 0/player_0_3.png" id="5_3s83j"]
@@ -171,6 +172,7 @@ y_sort_enabled = true
 motion_mode = 1
 platform_on_leave = 2
 script = ExtResource("1_m0lvq")
+stat_upgrade = ExtResource("2_50n7q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(0.3, 0.3)

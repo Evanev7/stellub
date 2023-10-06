@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://1dmnavilcwx5"]
+[gd_scene load_steps=4 format=3 uid="uid://1dmnavilcwx5"]
 
 [ext_resource type="Script" path="res://scripts/UI/upgradeHUD.gd" id="1_2ikgy"]
 [ext_resource type="Texture2D" uid="uid://clyycn7uujclo" path="res://art/icon.svg" id="2_gwhg4"]
+[ext_resource type="Texture2D" uid="uid://b2byn4ep7a4f8" path="res://art/backgrounds/heaven_level_1.png" id="3_2drkk"]
 
 [node name="upgradeHUD" type="CanvasLayer"]
 visible = false
@@ -197,10 +198,43 @@ grow_horizontal = 2
 grow_vertical = 2
 expand_mode = 1
 
+[node name="Leave" type="TextureButton" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -147.0
+offset_top = -62.0
+offset_right = 147.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("3_2drkk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TempText" type="Label" parent="ColorRect/Leave"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -29.0
+offset_right = 128.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "Take Nothing"
+
 [node name="ErrorTimer" type="Timer" parent="."]
 wait_time = 1.5
 
 [connection signal="pressed" from="ColorRect/UpgradeButton1" to="." method="_on_upgrade_pressed" binds= [1]]
 [connection signal="pressed" from="ColorRect/UpgradeButton2" to="." method="_on_upgrade_pressed" binds= [2]]
 [connection signal="pressed" from="ColorRect/UpgradeButton3" to="." method="_on_upgrade_pressed" binds= [3]]
+[connection signal="pressed" from="ColorRect/Leave" to="." method="_on_leave_pressed"]
 [connection signal="timeout" from="ErrorTimer" to="." method="_on_error_timer_timeout"]

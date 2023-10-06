@@ -20,7 +20,7 @@ func _on_start_button_pressed():
 
 
 func show_health(number):
-	$HealthDisplay.text = str(number)
+	$HealthDisplay.text = str(int(number))
 
 
 func show_score(number, max_number):

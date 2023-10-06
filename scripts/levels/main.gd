@@ -70,6 +70,7 @@ func _on_player_taken_damage(hp):
 
 func _on_player_level_up(current_level):
 	$HUD.change_min_XP(GameState.player.level_threshold[GameState.player.current_level])
+	$HUD.show_health(GameState.player.hp)
 	GameState.player.current_level += 1
 	GameState.player.souls += 1
 	enemy_handler.spawn_timer.wait_time /= 1.02

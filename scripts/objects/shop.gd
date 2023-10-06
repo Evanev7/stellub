@@ -29,11 +29,6 @@ func _on_open_area_exited(body):
 func _on_interact_area_entered(body):
 	if body == GameState.player:
 		shop_entered.emit()
-#		var stat_upgrades = shop_resource_list.duplicate()
-#		stat_upgrades.shuffle()
-#		stat_upgrades.resize(3)
-#		shop_entered.emit(stat_upgrades)
-
 
 
 func disable():
