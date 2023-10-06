@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dfe6bc7mdpexj"]
+[gd_scene load_steps=33 format=3 uid="uid://dfe6bc7mdpexj"]
 
 [ext_resource type="Script" path="res://scripts/levels/main.gd" id="1_u8uym"]
 [ext_resource type="PackedScene" uid="uid://yaht8i4bkv2u" path="res://scenes/UI/HUD.tscn" id="3_8qfpp"]
@@ -20,10 +20,16 @@
 [ext_resource type="PackedScene" uid="uid://bxmk1htarl4v5" path="res://scenes/components/shop_handler.tscn" id="19_4xjky"]
 [ext_resource type="PackedScene" uid="uid://d05swenhbbosd" path="res://scenes/UI/objective_marker.tscn" id="20_tncsu"]
 [ext_resource type="PackedScene" uid="uid://cp7lho542gmeu" path="res://scenes/objects/shop.tscn" id="20_vbjc5"]
+[ext_resource type="PackedScene" uid="uid://bpkxt2uvnf57n" path="res://upgrades/triple_shot.tscn" id="21_1r7qt"]
 [ext_resource type="PackedScene" uid="uid://bdsxfxpria0gp" path="res://scenes/components/magic_circle.tscn" id="21_4yjc3"]
 [ext_resource type="PackedScene" uid="uid://b2tef800ecm8u" path="res://scenes/components/weapon_handler.tscn" id="22_2ik5p"]
+[ext_resource type="PackedScene" uid="uid://c33wxtyp6pcj5" path="res://upgrades/split_shot.tscn" id="22_nlywc"]
+[ext_resource type="PackedScene" uid="uid://doyhlebmabr1l" path="res://upgrades/minigun.tscn" id="23_3lrqa"]
 [ext_resource type="PackedScene" uid="uid://bco6kn11dyo6o" path="res://scenes/components/boss_handler.tscn" id="24_acylx"]
+[ext_resource type="PackedScene" uid="uid://cspycrpcbikif" path="res://upgrades/detonator.tscn" id="24_bukft"]
+[ext_resource type="PackedScene" uid="uid://3bqmxujc0qkr" path="res://upgrades/centre_of_the_galaxy.tscn" id="25_84srj"]
 [ext_resource type="Script" path="res://scripts/components/boss_handler.gd" id="25_88wnh"]
+[ext_resource type="PackedScene" uid="uid://ditc7t3eclvaw" path="res://upgrades/bowling_ball.tscn" id="26_f6bc7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uuw3f"]
 texture = ExtResource("9_cd231")
@@ -86,6 +92,7 @@ bullet_handler = NodePath("../BulletHandler")
 pickup_handler = NodePath("../PickupHandler")
 
 [node name="ShopHandler" parent="LogicComponents" node_paths=PackedStringArray("enemyHandler", "ysorter", "objective_marker", "upgrade_hud") instance=ExtResource("19_4xjky")]
+default_shop_upgrades_list = Array[PackedScene]([ExtResource("21_1r7qt"), ExtResource("22_nlywc"), ExtResource("23_3lrqa"), ExtResource("24_bukft"), ExtResource("25_84srj"), ExtResource("26_f6bc7")])
 enemyHandler = NodePath("../EnemyHandler")
 ysorter = NodePath("../../YSort")
 objective_marker = NodePath("../../ObjectiveMarker")
@@ -106,3 +113,4 @@ ysorter = NodePath("../../YSort")
 [connection signal="shop_entered" from="YSort/Shop" to="LogicComponents/ShopHandler" method="_on_shop_entered"]
 [connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
 [connection signal="leave" from="UpgradeHUD" to="." method="_on_upgrade_hud_leave"]
+[connection signal="remove_upgrade" from="UpgradeHUD" to="LogicComponents/ShopHandler" method="_on_upgrade_hud_remove_upgrade"]

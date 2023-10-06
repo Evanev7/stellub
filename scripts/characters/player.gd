@@ -139,6 +139,11 @@ func gain_score(value):
 			level_threshold.append(level_threshold[current_level] + 30) 
 
 
+func upgrade_attacks(upgrade):
+	$AttackHandler/Attack.add_child(upgrade)
+	$AttackHandler/Attack.refresh_bullet_resource()
+	
+
 func evolve():
 	current_animation = "level " + str(min(current_evolution, 6))
 	

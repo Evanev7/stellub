@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://cnepphpba8e8u"]
+[gd_scene load_steps=38 format=3 uid="uid://cnepphpba8e8u"]
 
 [ext_resource type="Script" path="res://scripts/characters/player.gd" id="1_m0lvq"]
 [ext_resource type="Texture2D" uid="uid://kwiitmwbn82r" path="res://art/player/level 0/player_0_1.png" id="3_ik71x"]
@@ -33,11 +33,7 @@
 [ext_resource type="Texture2D" uid="uid://d4hct8jpb8rpj" path="res://art/player/level 6/player_6_1.png" id="32_jmb7j"]
 [ext_resource type="PackedScene" uid="uid://u1hhvearq4oy" path="res://scenes/components/attack_handler.tscn" id="32_ju527"]
 [ext_resource type="PackedScene" uid="uid://be4i0yo3jsk42" path="res://scenes/components/attack.tscn" id="33_cq3a6"]
-[ext_resource type="PackedScene" uid="uid://bpkxt2uvnf57n" path="res://upgrades/triple_shot.tscn" id="34_v0qrd"]
 [ext_resource type="Resource" uid="uid://ccpb4udi5owpj" path="res://resources/bullets/player/player_bullet.tres" id="34_wf4sv"]
-[ext_resource type="PackedScene" uid="uid://3bqmxujc0qkr" path="res://upgrades/centre_of_the_galaxy.tscn" id="37_758te"]
-[ext_resource type="PackedScene" uid="uid://cspycrpcbikif" path="res://upgrades/detonator.tscn" id="37_a85hr"]
-[ext_resource type="PackedScene" uid="uid://doyhlebmabr1l" path="res://upgrades/minigun.tscn" id="37_nxi4k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_odef0"]
 size = Vector2(50, 50)
@@ -233,14 +229,6 @@ target_mode = 1
 [node name="Attack" parent="AttackHandler" instance=ExtResource("33_cq3a6")]
 control_mode = 1
 initial_bullet = ExtResource("34_wf4sv")
-
-[node name="Triple Shot" parent="AttackHandler/Attack" instance=ExtResource("34_v0qrd")]
-
-[node name="Detonator" parent="AttackHandler/Attack" instance=ExtResource("37_a85hr")]
-
-[node name="Centre of the Galaxy" parent="AttackHandler/Attack" instance=ExtResource("37_758te")]
-
-[node name="Minigun" parent="AttackHandler/Attack" instance=ExtResource("37_nxi4k")]
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="timeout" from="IFrames" to="." method="_on_i_frames_timeout"]

@@ -2,6 +2,9 @@ extends CanvasLayer
 
 signal leave
 signal remove_shop
+signal remove_upgrade
+
+var current_upgrades = []
 
 var evolutions = 0
 
@@ -14,29 +17,22 @@ func _ready():
 func _process(_delta):
 	$ColorRect/Souls/SoulCount.text = str(GameState.player.souls)
 	
-func show_HUD(stat_upgrades):
-	$ColorRect/Upgrade1.text = stat_upgrades[0].NAME 
-	$ColorRect/Upgrade2.text = stat_upgrades[1].NAME 
-	$ColorRect/Upgrade3.text = stat_upgrades[2].NAME 
-	$ColorRect/Upgrade1/Label1.text = str(stat_upgrades[0].COST)
-	$ColorRect/Upgrade2/Label2.text = str(stat_upgrades[1].COST)
-	$ColorRect/Upgrade3/Label3.text = str(stat_upgrades[2].COST)
+func show_HUD(chosen_upgrades):
+	$ColorRect/UpgradeButton1/Icon1.texture = chosen_upgrades[0].icon
+	$ColorRect/UpgradeButton2/Icon2.texture = chosen_upgrades[1].icon
+	$ColorRect/UpgradeButton3/Icon3.texture = chosen_upgrades[2].icon 
+	$ColorRect/UpgradeButton1/Label1.text = chosen_upgrades[0].name
+	$ColorRect/UpgradeButton2/Label2.text = chosen_upgrades[1].name
+	$ColorRect/UpgradeButton3/Label3.text = chosen_upgrades[2].name
+	
+	current_upgrades = chosen_upgrades
 
 
 func _on_upgrade_pressed(upgrade_number):
-	var upgrade_label = "ColorRect/Upgrade" + str(upgrade_number) + "/Label" + str(upgrade_number)
-	var upgrade_text = "ColorRect/Upgrade" + str(upgrade_number)
-	var cost = int(get_node(upgrade_label).text)
-	
-	if GameState.player.souls < cost:
-		$ColorRect/Error.text = "You can't afford this."
-		$ErrorTimer.start()
-	else:
-		GameState.player.souls -= cost
-		evolutions += cost
-		# Eventually this should be a calculation that figures out what evolution
-		# the character should be on		
-		GameState.player.stat_upgrade(get_node(upgrade_text).text)
+	GameState.player.upgrade_attacks(current_upgrades[upgrade_number - 1])
+	remove_upgrade.emit(current_upgrades[upgrade_number - 1])
+	_on_leave_pressed()
+
 
 func _on_leave_pressed():
 	get_parent().get_tree().paused = false

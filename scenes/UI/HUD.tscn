@@ -66,7 +66,6 @@ shortcut = SubResource("Shortcut_lxmoi")
 text = "Play"
 
 [node name="XPBar" type="ProgressBar" parent="."]
-visible = false
 offset_right = 1279.0
 offset_bottom = 27.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_b8dcb")

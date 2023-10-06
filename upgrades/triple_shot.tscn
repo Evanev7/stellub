@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://bpkxt2uvnf57n"]
+[gd_scene load_steps=3 format=3 uid="uid://bpkxt2uvnf57n"]
 
-[ext_resource type="Script" path="res://upgrades/TripleShot.gd" id="1_ukrec"]
+[ext_resource type="Script" path="res://upgrades/scripts/TripleShot.gd" id="1_m0w0g"]
+[ext_resource type="Texture2D" uid="uid://cy2ajprj0e7h5" path="res://art/bullets/player/simple_bullet_1.png" id="2_pywbt"]
 
 [node name="Triple Shot" type="Node"]
-script = ExtResource("1_ukrec")
+script = ExtResource("1_m0w0g")
+rarity = 2.0
+icon = ExtResource("2_pywbt")

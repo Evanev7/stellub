@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://1dmnavilcwx5"]
+[gd_scene load_steps=3 format=3 uid="uid://1dmnavilcwx5"]
 
 [ext_resource type="Script" path="res://scripts/UI/upgradeHUD.gd" id="1_2ikgy"]
+[ext_resource type="Texture2D" uid="uid://clyycn7uujclo" path="res://art/icon.svg" id="2_gwhg4"]
 
 [node name="upgradeHUD" type="CanvasLayer"]
 visible = false
@@ -19,83 +20,6 @@ offset_bottom = 200.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.192157, 0.454902, 0.67451, 0.537255)
-
-[node name="Upgrade1" type="Button" parent="ColorRect"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -285.0
-offset_top = -89.0
-offset_right = -133.0
-offset_bottom = -55.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "Multishot Increase"
-
-[node name="Label1" type="Label" parent="ColorRect/Upgrade1"]
-layout_mode = 0
-offset_left = 134.0
-offset_top = 39.0
-offset_right = 151.0
-offset_bottom = 65.0
-text = "0"
-
-[node name="Upgrade2" type="Button" parent="ColorRect"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -63.5
-offset_top = -80.0
-offset_right = 61.5
-offset_bottom = -55.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "Shot spread decrease"
-
-[node name="Label2" type="Label" parent="ColorRect/Upgrade2"]
-layout_mode = 0
-offset_left = 159.5
-offset_top = 36.0
-offset_right = 176.5
-offset_bottom = 62.0
-text = "0"
-
-[node name="Upgrade3" type="Button" parent="ColorRect"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 142.5
-offset_top = -80.0
-offset_right = 267.5
-offset_bottom = -55.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "Fire rate increase"
-
-[node name="Label3" type="Label" parent="ColorRect/Upgrade3"]
-layout_mode = 0
-offset_left = 126.5
-offset_top = 36.0
-offset_right = 143.5
-offset_bottom = 62.0
-text = "0"
-
-[node name="Cost" type="Label" parent="ColorRect"]
-layout_mode = 0
-offset_left = 117.0
-offset_top = 349.0
-offset_right = 469.0
-offset_bottom = 375.0
-text = "Cost:                                      Cost:                                            Cost:"
 
 [node name="TitleDisplay" type="Label" parent="ColorRect"]
 layout_mode = 1
@@ -140,19 +64,143 @@ offset_right = 80.0
 offset_bottom = 26.0
 text = "0"
 
-[node name="Leave" type="Button" parent="ColorRect"]
-layout_mode = 0
-offset_left = 717.0
-offset_top = 16.0
-offset_right = 773.0
-offset_bottom = 47.0
-text = "LEAVE"
+[node name="UpgradeButton1" type="TextureButton" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -276.0
+offset_top = -184.0
+offset_right = -147.0
+offset_bottom = -55.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("2_gwhg4")
+
+[node name="Label1" type="Label" parent="ColorRect/UpgradeButton1"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = -33.0
+offset_right = -9.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "aaaaaaaaaaaa"
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="Icon1" type="TextureRect" parent="ColorRect/UpgradeButton1"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.5
+offset_top = -45.5
+offset_right = 45.5
+offset_bottom = 45.5
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="UpgradeButton2" type="TextureButton" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -184.0
+offset_right = 65.0
+offset_bottom = -55.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("2_gwhg4")
+
+[node name="Label2" type="Label" parent="ColorRect/UpgradeButton2"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -33.0
+offset_right = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="Icon2" type="TextureRect" parent="ColorRect/UpgradeButton2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.5
+offset_top = -45.5
+offset_right = 45.5
+offset_bottom = 45.5
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="UpgradeButton3" type="TextureButton" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 141.0
+offset_top = -182.0
+offset_right = 270.0
+offset_bottom = -53.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("2_gwhg4")
+
+[node name="Label3" type="Label" parent="ColorRect/UpgradeButton3"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = -33.0
+offset_right = -9.0
+grow_horizontal = 2
+grow_vertical = 0
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="Icon3" type="TextureRect" parent="ColorRect/UpgradeButton3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.5
+offset_top = -45.5
+offset_right = 45.5
+offset_bottom = 45.5
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
 
 [node name="ErrorTimer" type="Timer" parent="."]
 wait_time = 1.5
 
-[connection signal="pressed" from="ColorRect/Upgrade1" to="." method="_on_upgrade_pressed" binds= [1]]
-[connection signal="pressed" from="ColorRect/Upgrade2" to="." method="_on_upgrade_pressed" binds= [2]]
-[connection signal="pressed" from="ColorRect/Upgrade3" to="." method="_on_upgrade_pressed" binds= [3]]
-[connection signal="pressed" from="ColorRect/Leave" to="." method="_on_leave_pressed"]
+[connection signal="pressed" from="ColorRect/UpgradeButton1" to="." method="_on_upgrade_pressed" binds= [1]]
+[connection signal="pressed" from="ColorRect/UpgradeButton2" to="." method="_on_upgrade_pressed" binds= [2]]
+[connection signal="pressed" from="ColorRect/UpgradeButton3" to="." method="_on_upgrade_pressed" binds= [3]]
 [connection signal="timeout" from="ErrorTimer" to="." method="_on_error_timer_timeout"]
