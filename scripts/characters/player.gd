@@ -157,6 +157,7 @@ func upgrade_attacks(upgrade):
 	$AttackHandler/Attack.refresh_bullet_resource()
 
 func evolve():
+	current_evolution += 1
 	current_animation = "level " + str(min(current_evolution, 6))
 	
 	var scaling_factors = {

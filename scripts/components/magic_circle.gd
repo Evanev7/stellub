@@ -5,8 +5,8 @@ extends Node2D
 signal spawn_shop(location: Vector2)
 signal spawn_enemy_in_wave(resource)
 
-static var current_wave
-var wave_active
+static var current_circle: int = 1
+var wave_active: bool = false
 
 var first_wave: bool = false
 var second_wave: bool = false
@@ -18,7 +18,10 @@ var sixth_wave: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	add_to_group("magic_circle")
-	current_wave = 1
+
+func start():
+	get_node("Circle/CollisionShape2D").disabled = false
+	current_circle = 1
 	wave_active = false
 	$WaveTimer.stop()
 	$Time.hide()
@@ -69,7 +72,7 @@ func _on_circle_body_exited(body):
 
 func _on_wave_timer_timeout():
 	wave_active = true
-	$SuccessTimer.wait_time = 20 + (10 * current_wave)
+	$SuccessTimer.wait_time = 20 + (10 * current_circle)
 	$SuccessTimer.start()
 	spawn_enemies(0)
 
@@ -79,7 +82,7 @@ func _on_success_timer_timeout():
 	reset_bools()
 	wave_active = false
 	$Time.hide()
-	current_wave += 1
+	current_circle += 1
 	get_node("Circle/CollisionShape2D").disabled = true
 
 
@@ -87,7 +90,7 @@ func spawn_enemies(timerValue):
 	var skull = 0
 	var dog = 1
 	var skeleton = 2
-	if current_wave == 1:
+	if current_circle == 1:
 		if timerValue == 0:
 			for i in 5:
 				spawn_enemy_in_wave.emit(skull, position, 500)
@@ -99,7 +102,8 @@ func spawn_enemies(timerValue):
 			for i in 5:
 				spawn_enemy_in_wave.emit(dog, position, 500)
 			second_wave = true
-	if current_wave == 2:
+			
+	if current_circle == 2:
 		if timerValue == 0:
 			for i in 5:
 				spawn_enemy_in_wave.emit(skull, position, 500)
@@ -115,4 +119,53 @@ func spawn_enemies(timerValue):
 			for i in 5:
 				spawn_enemy_in_wave.emit(skeleton, position, 500)
 			third_wave = true
-
+			
+	if current_circle == 3:
+		if timerValue == 0:
+			for i in 5:
+				spawn_enemy_in_wave.emit(skull, position, 500)
+		if timerValue == 4 and first_wave == false:
+			for i in 5:
+				spawn_enemy_in_wave.emit(skull, position, 500)
+			first_wave = true
+		if timerValue == 3 and second_wave == false:
+			for i in 5:
+				spawn_enemy_in_wave.emit(dog, position, 500)
+			second_wave = true
+		if timerValue == 2 and third_wave == false:
+			for i in 5:
+				spawn_enemy_in_wave.emit(skeleton, position, 500)
+			third_wave = true
+		if timerValue == 1 and fourth_wave == false:
+			for i in 7:
+				spawn_enemy_in_wave.emit(skeleton, position, 600)
+			fourth_wave = true
+			
+	if current_circle == 4:
+		if timerValue == 0:
+			for i in 5:
+				spawn_enemy_in_wave.emit(skull, position, 500)
+		if timerValue == 5 and first_wave == false:
+			for i in 5:
+				spawn_enemy_in_wave.emit(skull, position, 500)
+				spawn_enemy_in_wave.emit(dog, position, 500)
+			first_wave = true
+		if timerValue == 4 and second_wave == false:
+			for i in 10:
+				spawn_enemy_in_wave.emit(dog, position, 500)
+			second_wave = true
+		if timerValue == 3 and third_wave == false:
+			for i in 5:
+				spawn_enemy_in_wave.emit(skeleton, position, 500)
+			third_wave = true
+		if timerValue == 2 and fourth_wave == false:
+			for i in 7:
+				spawn_enemy_in_wave.emit(skeleton, position, 600)
+				spawn_enemy_in_wave.emit(skull, position, 600)
+			fourth_wave = true
+		if timerValue == 1 and fifth_wave == false:
+			for i in 5:
+				spawn_enemy_in_wave.emit(skeleton, position, 600)
+				spawn_enemy_in_wave.emit(dog, position, 600)
+				spawn_enemy_in_wave.emit(skull, position, 600)
+			fifth_wave = true

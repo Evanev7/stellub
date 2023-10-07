@@ -6,11 +6,8 @@ signal remove_upgrade
 
 var current_upgrades = []
 
-var evolutions = 0
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	evolutions = 0
 	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -30,7 +27,6 @@ func show_HUD(chosen_upgrades):
 
 func _on_upgrade_pressed(upgrade_number):
 	GameState.player.upgrade_attacks(current_upgrades[upgrade_number - 1])
-	GameState.player.current_evolution += 1
 	GameState.player.evolve()
 #	remove_upgrade.emit(current_upgrades[upgrade_number - 1])
 	_on_leave_pressed()

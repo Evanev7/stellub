@@ -45,11 +45,11 @@ func passive_all_attacks():
 func stop() -> void:
 	for attack in get_children():
 		attack.timer_active = false
+		for i in attack.get_children():
+			attack.remove_child(i)
+			attack.refresh_bullet_resource()
+
 
 func start() -> void:
 	for attack in get_children():
 		attack.timer_active = true
-		for i in attack.get_children():
-			attack.remove_child(i)
-			attack.refresh_bullet_resource()
-	

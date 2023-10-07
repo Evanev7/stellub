@@ -38,5 +38,4 @@ func disable():
 
 func _on_upgrade_hud_leave():
 	get_tree().paused = false
-	GameState.player.evolve()
 	queue_free()

@@ -12,7 +12,6 @@ extends Node
 func _ready():
 	$LogicComponents/ShopHandler.spawn_magic_circles()
 	$LogicComponents/TerrainGenerator.generate()
-	$LogicComponents/WeaponHandler.spawn_weapon(Vector2(10, 10))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
@@ -41,11 +40,18 @@ func start_game():
 	enemy_handler.start_spawning()
 	GameState.player.start()
 	GameState.player.position = $YSort/Marker2D.position
+	$LogicComponents/ShopHandler.start()
+	start_magic_circles()
+	
 	#$LogicComponents/BossHandler.spawn_boss()
 	$HUD.show_message("All Hell Breaks Loose!")
 	$HUD.show_health(GameState.player.hp)
 	$HUD.show_score(GameState.player.score, GameState.player.level_threshold[GameState.player.current_level])
 
+func start_magic_circles():
+	var circles = get_tree().get_nodes_in_group("magic_circle")
+	for circle in circles:
+		circle.start()
 
 func _on_player_player_death():
 	game_over()

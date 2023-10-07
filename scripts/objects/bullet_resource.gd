@@ -10,7 +10,7 @@ class_name BulletResource
 @export var lifetime: float = 20.0
 @export var bullet_range: int = 1000
 @export var damage: float = 1
-@export var fire_delay: int = 15
+@export var fire_delay: float = 15
 @export var multishot: int = 1
 @export var size: Vector2 = Vector2(1, 1)
 @export var colour: Color = Color(1,1,1,1)

@@ -12,7 +12,13 @@ var shop_upgrades_list: Array[PackedScene]
 @export var upgrade_hud: CanvasLayer
 
 func _ready():
+	pass
+#	shop_upgrades_list = default_shop_upgrades_list.duplicate()
+	
+
+func start():
 	shop_upgrades_list = default_shop_upgrades_list.duplicate()
+	
 
 func spawn_magic_circles():
 	var count = 10
