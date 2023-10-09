@@ -38,16 +38,27 @@ func get_attack_direction() -> FireFrom:
 	
 	return attack_direction
 
+
+func upgrade_all_attacks(upgrade):
+	for attack in get_children():
+		attack.add_child(upgrade)
+		attack.refresh_bullet_resource()
+		
+
+
 func passive_all_attacks():
 	for attack in get_children():
 		attack.control_mode = Attack.CONTROL_MODE.PASSIVE
 
+
 func stop() -> void:
 	for attack in get_children():
 		attack.timer_active = false
-		for i in attack.get_children():
-			attack.remove_child(i)
-			attack.refresh_bullet_resource()
+
+func clear_upgrades(attack) -> void:
+	for upgrade in attack.get_children():
+		attack.remove_child(upgrade)
+	attack.refresh_bullet_resource()
 
 
 func start() -> void:

@@ -4,4 +4,3 @@
 
 [node name="Bowling Ball" type="Node"]
 script = ExtResource("1_slldn")
-cost = null

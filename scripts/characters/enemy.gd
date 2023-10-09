@@ -16,7 +16,7 @@ signal enemy_killed(enemy)
 @onready var floating: bool = resource.FLOATING
 @onready var default_angle: float = self.rotation
 @onready var default_scale: Vector2 = resource.SCALE
-
+@onready var variance = 1/default_scale.length()
 
 var spawn_time: float
 
@@ -51,7 +51,6 @@ func load_resource(resource_to_load: EnemyResource):
 # Function for easing sprites between two positions while 'idle'. I.e. enemy rotation.
 func sway():
 	var tween: Tween = create_tween()
-	var variance = 1/default_scale.length()
 	if floating:
 		tween.tween_property(sprite, "position", sprite.position + Vector2(0, 2*variance), 0.4) \
 				.set_ease(Tween.EASE_IN)

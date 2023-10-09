@@ -16,7 +16,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
 	randomize()
-	print("bullets: " + str(get_tree().get_nodes_in_group("bullet").size()))
+	#print("bullets: " + str(get_tree().get_nodes_in_group("bullet").size()))
 	pass
 	##Debug ###############################
 	
@@ -40,7 +40,6 @@ func _physics_process(_delta):
 func start_game():
 	enemy_handler.start_spawning()
 	GameState.player.start()
-	GameState.player.position = $YSort/Marker2D.position
 	$LogicComponents/ShopHandler.start()
 	start_magic_circles()
 	

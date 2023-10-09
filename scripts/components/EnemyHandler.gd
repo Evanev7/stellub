@@ -31,7 +31,7 @@ func spawn_enemy(resourceID, center = GameState.player.position, spawn_range = s
 	var relative_spawn_position = Vector2(spawn_range,0).rotated(randf_range(0, 2*PI))
 	enemy.position = center + relative_spawn_position
 	enemy.enemy_killed.connect(_on_enemy_killed)
-	ysorter.add_child(enemy) # Replace with function body.
+	ysorter.add_child(enemy)
 	
 	
 func _on_enemy_killed(enemy):

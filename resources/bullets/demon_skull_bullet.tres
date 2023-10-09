@@ -5,15 +5,17 @@
 
 [resource]
 script = ExtResource("1_eenvt")
+transport_mode = 1
 animation = ExtResource("1_hlmbc")
 name = "demon_skull_bullet"
 start_range = 50
 lifetime = 1.0
 bullet_range = 1000
 damage = 1.0
-fire_delay = 60
+fire_delay = 60.0
 multishot = 20
 size = Vector2(1.5, 0.5)
+colour = Color(1, 1, 1, 1)
 shot_spread = 6.283
 angular_velocity = 1.0
 piercing = 10
@@ -22,3 +24,4 @@ activation_delay = 0.0
 deactivation_range = 500
 shot_inaccuracy = 0.0
 shot_speed = 0.0
+spawn_on_timeout = false

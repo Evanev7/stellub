@@ -7,7 +7,7 @@ func _ready():
 
 
 # Change stats on pickup
-func modify_bullet_resource(bullet: BulletResource) -> BulletResource:
+func modify_bullet_resource(bullet: BulletResource) -> BulletResource: 
 	bullet.shot_speed /= 5
 	bullet.size *= 4
 	bullet.piercing_cooldown = 6

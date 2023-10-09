@@ -38,8 +38,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
-	velocity.x = Input.get_axis("move_left", "move_right")
-	velocity.y = Input.get_axis("move_up", "move_down")
+	velocity = Input.get_vector("move_left", "move_right","move_up", "move_down")
 	
 	# Handle user input
 	if Input.is_action_just_pressed("walk"):
@@ -91,7 +90,6 @@ func set_default_stats():
 	current_animation = "level 0"
 	current_evolution = 0
 	souls = 0
-	#$ShotRecharge.max_value = bullet.fire_delay
 	scale = default_scale
 	rotation = 0
 
@@ -149,12 +147,8 @@ func player_level_up():
 		hp += hp_max * 0.1
 	speed *= 1.02
 	
-	upgrade_attacks(stat_upgrade.instantiate())
+	$AttackHandler.upgrade_all_attacks(stat_upgrade.instantiate())
 
-
-func upgrade_attacks(upgrade):
-	$AttackHandler/Attack.add_child(upgrade)
-	$AttackHandler/Attack.refresh_bullet_resource()
 
 func evolve():
 	current_evolution += 1

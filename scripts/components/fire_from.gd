@@ -5,4 +5,4 @@ var direction: Vector2
 
 func toward(me: Vector2, you: Vector2):
 	position = me
-	direction = (you - me).normalized()
+	direction = (you - me)

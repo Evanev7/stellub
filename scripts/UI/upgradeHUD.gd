@@ -1,8 +1,8 @@
 extends CanvasLayer
 
-signal leave
 signal remove_shop
-signal remove_upgrade
+signal apply_upgrade(upgrade)
+signal add_weapon(weapon)
 
 var current_upgrades = []
 
@@ -25,7 +25,7 @@ func show_HUD(chosen_upgrades):
 	current_upgrades = chosen_upgrades
 
 
-func _on_upgrade_pressed(upgrade_number):
+func _on_upgrade_pressed(upgrade_number): 
 	GameState.player.upgrade_attacks(current_upgrades[upgrade_number - 1])
 	GameState.player.evolve()
 #	remove_upgrade.emit(current_upgrades[upgrade_number - 1])

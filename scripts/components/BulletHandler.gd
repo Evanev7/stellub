@@ -24,7 +24,7 @@ func _on_fire_bullet(origin, bullet_type: BulletResource, fire_from: FireFrom):
 		var direction_offset = inaccuracy_offset
 		if bullet_type.multishot > 1:
 			direction_offset += remap(index, 0, bullet_type.multishot-1, -bullet_type.shot_spread/2, bullet_type.shot_spread/2)
-		var start_direction = fire_from.direction.rotated(direction_offset)
+		var start_direction = fire_from.direction.normalized().rotated(direction_offset)
 		
 		# The distance from the 'firer' that the bullet starts at.
 		var start_range = Vector2(bullet_type.start_range, bullet_type.start_range)
@@ -35,6 +35,7 @@ func _on_fire_bullet(origin, bullet_type: BulletResource, fire_from: FireFrom):
 		bullet.data = bullet_type
 		bullet.origin_ref = origin
 		bullet.position = start_position
+		bullet.transport(0)
 		
 		call_deferred("add_child",bullet)
 		

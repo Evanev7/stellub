@@ -1,5 +1,7 @@
 extends Area2D
 
+
+
 @onready var data: BulletResource
 @onready var spawned_bullet: BulletResource = data.spawned_bullet_resource
 @onready var sprite = $AnimatedSprite2D
@@ -12,6 +14,7 @@ var origin_ref: WeakRef
 #var relative_position
 var origin_position: Vector2
 var origin_velocity: Vector2
+
 
 var damage
 var _hit_targets: Array
@@ -38,10 +41,10 @@ func _ready():
 	$AnimatedSprite2D.play()
 	
 	if data.activation_delay > 0:
+		
 		$CollisionShape2D.disabled = true
-		$Activator.set_wait_time(data.activation_delay)
-		$Activator.start()
-	
+		await get_tree().create_timer(data.activation_delay).timeout
+		$CollisionShape2D.disabled = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -61,20 +64,38 @@ func _physics_process(delta):
 		piercing_cooldown = data.piercing_cooldown
 
 
-func transport(delta):
+func transport(delta) -> void:
 	var _direction = direction * data.shot_speed
-	var origin = origin_ref.get_ref()
-	if origin:
-		origin_position = origin.position
-		origin_velocity = origin.velocity
-	if data.angular_velocity != 0:
-		_direction += (position - origin_position).rotated(PI/2)*data.angular_velocity
-		rotation = _direction.angle()
-	if data.shot_speed == 0:
-		_direction += origin_velocity
-		rotation = (position - origin_position).angle()
-	position += _direction * delta
-	_traveled_distance += data.shot_speed*delta
+	match data.transport_mode:
+		BulletResource.TRANSPORT_MODE.LINEAR:
+			assert(data.angular_velocity == 0, "Transport mode should not be linear")
+			position += direction * data.shot_speed * delta
+			_traveled_distance += data.shot_speed * delta
+		
+		BulletResource.TRANSPORT_MODE.ROTATING_FIXED_CENTRE:
+			var origin = origin_ref.get_ref()
+			if not origin:
+				queue_free()
+				return
+			rotation += data.angular_velocity * delta
+			position = origin.position + (Vector2.UP*data.start_range).rotated(rotation+PI/2)
+			_traveled_distance += data.start_range * data.angular_velocity * delta
+		
+		BulletResource.TRANSPORT_MODE.ROTATING_LINEAR_CENTRE:
+			assert(false, "Not yet implemented")
+		
+		BulletResource.TRANSPORT_MODE.ROTATING_NO_CENTRE:
+			var origin = origin_ref.get_ref()
+			if origin:
+				origin_position = origin.position
+			var offset: Vector2 = (position - origin_position)
+			_direction += offset.rotated(PI/2) * data.angular_velocity
+			position += _direction * delta
+			rotation = _direction.angle()
+			_traveled_distance += data.shot_speed * delta
+		
+		BulletResource.TRANSPORT_MODE.STATIC:
+			pass
 
 
 func _on_self_destruct_timeout():
@@ -92,7 +113,7 @@ func _on_area_entered(area):
 
 
 func successful_hit(target):
-	if target:
+	if target and target not in _hit_targets:
 		_hit_targets.append(target)
 		
 	#Damage target
@@ -101,7 +122,6 @@ func successful_hit(target):
 	
 	if spawned_bullet:
 		spawn_child()
-	
 	
 	#Handle bullet destruction.
 	piercing -= 1
@@ -119,7 +139,3 @@ func spawn_child() -> void:
 func _on_body_entered(body):
 	if body.is_in_group("terrain"):
 		queue_free()
-
-
-func _on_activator_timeout():
-	$CollisionShape2D.disabled = false

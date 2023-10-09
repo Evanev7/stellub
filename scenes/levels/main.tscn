@@ -61,9 +61,6 @@ layer_0/tile_data = PackedInt32Array(0, 1, 0)
 z_index = 0
 position = Vector2(640, 360)
 
-[node name="Marker2D" type="Marker2D" parent="YSort"]
-position = Vector2(576, 324)
-
 [node name="Shop" parent="YSort" instance=ExtResource("20_vbjc5")]
 position = Vector2(1162, 552)
 
@@ -112,5 +109,3 @@ ysorter = NodePath("../../YSort")
 [connection signal="taken_damage" from="YSort/Player" to="." method="_on_player_taken_damage"]
 [connection signal="shop_entered" from="YSort/Shop" to="LogicComponents/ShopHandler" method="_on_shop_entered"]
 [connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
-[connection signal="leave" from="UpgradeHUD" to="." method="_on_upgrade_hud_leave"]
-[connection signal="remove_upgrade" from="UpgradeHUD" to="LogicComponents/ShopHandler" method="_on_upgrade_hud_remove_upgrade"]
