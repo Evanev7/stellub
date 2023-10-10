@@ -150,6 +150,11 @@ func player_level_up():
 	$AttackHandler.upgrade_all_attacks(stat_upgrade.instantiate())
 
 
+func upgrade_attacks(upgrade):
+	$AttackHandler/Attack.add_child(upgrade)
+	$AttackHandler/Attack.refresh_bullet_resource()
+
+
 func evolve():
 	current_evolution += 1
 	current_animation = "level " + str(min(current_evolution, 6))

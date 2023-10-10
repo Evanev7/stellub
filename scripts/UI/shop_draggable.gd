@@ -10,6 +10,8 @@ enum SLOT_TYPE {ATTACK, UPGRADE}
 
 func _ready():
 	add_to_group("draggable")
+	size = Vector2(24, 24)
+	refresh_textures()
 
 
 func refresh_textures():
@@ -17,6 +19,9 @@ func refresh_textures():
 
 
 func _get_drag_data(_pos: Vector2) -> Variant:
+	var object_data = object_scene.instantiate()
+	print(object_data.icon.get_load_path())
+	texture_normal = object_data.icon
 	var data = {
 		"origin_node" = self,
 		"origin_scene" = object_scene,

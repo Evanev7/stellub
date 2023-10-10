@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://dyhf18b3orycs"]
+[gd_scene load_steps=14 format=3 uid="uid://dyhf18b3orycs"]
 
 [ext_resource type="Script" path="res://scripts/UI/shop_draggable.gd" id="1_xieai"]
+[ext_resource type="PackedScene" uid="uid://bpkxt2uvnf57n" path="res://upgrades/triple_shot.tscn" id="2_av8p3"]
 
 [sub_resource type="Gradient" id="Gradient_0ld3l"]
 
@@ -35,9 +36,11 @@ size = Vector2(70, 70)
 size = Vector2(70, 70)
 
 [node name="Shop" type="CanvasLayer"]
+scale = Vector2(0.5, 0.5)
+transform = Transform2D(0.5, 0, 0, 0.5, 0, 0)
 
 [node name="Control" type="CenterContainer" parent="."]
-custom_minimum_size = Vector2(1920, 1080)
+custom_minimum_size = Vector2(1080, 720)
 offset_right = 1920.0
 offset_bottom = 1080.0
 pivot_offset = Vector2(943, 891)
@@ -80,6 +83,7 @@ layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_111s1")
 script = ExtResource("1_xieai")
 swappable = false
+object_scene = ExtResource("2_av8p3")
 
 [node name="Shop2" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/UpgradePanel/HBoxContainer"]
 layout_mode = 2

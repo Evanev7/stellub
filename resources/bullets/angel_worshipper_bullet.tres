@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1_ntmv1")
+transport_mode = 0
 animation = ExtResource("1_apf0g")
 name = "angel_worshipper_bullet"
 start_range = 0
