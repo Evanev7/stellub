@@ -8,6 +8,8 @@ enum TRANSPORT_MODE {LINEAR, ROTATING_FIXED_CENTRE, ROTATING_NO_CENTRE, ROTATING
 @export var animation: SpriteFrames
 
 @export var name: String
+@export var rarity: float = 1
+@export var icon: CompressedTexture2D
 
 @export var start_range: int = 0
 @export var lifetime: float = 20.0

@@ -1,18 +1,21 @@
-[gd_resource type="Resource" script_class="BulletResource" load_steps=3 format=3 uid="uid://ccpb4udi5owpj"]
+[gd_resource type="Resource" script_class="BulletResource" load_steps=4 format=3 uid="uid://ccpb4udi5owpj"]
 
 [ext_resource type="Script" path="res://scripts/objects/bullet_resource.gd" id="1_dmiyo"]
 [ext_resource type="SpriteFrames" uid="uid://cbfq7bqkgh3ti" path="res://resources/bullets/player/player_bullet_spriteframes.tres" id="1_eteat"]
+[ext_resource type="Texture2D" uid="uid://cy2ajprj0e7h5" path="res://art/bullets/player/simple_bullet_1.png" id="2_ayv1f"]
 
 [resource]
 script = ExtResource("1_dmiyo")
 transport_mode = 0
 animation = ExtResource("1_eteat")
-name = "normal_bullet"
+name = "Normal Bullet"
+rarity = 1.0
+icon = ExtResource("2_ayv1f")
 start_range = 0
 lifetime = 20.0
 bullet_range = 1000
 damage = 1.0
-fire_delay = 25
+fire_delay = 15.0
 multishot = 1
 size = Vector2(1, 1)
 colour = Color(1, 1, 1, 1)

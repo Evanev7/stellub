@@ -1,13 +1,16 @@
-[gd_resource type="Resource" script_class="BulletResource" load_steps=3 format=3 uid="uid://coqyd5d8e6rm8"]
+[gd_resource type="Resource" script_class="BulletResource" load_steps=4 format=3 uid="uid://coqyd5d8e6rm8"]
 
 [ext_resource type="Script" path="res://scripts/objects/bullet_resource.gd" id="1_dhlpd"]
 [ext_resource type="SpriteFrames" uid="uid://cbfq7bqkgh3ti" path="res://resources/bullets/player/player_bullet_spriteframes.tres" id="1_vspwe"]
+[ext_resource type="Texture2D" uid="uid://b6y7giikvs0aa" path="res://art/bullets/enemies/bullet_orange.png" id="2_y86ec"]
 
 [resource]
 script = ExtResource("1_dhlpd")
 transport_mode = 2
 animation = ExtResource("1_vspwe")
 name = "Particle Mace"
+rarity = 1.0
+icon = ExtResource("2_y86ec")
 start_range = 0
 lifetime = 30.0
 bullet_range = 1000

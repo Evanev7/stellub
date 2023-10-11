@@ -198,6 +198,47 @@ grow_horizontal = 2
 grow_vertical = 2
 expand_mode = 1
 
+[node name="WeaponButton" type="TextureButton" parent="ColorRect"]
+visible = false
+layout_mode = 0
+offset_left = 291.0
+offset_top = 49.0
+offset_right = 497.0
+offset_bottom = 126.0
+texture_normal = ExtResource("2_gwhg4")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="WeaponLabel" type="Label" parent="ColorRect/WeaponButton"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -93.0
+offset_top = -23.0
+offset_right = 93.0
+grow_horizontal = 2
+grow_vertical = 0
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="WeaponIcon" type="TextureRect" parent="ColorRect/WeaponButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -29.5
+offset_right = 30.0
+offset_bottom = 30.5
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
 [node name="Leave" type="TextureButton" parent="ColorRect"]
 layout_mode = 1
 anchors_preset = 8
@@ -236,5 +277,6 @@ wait_time = 1.5
 [connection signal="pressed" from="ColorRect/UpgradeButton1" to="." method="_on_upgrade_pressed" binds= [1]]
 [connection signal="pressed" from="ColorRect/UpgradeButton2" to="." method="_on_upgrade_pressed" binds= [2]]
 [connection signal="pressed" from="ColorRect/UpgradeButton3" to="." method="_on_upgrade_pressed" binds= [3]]
+[connection signal="pressed" from="ColorRect/WeaponButton" to="." method="_on_weapon_button_pressed"]
 [connection signal="pressed" from="ColorRect/Leave" to="." method="_on_leave_pressed"]
 [connection signal="timeout" from="ErrorTimer" to="." method="_on_error_timer_timeout"]

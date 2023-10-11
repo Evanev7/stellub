@@ -4,7 +4,9 @@ extends Node
 @export var magic_circle_scene: PackedScene
 
 @export var default_shop_upgrades_list: Array[PackedScene]
+@export var default_shop_weapons_list: Array[BulletResource]
 var shop_upgrades_list: Array[PackedScene]
+var shop_weapons_list: Array[BulletResource]
 
 @export var enemyHandler: EnemyHandler
 @export var ysorter: Node2D
@@ -13,11 +15,11 @@ var shop_upgrades_list: Array[PackedScene]
 
 func _ready():
 	pass
-#	shop_upgrades_list = default_shop_upgrades_list.duplicate()
 	
 
 func start():
 	shop_upgrades_list = default_shop_upgrades_list.duplicate()
+	shop_weapons_list = default_shop_weapons_list.duplicate()
 	
 
 func spawn_magic_circles():
@@ -39,6 +41,9 @@ func spawn_magic_circles():
 func _on_shop_entered():
 	var chosen_upgrades = []
 	var shop_array = shop_upgrades_list.duplicate()
+	var weapon_array = shop_weapons_list.duplicate()
+	var is_weapon_present := false
+	
 	
 	while chosen_upgrades.size() != 3:
 		if shop_array.size() == 0:
@@ -50,13 +55,21 @@ func _on_shop_entered():
 		if randf() <= upgrade.rarity:
 			chosen_upgrades.append(upgrade)
 
-	open_upgrade_hud(chosen_upgrades)
+	if randf() <= 0.5:
+		weapon_array.shuffle()
+		for weapon in weapon_array:
+			if randf() <= weapon.rarity:
+				is_weapon_present = true
+				chosen_upgrades.append(weapon)
+				break
+				
+	open_upgrade_hud(chosen_upgrades, is_weapon_present)
 
 
-func open_upgrade_hud(stat_upgrades):
+func open_upgrade_hud(stat_upgrades, is_weapon_present):
 	get_tree().paused = true
 	upgrade_hud.set_visible(true)
-	upgrade_hud.show_HUD(stat_upgrades)
+	upgrade_hud.show_HUD(stat_upgrades, is_weapon_present)
 
 
 func _on_spawn_shop(position):
@@ -76,4 +89,11 @@ func _on_upgrade_hud_remove_upgrade(upgrade):
 	for i in shop_upgrades_list.size():
 		if upgrade.scene_file_path == shop_upgrades_list[i].get_path():
 			shop_upgrades_list.remove_at(i)
+			break
+
+
+func _on_upgrade_hud_remove_weapon(weapon):
+	for i in shop_weapons_list.size():
+		if weapon.name == shop_weapons_list[i].name:
+			shop_weapons_list.remove_at(i)
 			break
