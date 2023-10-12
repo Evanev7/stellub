@@ -8,7 +8,7 @@ func _ready():
 
 # Change stats on pickup
 func modify_bullet_resource(bullet: BulletResource) -> BulletResource:
-	bullet.transport_mode = bullet.TRANSPORT_MODE.ROTATING_NO_CENTRE
+	bullet.transport_mode = bullet.TRANSPORT_MODE.ROTATING_FIXED_CENTRE
 	bullet.start_range = 100
 	bullet.fire_delay *= 1.2
 	bullet.multishot *= 2

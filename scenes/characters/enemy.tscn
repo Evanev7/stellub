@@ -38,4 +38,26 @@ shape = ExtResource("4_yc22m")
 [node name="AttackHandler" type="Node2D" parent="."]
 script = ExtResource("6_hcyh0")
 
+[node name="Damage" type="Label" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.1429
+offset_top = -117.143
+offset_right = 1769.86
+offset_bottom = 976.857
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.03, 0.03)
+theme_override_font_sizes/font_size = 800
+text = "Dmg"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DamageTimer" type="Timer" parent="."]
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]

@@ -88,14 +88,21 @@ func _physics_process(_delta):
 # Change the enemies health and tween to shrink the enemy briefly.
 func hurt(area):
 	health -= area.damage
+	$Damage.visible = true
+	$Damage.text = str(area.damage)
+	$DamageTimer.start()
 	scale = default_scale * 0.65 
-	var tween := create_tween()
-	tween.tween_property(self, "global_scale", default_scale, 0.1)
+	var tween2 := create_tween()
+	tween2.tween_property(self, "global_scale", default_scale, 0.1)
 
+func _on_damage_timer_timeout():
+	$Damage.visible = false
 
 # Called when the enemy encounters something that it hurts.
 func hit(area):
 	if area.owner == GameState.player:
 		area.owner.hurt(self)
+
+
 
 

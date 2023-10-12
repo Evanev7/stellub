@@ -41,7 +41,8 @@ func get_attack_direction() -> FireFrom:
 
 func upgrade_all_attacks(upgrade):
 	for attack in get_children():
-		attack.add_child(upgrade)
+		var instantiated_upgrade = upgrade.instantiate()
+		attack.add_child(instantiated_upgrade)
 		attack.refresh_bullet_resource()
 		
 

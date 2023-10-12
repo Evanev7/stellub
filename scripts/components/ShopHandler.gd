@@ -55,7 +55,7 @@ func _on_shop_entered():
 		if randf() <= upgrade.rarity:
 			chosen_upgrades.append(upgrade)
 
-	if randf() <= 0.5:
+	if randf() <= 1:
 		weapon_array.shuffle()
 		for weapon in weapon_array:
 			if randf() <= weapon.rarity:

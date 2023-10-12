@@ -141,19 +141,21 @@ func gain_score(value):
 
 func player_level_up():
 	hp_max *= 1.02
-	if hp >= hp_max * 0.9:
-		hp = hp_max
-	else:
-		hp += hp_max * 0.1
+	hp += hp_max * 0.01
 	speed *= 1.02
 	
-	$AttackHandler.upgrade_all_attacks(stat_upgrade.instantiate())
+	$AttackHandler.upgrade_all_attacks(stat_upgrade)
 
 
-func upgrade_attacks(upgrade):
-	$AttackHandler/Attack.add_child(upgrade)
-	$AttackHandler/Attack.refresh_bullet_resource()
+func upgrade_attack(upgrade, weapon_number):
+	$AttackHandler.get_child(weapon_number).add_child(upgrade)
+	$AttackHandler.get_child(weapon_number).refresh_bullet_resource()
 
+func get_all_attacks():
+	var attacks = []
+	for attack in $AttackHandler.get_children():
+		attacks.append(attack)
+	return attacks
 
 func evolve():
 	current_evolution += 1

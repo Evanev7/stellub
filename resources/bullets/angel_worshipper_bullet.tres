@@ -8,6 +8,7 @@ script = ExtResource("1_ntmv1")
 transport_mode = 0
 animation = ExtResource("1_apf0g")
 name = "angel_worshipper_bullet"
+rarity = 1.0
 start_range = 0
 lifetime = 20.0
 bullet_range = 1000
