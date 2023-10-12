@@ -2,6 +2,8 @@ extends CanvasLayer
 
 signal start_game
 
+func _process(_delta):
+	$FPS.set_text("FPS %d" % Engine.get_frames_per_second())
 
 func show_message(text):
 	$TextDisplay.text = text

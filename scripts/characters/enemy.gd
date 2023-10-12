@@ -93,12 +93,12 @@ func hurt(area):
 	tween2.tween_property(self, "global_scale", default_scale, 0.1)
 	spawn_damage_number(area.damage)
 	
-func spawn_damage_number(value: float):
+func spawn_damage_number(damage_value: float):
 	var damage_number = get_damage_number()
-	var val = str(round(value))
+	var val = str(round(damage_value))
 	var pos = $Damage.position
 	$DamageNumbers.add_child(damage_number, true)
-	damage_number.set_values_and_animate(val, pos, $DamageNumbers.get_children().size() * 5, 100 + 5 * $DamageNumbers.get_children().size())
+	damage_number.set_values_and_animate(val, pos, $DamageNumbers.get_child_count() * 5, 100 + 5 * $DamageNumbers.get_child_count())
 
 func get_damage_number() -> DamageNumber:
 	if damage_scene_pool.size() > 0:

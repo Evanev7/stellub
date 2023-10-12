@@ -12,6 +12,8 @@ enum TRANSPORT_MODE {LINEAR, ROTATING_FIXED_CENTRE, ROTATING_NO_CENTRE, ROTATING
 @export var icon: CompressedTexture2D
 
 @export var start_range: int = 0
+
+## Float in seconds
 @export var lifetime: float = 20.0
 @export var bullet_range: int = 1000
 @export var damage: float = 1
@@ -19,14 +21,14 @@ enum TRANSPORT_MODE {LINEAR, ROTATING_FIXED_CENTRE, ROTATING_NO_CENTRE, ROTATING
 @export var multishot: int = 1
 @export var size: Vector2 = Vector2(1, 1)
 @export var colour: Color = Color(1,1,1,1)
+
+## 2*PI for a full circle
 @export var shot_spread: float =  PI/12
 @export var angular_velocity: float = 0
 @export var piercing: int = 1
 @export var piercing_cooldown: int = 0
 @export var activation_delay: float = 0
 @export var deactivation_range: int = 500
-
-## 2*PI for a full circle
 @export var shot_inaccuracy: float = PI/32
 
 ## Set to 0 to make bullets follow the source

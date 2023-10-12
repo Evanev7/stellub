@@ -72,5 +72,9 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_b8dcb")
 value = 10.0
 allow_greater = true
 
+[node name="FPS" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
 [connection signal="timeout" from="DisplayTimer" to="." method="_on_display_timer_timeout"]
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]

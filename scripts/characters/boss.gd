@@ -12,6 +12,9 @@ var damage_scene_pool: Array[DamageNumber] = []
 
 func _ready():
 	$AttackHandler.passive_all_attacks()
+	add_to_group("boss")
+	
+## NEED TO ADD THESE MODIFIERS TO ALL WEAPONS
 #	attack.bullet = GameState.player.all_bullets[i].duplicate(true)
 #	attack.bullet.deactivation_range *= 5
 #	attack.bullet.bullet_range *= 5
@@ -35,7 +38,7 @@ func spawn_damage_number(value: float):
 	var val = str(round(value))
 	var pos = $DamageNumber.position
 	$DamageNumbers.add_child(damage_number, true)
-	damage_number.set_values_and_animate(val, pos, $DamageNumbers.get_children().size() * 5, 100 + 5 * $DamageNumbers.get_children().size())
+	damage_number.set_values_and_animate(val, pos, $DamageNumbers.get_child_count() * 5, 100 + 5 * $DamageNumbers.get_child_count())
 
 func get_damage_number() -> DamageNumber:
 	if damage_scene_pool.size() > 0:

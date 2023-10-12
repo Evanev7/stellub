@@ -12,12 +12,13 @@ signal send_loadout(loadout)
 @export var stat_upgrade: PackedScene
 @onready var default_scale = self.scale
 
+var control_mode: int = 0
 var level_threshold = [10, 20, 30, 50]
-var current_level
-var current_evolution
-var current_wave
-var souls
-var hp_max
+var current_level: int
+var current_evolution: int
+var current_wave: int
+var souls: int
+var hp_max: float
 var speed
 var hp
 var score
@@ -70,8 +71,8 @@ func _physics_process(_delta):
 
 # When the game starts, set the default values and show the player.
 func start():
-	set_default_stats()
 	current_wave = 1
+	set_default_stats()
 	show()
 	set_physics_process(true)
 	$CollisionShape2D.disabled = false
@@ -92,11 +93,22 @@ func set_default_stats():
 	souls = 0
 	scale = default_scale
 	rotation = 0
-
+	
+	## Weapon Stats
+	for attack in $AttackHandler.get_children():
+		attack.queue_free()
 
 func add_attack_from_resource(bullet: BulletResource):
-	$AttackHandler.add_attack_from_resource(bullet)
-
+	print(control_mode)
+	if control_mode == 0:
+		$AttackHandler.add_attack_from_resource(bullet, Attack.CONTROL_MODE.PRIMARY)
+	elif control_mode == 1:
+		$AttackHandler.add_attack_from_resource(bullet, Attack.CONTROL_MODE.SECONDARY)
+	elif control_mode == 2:
+		$AttackHandler.add_attack_from_resource(bullet, Attack.CONTROL_MODE.TERTIARY)
+	else:
+		$AttackHandler.add_attack_from_resource(bullet, Attack.CONTROL_MODE.PASSIVE)
+	control_mode += 1
 
 # Called when the player gets hurt. Body can be either a bullet OR an enemy.
 func hurt(body):

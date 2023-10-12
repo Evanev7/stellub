@@ -10,9 +10,10 @@ var attack_direction: FireFrom = FireFrom.new()
 
 func add_attack_from_resource(
 		bullet: BulletResource,
-		control_mode = Attack.CONTROL_MODE.PASSIVE,
+		control_mode = Attack.CONTROL_MODE.TERTIARY,
 		target: FireFrom = null
 	) -> void:
+	print(control_mode)
 	var attack = Attack.new()
 	attack.name = bullet.name
 	attack.initial_bullet = bullet
@@ -60,7 +61,6 @@ func clear_upgrades(attack) -> void:
 	for upgrade in attack.get_children():
 		attack.remove_child(upgrade)
 	attack.refresh_bullet_resource()
-
 
 func start() -> void:
 	for attack in get_children():

@@ -40,6 +40,7 @@ func _physics_process(_delta):
 func start_game():
 	enemy_handler.start_spawning()
 	GameState.player.start()
+	GameState.player.position = $YSort/PlayerStart.position
 	$LogicComponents/ShopHandler.start()
 	start_magic_circles()
 	
@@ -62,6 +63,7 @@ func game_over():
 	get_tree().call_group("enemy", "queue_free")
 	get_tree().call_group("bullet", "queue_free")
 	get_tree().call_group("pickup", "queue_free")
+	get_tree().call_group("boss", "queue_free")
 	
 	$HUD.game_over()
 

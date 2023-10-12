@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="BulletResource" load_steps=4 format=3 uid="uid://b3v62pkd6hntd"]
+
+[ext_resource type="Script" path="res://scripts/objects/bullet_resource.gd" id="1_3xi33"]
+[ext_resource type="SpriteFrames" uid="uid://cbfq7bqkgh3ti" path="res://resources/bullets/player/player_bullet_spriteframes.tres" id="1_nan3p"]
+[ext_resource type="Texture2D" uid="uid://b6y7giikvs0aa" path="res://art/bullets/enemies/bullet_orange.png" id="2_keac3"]
+
+[resource]
+script = ExtResource("1_3xi33")
+transport_mode = 0
+animation = ExtResource("1_nan3p")
+name = "Shotgun"
+rarity = 1.0
+icon = ExtResource("2_keac3")
+start_range = 0
+lifetime = 0.1
+bullet_range = 1000
+damage = 1.0
+fire_delay = 25.0
+multishot = 10
+size = Vector2(0.9, 0.9)
+colour = Color(1, 1, 1, 1)
+shot_spread = 1.745
+angular_velocity = 0.0
+piercing = 2
+piercing_cooldown = 0
+activation_delay = 0.0
+deactivation_range = 500
+shot_inaccuracy = 0.5
+shot_speed = 800.0
+spawn_on_timeout = false
