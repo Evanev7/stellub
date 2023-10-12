@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dpjckt12ipcw2"]
+[gd_scene load_steps=7 format=3 uid="uid://dpjckt12ipcw2"]
 
 [ext_resource type="Script" path="res://scripts/characters/enemy.gd" id="1_oyorq"]
 [ext_resource type="SpriteFrames" uid="uid://bpernxx6xbtyn" path="res://resources/enemy/demon_skeleton_spriteframes.tres" id="2_60lhk"]
+[ext_resource type="PackedScene" uid="uid://1bd6uenu01av" path="res://scenes/UI/damage_number.tscn" id="2_orbdq"]
 [ext_resource type="Shape2D" uid="uid://0e7jt1gqqywj" path="res://resources/hitboxes/demon_skeleton_collisionbox.tres" id="3_vgymb"]
 [ext_resource type="Shape2D" uid="uid://q26ka3qri44y" path="res://resources/hitboxes/demon_skeleton_hitbox.tres" id="4_yc22m"]
 [ext_resource type="Script" path="res://scripts/characters/AttackHandler.gd" id="6_hcyh0"]
@@ -10,6 +11,7 @@
 scale = Vector2(0.7, 0.7)
 motion_mode = 1
 script = ExtResource("1_oyorq")
+damage_scene = ExtResource("2_orbdq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(35, 63.3333)
@@ -39,25 +41,21 @@ shape = ExtResource("4_yc22m")
 script = ExtResource("6_hcyh0")
 
 [node name="Damage" type="Label" parent="."]
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -27.1429
-offset_top = -117.143
-offset_right = 1769.86
-offset_bottom = 976.857
+offset_top = -102.857
+offset_right = 190.0
+offset_bottom = 988.143
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.03, 0.03)
-theme_override_font_sizes/font_size = 800
-text = "Dmg"
+theme_override_font_sizes/font_size = 500
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DamageTimer" type="Timer" parent="."]
+[node name="DamageNumbers" type="Node2D" parent="."]
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
-[connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]

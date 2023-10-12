@@ -4,6 +4,7 @@ class_name EnemyBehaviour
 signal enemy_killed(enemy)
 
 @export var resource: EnemyResource
+@export var damage_scene: PackedScene
 
 @onready var attack_handler: AttackHandler = $AttackHandler
 @onready var sprite = $AnimatedSprite2D
@@ -11,7 +12,6 @@ signal enemy_killed(enemy)
 @onready var damage: float = resource.DAMAGE
 @onready var value: float = resource.VALUE
 @onready var speed: float = resource.SPEED
-@onready var unique_scale: Vector2
 @onready var flipped: bool = resource.FLIP_H
 @onready var floating: bool = resource.FLOATING
 @onready var default_angle: float = self.rotation
@@ -19,7 +19,7 @@ signal enemy_killed(enemy)
 @onready var variance = 1/default_scale.length()
 
 var spawn_time: float
-
+var damage_scene_pool: Array[DamageNumber] = []
 
 func _ready():
 	load_resource(resource)
@@ -88,15 +88,28 @@ func _physics_process(_delta):
 # Change the enemies health and tween to shrink the enemy briefly.
 func hurt(area):
 	health -= area.damage
-	$Damage.visible = true
-	$Damage.text = str(area.damage)
-	$DamageTimer.start()
 	scale = default_scale * 0.65 
 	var tween2 := create_tween()
 	tween2.tween_property(self, "global_scale", default_scale, 0.1)
+	spawn_damage_number(area.damage)
+	
+func spawn_damage_number(value: float):
+	var damage_number = get_damage_number()
+	var val = str(round(value))
+	var pos = $Damage.position
+	$DamageNumbers.add_child(damage_number, true)
+	damage_number.set_values_and_animate(val, pos, $DamageNumbers.get_children().size() * 5, 100 + 5 * $DamageNumbers.get_children().size())
 
-func _on_damage_timer_timeout():
-	$Damage.visible = false
+func get_damage_number() -> DamageNumber:
+	if damage_scene_pool.size() > 0:
+		return damage_scene_pool.pop_front()
+		
+	else:
+		var new_damage_number = damage_scene.instantiate()
+		new_damage_number.tree_exiting.connect(
+			func():
+				damage_scene_pool.append(new_damage_number))
+		return new_damage_number
 
 # Called when the enemy encounters something that it hurts.
 func hit(area):

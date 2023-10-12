@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://d23ddhgery8pq"]
+[gd_scene load_steps=9 format=3 uid="uid://d23ddhgery8pq"]
 
 [ext_resource type="Texture2D" uid="uid://d4hct8jpb8rpj" path="res://art/player/level 6/player_6_1.png" id="1_ebk6h"]
 [ext_resource type="Script" path="res://scripts/characters/boss.gd" id="1_vq2wp"]
+[ext_resource type="PackedScene" uid="uid://1bd6uenu01av" path="res://scenes/UI/damage_number.tscn" id="2_l5dhd"]
 [ext_resource type="Script" path="res://scripts/characters/AttackHandler.gd" id="3_6ii6e"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5slt2"]
@@ -26,6 +27,7 @@ radius = 232.138
 
 [node name="boss" type="CharacterBody2D"]
 script = ExtResource("1_vq2wp")
+damage_scene = ExtResource("2_l5dhd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(2, -1.5)
@@ -51,3 +53,10 @@ shape = SubResource("CircleShape2D_ji61x")
 
 [node name="AttackHandler" type="Node2D" parent="."]
 script = ExtResource("3_6ii6e")
+
+[node name="DamageNumber" type="Marker2D" parent="."]
+position = Vector2(0, -127)
+
+[node name="DamageNumbers" type="Node2D" parent="."]
+
+[connection signal="area_entered" from="Hurtbox" to="." method="hurt"]

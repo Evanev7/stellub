@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dfe6bc7mdpexj"]
+[gd_scene load_steps=36 format=3 uid="uid://dfe6bc7mdpexj"]
 
 [ext_resource type="Script" path="res://scripts/levels/main.gd" id="1_u8uym"]
 [ext_resource type="PackedScene" uid="uid://yaht8i4bkv2u" path="res://scenes/UI/HUD.tscn" id="3_8qfpp"]
@@ -42,6 +42,8 @@ texture_region_size = Vector2i(1920, 1080)
 tile_size = Vector2i(1920, 1080)
 sources/1 = SubResource("TileSetAtlasSource_uuw3f")
 
+[sub_resource type="ButtonGroup" id="ButtonGroup_hjsrm"]
+
 [node name="Main" type="Node" node_paths=PackedStringArray("bullet_handler", "enemy_handler")]
 script = ExtResource("1_u8uym")
 magic_circle_scene = ExtResource("21_4yjc3")
@@ -69,6 +71,7 @@ position = Vector2(1162, 552)
 [node name="HUD" parent="." instance=ExtResource("3_8qfpp")]
 
 [node name="UpgradeHUD" parent="." instance=ExtResource("4_ls5jb")]
+weapon_button_group = SubResource("ButtonGroup_hjsrm")
 
 [node name="ObjectiveMarker" parent="." instance=ExtResource("20_tncsu")]
 
