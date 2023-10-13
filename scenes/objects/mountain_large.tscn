@@ -25,7 +25,7 @@ position = Vector2(-78, -123)
 polygon = PackedVector2Array(86.2, -179, 23.2, -142, -77, 14, -137.8, 159, -9.79999, 188, 346.2, 182, 297, 106, 266, 1, 229.2, -69, 171.2, -122, 139, -150)
 
 [node name="SpawnCollider" type="Area2D" parent="."]
-collision_layer = 8
+collision_layer = 12
 collision_mask = 8
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SpawnCollider"]

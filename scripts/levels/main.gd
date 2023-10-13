@@ -44,7 +44,6 @@ func start_game():
 	$LogicComponents/ShopHandler.start()
 	start_magic_circles()
 	
-	#$LogicComponents/BossHandler.spawn_boss()
 	$HUD.show_message("All Hell Breaks Loose!")
 	$HUD.show_health(GameState.player.hp)
 	$HUD.show_score(GameState.player.score, GameState.player.level_threshold[GameState.player.current_level])

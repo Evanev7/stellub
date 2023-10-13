@@ -99,7 +99,6 @@ func set_default_stats():
 		attack.queue_free()
 
 func add_attack_from_resource(bullet: BulletResource):
-	print(control_mode)
 	if control_mode == 0:
 		$AttackHandler.add_attack_from_resource(bullet, Attack.CONTROL_MODE.PRIMARY)
 	elif control_mode == 1:

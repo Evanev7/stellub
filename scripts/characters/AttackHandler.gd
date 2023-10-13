@@ -13,7 +13,6 @@ func add_attack_from_resource(
 		control_mode = Attack.CONTROL_MODE.TERTIARY,
 		target: FireFrom = null
 	) -> void:
-	print(control_mode)
 	var attack = Attack.new()
 	attack.name = bullet.name
 	attack.initial_bullet = bullet
