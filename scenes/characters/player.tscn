@@ -164,13 +164,15 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("attack_handler")]
 z_index = 1
 y_sort_enabled = true
 motion_mode = 1
 platform_on_leave = 2
 script = ExtResource("1_m0lvq")
+STARTING_WEAPON = ExtResource("35_8awst")
 stat_upgrade = ExtResource("2_50n7q")
+attack_handler = NodePath("AttackHandler")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(0.3, 0.3)
@@ -204,7 +206,6 @@ shadow_enabled = true
 texture = ExtResource("3_ik71x")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-enabled = false
 
 [node name="IFrames" type="Timer" parent="."]
 process_callback = 0
@@ -216,7 +217,6 @@ target_mode = 1
 
 [node name="Attack" parent="AttackHandler" instance=ExtResource("33_cq3a6")]
 control_mode = 1
-initial_bullet = ExtResource("35_8awst")
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="timeout" from="IFrames" to="." method="_on_i_frames_timeout"]

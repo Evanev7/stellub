@@ -6,25 +6,17 @@ enum SLOT_TYPE {ATTACK, UPGRADE}
 @export var drag_preview_scene: PackedScene = preload("res://scenes/UI/drag_preview.tscn")
 @export var slot_type: SLOT_TYPE = SLOT_TYPE.UPGRADE
 @export var swappable: bool = true
-@export var object_scene: PackedScene
+@export var referenced_node: PackedScene
 
 func _ready():
 	add_to_group("draggable")
-	size = Vector2(24, 24)
-	refresh_textures()
 
-
-func refresh_textures():
-	pass
 
 
 func _get_drag_data(_pos: Vector2) -> Variant:
-	var object_data = object_scene.instantiate()
-	print(object_data.icon.get_load_path())
-	texture_normal = object_data.icon
 	var data = {
 		"origin_node" = self,
-		"origin_scene" = object_scene,
+		"referenced_node" = referenced_node,
 		"slot_type" = SLOT_TYPE.UPGRADE,
 		"slot_swappable" = swappable
 	}
@@ -42,7 +34,7 @@ func _get_drag_data(_pos: Vector2) -> Variant:
 func _can_drop_data(_pos: Vector2, incoming_data) -> bool: 
 	if slot_type != incoming_data["slot_type"]:
 		return false
-	if incoming_data["slot_swappable"] == false and object_scene == null:
+	if incoming_data["slot_swappable"] == false and referenced_node == null:
 		return false
 	
 	return true
@@ -51,10 +43,9 @@ func _can_drop_data(_pos: Vector2, incoming_data) -> bool:
 func _drop_data(_pos: Vector2, data) -> void:
 	print("dropping")
 	if swappable and data["slot_swappable"]:
-		data["origin_node"].object_scene = object_scene
-		object_scene = data["origin_scene"]
+		data["origin_node"].referenced_node = referenced_node
+		referenced_node = data["referenced_node"]
 	else:
-		data["origin_node"].object_scene = null
-		object_scene = data["origin_scene"]
+		data["origin_node"].referenced_node = null
+		referenced_node = data["referenced_node"]
 	
-	refresh_textures()

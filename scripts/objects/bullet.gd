@@ -28,6 +28,7 @@ func _ready():
 	var origin: Node2D = origin_ref.get_ref()
 	if origin == GameState.player:
 		set_collision_mask(4)
+		$Vacuum.set_collision_mask(4)
 	scale = data.size
 	piercing = data.piercing
 	damage = data.damage
@@ -40,11 +41,17 @@ func _ready():
 	$AnimatedSprite2D.modulate = data.colour
 	$AnimatedSprite2D.play()
 	
+	if data.vaccuum:
+		$Vacuum/CollisionShape2D.disabled = false
+		$Vacuum/CollisionShape2D.shape.radius = data.vaccuum_range
+	
 	if data.activation_delay > 0:
 		
 		$CollisionShape2D.disabled = true
 		await get_tree().create_timer(data.activation_delay).timeout
 		$CollisionShape2D.disabled = false
+	
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -56,12 +63,17 @@ func _physics_process(delta):
 		queue_free()
 	
 	if piercing_cooldown > 0:
-		piercing_cooldown -= 1
+		piercing_cooldown -= 1.0
 	#If a bullet is able to hit the same enemy multiple times.
-	elif piercing_cooldown == 0 and data.piercing_cooldown != 0:
+	elif piercing_cooldown <= 0 and data.piercing_cooldown != 0:
 		for area in get_overlapping_areas():
 			successful_hit(area.owner)
 		piercing_cooldown = data.piercing_cooldown
+	
+	if data.vaccuum:
+		for area in $Vacuum.get_overlapping_areas():
+			var enemy = area.owner
+			enemy.position += (position - enemy.position).normalized()*data.vaccuum_strength
 
 
 func transport(delta) -> void:

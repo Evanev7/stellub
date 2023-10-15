@@ -4,14 +4,17 @@ signal taken_damage(hp)
 signal player_death
 signal level_up(level)
 signal send_loadout(loadout)
+signal player_ready
 
 ## Player Stats
 @export var STARTING_SPEED = 300.0
 @export var STARTING_HP_MAX: float = 100
+@export var STARTING_WEAPON: BulletResource
 
 @export var stat_upgrade: PackedScene
-@onready var default_scale = self.scale
+@export var attack_handler: Node2D
 
+@onready var default_scale = self.scale
 var control_mode: int = 0
 var level_threshold = [10, 20, 30, 50]
 var current_level: int
@@ -36,6 +39,7 @@ func _ready():
 	hide()
 	$AttackHandler.stop()
 	set_physics_process(false)
+	player_ready.emit()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
@@ -76,7 +80,6 @@ func start():
 	show()
 	set_physics_process(true)
 	$CollisionShape2D.disabled = false
-	$Camera2D.enabled = true
 	$AttackHandler.start()
 
 
@@ -95,8 +98,11 @@ func set_default_stats():
 	rotation = 0
 	
 	## Weapon Stats
+	if GameState.debug:
+		return
 	for attack in $AttackHandler.get_children():
 		attack.queue_free()
+	$AttackHandler.add_attack_from_resource(STARTING_WEAPON)
 
 func add_attack_from_resource(bullet: BulletResource):
 	if control_mode == 0:

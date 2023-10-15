@@ -19,6 +19,12 @@ config/icon="res://art/icon.svg"
 
 GameState="*res://scripts/components/game_state.gd"
 
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/stretch/mode="canvas_items"
+
 [input]
 
 move_up={

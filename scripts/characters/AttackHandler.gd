@@ -10,7 +10,7 @@ var attack_direction: FireFrom = FireFrom.new()
 
 func add_attack_from_resource(
 		bullet: BulletResource,
-		control_mode = Attack.CONTROL_MODE.TERTIARY,
+		control_mode = Attack.CONTROL_MODE.PRIMARY,
 		target: FireFrom = null
 	) -> void:
 	var attack = Attack.new()

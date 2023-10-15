@@ -19,7 +19,7 @@ texture = ExtResource("1_tsp51")
 offset = Vector2(0, -199)
 
 [node name="SpawnCollider" type="Area2D" parent="."]
-collision_layer = 12
+collision_layer = 8
 collision_mask = 8
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SpawnCollider"]

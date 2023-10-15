@@ -22,11 +22,16 @@ enum TRANSPORT_MODE {LINEAR, ROTATING_FIXED_CENTRE, ROTATING_NO_CENTRE, ROTATING
 @export var size: Vector2 = Vector2(1, 1)
 @export var colour: Color = Color(1,1,1,1)
 
+## Suck stuff
+@export var vaccuum: bool = false
+@export var vaccuum_range: float = 100
+@export var vaccuum_strength: float = 1
+
 ## 2*PI for a full circle
 @export var shot_spread: float =  PI/12
 @export var angular_velocity: float = 0
 @export var piercing: int = 1
-@export var piercing_cooldown: int = 0
+@export var piercing_cooldown: float = 0
 @export var activation_delay: float = 0
 @export var deactivation_range: int = 500
 @export var shot_inaccuracy: float = PI/32

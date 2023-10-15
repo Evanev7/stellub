@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://dyhf18b3orycs"]
 
+[ext_resource type="Script" path="res://scenes/UI/shop_controller.gd" id="1_3nvcm"]
 [ext_resource type="Script" path="res://scripts/UI/shop_draggable.gd" id="1_xieai"]
-[ext_resource type="PackedScene" uid="uid://bpkxt2uvnf57n" path="res://upgrades/triple_shot.tscn" id="2_av8p3"]
 
 [sub_resource type="Gradient" id="Gradient_0ld3l"]
 
@@ -36,11 +36,9 @@ size = Vector2(70, 70)
 size = Vector2(70, 70)
 
 [node name="Shop" type="CanvasLayer"]
-scale = Vector2(0.5, 0.5)
-transform = Transform2D(0.5, 0, 0, 0.5, 0, 0)
+script = ExtResource("1_3nvcm")
 
 [node name="Control" type="CenterContainer" parent="."]
-custom_minimum_size = Vector2(1080, 720)
 offset_right = 1920.0
 offset_bottom = 1080.0
 pivot_offset = Vector2(943, 891)
@@ -79,25 +77,28 @@ layout_mode = 2
 theme_override_constants/separation = 50
 
 [node name="Shop1" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/UpgradePanel/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_111s1")
 script = ExtResource("1_xieai")
 swappable = false
-object_scene = ExtResource("2_av8p3")
 
 [node name="Shop2" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/UpgradePanel/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_05in6")
 script = ExtResource("1_xieai")
 swappable = false
 
 [node name="Shop3" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/UpgradePanel/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_05in6")
 script = ExtResource("1_xieai")
 swappable = false
 
 [node name="ShopExit" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/UpgradePanel/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_05in6")
 
@@ -118,178 +119,200 @@ theme_override_constants/separation = 60
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="Attack1" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft"]
+[node name="TotalAttack1" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/Attack1"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/TotalAttack1"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="CenterContainer2" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/Attack1/HBoxContainer"]
+[node name="CenterContainer2" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/TotalAttack1/HBoxContainer"]
 layout_mode = 2
 
-[node name="GridContainer" type="GridContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/Attack1/HBoxContainer/CenterContainer2"]
+[node name="GridContainer" type="GridContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/TotalAttack1/HBoxContainer/CenterContainer2"]
 layout_mode = 2
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
 columns = 2
 
-[node name="TextureButton" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/Attack1/HBoxContainer/CenterContainer2/GridContainer"]
+[node name="Primary1" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/TotalAttack1/HBoxContainer/CenterContainer2/GridContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_ffqt0")
 
-[node name="TextureButton2" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/Attack1/HBoxContainer/CenterContainer2/GridContainer"]
+[node name="Secondary1" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/TotalAttack1/HBoxContainer/CenterContainer2/GridContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_qpppq")
 
-[node name="TextureButton3" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/Attack1/HBoxContainer/CenterContainer2/GridContainer"]
+[node name="Tertiary1" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/TotalAttack1/HBoxContainer/CenterContainer2/GridContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_j8vij")
 
-[node name="TextureButton4" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/Attack1/HBoxContainer/CenterContainer2/GridContainer"]
+[node name="Passive1" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/TotalAttack1/HBoxContainer/CenterContainer2/GridContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_mffow")
 
-[node name="CenterContainer" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/Attack1/HBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/TotalAttack1/HBoxContainer"]
 layout_mode = 2
 
-[node name="Attack" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/Attack1/HBoxContainer/CenterContainer"]
+[node name="Attack1" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/TotalAttack1/HBoxContainer/CenterContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_dxfrh")
 script = ExtResource("1_xieai")
 slot_type = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/Attack1/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/TotalAttack1/HBoxContainer"]
 layout_mode = 2
 
-[node name="CenterUpgrade1" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/Attack1/HBoxContainer/HBoxContainer"]
+[node name="CenterUpgrade1" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/TotalAttack1/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Upgrade1" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/Attack1/HBoxContainer/HBoxContainer/CenterUpgrade1"]
+[node name="Upgrade11" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/TotalAttack1/HBoxContainer/HBoxContainer/CenterUpgrade1"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_7vn2l")
 script = ExtResource("1_xieai")
 
-[node name="CenterUpgrade2" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/Attack1/HBoxContainer/HBoxContainer"]
+[node name="CenterUpgrade2" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/TotalAttack1/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Upgrade2" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/Attack1/HBoxContainer/HBoxContainer/CenterUpgrade2"]
+[node name="Upgrade12" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/TotalAttack1/HBoxContainer/HBoxContainer/CenterUpgrade2"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_qb5in")
 script = ExtResource("1_xieai")
 
-[node name="CenterUpgrade3" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/Attack1/HBoxContainer/HBoxContainer"]
+[node name="CenterUpgrade3" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/TotalAttack1/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Upgrade3" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/Attack1/HBoxContainer/HBoxContainer/CenterUpgrade3"]
-layout_mode = 2
-texture_normal = SubResource("PlaceholderTexture2D_7vn2l")
-script = ExtResource("1_xieai")
-
-[node name="CenterUpgrade4" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/Attack1/HBoxContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="Upgrade4" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/Attack1/HBoxContainer/HBoxContainer/CenterUpgrade4"]
+[node name="Upgrade13" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/TotalAttack1/HBoxContainer/HBoxContainer/CenterUpgrade3"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_7vn2l")
 script = ExtResource("1_xieai")
 
-[node name="CenterUpgrade5" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/Attack1/HBoxContainer/HBoxContainer"]
+[node name="CenterUpgrade4" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/TotalAttack1/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Upgrade5" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/Attack1/HBoxContainer/HBoxContainer/CenterUpgrade5"]
+[node name="Upgrade14" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/TotalAttack1/HBoxContainer/HBoxContainer/CenterUpgrade4"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_7vn2l")
 script = ExtResource("1_xieai")
 
-[node name="Attack2" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft"]
+[node name="CenterUpgrade5" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/TotalAttack1/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Upgrade15" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/TotalAttack1/HBoxContainer/HBoxContainer/CenterUpgrade5"]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = SubResource("PlaceholderTexture2D_7vn2l")
+script = ExtResource("1_xieai")
+
+[node name="TotalAttack2" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/Attack2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/TotalAttack2"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="CenterContainer2" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/Attack2/HBoxContainer"]
+[node name="CenterContainer2" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/TotalAttack2/HBoxContainer"]
 layout_mode = 2
 
-[node name="GridContainer" type="GridContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/Attack2/HBoxContainer/CenterContainer2"]
+[node name="GridContainer" type="GridContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/TotalAttack2/HBoxContainer/CenterContainer2"]
 layout_mode = 2
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
 columns = 2
 
-[node name="TextureButton" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/Attack2/HBoxContainer/CenterContainer2/GridContainer"]
+[node name="Primary2" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/TotalAttack2/HBoxContainer/CenterContainer2/GridContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_ffqt0")
 
-[node name="TextureButton2" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/Attack2/HBoxContainer/CenterContainer2/GridContainer"]
+[node name="Secondary2" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/TotalAttack2/HBoxContainer/CenterContainer2/GridContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_qpppq")
 
-[node name="TextureButton3" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/Attack2/HBoxContainer/CenterContainer2/GridContainer"]
+[node name="Tertiary2" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/TotalAttack2/HBoxContainer/CenterContainer2/GridContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_j8vij")
 
-[node name="TextureButton4" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/Attack2/HBoxContainer/CenterContainer2/GridContainer"]
+[node name="Passive2" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/TotalAttack2/HBoxContainer/CenterContainer2/GridContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_mffow")
 
-[node name="CenterContainer" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/Attack2/HBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/TotalAttack2/HBoxContainer"]
 layout_mode = 2
 
-[node name="Attack" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/Attack2/HBoxContainer/CenterContainer"]
+[node name="Attack2" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/TotalAttack2/HBoxContainer/CenterContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_dxfrh")
 script = ExtResource("1_xieai")
 slot_type = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/Attack2/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/TotalAttack2/HBoxContainer"]
 layout_mode = 2
 
-[node name="CenterUpgrade1" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/Attack2/HBoxContainer/HBoxContainer"]
+[node name="CenterUpgrade1" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/TotalAttack2/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Upgrade1" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/Attack2/HBoxContainer/HBoxContainer/CenterUpgrade1"]
+[node name="Upgrade21" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/TotalAttack2/HBoxContainer/HBoxContainer/CenterUpgrade1"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_7vn2l")
 script = ExtResource("1_xieai")
 
-[node name="CenterUpgrade2" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/Attack2/HBoxContainer/HBoxContainer"]
+[node name="CenterUpgrade2" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/TotalAttack2/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Upgrade2" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/Attack2/HBoxContainer/HBoxContainer/CenterUpgrade2"]
+[node name="Upgrade22" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/TotalAttack2/HBoxContainer/HBoxContainer/CenterUpgrade2"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_qb5in")
 script = ExtResource("1_xieai")
 
-[node name="CenterUpgrade3" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/Attack2/HBoxContainer/HBoxContainer"]
+[node name="CenterUpgrade3" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/TotalAttack2/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Upgrade3" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/Attack2/HBoxContainer/HBoxContainer/CenterUpgrade3"]
-layout_mode = 2
-texture_normal = SubResource("PlaceholderTexture2D_7vn2l")
-script = ExtResource("1_xieai")
-
-[node name="CenterUpgrade4" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/Attack2/HBoxContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="Upgrade4" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/Attack2/HBoxContainer/HBoxContainer/CenterUpgrade4"]
+[node name="Upgrade23" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/TotalAttack2/HBoxContainer/HBoxContainer/CenterUpgrade3"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_7vn2l")
 script = ExtResource("1_xieai")
 
-[node name="CenterUpgrade5" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/Attack2/HBoxContainer/HBoxContainer"]
+[node name="CenterUpgrade4" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/TotalAttack2/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Upgrade5" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/Attack2/HBoxContainer/HBoxContainer/CenterUpgrade5"]
+[node name="Upgrade24" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/TotalAttack2/HBoxContainer/HBoxContainer/CenterUpgrade4"]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = SubResource("PlaceholderTexture2D_7vn2l")
+script = ExtResource("1_xieai")
+
+[node name="CenterUpgrade5" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/TotalAttack2/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Upgrade25" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft/TotalAttack2/HBoxContainer/HBoxContainer/CenterUpgrade5"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_7vn2l")
 script = ExtResource("1_xieai")
@@ -298,178 +321,200 @@ script = ExtResource("1_xieai")
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="Attack3" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight"]
+[node name="TotalAttack3" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/Attack3"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/TotalAttack3"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="CenterContainer2" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/Attack3/HBoxContainer"]
+[node name="CenterContainer2" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/TotalAttack3/HBoxContainer"]
 layout_mode = 2
 
-[node name="GridContainer" type="GridContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/Attack3/HBoxContainer/CenterContainer2"]
+[node name="GridContainer" type="GridContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/TotalAttack3/HBoxContainer/CenterContainer2"]
 layout_mode = 2
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
 columns = 2
 
-[node name="TextureButton" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/Attack3/HBoxContainer/CenterContainer2/GridContainer"]
+[node name="Primary3" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/TotalAttack3/HBoxContainer/CenterContainer2/GridContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_ffqt0")
 
-[node name="TextureButton2" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/Attack3/HBoxContainer/CenterContainer2/GridContainer"]
+[node name="Secondary3" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/TotalAttack3/HBoxContainer/CenterContainer2/GridContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_qpppq")
 
-[node name="TextureButton3" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/Attack3/HBoxContainer/CenterContainer2/GridContainer"]
+[node name="Tertiary3" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/TotalAttack3/HBoxContainer/CenterContainer2/GridContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_j8vij")
 
-[node name="TextureButton4" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/Attack3/HBoxContainer/CenterContainer2/GridContainer"]
+[node name="Passive3" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/TotalAttack3/HBoxContainer/CenterContainer2/GridContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_mffow")
 
-[node name="CenterContainer" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/Attack3/HBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/TotalAttack3/HBoxContainer"]
 layout_mode = 2
 
-[node name="Attack" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/Attack3/HBoxContainer/CenterContainer"]
+[node name="Attack3" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/TotalAttack3/HBoxContainer/CenterContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_dxfrh")
 script = ExtResource("1_xieai")
 slot_type = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/Attack3/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/TotalAttack3/HBoxContainer"]
 layout_mode = 2
 
-[node name="CenterUpgrade1" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/Attack3/HBoxContainer/HBoxContainer"]
+[node name="CenterUpgrade1" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/TotalAttack3/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Upgrade1" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/Attack3/HBoxContainer/HBoxContainer/CenterUpgrade1"]
+[node name="Upgrade31" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/TotalAttack3/HBoxContainer/HBoxContainer/CenterUpgrade1"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_7vn2l")
 script = ExtResource("1_xieai")
 
-[node name="CenterUpgrade2" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/Attack3/HBoxContainer/HBoxContainer"]
+[node name="CenterUpgrade2" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/TotalAttack3/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Upgrade2" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/Attack3/HBoxContainer/HBoxContainer/CenterUpgrade2"]
+[node name="Upgrade32" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/TotalAttack3/HBoxContainer/HBoxContainer/CenterUpgrade2"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_qb5in")
 script = ExtResource("1_xieai")
 
-[node name="CenterUpgrade3" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/Attack3/HBoxContainer/HBoxContainer"]
+[node name="CenterUpgrade3" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/TotalAttack3/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Upgrade3" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/Attack3/HBoxContainer/HBoxContainer/CenterUpgrade3"]
-layout_mode = 2
-texture_normal = SubResource("PlaceholderTexture2D_7vn2l")
-script = ExtResource("1_xieai")
-
-[node name="CenterUpgrade4" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/Attack3/HBoxContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="Upgrade4" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/Attack3/HBoxContainer/HBoxContainer/CenterUpgrade4"]
+[node name="Upgrade33" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/TotalAttack3/HBoxContainer/HBoxContainer/CenterUpgrade3"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_7vn2l")
 script = ExtResource("1_xieai")
 
-[node name="CenterUpgrade5" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/Attack3/HBoxContainer/HBoxContainer"]
+[node name="CenterUpgrade4" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/TotalAttack3/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Upgrade5" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/Attack3/HBoxContainer/HBoxContainer/CenterUpgrade5"]
+[node name="Upgrade34" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/TotalAttack3/HBoxContainer/HBoxContainer/CenterUpgrade4"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_7vn2l")
 script = ExtResource("1_xieai")
 
-[node name="Attack4" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight"]
+[node name="CenterUpgrade5" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/TotalAttack3/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Upgrade35" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/TotalAttack3/HBoxContainer/HBoxContainer/CenterUpgrade5"]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = SubResource("PlaceholderTexture2D_7vn2l")
+script = ExtResource("1_xieai")
+
+[node name="TotalAttack4" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/Attack4"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/TotalAttack4"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="CenterContainer2" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/Attack4/HBoxContainer"]
+[node name="CenterContainer2" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/TotalAttack4/HBoxContainer"]
 layout_mode = 2
 
-[node name="GridContainer" type="GridContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/Attack4/HBoxContainer/CenterContainer2"]
+[node name="GridContainer" type="GridContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/TotalAttack4/HBoxContainer/CenterContainer2"]
 layout_mode = 2
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
 columns = 2
 
-[node name="TextureButton" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/Attack4/HBoxContainer/CenterContainer2/GridContainer"]
+[node name="Primary4" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/TotalAttack4/HBoxContainer/CenterContainer2/GridContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_ffqt0")
 
-[node name="TextureButton2" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/Attack4/HBoxContainer/CenterContainer2/GridContainer"]
+[node name="Secondary4" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/TotalAttack4/HBoxContainer/CenterContainer2/GridContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_qpppq")
 
-[node name="TextureButton3" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/Attack4/HBoxContainer/CenterContainer2/GridContainer"]
+[node name="Tertiary4" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/TotalAttack4/HBoxContainer/CenterContainer2/GridContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_j8vij")
 
-[node name="TextureButton4" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/Attack4/HBoxContainer/CenterContainer2/GridContainer"]
+[node name="Passive4" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/TotalAttack4/HBoxContainer/CenterContainer2/GridContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_mffow")
 
-[node name="CenterContainer" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/Attack4/HBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/TotalAttack4/HBoxContainer"]
 layout_mode = 2
 
-[node name="Attack" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/Attack4/HBoxContainer/CenterContainer"]
+[node name="Attack4" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/TotalAttack4/HBoxContainer/CenterContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_dxfrh")
 script = ExtResource("1_xieai")
 slot_type = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/Attack4/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/TotalAttack4/HBoxContainer"]
 layout_mode = 2
 
-[node name="CenterUpgrade1" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/Attack4/HBoxContainer/HBoxContainer"]
+[node name="CenterUpgrade1" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/TotalAttack4/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Upgrade1" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/Attack4/HBoxContainer/HBoxContainer/CenterUpgrade1"]
+[node name="Upgrade41" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/TotalAttack4/HBoxContainer/HBoxContainer/CenterUpgrade1"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_7vn2l")
 script = ExtResource("1_xieai")
 
-[node name="CenterUpgrade2" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/Attack4/HBoxContainer/HBoxContainer"]
+[node name="CenterUpgrade2" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/TotalAttack4/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Upgrade2" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/Attack4/HBoxContainer/HBoxContainer/CenterUpgrade2"]
+[node name="Upgrade42" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/TotalAttack4/HBoxContainer/HBoxContainer/CenterUpgrade2"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_qb5in")
 script = ExtResource("1_xieai")
 
-[node name="CenterUpgrade3" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/Attack4/HBoxContainer/HBoxContainer"]
+[node name="CenterUpgrade3" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/TotalAttack4/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Upgrade3" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/Attack4/HBoxContainer/HBoxContainer/CenterUpgrade3"]
-layout_mode = 2
-texture_normal = SubResource("PlaceholderTexture2D_7vn2l")
-script = ExtResource("1_xieai")
-
-[node name="CenterUpgrade4" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/Attack4/HBoxContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="Upgrade4" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/Attack4/HBoxContainer/HBoxContainer/CenterUpgrade4"]
+[node name="Upgrade43" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/TotalAttack4/HBoxContainer/HBoxContainer/CenterUpgrade3"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_7vn2l")
 script = ExtResource("1_xieai")
 
-[node name="CenterUpgrade5" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/Attack4/HBoxContainer/HBoxContainer"]
+[node name="CenterUpgrade4" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/TotalAttack4/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Upgrade5" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/Attack4/HBoxContainer/HBoxContainer/CenterUpgrade5"]
+[node name="Upgrade44" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/TotalAttack4/HBoxContainer/HBoxContainer/CenterUpgrade4"]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = SubResource("PlaceholderTexture2D_7vn2l")
+script = ExtResource("1_xieai")
+
+[node name="CenterUpgrade5" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/TotalAttack4/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Upgrade45" type="TextureButton" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight/TotalAttack4/HBoxContainer/HBoxContainer/CenterUpgrade5"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_7vn2l")
 script = ExtResource("1_xieai")
