@@ -23,9 +23,9 @@ enum TRANSPORT_MODE {LINEAR, ROTATING_FIXED_CENTRE, ROTATING_NO_CENTRE, ROTATING
 @export var colour: Color = Color(1,1,1,1)
 
 ## Suck stuff
-@export var vaccuum: bool = false
-@export var vaccuum_range: float = 100
-@export var vaccuum_strength: float = 1
+@export var vacuum: bool = false
+@export var vacuum_range: float = 100
+@export var vacuum_strength: float = 1
 
 ## 2*PI for a full circle
 @export var shot_spread: float =  PI/12

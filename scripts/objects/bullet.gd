@@ -41,9 +41,9 @@ func _ready():
 	$AnimatedSprite2D.modulate = data.colour
 	$AnimatedSprite2D.play()
 	
-	if data.vaccuum:
+	if data.vacuum:
 		$Vacuum/CollisionShape2D.disabled = false
-		$Vacuum/CollisionShape2D.shape.radius = data.vaccuum_range
+		$Vacuum/CollisionShape2D.shape.radius = data.vacuum_range
 	
 	if data.activation_delay > 0:
 		
@@ -70,10 +70,10 @@ func _physics_process(delta):
 			successful_hit(area.owner)
 		piercing_cooldown = data.piercing_cooldown
 	
-	if data.vaccuum:
+	if data.vacuum:
 		for area in $Vacuum.get_overlapping_areas():
 			var enemy = area.owner
-			enemy.position += (position - enemy.position).normalized()*data.vaccuum_strength
+			enemy.position += (position - enemy.position).normalized()*data.vacuum_strength
 
 
 func transport(delta) -> void:
