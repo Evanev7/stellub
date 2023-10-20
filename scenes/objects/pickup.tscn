@@ -1,26 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://cjuw1uddg4foi"]
+[gd_scene load_steps=5 format=3 uid="uid://cjuw1uddg4foi"]
 
 [ext_resource type="Script" path="res://scripts/objects/pickup.gd" id="1_rqpcu"]
-[ext_resource type="Texture2D" uid="uid://b4d4inkobgtre" path="res://art/objects/soul_1.png" id="2_m0cjb"]
-[ext_resource type="Texture2D" uid="uid://8vk8e031gefk" path="res://art/objects/soul_2.png" id="3_1e1v6"]
-[ext_resource type="Texture2D" uid="uid://dtwe6u3g8px0x" path="res://art/objects/soul_3.png" id="4_4mau0"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_uigp4"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_m0cjb")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_1e1v6")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_4mau0")
-}],
-"loop": true,
-"name": &"default",
-"speed": 6.0
-}]
+[ext_resource type="SpriteFrames" uid="uid://buhg63ostt083" path="res://resources/objects/soul_pickup.tres" id="2_13irk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rwjyl"]
 
@@ -35,7 +16,7 @@ script = ExtResource("1_rqpcu")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -5)
 scale = Vector2(0.03, 0.03)
-sprite_frames = SubResource("SpriteFrames_uigp4")
+sprite_frames = ExtResource("2_13irk")
 frame_progress = 0.94902
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

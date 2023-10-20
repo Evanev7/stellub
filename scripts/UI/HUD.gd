@@ -40,10 +40,7 @@ func game_over():
 	show_message("You suck!")
 	await $DisplayTimer.timeout
 	
-	$TextDisplay.text = "Main Menu"
+	$TextDisplay.text = ""
 	$TextDisplay.show()
-	$GameOverTimer.start()
-	
-	await $GameOverTimer.timeout
 	
 	$StartButton.show()

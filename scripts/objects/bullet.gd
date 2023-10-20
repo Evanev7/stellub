@@ -117,6 +117,8 @@ func _on_self_destruct_timeout():
 
 
 func _on_area_entered(area):
+	print("area entered")
+	print(area)
 	var area_owner = area.owner
 	if area_owner not in _hit_targets:
 		#First hit on a new enemy should always count.
@@ -149,5 +151,7 @@ func spawn_child() -> void:
 
 
 func _on_body_entered(body):
+	print("body entered")
+	print(body)
 	if body.is_in_group("terrain"):
 		queue_free()

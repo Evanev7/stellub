@@ -27,7 +27,6 @@ offset_bottom = 39.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 64
-text = "Main Menu"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -50,6 +49,7 @@ one_shot = true
 [node name="GameOverTimer" type="Timer" parent="."]
 
 [node name="StartButton" type="Button" parent="."]
+visible = false
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -63,11 +63,13 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 64
 shortcut = SubResource("Shortcut_lxmoi")
-text = "Play"
+text = "Restart"
 
 [node name="XPBar" type="ProgressBar" parent="."]
-offset_right = 1279.0
+anchors_preset = 10
+anchor_right = 1.0
 offset_bottom = 27.0
+grow_horizontal = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_b8dcb")
 value = 10.0
 allow_greater = true

@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://ck84xpcgl0pv7"]
+[gd_scene load_steps=7 format=3 uid="uid://ck84xpcgl0pv7"]
 
 [ext_resource type="Texture2D" uid="uid://b2byn4ep7a4f8" path="res://art/backgrounds/heaven_level_1.png" id="1_8xy13"]
 [ext_resource type="Script" path="res://scripts/levels/menu.gd" id="1_we8ni"]
-[ext_resource type="SpriteFrames" uid="uid://buhg63ostt083" path="res://resources/objects/soul_pickup.tres" id="3_msxq3"]
 
 [sub_resource type="Gradient" id="Gradient_om6uu"]
 colors = PackedColorArray(0.0581837, 0.261051, 0.43165, 1, 1, 0, 0.615686, 1)
@@ -177,39 +176,12 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -578.0
-offset_top = -325.0
-offset_right = 589.0
-offset_bottom = 331.0
+offset_left = -574.5
+offset_top = -323.0
+offset_right = 585.5
+offset_bottom = 329.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_hyj0y")
-
-[node name="LOADING" type="Label" parent="CanvasLayer/LoadingScreen"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -216.0
-offset_top = -69.0
-offset_right = -101.0
-offset_bottom = -31.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 7
-theme_override_font_sizes/font_size = 25
-text = "LOADING"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/LoadingScreen"]
-position = Vector2(1108, 602)
-scale = Vector2(0.040759, 0.040759)
-sprite_frames = ExtResource("3_msxq3")
-autoplay = "default"
 
 [connection signal="pressed" from="CanvasLayer/Background/Buttons/Play" to="." method="_on_play_pressed"]

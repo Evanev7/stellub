@@ -80,6 +80,7 @@ func start():
 	show()
 	set_physics_process(true)
 	$CollisionShape2D.disabled = false
+	$Camera2D.set_deferred("enabled", true)
 	$AttackHandler.start()
 
 
