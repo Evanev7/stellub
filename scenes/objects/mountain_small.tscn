@@ -25,3 +25,10 @@ collision_mask = 8
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SpawnCollider"]
 position = Vector2(-79.2, -120)
 polygon = PackedVector2Array(150, -130, 26, -117, -77, 14, -99, 131, -16, 152, 180, 147, 297, 106, 266, 1, 226, -18, 196, -47, 180, -77)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 7
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2(-79.2, -120)
+polygon = PackedVector2Array(150, -130, 26, -117, -77, 14, -99, 131, -16, 152, 180, 147, 297, 106, 266, 1, 226, -18, 196, -47, 180, -77)

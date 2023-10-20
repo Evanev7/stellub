@@ -46,10 +46,13 @@ func _ready():
 		$Vacuum/CollisionShape2D.shape.radius = data.vacuum_range
 	
 	if data.activation_delay > 0:
-		
 		$CollisionShape2D.disabled = true
+		$Vacuum/CollisionShape2D.disabled = true
 		await get_tree().create_timer(data.activation_delay).timeout
+		
 		$CollisionShape2D.disabled = false
+		if data.vacuum:
+			$Vacuum/CollisionShape2D.disabled = false
 	
 	
 
@@ -72,8 +75,9 @@ func _physics_process(delta):
 	
 	if data.vacuum:
 		for area in $Vacuum.get_overlapping_areas():
-			var enemy = area.owner
-			enemy.position += (position - enemy.position).normalized()*data.vacuum_strength
+			if area.owner.is_in_group("enemy"):
+				var enemy = area.owner
+				enemy.position += (position - enemy.position).normalized()*data.vacuum_strength
 
 
 func transport(delta) -> void:
@@ -117,8 +121,6 @@ func _on_self_destruct_timeout():
 
 
 func _on_area_entered(area):
-	print("area entered")
-	print(area)
 	var area_owner = area.owner
 	if area_owner not in _hit_targets:
 		#First hit on a new enemy should always count.
@@ -148,10 +150,3 @@ func spawn_child() -> void:
 	fire_from.position = position
 	fire_from.direction = direction
 	GameState.fire_bullet.emit(origin_ref, spawned_bullet, fire_from)
-
-
-func _on_body_entered(body):
-	print("body entered")
-	print(body)
-	if body.is_in_group("terrain"):
-		queue_free()
