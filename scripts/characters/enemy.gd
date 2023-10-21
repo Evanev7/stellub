@@ -18,8 +18,8 @@ signal enemy_killed(enemy)
 @onready var default_scale: Vector2 = resource.SCALE
 @onready var variance = 1/default_scale.length()
 
-var spawn_time: float
 var damage_scene_pool: Array[DamageNumber] = []
+var knockback_amount: float = 0
 
 func _ready():
 	load_resource(resource)
@@ -91,6 +91,7 @@ func hurt(area):
 	scale = default_scale * 0.65 
 	var tween2 := create_tween()
 	tween2.tween_property(self, "global_scale", default_scale, 0.1)
+	tween2.tween_property($AnimatedSprite2D, "self_modulate:v", 1, 0.05).from(50)
 	spawn_damage_number(area.damage)
 	
 func spawn_damage_number(damage_value: float):

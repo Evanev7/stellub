@@ -32,6 +32,7 @@ enum TRANSPORT_MODE {LINEAR, ROTATING_FIXED_CENTRE, ROTATING_NO_CENTRE, ROTATING
 @export var angular_velocity: float = 0
 @export var piercing: int = 1
 @export var piercing_cooldown: float = 0
+@export var knockback: float = 0
 @export var activation_delay: float = 0
 @export var deactivation_range: int = 500
 @export var shot_inaccuracy: float = PI/32

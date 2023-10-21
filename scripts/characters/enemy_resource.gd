@@ -10,6 +10,7 @@ class_name EnemyResource
 @export var VALUE: float
 @export var FLIP_H: bool
 @export var FLOATING: bool
+@export var STRENGTH: float = 1
 @export var SCALE: Vector2 = Vector2(2, 2)
 @export var COLLISION_ROTATION: float = 0
 @export var HITBOX: Shape2D

@@ -9,12 +9,13 @@
 script = ExtResource("1_hqusm")
 NAME = "demon_dog"
 ANIMATION = ExtResource("1_ocmja")
-SPEED = 100
-MAX_HP = 5
-DAMAGE = 1
-VALUE = 2
+SPEED = 110.0
+MAX_HP = 5.0
+DAMAGE = 1.0
+VALUE = 2.0
 FLIP_H = false
 FLOATING = false
+STRENGTH = 1.0
 SCALE = Vector2(0.8, 0.8)
 COLLISION_ROTATION = 0.0
 HITBOX = ExtResource("3_qc0to")

@@ -77,7 +77,7 @@ func _physics_process(delta):
 		for area in $Vacuum.get_overlapping_areas():
 			if area.owner.is_in_group("enemy"):
 				var enemy = area.owner
-				enemy.position += (position - enemy.position).normalized()*data.vacuum_strength
+				enemy.position += (position - enemy.position).normalized()* (data.vacuum_strength / enemy.resource.STRENGTH)
 
 
 func transport(delta) -> void:
@@ -134,6 +134,8 @@ func successful_hit(target):
 		
 	#Damage target
 	if target.has_method("hurt"):
+		if target is EnemyBehaviour:
+			target.position -= target.velocity * data.knockback / (10 * target.resource.STRENGTH)
 		target.hurt(self)
 	
 	if spawned_bullet:
