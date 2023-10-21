@@ -75,7 +75,7 @@ func _physics_process(delta):
 	
 	if data.vacuum:
 		for area in $Vacuum.get_overlapping_areas():
-			if area.owner.is_in_group("enemy"):
+			if area.owner.has_method("hurt"):
 				var enemy = area.owner
 				enemy.position += (position - enemy.position).normalized()* (data.vacuum_strength / enemy.resource.STRENGTH)
 
