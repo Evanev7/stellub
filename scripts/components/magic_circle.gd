@@ -20,15 +20,16 @@ var wave_data = {}
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	add_to_group("magic_circle")
+	start()
 
 func start():
 	get_node("Circle/CollisionShape2D").disabled = false
 	current_circle = 1
 	wave_active = false
+	set_waves()
 	$WaveTimer.stop()
 	$Time.hide()
 	$SuccessTimer.wait_time = 30
-	set_waves()
 	
 func set_waves():
 	wave_data = {

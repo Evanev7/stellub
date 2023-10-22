@@ -96,7 +96,7 @@ func hurt(area):
 	
 func spawn_damage_number(damage_value: float):
 	var damage_number = get_damage_number()
-	var val = str(round(damage_value))
+	var val = damage_value
 	var pos = $Damage.position
 	$DamageNumbers.add_child(damage_number, true)
 	damage_number.set_values_and_animate(val, pos, $DamageNumbers.get_child_count() * 5, 100 + 5 * $DamageNumbers.get_child_count())

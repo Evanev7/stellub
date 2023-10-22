@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfrum4te4lpmr"]
+
+[ext_resource type="Script" path="res://scripts/objects/teleporter.gd" id="1_jufu7"]
+[ext_resource type="SpriteFrames" uid="uid://buhg63ostt083" path="res://resources/objects/soul_pickup.tres" id="1_rgcna"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nfg5x"]
+radius = 131.015
+
+[node name="teleporter" type="Node2D"]
+script = ExtResource("1_jufu7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -50)
+scale = Vector2(0.653549, 0.32243)
+sprite_frames = ExtResource("1_rgcna")
+
+[node name="teleporter" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="teleporter"]
+scale = Vector2(2, 1)
+shape = SubResource("CircleShape2D_nfg5x")
