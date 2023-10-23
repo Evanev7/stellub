@@ -1,7 +1,7 @@
 extends Node
 
-
-@export var magic_circle_scene: PackedScene
+#@export var boss_area_scene: PackedScene
+const boss_area_scene: String = "scenes/levels/boss_area.tscn"
 
 @export var enemy_resource_list: Array[EnemyResource]
 
@@ -11,6 +11,7 @@ extends Node
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	start_game()
+	ResourceLoader.load_threaded_request(boss_area_scene)
 	$LogicComponents/ShopHandler.spawn_magic_circles()
 	$LogicComponents/TerrainGenerator.generate()
 
@@ -82,3 +83,8 @@ func _on_player_level_up(current_level):
 	GameState.player.current_level += 1
 	GameState.player.souls += 1
 	enemy_handler.spawn_timer.wait_time /= 1.02
+	
+
+func teleport_to_boss_area():
+	get_tree().change_scene_to_packed(ResourceLoader.load_threaded_get(boss_area_scene))
+	

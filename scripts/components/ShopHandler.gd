@@ -12,6 +12,7 @@ var shop_weapons_list: Array[BulletResource]
 @export var ysorter: Node2D
 @export var objective_marker: CanvasLayer
 @export var upgrade_hud: CanvasLayer
+@export var teleporter: Node2D
 
 func _ready():
 	pass
@@ -20,6 +21,7 @@ func _ready():
 func start():
 	shop_upgrades_list = default_shop_upgrades_list.duplicate()
 	shop_weapons_list = default_shop_weapons_list.duplicate()
+	teleporter.start()
 	
 
 func spawn_magic_circles():
@@ -35,6 +37,7 @@ func spawn_magic_circles():
 		ysorter.add_child(magic_circle)
 		objective_marker.add_target(magic_circle)
 		magic_circle.connect("spawn_shop", _on_spawn_shop)
+		magic_circle.connect("spawn_teleporter", _on_spawn_teleporter)
 		magic_circle.connect("spawn_enemy_in_wave", _on_spawn_enemy_in_wave)
 
 
@@ -81,6 +84,11 @@ func _on_spawn_shop(position):
 	upgrade_hud.remove_shop.connect(shop._on_upgrade_hud_leave)
 
 
+func _on_spawn_teleporter():
+	teleporter.set_process(true)
+	teleporter.enabled()
+	
+	
 func _on_spawn_enemy_in_wave(resourceID, center, spawn_range):
 	enemyHandler.spawn_enemy(resourceID, center, spawn_range)
 

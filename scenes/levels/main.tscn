@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://kdeab812xwhx" path="res://scenes/components/bullet_handler.tscn" id="10_2c13m"]
 [ext_resource type="PackedScene" uid="uid://41p1qgrud4ej" path="res://scenes/components/terrain_generator.tscn" id="11_0axk0"]
 [ext_resource type="PackedScene" uid="uid://ugulpxhu6v48" path="res://scenes/components/pickup_handler.tscn" id="12_hxykb"]
+[ext_resource type="PackedScene" uid="uid://dfrum4te4lpmr" path="res://scenes/objects/teleporter.tscn" id="12_ya4is"]
 [ext_resource type="PackedScene" uid="uid://d23ddhgery8pq" path="res://scenes/characters/boss.tscn" id="13_1hk1q"]
 [ext_resource type="PackedScene" uid="uid://cnrpegq0voiht" path="res://scenes/components/enemy_handler.tscn" id="13_d7lq7"]
 [ext_resource type="PackedScene" uid="uid://dyhf18b3orycs" path="res://scenes/UI/shop.tscn" id="15_eh36d"]
@@ -22,7 +23,6 @@
 [ext_resource type="PackedScene" uid="uid://d05swenhbbosd" path="res://scenes/UI/objective_marker.tscn" id="20_tncsu"]
 [ext_resource type="PackedScene" uid="uid://cp7lho542gmeu" path="res://scenes/objects/shop.tscn" id="20_vbjc5"]
 [ext_resource type="PackedScene" uid="uid://bpkxt2uvnf57n" path="res://upgrades/triple_shot.tscn" id="21_1r7qt"]
-[ext_resource type="PackedScene" uid="uid://bdsxfxpria0gp" path="res://scenes/components/magic_circle.tscn" id="21_4yjc3"]
 [ext_resource type="PackedScene" uid="uid://b2tef800ecm8u" path="res://scenes/components/weapon_handler.tscn" id="22_2ik5p"]
 [ext_resource type="PackedScene" uid="uid://c33wxtyp6pcj5" path="res://upgrades/split_shot.tscn" id="22_nlywc"]
 [ext_resource type="PackedScene" uid="uid://doyhlebmabr1l" path="res://upgrades/minigun.tscn" id="23_3lrqa"]
@@ -45,14 +45,15 @@ texture_region_size = Vector2i(1920, 1080)
 tile_size = Vector2i(1920, 1080)
 sources/1 = SubResource("TileSetAtlasSource_uuw3f")
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_6v2nu"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_iyi5a"]
 
 [node name="Main" type="Node" node_paths=PackedStringArray("bullet_handler", "enemy_handler")]
 script = ExtResource("1_u8uym")
-magic_circle_scene = ExtResource("21_4yjc3")
 enemy_resource_list = Array[Resource("res://scripts/characters/enemy_resource.gd")]([ExtResource("4_ikhts"), ExtResource("5_3s043"), ExtResource("6_8vwn2"), ExtResource("7_c5yt3"), ExtResource("8_vk0tv"), ExtResource("9_d18g6")])
 bullet_handler = NodePath("LogicComponents/BulletHandler")
 enemy_handler = NodePath("LogicComponents/EnemyHandler")
+
+[node name="teleporter" parent="." instance=ExtResource("12_ya4is")]
 
 [node name="YSort" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -77,7 +78,7 @@ position = Vector2(578, 324)
 [node name="HUD" parent="." instance=ExtResource("3_8qfpp")]
 
 [node name="UpgradeHUD" parent="." instance=ExtResource("4_ls5jb")]
-weapon_button_group = SubResource("ButtonGroup_6v2nu")
+weapon_button_group = SubResource("ButtonGroup_iyi5a")
 
 [node name="ObjectiveMarker" parent="." instance=ExtResource("20_tncsu")]
 
@@ -102,13 +103,14 @@ ysorter = NodePath("../../YSort")
 bullet_handler = NodePath("../BulletHandler")
 pickup_handler = NodePath("../PickupHandler")
 
-[node name="ShopHandler" parent="LogicComponents" node_paths=PackedStringArray("enemyHandler", "ysorter", "objective_marker", "upgrade_hud") instance=ExtResource("19_4xjky")]
+[node name="ShopHandler" parent="LogicComponents" node_paths=PackedStringArray("enemyHandler", "ysorter", "objective_marker", "upgrade_hud", "teleporter") instance=ExtResource("19_4xjky")]
 default_shop_upgrades_list = Array[PackedScene]([ExtResource("21_1r7qt"), ExtResource("22_nlywc"), ExtResource("23_3lrqa"), ExtResource("24_bukft"), ExtResource("25_84srj"), ExtResource("26_f6bc7")])
 default_shop_weapons_list = Array[Resource("res://scripts/objects/bullet_resource.gd")]([ExtResource("27_55oo1"), ExtResource("28_r0cq1"), ExtResource("29_fpyec"), ExtResource("31_ngr8p")])
 enemyHandler = NodePath("../EnemyHandler")
 ysorter = NodePath("../../YSort")
 objective_marker = NodePath("../../ObjectiveMarker")
 upgrade_hud = NodePath("../../UpgradeHUD")
+teleporter = NodePath("../../teleporter")
 
 [node name="WeaponHandler" parent="LogicComponents" node_paths=PackedStringArray("ysorter") instance=ExtResource("22_2ik5p")]
 ysorter = NodePath("../../YSort")
@@ -118,6 +120,7 @@ script = ExtResource("25_88wnh")
 boss_scene = ExtResource("13_1hk1q")
 ysorter = NodePath("../../YSort")
 
+[connection signal="teleport_player" from="teleporter" to="." method="teleport_to_boss_area"]
 [connection signal="level_up" from="YSort/Player" to="." method="_on_player_level_up"]
 [connection signal="player_death" from="YSort/Player" to="." method="_on_player_player_death"]
 [connection signal="send_loadout" from="YSort/Player" to="LogicComponents/BossHandler" method="_on_player_send_loadout"]
