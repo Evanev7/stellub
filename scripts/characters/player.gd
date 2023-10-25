@@ -15,6 +15,7 @@ signal player_ready
 @export var attack_handler: Node2D
 
 @onready var default_scale = self.scale
+@onready var strength: float = 5
 var control_mode: int = 0
 var level_threshold = [10, 20, 30, 50]
 var current_level: int
@@ -163,7 +164,6 @@ func player_level_up():
 	speed *= 1.02
 	
 	$AttackHandler.upgrade_all_attacks(stat_upgrade)
-
 
 func upgrade_attack(upgrade, weapon_number):
 	$AttackHandler.get_child(weapon_number).add_child(upgrade)

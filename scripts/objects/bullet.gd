@@ -8,7 +8,7 @@ extends Area2D
 @onready var _traveled_distance: float = data.start_range
 
 var piercing: int
-var piercing_cooldown: int = 0
+var piercing_cooldown: float = 0
 var direction: Vector2 = Vector2(0,0)
 var origin_ref: WeakRef
 #var relative_position
@@ -77,7 +77,7 @@ func _physics_process(delta):
 		for area in $Vacuum.get_overlapping_areas():
 			if area.owner.has_method("hurt"):
 				var enemy = area.owner
-				enemy.position += (position - enemy.position).normalized()* (data.vacuum_strength / enemy.resource.STRENGTH)
+				enemy.position += (position - enemy.position).normalized()* (data.vacuum_strength / enemy.strength)
 
 
 func transport(delta) -> void:

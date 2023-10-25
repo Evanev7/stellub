@@ -31,6 +31,8 @@ func show_HUD(chosen_upgrades, weapon):
 	$ShopScreen/UpgradeButton3/Label3.text = chosen_upgrades[2].name
 	
 	for i in current_weapons.size():
+		print(weapon_button_group)
+		print(weapon_button_group.get_buttons())
 		weapon_button_group.get_buttons()[i].get_child(0).texture = current_weapons[i].initial_bullet.icon
 		
 	for button in weapon_button_group.get_buttons():

@@ -11,6 +11,7 @@ signal enemy_killed(enemy)
 @onready var health: float = resource.MAX_HP
 @onready var damage: float = resource.DAMAGE
 @onready var value: float = resource.VALUE
+@onready var strength: float = resource.STRENGTH
 @onready var speed: float = resource.SPEED
 @onready var flipped: bool = resource.FLIP_H
 @onready var floating: bool = resource.FLOATING

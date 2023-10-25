@@ -23,6 +23,9 @@ func add_attack_from_resource(
 	else:
 		attack.aim_mode = Attack.AIM_MODE.TARGETED
 	
+	for i in range(GameState.player.current_level):
+		attack.add_child(GameState.player.stat_upgrade.instantiate())
+		
 	add_child(attack)
 
 
