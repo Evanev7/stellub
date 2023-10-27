@@ -20,7 +20,7 @@ texture_region_size = Vector2i(1280, 720)
 
 [sub_resource type="TileSet" id="TileSet_vo6h4"]
 tile_size = Vector2i(1280, 720)
-sources/0 = SubResource("TileSetAtlasSource_sqxyj")
+sources/1 = SubResource("TileSetAtlasSource_sqxyj")
 
 [node name="Heaven Area" node_paths=PackedStringArray("bullet_handler", "enemy_handler") instance=ExtResource("1_kbvse")]
 script = ExtResource("2_0y2ur")

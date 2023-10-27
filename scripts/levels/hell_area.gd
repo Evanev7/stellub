@@ -1,7 +1,7 @@
 extends Node
 
 
-const heaven_area_scene: String = "scenes/levels/heaven_area.tscn"
+var heaven_area_scene := preload("res://scenes/levels/heaven_area.tscn").instantiate()
 
 @export var enemy_resource_list: Array[EnemyResource]
 
@@ -11,7 +11,6 @@ const heaven_area_scene: String = "scenes/levels/heaven_area.tscn"
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	start_game()
-	ResourceLoader.load_threaded_request(heaven_area_scene)
 	$LogicComponents/ShopHandler.spawn_magic_circles()
 	$LogicComponents/TerrainGenerator.generate()
 
@@ -87,5 +86,9 @@ func _on_player_level_up(current_level):
 	
 
 func teleport_to_heaven_area():
-	get_tree().change_scene_to_packed(ResourceLoader.load_threaded_get(heaven_area_scene))
+	var player = GameState.player
+	player.get_parent().remove_child(player)
+	get_node("/root/Hell Area").queue_free()
+	heaven_area_scene.get_child(0).add_child(player)
+	get_tree().root.add_child(heaven_area_scene)
 	

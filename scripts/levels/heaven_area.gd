@@ -43,7 +43,6 @@ func _physics_process(_delta):
 func start_level():
 	enemy_handler.start_spawning()
 	print(GameState.player)
-	$YSort.add_child(GameState.player.instantiate())
 	GameState.player.position = $YSort/PlayerStart.position
 	#$LogicComponents/ShopHandler.start()
 	#start_magic_circles()
