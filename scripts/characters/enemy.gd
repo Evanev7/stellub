@@ -23,6 +23,8 @@ var damage_scene_pool: Array[DamageNumber] = []
 var knockback_amount: float = 0
 
 func _ready():
+	if owner:
+		await(owner.ready)
 	load_resource(resource)
 	
 	# Select mob texture variants (This code is functional just unnecessary since no enemies have variants)

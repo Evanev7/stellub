@@ -1,6 +1,6 @@
-[gd_scene load_steps=38 format=3 uid="uid://dfe6bc7mdpexj"]
+[gd_scene load_steps=36 format=3 uid="uid://dfe6bc7mdpexj"]
 
-[ext_resource type="Script" path="res://scripts/levels/main.gd" id="1_u8uym"]
+[ext_resource type="Script" path="res://scripts/levels/hell_area.gd" id="1_ritua"]
 [ext_resource type="PackedScene" uid="uid://yaht8i4bkv2u" path="res://scenes/UI/HUD.tscn" id="3_8qfpp"]
 [ext_resource type="PackedScene" uid="uid://cjuw1uddg4foi" path="res://scenes/objects/pickup.tscn" id="4_3g6v5"]
 [ext_resource type="Resource" uid="uid://dh8xipsw2bu5w" path="res://resources/enemy/demon_skull.tres" id="4_ikhts"]
@@ -18,7 +18,6 @@
 [ext_resource type="PackedScene" uid="uid://dfrum4te4lpmr" path="res://scenes/objects/teleporter.tscn" id="12_ya4is"]
 [ext_resource type="PackedScene" uid="uid://d23ddhgery8pq" path="res://scenes/characters/boss.tscn" id="13_1hk1q"]
 [ext_resource type="PackedScene" uid="uid://cnrpegq0voiht" path="res://scenes/components/enemy_handler.tscn" id="13_d7lq7"]
-[ext_resource type="PackedScene" uid="uid://dyhf18b3orycs" path="res://scenes/UI/shop.tscn" id="15_eh36d"]
 [ext_resource type="PackedScene" uid="uid://bxmk1htarl4v5" path="res://scenes/components/shop_handler.tscn" id="19_4xjky"]
 [ext_resource type="PackedScene" uid="uid://d05swenhbbosd" path="res://scenes/UI/objective_marker.tscn" id="20_tncsu"]
 [ext_resource type="PackedScene" uid="uid://cp7lho542gmeu" path="res://scenes/objects/shop.tscn" id="20_vbjc5"]
@@ -44,10 +43,8 @@ texture_region_size = Vector2i(1920, 1080)
 tile_size = Vector2i(1920, 1080)
 sources/1 = SubResource("TileSetAtlasSource_r0s5i")
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_5poin"]
-
 [node name="Main" type="Node" node_paths=PackedStringArray("bullet_handler", "enemy_handler")]
-script = ExtResource("1_u8uym")
+script = ExtResource("1_ritua")
 enemy_resource_list = Array[Resource("res://scripts/characters/enemy_resource.gd")]([ExtResource("4_ikhts"), ExtResource("5_3s043"), ExtResource("6_8vwn2"), ExtResource("7_c5yt3"), ExtResource("8_vk0tv"), ExtResource("9_d18g6")])
 bullet_handler = NodePath("LogicComponents/BulletHandler")
 enemy_handler = NodePath("LogicComponents/EnemyHandler")
@@ -77,12 +74,9 @@ position = Vector2(578, 324)
 [node name="HUD" parent="." instance=ExtResource("3_8qfpp")]
 
 [node name="UpgradeHUD" parent="." instance=ExtResource("4_ls5jb")]
-weapon_button_group = SubResource("ButtonGroup_5poin")
+weapon_button_group = null
 
 [node name="ObjectiveMarker" parent="." instance=ExtResource("20_tncsu")]
-
-[node name="Shop" parent="." instance=ExtResource("15_eh36d")]
-visible = false
 
 [node name="LogicComponents" type="Node" parent="."]
 

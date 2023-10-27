@@ -1,7 +1,7 @@
 extends Node
 
 
-const heaven_area_scene: String = "scenes/levels/heaven_area.tscn"
+#const heaven_area_scene: String = "scenes/levels/heaven_area.tscn"
 
 @export var enemy_resource_list: Array[EnemyResource]
 
@@ -10,16 +10,17 @@ const heaven_area_scene: String = "scenes/levels/heaven_area.tscn"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	start_game()
-	ResourceLoader.load_threaded_request(heaven_area_scene)
-	$LogicComponents/ShopHandler.spawn_magic_circles()
-	$LogicComponents/TerrainGenerator.generate()
+	start_level()
+	#ResourceLoader.load_threaded_request(heaven_area_scene)
+	#$LogicComponents/ShopHandler.spawn_magic_circles()
+	#$LogicComponents/TerrainGenerator.generate()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
 	randomize()
 	#print("bullets: " + str(get_tree().get_nodes_in_group("bullet").size()))
 	pass
+	
 	##Debug ###############################
 	
 	if GameState.debug and Input.is_action_pressed("debug_gain_score"): ## Increase score by 10
@@ -39,12 +40,13 @@ func _physics_process(_delta):
 
 
 # Start the timers we need, instantiate the HUD and get the player in the right spot.
-func start_game():
+func start_level():
 	enemy_handler.start_spawning()
-	GameState.player.start()
+	print(GameState.player)
+	$YSort.add_child(GameState.player.instantiate())
 	GameState.player.position = $YSort/PlayerStart.position
-	$LogicComponents/ShopHandler.start()
-	start_magic_circles()
+	#$LogicComponents/ShopHandler.start()
+	#start_magic_circles()
 	
 	$HUD.show_message("All Hell Breaks Loose!")
 	$HUD.show_health(GameState.player.hp)
@@ -69,8 +71,8 @@ func game_over():
 	$HUD.game_over()
 
 
-func _on_hud_start_game():
-	start_game()
+#func _on_hud_start_game():
+#	start_level()
 
 
 func _on_player_taken_damage(hp):
@@ -85,6 +87,6 @@ func _on_player_level_up(current_level):
 	enemy_handler.spawn_timer.wait_time /= 1.02
 	
 
-func teleport_to_heaven_area():
-	get_tree().change_scene_to_packed(ResourceLoader.load_threaded_get(heaven_area_scene))
+#func teleport_to_heaven_area():
+#	get_tree().change_scene_to_packed(ResourceLoader.load_threaded_get(heaven_area_scene))
 	

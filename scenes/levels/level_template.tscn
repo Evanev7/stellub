@@ -1,21 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://dilk21k2nncq2"]
+[gd_scene load_steps=5 format=3 uid="uid://dilk21k2nncq2"]
 
-[ext_resource type="PackedScene" uid="uid://cnepphpba8e8u" path="res://scenes/characters/player.tscn" id="2_ekcoo"]
 [ext_resource type="PackedScene" uid="uid://yaht8i4bkv2u" path="res://scenes/UI/HUD.tscn" id="3_uc26v"]
 [ext_resource type="PackedScene" uid="uid://1dmnavilcwx5" path="res://scenes/UI/upgradeHUD.tscn" id="4_4nnrt"]
 [ext_resource type="PackedScene" uid="uid://d05swenhbbosd" path="res://scenes/UI/objective_marker.tscn" id="5_bjn40"]
 [ext_resource type="PackedScene" uid="uid://kdeab812xwhx" path="res://scenes/components/bullet_handler.tscn" id="7_junnh"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_r4ayk"]
-
 [node name="Level_Template" type="Node"]
 
 [node name="YSort" type="Node2D" parent="."]
 y_sort_enabled = true
-
-[node name="Player" parent="YSort" instance=ExtResource("2_ekcoo")]
-z_index = 0
-position = Vector2(578, 324)
 
 [node name="PlayerStart" type="Marker2D" parent="YSort"]
 position = Vector2(578, 324)
@@ -23,7 +16,7 @@ position = Vector2(578, 324)
 [node name="HUD" parent="." instance=ExtResource("3_uc26v")]
 
 [node name="UpgradeHUD" parent="." instance=ExtResource("4_4nnrt")]
-weapon_button_group = SubResource("ButtonGroup_r4ayk")
+weapon_button_group = null
 
 [node name="ObjectiveMarker" parent="." instance=ExtResource("5_bjn40")]
 

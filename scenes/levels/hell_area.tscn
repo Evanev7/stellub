@@ -1,9 +1,9 @@
-[gd_scene load_steps=33 format=3 uid="uid://qhl6r2tbil5t"]
+[gd_scene load_steps=34 format=3 uid="uid://qhl6r2tbil5t"]
 
 [ext_resource type="PackedScene" uid="uid://dilk21k2nncq2" path="res://scenes/levels/level_template.tscn" id="1_ttjsf"]
 [ext_resource type="PackedScene" uid="uid://dfrum4te4lpmr" path="res://scenes/objects/teleporter.tscn" id="2_8o713"]
+[ext_resource type="Script" path="res://scripts/levels/hell_area.gd" id="2_myijk"]
 [ext_resource type="PackedScene" uid="uid://41p1qgrud4ej" path="res://scenes/components/terrain_generator.tscn" id="2_p0a1o"]
-[ext_resource type="Script" path="res://scripts/levels/main.gd" id="2_xaidx"]
 [ext_resource type="PackedScene" uid="uid://ugulpxhu6v48" path="res://scenes/components/pickup_handler.tscn" id="3_be7sf"]
 [ext_resource type="Resource" uid="uid://dh8xipsw2bu5w" path="res://resources/enemy/demon_skull.tres" id="3_dr1lv"]
 [ext_resource type="Texture2D" uid="uid://dvrx1ijrwk8a2" path="res://art/backgrounds/hell_level_1.png" id="3_yhbph"]
@@ -20,7 +20,9 @@
 [ext_resource type="PackedScene" uid="uid://doyhlebmabr1l" path="res://upgrades/minigun.tscn" id="9_bpmue"]
 [ext_resource type="PackedScene" uid="uid://cspycrpcbikif" path="res://upgrades/detonator.tscn" id="10_m47dc"]
 [ext_resource type="PackedScene" uid="uid://3bqmxujc0qkr" path="res://upgrades/centre_of_the_galaxy.tscn" id="11_8f5jq"]
+[ext_resource type="PackedScene" uid="uid://cnepphpba8e8u" path="res://scenes/characters/player.tscn" id="11_syo0k"]
 [ext_resource type="PackedScene" uid="uid://cp7lho542gmeu" path="res://scenes/objects/shop.tscn" id="11_vorht"]
+[ext_resource type="ButtonGroup" uid="uid://d3at0bq53qjdo" path="res://resources/upgrades/button_group_upgradeHUD_selected_weapons.tres" id="12_2ub6i"]
 [ext_resource type="PackedScene" uid="uid://ditc7t3eclvaw" path="res://upgrades/bowling_ball.tscn" id="12_s3b1r"]
 [ext_resource type="Resource" uid="uid://ccpb4udi5owpj" path="res://resources/bullets/player/player_bullet.tres" id="13_2dgq8"]
 [ext_resource type="Resource" uid="uid://coqyd5d8e6rm8" path="res://resources/bullets/player/particle_mace.tres" id="14_soul3"]
@@ -39,10 +41,8 @@ texture_region_size = Vector2i(1920, 1080)
 tile_size = Vector2i(1920, 1080)
 sources/1 = SubResource("TileSetAtlasSource_rfbvd")
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_kxc1a"]
-
 [node name="Hell Area" node_paths=PackedStringArray("bullet_handler", "enemy_handler") instance=ExtResource("1_ttjsf")]
-script = ExtResource("2_xaidx")
+script = ExtResource("2_myijk")
 enemy_resource_list = Array[Resource("res://scripts/characters/enemy_resource.gd")]([ExtResource("3_dr1lv"), ExtResource("4_j7txi"), ExtResource("5_yiyg4"), ExtResource("6_7qtbu"), ExtResource("7_jjuad"), ExtResource("8_rirxr")])
 bullet_handler = NodePath("LogicComponents/BulletHandler")
 enemy_handler = NodePath("LogicComponents/EnemyHandler")
@@ -55,11 +55,13 @@ tile_set = SubResource("TileSet_rqhpw")
 format = 2
 layer_0/tile_data = PackedInt32Array(0, 1, 0)
 
-[node name="Shop" parent="YSort" index="2" instance=ExtResource("11_vorht")]
+[node name="Player" parent="YSort" index="1" instance=ExtResource("11_syo0k")]
+
+[node name="Shop" parent="YSort" index="3" instance=ExtResource("11_vorht")]
 position = Vector2(851, 399)
 
 [node name="UpgradeHUD" parent="." index="3"]
-weapon_button_group = SubResource("ButtonGroup_kxc1a")
+weapon_button_group = ExtResource("12_2ub6i")
 
 [node name="TerrainGenerator" parent="LogicComponents" index="1" node_paths=PackedStringArray("tile_map", "ysorter") instance=ExtResource("2_p0a1o")]
 tile_map = NodePath("../../YSort/TileMap")
@@ -92,10 +94,6 @@ ysorter = NodePath("../../YSort")
 ysorter = NodePath("../../YSort")
 
 [connection signal="teleport_player" from="teleporter" to="." method="teleport_to_heaven_area"]
-[connection signal="level_up" from="YSort/Player" to="." method="_on_player_level_up"]
-[connection signal="player_death" from="YSort/Player" to="." method="_on_player_player_death"]
-[connection signal="send_loadout" from="YSort/Player" to="LogicComponents/BossHandler" method="_on_player_send_loadout"]
-[connection signal="taken_damage" from="YSort/Player" to="." method="_on_player_taken_damage"]
 [connection signal="shop_entered" from="YSort/Shop" to="LogicComponents/ShopHandler" method="_on_shop_entered"]
 [connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
 [connection signal="remove_weapon" from="UpgradeHUD" to="LogicComponents/ShopHandler" method="_on_upgrade_hud_remove_weapon"]
