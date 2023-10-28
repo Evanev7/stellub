@@ -37,7 +37,7 @@ func spawn_magic_circles():
 		ysorter.add_child(magic_circle)
 		objective_marker.add_target(magic_circle)
 		magic_circle.connect("spawn_shop", _on_spawn_shop)
-		magic_circle.connect("spawn_teleporter", _on_spawn_teleporter)
+		magic_circle.connect("activate_teleporter", _on_activate_teleporter)
 		magic_circle.connect("spawn_enemy_in_wave", _on_spawn_enemy_in_wave)
 
 
@@ -84,7 +84,7 @@ func _on_spawn_shop(position):
 	upgrade_hud.remove_shop.connect(shop._on_upgrade_hud_leave)
 
 
-func _on_spawn_teleporter():
+func _on_activate_teleporter():
 	teleporter.set_process(true)
 	teleporter.enabled()
 	

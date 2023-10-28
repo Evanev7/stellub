@@ -3,7 +3,7 @@ extends Node2D
 #This can be re-enabled if we want to change magic_circle behaviour
 #signal shop_entered
 signal spawn_shop(location: Vector2)
-signal spawn_teleporter()
+signal activate_teleporter()
 signal spawn_enemy_in_wave(resource)
 
 static var current_circle: int = 1
@@ -169,7 +169,7 @@ func _on_success_timer_timeout():
 		current_circle += 1
 		get_node("Circle/CollisionShape2D").disabled = true
 	if current_circle == 2:
-		spawn_teleporter.emit()
+		activate_teleporter.emit()
 	
 	
 func spawn_enemies(timerValue):
