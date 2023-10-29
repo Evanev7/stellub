@@ -27,6 +27,7 @@ angular_velocity = 0.0
 piercing = 1
 piercing_cooldown = 0.0
 knockback = 1.0
+splits = 1
 activation_delay = 0.0
 deactivation_range = 500
 shot_inaccuracy = 0.0981748
