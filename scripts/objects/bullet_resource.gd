@@ -3,44 +3,48 @@ extends Resource
 class_name BulletResource
 
 enum TRANSPORT_MODE {LINEAR, ROTATING_FIXED_CENTRE, ROTATING_NO_CENTRE, ROTATING_LINEAR_CENTRE, STATIC}
-@export var transport_mode: TRANSPORT_MODE = TRANSPORT_MODE.LINEAR
 
-@export var animation: SpriteFrames
-
+@export_category("Metadata")
 @export var name: String
+@export var animation: SpriteFrames
 @export var rarity: float = 1
 @export var icon: CompressedTexture2D
-
-@export var start_range: int = 0
-
-## Float in seconds
-@export var lifetime: float = 20.0
-@export var bullet_range: int = 1000
-@export var damage: float = 1
-@export var fire_delay: float = 15
-@export var multishot: int = 1
 @export var size: Vector2 = Vector2(1, 1)
 @export var colour: Color = Color(1,1,1,1)
 
-## Suck stuff
-@export var vacuum: bool = false
-@export var vacuum_range: float = 100
-@export var vacuum_strength: float = 1
-
+@export_category("Shooting Stats")
+@export var start_range: int = 0
+## Float in seconds
+@export var lifetime: float = 20.0
+@export var bullet_range: int = 1000
+@export var fire_delay: float = 15
+## Set to 0 to make bullets follow the source
+@export var shot_speed: float = 400
 ## 2*PI for a full circle
 @export var shot_spread: float =  PI/12
+@export var shot_inaccuracy: float = PI/32
+@export var multishot: int = 1
+
+@export_category("Projectile Stats")
+@export var damage: float = 1
+@export var transport_mode: TRANSPORT_MODE = TRANSPORT_MODE.LINEAR
+@export var activation_delay: float = 0
 @export var angular_velocity: float = 0
 @export var piercing: int = 1
 @export var piercing_cooldown: float = 0
 @export var knockback: float = 0
 @export var splits: int = 1
-@export var activation_delay: float = 0
+
+@export_category("Enemy Deactivation")
 @export var deactivation_range: int = 500
-@export var shot_inaccuracy: float = PI/32
 
-## Set to 0 to make bullets follow the source
-@export var shot_speed: float = 400
+@export_category("Vacuum")
+## Suck stuff
+@export var vacuum: bool = false
+@export var vacuum_range: float = 100
+@export var vacuum_strength: float = 1
 
+@export_category("Bullet Spawning")
 ## Bullet type that will spawn from this bullet
 @export var spawned_bullet_resource: BulletResource
 @export var spawn_on_timeout: bool = false

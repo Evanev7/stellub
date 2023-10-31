@@ -6,17 +6,20 @@ signal enemy_killed(enemy)
 @export var resource: EnemyResource
 @export var damage_scene: PackedScene
 
+@onready var unique_multiplier: float = resource.UNIQUE_MULTIPLIER
+@onready var overall_multiplier: float = resource.OVERALL_MULTIPLIER
+
 @onready var attack_handler: AttackHandler = $AttackHandler
 @onready var sprite = $AnimatedSprite2D
-@onready var health: float = resource.MAX_HP
-@onready var damage: float = resource.DAMAGE
-@onready var value: float = resource.VALUE
-@onready var strength: float = resource.STRENGTH
-@onready var speed: float = resource.SPEED
+@onready var health: float = resource.MAX_HP * unique_multiplier * overall_multiplier
+@onready var damage: float = resource.DAMAGE * unique_multiplier * overall_multiplier
+@onready var value: float = resource.VALUE * unique_multiplier * overall_multiplier
+@onready var strength: float = resource.STRENGTH * (0.5 + ((unique_multiplier  * overall_multiplier) / 2))
+@onready var speed: float = resource.SPEED / (0.9 + (unique_multiplier / 10))
 @onready var flipped: bool = resource.FLIP_H
 @onready var floating: bool = resource.FLOATING
 @onready var default_angle: float = self.rotation
-@onready var default_scale: Vector2 = resource.SCALE
+@onready var default_scale: Vector2 = resource.SCALE * (0.5 + (unique_multiplier / 2))
 @onready var variance = 1/default_scale.length()
 
 var damage_scene_pool: Array[DamageNumber] = []
@@ -38,9 +41,12 @@ func _ready():
 
 func load_resource(resource_to_load: EnemyResource):
 	name = resource_to_load.NAME
-	scale = resource_to_load.SCALE
+	scale = default_scale
 	sprite.sprite_frames = resource_to_load.ANIMATION
 	sprite.flip_h = flipped
+	if unique_multiplier > 1:
+		sprite.material.set_shader_parameter("line_color", Vector4(1, 0, 0, 1))
+		sprite.material.set_shader_parameter("line_thickness", unique_multiplier * 5)
 	if resource_to_load.BULLET:
 		attack_handler.add_attack_from_resource(resource_to_load.BULLET)
 	$CollisionShape2D.shape = resource_to_load.COLLIDER

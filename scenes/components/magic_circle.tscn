@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bdsxfxpria0gp"]
+[gd_scene load_steps=8 format=3 uid="uid://bdsxfxpria0gp"]
 
 [ext_resource type="Script" path="res://scripts/components/magic_circle.gd" id="1_114ni"]
 [ext_resource type="Texture2D" uid="uid://clyycn7uujclo" path="res://art/icon.svg" id="2_ismyd"]
 [ext_resource type="PackedScene" uid="uid://cicwqsj3byj4u" path="res://scenes/components/spawn_collision_handler.tscn" id="3_4838f"]
+[ext_resource type="PackedScene" uid="uid://7pekoii3l4xw" path="res://scenes/objects/pillar.tscn" id="4_ciroy"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xm67y"]
 animations = [{
@@ -19,11 +20,25 @@ animations = [{
 radius = 131.015
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yuvbf"]
-radius = 629.35
+radius = 1278.18
 
 [node name="magic_circle" type="Node2D"]
 z_index = -1
 script = ExtResource("1_114ni")
+
+[node name="Pillars" type="Node2D" parent="."]
+
+[node name="Pillar" parent="Pillars" instance=ExtResource("4_ciroy")]
+position = Vector2(-700, 0)
+
+[node name="Pillar2" parent="Pillars" instance=ExtResource("4_ciroy")]
+position = Vector2(700, 0)
+
+[node name="Pillar3" parent="Pillars" instance=ExtResource("4_ciroy")]
+position = Vector2(0, -600)
+
+[node name="Pillar4" parent="Pillars" instance=ExtResource("4_ciroy")]
+position = Vector2(0, 600)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1.99999, 0)
@@ -57,7 +72,7 @@ one_shot = true
 
 [node name="SpawnCollisionHandler" parent="." node_paths=PackedStringArray("spawn_collider") instance=ExtResource("3_4838f")]
 spawn_collider = NodePath("../SpawnCollision")
-land_on_ready = false
+on_ready_attempts = 1
 
 [node name="SpawnCollision" type="Area2D" parent="."]
 

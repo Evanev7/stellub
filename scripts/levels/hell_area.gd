@@ -11,7 +11,7 @@ var heaven_area_scene := preload("res://scenes/levels/heaven_area.tscn").instant
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	start_game()
-	$LogicComponents/ShopHandler.spawn_magic_circles()
+	await $LogicComponents/ShopHandler.spawn_magic_circles()
 	$LogicComponents/TerrainGenerator.generate()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -31,7 +31,7 @@ func _physics_process(_delta):
 		GameState.player.evolve()
 	
 	if GameState.debug and Input.is_action_just_pressed("debug_spawn_enemy"): # L
-		$LogicComponents/EnemyHandler.spawn_enemy(randi() % 6)
+		$LogicComponents/EnemyHandler.spawn_enemy(randi() % 6, GameState.player.position, 800, 2)
 		
 	if GameState.debug and Input.is_action_just_pressed("debug_spawn_boss"): # B
 		GameState.player.send_loadout_to_boss()
