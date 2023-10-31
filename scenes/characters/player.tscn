@@ -1,9 +1,10 @@
-[gd_scene load_steps=37 format=3 uid="uid://cnepphpba8e8u"]
+[gd_scene load_steps=42 format=3 uid="uid://cnepphpba8e8u"]
 
 [ext_resource type="Script" path="res://scripts/characters/player.gd" id="1_m0lvq"]
 [ext_resource type="PackedScene" uid="uid://cgjvip03rh3b4" path="res://upgrades/stat_upgrade.tscn" id="2_50n7q"]
 [ext_resource type="Texture2D" uid="uid://kwiitmwbn82r" path="res://art/player/level 0/player_0_1.png" id="3_ik71x"]
 [ext_resource type="Texture2D" uid="uid://6fmtfmpb5kvf" path="res://art/player/level 0/player_0_2.png" id="4_p28ir"]
+[ext_resource type="Shader" path="res://scenes/characters/outline.gdshader" id="4_xdw23"]
 [ext_resource type="Texture2D" uid="uid://q4hnsccll683" path="res://art/player/level 0/player_0_3.png" id="5_3s83j"]
 [ext_resource type="Texture2D" uid="uid://bjg8vyygbxi04" path="res://art/player/level 0/player_0_4.png" id="6_g2igm"]
 [ext_resource type="Texture2D" uid="uid://o0msfnfm4y7o" path="res://art/player/level 0/player_0_5.png" id="7_4eppl"]
@@ -21,7 +22,6 @@
 [ext_resource type="Texture2D" uid="uid://do6k7k2wf53fx" path="res://art/player/level 2/player_2_4.png" id="19_or65r"]
 [ext_resource type="Texture2D" uid="uid://bwsif1sr5fbnt" path="res://art/player/level 3/player_3_1.png" id="21_ajmso"]
 [ext_resource type="Texture2D" uid="uid://cqyeuc34e06l" path="res://art/player/level 3/player_3_2.png" id="22_bs4qe"]
-[ext_resource type="Texture2D" uid="uid://clyycn7uujclo" path="res://art/icon.svg" id="22_unij0"]
 [ext_resource type="Texture2D" uid="uid://dey5wd3ailqt2" path="res://art/player/level 3/player_3_3.png" id="23_xyhts"]
 [ext_resource type="Texture2D" uid="uid://i5hbympcupri" path="res://art/player/level 3/player_3_4.png" id="24_h5he7"]
 [ext_resource type="Texture2D" uid="uid://cxdvjxx3kdx76" path="res://art/player/level 3/player_3_5.png" id="25_axxbl"]
@@ -33,22 +33,23 @@
 [ext_resource type="Texture2D" uid="uid://b4drtmyr37f11" path="res://art/player/level 5/player_5_1.png" id="31_v4gbo"]
 [ext_resource type="Texture2D" uid="uid://d4hct8jpb8rpj" path="res://art/player/level 6/player_6_1.png" id="32_jmb7j"]
 [ext_resource type="PackedScene" uid="uid://u1hhvearq4oy" path="res://scenes/components/attack_handler.tscn" id="32_ju527"]
+[ext_resource type="Shader" path="res://scenes/characters/mask.gdshader" id="34_qqbj8"]
 [ext_resource type="Resource" uid="uid://ccpb4udi5owpj" path="res://resources/bullets/player/player_bullet.tres" id="35_8awst"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_odef0"]
-size = Vector2(50, 50)
+size = Vector2(1066.67, 1066.67)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_whc3w"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_ik71x")
-}, {
-"duration": 1.0,
 "texture": ExtResource("4_p28ir")
 }, {
 "duration": 1.0,
 "texture": ExtResource("5_3s83j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ik71x")
 }, {
 "duration": 1.0,
 "texture": ExtResource("6_g2igm")
@@ -163,9 +164,24 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5wfaw"]
+shader = ExtResource("4_xdw23")
+shader_parameter/silhouette_color = Color(0, 0.8, 0.8, 1)
+shader_parameter/line_thickness = 1.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_pck22"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q4c1u"]
+shader = ExtResource("34_qqbj8")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_57mb6"]
+viewport_path = NodePath("SubViewport")
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("attack_handler")]
 z_index = 1
 y_sort_enabled = true
+scale = Vector2(0.05, 0.05)
 motion_mode = 1
 platform_on_leave = 2
 script = ExtResource("1_m0lvq")
@@ -177,10 +193,27 @@ attack_handler = NodePath("AttackHandler")
 scale = Vector2(0.3, 0.3)
 shape = SubResource("RectangleShape2D_odef0")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.05, 0.05)
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+mesh_lod_threshold = 0.0
+size = Vector2i(3500, 3500)
+render_target_update_mode = 4
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SubViewport"]
 sprite_frames = SubResource("SpriteFrames_whc3w")
 animation = &"level 0"
+offset = Vector2(1950, 1950)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 50
+material = SubResource("ShaderMaterial_5wfaw")
+texture = SubResource("ViewportTexture_pck22")
+
+[node name="Mask" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_q4c1u")
+position = Vector2(1, 1)
+texture = SubResource("ViewportTexture_57mb6")
 
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 26
@@ -189,20 +222,6 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 scale = Vector2(0.3, 0.3)
 shape = SubResource("RectangleShape2D_odef0")
-
-[node name="PointLight2D" type="PointLight2D" parent="."]
-visible = false
-z_index = 1
-rotation = 0.785398
-energy = 2.33
-texture = ExtResource("22_unij0")
-
-[node name="PointLight2D2" type="PointLight2D" parent="."]
-z_index = 1
-scale = Vector2(0.049, 0.049)
-energy = 16.0
-shadow_enabled = true
-texture = ExtResource("3_ik71x")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

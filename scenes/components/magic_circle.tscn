@@ -23,21 +23,25 @@ radius = 131.015
 radius = 1278.18
 
 [node name="magic_circle" type="Node2D"]
-z_index = -1
 script = ExtResource("1_114ni")
 
 [node name="Pillars" type="Node2D" parent="."]
 
 [node name="Pillar" parent="Pillars" instance=ExtResource("4_ciroy")]
+y_sort_enabled = false
 position = Vector2(-700, 0)
 
 [node name="Pillar2" parent="Pillars" instance=ExtResource("4_ciroy")]
+y_sort_enabled = false
 position = Vector2(700, 0)
 
 [node name="Pillar3" parent="Pillars" instance=ExtResource("4_ciroy")]
+y_sort_enabled = false
 position = Vector2(0, -600)
 
 [node name="Pillar4" parent="Pillars" instance=ExtResource("4_ciroy")]
+z_index = 1
+y_sort_enabled = false
 position = Vector2(0, 600)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

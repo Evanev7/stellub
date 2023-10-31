@@ -36,6 +36,7 @@ var current_animation
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$SubViewport/AnimatedSprite2D.scale = Vector2(0.9, 0.9)
 	GameState.player = self
 	hide()
 	$AttackHandler.stop()
@@ -69,9 +70,9 @@ func _physics_process(_delta):
 		move_and_slide()
 		
 		# Walk animation
-		$AnimatedSprite2D.play(current_animation)
+		$SubViewport/AnimatedSprite2D.play(current_animation)
 	else:
-		$AnimatedSprite2D.play(current_animation)
+		$SubViewport/AnimatedSprite2D.play(current_animation)
 
 
 # When the game starts, set the default values and show the player.
@@ -124,7 +125,7 @@ func hurt(body):
 		taken_damage.emit(hp)
 		invuln = true
 		$IFrames.start()
-		$AnimatedSprite2D.modulate = Color(1,0,0,0.5)
+		$SubViewport/AnimatedSprite2D.modulate = Color(1,0,0,0.5)
 	if hp <= 0:
 		hide()
 		$AttackHandler.stop()
@@ -139,9 +140,9 @@ func gain_score(value):
 	score += value
 	var tween: Tween = create_tween()
 	if current_level < 2:
-		tween.tween_property($AnimatedSprite2D, "self_modulate:v", 1, 0.25).from(50)
+		tween.tween_property($SubViewport/AnimatedSprite2D, "self_modulate:v", 1, 0.25).from(50)
 	else:
-		tween.tween_property($AnimatedSprite2D, "self_modulate:v", 1, 0.25).from(5)
+		tween.tween_property($SubViewport/AnimatedSprite2D, "self_modulate:v", 1, 0.25).from(5)
 	
 	if score >= level_threshold[current_level]:
 		level_up.emit(current_level)
@@ -193,7 +194,7 @@ func evolve():
 
 
 func _on_i_frames_timeout():
-	$AnimatedSprite2D.modulate = Color(1,1,1,1)
+	$SubViewport/AnimatedSprite2D.modulate = Color(1,1,1,1)
 	invuln = false
 
 

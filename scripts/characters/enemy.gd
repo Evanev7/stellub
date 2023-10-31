@@ -46,7 +46,7 @@ func load_resource(resource_to_load: EnemyResource):
 	sprite.flip_h = flipped
 	if unique_multiplier > 1:
 		sprite.material.set_shader_parameter("line_color", Vector4(1, 0, 0, 1))
-		sprite.material.set_shader_parameter("line_thickness", unique_multiplier * 5)
+		sprite.material.set_shader_parameter("line_thickness", (unique_multiplier * 2) ** 2)
 	if resource_to_load.BULLET:
 		attack_handler.add_attack_from_resource(resource_to_load.BULLET)
 	$CollisionShape2D.shape = resource_to_load.COLLIDER

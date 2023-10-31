@@ -34,6 +34,7 @@ shape = SubResource("CircleShape2D_68ibo")
 
 [node name="SpawnCollisionHandler" parent="." node_paths=PackedStringArray("spawn_collider") instance=ExtResource("3_40rsx")]
 spawn_collider = NodePath("../SpawnCollider")
+on_ready_attempts = 1
 
 [connection signal="body_entered" from="teleporter" to="." method="_on_teleporter_body_entered"]
 [connection signal="body_exited" from="teleporter" to="." method="_on_teleporter_body_exited"]

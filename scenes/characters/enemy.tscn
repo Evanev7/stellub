@@ -3,15 +3,15 @@
 [ext_resource type="Script" path="res://scripts/characters/enemy.gd" id="1_oyorq"]
 [ext_resource type="SpriteFrames" uid="uid://bpernxx6xbtyn" path="res://resources/enemy/demon_skeleton_spriteframes.tres" id="2_60lhk"]
 [ext_resource type="PackedScene" uid="uid://1bd6uenu01av" path="res://scenes/UI/damage_number.tscn" id="2_orbdq"]
-[ext_resource type="Shader" path="res://scenes/characters/enemy.gdshader" id="3_4b8s2"]
+[ext_resource type="Shader" path="res://scenes/characters/enemy.gdshader" id="3_30b5x"]
 [ext_resource type="Shape2D" uid="uid://0e7jt1gqqywj" path="res://resources/hitboxes/demon_skeleton_collisionbox.tres" id="3_vgymb"]
 [ext_resource type="Shape2D" uid="uid://q26ka3qri44y" path="res://resources/hitboxes/demon_skeleton_hitbox.tres" id="4_yc22m"]
 [ext_resource type="Script" path="res://scripts/characters/AttackHandler.gd" id="6_hcyh0"]
 [ext_resource type="PackedScene" uid="uid://cicwqsj3byj4u" path="res://scenes/components/spawn_collision_handler.tscn" id="7_ckcoh"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_i7p20"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fmm6i"]
 resource_local_to_scene = true
-shader = ExtResource("3_4b8s2")
+shader = ExtResource("3_30b5x")
 shader_parameter/line_color = Color(0, 0, 0, 1)
 shader_parameter/line_thickness = 0.0
 
@@ -22,7 +22,7 @@ script = ExtResource("1_oyorq")
 damage_scene = ExtResource("2_orbdq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-material = SubResource("ShaderMaterial_i7p20")
+material = SubResource("ShaderMaterial_fmm6i")
 position = Vector2(35, 63.3333)
 scale = Vector2(0.07, 0.07)
 sprite_frames = ExtResource("2_60lhk")

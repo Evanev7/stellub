@@ -57,6 +57,11 @@ format = 2
 layer_0/tile_data = PackedInt32Array(0, 1, 0)
 
 [node name="Player" parent="YSort" index="1" instance=ExtResource("11_syo0k")]
+z_index = 0
+y_sort_enabled = false
+
+[node name="PlayerStart" parent="YSort" index="2"]
+position = Vector2(0, 0)
 
 [node name="Shop" parent="YSort" index="3" instance=ExtResource("11_vorht")]
 position = Vector2(261, 336)
