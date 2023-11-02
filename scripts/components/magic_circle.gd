@@ -17,6 +17,8 @@ var worshipper = 3
 ####
 
 var wave_data = {}
+var distance_from_center: float = 0
+var size_of_barrier: float = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -136,6 +138,11 @@ func _process(_delta):
 	$Time.text = str(int($WaveTimer.get_time_left() + 0.99))
 	
 	if wave_active:
+		size_of_barrier = $Barrier/Marker2D.global_position.distance_to(self.global_position)
+		distance_from_center = GameState.player.position.distance_to(self.position)
+		print(distance_from_center - size_of_barrier)
+		GameState.player.position = (GameState.player.position).limit_length(distance_from_center)
+			
 		$Time.text = str(int($SuccessTimer.get_time_left()))
 		if int($SuccessTimer.get_time_left()) % 10 == 0 && $SuccessTimer.get_time_left() > 1:
 			spawn_enemies(int($SuccessTimer.get_time_left()) / 10)
@@ -157,6 +164,10 @@ func _on_circle_body_exited(body):
 func _on_wave_timer_timeout():
 	wave_active = true
 	$SuccessTimer.wait_time = 20 + (9.99 * current_circle)
+	$Barrier.visible = true
+	$Barrier/CollisionPolygon2D.disabled = false
+	var tween: Tween = create_tween()
+	tween.tween_property($Barrier, "scale", Vector2(0.3, 0.3), $SuccessTimer.wait_time)
 	$SuccessTimer.start()
 	spawn_enemies(0)
 
@@ -164,11 +175,13 @@ func _on_wave_timer_timeout():
 func _on_success_timer_timeout():
 	spawn_shop.emit(position)
 	wave_active = false
+	$Barrier.visible = false
+	$Barrier/CollisionPolygon2D.disabled = true
 	$Time.hide()
 	if current_circle < 12:
 		current_circle += 1
 		get_node("Circle/CollisionShape2D").disabled = true
-	if current_circle == 2:
+	if current_circle == 11:
 		activate_teleporter.emit()
 	
 	

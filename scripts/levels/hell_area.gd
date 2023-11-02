@@ -11,7 +11,7 @@ var heaven_area_scene := preload("res://scenes/levels/heaven_area.tscn").instant
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	start_game()
-	await $LogicComponents/ShopHandler.spawn_magic_circles()
+	$LogicComponents/ShopHandler.spawn_magic_circles()
 	$LogicComponents/TerrainGenerator.generate()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -47,6 +47,7 @@ script = ExtResource("2_myijk")
 enemy_resource_list = Array[Resource("res://scripts/characters/enemy_resource.gd")]([ExtResource("3_dr1lv"), ExtResource("4_j7txi"), ExtResource("5_yiyg4"), ExtResource("6_7qtbu"), ExtResource("7_jjuad"), ExtResource("8_rirxr")])
 bullet_handler = NodePath("LogicComponents/BulletHandler")
 enemy_handler = NodePath("LogicComponents/EnemyHandler")
+metadata/_edit_vertical_guides_ = []
 
 [node name="teleporter" parent="." index="0" instance=ExtResource("2_8o713")]
 
@@ -56,15 +57,15 @@ tile_set = SubResource("TileSet_rqhpw")
 format = 2
 layer_0/tile_data = PackedInt32Array(0, 1, 0)
 
-[node name="Player" parent="YSort" index="1" instance=ExtResource("11_syo0k")]
-z_index = 0
-y_sort_enabled = false
-
-[node name="PlayerStart" parent="YSort" index="2"]
+[node name="PlayerStart" parent="YSort" index="1"]
 position = Vector2(0, 0)
 
-[node name="Shop" parent="YSort" index="3" instance=ExtResource("11_vorht")]
+[node name="Shop" parent="YSort" index="2" instance=ExtResource("11_vorht")]
 position = Vector2(261, 336)
+
+[node name="Player" parent="YSort" index="3" instance=ExtResource("11_syo0k")]
+z_index = 0
+y_sort_enabled = false
 
 [node name="UpgradeHUD" parent="." index="3"]
 weapon_button_group = ExtResource("12_2ub6i")
@@ -100,10 +101,10 @@ ysorter = NodePath("../../YSort")
 ysorter = NodePath("../../YSort")
 
 [connection signal="teleport_player" from="teleporter" to="." method="teleport_to_heaven_area"]
+[connection signal="shop_entered" from="YSort/Shop" to="LogicComponents/ShopHandler" method="_on_shop_entered"]
 [connection signal="level_up" from="YSort/Player" to="." method="_on_player_level_up"]
 [connection signal="player_death" from="YSort/Player" to="." method="_on_player_player_death"]
 [connection signal="send_loadout" from="YSort/Player" to="LogicComponents/BossHandler" method="_on_player_send_loadout"]
 [connection signal="taken_damage" from="YSort/Player" to="." method="_on_player_taken_damage"]
-[connection signal="shop_entered" from="YSort/Shop" to="LogicComponents/ShopHandler" method="_on_shop_entered"]
 [connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
 [connection signal="remove_weapon" from="UpgradeHUD" to="LogicComponents/ShopHandler" method="_on_upgrade_hud_remove_weapon"]

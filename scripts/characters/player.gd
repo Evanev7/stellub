@@ -101,11 +101,11 @@ func set_default_stats():
 	rotation = 0
 	
 	## Weapon Stats
-	if GameState.debug:
-		return
+#	if GameState.debug:
+#		return
 	for attack in $AttackHandler.get_children():
 		attack.queue_free()
-	$AttackHandler.add_attack_from_resource(STARTING_WEAPON)
+#	$AttackHandler.add_attack_from_resource(STARTING_WEAPON)
 
 func add_attack_from_resource(bullet: BulletResource):
 	if control_mode == 0:
