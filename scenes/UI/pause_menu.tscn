@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c8xiwx0q2sf3m"]
+[gd_scene load_steps=6 format=3 uid="uid://c8xiwx0q2sf3m"]
 
 [ext_resource type="Texture2D" uid="uid://b2byn4ep7a4f8" path="res://art/backgrounds/heaven_level_1.png" id="1_m776n"]
 [ext_resource type="Script" path="res://scripts/UI/pause_menu.gd" id="1_uylrw"]
+[ext_resource type="PackedScene" uid="uid://ck84xpcgl0pv7" path="res://scenes/levels/menu.tscn" id="2_8leer"]
 
 [sub_resource type="Gradient" id="Gradient_jnb1p"]
 offsets = PackedFloat32Array(0, 0.348387, 0.490323, 1)
@@ -13,6 +14,7 @@ fill_from = Vector2(1, 0.981651)
 
 [node name="pause_menu" type="CanvasLayer"]
 script = ExtResource("1_uylrw")
+main_menu_scene = ExtResource("2_8leer")
 
 [node name="PauseBG" type="TextureRect" parent="."]
 self_modulate = Color(1, 1, 1, 0.686275)
@@ -166,3 +168,4 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="pressed" from="PauseBG/Buttons/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="PauseBG/Buttons/Exit" to="." method="_on_exit_pressed"]
