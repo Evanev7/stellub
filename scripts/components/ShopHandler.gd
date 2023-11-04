@@ -1,5 +1,7 @@
 extends Node
 
+signal pause_game
+
 @export var shop_scene: PackedScene
 @export var magic_circle_scene: PackedScene
 
@@ -70,7 +72,7 @@ func _on_shop_entered():
 
 
 func open_upgrade_hud(stat_upgrades, is_weapon_present):
-	get_tree().paused = true
+	pause_game.emit()
 	upgrade_hud.set_visible(true)
 	upgrade_hud.show_HUD(stat_upgrades, is_weapon_present)
 

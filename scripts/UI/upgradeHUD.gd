@@ -4,6 +4,7 @@ signal remove_shop
 signal remove_weapon
 signal apply_upgrade(upgrade)
 signal add_weapon(weapon)
+signal unpause_game
 
 @export var weapon_button_group : ButtonGroup
 var selected_weapon_button
@@ -65,8 +66,8 @@ func _on_weapon_button_pressed():
 	
 func _on_leave_pressed():
 	$ShopScreen/WeaponButton.set_visible(false)
-	get_parent().get_tree().paused = false
 	set_visible(false)
+	unpause_game.emit()
 	remove_shop.emit()
 
 func _on_error_timer_timeout():

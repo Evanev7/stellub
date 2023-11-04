@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://yaht8i4bkv2u"]
+[gd_scene load_steps=7 format=3 uid="uid://yaht8i4bkv2u"]
 
 [ext_resource type="Script" path="res://scripts/UI/HUD.gd" id="1_tsnwf"]
 
@@ -10,6 +10,15 @@ events = [SubResource("InputEventAction_gf5y4")]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b8dcb"]
 bg_color = Color(0.537255, 0.8, 0.988235, 1)
+
+[sub_resource type="Gradient" id="Gradient_eikcu"]
+offsets = PackedFloat32Array(0, 0.0839161, 0.237762, 0.377622, 0.552448, 0.748252, 0.895105)
+colors = PackedColorArray(0, 0, 0, 0, 0.117647, 0.117647, 0.117647, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_leb7c"]
+gradient = SubResource("Gradient_eikcu")
+fill_from = Vector2(0.23301, 0)
+fill_to = Vector2(0.742718, 0)
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_tsnwf")
@@ -78,5 +87,17 @@ allow_greater = true
 offset_right = 40.0
 offset_bottom = 23.0
 
+[node name="PauseButton" type="TextureButton" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -87.0
+offset_top = 40.0
+offset_right = -23.0
+offset_bottom = 104.0
+grow_horizontal = 0
+texture_normal = SubResource("GradientTexture2D_leb7c")
+
 [connection signal="timeout" from="DisplayTimer" to="." method="_on_display_timer_timeout"]
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="PauseButton" to="." method="_on_pause_button_pressed"]

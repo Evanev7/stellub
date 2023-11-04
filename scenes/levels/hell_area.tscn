@@ -71,6 +71,12 @@ y_sort_enabled = false
 [node name="UpgradeHUD" parent="." index="3"]
 weapon_button_group = ExtResource("12_2ub6i")
 
+[node name="pause_menu" parent="." index="4"]
+visible = false
+
+[node name="cursor_particles" parent="." index="6" instance=ExtResource("33_aqxfn")]
+position = Vector2(418, 419)
+
 [node name="TerrainGenerator" parent="LogicComponents" index="1" node_paths=PackedStringArray("tile_map", "ysorter") instance=ExtResource("2_p0a1o")]
 tile_map = NodePath("../../YSort/TileMap")
 ysorter = NodePath("../../YSort")
@@ -101,14 +107,16 @@ ysorter = NodePath("../../YSort")
 [node name="WeaponHandler" parent="LogicComponents" index="6" node_paths=PackedStringArray("ysorter") instance=ExtResource("17_gx7j2")]
 ysorter = NodePath("../../YSort")
 
-[node name="cursor_particles" parent="." index="6" instance=ExtResource("33_aqxfn")]
-position = Vector2(418, 419)
-
 [connection signal="teleport_player" from="teleporter" to="." method="teleport_to_heaven_area"]
 [connection signal="shop_entered" from="YSort/Shop" to="LogicComponents/ShopHandler" method="_on_shop_entered"]
 [connection signal="level_up" from="YSort/Player" to="." method="_on_player_level_up"]
 [connection signal="player_death" from="YSort/Player" to="." method="_on_player_player_death"]
 [connection signal="send_loadout" from="YSort/Player" to="LogicComponents/BossHandler" method="_on_player_send_loadout"]
 [connection signal="taken_damage" from="YSort/Player" to="." method="_on_player_taken_damage"]
+[connection signal="open_pause_menu" from="HUD" to="pause_menu" method="_on_hud_open_pause_menu"]
+[connection signal="pause_game" from="HUD" to="." method="pause_game"]
 [connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
 [connection signal="remove_weapon" from="UpgradeHUD" to="LogicComponents/ShopHandler" method="_on_upgrade_hud_remove_weapon"]
+[connection signal="unpause_game" from="UpgradeHUD" to="." method="unpause_game"]
+[connection signal="unpause_game" from="pause_menu" to="." method="unpause_game"]
+[connection signal="pause_game" from="LogicComponents/ShopHandler" to="." method="pause_game"]

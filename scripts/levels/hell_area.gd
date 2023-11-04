@@ -75,7 +75,12 @@ func game_over():
 func _on_hud_start_game():
 	start_game()
 
+func pause_game():
+	get_tree().paused = true
 
+func unpause_game():
+	get_tree().paused = false
+	
 func _on_player_taken_damage(hp):
 	$HUD.show_health(hp)
 
@@ -94,4 +99,7 @@ func teleport_to_heaven_area():
 	get_node("/root/Hell Area").queue_free()
 	heaven_area_scene.get_child(0).add_child(player)
 	get_tree().root.add_child(heaven_area_scene)
-	
+
+
+
+

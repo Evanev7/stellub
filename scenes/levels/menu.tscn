@@ -172,6 +172,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="LoadingScreen" type="TextureRect" parent="CanvasLayer"]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

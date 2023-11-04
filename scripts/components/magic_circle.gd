@@ -192,4 +192,4 @@ func spawn_enemies(timerValue):
 			var enemy_type = wave.keys()[i]
 			var count = wave.values()[i]
 			for j in range(count):
-				spawn_enemy_in_wave.emit(enemy_type, position, 500)
+				spawn_enemy_in_wave.emit(enemy_type, position, 450)
