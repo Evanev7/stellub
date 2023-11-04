@@ -140,8 +140,7 @@ func _process(_delta):
 	if wave_active:
 		size_of_barrier = $Barrier/Marker2D.global_position.distance_to(self.global_position)
 		distance_from_center = GameState.player.position.distance_to(self.position)
-		print(distance_from_center - size_of_barrier)
-		GameState.player.position = (GameState.player.position).limit_length(distance_from_center)
+		GameState.player.global_position = to_global(to_local(GameState.player.global_position).limit_length(size_of_barrier))
 			
 		$Time.text = str(int($SuccessTimer.get_time_left()))
 		if int($SuccessTimer.get_time_left()) % 10 == 0 && $SuccessTimer.get_time_left() > 1:
@@ -167,7 +166,7 @@ func _on_wave_timer_timeout():
 	$Barrier.visible = true
 	$Barrier/CollisionPolygon2D.disabled = false
 	var tween: Tween = create_tween()
-	tween.tween_property($Barrier, "scale", Vector2(0.3, 0.3), $SuccessTimer.wait_time)
+	tween.tween_property($Barrier, "scale", Vector2(0.35, 0.35), $SuccessTimer.wait_time)
 	$SuccessTimer.start()
 	spawn_enemies(0)
 

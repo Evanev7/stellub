@@ -112,7 +112,6 @@ shape = SubResource("CircleShape2D_yuvbf")
 [node name="Barrier" type="StaticBody2D" parent="."]
 visible = false
 collision_layer = 15
-collision_mask = 15
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Barrier"]
 position = Vector2(-1.89592, -0.812589)
@@ -127,7 +126,7 @@ scale = Vector2(1.762, 1.762)
 sprite_frames = SubResource("SpriteFrames_2c16o")
 
 [node name="Marker2D" type="Marker2D" parent="Barrier"]
-position = Vector2(-827, 0)
+position = Vector2(-796, 0)
 
 [connection signal="body_entered" from="Circle" to="." method="_on_circle_body_entered"]
 [connection signal="body_exited" from="Circle" to="." method="_on_circle_body_exited"]
