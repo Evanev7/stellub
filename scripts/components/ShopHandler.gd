@@ -1,6 +1,7 @@
 extends Node
 
 signal pause_game
+signal remove_marker_from_circle(circle)
 
 @export var shop_scene: PackedScene
 @export var magic_circle_scene: PackedScene
@@ -41,6 +42,7 @@ func spawn_magic_circles():
 		magic_circle.connect("spawn_shop", _on_spawn_shop)
 		magic_circle.connect("activate_teleporter", _on_activate_teleporter)
 		magic_circle.connect("spawn_enemy_in_wave", _on_spawn_enemy_in_wave)
+		magic_circle.connect("remove_circle_from_objective_marker", _on_remove_marker)
 
 
 func _on_shop_entered():
@@ -94,6 +96,8 @@ func _on_activate_teleporter():
 func _on_spawn_enemy_in_wave(resourceID, center, spawn_range):
 	enemyHandler.spawn_enemy(resourceID, center, spawn_range)
 
+func _on_remove_marker(circle):
+	remove_marker_from_circle.emit(circle)
 
 func _on_upgrade_hud_remove_upgrade(upgrade):
 	for i in shop_upgrades_list.size():

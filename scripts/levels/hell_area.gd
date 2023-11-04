@@ -69,6 +69,9 @@ func game_over():
 	get_tree().call_group("pickup", "queue_free")
 	get_tree().call_group("boss", "queue_free")
 	
+	for circle in get_tree().get_nodes_in_group("magic_circle"):
+		circle.call_deferred("remove_objective_marker", circle)
+	
 	$HUD.game_over()
 
 

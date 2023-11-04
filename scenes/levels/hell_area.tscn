@@ -80,6 +80,7 @@ position = Vector2(418, 419)
 [node name="TerrainGenerator" parent="LogicComponents" index="1" node_paths=PackedStringArray("tile_map", "ysorter") instance=ExtResource("2_p0a1o")]
 tile_map = NodePath("../../YSort/TileMap")
 ysorter = NodePath("../../YSort")
+object_spawn_rate = Array[float]([0.1, 0.05, 0.15])
 
 [node name="PickupHandler" parent="LogicComponents" index="2" node_paths=PackedStringArray("ysorter", "score_display") instance=ExtResource("3_be7sf")]
 pickup_scene = ExtResource("4_rcjv7")
@@ -120,3 +121,4 @@ ysorter = NodePath("../../YSort")
 [connection signal="unpause_game" from="UpgradeHUD" to="." method="unpause_game"]
 [connection signal="unpause_game" from="pause_menu" to="." method="unpause_game"]
 [connection signal="pause_game" from="LogicComponents/ShopHandler" to="." method="pause_game"]
+[connection signal="remove_marker_from_circle" from="LogicComponents/ShopHandler" to="ObjectiveMarker" method="delete_target"]

@@ -22,6 +22,7 @@ func _on_phase_up_timer_timeout():
 	phase_limit = clamp(phase_limit, 1, enemy_resource_list.size() - 1)
 	overall_multiplier += GameState.player.level_threshold[GameState.player.current_level] / 200
 	spawn_enemy(phase_limit, GameState.player.position, safe_range, 1.5 * overall_multiplier)
+	print(overall_multiplier)
 	
 	
 func _on_spawn_timer_timeout():
@@ -55,3 +56,4 @@ func start_spawning():
 	
 func stop_spawning():
 	spawn_timer.stop()
+	phase_up_timer.stop()

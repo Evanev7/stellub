@@ -5,6 +5,7 @@ extends Node2D
 signal spawn_shop(location: Vector2)
 signal activate_teleporter()
 signal spawn_enemy_in_wave(resource)
+signal remove_circle_from_objective_marker(circle)
 
 static var current_circle: int = 1
 var wave_active: bool = false
@@ -27,7 +28,7 @@ func _ready():
 
 func start():
 	get_node("Circle/CollisionShape2D").disabled = false
-	current_circle = 1
+	current_circle = 7
 	wave_active = false
 	set_waves()
 	$WaveTimer.stop()
@@ -48,88 +49,88 @@ func set_waves():
 			1: {skeleton: 10},
 		},
 		3: {
-			0: {skull: 10},
-			4: {skull: 10},
-			3: {dog: 10},
-			2: {skeleton: 10},
-			1: {skeleton: 10},
+			0: {skull: 15},
+			4: {skull: 20},
+			3: {dog: 20},
+			2: {skeleton: 20},
+			1: {skeleton: 20},
 		},
 		4: {
-			0: {skull: 10},
-			5: {skull: 10},
-			4: {dog: 20},
-			3: {skeleton: 10},
-			2: {skeleton: 15, skull: 15},
-			1: {skeleton: 10, dog: 10, skull: 10},
+			0: {skull: 20},
+			5: {skull: 30},
+			4: {dog: 30},
+			3: {skeleton: 30},
+			2: {skeleton: 20, skull: 20},
+			1: {skeleton: 15, dog: 15, skull: 15},
 		},
 		5: {
-			0: {skull: 10},
-			6: {skull: 10},
-			5: {dog: 20},
-			4: {skeleton: 10},
-			3: {skeleton: 15, skull: 15},
-			2: {skeleton: 10, dog: 10, skull: 10},
-			1: {skeleton: 10, dog: 10, skull: 10}
-		},
-		6: {
-			0: {skeleton: 10, dog: 10, skull: 10},
-			7: {skeleton: 10, dog: 10, skull: 10},
-			6: {skeleton: 30},
-			5: {skull: 50},
-			4: {skeleton: 20, skull: 20},
-			3: {skeleton: 20, dog: 20, skull: 20},
-			2: {skeleton: 20, dog: 20, skull: 30},
+			0: {skull: 40},
+			6: {skull: 50},
+			5: {dog: 40},
+			4: {skeleton: 40},
+			3: {skeleton: 20, skull: 20},
+			2: {skeleton: 20, dog: 20, skull: 20},
 			1: {skeleton: 30, dog: 30, skull: 30}
 		},
+		6: {
+			0: {skeleton: 20, dog: 20, skull: 20},
+			7: {skeleton: 30, dog: 30, skull: 30},
+			6: {skeleton: 50},
+			5: {skull: 100},
+			4: {skeleton: 50, skull: 50},
+			3: {skeleton: 50, dog: 50, skull: 50},
+			2: {skeleton: 50, dog: 50, skull: 60},
+			1: {skeleton: 80, dog: 80, skull: 100}
+		},
 		7: {
-			0: {skeleton: 10, dog: 10, skull: 10},
-			8: {skeleton: 10, dog: 10, skull: 10},
-			7: {skeleton: 30},
-			6: {skull: 50},
-			5: {skeleton: 20, skull: 20},
-			4: {skeleton: 20, dog: 20, skull: 20},
-			3: {skeleton: 20, dog: 20, skull: 30},
-			2: {skeleton: 30, dog: 30, skull: 30},
-			1: {worshipper: 5, skeleton: 30, dog: 30, skull: 30}
+			0: {skeleton: 30, dog: 30, skull: 30},
+			8: {skeleton: 30, dog: 30, skull: 30},
+			7: {skeleton: 80},
+			6: {skull: 200},
+			5: {skeleton: 60, skull: 60},
+			4: {skeleton: 80, dog: 80, skull: 80},
+			3: {skeleton: 80, dog: 80, skull: 100},
+			2: {skeleton: 80, dog: 80, skull: 100},
+			1: {worshipper: 10, skeleton: 60, dog: 60, skull: 60}
 		},
 		8: {
-			0: {skull: 10},
-			9: {skull: 10},
-			8: {dog: 20},
-			7: {skeleton: 10},
-			6: {skeleton: 15, skull: 15},
-			5: {skeleton: 10, dog: 10, skull: 10},
-			4: {skeleton: 10, dog: 10, skull: 10},
-			3: {skeleton: 10, dog: 10, skull: 10},
-			2: {skeleton: 10, dog: 10, skull: 10},
-			1: {skeleton: 10, dog: 10, skull: 10},
+			0: {skeleton: 30, dog: 30, skull: 30},
+			9: {skeleton: 30, dog: 30, skull: 30},
+			8: {skeleton: 30, dog: 30, skull: 30},
+			7: {skeleton: 80},
+			6: {skull: 200},
+			5: {skeleton: 60, skull: 60},
+			4: {skeleton: 80, dog: 80, skull: 80},
+			3: {skeleton: 80, dog: 80, skull: 100},
+			2: {skeleton: 80, dog: 80, skull: 100},
+			1: {worshipper: 10, skeleton: 60, dog: 60, skull: 60}
 		},
 		9: {
-			0: {skull: 10},
-			10: {skull: 10},
-			9: {dog: 20},
-			8: {skeleton: 10},
-			7: {skeleton: 15, skull: 15},
-			6: {skeleton: 10, dog: 10, skull: 10},
-			5: {skeleton: 10, dog: 10, skull: 10},
-			4: {skeleton: 10, dog: 10, skull: 10},
-			3: {skeleton: 10, dog: 10, skull: 10},
-			2: {skeleton: 10, dog: 10, skull: 10},
-			1: {skeleton: 10, dog: 10, skull: 10},
+			0: {skeleton: 30, dog: 30, skull: 30},
+			10: {skeleton: 30, dog: 30, skull: 30},
+			9: {skeleton: 30, dog: 30, skull: 30},
+			8: {skeleton: 30, dog: 30, skull: 30},
+			7: {skeleton: 80},
+			6: {skull: 200},
+			5: {skeleton: 60, skull: 60},
+			4: {skeleton: 80, dog: 80, skull: 80},
+			3: {skeleton: 80, dog: 80, skull: 100},
+			2: {skeleton: 80, dog: 80, skull: 100},
+			1: {worshipper: 10, skeleton: 60, dog: 60, skull: 60}
 		},
 		10: {
-			0: {skull: 10},
-			11: {skull: 10},
-			10: {dog: 20},
-			9: {skeleton: 10},
-			8: {skeleton: 15, skull: 15},
-			7: {skeleton: 10, dog: 10, skull: 10},
-			6: {skeleton: 10, dog: 10, skull: 10},
-			5: {skeleton: 10, dog: 10, skull: 10},
-			4: {skeleton: 10, dog: 10, skull: 10},
-			3: {skeleton: 10, dog: 10, skull: 10},
-			2: {skeleton: 10, dog: 10, skull: 10},
-			1: {skeleton: 10, dog: 10, skull: 10},
+			0: {skeleton: 30, dog: 30, skull: 30},
+			11: {skeleton: 30, dog: 30, skull: 30},
+			10: {skeleton: 30, dog: 30, skull: 30},
+			9: {skeleton: 30, dog: 30, skull: 30},
+			8: {skeleton: 30, dog: 30, skull: 30},
+			7: {skeleton: 80},
+			6: {skull: 200},
+			5: {skeleton: 60, skull: 60},
+			4: {skeleton: 80, dog: 80, skull: 80},
+			3: {skeleton: 80, dog: 80, skull: 100},
+			2: {skeleton: 80, dog: 80, skull: 100},
+			1: {worshipper: 10, skeleton: 60, dog: 60, skull: 60}
 		},
 	}
 
@@ -166,7 +167,7 @@ func _on_wave_timer_timeout():
 	$Barrier.visible = true
 	$Barrier/CollisionPolygon2D.disabled = false
 	var tween: Tween = create_tween()
-	tween.tween_property($Barrier, "scale", Vector2(0.35, 0.35), $SuccessTimer.wait_time)
+	tween.tween_property($Barrier, "scale", Vector2(0.4, 0.4), $SuccessTimer.wait_time)
 	$SuccessTimer.start()
 	spawn_enemies(0)
 
@@ -179,9 +180,13 @@ func _on_success_timer_timeout():
 	$Time.hide()
 	if current_circle < 12:
 		current_circle += 1
+		remove_objective_marker(self)
 		get_node("Circle/CollisionShape2D").disabled = true
 	if current_circle == 11:
 		activate_teleporter.emit()
+	
+func remove_objective_marker(circle):
+	remove_circle_from_objective_marker.emit(circle)
 	
 	
 func spawn_enemies(timerValue):
@@ -192,4 +197,6 @@ func spawn_enemies(timerValue):
 			var enemy_type = wave.keys()[i]
 			var count = wave.values()[i]
 			for j in range(count):
-				spawn_enemy_in_wave.emit(enemy_type, position, 450)
+				if size_of_barrier == 0:
+					size_of_barrier = 500
+				spawn_enemy_in_wave.emit(enemy_type, position, size_of_barrier - 50)
