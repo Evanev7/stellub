@@ -38,6 +38,7 @@ enum TRANSPORT_MODE {LINEAR, ROTATING_FIXED_CENTRE, ROTATING_NO_CENTRE, ROTATING
 
 ## Set to 0 to make bullets follow the source
 @export var shot_speed: float = 400
+@export var shot_acceleration: float = 0
 
 ## Bullet type that will spawn from this bullet
 @export var spawned_bullet_resource: BulletResource

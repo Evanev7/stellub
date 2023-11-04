@@ -15,6 +15,7 @@ func _ready():
 	add_to_group("boss")
 	
 ## NEED TO ADD THESE MODIFIERS TO ALL WEAPONS
+## Make it an upgrade, call it Boss Upgrade and attach it directly
 #	attack.bullet = GameState.player.all_bullets[i].duplicate(true)
 #	attack.bullet.deactivation_range *= 5
 #	attack.bullet.bullet_range *= 5

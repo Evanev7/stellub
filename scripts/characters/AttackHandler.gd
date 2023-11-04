@@ -44,7 +44,11 @@ func upgrade_all_attacks(upgrade):
 		var instantiated_upgrade = upgrade.instantiate()
 		attack.add_child(instantiated_upgrade)
 		attack.refresh_bullet_resource()
-		
+
+
+func refresh_all_attacks():
+	for attack in get_children():
+		attack.refresh_bullet_resource()
 
 
 func passive_all_attacks():

@@ -8,7 +8,7 @@ signal player_ready
 
 ## Player Stats
 @export var STARTING_SPEED = 300.0
-@export var STARTING_HP_MAX: float = 100
+@export var STARTING_HP_MAX: float = 10000000
 @export var STARTING_WEAPON: BulletResource
 
 @export var stat_upgrade: PackedScene
@@ -105,15 +105,10 @@ func set_default_stats():
 	$AttackHandler.add_attack_from_resource(STARTING_WEAPON)
 
 func add_attack_from_resource(bullet: BulletResource):
-	if control_mode == 0:
-		$AttackHandler.add_attack_from_resource(bullet, Attack.CONTROL_MODE.PRIMARY)
-	elif control_mode == 1:
-		$AttackHandler.add_attack_from_resource(bullet, Attack.CONTROL_MODE.SECONDARY)
-	elif control_mode == 2:
-		$AttackHandler.add_attack_from_resource(bullet, Attack.CONTROL_MODE.TERTIARY)
-	else:
-		$AttackHandler.add_attack_from_resource(bullet, Attack.CONTROL_MODE.PASSIVE)
-	control_mode += 1
+	var modes = Attack.CONTROL_MODE
+	var available_modes = [modes.PRIMARY, modes.SECONDARY, modes.TERTIARY, modes.PASSIVE]
+	$AttackHandler.add_attack_from_resource(bullet, available_modes[control_mode])
+	control_mode = clamp(control_mode + 1, 0, 3)
 
 # Called when the player gets hurt. Body can be either a bullet OR an enemy.
 func hurt(body):
@@ -168,6 +163,7 @@ func upgrade_attack(upgrade, weapon_number):
 	$AttackHandler.get_child(weapon_number).add_child(upgrade)
 	$AttackHandler.get_child(weapon_number).refresh_bullet_resource()
 
+#Marked for cleanup with new shop UI
 func get_all_attacks():
 	var attacks = []
 	for attack in $AttackHandler.get_children():

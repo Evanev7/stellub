@@ -1,0 +1,134 @@
+[gd_scene load_steps=4 format=3 uid="uid://jgeavrbmn7f2"]
+
+[ext_resource type="Script" path="res://scripts/UI/shop_draggable.gd" id="1_87tkg"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_gbimq"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_04rt7"]
+
+[node name="TotalAttack" type="MarginContainer"]
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="CenterContainer2" type="CenterContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer/CenterContainer2"]
+layout_mode = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="Primary" type="TextureButton" parent="HBoxContainer/CenterContainer2/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture_normal = SubResource("PlaceholderTexture2D_gbimq")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Secondary" type="TextureButton" parent="HBoxContainer/CenterContainer2/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture_normal = SubResource("PlaceholderTexture2D_gbimq")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Tertiary" type="TextureButton" parent="HBoxContainer/CenterContainer2/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture_normal = SubResource("PlaceholderTexture2D_gbimq")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Passive" type="TextureButton" parent="HBoxContainer/CenterContainer2/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture_normal = SubResource("PlaceholderTexture2D_gbimq")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Attack" type="TextureButton" parent="HBoxContainer/CenterContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(110, 110)
+layout_mode = 2
+texture_normal = SubResource("PlaceholderTexture2D_04rt7")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("1_87tkg")
+slot_type = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="CenterUpgrade1" type="CenterContainer" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Upgrade1" type="TextureButton" parent="HBoxContainer/HBoxContainer/CenterUpgrade1"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+texture_normal = SubResource("PlaceholderTexture2D_gbimq")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("1_87tkg")
+
+[node name="CenterUpgrade2" type="CenterContainer" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Upgrade2" type="TextureButton" parent="HBoxContainer/HBoxContainer/CenterUpgrade2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+texture_normal = SubResource("PlaceholderTexture2D_gbimq")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("1_87tkg")
+
+[node name="CenterUpgrade3" type="CenterContainer" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Upgrade3" type="TextureButton" parent="HBoxContainer/HBoxContainer/CenterUpgrade3"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+texture_normal = SubResource("PlaceholderTexture2D_gbimq")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("1_87tkg")
+
+[node name="CenterUpgrade4" type="CenterContainer" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Upgrade4" type="TextureButton" parent="HBoxContainer/HBoxContainer/CenterUpgrade4"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+texture_normal = SubResource("PlaceholderTexture2D_gbimq")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("1_87tkg")
+
+[node name="CenterUpgrade5" type="CenterContainer" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Upgrade5" type="TextureButton" parent="HBoxContainer/HBoxContainer/CenterUpgrade5"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+texture_normal = SubResource("PlaceholderTexture2D_gbimq")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("1_87tkg")

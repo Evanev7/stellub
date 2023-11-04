@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://dfe6bc7mdpexj"]
+[gd_scene load_steps=41 format=3 uid="uid://dfe6bc7mdpexj"]
 
 [ext_resource type="Script" path="res://scripts/levels/main.gd" id="1_u8uym"]
 [ext_resource type="PackedScene" uid="uid://yaht8i4bkv2u" path="res://scenes/UI/HUD.tscn" id="3_8qfpp"]
@@ -12,6 +12,7 @@
 [ext_resource type="Resource" uid="uid://bnoj3uq3e6s17" path="res://resources/enemy/angel_warrior.tres" id="8_vk0tv"]
 [ext_resource type="Texture2D" uid="uid://dvrx1ijrwk8a2" path="res://art/backgrounds/hell_level_1.png" id="9_cd231"]
 [ext_resource type="Resource" uid="uid://daslelns8qmfv" path="res://resources/enemy/angel_crusader.tres" id="9_d18g6"]
+[ext_resource type="Material" uid="uid://6vtco3gw7ve7" path="res://resources/warp_shader.tres" id="9_dja42"]
 [ext_resource type="PackedScene" uid="uid://kdeab812xwhx" path="res://scenes/components/bullet_handler.tscn" id="10_2c13m"]
 [ext_resource type="PackedScene" uid="uid://41p1qgrud4ej" path="res://scenes/components/terrain_generator.tscn" id="11_0axk0"]
 [ext_resource type="PackedScene" uid="uid://ugulpxhu6v48" path="res://scenes/components/pickup_handler.tscn" id="12_hxykb"]
@@ -35,6 +36,7 @@
 [ext_resource type="Resource" uid="uid://coqyd5d8e6rm8" path="res://resources/bullets/player/particle_mace.tres" id="28_r0cq1"]
 [ext_resource type="Resource" uid="uid://b3v62pkd6hntd" path="res://resources/bullets/player/shotgun.tres" id="29_fpyec"]
 [ext_resource type="Resource" uid="uid://8ogmebrr77xx" path="res://resources/bullets/player/black_hole.tres" id="31_ngr8p"]
+[ext_resource type="Script" path="res://scripts/components/ShaderHandler.gd" id="37_grh2t"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uuw3f"]
 texture = ExtResource("9_cd231")
@@ -45,7 +47,7 @@ texture_region_size = Vector2i(1920, 1080)
 tile_size = Vector2i(1920, 1080)
 sources/1 = SubResource("TileSetAtlasSource_uuw3f")
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_4ekvb"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_wskan"]
 
 [node name="Main" type="Node" node_paths=PackedStringArray("bullet_handler", "enemy_handler")]
 script = ExtResource("1_u8uym")
@@ -56,9 +58,11 @@ enemy_handler = NodePath("LogicComponents/EnemyHandler")
 
 [node name="YSort" type="Node2D" parent="."]
 y_sort_enabled = true
+material = ExtResource("9_dja42")
 
 [node name="TileMap" type="TileMap" parent="YSort"]
 z_index = -1
+use_parent_material = true
 scale = Vector2(0.75, 0.75)
 tile_set = SubResource("TileSet_7jy1t")
 format = 2
@@ -77,7 +81,7 @@ position = Vector2(578, 324)
 [node name="HUD" parent="." instance=ExtResource("3_8qfpp")]
 
 [node name="UpgradeHUD" parent="." instance=ExtResource("4_ls5jb")]
-weapon_button_group = SubResource("ButtonGroup_4ekvb")
+weapon_button_group = SubResource("ButtonGroup_wskan")
 
 [node name="ObjectiveMarker" parent="." instance=ExtResource("20_tncsu")]
 
@@ -102,13 +106,13 @@ ysorter = NodePath("../../YSort")
 bullet_handler = NodePath("../BulletHandler")
 pickup_handler = NodePath("../PickupHandler")
 
-[node name="ShopHandler" parent="LogicComponents" node_paths=PackedStringArray("enemyHandler", "ysorter", "objective_marker", "shop_node") instance=ExtResource("19_4xjky")]
+[node name="ShopHandler" parent="LogicComponents" node_paths=PackedStringArray("enemyHandler", "ysorter", "objective_marker", "upgrade_hud") instance=ExtResource("19_4xjky")]
 default_shop_upgrades_list = Array[PackedScene]([ExtResource("21_1r7qt"), ExtResource("22_nlywc"), ExtResource("23_3lrqa"), ExtResource("24_bukft"), ExtResource("25_84srj"), ExtResource("26_f6bc7")])
 default_shop_weapons_list = Array[Resource("res://scripts/objects/bullet_resource.gd")]([ExtResource("27_55oo1"), ExtResource("28_r0cq1"), ExtResource("29_fpyec"), ExtResource("31_ngr8p")])
 enemyHandler = NodePath("../EnemyHandler")
 ysorter = NodePath("../../YSort")
 objective_marker = NodePath("../../ObjectiveMarker")
-shop_node = NodePath("../../Shop")
+upgrade_hud = NodePath("../../UpgradeHUD")
 
 [node name="WeaponHandler" parent="LogicComponents" node_paths=PackedStringArray("ysorter") instance=ExtResource("22_2ik5p")]
 ysorter = NodePath("../../YSort")
@@ -117,6 +121,10 @@ ysorter = NodePath("../../YSort")
 script = ExtResource("25_88wnh")
 boss_scene = ExtResource("13_1hk1q")
 ysorter = NodePath("../../YSort")
+
+[node name="ShaderHandler" type="Node" parent="LogicComponents"]
+script = ExtResource("37_grh2t")
+shader_material = ExtResource("9_dja42")
 
 [connection signal="level_up" from="YSort/Player" to="." method="_on_player_level_up"]
 [connection signal="player_death" from="YSort/Player" to="." method="_on_player_player_death"]

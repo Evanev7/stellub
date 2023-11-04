@@ -1,12 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://yaht8i4bkv2u"]
+[gd_scene load_steps=3 format=3 uid="uid://yaht8i4bkv2u"]
 
 [ext_resource type="Script" path="res://scripts/UI/HUD.gd" id="1_tsnwf"]
-
-[sub_resource type="InputEventAction" id="InputEventAction_gf5y4"]
-action = &"start_game"
-
-[sub_resource type="Shortcut" id="Shortcut_lxmoi"]
-events = [SubResource("InputEventAction_gf5y4")]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b8dcb"]
 bg_color = Color(0.537255, 0.8, 0.988235, 1)
@@ -62,7 +56,6 @@ offset_bottom = -156.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 64
-shortcut = SubResource("Shortcut_lxmoi")
 text = "Play"
 
 [node name="XPBar" type="ProgressBar" parent="."]

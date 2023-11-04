@@ -47,7 +47,7 @@ func pre_fire():
 	for upgrade in get_children():
 		upgrade.pre_fire()
 	
-	if attack_direction.direction.length() < target_range:
+	if owner == GameState.player or attack_direction.direction.length() < target_range:
 		fire()
 		_timer += bullet.fire_delay
 

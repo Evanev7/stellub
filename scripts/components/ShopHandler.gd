@@ -11,7 +11,7 @@ var shop_weapons_list: Array[BulletResource]
 @export var enemyHandler: EnemyHandler
 @export var ysorter: Node2D
 @export var objective_marker: CanvasLayer
-@export var upgrade_hud: CanvasLayer
+@export var shop_node: CanvasLayer
 
 func _ready():
 	pass
@@ -63,13 +63,13 @@ func _on_shop_entered():
 				chosen_upgrades.append(weapon)
 				break
 				
-	open_upgrade_hud(chosen_upgrades, is_weapon_present)
+	open_shop(chosen_upgrades, is_weapon_present)
 
 
-func open_upgrade_hud(stat_upgrades, is_weapon_present):
+func open_shop(stat_upgrades, is_weapon_present):
 	get_tree().paused = true
-	upgrade_hud.set_visible(true)
-	upgrade_hud.show_HUD(stat_upgrades, is_weapon_present)
+	shop_node.set_visible(true)
+	shop_node.open_shop(stat_upgrades, is_weapon_present)
 
 
 func _on_spawn_shop(position):
@@ -78,21 +78,21 @@ func _on_spawn_shop(position):
 	shop.position = position
 	ysorter.add_child(shop)
 	shop.connect('shop_entered', _on_shop_entered)
-	upgrade_hud.remove_shop.connect(shop._on_upgrade_hud_leave)
+	shop.remove_shop.connect(shop._on_shop_leave)
 
 
 func _on_spawn_enemy_in_wave(resourceID, center, spawn_range):
 	enemyHandler.spawn_enemy(resourceID, center, spawn_range)
 
 
-func _on_upgrade_hud_remove_upgrade(upgrade):
+func _on_shop_remove_upgrade(upgrade):
 	for i in shop_upgrades_list.size():
 		if upgrade.scene_file_path == shop_upgrades_list[i].get_path():
 			shop_upgrades_list.remove_at(i)
 			break
 
 
-func _on_upgrade_hud_remove_weapon(weapon):
+func _on_shop_remove_weapon(weapon):
 	for i in shop_weapons_list.size():
 		if weapon.name == shop_weapons_list[i].name:
 			shop_weapons_list.remove_at(i)

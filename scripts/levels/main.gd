@@ -19,19 +19,21 @@ func _physics_process(_delta):
 	#print("bullets: " + str(get_tree().get_nodes_in_group("bullet").size()))
 	pass
 	##Debug ###############################
+	if not GameState.debug:
+		return
 	
-	if GameState.debug and Input.is_action_pressed("debug_gain_score"): ## Increase score by 10
+	if Input.is_action_pressed("debug_gain_score"): ## Increase score by 10
 		GameState.player.gain_score(10)
 		$HUD.show_score(GameState.player.score, GameState.player.level_threshold[GameState.player.current_level])
 	
-	if GameState.debug and Input.is_action_just_pressed("debug_evolve"): ## Increase evolution by 1
+	if Input.is_action_just_pressed("debug_evolve"): ## Increase evolution by 1
 		GameState.player.current_evolution += 1
 		GameState.player.evolve()
 	
-	if GameState.debug and Input.is_action_just_pressed("debug_spawn_enemy"):
+	if Input.is_action_just_pressed("debug_spawn_enemy"):
 		$LogicComponents/EnemyHandler.spawn_enemy(randi() % 6)
 		
-	if GameState.debug and Input.is_action_just_pressed("debug_spawn_boss"):
+	if Input.is_action_just_pressed("debug_spawn_boss"):
 		GameState.player.send_loadout_to_boss()
 	#######################################
 

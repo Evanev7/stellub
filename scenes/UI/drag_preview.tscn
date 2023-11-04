@@ -3,5 +3,6 @@
 [ext_resource type="Script" path="res://scripts/UI/DragPreview.gd" id="1_jrq0o"]
 
 [node name="DragPreview" type="Sprite2D"]
+process_mode = 3
 modulate = Color(1, 1, 1, 0.74902)
 script = ExtResource("1_jrq0o")

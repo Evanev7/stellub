@@ -23,6 +23,7 @@ corner_detail = 1
 anti_aliasing_size = 0.01
 
 [node name="Weapon" type="Area2D"]
+use_parent_material = true
 script = ExtResource("1_qxh8w")
 weapon = ExtResource("2_ycxpi")
 
