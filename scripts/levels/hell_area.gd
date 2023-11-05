@@ -45,6 +45,7 @@ func _physics_process(_delta):
 
 # Start the timers we need, instantiate the HUD and get the player in the right spot.
 func start_game():
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	enemy_handler.start_spawning()
 	GameState.player.start()
 	GameState.player.position = $YSort/PlayerStart.position
@@ -81,9 +82,11 @@ func _on_hud_start_game():
 	start_game()
 
 func pause_game():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	get_tree().paused = true
 
 func unpause_game():
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	get_tree().paused = false
 	
 func _on_player_taken_damage(hp):
@@ -96,6 +99,7 @@ func _on_player_level_up(current_level):
 	GameState.player.current_level += 1
 	GameState.player.souls += 1
 	enemy_handler.spawn_timer.wait_time /= 1.02
+	enemy_handler.overall_multiplier += GameState.player.current_level / float(400)
 	
 
 func teleport_to_heaven_area():

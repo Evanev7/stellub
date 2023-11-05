@@ -48,6 +48,5 @@ func delete_target(node: Node2D):
 	var to_delete
 	for pair in arrows:
 		if pair[1] == node:
-			print("deletion confirmed")
 			to_delete = pair
 	arrows.erase(to_delete)
