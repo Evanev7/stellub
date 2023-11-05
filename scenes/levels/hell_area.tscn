@@ -68,6 +68,8 @@ position = Vector2(261, 336)
 z_index = 0
 y_sort_enabled = false
 
+[node name="Enemies" type="Node2D" parent="YSort" index="4"]
+
 [node name="UpgradeHUD" parent="." index="3"]
 weapon_button_group = ExtResource("12_2ub6i")
 
@@ -80,15 +82,14 @@ position = Vector2(418, 419)
 [node name="TerrainGenerator" parent="LogicComponents" index="1" node_paths=PackedStringArray("tile_map", "ysorter") instance=ExtResource("2_p0a1o")]
 tile_map = NodePath("../../YSort/TileMap")
 ysorter = NodePath("../../YSort")
-object_spawn_rate = Array[float]([0.1, 0.05, 0.15])
 
 [node name="PickupHandler" parent="LogicComponents" index="2" node_paths=PackedStringArray("ysorter", "score_display") instance=ExtResource("3_be7sf")]
 pickup_scene = ExtResource("4_rcjv7")
 ysorter = NodePath("../../YSort")
 score_display = NodePath("../../HUD")
 
-[node name="EnemyHandler" parent="LogicComponents" index="3" node_paths=PackedStringArray("ysorter", "bullet_handler", "pickup_handler") instance=ExtResource("5_qh5by")]
-ysorter = NodePath("../../YSort")
+[node name="EnemyHandler" parent="LogicComponents" index="3" node_paths=PackedStringArray("ysorter_enemies", "bullet_handler", "pickup_handler") instance=ExtResource("5_qh5by")]
+ysorter_enemies = NodePath("../../YSort/Enemies")
 bullet_handler = NodePath("../BulletHandler")
 pickup_handler = NodePath("../PickupHandler")
 

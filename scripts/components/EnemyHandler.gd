@@ -11,7 +11,7 @@ class_name EnemyHandler
 @export var enemy_scene: PackedScene
 @export var enemy_resource_list: Array[EnemyResource]
 
-@export var ysorter: Node2D
+@export var ysorter_enemies: Node2D
 @export var bullet_handler: BulletHandler
 @export var pickup_handler: PickupHandler
 
@@ -38,7 +38,7 @@ func spawn_enemy(resourceID, center = GameState.player.position, spawn_range = s
 	var relative_spawn_position = Vector2(spawn_range,0).rotated(randf_range(0, 2*PI))
 	enemy.position = center + relative_spawn_position
 	enemy.enemy_killed.connect(_on_enemy_killed)
-	ysorter.add_child(enemy)
+	ysorter_enemies.add_child(enemy)
 	
 	
 	

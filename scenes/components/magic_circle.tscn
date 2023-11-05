@@ -54,19 +54,23 @@ script = ExtResource("1_114ni")
 [node name="Pillar" parent="Pillars" instance=ExtResource("4_ciroy")]
 y_sort_enabled = false
 position = Vector2(-700, 0)
+scale = Vector2(0.685, 0.685)
 
 [node name="Pillar2" parent="Pillars" instance=ExtResource("4_ciroy")]
 y_sort_enabled = false
 position = Vector2(700, 0)
+scale = Vector2(0.685, 0.685)
 
 [node name="Pillar3" parent="Pillars" instance=ExtResource("4_ciroy")]
 y_sort_enabled = false
 position = Vector2(0, -600)
+scale = Vector2(0.685, 0.685)
 
 [node name="Pillar4" parent="Pillars" instance=ExtResource("4_ciroy")]
 z_index = 1
 y_sort_enabled = false
 position = Vector2(0, 600)
+scale = Vector2(0.685, 0.685)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_i8l2e")

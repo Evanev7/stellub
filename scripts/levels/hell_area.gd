@@ -18,6 +18,7 @@ func _ready():
 func _physics_process(_delta):
 	randomize()
 	#print("bullets: " + str(get_tree().get_nodes_in_group("bullet").size()))
+#	print("enemies: " + str(get_tree().get_nodes_in_group("enemy").size()))
 	pass
 	
 	##Debug ###############################
@@ -31,7 +32,8 @@ func _physics_process(_delta):
 		GameState.player.evolve()
 	
 	if GameState.debug and Input.is_action_just_pressed("debug_spawn_enemy"): # L
-		$LogicComponents/EnemyHandler.spawn_enemy(randi() % 6, GameState.player.position, 800, 2)
+		for i in range(10):
+			$LogicComponents/EnemyHandler.spawn_enemy(randi() % 6)
 		
 	if GameState.debug and Input.is_action_just_pressed("debug_spawn_boss"): # B
 		GameState.player.send_loadout_to_boss()

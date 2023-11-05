@@ -6,11 +6,14 @@ class_name PickupHandler
 @export var ysorter: Node2D
 @export var score_display: CanvasLayer
 
+#func _process(_delta):
+#	print(get_tree().get_nodes_in_group("pickup").size())
+
 func spawn_pickup(pos):
 	var pickup = pickup_scene.instantiate()
 	pickup.credit_player.connect(_on_pickup_credit_player)
 	pickup.position = pos
-	ysorter.add_child(pickup)
+	ysorter.call_deferred("add_child", pickup)
 	
 func _on_pickup_credit_player(value):
 	var player = GameState.player
