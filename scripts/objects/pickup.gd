@@ -32,20 +32,12 @@ func _physics_process(delta):
 		var direction = (GameState.player.position - position).normalized()
 		velocity += speed
 		position += velocity * direction * delta
-	
+
+func activate():
+	activated = true
 
 func _on_self_destruct_timeout():
 	queue_free()
 	
 	# Add functionality to add value to another nearby pickup
 
-
-func _on_area_entered(area):
-	if area.owner == GameState.player:
-		credit_player.emit(value)
-	queue_free()
-
-
-func _on_activation_range_entered(area):
-	if area.owner == GameState.player:
-		activated = true

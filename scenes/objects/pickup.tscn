@@ -1,17 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://cjuw1uddg4foi"]
+[gd_scene load_steps=4 format=3 uid="uid://cjuw1uddg4foi"]
 
 [ext_resource type="Script" path="res://scripts/objects/pickup.gd" id="1_rqpcu"]
 [ext_resource type="SpriteFrames" uid="uid://buhg63ostt083" path="res://resources/objects/soul_pickup.tres" id="2_13irk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rwjyl"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_d24iy"]
-radius = 400.0
-
 [node name="Pickup" type="Area2D"]
-collision_layer = 0
-collision_mask = 16
-monitorable = false
+collision_layer = 16
+collision_mask = 0
+monitoring = false
 script = ExtResource("1_rqpcu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -29,14 +26,5 @@ wait_time = 100.0
 one_shot = true
 autostart = true
 
-[node name="ActivationRange" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 16
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ActivationRange"]
-shape = SubResource("CircleShape2D_d24iy")
-
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="timeout" from="SelfDestruct" to="." method="_on_self_destruct_timeout"]
-[connection signal="area_entered" from="ActivationRange" to="." method="_on_activation_range_entered"]

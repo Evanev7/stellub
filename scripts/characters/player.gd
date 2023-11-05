@@ -5,16 +5,19 @@ signal player_death
 signal level_up(level)
 signal send_loadout(loadout)
 signal player_ready
+signal credit_player(value)
 
 ## Player Stats
-@export var STARTING_SPEED = 300.0
+@export var STARTING_SPEED: float = 300.0
 @export var STARTING_HP_MAX: float = 100
 @export var STARTING_WEAPON: BulletResource
 
 @export var stat_upgrade: PackedScene
 @export var attack_handler: Node2D
 
-@onready var default_scale = self.scale
+@onready var default_scale: Vector2 = self.scale
+@onready var default_pickup_range: Vector2 = $PickupRange.scale
+@onready var pickup_range: Area2D = $PickupRange
 @onready var strength: float = 5
 @onready var sprite: AnimatedSprite2D = $SubViewport/AnimatedSprite2D
 var control_mode: int = 0
@@ -24,15 +27,15 @@ var current_evolution: int
 var current_wave: int
 var souls: int
 var hp_max: float
-var speed
-var hp
-var score
-var walking
+var speed: float
+var hp:  float
+var score: float
+var walking: bool = false
 
 
 var invuln: bool = false
 var _h_flipped: bool = false
-var current_animation
+var current_animation: String
 
 
 # Called when the node enters the scene tree for the first time.
@@ -99,6 +102,7 @@ func set_default_stats():
 	current_evolution = 0
 	souls = 0
 	scale = default_scale
+	pickup_range.scale = default_pickup_range
 	rotation = 0
 	
 	## Weapon Stats
@@ -121,7 +125,7 @@ func add_attack_from_resource(bullet: BulletResource):
 
 # Called when the player gets hurt. Body can be either a bullet OR an enemy.
 func hurt(body):
-	if not invuln:
+	if not invuln and not body.is_in_group("pickup"):
 		hp = clamp(hp - body.damage, 0, hp_max)
 		taken_damage.emit(hp)
 		invuln = true
@@ -135,6 +139,16 @@ func hurt(body):
 		$CollisionShape2D.set_deferred("disabled", true)
 		$Camera2D.set_deferred("enabled", false)
 		player_death.emit()
+
+
+func activate_pickup(area):
+	if area.is_in_group("pickup"):
+		area.activate()
+
+func get_pickup(area):
+	if area.is_in_group("pickup"):
+		credit_player.emit(area.value)
+		area.queue_free()
 
 
 # Called when we've killed an enemy, and we can add to our score.
@@ -162,9 +176,10 @@ func gain_score(value):
 
 
 func player_level_up():
-	hp_max *= 1.02
-	hp += hp_max * 0.01
-	speed *= 1.02
+	hp_max *= 1.005
+	hp += hp_max * 0.005
+	speed *= 1.005
+	pickup_range.scale *= 1.01
 	
 	$AttackHandler.upgrade_all_attacks(stat_upgrade)
 
@@ -202,3 +217,4 @@ func _on_i_frames_timeout():
 
 func send_loadout_to_boss():
 	send_loadout.emit($AttackHandler.get_child(0))
+

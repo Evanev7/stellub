@@ -9,3 +9,6 @@ func modify_bullet_resource(bullet: BulletResource) -> BulletResource:
 		if randf() > 0.9:
 			bullet.multishot += 1
 	return bullet
+
+func pre_fire():
+	pass

@@ -28,7 +28,7 @@ func _ready():
 
 func start():
 	get_node("Circle/CollisionShape2D").disabled = false
-	current_circle = 7
+	current_circle = 1
 	wave_active = false
 	set_waves()
 	$WaveTimer.stop()

@@ -111,6 +111,7 @@ ysorter = NodePath("../../YSort")
 
 [connection signal="teleport_player" from="teleporter" to="." method="teleport_to_heaven_area"]
 [connection signal="shop_entered" from="YSort/Shop" to="LogicComponents/ShopHandler" method="_on_shop_entered"]
+[connection signal="credit_player" from="YSort/Player" to="LogicComponents/PickupHandler" method="_on_pickup_credit_player"]
 [connection signal="level_up" from="YSort/Player" to="." method="_on_player_level_up"]
 [connection signal="player_death" from="YSort/Player" to="." method="_on_player_player_death"]
 [connection signal="send_loadout" from="YSort/Player" to="LogicComponents/BossHandler" method="_on_player_send_loadout"]
