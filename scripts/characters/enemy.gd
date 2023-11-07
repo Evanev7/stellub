@@ -6,22 +6,35 @@ signal enemy_killed(enemy)
 @export var resource: EnemyResource
 @export var damage_scene: PackedScene
 
+@onready var unique_multiplier: float = resource.UNIQUE_MULTIPLIER
+@onready var overall_multiplier: float = resource.OVERALL_MULTIPLIER
+
 @onready var attack_handler: AttackHandler = $AttackHandler
 @onready var sprite = $AnimatedSprite2D
-@onready var health: float = resource.MAX_HP
-@onready var damage: float = resource.DAMAGE
-@onready var value: float = resource.VALUE
-@onready var speed: float = resource.SPEED
+@onready var hitbox = $Hitbox
+@onready var health: float = resource.MAX_HP * unique_multiplier * overall_multiplier
+@onready var damage: float = resource.DAMAGE * unique_multiplier * overall_multiplier
+@onready var value: float = resource.VALUE * unique_multiplier * overall_multiplier
+@onready var strength: float = resource.STRENGTH * (0.5 + ((unique_multiplier  * overall_multiplier) / 2))
+@onready var speed: float = resource.SPEED / (0.9 + (unique_multiplier / 10))
 @onready var flipped: bool = resource.FLIP_H
 @onready var floating: bool = resource.FLOATING
 @onready var default_angle: float = self.rotation
-@onready var default_scale: Vector2 = resource.SCALE
+@onready var default_scale: Vector2 = resource.SCALE * (0.5 + (unique_multiplier / 2))
 @onready var variance = 1/default_scale.length()
 
-var spawn_time: float
+var fire_on_hit: bool = false
+
+@onready var damage_number_location = $Damage
+@onready var damage_numbers = $DamageNumbers
+
 var damage_scene_pool: Array[DamageNumber] = []
+var movement_enabled: bool = true
+var enemy_limit = 125
 
 func _ready():
+	if owner:
+		await(owner.ready)
 	load_resource(resource)
 	
 	# Select mob texture variants (This code is functional just unnecessary since no enemies have variants)
@@ -32,14 +45,23 @@ func _ready():
 	
 	add_to_group("enemy")
 	sway()
+	
+	if get_index() >= enemy_limit:
+		movement_enabled = false
 
 func load_resource(resource_to_load: EnemyResource):
 	name = resource_to_load.NAME
-	scale = resource_to_load.SCALE
+	scale = default_scale
 	sprite.sprite_frames = resource_to_load.ANIMATION
 	sprite.flip_h = flipped
+	if unique_multiplier > 1:
+		sprite.material.set_shader_parameter("line_color", Vector4(1, 0, 0, 1))
+		sprite.material.set_shader_parameter("line_thickness", (unique_multiplier * 2) ** 2)
 	if resource_to_load.BULLET:
 		attack_handler.add_attack_from_resource(resource_to_load.BULLET)
+		attack_handler.passive_all_attacks()
+		if resource_to_load.BULLET.fire_on_hit:
+			fire_on_hit = true
 	$CollisionShape2D.shape = resource_to_load.COLLIDER
 	$CollisionShape2D.rotation = resource_to_load.COLLISION_ROTATION
 	$Hitbox/CollisionShape2D.shape = resource_to_load.HITBOX
@@ -67,23 +89,25 @@ func sway():
 # Move the enemy towards the player, handle deletion on death and fire bullets
 # if the fire_delay has elapsed.
 func _physics_process(_delta):
-	var player_direction: Vector2 = (GameState.player.position - position)
+	var player_direction = (GameState.player.position - position)
 	if player_direction.x < 0:
 		sprite.flip_h = (true != flipped)
 	else:
 		sprite.flip_h = (false != flipped)
 	velocity = player_direction.normalized() * speed
-	move_and_slide()
 	
-	#Die when health is zero
-	if health <= 0:
-		enemy_killed.emit(self)
-		queue_free()
+	if get_index() < enemy_limit:
+		movement_enabled = true
+		
+	if movement_enabled:
+		move_and_slide()
 	
-	for area in $Hitbox.get_overlapping_areas():
+	for area in hitbox.get_overlapping_areas():
 		hit(area)
 
-
+func change_colour():
+	$AnimatedSprite2D.flip_v = true
+	
 # Called by _on_hurtbox_area_entered - will only be called if the Area2D is in the bullet group
 # Change the enemies health and tween to shrink the enemy briefly.
 func hurt(area):
@@ -91,14 +115,24 @@ func hurt(area):
 	scale = default_scale * 0.65 
 	var tween2 := create_tween()
 	tween2.tween_property(self, "global_scale", default_scale, 0.1)
+	tween2.tween_property($AnimatedSprite2D, "self_modulate:v", 1, 0.05).from(50)
 	spawn_damage_number(area.damage)
+	
+	if fire_on_hit:
+		attack_handler.get_child(0).on_hit()
+	
+	
+	#Die when health is zero
+	if health <= 0:
+		enemy_killed.emit(self)
+		queue_free()
 	
 func spawn_damage_number(damage_value: float):
 	var damage_number = get_damage_number()
-	var val = str(round(damage_value))
-	var pos = $Damage.position
-	$DamageNumbers.add_child(damage_number, true)
-	damage_number.set_values_and_animate(val, pos, $DamageNumbers.get_child_count() * 5, 100 + 5 * $DamageNumbers.get_child_count())
+	var val = damage_value
+	var pos = damage_number_location.position
+	damage_numbers.add_child(damage_number, true)
+	damage_number.set_values_and_animate(val, pos, damage_numbers.get_child_count() * 5, 100 + 5 * damage_numbers.get_child_count())
 
 func get_damage_number() -> DamageNumber:
 	if damage_scene_pool.size() > 0:

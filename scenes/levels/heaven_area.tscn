@@ -1,0 +1,60 @@
+[gd_scene load_steps=17 format=3 uid="uid://cv66w30at2uv0"]
+
+[ext_resource type="PackedScene" uid="uid://dilk21k2nncq2" path="res://scenes/levels/level_template.tscn" id="1_kbvse"]
+[ext_resource type="Script" path="res://scripts/levels/heaven_area.gd" id="2_0y2ur"]
+[ext_resource type="PackedScene" uid="uid://ugulpxhu6v48" path="res://scenes/components/pickup_handler.tscn" id="2_pdelf"]
+[ext_resource type="Texture2D" uid="uid://b2byn4ep7a4f8" path="res://art/backgrounds/heaven_level_1.png" id="2_tk8m1"]
+[ext_resource type="PackedScene" uid="uid://cjuw1uddg4foi" path="res://scenes/objects/pickup.tscn" id="3_7bv8e"]
+[ext_resource type="PackedScene" uid="uid://cnrpegq0voiht" path="res://scenes/components/enemy_handler.tscn" id="4_81g8t"]
+[ext_resource type="PackedScene" uid="uid://bco6kn11dyo6o" path="res://scenes/components/boss_handler.tscn" id="5_cfnl8"]
+[ext_resource type="PackedScene" uid="uid://d23ddhgery8pq" path="res://scenes/characters/boss.tscn" id="6_lb3xs"]
+[ext_resource type="Resource" uid="uid://djjvchiit0f0n" path="res://resources/enemy/angel_worshipper.tres" id="6_muf3o"]
+[ext_resource type="Resource" uid="uid://bnoj3uq3e6s17" path="res://resources/enemy/angel_warrior.tres" id="7_a1v71"]
+[ext_resource type="ButtonGroup" uid="uid://d3at0bq53qjdo" path="res://resources/upgrades/button_group_upgradeHUD_selected_weapons.tres" id="7_aofhj"]
+[ext_resource type="Resource" uid="uid://daslelns8qmfv" path="res://resources/enemy/angel_crusader.tres" id="8_60soe"]
+[ext_resource type="PackedScene" uid="uid://41p1qgrud4ej" path="res://scenes/components/terrain_generator.tscn" id="8_74i65"]
+[ext_resource type="Resource" uid="uid://p0ytgmgbgkky" path="res://resources/enemy/boss.tres" id="11_fi15b"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sqxyj"]
+texture = ExtResource("2_tk8m1")
+texture_region_size = Vector2i(1280, 720)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_vo6h4"]
+tile_size = Vector2i(1280, 720)
+sources/1 = SubResource("TileSetAtlasSource_sqxyj")
+
+[node name="Heaven Area" node_paths=PackedStringArray("bullet_handler", "enemy_handler") instance=ExtResource("1_kbvse")]
+script = ExtResource("2_0y2ur")
+enemy_resource_list = Array[Resource("res://scripts/characters/enemy_resource.gd")]([ExtResource("6_muf3o"), ExtResource("7_a1v71")])
+bullet_handler = NodePath("LogicComponents/BulletHandler")
+enemy_handler = NodePath("LogicComponents/EnemyHandler")
+
+[node name="TileMap" type="TileMap" parent="YSort" index="0"]
+z_index = -1
+tile_set = SubResource("TileSet_vo6h4")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 1, 0)
+
+[node name="UpgradeHUD" parent="." index="2"]
+weapon_button_group = ExtResource("7_aofhj")
+
+[node name="PickupHandler" parent="LogicComponents" index="1" node_paths=PackedStringArray("ysorter", "score_display") instance=ExtResource("2_pdelf")]
+pickup_scene = ExtResource("3_7bv8e")
+ysorter = NodePath("../../YSort")
+score_display = NodePath("../../HUD")
+
+[node name="EnemyHandler" parent="LogicComponents" index="2" node_paths=PackedStringArray("bullet_handler", "pickup_handler") instance=ExtResource("4_81g8t")]
+enemy_resource_list = Array[Resource("res://scripts/characters/enemy_resource.gd")]([ExtResource("6_muf3o"), ExtResource("7_a1v71"), ExtResource("8_60soe"), ExtResource("11_fi15b")])
+bullet_handler = NodePath("../BulletHandler")
+pickup_handler = NodePath("../PickupHandler")
+
+[node name="BossHandler" parent="LogicComponents" index="3" node_paths=PackedStringArray("ysorter") instance=ExtResource("5_cfnl8")]
+boss_scene = ExtResource("6_lb3xs")
+ysorter = NodePath("../../YSort")
+
+[node name="TerrainGenerator" parent="LogicComponents" index="4" node_paths=PackedStringArray("tile_map", "ysorter") instance=ExtResource("8_74i65")]
+tile_map = NodePath("../../YSort/TileMap")
+ysorter = NodePath("../../YSort")
+objects = Array[PackedScene]([])
+object_spawn_rate = Array[PackedScene]([])

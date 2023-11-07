@@ -1,5 +1,8 @@
 extends Node
 
+signal pause_game
+signal remove_marker_from_circle(circle)
+
 @export var shop_scene: PackedScene
 @export var magic_circle_scene: PackedScene
 
@@ -12,6 +15,7 @@ var shop_weapons_list: Array[BulletResource]
 @export var ysorter: Node2D
 @export var objective_marker: CanvasLayer
 @export var shop_node: CanvasLayer
+@export var teleporter: Node2D
 
 func _ready():
 	pass
@@ -20,11 +24,12 @@ func _ready():
 func start():
 	shop_upgrades_list = default_shop_upgrades_list.duplicate()
 	shop_weapons_list = default_shop_weapons_list.duplicate()
+	teleporter.start()
 	
 
 func spawn_magic_circles():
 	var count = 10
-	var radius = Vector2(1000, 0)
+	var radius = Vector2(2000, 0)
 	var center = Vector2(0, 0)
 	var step = 2 * PI / count
 	
@@ -35,7 +40,9 @@ func spawn_magic_circles():
 		ysorter.add_child(magic_circle)
 		objective_marker.add_target(magic_circle)
 		magic_circle.connect("spawn_shop", _on_spawn_shop)
+		magic_circle.connect("activate_teleporter", _on_activate_teleporter)
 		magic_circle.connect("spawn_enemy_in_wave", _on_spawn_enemy_in_wave)
+		magic_circle.connect("remove_circle_from_objective_marker", _on_remove_marker)
 
 
 func _on_shop_entered():
@@ -81,9 +88,16 @@ func _on_spawn_shop(position):
 	shop.remove_shop.connect(shop._on_shop_leave)
 
 
+func _on_activate_teleporter():
+	teleporter.set_process(true)
+	teleporter.enabled()
+	
+	
 func _on_spawn_enemy_in_wave(resourceID, center, spawn_range):
 	enemyHandler.spawn_enemy(resourceID, center, spawn_range)
 
+func _on_remove_marker(circle):
+	remove_marker_from_circle.emit(circle)
 
 func _on_shop_remove_upgrade(upgrade):
 	for i in shop_upgrades_list.size():

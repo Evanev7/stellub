@@ -18,6 +18,7 @@ func _ready():
 	#Randomly distribute launch_angle according to proper distribution
 	$AnimatedSprite2D.play()
 	launch_angle = (randi_range(0,1)*2-1)*acos(1-randf()*(1-cos(launch_angle)))
+	#launch_angle = randfn(0, PI/6)
 	add_to_group("pickup")
 
 
@@ -31,18 +32,12 @@ func _physics_process(delta):
 		var direction = (GameState.player.position - position).normalized()
 		velocity += speed
 		position += velocity * direction * delta
-	
+
+func activate():
+	activated = true
 
 func _on_self_destruct_timeout():
-	queue_free() # Replace with function body.
-
-
-func _on_area_entered(area):
-	if area.owner == GameState.player:
-		credit_player.emit(value)
 	queue_free()
+	
+	# Add functionality to add value to another nearby pickup
 
-
-func _on_activation_range_entered(area):
-	if area.owner == GameState.player:
-		activated = true

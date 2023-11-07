@@ -1,9 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://yaht8i4bkv2u"]
+[gd_scene load_steps=7 format=3 uid="uid://yaht8i4bkv2u"]
 
 [ext_resource type="Script" path="res://scripts/UI/HUD.gd" id="1_tsnwf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b8dcb"]
 bg_color = Color(0.537255, 0.8, 0.988235, 1)
+
+[sub_resource type="Gradient" id="Gradient_eikcu"]
+offsets = PackedFloat32Array(0, 0.0839161, 0.237762, 0.377622, 0.552448, 0.748252, 0.895105)
+colors = PackedColorArray(0, 0, 0, 0, 0.117647, 0.117647, 0.117647, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_leb7c"]
+gradient = SubResource("Gradient_eikcu")
+fill_from = Vector2(0.23301, 0)
+fill_to = Vector2(0.742718, 0)
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_tsnwf")
@@ -21,7 +30,6 @@ offset_bottom = 39.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 64
-text = "Main Menu"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -44,6 +52,7 @@ one_shot = true
 [node name="GameOverTimer" type="Timer" parent="."]
 
 [node name="StartButton" type="Button" parent="."]
+visible = false
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -56,11 +65,14 @@ offset_bottom = -156.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 64
-text = "Play"
+shortcut = SubResource("Shortcut_lxmoi")
+text = "Restart"
 
 [node name="XPBar" type="ProgressBar" parent="."]
-offset_right = 1279.0
+anchors_preset = 10
+anchor_right = 1.0
 offset_bottom = 27.0
+grow_horizontal = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_b8dcb")
 value = 10.0
 allow_greater = true
@@ -69,5 +81,17 @@ allow_greater = true
 offset_right = 40.0
 offset_bottom = 23.0
 
+[node name="PauseButton" type="TextureButton" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -87.0
+offset_top = 40.0
+offset_right = -23.0
+offset_bottom = 104.0
+grow_horizontal = 0
+texture_normal = SubResource("GradientTexture2D_leb7c")
+
 [connection signal="timeout" from="DisplayTimer" to="." method="_on_display_timer_timeout"]
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="PauseButton" to="." method="_on_pause_button_pressed"]

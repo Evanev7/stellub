@@ -1,14 +1,22 @@
-[gd_scene load_steps=7 format=3 uid="uid://bdsxfxpria0gp"]
+[gd_scene load_steps=13 format=3 uid="uid://bdsxfxpria0gp"]
 
 [ext_resource type="Script" path="res://scripts/components/magic_circle.gd" id="1_114ni"]
-[ext_resource type="Texture2D" uid="uid://clyycn7uujclo" path="res://art/icon.svg" id="2_ismyd"]
 [ext_resource type="PackedScene" uid="uid://cicwqsj3byj4u" path="res://scenes/components/spawn_collision_handler.tscn" id="3_4838f"]
+[ext_resource type="PackedScene" uid="uid://7pekoii3l4xw" path="res://scenes/objects/pillar.tscn" id="4_ciroy"]
+[ext_resource type="Texture2D" uid="uid://c8pnpbue35ehb" path="res://art/objects/magic circle.png" id="4_qd0oy"]
+[ext_resource type="Shader" path="res://scenes/characters/enemy.gdshader" id="5_tumd1"]
+[ext_resource type="Texture2D" uid="uid://c8bduam0tg1y5" path="res://art/objects/magic circle barrier.png" id="6_b21vk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i8l2e"]
+shader = ExtResource("5_tumd1")
+shader_parameter/line_color = Color(0.533333, 1, 1, 1)
+shader_parameter/line_thickness = 4.364
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xm67y"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ismyd")
+"texture": ExtResource("4_qd0oy")
 }],
 "loop": true,
 "name": &"disabled",
@@ -19,15 +27,55 @@ animations = [{
 radius = 131.015
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yuvbf"]
-radius = 629.35
+radius = 1278.18
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ykodi"]
+resource_local_to_scene = true
+shader = ExtResource("5_tumd1")
+shader_parameter/line_color = Color(0.517647, 0.411765, 1, 1)
+shader_parameter/line_thickness = 6.262
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2c16o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_b21vk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="magic_circle" type="Node2D"]
-z_index = -1
 script = ExtResource("1_114ni")
 
+[node name="Pillars" type="Node2D" parent="."]
+
+[node name="Pillar" parent="Pillars" instance=ExtResource("4_ciroy")]
+y_sort_enabled = false
+position = Vector2(-700, 0)
+scale = Vector2(0.685, 0.685)
+
+[node name="Pillar2" parent="Pillars" instance=ExtResource("4_ciroy")]
+y_sort_enabled = false
+position = Vector2(700, 0)
+scale = Vector2(0.685, 0.685)
+
+[node name="Pillar3" parent="Pillars" instance=ExtResource("4_ciroy")]
+y_sort_enabled = false
+position = Vector2(0, -600)
+scale = Vector2(0.685, 0.685)
+
+[node name="Pillar4" parent="Pillars" instance=ExtResource("4_ciroy")]
+z_index = 1
+y_sort_enabled = false
+position = Vector2(0, 600)
+scale = Vector2(0.685, 0.685)
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_i8l2e")
 position = Vector2(-1.99999, 0)
-scale = Vector2(3.46875, 1)
+scale = Vector2(0.564, 0.279)
 sprite_frames = SubResource("SpriteFrames_xm67y")
 animation = &"disabled"
 
@@ -57,12 +105,32 @@ one_shot = true
 
 [node name="SpawnCollisionHandler" parent="." node_paths=PackedStringArray("spawn_collider") instance=ExtResource("3_4838f")]
 spawn_collider = NodePath("../SpawnCollision")
-land_on_ready = false
+on_ready_attempts = 1
+disable_after_land = false
 
 [node name="SpawnCollision" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnCollision"]
 shape = SubResource("CircleShape2D_yuvbf")
+
+[node name="Barrier" type="StaticBody2D" parent="."]
+visible = false
+collision_layer = 15
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Barrier"]
+position = Vector2(-1.89592, -0.812589)
+scale = Vector2(0.45831, 0.45831)
+build_mode = 1
+polygon = PackedVector2Array(-1792, 5, -1723, 469, -1547, 897, -1253, 1260, -900, 1537, -468, 1719, 7, 1772, 472, 1713, 910, 1532, 1273, 1244, 1556, 875, 1726, 453, 1785, -11, 1721, -465, 1534, -892, 1252, -1254, 875, -1546, 453, -1717, 0, -1775, -476, -1712, -885, -1537, -1257, -1250, -1540, -886, -1711, -464)
+disabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Barrier"]
+material = SubResource("ShaderMaterial_ykodi")
+scale = Vector2(1.762, 1.762)
+sprite_frames = SubResource("SpriteFrames_2c16o")
+
+[node name="Marker2D" type="Marker2D" parent="Barrier"]
+position = Vector2(-796, 0)
 
 [connection signal="body_entered" from="Circle" to="." method="_on_circle_body_entered"]
 [connection signal="body_exited" from="Circle" to="." method="_on_circle_body_exited"]

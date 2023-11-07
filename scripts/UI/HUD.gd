@@ -1,6 +1,8 @@
 extends CanvasLayer
 
 signal start_game
+signal pause_game
+signal open_pause_menu
 
 func _process(_delta):
 	$FPS.set_text("FPS %d" % Engine.get_frames_per_second())
@@ -40,10 +42,12 @@ func game_over():
 	show_message("You suck!")
 	await $DisplayTimer.timeout
 	
-	$TextDisplay.text = "Main Menu"
+	$TextDisplay.text = ""
 	$TextDisplay.show()
-	$GameOverTimer.start()
-	
-	await $GameOverTimer.timeout
 	
 	$StartButton.show()
+
+
+func _on_pause_button_pressed():
+	open_pause_menu.emit()
+	pause_game.emit()

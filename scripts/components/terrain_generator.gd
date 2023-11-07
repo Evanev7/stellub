@@ -59,7 +59,7 @@ func populate(coords) -> void:
 			var object = objects[index].instantiate()
 			
 			#This shouldn't be here, it's hard to find later.
-			var random_size_scale = randf_range(0.9, 1.3)
+			var random_size_scale = randf_range(0.4, 0.8)
 			var flip_direction = randi_range(0,1)
 			object.scale = Vector2(int(flip_direction)*2-1, 1) * random_size_scale
 			

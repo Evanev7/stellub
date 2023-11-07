@@ -44,10 +44,13 @@ func _ready():
 		$Vacuum/CollisionShape2D.shape.radius = data.vacuum_range
 	
 	if data.activation_delay > 0:
-		
 		$CollisionShape2D.disabled = true
+		$Vacuum/CollisionShape2D.disabled = true
 		await get_tree().create_timer(data.activation_delay).timeout
+		
 		$CollisionShape2D.disabled = false
+		if data.vacuum:
+			$Vacuum/CollisionShape2D.disabled = false
 	
 	
 
@@ -71,9 +74,9 @@ func _physics_process(delta):
 	
 	if data.vacuum:
 		for area in $Vacuum.get_overlapping_areas():
-			if area.owner.is_in_group("enemy"):
+			if area.owner.has_method("hurt"):
 				var enemy = area.owner
-				enemy.position += (position - enemy.position).normalized()*data.vacuum_strength
+				enemy.position += (position - enemy.position).normalized()* (data.vacuum_strength / enemy.strength)
 
 
 func transport(delta) -> void:
@@ -130,6 +133,8 @@ func successful_hit(target):
 		
 	#Damage target
 	if target.has_method("hurt"):
+		if target is EnemyBehaviour:
+			target.position -= target.velocity * data.knockback / (10 * target.resource.STRENGTH)
 		target.hurt(self)
 	
 	if spawned_bullet:
@@ -146,8 +151,3 @@ func spawn_child() -> void:
 	fire_from.position = position
 	fire_from.direction = direction
 	GameState.fire_bullet.emit(origin_ref, spawned_bullet, fire_from)
-
-
-func _on_body_entered(body):
-	if body.is_in_group("terrain"):
-		queue_free()

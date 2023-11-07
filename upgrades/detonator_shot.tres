@@ -5,20 +5,27 @@
 
 [resource]
 script = ExtResource("1_n1k5a")
+transport_mode = 0
 animation = ExtResource("1_cy6m7")
 name = "Detonator Bullet"
+rarity = 1.0
 start_range = 0
 lifetime = 0.5
 bullet_range = 1000
 damage = 1.0
-fire_delay = 15
+fire_delay = 15.0
 multishot = 1
 size = Vector2(0.5, 0.5)
 colour = Color(0.627451, 0, 0, 1)
+vacuum = false
+vacuum_range = 100.0
+vacuum_strength = 1.0
 shot_spread = 1.571
 angular_velocity = 0.0
 piercing = 1
-piercing_cooldown = 0
+piercing_cooldown = 0.0
+knockback = 0.0
+splits = 1
 activation_delay = 0.5
 deactivation_range = 500
 shot_inaccuracy = 0.0981748

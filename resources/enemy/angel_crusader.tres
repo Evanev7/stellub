@@ -9,12 +9,13 @@
 script = ExtResource("4_0qbpw")
 NAME = "angel_crusader"
 ANIMATION = ExtResource("1_xk1uw")
-SPEED = 50
-MAX_HP = 50
-DAMAGE = 10
-VALUE = 10
+SPEED = 30.0
+MAX_HP = 50.0
+DAMAGE = 10.0
+VALUE = 10.0
 FLIP_H = false
 FLOATING = true
+STRENGTH = 2.0
 SCALE = Vector2(1.2, 1.2)
 COLLISION_ROTATION = 0.0
 HITBOX = ExtResource("3_cxyca")

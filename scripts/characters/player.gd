@@ -5,16 +5,22 @@ signal player_death
 signal level_up(level)
 signal send_loadout(loadout)
 signal player_ready
+signal credit_player(value)
 
 ## Player Stats
-@export var STARTING_SPEED = 300.0
-@export var STARTING_HP_MAX: float = 10000000
+@export var STARTING_SPEED: float = 300.0
+@export var STARTING_HP_MAX: float = 100
 @export var STARTING_WEAPON: BulletResource
 
 @export var stat_upgrade: PackedScene
 @export var attack_handler: Node2D
 
-@onready var default_scale = self.scale
+@onready var default_scale: Vector2 = self.scale
+@onready var default_pickup_range: Vector2 = $PickupRange.scale
+@onready var pickup_range: Area2D = $PickupRange
+@onready var strength: float = 5
+@onready var sprite: AnimatedSprite2D = $SubViewport/AnimatedSprite2D
+@onready var pickup_sound: AudioStreamPlayer = $Pickup
 var control_mode: int = 0
 var level_threshold = [10, 20, 30, 50]
 var current_level: int
@@ -22,19 +28,20 @@ var current_evolution: int
 var current_wave: int
 var souls: int
 var hp_max: float
-var speed
-var hp
-var score
-var walking
+var speed: float
+var hp:  float
+var score: float
+var walking: bool = false
 
 
 var invuln: bool = false
 var _h_flipped: bool = false
-var current_animation
+var current_animation: String
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	sprite.scale = Vector2(0.9, 0.9)
 	GameState.player = self
 	hide()
 	$AttackHandler.stop()
@@ -68,9 +75,9 @@ func _physics_process(_delta):
 		move_and_slide()
 		
 		# Walk animation
-		$AnimatedSprite2D.play(current_animation)
+		sprite.play(current_animation)
 	else:
-		$AnimatedSprite2D.play(current_animation)
+		sprite.play(current_animation)
 
 
 # When the game starts, set the default values and show the player.
@@ -80,6 +87,7 @@ func start():
 	show()
 	set_physics_process(true)
 	$CollisionShape2D.disabled = false
+	$Camera2D.set_deferred("enabled", true)
 	$AttackHandler.start()
 
 
@@ -95,14 +103,15 @@ func set_default_stats():
 	current_evolution = 0
 	souls = 0
 	scale = default_scale
+	pickup_range.scale = default_pickup_range
 	rotation = 0
 	
 	## Weapon Stats
-	if GameState.debug:
-		return
+#	if GameState.debug:
+#		return
 	for attack in $AttackHandler.get_children():
 		attack.queue_free()
-	$AttackHandler.add_attack_from_resource(STARTING_WEAPON)
+#	$AttackHandler.add_attack_from_resource(STARTING_WEAPON)
 
 func add_attack_from_resource(bullet: BulletResource):
 	var modes = Attack.CONTROL_MODE
@@ -112,12 +121,13 @@ func add_attack_from_resource(bullet: BulletResource):
 
 # Called when the player gets hurt. Body can be either a bullet OR an enemy.
 func hurt(body):
-	if not invuln:
+	if not invuln and not body.is_in_group("pickup"):
 		hp = clamp(hp - body.damage, 0, hp_max)
 		taken_damage.emit(hp)
 		invuln = true
 		$IFrames.start()
-		$AnimatedSprite2D.modulate = Color(1,0,0,0.5)
+		sprite.modulate = Color(1,0,0,0.5)
+		
 	if hp <= 0:
 		hide()
 		$AttackHandler.stop()
@@ -127,14 +137,25 @@ func hurt(body):
 		player_death.emit()
 
 
+func activate_pickup(area):
+	if area.is_in_group("pickup"):
+		area.activate()
+
+func get_pickup(area):
+	if area.is_in_group("pickup"):
+		credit_player.emit(area.value)
+		area.queue_free()
+		pickup_sound.play()
+
+
 # Called when we've killed an enemy, and we can add to our score.
 func gain_score(value):
 	score += value
 	var tween: Tween = create_tween()
 	if current_level < 2:
-		tween.tween_property($AnimatedSprite2D, "self_modulate:v", 1, 0.25).from(50)
+		tween.tween_property(sprite, "self_modulate:v", 1, 0.25).from(50)
 	else:
-		tween.tween_property($AnimatedSprite2D, "self_modulate:v", 1, 0.25).from(5)
+		tween.tween_property(sprite, "self_modulate:v", 1, 0.25).from(5)
 	
 	if score >= level_threshold[current_level]:
 		level_up.emit(current_level)
@@ -152,12 +173,12 @@ func gain_score(value):
 
 
 func player_level_up():
-	hp_max *= 1.02
-	hp += hp_max * 0.01
-	speed *= 1.02
+	hp_max *= 1.005
+	hp += hp_max * 0.005
+	speed *= 1.005
+	pickup_range.scale *= 1.01
 	
 	$AttackHandler.upgrade_all_attacks(stat_upgrade)
-
 
 func upgrade_attack(upgrade, weapon_number):
 	$AttackHandler.get_child(weapon_number).add_child(upgrade)
@@ -188,9 +209,10 @@ func evolve():
 
 
 func _on_i_frames_timeout():
-	$AnimatedSprite2D.modulate = Color(1,1,1,1)
+	sprite.modulate = Color(1,1,1,1)
 	invuln = false
 
 
 func send_loadout_to_boss():
 	send_loadout.emit($AttackHandler.get_child(0))
+

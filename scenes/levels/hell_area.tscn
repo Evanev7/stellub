@@ -1,0 +1,126 @@
+[gd_scene load_steps=36 format=3 uid="uid://qhl6r2tbil5t"]
+
+[ext_resource type="PackedScene" uid="uid://dilk21k2nncq2" path="res://scenes/levels/level_template.tscn" id="1_ttjsf"]
+[ext_resource type="PackedScene" uid="uid://dfrum4te4lpmr" path="res://scenes/objects/teleporter.tscn" id="2_8o713"]
+[ext_resource type="Script" path="res://scripts/levels/hell_area.gd" id="2_myijk"]
+[ext_resource type="PackedScene" uid="uid://41p1qgrud4ej" path="res://scenes/components/terrain_generator.tscn" id="2_p0a1o"]
+[ext_resource type="PackedScene" uid="uid://ugulpxhu6v48" path="res://scenes/components/pickup_handler.tscn" id="3_be7sf"]
+[ext_resource type="Resource" uid="uid://dh8xipsw2bu5w" path="res://resources/enemy/demon_skull.tres" id="3_dr1lv"]
+[ext_resource type="Texture2D" uid="uid://dvrx1ijrwk8a2" path="res://art/backgrounds/hell_level_1.png" id="3_yhbph"]
+[ext_resource type="Resource" uid="uid://doalqpgaptgxa" path="res://resources/enemy/demon_dog.tres" id="4_j7txi"]
+[ext_resource type="PackedScene" uid="uid://cjuw1uddg4foi" path="res://scenes/objects/pickup.tscn" id="4_rcjv7"]
+[ext_resource type="PackedScene" uid="uid://cnrpegq0voiht" path="res://scenes/components/enemy_handler.tscn" id="5_qh5by"]
+[ext_resource type="Resource" uid="uid://bqyg0clrpkdim" path="res://resources/enemy/demon_skeleton.tres" id="5_yiyg4"]
+[ext_resource type="Resource" uid="uid://djjvchiit0f0n" path="res://resources/enemy/angel_worshipper.tres" id="6_7qtbu"]
+[ext_resource type="PackedScene" uid="uid://bxmk1htarl4v5" path="res://scenes/components/shop_handler.tscn" id="6_tokbn"]
+[ext_resource type="Resource" uid="uid://bnoj3uq3e6s17" path="res://resources/enemy/angel_warrior.tres" id="7_jjuad"]
+[ext_resource type="PackedScene" uid="uid://bpkxt2uvnf57n" path="res://upgrades/triple_shot.tscn" id="7_u0x6v"]
+[ext_resource type="PackedScene" uid="uid://c33wxtyp6pcj5" path="res://upgrades/split_shot.tscn" id="8_k1bmm"]
+[ext_resource type="Resource" uid="uid://daslelns8qmfv" path="res://resources/enemy/angel_crusader.tres" id="8_rirxr"]
+[ext_resource type="PackedScene" uid="uid://doyhlebmabr1l" path="res://upgrades/minigun.tscn" id="9_bpmue"]
+[ext_resource type="PackedScene" uid="uid://cspycrpcbikif" path="res://upgrades/detonator.tscn" id="10_m47dc"]
+[ext_resource type="PackedScene" uid="uid://3bqmxujc0qkr" path="res://upgrades/centre_of_the_galaxy.tscn" id="11_8f5jq"]
+[ext_resource type="PackedScene" uid="uid://cnepphpba8e8u" path="res://scenes/characters/player.tscn" id="11_syo0k"]
+[ext_resource type="PackedScene" uid="uid://cp7lho542gmeu" path="res://scenes/objects/shop.tscn" id="11_vorht"]
+[ext_resource type="ButtonGroup" uid="uid://d3at0bq53qjdo" path="res://resources/upgrades/button_group_upgradeHUD_selected_weapons.tres" id="12_2ub6i"]
+[ext_resource type="PackedScene" uid="uid://ditc7t3eclvaw" path="res://upgrades/bowling_ball.tscn" id="12_s3b1r"]
+[ext_resource type="Resource" uid="uid://ccpb4udi5owpj" path="res://resources/bullets/player/player_bullet.tres" id="13_2dgq8"]
+[ext_resource type="Resource" uid="uid://coqyd5d8e6rm8" path="res://resources/bullets/player/particle_mace.tres" id="14_soul3"]
+[ext_resource type="Resource" uid="uid://b3v62pkd6hntd" path="res://resources/bullets/player/shotgun.tres" id="15_gx6j7"]
+[ext_resource type="Resource" uid="uid://8ogmebrr77xx" path="res://resources/bullets/player/black_hole.tres" id="16_fw7me"]
+[ext_resource type="PackedScene" uid="uid://b2tef800ecm8u" path="res://scenes/components/weapon_handler.tscn" id="17_gx7j2"]
+[ext_resource type="PackedScene" uid="uid://bco6kn11dyo6o" path="res://scenes/components/boss_handler.tscn" id="18_yysi3"]
+[ext_resource type="PackedScene" uid="uid://d23ddhgery8pq" path="res://scenes/characters/boss.tscn" id="20_gixqi"]
+[ext_resource type="PackedScene" uid="uid://bgt31t0wymqk4" path="res://upgrades/auto_fire.tscn" id="25_k7x3o"]
+[ext_resource type="PackedScene" uid="uid://cwtvi2ph44p4d" path="res://scenes/UI/cursor_particles.tscn" id="33_aqxfn"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rfbvd"]
+texture = ExtResource("3_yhbph")
+texture_region_size = Vector2i(1920, 1080)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_rqhpw"]
+tile_size = Vector2i(1920, 1080)
+sources/1 = SubResource("TileSetAtlasSource_rfbvd")
+
+[node name="Hell Area" node_paths=PackedStringArray("bullet_handler", "enemy_handler") instance=ExtResource("1_ttjsf")]
+script = ExtResource("2_myijk")
+enemy_resource_list = Array[Resource("res://scripts/characters/enemy_resource.gd")]([ExtResource("3_dr1lv"), ExtResource("4_j7txi"), ExtResource("5_yiyg4"), ExtResource("6_7qtbu"), ExtResource("7_jjuad"), ExtResource("8_rirxr")])
+bullet_handler = NodePath("LogicComponents/BulletHandler")
+enemy_handler = NodePath("LogicComponents/EnemyHandler")
+metadata/_edit_vertical_guides_ = []
+
+[node name="teleporter" parent="." index="0" instance=ExtResource("2_8o713")]
+
+[node name="TileMap" type="TileMap" parent="YSort" index="0"]
+z_index = -1
+tile_set = SubResource("TileSet_rqhpw")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 1, 0)
+
+[node name="PlayerStart" parent="YSort" index="1"]
+position = Vector2(0, 0)
+
+[node name="Shop" parent="YSort" index="2" instance=ExtResource("11_vorht")]
+position = Vector2(261, 336)
+
+[node name="Player" parent="YSort" index="3" instance=ExtResource("11_syo0k")]
+z_index = 0
+y_sort_enabled = false
+
+[node name="Enemies" type="Node2D" parent="YSort" index="4"]
+
+[node name="UpgradeHUD" parent="." index="3"]
+weapon_button_group = ExtResource("12_2ub6i")
+
+[node name="pause_menu" parent="." index="4"]
+visible = false
+
+[node name="cursor_particles" parent="." index="6" instance=ExtResource("33_aqxfn")]
+position = Vector2(418, 419)
+
+[node name="TerrainGenerator" parent="LogicComponents" index="1" node_paths=PackedStringArray("tile_map", "ysorter") instance=ExtResource("2_p0a1o")]
+tile_map = NodePath("../../YSort/TileMap")
+ysorter = NodePath("../../YSort")
+
+[node name="PickupHandler" parent="LogicComponents" index="2" node_paths=PackedStringArray("ysorter", "score_display") instance=ExtResource("3_be7sf")]
+pickup_scene = ExtResource("4_rcjv7")
+ysorter = NodePath("../../YSort")
+score_display = NodePath("../../HUD")
+
+[node name="EnemyHandler" parent="LogicComponents" index="3" node_paths=PackedStringArray("ysorter_enemies", "bullet_handler", "pickup_handler") instance=ExtResource("5_qh5by")]
+ysorter_enemies = NodePath("../../YSort/Enemies")
+bullet_handler = NodePath("../BulletHandler")
+pickup_handler = NodePath("../PickupHandler")
+
+[node name="ShopHandler" parent="LogicComponents" index="4" node_paths=PackedStringArray("enemyHandler", "ysorter", "objective_marker", "upgrade_hud", "teleporter") instance=ExtResource("6_tokbn")]
+default_shop_upgrades_list = Array[PackedScene]([ExtResource("7_u0x6v"), ExtResource("8_k1bmm"), ExtResource("9_bpmue"), ExtResource("10_m47dc"), ExtResource("11_8f5jq"), ExtResource("12_s3b1r"), ExtResource("25_k7x3o")])
+default_shop_weapons_list = Array[Resource("res://scripts/objects/bullet_resource.gd")]([ExtResource("13_2dgq8"), ExtResource("14_soul3"), ExtResource("15_gx6j7"), ExtResource("16_fw7me")])
+enemyHandler = NodePath("../EnemyHandler")
+ysorter = NodePath("../../YSort")
+objective_marker = NodePath("../../ObjectiveMarker")
+upgrade_hud = NodePath("../../UpgradeHUD")
+teleporter = NodePath("../../teleporter")
+
+[node name="BossHandler" parent="LogicComponents" index="5" node_paths=PackedStringArray("ysorter") instance=ExtResource("18_yysi3")]
+boss_scene = ExtResource("20_gixqi")
+ysorter = NodePath("../../YSort")
+
+[node name="WeaponHandler" parent="LogicComponents" index="6" node_paths=PackedStringArray("ysorter") instance=ExtResource("17_gx7j2")]
+ysorter = NodePath("../../YSort")
+
+[connection signal="teleport_player" from="teleporter" to="." method="teleport_to_heaven_area"]
+[connection signal="shop_entered" from="YSort/Shop" to="LogicComponents/ShopHandler" method="_on_shop_entered"]
+[connection signal="credit_player" from="YSort/Player" to="LogicComponents/PickupHandler" method="_on_pickup_credit_player"]
+[connection signal="level_up" from="YSort/Player" to="." method="_on_player_level_up"]
+[connection signal="player_death" from="YSort/Player" to="." method="_on_player_player_death"]
+[connection signal="send_loadout" from="YSort/Player" to="LogicComponents/BossHandler" method="_on_player_send_loadout"]
+[connection signal="taken_damage" from="YSort/Player" to="." method="_on_player_taken_damage"]
+[connection signal="open_pause_menu" from="HUD" to="pause_menu" method="_on_hud_open_pause_menu"]
+[connection signal="pause_game" from="HUD" to="." method="pause_game"]
+[connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
+[connection signal="remove_weapon" from="UpgradeHUD" to="LogicComponents/ShopHandler" method="_on_upgrade_hud_remove_weapon"]
+[connection signal="unpause_game" from="UpgradeHUD" to="." method="unpause_game"]
+[connection signal="unpause_game" from="pause_menu" to="." method="unpause_game"]
+[connection signal="pause_game" from="LogicComponents/ShopHandler" to="." method="pause_game"]
+[connection signal="remove_marker_from_circle" from="LogicComponents/ShopHandler" to="ObjectiveMarker" method="delete_target"]

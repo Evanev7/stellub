@@ -8,9 +8,8 @@ class_name PickupHandler
 
 func spawn_pickup(pos):
 	var pickup = pickup_scene.instantiate()
-	pickup.credit_player.connect(_on_pickup_credit_player)
 	pickup.position = pos
-	ysorter.add_child(pickup)
+	ysorter.call_deferred("add_child", pickup)
 	
 func _on_pickup_credit_player(value):
 	var player = GameState.player

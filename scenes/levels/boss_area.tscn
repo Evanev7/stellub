@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dk644duv8stih"]
+[gd_scene load_steps=7 format=3 uid="uid://dk644duv8stih"]
 
 [ext_resource type="PackedScene" uid="uid://dfe6bc7mdpexj" path="res://scenes/levels/main.tscn" id="1_god74"]
 [ext_resource type="Texture2D" uid="uid://b2byn4ep7a4f8" path="res://art/backgrounds/heaven_level_1.png" id="2_sr61f"]
@@ -16,6 +16,8 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -310.975, -1959.14, 0, 0, 0, 0, -74.1842, -1842.82, 0, 0, 0, 0, -39.0669, -1362.03, 0, 2.90476, 0, -2.90476, -714.322, -1125.51, 0, 0, 0, 0, -301.945, -1945.57, 0, 0, 0, 0, -310.975, -1959.14)
 }
 point_count = 6
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_nbd1t"]
 
 [node name="Boss_Area" instance=ExtResource("1_god74")]
 metadata/_edit_horizontal_guides_ = []
@@ -38,11 +40,13 @@ curve = SubResource("Curve2D_v87fo")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="YSort/Path2D" index="0"]
 position = Vector2(-310.975, -1959.14)
-rotation = 0.456617
+rotation = 0.456612
+
+[node name="UpgradeHUD" parent="." index="3"]
+weapon_button_group = SubResource("ButtonGroup_nbd1t")
 
 [node name="TerrainGenerator" parent="LogicComponents" index="1"]
 objects = []
 
-[node name="BossHandler" parent="LogicComponents" index="6" node_paths=PackedStringArray("path_follow", "ysorter")]
+[node name="BossHandler" parent="LogicComponents" index="6" node_paths=PackedStringArray("path_follow")]
 path_follow = NodePath("../../YSort/Path2D/PathFollow2D")
-ysorter = NodePath("../../YSort")

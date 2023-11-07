@@ -37,5 +37,4 @@ func disable():
 
 
 func _on_upgrade_hud_leave():
-	get_tree().paused = false
 	queue_free()
