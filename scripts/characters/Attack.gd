@@ -2,6 +2,8 @@ extends Node
 class_name Attack
 
 
+@export var audio_player: AudioStreamPlayer
+
 enum CONTROL_MODE {PASSIVE, PRIMARY, SECONDARY, TERTIARY}
 const BIND = ["","primary_fire", "secondary_fire", "tertiary_fire"]
 @export var control_mode: CONTROL_MODE = CONTROL_MODE.PASSIVE
@@ -14,6 +16,7 @@ var target_range: float = 500
 var attack_handler: AttackHandler
 @export var initial_bullet: BulletResource
 var bullet: BulletResource
+
 
 var timer_active: bool = true
 var _timer: float
@@ -57,7 +60,8 @@ func pre_fire():
 	
 	
 	for upgrade in get_children():
-		upgrade.pre_fire()
+		if upgrade == Upgrade:
+			upgrade.pre_fire()
 	
 	if attack_direction.direction.length() < target_range:
 		fire()
@@ -70,7 +74,8 @@ func fire():
 func refresh_bullet_resource():
 	bullet = initial_bullet.duplicate()
 	for upgrade in get_children():
-		bullet = upgrade.modify_bullet_resource(bullet)
+		if upgrade == Upgrade:
+			bullet = upgrade.modify_bullet_resource(bullet)
 		
 	
 

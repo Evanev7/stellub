@@ -2,5 +2,8 @@
 
 [ext_resource type="Script" path="res://scripts/characters/Attack.gd" id="1_aveil"]
 
-[node name="Attack" type="Node"]
+[node name="Attack" type="Node" node_paths=PackedStringArray("audio_player")]
 script = ExtResource("1_aveil")
+audio_player = NodePath("AudioStreamPlayer")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
