@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://u1hhvearq4oy"]
+[gd_scene load_steps=3 format=3 uid="uid://u1hhvearq4oy"]
 
 [ext_resource type="Script" path="res://scripts/characters/AttackHandler.gd" id="1_dk51x"]
+[ext_resource type="PackedScene" uid="uid://be4i0yo3jsk42" path="res://scenes/components/attack.tscn" id="2_vtvor"]
 
 [node name="AttackHandler" type="Node2D"]
 script = ExtResource("1_dk51x")
+attack_scene = ExtResource("2_vtvor")

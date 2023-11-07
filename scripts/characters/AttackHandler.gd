@@ -2,6 +2,7 @@ extends Node2D
 
 class_name AttackHandler
 
+@export var attack_scene: PackedScene
 
 enum TARGET_MODE {PLAYER, MOUSE, NEAREST_ENEMY}
 @export var target_mode = TARGET_MODE.PLAYER
@@ -13,11 +14,11 @@ func add_attack_from_resource(
 		control_mode = Attack.CONTROL_MODE.PRIMARY,
 		target: FireFrom = null
 	) -> void:
-	var attack = Attack.new()
+	var attack = attack_scene.instantiate()
 	attack.name = bullet.name
 	attack.initial_bullet = bullet
 	attack.control_mode = control_mode
-	#attack.audio_player = bullet.sound
+	attack.audio_player.stream = bullet.sound
 	if target:
 		attack.aim_mode = Attack.AIM_MODE.FIXED
 		attack.attack_direction = target

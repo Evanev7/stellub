@@ -68,6 +68,7 @@ func pre_fire():
 		_timer += bullet.fire_delay
 
 func fire():
+	audio_player.play()
 	GameState.fire_bullet.emit(attack_handler.owner, bullet, attack_direction)
 
 
