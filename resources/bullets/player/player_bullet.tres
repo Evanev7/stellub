@@ -12,6 +12,7 @@ rarity = 1.0
 icon = ExtResource("2_ayv1f")
 size = Vector2(1, 1)
 colour = Color(1, 1, 1, 1)
+fire_on_hit = false
 start_range = 0
 lifetime = 20.0
 bullet_range = 1000

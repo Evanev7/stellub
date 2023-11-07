@@ -17,6 +17,7 @@ func add_attack_from_resource(
 	attack.name = bullet.name
 	attack.initial_bullet = bullet
 	attack.control_mode = control_mode
+	attack.audio_player = bullet.sound
 	if target:
 		attack.aim_mode = Attack.AIM_MODE.FIXED
 		attack.attack_direction = target

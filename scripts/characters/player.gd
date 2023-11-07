@@ -20,6 +20,7 @@ signal credit_player(value)
 @onready var pickup_range: Area2D = $PickupRange
 @onready var strength: float = 5
 @onready var sprite: AnimatedSprite2D = $SubViewport/AnimatedSprite2D
+@onready var pickup_sound: AudioStreamPlayer = $Pickup
 var control_mode: int = 0
 var level_threshold = [10, 20, 30, 50]
 var current_level: int
@@ -149,6 +150,7 @@ func get_pickup(area):
 	if area.is_in_group("pickup"):
 		credit_player.emit(area.value)
 		area.queue_free()
+		pickup_sound.play()
 
 
 # Called when we've killed an enemy, and we can add to our score.

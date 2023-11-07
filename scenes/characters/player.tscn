@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://cnepphpba8e8u"]
+[gd_scene load_steps=45 format=3 uid="uid://cnepphpba8e8u"]
 
 [ext_resource type="Script" path="res://scripts/characters/player.gd" id="1_m0lvq"]
 [ext_resource type="PackedScene" uid="uid://cgjvip03rh3b4" path="res://upgrades/stat_upgrade.tscn" id="2_50n7q"]
@@ -35,6 +35,7 @@
 [ext_resource type="PackedScene" uid="uid://u1hhvearq4oy" path="res://scenes/components/attack_handler.tscn" id="32_ju527"]
 [ext_resource type="Shader" path="res://scenes/characters/mask.gdshader" id="34_qqbj8"]
 [ext_resource type="Resource" uid="uid://ccpb4udi5owpj" path="res://resources/bullets/player/player_bullet.tres" id="35_8awst"]
+[ext_resource type="AudioStream" uid="uid://iwyrby01sfne" path="res://sounds/pickup.wav" id="36_ys6vg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_odef0"]
 size = Vector2(1066.67, 1066.67)
@@ -181,6 +182,13 @@ viewport_path = NodePath("SubViewport")
 [sub_resource type="CircleShape2D" id="CircleShape2D_gnh5g"]
 radius = 1841.74
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_51dqt"]
+streams_count = 1
+random_pitch = 1.5
+random_volume_offset_db = 1.0
+stream_0/stream = ExtResource("36_ys6vg")
+stream_0/weight = 1.0
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("attack_handler")]
 z_index = 1
 y_sort_enabled = true
@@ -227,7 +235,6 @@ scale = Vector2(0.3, 0.3)
 shape = SubResource("RectangleShape2D_odef0")
 
 [node name="PickupRange" type="Area2D" parent="."]
-scale = Vector2(1, 1)
 collision_layer = 0
 collision_mask = 16
 monitorable = false
@@ -244,6 +251,10 @@ one_shot = true
 
 [node name="AttackHandler" parent="." instance=ExtResource("32_ju527")]
 target_mode = 1
+
+[node name="Pickup" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_51dqt")
+max_polyphony = 50
 
 [connection signal="area_entered" from="Hurtbox" to="." method="hurt"]
 [connection signal="area_entered" from="Hurtbox" to="." method="get_pickup"]

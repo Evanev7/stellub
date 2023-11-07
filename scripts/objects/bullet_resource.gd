@@ -7,10 +7,12 @@ enum TRANSPORT_MODE {LINEAR, ROTATING_FIXED_CENTRE, ROTATING_NO_CENTRE, ROTATING
 @export_category("Metadata")
 @export var name: String
 @export var animation: SpriteFrames
+@export var sound: AudioStreamRandomizer
 @export var rarity: float = 1
 @export var icon: CompressedTexture2D
 @export var size: Vector2 = Vector2(1, 1)
 @export var colour: Color = Color(1,1,1,1)
+@export var fire_on_hit: bool = false
 
 @export_category("Shooting Stats")
 @export var start_range: int = 0

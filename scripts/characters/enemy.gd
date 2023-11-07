@@ -23,6 +23,8 @@ signal enemy_killed(enemy)
 @onready var default_scale: Vector2 = resource.SCALE * (0.5 + (unique_multiplier / 2))
 @onready var variance = 1/default_scale.length()
 
+var fire_on_hit: bool = false
+
 @onready var damage_number_location = $Damage
 @onready var damage_numbers = $DamageNumbers
 
@@ -58,6 +60,8 @@ func load_resource(resource_to_load: EnemyResource):
 	if resource_to_load.BULLET:
 		attack_handler.add_attack_from_resource(resource_to_load.BULLET)
 		attack_handler.passive_all_attacks()
+		if resource_to_load.BULLET.fire_on_hit:
+			fire_on_hit = true
 	$CollisionShape2D.shape = resource_to_load.COLLIDER
 	$CollisionShape2D.rotation = resource_to_load.COLLISION_ROTATION
 	$Hitbox/CollisionShape2D.shape = resource_to_load.HITBOX
@@ -112,7 +116,11 @@ func hurt(area):
 	var tween2 := create_tween()
 	tween2.tween_property(self, "global_scale", default_scale, 0.1)
 	tween2.tween_property($AnimatedSprite2D, "self_modulate:v", 1, 0.05).from(50)
-	spawn_damage_number(area.damage)	
+	spawn_damage_number(area.damage)
+	
+	if fire_on_hit:
+		attack_handler.get_child(0).on_hit()
+	
 	
 	#Die when health is zero
 	if health <= 0:

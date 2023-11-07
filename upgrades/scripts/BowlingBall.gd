@@ -8,16 +8,16 @@ func _ready():
 
 # Change stats on pickup
 func modify_bullet_resource(bullet: BulletResource) -> BulletResource: 
-	bullet.shot_speed /= 3
-	bullet.size *= 2
+	bullet.shot_speed /= 2
+	bullet.size *= 1.5
 	
 	if bullet.piercing_cooldown == 0:
 		bullet.piercing_cooldown = 30
 	else:
 		bullet.piercing_cooldown *= 0.9
 		
-	bullet.damage /= 4
-	bullet.piercing += 25
+	bullet.damage /= 3
+	bullet.piercing += 10
 	bullet.fire_delay *= 2
 	return bullet
 
