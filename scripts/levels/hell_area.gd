@@ -5,7 +5,6 @@ extends Node
 
 @export var enemy_resource_list: Array[EnemyResource]
 
-@export var bullet_handler: BulletHandler
 @export var enemy_handler: EnemyHandler
 
 # Called when the node enters the scene tree for the first time.
@@ -16,7 +15,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
-	randomize()
 	#print("bullets: " + str(get_tree().get_nodes_in_group("bullet").size()))
 #	print("enemies: " + str(get_tree().get_nodes_in_group("enemy").size()))
 	pass

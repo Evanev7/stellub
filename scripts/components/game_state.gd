@@ -9,6 +9,7 @@ var player: CharacterBody2D
 var debug = true
 
 func _ready():
+	randomize()
 	game_over.connect(queue_free_groups)
 
 func pause_game():

@@ -14,7 +14,6 @@ signal register_enemy(enemy)
 @export var enemy_resource_list: Array[EnemyResource]
 
 @export var enemy_ysort: Node2D
-@export var pickup_handler: PickupHandler
 
 var phase_limit = 1
 
