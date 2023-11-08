@@ -3,7 +3,6 @@ extends Resource
 class_name BulletResource
 
 enum TRANSPORT_MODE {LINEAR, ROTATING_FIXED_CENTRE, ROTATING_NO_CENTRE, ROTATING_LINEAR_CENTRE, STATIC}
-@export var transport_mode: TRANSPORT_MODE = TRANSPORT_MODE.LINEAR
 
 @export_category("Metadata")
 @export var name: String
