@@ -5,13 +5,27 @@ static var config_node_names = [
 static var control_modes = [
 	Attack.CONTROL_MODE.PRIMARY, Attack.CONTROL_MODE.SECONDARY, Attack.CONTROL_MODE.TERTIARY, Attack.CONTROL_MODE.PASSIVE]
 
+func get_attack_nodes(parent: Node) -> Array[Attack]:
+	var nodes: Array[Attack] = []
+	for node in parent.get_children():
+		if node is Attack:
+			nodes.append(node)
+	return nodes
+
+func get_upgrade_nodes(parent: Node) -> Array[Upgrade]:
+	var nodes: Array[Upgrade] = []
+	for node in parent.get_children():
+		if node is Upgrade:
+			nodes.append(node)
+	return nodes
+
 
 # i didnt ever want to have to do this
 # behold my most terrible move
 func load_from_player():
 	var player_attack_handler: Node2D = GameState.player.attack_handler
-	var player_attacks: Array[Node] = player_attack_handler.get_children()
-	var player_attack_count: int = player_attack_handler.get_child_count()
+	var player_attacks: Array[Attack] = get_attack_nodes(player_attack_handler)
+	var player_attack_count: int = len(player_attacks)
 
 	for attack_index in range(4):
 		var total_node: Control = get_node("%TotalAttack"+str(attack_index+1))
@@ -22,8 +36,8 @@ func load_from_player():
 			continue
 
 		var player_attack_node: Attack = player_attacks[attack_index]
-		var player_attack_upgrades: Array[Node] = player_attack_node.get_children()
-		var attack_upgrade_count: int = player_attack_node.get_child_count()
+		var player_attack_upgrades: Array[Upgrade] = get_upgrade_nodes(player_attack_node)
+		var attack_upgrade_count: int = len(player_attack_upgrades)
 		gui_attack_node.referenced_node = player_attack_node
 		gui_attack_node.refresh()
 
@@ -49,7 +63,7 @@ func load_from_player():
 # T O T A L C O D E D U P L I C A T I O N
 func save_to_player():
 	var player_attack_handler: Node2D = GameState.player.attack_handler
-	var player_attacks: Array[Node] = player_attack_handler.get_children()
+	var player_attacks: Array[Attack] = get_attack_nodes(player_attack_handler)
 	
 	for attack in player_attacks:
 		player_attack_handler.remove_child(attack)
@@ -66,7 +80,8 @@ func save_to_player():
 		player_attack_handler.add_child(gui_attack)
 
 		var player_attack_node: Attack = player_attacks[attack_index]
-		for upgrade in player_attack_node.get_children():
+		var player_attack_upgrades: Array[Upgrade] = get_upgrade_nodes(player_attack_node)
+		for upgrade in player_attack_upgrades:
 			player_attack_node.remove_child(upgrade)
 
 		for upgrade_index in range(5):
@@ -96,9 +111,8 @@ func open_shop(chosen_upgrades, weapon):
 
 func close_shop():
 	save_to_player()
-	get_parent().get_tree().paused = false
+	GameState.unpause_game()
 	set_visible(false)
-	
 
 
 func _on_shop_exit_pressed():

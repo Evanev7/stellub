@@ -63,7 +63,7 @@ func pre_fire():
 		if upgrade == Upgrade:
 			upgrade.pre_fire()
 	
-	if owner == GameState.player or attack_direction.direction.length() < target_range:
+	if attack_handler.owner == GameState.player or attack_direction.direction.length() < target_range:
 		fire()
 		_timer += bullet.fire_delay
 

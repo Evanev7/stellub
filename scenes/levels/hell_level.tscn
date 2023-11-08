@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://c10767b0pups1"]
+
+[ext_resource type="PackedScene" uid="uid://dfrum4te4lpmr" path="res://scenes/objects/teleporter.tscn" id="1_dld1m"]
+[ext_resource type="Texture2D" uid="uid://dvrx1ijrwk8a2" path="res://art/backgrounds/hell_level_1.png" id="2_bftn7"]
+[ext_resource type="PackedScene" uid="uid://cp7lho542gmeu" path="res://scenes/objects/shop.tscn" id="3_og24a"]
+[ext_resource type="PackedScene" uid="uid://41p1qgrud4ej" path="res://scenes/components/terrain_generator.tscn" id="4_jexm8"]
+[ext_resource type="PackedScene" uid="uid://cnrpegq0voiht" path="res://scenes/components/enemy_handler.tscn" id="5_5hyiw"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rfbvd"]
+texture = ExtResource("2_bftn7")
+texture_region_size = Vector2i(1920, 1080)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_5drvd"]
+tile_size = Vector2i(1920, 1080)
+sources/1 = SubResource("TileSetAtlasSource_rfbvd")
+
+[node name="YSort" type="Node2D"]
+y_sort_enabled = true
+
+[node name="teleporter" parent="." instance=ExtResource("1_dld1m")]
+
+[node name="TileMap" type="TileMap" parent="."]
+z_index = -1
+tile_set = SubResource("TileSet_5drvd")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 1, 0)
+
+[node name="PlayerStart" type="Marker2D" parent="."]
+
+[node name="Shop" parent="." instance=ExtResource("3_og24a")]
+position = Vector2(261, 336)
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="LogicComponents" type="Node" parent="."]
+
+[node name="TerrainGenerator" parent="LogicComponents" instance=ExtResource("4_jexm8")]
+
+[node name="EnemyHandler" parent="LogicComponents" node_paths=PackedStringArray("enemy_ysort") instance=ExtResource("5_5hyiw")]
+enemy_ysort = NodePath("../../Enemies")

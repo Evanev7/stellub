@@ -13,6 +13,7 @@ gradient = SubResource("Gradient_jnb1p")
 fill_from = Vector2(1, 0.981651)
 
 [node name="pause_menu" type="CanvasLayer"]
+process_mode = 2
 script = ExtResource("1_uylrw")
 main_menu_scene = ExtResource("2_8leer")
 

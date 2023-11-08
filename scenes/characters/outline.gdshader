@@ -41,6 +41,7 @@
 //}
 
 shader_type canvas_item;
+
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
 // Allows you to control the output color in the Shader Params in the Inspector.
 uniform vec4 silhouette_color : source_color = vec4(0.0, 0.8, 0.8, 1.0);

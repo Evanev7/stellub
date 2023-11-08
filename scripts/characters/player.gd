@@ -111,7 +111,7 @@ func set_default_stats():
 #		return
 	for attack in $AttackHandler.get_children():
 		attack.queue_free()
-#	$AttackHandler.add_attack_from_resource(STARTING_WEAPON)
+	$AttackHandler.add_attack_from_resource(STARTING_WEAPON)
 
 func add_attack_from_resource(bullet: BulletResource):
 	var modes = Attack.CONTROL_MODE

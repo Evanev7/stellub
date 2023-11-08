@@ -1,0 +1,66 @@
+[gd_scene load_steps=24 format=3 uid="uid://ca1l31766j6vw"]
+
+[ext_resource type="PackedScene" uid="uid://cnepphpba8e8u" path="res://scenes/characters/player.tscn" id="1_21o6f"]
+[ext_resource type="PackedScene" uid="uid://c10767b0pups1" path="res://scenes/levels/hell_level.tscn" id="1_flmrt"]
+[ext_resource type="PackedScene" uid="uid://yaht8i4bkv2u" path="res://scenes/UI/HUD.tscn" id="1_p2m51"]
+[ext_resource type="PackedScene" uid="uid://cwtvi2ph44p4d" path="res://scenes/UI/cursor_particles.tscn" id="2_6lruf"]
+[ext_resource type="PackedScene" uid="uid://c8xiwx0q2sf3m" path="res://scenes/UI/pause_menu.tscn" id="3_4e213"]
+[ext_resource type="PackedScene" uid="uid://d05swenhbbosd" path="res://scenes/UI/objective_marker.tscn" id="4_38qfx"]
+[ext_resource type="PackedScene" uid="uid://dyhf18b3orycs" path="res://scenes/UI/shop.tscn" id="5_uua2u"]
+[ext_resource type="PackedScene" uid="uid://kdeab812xwhx" path="res://scenes/components/bullet_handler.tscn" id="6_qow6h"]
+[ext_resource type="PackedScene" uid="uid://ugulpxhu6v48" path="res://scenes/components/pickup_handler.tscn" id="7_gslew"]
+[ext_resource type="PackedScene" uid="uid://cjuw1uddg4foi" path="res://scenes/objects/pickup.tscn" id="8_47qdh"]
+[ext_resource type="PackedScene" uid="uid://bxmk1htarl4v5" path="res://scenes/components/shop_handler.tscn" id="9_mp2bm"]
+[ext_resource type="PackedScene" uid="uid://bpkxt2uvnf57n" path="res://upgrades/triple_shot.tscn" id="10_r7xa2"]
+[ext_resource type="PackedScene" uid="uid://c33wxtyp6pcj5" path="res://upgrades/split_shot.tscn" id="11_375vm"]
+[ext_resource type="PackedScene" uid="uid://doyhlebmabr1l" path="res://upgrades/minigun.tscn" id="12_80f2j"]
+[ext_resource type="PackedScene" uid="uid://cspycrpcbikif" path="res://upgrades/detonator.tscn" id="13_l8oje"]
+[ext_resource type="PackedScene" uid="uid://3bqmxujc0qkr" path="res://upgrades/centre_of_the_galaxy.tscn" id="14_s6av7"]
+[ext_resource type="PackedScene" uid="uid://ditc7t3eclvaw" path="res://upgrades/bowling_ball.tscn" id="15_mtc4q"]
+[ext_resource type="PackedScene" uid="uid://bgt31t0wymqk4" path="res://upgrades/auto_fire.tscn" id="16_3q33q"]
+[ext_resource type="Resource" uid="uid://ccpb4udi5owpj" path="res://resources/bullets/player/player_bullet.tres" id="17_lvl68"]
+[ext_resource type="Resource" uid="uid://coqyd5d8e6rm8" path="res://resources/bullets/player/particle_mace.tres" id="18_etg0m"]
+[ext_resource type="Resource" uid="uid://b3v62pkd6hntd" path="res://resources/bullets/player/shotgun.tres" id="19_mu0jk"]
+[ext_resource type="Resource" uid="uid://8ogmebrr77xx" path="res://resources/bullets/player/black_hole.tres" id="20_km4p6"]
+[ext_resource type="PackedScene" uid="uid://b2tef800ecm8u" path="res://scenes/components/weapon_handler.tscn" id="21_kq4di"]
+
+[node name="Main" type="Node"]
+
+[node name="YSort" type="Node2D" parent="."]
+
+[node name="LevelData" parent="YSort" instance=ExtResource("1_flmrt")]
+
+[node name="Player" parent="YSort" instance=ExtResource("1_21o6f")]
+y_sort_enabled = false
+
+[node name="cursor_particles" parent="." instance=ExtResource("2_6lruf")]
+position = Vector2(418, 419)
+
+[node name="HUD" parent="." instance=ExtResource("1_p2m51")]
+
+[node name="pause_menu" parent="." instance=ExtResource("3_4e213")]
+visible = false
+
+[node name="ObjectiveMarker" parent="." instance=ExtResource("4_38qfx")]
+
+[node name="Shop" parent="." instance=ExtResource("5_uua2u")]
+visible = false
+
+[node name="LogicComponents" type="Node" parent="."]
+
+[node name="BulletHandler" parent="LogicComponents" instance=ExtResource("6_qow6h")]
+
+[node name="PickupHandler" parent="LogicComponents" node_paths=PackedStringArray("ysorter", "score_display") instance=ExtResource("7_gslew")]
+pickup_scene = ExtResource("8_47qdh")
+ysorter = NodePath("../../YSort")
+score_display = NodePath("../../HUD")
+
+[node name="ShopHandler" parent="LogicComponents" node_paths=PackedStringArray("ysorter", "objective_marker", "shop_node") instance=ExtResource("9_mp2bm")]
+default_shop_upgrades_list = Array[PackedScene]([ExtResource("10_r7xa2"), ExtResource("11_375vm"), ExtResource("12_80f2j"), ExtResource("13_l8oje"), ExtResource("14_s6av7"), ExtResource("15_mtc4q"), ExtResource("16_3q33q")])
+default_shop_weapons_list = Array[Resource("res://scripts/objects/bullet_resource.gd")]([ExtResource("17_lvl68"), ExtResource("18_etg0m"), ExtResource("19_mu0jk"), ExtResource("20_km4p6")])
+ysorter = NodePath("../../YSort")
+objective_marker = NodePath("../../ObjectiveMarker")
+shop_node = NodePath("../../Shop")
+
+[node name="WeaponHandler" parent="LogicComponents" node_paths=PackedStringArray("ysorter") instance=ExtResource("21_kq4di")]
+ysorter = NodePath("../../YSort")

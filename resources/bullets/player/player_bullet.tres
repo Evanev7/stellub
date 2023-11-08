@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=6 format=3 uid="uid://ccpb4udi5owpj"]
+[gd_resource type="Resource" script_class="BulletResource" load_steps=6 format=3 uid="uid://ccpb4udi5owpj"]
 
 [ext_resource type="Script" path="res://scripts/objects/bullet_resource.gd" id="1_dmiyo"]
 [ext_resource type="SpriteFrames" uid="uid://cbfq7bqkgh3ti" path="res://resources/bullets/player/player_bullet_spriteframes.tres" id="1_eteat"]

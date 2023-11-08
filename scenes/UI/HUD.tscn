@@ -2,6 +2,12 @@
 
 [ext_resource type="Script" path="res://scripts/UI/HUD.gd" id="1_tsnwf"]
 
+[sub_resource type="InputEventAction" id="InputEventAction_gf5y4"]
+action = &"start_game"
+
+[sub_resource type="Shortcut" id="Shortcut_lxmoi"]
+events = [SubResource("InputEventAction_gf5y4")]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b8dcb"]
 bg_color = Color(0.537255, 0.8, 0.988235, 1)
 
@@ -15,6 +21,7 @@ fill_from = Vector2(0.23301, 0)
 fill_to = Vector2(0.742718, 0)
 
 [node name="HUD" type="CanvasLayer"]
+process_mode = 2
 script = ExtResource("1_tsnwf")
 
 [node name="TextDisplay" type="Label" parent="."]

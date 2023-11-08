@@ -4,7 +4,6 @@ signal remove_shop
 signal remove_weapon
 signal apply_upgrade(upgrade)
 signal add_weapon(weapon)
-signal unpause_game
 
 @export var weapon_button_group : ButtonGroup
 var selected_weapon_button
@@ -12,9 +11,6 @@ var selected_weapon_button
 var current_upgrades = []
 var current_weapons = []
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -67,7 +63,7 @@ func _on_weapon_button_pressed():
 func _on_leave_pressed():
 	$ShopScreen/WeaponButton.set_visible(false)
 	set_visible(false)
-	unpause_game.emit()
+	GameState.unpause_game()
 	remove_shop.emit()
 
 func _on_error_timer_timeout():

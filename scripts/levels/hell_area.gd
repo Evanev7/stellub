@@ -1,7 +1,7 @@
 extends Node
 
 
-var heaven_area_scene := preload("res://scenes/levels/heaven_area.tscn").instantiate()
+@export var heaven_area_scene: PackedScene
 
 @export var enemy_resource_list: Array[EnemyResource]
 
@@ -62,33 +62,13 @@ func start_magic_circles():
 		circle.start()
 
 func _on_player_player_death():
-	game_over()
-
-
-func game_over():
-	enemy_handler.stop_spawning()
-	get_tree().call_group("enemy", "queue_free")
-	get_tree().call_group("bullet", "queue_free")
-	get_tree().call_group("pickup", "queue_free")
-	get_tree().call_group("boss", "queue_free")
-	
-	for circle in get_tree().get_nodes_in_group("magic_circle"):
-		circle.call_deferred("remove_objective_marker", circle)
-	
-	$HUD.game_over()
+	GameState.game_over.emit()
 
 
 func _on_hud_start_game():
 	start_game()
 
-func pause_game():
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	get_tree().paused = true
 
-func unpause_game():
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-	get_tree().paused = false
-	
 func _on_player_taken_damage(hp):
 	$HUD.show_health(hp)
 
@@ -103,11 +83,12 @@ func _on_player_level_up(current_level):
 	
 
 func teleport_to_heaven_area():
+	var heaven_area_node = heaven_area_scene.instantiate()
 	var player = GameState.player
 	player.get_parent().remove_child(player)
 	get_node("/root/Hell Area").queue_free()
 	heaven_area_scene.get_child(0).add_child(player)
-	get_tree().root.add_child(heaven_area_scene)
+	get_tree().root.add_child(heaven_area_node)
 
 
 

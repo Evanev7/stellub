@@ -1,6 +1,5 @@
 extends Node
 
-signal pause_game
 signal remove_marker_from_circle(circle)
 
 @export var shop_scene: PackedScene
@@ -74,9 +73,10 @@ func _on_shop_entered():
 
 
 func open_shop(stat_upgrades, is_weapon_present):
-	get_tree().paused = true
+	GameState.pause_game()
 	shop_node.set_visible(true)
 	shop_node.open_shop(stat_upgrades, is_weapon_present)
+
 
 
 func _on_spawn_shop(position):

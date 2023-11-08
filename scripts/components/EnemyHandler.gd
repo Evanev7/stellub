@@ -1,6 +1,8 @@
 extends Node 
 class_name EnemyHandler
 
+signal register_enemy(enemy)
+
 @onready var spawn_timer: Timer = $SpawnTimer
 @onready var phase_up_timer: Timer = $PhaseUpTimer
 
@@ -11,11 +13,13 @@ class_name EnemyHandler
 @export var enemy_scene: PackedScene
 @export var enemy_resource_list: Array[EnemyResource]
 
-@export var ysorter_enemies: Node2D
-@export var bullet_handler: BulletHandler
+@export var enemy_ysort: Node2D
 @export var pickup_handler: PickupHandler
 
 var phase_limit = 1
+
+func _ready():
+	GameState.game_over.connect(stop_spawning)
 
 func _on_phase_up_timer_timeout():
 	phase_limit += 1
@@ -35,13 +39,8 @@ func spawn_enemy(resourceID, center = GameState.player.position, spawn_range = s
 	enemy.resource.OVERALL_MULTIPLIER = overall_multi
 	var relative_spawn_position = Vector2(spawn_range,0).rotated(randf_range(0, 2*PI))
 	enemy.position = center + relative_spawn_position
-	enemy.enemy_killed.connect(_on_enemy_killed)
-	ysorter_enemies.add_child(enemy)
-	
-	
-func _on_enemy_killed(enemy):
-	for i in range(enemy.value):
-		pickup_handler.spawn_pickup(enemy.position)
+	enemy_ysort.add_child(enemy)
+	GameState.register_enemy.emit(enemy)
 	
 	
 func start_spawning():
