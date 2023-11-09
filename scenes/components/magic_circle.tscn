@@ -47,9 +47,11 @@ animations = [{
 }]
 
 [node name="magic_circle" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_114ni")
 
 [node name="Pillars" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="Pillar" parent="Pillars" instance=ExtResource("4_ciroy")]
 y_sort_enabled = false
@@ -73,6 +75,7 @@ position = Vector2(0, 600)
 scale = Vector2(0.685, 0.685)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = -1
 material = SubResource("ShaderMaterial_i8l2e")
 position = Vector2(-1.99999, 0)
 scale = Vector2(0.564, 0.279)

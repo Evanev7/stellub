@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dyhf18b3orycs"]
+[gd_scene load_steps=7 format=3 uid="uid://dyhf18b3orycs"]
 
 [ext_resource type="Script" path="res://scripts/UI/shop_controller.gd" id="1_5yppk"]
 [ext_resource type="Script" path="res://scripts/UI/shop_draggable.gd" id="1_xieai"]
 [ext_resource type="Texture2D" uid="uid://dxtmrmjab36ky" path="res://art/programmer 'art'.png" id="2_34ly4"]
 [ext_resource type="PackedScene" uid="uid://jgeavrbmn7f2" path="res://scenes/UI/shop_total_attack.tscn" id="3_b1a8l"]
+[ext_resource type="Texture2D" uid="uid://cdseftigmx86u" path="res://art/no lmao.png" id="4_myjg1"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_gbimq"]
 
@@ -97,7 +98,7 @@ swappable = false
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
-texture_normal = SubResource("PlaceholderTexture2D_gbimq")
+texture_normal = ExtResource("4_myjg1")
 ignore_texture_size = true
 stretch_mode = 0
 

@@ -50,25 +50,26 @@ func _on_shop_entered():
 	var weapon_array = shop_weapons_list.duplicate()
 	var is_weapon_present := false
 	
-	
-	while chosen_upgrades.size() != 3:
-		if shop_array.size() == 0:
-			shop_array = shop_upgrades_list.duplicate()
-			
-		shop_array.shuffle()
-		var upgrade = shop_array.pop_front().instantiate()
-
-		if randf() <= upgrade.rarity:
-			chosen_upgrades.append(upgrade)
-
 	if randf() <= 1:
 		weapon_array.shuffle()
 		for weapon in weapon_array:
 			if randf() <= weapon.rarity:
 				is_weapon_present = true
-				chosen_upgrades.append(weapon)
+				var weapon_node = Attack.new()
+				weapon_node.initial_bullet = weapon
+				chosen_upgrades.append(weapon_node)
 				break
-				
+	
+	while chosen_upgrades.size() != 4:
+		if shop_array.size() == 0:
+			shop_array = shop_upgrades_list.duplicate()
+			
+		shop_array.shuffle()
+		var upgrade = shop_array.pop_front().instantiate()
+		
+		if randf() <= upgrade.rarity:
+			chosen_upgrades.append(upgrade)
+	
 	open_shop(chosen_upgrades, is_weapon_present)
 
 

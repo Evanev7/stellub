@@ -2,8 +2,8 @@ extends CanvasLayer
 
 @export var main_menu_scene: PackedScene
 
-
 func _on_hud_open_pause_menu():
+	GameState.pause_game()
 	set_visible(true)
 	GameState.pause_game()
 

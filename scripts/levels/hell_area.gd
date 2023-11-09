@@ -85,7 +85,7 @@ func teleport_to_heaven_area():
 	var player = GameState.player
 	player.get_parent().remove_child(player)
 	get_node("/root/Hell Area").queue_free()
-	heaven_area_scene.get_child(0).add_child(player)
+	heaven_area_node.get_child(0).add_child(player)
 	get_tree().root.add_child(heaven_area_node)
 
 

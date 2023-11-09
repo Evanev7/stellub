@@ -11,12 +11,14 @@ radius = 131.015
 radius = 296.138
 
 [node name="teleporter" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_jufu7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -50)
 scale = Vector2(0.653549, 0.32243)
 sprite_frames = ExtResource("1_rgcna")
+animation = &"hp_pickup"
 
 [node name="teleporter" type="Area2D" parent="."]
 

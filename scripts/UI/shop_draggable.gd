@@ -13,6 +13,12 @@ func _ready():
 	add_to_group("draggable")
 
 func refresh() -> void:
+	
+	if referenced_node is Attack:
+		slot_type = SLOT_TYPE.ATTACK
+	elif referenced_node is Upgrade:
+		slot_type = SLOT_TYPE.UPGRADE
+	
 	if referenced_node and referenced_node.get("icon") != null:
 		texture_normal = referenced_node.icon
 	else:
@@ -26,31 +32,35 @@ func _get_drag_data(_pos: Vector2) -> Variant:
 		"slot_swappable" = swappable
 	}
 	
+	print(data)
+	
+	if not referenced_node:
+		return data
+	
 	var drag_preview: Sprite2D = drag_preview_scene.instantiate()
 	drag_preview.texture = texture_normal
 	drag_preview.apply_scale(Vector2(64.0/texture_normal.get_width(),64.0/texture_normal.get_height()))
-	add_child(drag_preview)
+	owner.add_child(drag_preview)
 	
 	return data
-	
+
 
 func _can_drop_data(_pos: Vector2, incoming_data) -> bool: 
+	if incoming_data["referenced_node"] == null:
+		return false
 	if slot_type != incoming_data["slot_type"]:
 		return false
-	if incoming_data["slot_swappable"] == false and referenced_node == null:
+	if incoming_data["slot_swappable"] == false and referenced_node != null:
 		return false
 	
 	return true
 
 
-func _drop_data(_pos: Vector2, data) -> void:
-	if slot_type != data["slot_type"]:
-		return
-	
+func _drop_data(_pos: Vector2, data) -> void:	
 	if swappable and data["slot_swappable"]:
 		data["origin_node"].referenced_node = referenced_node
 		referenced_node = data["referenced_node"]
-	else:
+	elif referenced_node == null:
 		data["origin_node"].referenced_node = null
 		referenced_node = data["referenced_node"]
 	

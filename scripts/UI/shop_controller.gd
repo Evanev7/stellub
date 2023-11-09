@@ -32,7 +32,6 @@ func load_from_player():
 		var gui_attack_node: Control = total_node.get_node("%Attack")
 
 		if attack_index >= player_attack_count:
-			total_node.visible = false
 			continue
 
 		var player_attack_node: Attack = player_attacks[attack_index]
@@ -62,6 +61,7 @@ func load_from_player():
 
 # T O T A L C O D E D U P L I C A T I O N
 func save_to_player():
+	var offset_bad_solution: int = 0
 	var player_attack_handler: Node2D = GameState.player.attack_handler
 	var player_attacks: Array[Attack] = get_attack_nodes(player_attack_handler)
 	
@@ -75,11 +75,12 @@ func save_to_player():
 		var gui_attack: Attack = gui_attack_node.referenced_node
 
 		if not gui_attack:
+			offset_bad_solution += 1
 			continue
 		
 		player_attack_handler.add_child(gui_attack)
 
-		var player_attack_node: Attack = player_attacks[attack_index]
+		var player_attack_node: Attack = player_attacks[attack_index - offset_bad_solution]
 		var player_attack_upgrades: Array[Upgrade] = get_upgrade_nodes(player_attack_node)
 		for upgrade in player_attack_upgrades:
 			player_attack_node.remove_child(upgrade)
@@ -98,15 +99,18 @@ func save_to_player():
 	player_attack_handler.refresh_all_attacks()
 
 
-func populate_shop(chosen_upgrades, weapon):
-	pass
+func populate_shop(shop_items):
+	shop_items.shuffle()
+	for index in range(4):
+		var shop_node = get_node("%Shop" + str(index+1))
+		shop_node.referenced_node = shop_items[index]
+		shop_node.refresh()
+	print(shop_items)
 
 
 func open_shop(chosen_upgrades, weapon):
 	load_from_player()
-	populate_shop(chosen_upgrades, weapon)
-	print(chosen_upgrades)
-	print(weapon)
+	populate_shop(chosen_upgrades)
 
 
 func close_shop():

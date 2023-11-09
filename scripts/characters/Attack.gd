@@ -17,6 +17,7 @@ var attack_handler: AttackHandler
 @export var initial_bullet: BulletResource
 var bullet: BulletResource
 
+@onready var icon = initial_bullet.icon
 
 var timer_active: bool = true
 var _timer: float

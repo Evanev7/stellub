@@ -55,7 +55,7 @@ metadata/_edit_vertical_guides_ = []
 [node name="teleporter" parent="YSort" index="0" instance=ExtResource("2_8o713")]
 
 [node name="TileMap" type="TileMap" parent="YSort" index="1"]
-z_index = -1
+z_index = -2
 tile_set = SubResource("TileSet_rqhpw")
 format = 2
 layer_0/tile_data = PackedInt32Array(0, 1, 0)
@@ -70,6 +70,7 @@ position = Vector2(261, 336)
 y_sort_enabled = false
 
 [node name="Enemies" type="Node2D" parent="YSort" index="5"]
+y_sort_enabled = true
 
 [node name="cursor_particles" parent="." index="1" instance=ExtResource("33_aqxfn")]
 position = Vector2(418, 419)
@@ -118,7 +119,6 @@ ysorter = NodePath("../../YSort")
 [connection signal="level_up" from="YSort/Player" to="." method="_on_player_level_up"]
 [connection signal="player_death" from="YSort/Player" to="." method="_on_player_player_death"]
 [connection signal="send_loadout" from="YSort/Player" to="LogicComponents/BossHandler" method="_on_player_send_loadout"]
-[connection signal="open_pause_menu" from="HUD" to="pause_menu" method="_on_hud_open_pause_menu"]
 [connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
 [connection signal="remove_weapon" from="UpgradeHUD" to="LogicComponents/ShopHandler" method="_on_upgrade_hud_remove_weapon"]
 [connection signal="remove_marker_from_circle" from="LogicComponents/ShopHandler" to="ObjectiveMarker" method="delete_target"]

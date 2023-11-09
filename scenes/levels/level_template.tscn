@@ -26,3 +26,5 @@ weapon_button_group = null
 [node name="LogicComponents" type="Node" parent="."]
 
 [node name="BulletHandler" parent="LogicComponents" instance=ExtResource("7_junnh")]
+
+[connection signal="open_pause_menu" from="HUD" to="pause_menu" method="_on_hud_open_pause_menu"]

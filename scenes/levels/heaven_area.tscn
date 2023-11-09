@@ -44,8 +44,9 @@ pickup_scene = ExtResource("3_7bv8e")
 ysorter = NodePath("../../YSort")
 score_display = NodePath("../../HUD")
 
-[node name="EnemyHandler" parent="LogicComponents" index="2" instance=ExtResource("4_81g8t")]
+[node name="EnemyHandler" parent="LogicComponents" index="2" node_paths=PackedStringArray("enemy_ysort") instance=ExtResource("4_81g8t")]
 enemy_resource_list = Array[Resource("res://scripts/characters/enemy_resource.gd")]([ExtResource("6_muf3o"), ExtResource("7_a1v71"), ExtResource("8_60soe"), ExtResource("11_fi15b")])
+enemy_ysort = NodePath("../../YSort")
 
 [node name="BossHandler" parent="LogicComponents" index="3" node_paths=PackedStringArray("ysorter") instance=ExtResource("5_cfnl8")]
 boss_scene = ExtResource("6_lb3xs")

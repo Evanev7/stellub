@@ -10,7 +10,9 @@ var debug = true
 
 func _ready():
 	randomize()
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	game_over.connect(queue_free_groups)
+	
 
 func pause_game():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

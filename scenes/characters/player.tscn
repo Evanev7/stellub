@@ -255,7 +255,7 @@ target_mode = 1
 stream = SubResource("AudioStreamRandomizer_51dqt")
 max_polyphony = 50
 
-[connection signal="area_entered" from="Hurtbox" to="." method="get_pickup"]
 [connection signal="area_entered" from="Hurtbox" to="." method="hurt"]
+[connection signal="area_entered" from="Hurtbox" to="." method="get_pickup"]
 [connection signal="area_entered" from="PickupRange" to="." method="activate_pickup"]
 [connection signal="timeout" from="IFrames" to="." method="_on_i_frames_timeout"]
