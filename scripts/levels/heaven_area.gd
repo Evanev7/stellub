@@ -14,7 +14,7 @@ func _ready():
 	var player = $YSort/Player
 	player.connect("level_up", _on_player_level_up)
 	player.connect("player_death", _on_player_death)
-	player.connect("taken_damage", _on_player_taken_damage)
+	player.connect("hp_changed", _on_player_hp_changed)
 	player.connect("send_loadout", $LogicComponents/BossHandler._on_player_send_loadout)
 	player.connect("credit_player", $LogicComponents/PickupHandler._on_pickup_credit_player)
 	start_level()
@@ -79,7 +79,7 @@ func game_over():
 #	start_level()
 
 
-func _on_player_taken_damage(hp):
+func _on_player_hp_changed(hp):
 	$HUD.show_health(hp)
 
 

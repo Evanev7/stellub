@@ -59,7 +59,7 @@ func populate(coords) -> void:
 			var object = objects[index].instantiate()
 			
 			#This shouldn't be here, it's hard to find later.
-			var random_size_scale = randf_range(0.4, 0.8)
+			var random_size_scale = randf_range(0.6, 0.8)
 			var flip_direction = randi_range(0,1)
 			object.scale = Vector2(int(flip_direction)*2-1, 1) * random_size_scale
 			
@@ -69,7 +69,7 @@ func populate(coords) -> void:
 			object.position = coords
 			
 			#Experimental darkening
-			object.modulate = Color(0.5,0.5,0.5)
+			object.modulate = Color(1.3,1.3,1.3)
 			
 			ysorter.add_child(object)
 			object.add_to_group("terrain")

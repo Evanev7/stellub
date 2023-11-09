@@ -8,6 +8,10 @@ signal credit_player(value)
 @export var grav_scale: float = 5
 @export var speed: float = 3
 
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+
+var pickup_type: int
+
 var value: int = 1
 
 var activated: bool = false
@@ -15,10 +19,19 @@ var lifetime: float = 0
 var velocity: float = 0
 
 func _ready():
+	match pickup_type:
+		0:
+			sprite.animation = "xp_pickup"
+			add_to_group("xp_pickup")
+		1:
+			sprite.animation = "hp_pickup"
+			value = randi() % 51 + 10
+		2:
+			sprite.animation = "vacuum_pickup"
+	sprite.play()
+	
 	#Randomly distribute launch_angle according to proper distribution
-	$AnimatedSprite2D.play()
 	launch_angle = (randi_range(0,1)*2-1)*acos(1-randf()*(1-cos(launch_angle)))
-	#launch_angle = randfn(0, PI/6)
 	add_to_group("pickup")
 
 

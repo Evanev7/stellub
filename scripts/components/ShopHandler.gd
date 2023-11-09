@@ -28,7 +28,7 @@ func start():
 
 func spawn_magic_circles():
 	var count = 10
-	var radius = Vector2(2000, 0)
+	var radius = Vector2(3000, 0)
 	var center = Vector2(0, 0)
 	var step = 2 * PI / count
 	

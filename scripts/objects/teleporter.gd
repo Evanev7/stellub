@@ -14,6 +14,7 @@ func _ready():
 	
 func start():
 	scale = default_scale
+	$AnimatedSprite2D.animation = "xp_pickup"
 	$AnimatedSprite2D.stop()
 	$AnimatedSprite2D.self_modulate = Color(0.2, 0.2, 0.2)
 	set_process(false)

@@ -12,10 +12,10 @@ monitoring = false
 script = ExtResource("1_rqpcu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -5)
+position = Vector2(0, -2)
 scale = Vector2(0.03, 0.03)
 sprite_frames = ExtResource("2_13irk")
-frame_progress = 0.94902
+animation = &"xp_pickup"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(1.5, 1.5)

@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-signal taken_damage(hp)
+signal hp_changed(hp)
 signal player_death
 signal level_up(level)
 signal send_loadout(loadout)
@@ -123,7 +123,7 @@ func add_attack_from_resource(bullet: BulletResource):
 func hurt(body):
 	if not invuln and not body.is_in_group("pickup"):
 		hp = clamp(hp - body.damage, 0, hp_max)
-		taken_damage.emit(hp)
+		hp_changed.emit(hp)
 		invuln = true
 		$IFrames.start()
 		sprite.modulate = Color(1,0,0,0.5)
@@ -142,11 +142,17 @@ func activate_pickup(area):
 		area.activate()
 
 func get_pickup(area):
+	## pickup_type constants: enum {xp_pickup, hp_pickup, vacuum_pickup}
 	if area.is_in_group("pickup"):
-		credit_player.emit(area.value)
+		match area.pickup_type:
+			0:
+				credit_player.emit(area.value)
+				pickup_sound.play()
+			1:
+				heal(area.value)
+			2:
+				activate_xp_vacuum()
 		area.queue_free()
-		pickup_sound.play()
-
 
 # Called when we've killed an enemy, and we can add to our score.
 func gain_score(value):
@@ -171,6 +177,12 @@ func gain_score(value):
 		elif level_threshold[current_level] > 49:
 			level_threshold.append(level_threshold[current_level] + 30) 
 
+func heal(value):
+	hp = clamp(hp + value, 0, hp_max)
+	hp_changed.emit(hp)
+	
+func activate_xp_vacuum():
+	get_tree().call_group("xp_pickup", "activate")
 
 func player_level_up():
 	hp_max *= 1.005

@@ -21,7 +21,6 @@ fill_from = Vector2(0.23301, 0)
 fill_to = Vector2(0.742718, 0)
 
 [node name="HUD" type="CanvasLayer"]
-process_mode = 2
 script = ExtResource("1_tsnwf")
 
 [node name="TextDisplay" type="Label" parent="."]

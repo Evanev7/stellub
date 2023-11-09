@@ -67,7 +67,7 @@ func _on_hud_start_game():
 	start_game()
 
 
-func _on_player_taken_damage(hp):
+func _on_player_hp_changed(hp):
 	$HUD.show_health(hp)
 
 

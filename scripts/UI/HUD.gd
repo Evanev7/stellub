@@ -51,5 +51,5 @@ func game_over():
 
 
 func _on_pause_button_pressed():
+	print("paused")
 	open_pause_menu.emit()
-	GameState.pause_game()
