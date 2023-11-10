@@ -59,9 +59,8 @@ func pre_fire():
 	if aim_mode == AIM_MODE.TARGETED:
 		attack_direction = attack_handler.get_attack_direction()
 	
-	
 	for upgrade in get_children():
-		if upgrade == Upgrade:
+		if upgrade is Upgrade:
 			upgrade.pre_fire()
 	
 	if attack_handler.owner == GameState.player or attack_direction.direction.length() < target_range:
@@ -76,7 +75,7 @@ func fire():
 func refresh_bullet_resource():
 	bullet = initial_bullet.duplicate()
 	for upgrade in get_children():
-		if upgrade == Upgrade:
+		if upgrade is Upgrade:
 			bullet = upgrade.modify_bullet_resource(bullet)
 		
 	

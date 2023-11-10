@@ -123,7 +123,7 @@ func add_attack_from_resource(bullet: BulletResource):
 func hurt(body):
 	if not invuln and not body.is_in_group("pickup"):
 		hp = clamp(hp - body.damage, 0, hp_max)
-		hp_changed.emit(hp)
+		hp_changed.emit(hp, hp_max)
 		invuln = true
 		$IFrames.start()
 		sprite.modulate = Color(1,0,0,0.5)

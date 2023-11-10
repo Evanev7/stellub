@@ -7,6 +7,8 @@ extends Node
 
 @export var enemy_handler: EnemyHandler
 
+@onready var HUD = $HUD
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	start_game()
@@ -23,7 +25,7 @@ func _physics_process(_delta):
 	
 	if GameState.debug and Input.is_action_pressed("debug_gain_score"): ## R
 		GameState.player.gain_score(10)
-		$HUD.show_score(GameState.player.score, GameState.player.level_threshold[GameState.player.current_level])
+		HUD.show_score(GameState.player.score, GameState.player.level_threshold[GameState.player.current_level])
 	
 	if GameState.debug and Input.is_action_just_pressed("debug_evolve"): ## E
 		GameState.player.current_evolution += 1
@@ -50,9 +52,9 @@ func start_game():
 	$LogicComponents/ShopHandler.start()
 	start_magic_circles()
 	
-	$HUD.show_message("All Hell Breaks Loose!")
-	$HUD.show_health(GameState.player.hp)
-	$HUD.show_score(GameState.player.score, GameState.player.level_threshold[GameState.player.current_level])
+	HUD.show_message("All Hell Breaks Loose!")
+	HUD.show_health(GameState.player.hp, GameState.player.hp_max)
+	HUD.show_score(GameState.player.score, GameState.player.level_threshold[GameState.player.current_level])
 
 func start_magic_circles():
 	var circles = get_tree().get_nodes_in_group("magic_circle")
@@ -68,12 +70,12 @@ func _on_hud_start_game():
 
 
 func _on_player_hp_changed(hp):
-	$HUD.show_health(hp)
+	HUD.show_health(hp, GameState.player.hp_max)
 
 
 func _on_player_level_up(current_level):
-	$HUD.change_min_XP(GameState.player.level_threshold[GameState.player.current_level])
-	$HUD.show_health(GameState.player.hp)
+	HUD.change_min_XP(GameState.player.level_threshold[GameState.player.current_level])
+	HUD.show_health(GameState.player.hp, GameState.player.hp_max)
 	GameState.player.current_level += 1
 	GameState.player.souls += 1
 	enemy_handler.spawn_timer.wait_time /= 1.02

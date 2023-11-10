@@ -3,6 +3,9 @@ extends CanvasLayer
 signal start_game
 signal open_pause_menu
 
+@onready var XP_Bar = $XPBar
+@onready var HP_Bar = $HPBar
+
 func _ready():
 	GameState.game_over.connect(game_over)
 
@@ -22,22 +25,23 @@ func _on_display_timer_timeout():
 func _on_start_button_pressed():
 	start_game.emit() 
 	$StartButton.hide()
-	$XPBar.show()
+	XP_Bar.show()
 
 
-func show_health(number):
-	$HealthDisplay.text = str(int(number))
+func show_health(number, max_number):
+	HP_Bar.max_value = int(max_number)
+	HP_Bar.value = int(number)
 
 
 func show_score(number, max_number):
 	if number >= max_number:
-		$XPBar.min_value = int(number)
-	$XPBar.max_value = int(max_number)
-	$XPBar.value = int(number)
+		XP_Bar.min_value = int(number)
+	XP_Bar.max_value = int(max_number)
+	XP_Bar.value = int(number)
 
 
 func change_min_XP(number):
-	$XPBar.min_value = int(number)
+	XP_Bar.min_value = int(number)
 
 
 func game_over():
@@ -51,5 +55,4 @@ func game_over():
 
 
 func _on_pause_button_pressed():
-	print("paused")
 	open_pause_menu.emit()

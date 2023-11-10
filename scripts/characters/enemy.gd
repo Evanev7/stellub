@@ -12,6 +12,8 @@ signal enemy_killed(enemy)
 @onready var attack_handler: AttackHandler = $AttackHandler
 @onready var sprite = $AnimatedSprite2D
 @onready var hitbox = $Hitbox
+@onready var damage_sound = $DamageSound
+@onready var death_sound = $DeathSound
 @onready var health: float = resource.MAX_HP * unique_multiplier * overall_multiplier
 @onready var damage: float = resource.DAMAGE * unique_multiplier * overall_multiplier
 @onready var value: float = resource.VALUE * unique_multiplier * overall_multiplier
@@ -111,6 +113,7 @@ func change_colour():
 # Called by _on_hurtbox_area_entered - will only be called if the Area2D is in the bullet group
 # Change the enemies health and tween to shrink the enemy briefly.
 func hurt(area):
+	damage_sound.play()
 	health -= area.damage
 	scale = default_scale * 0.65 
 	var tween2 := create_tween()
@@ -124,8 +127,14 @@ func hurt(area):
 	
 	#Die when health is zero
 	if health <= 0:
+		death_sound.play()
 		enemy_killed.emit(self)
-		queue_free()
+		set_process(false)
+		visible = false
+	
+func _on_death_sound_finished():
+	queue_free()
+	
 	
 func spawn_damage_number(damage_value: float):
 	var damage_number = get_damage_number()
@@ -149,6 +158,8 @@ func get_damage_number() -> DamageNumber:
 func hit(area):
 	if area.owner == GameState.player:
 		area.owner.hurt(self)
+
+
 
 
 

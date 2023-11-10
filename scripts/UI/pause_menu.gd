@@ -5,7 +5,6 @@ extends CanvasLayer
 func _on_hud_open_pause_menu():
 	GameState.pause_game()
 	set_visible(true)
-	GameState.pause_game()
 
 func _on_continue_pressed():
 	GameState.unpause_game()
