@@ -1,55 +1,42 @@
-[gd_scene load_steps=6 format=3 uid="uid://c8xiwx0q2sf3m"]
+[gd_scene load_steps=7 format=3 uid="uid://c8xiwx0q2sf3m"]
 
-[ext_resource type="Texture2D" uid="uid://b2byn4ep7a4f8" path="res://art/backgrounds/heaven_level_1.png" id="1_m776n"]
 [ext_resource type="Script" path="res://scripts/UI/pause_menu.gd" id="1_uylrw"]
 [ext_resource type="PackedScene" uid="uid://ck84xpcgl0pv7" path="res://scenes/levels/menu.tscn" id="2_8leer"]
-
-[sub_resource type="Gradient" id="Gradient_jnb1p"]
-offsets = PackedFloat32Array(0, 0.348387, 0.490323, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0.280452, 0.280452, 0.280452, 1, 0.445161, 0.445161, 0.445161, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_kqelo"]
-gradient = SubResource("Gradient_jnb1p")
-fill_from = Vector2(1, 0.981651)
+[ext_resource type="Texture2D" uid="uid://been84ue6lj66" path="res://art/UI/Pause_Menu/pause_menu_background.png" id="3_j02on"]
+[ext_resource type="Texture2D" uid="uid://1nhqo37rxmf" path="res://art/UI/Pause_Menu/pause_menu_top_button.png" id="5_ir75b"]
+[ext_resource type="Texture2D" uid="uid://xtnnwrkn54ll" path="res://art/UI/Pause_Menu/pause_menu_middle_button.png" id="6_466m5"]
+[ext_resource type="Texture2D" uid="uid://cgt5paocwd1un" path="res://art/UI/Pause_Menu/pause_menu_bottom_button.png" id="7_83x8g"]
 
 [node name="pause_menu" type="CanvasLayer"]
 process_mode = 2
 script = ExtResource("1_uylrw")
 main_menu_scene = ExtResource("2_8leer")
 
-[node name="PauseBG" type="TextureRect" parent="."]
-self_modulate = Color(1, 1, 1, 0.686275)
+[node name="PausedBG" type="TextureRect" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -373.0
-offset_top = -200.0
-offset_right = 373.0
-offset_bottom = 200.0
+offset_left = -540.0
+offset_top = -377.0
+offset_right = 539.0
+offset_bottom = 377.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture2D_kqelo")
+texture = ExtResource("3_j02on")
+expand_mode = 1
 
-[node name="Title" type="TextureRect" parent="PauseBG"]
+[node name="TempTitle" type="Label" parent="PausedBG"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -127.0
-offset_top = 20.0
-offset_right = 127.0
-offset_bottom = 72.0
+offset_left = -68.0
+offset_top = 63.0
+offset_right = 68.0
+offset_bottom = 115.0
 grow_horizontal = 2
-
-[node name="TempTitle" type="Label" parent="PauseBG/Title"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 9
@@ -58,42 +45,33 @@ text = "PAUSED"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Buttons" type="TextureRect" parent="PauseBG"]
-layout_mode = 1
+[node name="Continue" type="TextureButton" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -196.0
-offset_top = -119.0
-offset_right = 196.0
-offset_bottom = 120.0
+offset_left = -540.0
+offset_top = -377.0
+offset_right = 539.0
+offset_bottom = 377.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Continue" type="TextureButton" parent="PauseBG/Buttons"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -82.0
-offset_top = -109.5
-offset_right = 82.0
-offset_bottom = -60.5
-grow_horizontal = 2
-grow_vertical = 2
-texture_hover = ExtResource("1_m776n")
+texture_normal = ExtResource("5_ir75b")
 ignore_texture_size = true
-stretch_mode = 0
+stretch_mode = 4
 
-[node name="TempContinue" type="Label" parent="PauseBG/Buttons/Continue"]
+[node name="TempContinue" type="Label" parent="Continue"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -73.0
+offset_top = -125.0
+offset_right = 73.0
+offset_bottom = -83.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -104,28 +82,33 @@ text = "CONTINUE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Options" type="TextureButton" parent="PauseBG/Buttons"]
+[node name="Options" type="TextureButton" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -540.0
+offset_top = -377.0
+offset_right = 539.0
+offset_bottom = 377.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("6_466m5")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="TempOptions" type="Label" parent="Options"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -73.0
-offset_top = -20.5
-offset_right = 73.0
-offset_bottom = 21.5
-grow_horizontal = 2
-grow_vertical = 2
-texture_hover = ExtResource("1_m776n")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="TempOptions" type="Label" parent="PauseBG/Buttons/Options"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+offset_left = -61.5
+offset_top = 31.0
+offset_right = 61.5
+offset_bottom = 73.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -136,28 +119,33 @@ text = "OPTIONS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Exit" type="TextureButton" parent="PauseBG/Buttons"]
+[node name="Exit" type="TextureButton" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -540.0
+offset_top = -377.0
+offset_right = 539.0
+offset_bottom = 377.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("7_83x8g")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="TempExit" type="Label" parent="Exit"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = 73.5
-offset_right = 64.0
-offset_bottom = 116.5
-grow_horizontal = 2
-grow_vertical = 2
-texture_hover = ExtResource("1_m776n")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="TempExit" type="Label" parent="PauseBG/Buttons/Exit"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+offset_left = -29.0
+offset_top = 196.0
+offset_right = 29.0
+offset_bottom = 238.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -168,5 +156,5 @@ text = "EXIT"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="pressed" from="PauseBG/Buttons/Continue" to="." method="_on_continue_pressed"]
-[connection signal="pressed" from="PauseBG/Buttons/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]

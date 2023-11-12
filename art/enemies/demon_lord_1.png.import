@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdseftigmx86u"
-path="res://.godot/imported/no lmao.png-0eb2f942bf68489bbedab1fbcab116c0.ctex"
+uid="uid://bxi0cpf8vefnt"
+path="res://.godot/imported/demon_lord_1.png-0a9dc3a6ba4a626dd638fe74089c9306.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/no lmao.png"
-dest_files=["res://.godot/imported/no lmao.png-0eb2f942bf68489bbedab1fbcab116c0.ctex"]
+source_file="res://art/enemies/demon_lord_1.png"
+dest_files=["res://.godot/imported/demon_lord_1.png-0a9dc3a6ba4a626dd638fe74089c9306.ctex"]
 
 [params]
 

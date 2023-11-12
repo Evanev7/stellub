@@ -1,25 +1,14 @@
-[gd_resource type="Resource" script_class="EnemyResource" load_steps=6 format=3 uid="uid://p0ytgmgbgkky"]
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=5 format=3 uid="uid://p0ytgmgbgkky"]
 
-[ext_resource type="Texture2D" uid="uid://d4hct8jpb8rpj" path="res://art/player/level 6/player_6_1.png" id="1_cu3hs"]
+[ext_resource type="SpriteFrames" uid="uid://fu03tfdn82ry" path="res://resources/enemy/angel_boss_spriteframes.tres" id="1_cp6xw"]
 [ext_resource type="Script" path="res://scripts/characters/enemy_resource.gd" id="1_dmryf"]
 [ext_resource type="Shape2D" uid="uid://c862hatltraad" path="res://resources/hitboxes/boss_collisionbox.tres" id="2_axe1q"]
 [ext_resource type="Shape2D" uid="uid://cf1jvctq0mulw" path="res://resources/hitboxes/boss_hitbox.tres" id="3_fmcl5"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_7vo7r"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_cu3hs")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
 [resource]
 script = ExtResource("1_dmryf")
-NAME = "boss"
-ANIMATION = SubResource("SpriteFrames_7vo7r")
+NAME = "angel_boss"
+ANIMATION = ExtResource("1_cp6xw")
 FLIP_H = false
 FLOATING = true
 SPEED = 20.0

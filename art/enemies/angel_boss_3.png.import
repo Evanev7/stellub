@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxtmrmjab36ky"
-path="res://.godot/imported/programmer 'art'.png-16624d3acd16500c707a471454a29159.ctex"
+uid="uid://catcqu1hxg882"
+path="res://.godot/imported/angel_boss_3.png-59625c85994b64bdeabd2cc22fa235bf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/programmer 'art'.png"
-dest_files=["res://.godot/imported/programmer 'art'.png-16624d3acd16500c707a471454a29159.ctex"]
+source_file="res://art/enemies/angel_boss_3.png"
+dest_files=["res://.godot/imported/angel_boss_3.png-59625c85994b64bdeabd2cc22fa235bf.ctex"]
 
 [params]
 

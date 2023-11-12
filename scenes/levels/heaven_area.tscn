@@ -39,6 +39,9 @@ layer_0/tile_data = PackedInt32Array(0, 1, 0)
 [node name="UpgradeHUD" parent="." index="2"]
 weapon_button_group = ExtResource("7_aofhj")
 
+[node name="pause_menu" parent="." index="3"]
+visible = false
+
 [node name="PickupHandler" parent="LogicComponents" index="1" node_paths=PackedStringArray("ysorter", "score_display") instance=ExtResource("2_pdelf")]
 pickup_scene = ExtResource("3_7bv8e")
 ysorter = NodePath("../../YSort")
