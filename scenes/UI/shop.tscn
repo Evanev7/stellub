@@ -14,7 +14,7 @@ script = ExtResource("1_5yppk")
 
 [node name="Control" type="CenterContainer" parent="."]
 offset_right = 1920.0
-offset_bottom = 1080.0
+offset_bottom = 894.0
 pivot_offset = Vector2(943, 891)
 
 [node name="MarginContainer" type="MarginContainer" parent="Control"]

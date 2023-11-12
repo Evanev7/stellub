@@ -179,7 +179,7 @@ func gain_score(value):
 
 func heal(value):
 	hp = clamp(hp + value, 0, hp_max)
-	hp_changed.emit(hp)
+	hp_changed.emit(hp, hp_max)
 	
 func activate_xp_vacuum():
 	get_tree().call_group("xp_pickup", "activate")

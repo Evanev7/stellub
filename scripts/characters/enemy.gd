@@ -127,6 +127,8 @@ func hurt(area):
 	
 	#Die when health is zero
 	if health <= 0:
+		$Hitbox/CollisionShape2D.set_deferred("disabled", true)
+		$Hurtbox/CollisionShape2D.set_deferred("disabled", true)
 		death_sound.play()
 		enemy_killed.emit(self)
 		set_process(false)

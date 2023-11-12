@@ -53,6 +53,8 @@ enemy_handler = NodePath("LogicComponents/EnemyHandler")
 metadata/_edit_vertical_guides_ = []
 
 [node name="teleporter" parent="YSort" index="0" instance=ExtResource("2_8o713")]
+z_index = -1
+y_sort_enabled = false
 
 [node name="TileMap" type="TileMap" parent="YSort" index="1"]
 z_index = -2
@@ -73,6 +75,7 @@ y_sort_enabled = false
 y_sort_enabled = true
 
 [node name="cursor_particles" parent="." index="1" instance=ExtResource("33_aqxfn")]
+z_index = 51
 position = Vector2(418, 419)
 
 [node name="Shop" parent="." index="3" instance=ExtResource("14_sb7gb")]
