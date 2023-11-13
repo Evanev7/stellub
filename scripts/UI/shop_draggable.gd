@@ -32,7 +32,7 @@ func _get_drag_data(_pos: Vector2) -> Variant:
 		"slot_swappable" = swappable
 	}
 	
-	print(data)
+	print("Drag Data: ", data)
 	
 	if not referenced_node:
 		return data

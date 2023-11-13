@@ -4,7 +4,7 @@ class_name Upgrade
 ## 1 is default
 @export var rarity: float = 1.0
 @export var icon: CompressedTexture2D
-
+@export var skip: bool = false
 
 func _ready():
 	pass

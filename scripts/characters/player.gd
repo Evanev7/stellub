@@ -44,7 +44,7 @@ func _ready():
 	sprite.scale = Vector2(0.9, 0.9)
 	GameState.player = self
 	hide()
-	$AttackHandler.stop()
+	attack_handler.stop()
 	set_physics_process(false)
 	player_ready.emit()
 
@@ -88,7 +88,7 @@ func start():
 	set_physics_process(true)
 	$CollisionShape2D.disabled = false
 	$Camera2D.set_deferred("enabled", true)
-	$AttackHandler.start()
+	attack_handler.start()
 
 
 # Set default player stats
@@ -109,14 +109,14 @@ func set_default_stats():
 	## Weapon Stats
 #	if GameState.debug:
 #		return
-	for attack in $AttackHandler.get_children():
+	for attack in attack_handler.get_children():
 		attack.queue_free()
-	$AttackHandler.add_attack_from_resource(STARTING_WEAPON)
+	attack_handler.add_attack_from_resource(STARTING_WEAPON)
 
 func add_attack_from_resource(bullet: BulletResource):
 	var modes = Attack.CONTROL_MODE
 	var available_modes = [modes.PRIMARY, modes.SECONDARY, modes.TERTIARY, modes.PASSIVE]
-	$AttackHandler.add_attack_from_resource(bullet, available_modes[control_mode])
+	attack_handler.add_attack_from_resource(bullet, available_modes[control_mode])
 	control_mode = clamp(control_mode + 1, 0, 3)
 
 # Called when the player gets hurt. Body can be either a bullet OR an enemy.
@@ -130,7 +130,7 @@ func hurt(body):
 		
 	if hp <= 0:
 		hide()
-		$AttackHandler.stop()
+		attack_handler.stop()
 		set_physics_process(false)
 		$CollisionShape2D.set_deferred("disabled", true)
 		$Camera2D.set_deferred("enabled", false)
@@ -190,16 +190,16 @@ func player_level_up():
 	speed *= 1.005
 	pickup_range.scale *= 1.01
 	
-	$AttackHandler.upgrade_all_attacks(stat_upgrade)
+	attack_handler.upgrade_all_attacks(stat_upgrade)
 
 func upgrade_attack(upgrade, weapon_number):
-	$AttackHandler.get_child(weapon_number).add_child(upgrade)
-	$AttackHandler.get_child(weapon_number).refresh_bullet_resource()
+	attack_handler.get_child(weapon_number).add_child(upgrade)
+	attack_handler.get_child(weapon_number).refresh_bullet_resource()
 
 #Marked for cleanup with new shop UI
 func get_all_attacks():
 	var attacks = []
-	for attack in $AttackHandler.get_children():
+	for attack in attack_handler.get_children():
 		attacks.append(attack)
 	return attacks
 
@@ -226,5 +226,5 @@ func _on_i_frames_timeout():
 
 
 func send_loadout_to_boss():
-	send_loadout.emit($AttackHandler.get_child(0))
+	send_loadout.emit(attack_handler.get_child(0))
 

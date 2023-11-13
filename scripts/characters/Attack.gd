@@ -17,22 +17,27 @@ var attack_handler: AttackHandler
 @export var initial_bullet: BulletResource
 var bullet: BulletResource
 
-@onready var icon = initial_bullet.icon
 
 var timer_active: bool = true
 var _timer: float
 var hit: bool = false
+var icon
 
 var active_upgrades: Array[Upgrade]
 
 func _ready():
 	assert(attack_direction or aim_mode == AIM_MODE.TARGETED, "Fixed attack created without attack direction!")
 	refresh_bullet_resource()
+	if initial_bullet:
+		icon = initial_bullet.icon
 	_timer = 0.01
 	attack_handler = get_parent()
 
 
 func _physics_process(_delta):
+	if not bullet:
+		return
+	
 	if not bullet.fire_on_hit:
 		if timer_active and _timer > 0:
 			_timer -= 1
@@ -71,8 +76,17 @@ func fire():
 	audio_player.play()
 	GameState.fire_bullet.emit(attack_handler.owner, bullet, attack_direction)
 
+func reset():
+	for child in get_children():
+		if child is Upgrade:
+			child.queue_free()
+	initial_bullet = null
+	bullet = null
 
 func refresh_bullet_resource():
+	if not initial_bullet:
+		return
+	
 	bullet = initial_bullet.duplicate()
 	for upgrade in get_children():
 		if upgrade is Upgrade:

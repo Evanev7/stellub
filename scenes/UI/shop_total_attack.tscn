@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://jgeavrbmn7f2"]
+[gd_scene load_steps=5 format=3 uid="uid://jgeavrbmn7f2"]
 
+[ext_resource type="Script" path="res://scripts/UI/shop_total_attack.gd" id="1_6mrto"]
 [ext_resource type="Script" path="res://scripts/UI/shop_draggable.gd" id="1_87tkg"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_gbimq"]
@@ -11,6 +12,7 @@ theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
+script = ExtResource("1_6mrto")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2

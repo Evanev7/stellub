@@ -1,5 +1,8 @@
 extends Upgrade
 
+func _ready():
+	skip = true
+
 func modify_bullet_resource(bullet: BulletResource) -> BulletResource:
 	bullet.damage *= 1.01
 	bullet.size *= 1.005
