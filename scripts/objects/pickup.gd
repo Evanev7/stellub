@@ -1,4 +1,5 @@
 extends Area2D
+class_name Pickup
 
 signal credit_player(value)
 
@@ -10,6 +11,7 @@ signal credit_player(value)
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
+enum {xp_pickup, hp_pickup, vacuum_pickup}
 var pickup_type: int
 
 var value: int = 1
@@ -20,13 +22,13 @@ var velocity: float = 0
 
 func _ready():
 	match pickup_type:
-		0:
+		xp_pickup:
 			sprite.animation = "xp_pickup"
 			add_to_group("xp_pickup")
-		1:
+		hp_pickup:
 			sprite.animation = "hp_pickup"
 			value = randi() % 51 + 10
-		2:
+		vacuum_pickup:
 			sprite.animation = "vacuum_pickup"
 	sprite.play()
 	

@@ -1,37 +1,34 @@
 extends Node
 class_name PickupHandler
 
-enum {xp_pickup, hp_pickup, vacuum_pickup}
 
 @export var pickup_scene: PackedScene
 
 @export var ysorter: Node2D
 @export var score_display: CanvasLayer
 
+var pool
+
 func _ready():
 	GameState.register_enemy.connect(attach_enemy)
+	pool = Pool.new()
+	pool.populate([[Pickup.hp_pickup,1], [Pickup.vacuum_pickup,1], [null,8]])
 
 func attach_enemy(enemy):
 	enemy.enemy_killed.connect(_on_enemy_killed)
 
 func _on_enemy_killed(enemy):
 	for i in range(enemy.value):
-		spawn_pickup(enemy.position, xp_pickup)
-	if randf() <= 0.1:
-		spawn_pickup(enemy.position, hp_pickup)
-	elif randf() <= 0.1:
-		spawn_pickup(enemy.position, vacuum_pickup)
+		spawn_pickup(enemy.position, Pickup.xp_pickup)
+	
+	var sample = pool.sample()
+	if sample:
+		spawn_pickup(enemy.position, sample)
 
 func spawn_pickup(pos, type):
 	var pickup = pickup_scene.instantiate()
 	pickup.position = pos
-	match type:
-		0:
-			pickup.pickup_type = xp_pickup
-		1:
-			pickup.pickup_type = hp_pickup
-		2:
-			pickup.pickup_type = vacuum_pickup
+	pickup.pickup_type = type
 
 	ysorter.call_deferred("add_child", pickup)
 	

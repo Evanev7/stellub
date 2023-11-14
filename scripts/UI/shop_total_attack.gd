@@ -79,5 +79,5 @@ func loadsave(mode: int, attack_node: Attack) -> Attack:
 
 func refresh_all():
 	$%Attack.refresh()
-	for i in range(1,5):
+	for i in range(1,6):
 		get_node("%Upgrade"+str(i)).refresh()

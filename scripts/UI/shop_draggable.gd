@@ -1,6 +1,8 @@
 extends TextureButton
 class_name ShopDraggable
 
+signal shop_item_taken
+
 static var placeholder_texture = PlaceholderTexture2D.new()
 enum SLOT_TYPE {ATTACK, UPGRADE}
 
@@ -52,7 +54,6 @@ func _can_drop_data(_pos: Vector2, incoming_data) -> bool:
 		return false
 	if incoming_data["slot_swappable"] == false and referenced_node != null:
 		return false
-	
 	return true
 
 
@@ -63,6 +64,7 @@ func _drop_data(_pos: Vector2, data) -> void:
 	elif referenced_node == null:
 		data["origin_node"].referenced_node = null
 		referenced_node = data["referenced_node"]
+		shop_item_taken.emit()
 	
 	refresh()
 	data["origin_node"].refresh()

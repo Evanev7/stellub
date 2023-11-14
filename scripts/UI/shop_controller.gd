@@ -161,3 +161,8 @@ func close_shop():
 
 func _on_shop_exit_pressed():
 	close_shop()
+
+
+func _on_shop_item_taken():
+	for i in range(1,5):
+		get_node("%Shop"+str(i)).disabled = true
