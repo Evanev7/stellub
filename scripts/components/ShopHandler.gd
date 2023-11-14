@@ -16,18 +16,11 @@ var shop_weapons_list: Array[BulletResource]
 @export var shop_node: CanvasLayer
 @export var teleporter: Node2D
 
-@onready var upgrade_pool = Pool.new()
-@onready var weapon_pool = Pool.new()
+var upgrade_pool: Pool
+var weapon_pool: Pool
 
 func _ready():
-	var upgrades = []
-	for upgrade in shop_upgrades_list:
-		upgrades.append([upgrade, int(upgrade.rarity*10)])
-	upgrade_pool.populate(upgrades)
-	var weapons = []
-	for weapon in shop_weapons_list:
-		weapons.append([weapon, int(weapon.rarity*2)])
-	weapon_pool.populate(weapons)
+	pass
 	
 	
 
@@ -35,6 +28,20 @@ func start():
 	shop_upgrades_list = default_shop_upgrades_list.duplicate()
 	shop_weapons_list = default_shop_weapons_list.duplicate()
 	teleporter.start()
+	
+	upgrade_pool = Pool.new()
+	weapon_pool = Pool.new()
+	
+	var upgrades = []
+	for upgrade in shop_upgrades_list:
+		#this is bad but needs fixing
+		var upgrade_instance = upgrade.instantiate()
+		upgrades.append([upgrade_instance, int(upgrade_instance.rarity*10)])
+	upgrade_pool.populate(upgrades)
+	var weapons = []
+	for weapon in shop_weapons_list:
+		weapons.append([weapon, int(weapon.rarity*2)])
+	weapon_pool.populate(weapons)
 	
 
 func spawn_magic_circles():

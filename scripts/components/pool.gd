@@ -7,7 +7,7 @@ var original_pool: Array = []
 var multiplier: int = 1
 
 #The input should be formatted as [[item1, quantity1], [item2, quantity2]]. can change if needed.
-func populate(array_pairs: Array[Array], multi: int = 1) -> void:
+func populate(array_pairs: Array, multi: int = 1) -> void:
 	for pair in array_pairs:
 		var item = pair[0]
 		var quantity = pair[1]
@@ -63,7 +63,7 @@ func multiply(multi: int) -> void:
 func multiply_array(array: Array, integer: int) -> Array:
 	var new_array: Array = []
 	for i in range(integer):
-		new_array.append(array)
+		new_array.append_array(array)
 	return new_array
 
 
