@@ -42,6 +42,7 @@ func _get_drag_data(_pos: Vector2) -> Variant:
 	var drag_preview: Sprite2D = drag_preview_scene.instantiate()
 	drag_preview.texture = texture_normal
 	drag_preview.apply_scale(Vector2(64.0/texture_normal.get_width(),64.0/texture_normal.get_height()))
+	drag_preview.set_rotation(0.2)
 	owner.add_child(drag_preview)
 	
 	return data

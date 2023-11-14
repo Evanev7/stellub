@@ -139,8 +139,4 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 
-[connection signal="shop_item_taken" from="Control/MarginContainer/VBoxContainer/HBoxContainer/UpgradePanel/HBoxContainer/Shop1" to="." method="_on_shop_item_taken"]
-[connection signal="shop_item_taken" from="Control/MarginContainer/VBoxContainer/HBoxContainer/UpgradePanel/HBoxContainer/Shop2" to="." method="_on_shop_item_taken"]
-[connection signal="shop_item_taken" from="Control/MarginContainer/VBoxContainer/HBoxContainer/UpgradePanel/HBoxContainer/Shop3" to="." method="_on_shop_item_taken"]
-[connection signal="shop_item_taken" from="Control/MarginContainer/VBoxContainer/HBoxContainer/UpgradePanel/HBoxContainer/Shop4" to="." method="_on_shop_item_taken"]
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/HBoxContainer/UpgradePanel/HBoxContainer/ShopExit" to="." method="_on_shop_exit_pressed"]

@@ -62,7 +62,7 @@ func spawn_magic_circles():
 		magic_circle.connect("remove_circle_from_objective_marker", _on_remove_marker)
 
 
-func _on_shop_entered():
+func _on_shop_entered(shop_attached_to):
 	var chosen_upgrades = []
 	var is_weapon_present := false
 	
@@ -76,15 +76,15 @@ func _on_shop_entered():
 		chosen_upgrades = upgrade_pool.sample(4)
 	
 	
-	open_shop(chosen_upgrades, is_weapon_present)
+	open_shop(chosen_upgrades, is_weapon_present, shop_attached_to)
 
 
-func open_shop(stat_upgrades, is_weapon_present):
+func open_shop(stat_upgrades, is_weapon_present, shop_attached_to):
 	GameState.pause_game()
+	shop_node.shop_attached_to = shop_attached_to
 	shop_node.set_visible(true)
 	shop_node.open_shop(stat_upgrades, is_weapon_present)
-
-
+	shop_node.connect('remove_shop', remove_shop)
 
 func _on_spawn_shop(position):
 	var shop = shop_scene.instantiate()
@@ -92,8 +92,9 @@ func _on_spawn_shop(position):
 	shop.position = position
 	ysorter.add_child(shop)
 	shop.connect('shop_entered', _on_shop_entered)
-	shop.remove_shop.connect(shop._on_shop_leave)
 
+func remove_shop(shop):
+	shop.queue_free()
 
 func _on_activate_teleporter():
 	teleporter.set_process(true)

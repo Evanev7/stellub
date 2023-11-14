@@ -1,10 +1,13 @@
 extends CanvasLayer
 
 
+signal remove_shop
 
 enum {SAVE, LOAD}
 
 @export var num_gui_attacks = 4
+
+var shop_attached_to
 
 func get_attack_nodes(parent: Node) -> Array[Attack]:
 	var nodes: Array[Attack] = []
@@ -153,14 +156,14 @@ func open_shop(chosen_upgrades, weapon):
 	populate_shop(chosen_upgrades)
 
 
+func _on_shop_exit_pressed():
+	close_shop()
+
 func close_shop():
 	loadsave(SAVE)
 	GameState.unpause_game()
 	set_visible(false)
-
-
-func _on_shop_exit_pressed():
-	close_shop()
+	remove_shop.emit(shop_attached_to)
 
 
 func _on_shop_item_taken():

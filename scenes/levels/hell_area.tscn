@@ -33,7 +33,7 @@
 [ext_resource type="PackedScene" uid="uid://b2tef800ecm8u" path="res://scenes/components/weapon_handler.tscn" id="17_gx7j2"]
 [ext_resource type="PackedScene" uid="uid://bco6kn11dyo6o" path="res://scenes/components/boss_handler.tscn" id="18_yysi3"]
 [ext_resource type="PackedScene" uid="uid://d23ddhgery8pq" path="res://scenes/characters/boss.tscn" id="20_gixqi"]
-[ext_resource type="Resource" path="res://resources/enemy/demon_lord.tres" id="21_jliye"]
+[ext_resource type="Resource" uid="uid://cde86qx4smawg" path="res://resources/enemy/demon_lord.tres" id="21_jliye"]
 [ext_resource type="PackedScene" uid="uid://bgt31t0wymqk4" path="res://upgrades/auto_fire.tscn" id="25_k7x3o"]
 [ext_resource type="PackedScene" uid="uid://cwtvi2ph44p4d" path="res://scenes/UI/cursor_particles.tscn" id="33_aqxfn"]
 

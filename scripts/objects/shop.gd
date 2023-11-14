@@ -1,6 +1,6 @@
 extends Node2D
 
-signal shop_entered
+signal shop_entered(shop)
 signal remove_target
 
 @export var shop_resource_list: Array[ShopResource]
@@ -28,13 +28,12 @@ func _on_open_area_exited(body):
 
 func _on_interact_area_entered(body):
 	if body == GameState.player:
-		shop_entered.emit()
+		shop_entered.emit(self)
 
 
 func disable():
 	process_mode = Node.PROCESS_MODE_DISABLED
 	hide()
-
 
 func _on_upgrade_hud_leave():
 	queue_free()
