@@ -16,8 +16,19 @@ var shop_weapons_list: Array[BulletResource]
 @export var shop_node: CanvasLayer
 @export var teleporter: Node2D
 
+@onready var upgrade_pool = Pool.new()
+@onready var weapon_pool = Pool.new()
+
 func _ready():
-	pass
+	var upgrades = []
+	for upgrade in shop_upgrades_list:
+		upgrades.append([upgrade, int(upgrade.rarity*10)])
+	upgrade_pool.populate(upgrades)
+	var weapons = []
+	for weapon in shop_weapons_list:
+		weapons.append([weapon, int(weapon.rarity*2)])
+	weapon_pool.populate(weapons)
+	
 	
 
 func start():
@@ -46,29 +57,17 @@ func spawn_magic_circles():
 
 func _on_shop_entered():
 	var chosen_upgrades = []
-	var shop_array = shop_upgrades_list.duplicate()
-	var weapon_array = shop_weapons_list.duplicate()
 	var is_weapon_present := false
 	
 	if randf() <= 1:
-		weapon_array.shuffle()
-		for weapon in weapon_array:
-			if randf() <= weapon.rarity:
-				is_weapon_present = true
-				var weapon_node = Attack.new()
-				weapon_node.initial_bullet = weapon
-				chosen_upgrades.append(weapon_node)
-				break
+		chosen_upgrades = upgrade_pool.sample(3)
+		is_weapon_present = true
+		var weapon_node = Attack.new()
+		weapon_node.initial_bullet = weapon_pool.sample(1)
+		chosen_upgrades.append(weapon_node)
+	else: 
+		chosen_upgrades = upgrade_pool.sample(4)
 	
-	while chosen_upgrades.size() != 4:
-		if shop_array.size() == 0:
-			shop_array = shop_upgrades_list.duplicate()
-			
-		shop_array.shuffle()
-		var upgrade = shop_array.pop_front().instantiate()
-		
-		if randf() <= upgrade.rarity:
-			chosen_upgrades.append(upgrade)
 	
 	open_shop(chosen_upgrades, is_weapon_present)
 

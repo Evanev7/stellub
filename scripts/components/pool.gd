@@ -20,14 +20,39 @@ func populate(array_pairs: Array[Array], multi: int = 1) -> void:
 
 
 func pop():
-	var item = sample()
-	pool.erase(item)
+	var item = sample(1)
+	remove(item)
 	return item
 
 
-func sample():
-	var index = randi_range(0,len(pool)-1)
-	return pool[index]
+func sample(n: int = 1, unique_draw: bool = true):
+	if n == 1:
+		var index = randi_range(0,len(pool)-1)
+		return pool[index]
+	
+	var output = []
+	if not unique_draw:
+		var items = []
+		while len(items) < n:
+			var index = randi_range(0,len(pool)-1)
+			if not items.has(index):
+				items.append(index)
+		
+		
+		for index in items:
+			output.append(pool[index])
+	else:
+		while len(output) < n:
+			var index = randi_range(0,len(pool)-1)
+			if not output.has(pool[index]):
+				output.append(pool[index])
+	
+	return output
+	
+	
+
+func remove(item):
+	pool.erase(item)
 
 
 func multiply(multi: int) -> void:
