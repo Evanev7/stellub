@@ -84,7 +84,7 @@ func open_shop(stat_upgrades, is_weapon_present, shop_attached_to):
 	shop_node.shop_attached_to = shop_attached_to
 	shop_node.set_visible(true)
 	shop_node.open_shop(stat_upgrades, is_weapon_present)
-	shop_node.connect('remove_shop', remove_shop)
+	shop_node.connect('remove_shop', _remove_shop)
 
 func _on_spawn_shop(position):
 	var shop = shop_scene.instantiate()
@@ -93,7 +93,7 @@ func _on_spawn_shop(position):
 	ysorter.add_child(shop)
 	shop.connect('shop_entered', _on_shop_entered)
 
-func remove_shop(shop):
+func _remove_shop(shop):
 	shop.queue_free()
 
 func _on_activate_teleporter():

@@ -38,8 +38,14 @@ func get_attack_direction() -> FireFrom:
 		TARGET_MODE.PLAYER:
 			attack_direction.toward(position + owner.position, GameState.player.position)
 		TARGET_MODE.NEAREST_ENEMY:
-			#I can implement this if we think it's cool, I won't for now.
-			pass
+			var closest_enemy: Node = GameState.player
+			var closest_enemy_distance: float = 0
+			for enemy in get_tree().get_nodes_in_group("enemy"):
+				var current_enemy_distance: float = owner.position.distance_to(enemy.global_position)
+				if closest_enemy == GameState.player or current_enemy_distance < closest_enemy_distance:
+					closest_enemy = enemy
+					closest_enemy_distance = current_enemy_distance
+			attack_direction.toward(position + owner.position, closest_enemy.position)
 	
 	return attack_direction
 

@@ -32,7 +32,19 @@ func _ready():
 	sprite.sprite_frames = data.animation
 	$SelfDestruct.wait_time = data.lifetime
 	$SelfDestruct.start()
-	rotation = direction.angle()
+	
+	match data.facing_direction:
+		BulletResource.FACING_DIRECTION.DEFAULT:
+			rotation = direction.angle()
+		BulletResource.FACING_DIRECTION.UP:
+			rotation = Vector2(0, -1).angle()
+		BulletResource.FACING_DIRECTION.DOWN:
+			rotation = Vector2(0, 1).angle()
+		BulletResource.FACING_DIRECTION.LEFT:
+			rotation = Vector2(1, 0).angle()
+		BulletResource.FACING_DIRECTION.RIGHT:
+			rotation = Vector2(-1, 0).angle()
+			
 	$AnimatedSprite2D.modulate = data.colour
 	$AnimatedSprite2D.play()
 	
@@ -111,8 +123,7 @@ func transport(delta) -> void:
 		
 		BulletResource.TRANSPORT_MODE.STATIC:
 			pass
-
-
+			
 func _on_self_destruct_timeout():
 	if data.spawn_on_timeout and spawned_bullet:
 		spawn_child()

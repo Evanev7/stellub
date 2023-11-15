@@ -3,6 +3,7 @@ extends Resource
 class_name BulletResource
 
 enum TRANSPORT_MODE {LINEAR, ROTATING_FIXED_CENTRE, ROTATING_NO_CENTRE, ROTATING_LINEAR_CENTRE, STATIC}
+enum FACING_DIRECTION {DEFAULT, UP, DOWN, LEFT, RIGHT}
 
 @export_category("Metadata")
 @export var name: String
@@ -31,6 +32,7 @@ enum TRANSPORT_MODE {LINEAR, ROTATING_FIXED_CENTRE, ROTATING_NO_CENTRE, ROTATING
 @export_category("Projectile Stats")
 @export var damage: float = 1
 @export var transport_mode: TRANSPORT_MODE = TRANSPORT_MODE.LINEAR
+@export var facing_direction: FACING_DIRECTION = FACING_DIRECTION.DEFAULT
 @export var activation_delay: float = 0
 @export var angular_velocity: float = 0
 @export var piercing: int = 1

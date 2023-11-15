@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dpjckt12ipcw2"]
+[gd_scene load_steps=14 format=3 uid="uid://dpjckt12ipcw2"]
 
 [ext_resource type="Script" path="res://scripts/characters/enemy.gd" id="1_oyorq"]
 [ext_resource type="SpriteFrames" uid="uid://bpernxx6xbtyn" path="res://resources/enemy/demon_skeleton_spriteframes.tres" id="2_60lhk"]
@@ -8,6 +8,7 @@
 [ext_resource type="Shape2D" uid="uid://q26ka3qri44y" path="res://resources/hitboxes/demon_skeleton_hitbox.tres" id="4_yc22m"]
 [ext_resource type="Script" path="res://scripts/characters/AttackHandler.gd" id="6_hcyh0"]
 [ext_resource type="PackedScene" uid="uid://cicwqsj3byj4u" path="res://scenes/components/spawn_collision_handler.tscn" id="7_ckcoh"]
+[ext_resource type="PackedScene" uid="uid://be4i0yo3jsk42" path="res://scenes/components/attack.tscn" id="8_70e2t"]
 [ext_resource type="AudioStream" uid="uid://dd6gtnmge0jsf" path="res://sounds/enemy_damage.wav" id="9_60s43"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fmm6i"]
@@ -62,6 +63,7 @@ shape = ExtResource("4_yc22m")
 
 [node name="AttackHandler" type="Node2D" parent="."]
 script = ExtResource("6_hcyh0")
+attack_scene = ExtResource("8_70e2t")
 
 [node name="SpawnCollisionHandler" parent="." node_paths=PackedStringArray("spawn_collider") instance=ExtResource("7_ckcoh")]
 spawn_collider = NodePath("../Hitbox")

@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="BulletResource" load_steps=6 format=3 uid="uid://ccpb4udi5owpj"]
+[gd_resource type="Resource" script_class="BulletResource" load_steps=7 format=3 uid="uid://ccpb4udi5owpj"]
 
 [ext_resource type="Script" path="res://scripts/objects/bullet_resource.gd" id="1_dmiyo"]
 [ext_resource type="SpriteFrames" uid="uid://cbfq7bqkgh3ti" path="res://resources/bullets/player/player_bullet_spriteframes.tres" id="1_eteat"]
 [ext_resource type="Texture2D" uid="uid://cy2ajprj0e7h5" path="res://art/bullets/player/simple_bullet_1.png" id="2_ayv1f"]
 [ext_resource type="AudioStream" uid="uid://csifdlbjdrodm" path="res://sounds/normal_shot.wav" id="4_sjyjo"]
+[ext_resource type="Resource" uid="uid://cttw5mxt1sn0l" path="res://resources/bullets/player/orbital_laser.tres" id="5_wl67p"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_5xvx1"]
 streams_count = 1
@@ -42,4 +43,5 @@ deactivation_range = 500
 vacuum = false
 vacuum_range = 100.0
 vacuum_strength = 1.0
-spawn_on_timeout = false
+spawned_bullet_resource = ExtResource("5_wl67p")
+spawn_on_timeout = true

@@ -3,7 +3,7 @@ class_name ShopDraggable
 
 signal shop_item_taken
 
-static var placeholder_texture = PlaceholderTexture2D.new()
+var button_texture = preload("res://art/UI/Shop/Button Empty.png")
 enum SLOT_TYPE {ATTACK, UPGRADE}
 
 @export var drag_preview_scene: PackedScene = preload("res://scenes/UI/drag_preview.tscn")
@@ -24,7 +24,7 @@ func refresh() -> void:
 	if referenced_node and referenced_node.get("icon") != null:
 		texture_normal = referenced_node.icon
 	else:
-		texture_normal = placeholder_texture
+		texture_normal = button_texture
 
 func _get_drag_data(_pos: Vector2) -> Variant:
 	var data = {
