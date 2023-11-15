@@ -20,6 +20,7 @@ layout_mode = 2
 theme_override_constants/separation = 20
 
 [node name="CenterContainer2" type="CenterContainer" parent="HBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="GridContainer" type="GridContainer" parent="HBoxContainer/CenterContainer2"]
@@ -236,6 +237,72 @@ stretch_mode = 0
 script = ExtResource("1_87tkg")
 
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer/HBoxContainer/CenterUpgrade5/Upgrade5"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_q5ar0")
+expand_mode = 1
+
+[node name="CenterUpgrade6" type="CenterContainer" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Upgrade5" type="TextureButton" parent="HBoxContainer/HBoxContainer/CenterUpgrade6"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+texture_normal = SubResource("PlaceholderTexture2D_gbimq")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("1_87tkg")
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/HBoxContainer/CenterUpgrade6/Upgrade5"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_q5ar0")
+expand_mode = 1
+
+[node name="CenterUpgrade7" type="CenterContainer" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Upgrade5" type="TextureButton" parent="HBoxContainer/HBoxContainer/CenterUpgrade7"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+texture_normal = SubResource("PlaceholderTexture2D_gbimq")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("1_87tkg")
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/HBoxContainer/CenterUpgrade7/Upgrade5"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_q5ar0")
+expand_mode = 1
+
+[node name="CenterUpgrade8" type="CenterContainer" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Upgrade5" type="TextureButton" parent="HBoxContainer/HBoxContainer/CenterUpgrade8"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+texture_normal = SubResource("PlaceholderTexture2D_gbimq")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("1_87tkg")
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/HBoxContainer/CenterUpgrade8/Upgrade5"]
 z_index = -1
 layout_mode = 1
 anchors_preset = 15

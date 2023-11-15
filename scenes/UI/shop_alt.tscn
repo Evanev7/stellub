@@ -1,0 +1,221 @@
+[gd_scene load_steps=9 format=3 uid="uid://q4d36f0kg6yg"]
+
+[ext_resource type="Script" path="res://scripts/UI/shop_controller.gd" id="1_gilh6"]
+[ext_resource type="Texture2D" uid="uid://dxtmrmjab36ky" path="res://art/UI/programmer 'art'.png" id="2_bcolm"]
+[ext_resource type="Script" path="res://scripts/UI/shop_draggable.gd" id="3_bkygl"]
+[ext_resource type="Texture2D" uid="uid://c1pc88qkwsmnl" path="res://art/UI/Shop/Button Empty.png" id="4_xri81"]
+[ext_resource type="Texture2D" uid="uid://cdseftigmx86u" path="res://art/UI/no lmao.png" id="5_gccri"]
+[ext_resource type="PackedScene" uid="uid://jgeavrbmn7f2" path="res://scenes/UI/shop_total_attack.tscn" id="6_egsl6"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_hcpdw"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_dfl7m"]
+
+[node name="ShopAlt" type="CanvasLayer"]
+script = ExtResource("1_gilh6")
+
+[node name="Control" type="CenterContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -447.0
+offset_right = 960.0
+offset_bottom = 447.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(943, 891)
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="Control/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer2"]
+z_index = -2
+layout_mode = 2
+texture = ExtResource("2_bcolm")
+region_rect = Rect2(64, 64, 256, 256)
+patch_margin_left = 64
+patch_margin_top = 64
+patch_margin_right = 64
+patch_margin_bottom = 64
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="UpgradePanel" type="MarginContainer" parent="Control/MarginContainer/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 60
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Shop1" type="TextureButton" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+clip_contents = true
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+texture_normal = SubResource("PlaceholderTexture2D_hcpdw")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("3_bkygl")
+swappable = false
+
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer/Shop1"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_xri81")
+expand_mode = 1
+
+[node name="Shop2" type="TextureButton" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+texture_normal = SubResource("PlaceholderTexture2D_dfl7m")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("3_bkygl")
+swappable = false
+
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer/Shop2"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_xri81")
+expand_mode = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Shop4" type="TextureButton" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+texture_normal = SubResource("PlaceholderTexture2D_dfl7m")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("3_bkygl")
+swappable = false
+
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer2/Shop4"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_xri81")
+expand_mode = 1
+
+[node name="Shop5" type="TextureButton" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer2"]
+clip_contents = true
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+texture_normal = SubResource("PlaceholderTexture2D_hcpdw")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("3_bkygl")
+swappable = false
+
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer2/Shop5"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_xri81")
+expand_mode = 1
+
+[node name="ShopExit" type="TextureButton" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+texture_normal = ExtResource("5_gccri")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/ShopExit"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_xri81")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_right = 80
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer"]
+z_index = -2
+layout_mode = 2
+texture = ExtResource("2_bcolm")
+region_rect = Rect2(64, 64, 256, 256)
+patch_margin_left = 64
+patch_margin_top = 64
+patch_margin_right = 64
+patch_margin_bottom = 64
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/MarginContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="TotalAttack1" parent="Control/MarginContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer" instance=ExtResource("6_egsl6")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="TotalAttack2" parent="Control/MarginContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer" instance=ExtResource("6_egsl6")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="TotalAttack3" parent="Control/MarginContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer" instance=ExtResource("6_egsl6")]
+unique_name_in_owner = true
+layout_mode = 2
