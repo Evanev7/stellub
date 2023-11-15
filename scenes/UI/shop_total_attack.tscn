@@ -14,7 +14,6 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 script = ExtResource("1_6mrto")
-num_gui_upgrades = 8
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2

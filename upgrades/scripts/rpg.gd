@@ -10,7 +10,7 @@ func _ready():
 func modify_bullet_resource(bullet: BulletResource) -> BulletResource:
 	bullet.shot_speed = clamp(bullet.shot_speed - 400, 10, bullet.shot_speed)
 	bullet.shot_acceleration += 900
-	bullet.range *= 1.5
+	bullet.bullet_range *= 1.5
 	return bullet
 
 

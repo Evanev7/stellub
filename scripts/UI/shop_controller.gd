@@ -5,7 +5,7 @@ signal remove_shop
 
 enum {SAVE, LOAD}
 
-@export var num_gui_attacks = 4
+@export var num_gui_attacks = 3
 @export var num_shop_nodes = 4
 
 var shop_attached_to
@@ -78,7 +78,7 @@ func clear_shop():
 			shop_node.referenced_node.queue_free()
 
 
-func open_shop(chosen_upgrades, weapon):
+func open_shop(chosen_upgrades, _weapon):
 	print(chosen_upgrades)
 	loadsave(LOAD)
 	populate_shop(chosen_upgrades)

@@ -2,6 +2,7 @@ extends Resource
 
 class_name UpgradeResource
 
+@export var name: String
 @export var upgrade_script: Script
 
 @export var quantity: int = 10

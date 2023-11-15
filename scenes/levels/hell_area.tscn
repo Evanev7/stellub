@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://qhl6r2tbil5t"]
+[gd_scene load_steps=43 format=3 uid="uid://qhl6r2tbil5t"]
 
 [ext_resource type="PackedScene" uid="uid://dilk21k2nncq2" path="res://scenes/levels/level_template.tscn" id="1_ttjsf"]
 [ext_resource type="PackedScene" uid="uid://dfrum4te4lpmr" path="res://scenes/objects/teleporter.tscn" id="2_8o713"]
@@ -24,7 +24,7 @@
 [ext_resource type="Resource" uid="uid://b3v62pkd6hntd" path="res://resources/bullets/player/shotgun.tres" id="15_gx6j7"]
 [ext_resource type="Resource" uid="uid://8ogmebrr77xx" path="res://resources/bullets/player/black_hole.tres" id="16_fw7me"]
 [ext_resource type="PackedScene" uid="uid://b2tef800ecm8u" path="res://scenes/components/weapon_handler.tscn" id="17_gx7j2"]
-[ext_resource type="PackedScene" uid="uid://q4d36f0kg6yg" path="res://scenes/UI/shop_alt.tscn" id="17_w6kee"]
+[ext_resource type="PackedScene" uid="uid://rnajon2osv8v" path="res://scenes/UI/shop_alt.tscn" id="17_w6kee"]
 [ext_resource type="PackedScene" uid="uid://bco6kn11dyo6o" path="res://scenes/components/boss_handler.tscn" id="18_yysi3"]
 [ext_resource type="PackedScene" uid="uid://d23ddhgery8pq" path="res://scenes/characters/boss.tscn" id="20_gixqi"]
 [ext_resource type="Resource" path="res://resources/enemy/demon_lord.tres" id="21_jliye"]

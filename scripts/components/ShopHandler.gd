@@ -77,6 +77,8 @@ func _on_shop_entered(shop_attached_to):
 			var upgrade_node = upgrade_from_res(upgrade)
 			chosen_upgrades.append(upgrade_node)
 	
+	chosen_upgrades.shuffle()
+	
 	open_shop(chosen_upgrades, is_weapon_present, shop_attached_to)
 
 
@@ -85,6 +87,7 @@ func upgrade_from_res(upgrade_resource: UpgradeResource) -> Upgrade:
 	upgrade_node.script_data = upgrade_resource.script_data
 	upgrade_node.skip = not upgrade_resource.appears_in_inventory
 	upgrade_node.icon = upgrade_resource.icon
+	upgrade_node.name = upgrade_resource.name
 	return upgrade_node
 
 
@@ -93,6 +96,7 @@ func open_shop(chosen_upgrades, is_weapon_present, shop_attached_to):
 	shop_node.shop_attached_to = shop_attached_to
 	shop_node.set_visible(true)
 	shop_node.open_shop(chosen_upgrades, is_weapon_present)
+	# this will error that is fine dw about it
 	shop_node.connect('remove_shop', _remove_shop)
 
 func _on_spawn_shop(position):

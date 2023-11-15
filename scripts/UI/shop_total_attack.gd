@@ -5,7 +5,7 @@ static var config_node_names = [
 static var control_modes = [
 	Attack.CONTROL_MODE.PRIMARY, Attack.CONTROL_MODE.SECONDARY, Attack.CONTROL_MODE.TERTIARY, Attack.CONTROL_MODE.PASSIVE]
 
-@export var num_gui_upgrades = 5
+@export var num_gui_upgrades = 8
 
 enum {SAVE, LOAD}
 
@@ -80,5 +80,5 @@ func loadsave(mode: int, attack_node: Attack) -> Attack:
 
 func refresh_all():
 	$%Attack.refresh()
-	for i in range(1,6):
-		get_node("%Upgrade"+str(i)).refresh()
+	for i in range(num_gui_upgrades):
+		get_node("%Upgrade"+str(i+1)).refresh()

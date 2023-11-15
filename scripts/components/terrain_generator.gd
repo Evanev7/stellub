@@ -15,6 +15,7 @@ class_name TerrainGenerator
 @onready var tile_size: Vector2 = tile_map.scale * Vector2(tile_map.tile_set.tile_size)
 @onready var used_cells = tile_map.get_used_cells(0)
 
+
 var landing_attempts = 10
 
 func _ready():
