@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://jgeavrbmn7f2"]
+[gd_scene load_steps=6 format=3 uid="uid://jgeavrbmn7f2"]
 
 [ext_resource type="Script" path="res://scripts/UI/shop_total_attack.gd" id="1_6mrto"]
 [ext_resource type="Script" path="res://scripts/UI/shop_draggable.gd" id="1_87tkg"]
+[ext_resource type="Texture2D" uid="uid://c1pc88qkwsmnl" path="res://art/UI/Shop/Button Empty.png" id="2_q5ar0"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_gbimq"]
 
@@ -35,6 +36,17 @@ texture_normal = SubResource("PlaceholderTexture2D_gbimq")
 ignore_texture_size = true
 stretch_mode = 0
 
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/CenterContainer2/GridContainer/Primary"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_q5ar0")
+expand_mode = 1
+
 [node name="Secondary" type="TextureButton" parent="HBoxContainer/CenterContainer2/GridContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(30, 30)
@@ -42,6 +54,17 @@ layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_gbimq")
 ignore_texture_size = true
 stretch_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/CenterContainer2/GridContainer/Secondary"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_q5ar0")
+expand_mode = 1
 
 [node name="Tertiary" type="TextureButton" parent="HBoxContainer/CenterContainer2/GridContainer"]
 unique_name_in_owner = true
@@ -51,6 +74,17 @@ texture_normal = SubResource("PlaceholderTexture2D_gbimq")
 ignore_texture_size = true
 stretch_mode = 0
 
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/CenterContainer2/GridContainer/Tertiary"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_q5ar0")
+expand_mode = 1
+
 [node name="Passive" type="TextureButton" parent="HBoxContainer/CenterContainer2/GridContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(30, 30)
@@ -58,6 +92,17 @@ layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_gbimq")
 ignore_texture_size = true
 stretch_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/CenterContainer2/GridContainer/Passive"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_q5ar0")
+expand_mode = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="HBoxContainer"]
 layout_mode = 2
@@ -71,6 +116,17 @@ ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("1_87tkg")
 slot_type = 0
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/CenterContainer/Attack"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_q5ar0")
+expand_mode = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
@@ -87,6 +143,17 @@ ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("1_87tkg")
 
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/HBoxContainer/CenterUpgrade1/Upgrade1"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_q5ar0")
+expand_mode = 1
+
 [node name="CenterUpgrade2" type="CenterContainer" parent="HBoxContainer/HBoxContainer"]
 layout_mode = 2
 
@@ -98,6 +165,17 @@ texture_normal = SubResource("PlaceholderTexture2D_gbimq")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("1_87tkg")
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/HBoxContainer/CenterUpgrade2/Upgrade2"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_q5ar0")
+expand_mode = 1
 
 [node name="CenterUpgrade3" type="CenterContainer" parent="HBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -111,6 +189,17 @@ ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("1_87tkg")
 
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/HBoxContainer/CenterUpgrade3/Upgrade3"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_q5ar0")
+expand_mode = 1
+
 [node name="CenterUpgrade4" type="CenterContainer" parent="HBoxContainer/HBoxContainer"]
 layout_mode = 2
 
@@ -123,6 +212,17 @@ ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("1_87tkg")
 
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/HBoxContainer/CenterUpgrade4/Upgrade4"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_q5ar0")
+expand_mode = 1
+
 [node name="CenterUpgrade5" type="CenterContainer" parent="HBoxContainer/HBoxContainer"]
 layout_mode = 2
 
@@ -134,3 +234,14 @@ texture_normal = SubResource("PlaceholderTexture2D_gbimq")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("1_87tkg")
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/HBoxContainer/CenterUpgrade5/Upgrade5"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_q5ar0")
+expand_mode = 1
