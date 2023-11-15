@@ -67,6 +67,7 @@ libraries = {
 
 [node name="LabelContainer" type="Node2D" parent="."]
 modulate = Color(1, 1, 1, 0)
+z_index = 4
 scale = Vector2(1e-05, 1e-05)
 
 [node name="Label" type="Label" parent="LabelContainer"]

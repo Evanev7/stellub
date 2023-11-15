@@ -179,10 +179,12 @@ layout_mode = 2
 theme_override_constants/separation = 0
 
 [node name="TotalAttack1" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft" instance=ExtResource("3_b1a8l")]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 
 [node name="TotalAttack2" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsLeft" instance=ExtResource("3_b1a8l")]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 
@@ -191,10 +193,12 @@ layout_mode = 2
 theme_override_constants/separation = 0
 
 [node name="TotalAttack3" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight" instance=ExtResource("3_b1a8l")]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 
 [node name="TotalAttack4" parent="Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WeaponsRight" instance=ExtResource("3_b1a8l")]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 

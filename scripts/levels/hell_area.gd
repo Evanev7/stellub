@@ -1,7 +1,7 @@
 extends Node
 
 
-@export var heaven_area_scene: PackedScene
+#@export var heaven_area_scene: PackedScene
 
 @export var enemy_resource_list: Array[EnemyResource]
 
@@ -17,30 +17,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
-	#print("bullets: " + str(get_tree().get_nodes_in_group("bullet").size()))
+#	print("bullets: " + str(get_tree().get_nodes_in_group("bullet").size()))
 #	print("enemies: " + str(get_tree().get_nodes_in_group("enemy").size()))
 	pass
-	
-	##Debug ###############################
-	
-	if GameState.debug and Input.is_action_pressed("debug_gain_score"): ## R
-		GameState.player.gain_score(10)
-		HUD.show_score(GameState.player.score, GameState.player.level_threshold[GameState.player.current_level])
-	
-	if GameState.debug and Input.is_action_just_pressed("debug_evolve"): ## E
-		GameState.player.current_evolution += 1
-		GameState.player.evolve()
-	
-	if GameState.debug and Input.is_action_just_pressed("debug_spawn_enemy"): # L
-		for i in range(10):
-			$LogicComponents/EnemyHandler.spawn_enemy(randi() % 6)
-		
-	if GameState.debug and Input.is_action_just_pressed("debug_spawn_boss"): # B
-		GameState.player.send_loadout_to_boss()
-		
-	if GameState.debug and Input.is_action_just_pressed("debug_activate_teleporter"): # T
-		$LogicComponents/ShopHandler._on_activate_teleporter()
-	#######################################
 
 
 # Start the timers we need, instantiate the HUD and get the player in the right spot.
@@ -55,6 +34,7 @@ func start_game():
 	HUD.show_message("All Hell Breaks Loose!")
 	HUD.show_health(GameState.player.hp, GameState.player.hp_max)
 	HUD.show_score(GameState.player.score, GameState.player.level_threshold[GameState.player.current_level])
+	
 
 func start_magic_circles():
 	var circles = get_tree().get_nodes_in_group("magic_circle")
@@ -83,7 +63,7 @@ func _on_player_level_up(current_level):
 	
 
 func teleport_to_heaven_area():
-	var heaven_area_node = heaven_area_scene.instantiate()
+	var heaven_area_node = GameState.heaven_area_to_instantiate.instantiate()
 	var player = GameState.player
 	player.get_parent().remove_child(player)
 	get_node("/root/Hell Area").queue_free()

@@ -5,6 +5,7 @@ var scene_load_status = 0
 var play_pressed: bool = false
 
 func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	ResourceLoader.load_threaded_request(hell_scene)
 	play_pressed = false
 	scene_load_status = 0

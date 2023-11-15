@@ -23,7 +23,7 @@ func _ready():
 func _on_phase_up_timer_timeout():
 	phase_limit += 1
 	phase_limit = clamp(phase_limit, 1, enemy_resource_list.size() - 1)
-	spawn_enemy(phase_limit, GameState.player.position, safe_range, 1.5, overall_multiplier)
+	spawn_enemy(phase_limit, GameState.player.position, safe_range, 3.5, overall_multiplier)
 	
 	
 func _on_spawn_timer_timeout():

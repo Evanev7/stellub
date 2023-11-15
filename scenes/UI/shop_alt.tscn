@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://q4d36f0kg6yg"]
+[gd_scene load_steps=9 format=3 uid="uid://rnajon2osv8v"]
 
 [ext_resource type="Script" path="res://scripts/UI/shop_controller.gd" id="1_gilh6"]
 [ext_resource type="Texture2D" uid="uid://dxtmrmjab36ky" path="res://art/UI/programmer 'art'.png" id="2_bcolm"]

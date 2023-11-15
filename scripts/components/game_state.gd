@@ -6,6 +6,9 @@ signal register_enemy
 
 var player: CharacterBody2D
 
+@onready var hell_area_to_instantiate: PackedScene = preload("res://scenes/levels/hell_area.tscn")
+@onready var heaven_area_to_instantiate: PackedScene = preload("res://scenes/levels/heaven_area.tscn")
+
 var debug = true
 
 func _ready():
@@ -13,6 +16,34 @@ func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	game_over.connect(queue_free_groups)
 	
+func _physics_process(_delta):
+	if Input.is_action_just_pressed("pause"):
+		if get_tree().paused == false:
+			get_node("/root").get_child(1).get_node("pause_menu")._on_hud_open_pause_menu()
+		else:
+			get_node("/root").get_child(1).get_node("pause_menu")._on_continue_pressed()
+	
+	
+	##Debug ###############################
+	
+	if debug and Input.is_action_pressed("debug_gain_score"): ## R
+		player.gain_score(10)
+		get_node("/root").get_child(1).get_node("HUD").show_score(player.score, player.level_threshold[player.current_level])
+	
+	if debug and Input.is_action_just_pressed("debug_evolve"): ## E
+		player.current_evolution += 1
+		player.evolve()
+	
+	if debug and Input.is_action_just_pressed("debug_spawn_enemy"): # L
+		for i in range(10):
+			get_node("/root").get_child(1).get_node("LogicComponents/EnemyHandler").spawn_enemy(randi() % 6)
+		
+	if debug and Input.is_action_just_pressed("debug_spawn_boss"): # B
+		player.send_loadout_to_boss()
+		
+	if debug and Input.is_action_just_pressed("debug_activate_teleporter"): # T
+		get_node("/root").get_child(1).get_node("LogicComponents/ShopHandler")._on_activate_teleporter()
+	#######################################
 
 func pause_game():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

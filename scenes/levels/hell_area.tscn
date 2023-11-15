@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://dfrum4te4lpmr" path="res://scenes/objects/teleporter.tscn" id="2_8o713"]
 [ext_resource type="Script" path="res://scripts/levels/hell_area.gd" id="2_myijk"]
 [ext_resource type="PackedScene" uid="uid://41p1qgrud4ej" path="res://scenes/components/terrain_generator.tscn" id="2_p0a1o"]
-[ext_resource type="PackedScene" uid="uid://cv66w30at2uv0" path="res://scenes/levels/heaven_area.tscn" id="3_2lc5r"]
 [ext_resource type="PackedScene" uid="uid://ugulpxhu6v48" path="res://scenes/components/pickup_handler.tscn" id="3_be7sf"]
 [ext_resource type="Resource" uid="uid://dh8xipsw2bu5w" path="res://resources/enemy/demon_skull.tres" id="3_dr1lv"]
 [ext_resource type="Resource" uid="uid://doalqpgaptgxa" path="res://resources/enemy/demon_dog.tres" id="4_j7txi"]
@@ -53,7 +52,6 @@ sources/1 = SubResource("TileSetAtlasSource_f4bhn")
 
 [node name="Hell Area" node_paths=PackedStringArray("enemy_handler") instance=ExtResource("1_ttjsf")]
 script = ExtResource("2_myijk")
-heaven_area_scene = ExtResource("3_2lc5r")
 enemy_resource_list = Array[Resource("res://scripts/characters/enemy_resource.gd")]([ExtResource("3_dr1lv"), ExtResource("4_j7txi"), ExtResource("5_yiyg4"), ExtResource("6_7qtbu"), ExtResource("7_jjuad"), ExtResource("8_rirxr")])
 enemy_handler = NodePath("LogicComponents/EnemyHandler")
 metadata/_edit_vertical_guides_ = []
