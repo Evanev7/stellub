@@ -25,6 +25,7 @@ func get_gui_upgrades() -> Array[Control]:
 	return gui_upgrades
 
 func reattach_nodes(parent, children):
+	print("Reattaching ", children, " to ", parent)
 	for child in children:
 		if child.get_parent():
 			child.get_parent().remove_child(child)

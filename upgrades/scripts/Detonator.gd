@@ -1,10 +1,9 @@
 extends Upgrade
 
-@export var detonator_bullet: BulletResource
-
+var detonator_bullet
 #
 func _ready():
-	pass
+	detonator_bullet = script_data["bullet"].duplicate()
 
 
 # Change stats on pickup

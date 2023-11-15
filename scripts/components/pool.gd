@@ -48,11 +48,15 @@ func sample(n: int = 1, unique_draw: bool = true):
 				output.append(pool[index])
 	
 	return output
-	
-	
+
 
 func remove(item):
 	pool.erase(item)
+
+
+func remove_all(item):
+	while item in pool:
+		pool.erase(item)
 
 
 func multiply(multi: int) -> void:

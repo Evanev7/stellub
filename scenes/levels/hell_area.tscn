@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://qhl6r2tbil5t"]
+[gd_scene load_steps=44 format=3 uid="uid://qhl6r2tbil5t"]
 
 [ext_resource type="PackedScene" uid="uid://dilk21k2nncq2" path="res://scenes/levels/level_template.tscn" id="1_ttjsf"]
 [ext_resource type="PackedScene" uid="uid://dfrum4te4lpmr" path="res://scenes/objects/teleporter.tscn" id="2_8o713"]
@@ -14,30 +14,33 @@
 [ext_resource type="Resource" uid="uid://djjvchiit0f0n" path="res://resources/enemy/angel_worshipper.tres" id="6_7qtbu"]
 [ext_resource type="PackedScene" uid="uid://bxmk1htarl4v5" path="res://scenes/components/shop_handler.tscn" id="6_tokbn"]
 [ext_resource type="Resource" uid="uid://bnoj3uq3e6s17" path="res://resources/enemy/angel_warrior.tres" id="7_jjuad"]
-[ext_resource type="PackedScene" uid="uid://bpkxt2uvnf57n" path="res://upgrades/triple_shot.tscn" id="7_u0x6v"]
-[ext_resource type="PackedScene" uid="uid://c33wxtyp6pcj5" path="res://upgrades/split_shot.tscn" id="8_k1bmm"]
 [ext_resource type="Resource" uid="uid://daslelns8qmfv" path="res://resources/enemy/angel_crusader.tres" id="8_rirxr"]
-[ext_resource type="PackedScene" uid="uid://doyhlebmabr1l" path="res://upgrades/minigun.tscn" id="9_bpmue"]
-[ext_resource type="PackedScene" uid="uid://cspycrpcbikif" path="res://upgrades/detonator.tscn" id="10_m47dc"]
 [ext_resource type="Texture2D" uid="uid://dvrx1ijrwk8a2" path="res://art/backgrounds/hell_level_1.png" id="11_1q6b4"]
-[ext_resource type="PackedScene" uid="uid://3bqmxujc0qkr" path="res://upgrades/centre_of_the_galaxy.tscn" id="11_8f5jq"]
 [ext_resource type="PackedScene" uid="uid://cnepphpba8e8u" path="res://scenes/characters/player.tscn" id="11_syo0k"]
 [ext_resource type="PackedScene" uid="uid://cp7lho542gmeu" path="res://scenes/objects/shop.tscn" id="11_vorht"]
 [ext_resource type="ButtonGroup" uid="uid://d3at0bq53qjdo" path="res://resources/upgrades/button_group_upgradeHUD_selected_weapons.tres" id="12_2ub6i"]
-[ext_resource type="PackedScene" uid="uid://ditc7t3eclvaw" path="res://upgrades/bowling_ball.tscn" id="12_s3b1r"]
 [ext_resource type="Resource" uid="uid://ccpb4udi5owpj" path="res://resources/bullets/player/player_bullet.tres" id="13_2dgq8"]
 [ext_resource type="PackedScene" uid="uid://dyhf18b3orycs" path="res://scenes/UI/shop.tscn" id="14_sb7gb"]
 [ext_resource type="Resource" uid="uid://coqyd5d8e6rm8" path="res://resources/bullets/player/particle_mace.tres" id="14_soul3"]
 [ext_resource type="Resource" uid="uid://b3v62pkd6hntd" path="res://resources/bullets/player/shotgun.tres" id="15_gx6j7"]
 [ext_resource type="Resource" uid="uid://8ogmebrr77xx" path="res://resources/bullets/player/black_hole.tres" id="16_fw7me"]
 [ext_resource type="PackedScene" uid="uid://b2tef800ecm8u" path="res://scenes/components/weapon_handler.tscn" id="17_gx7j2"]
+[ext_resource type="PackedScene" uid="uid://q4d36f0kg6yg" path="res://scenes/UI/shop_alt.tscn" id="17_w6kee"]
 [ext_resource type="PackedScene" uid="uid://bco6kn11dyo6o" path="res://scenes/components/boss_handler.tscn" id="18_yysi3"]
 [ext_resource type="PackedScene" uid="uid://d23ddhgery8pq" path="res://scenes/characters/boss.tscn" id="20_gixqi"]
 [ext_resource type="Resource" path="res://resources/enemy/demon_lord.tres" id="21_jliye"]
-[ext_resource type="PackedScene" uid="uid://bgt31t0wymqk4" path="res://upgrades/auto_fire.tscn" id="25_k7x3o"]
-[ext_resource type="PackedScene" uid="uid://cuppr631j5lhu" path="res://upgrades/concentrate.tscn" id="30_1p54w"]
-[ext_resource type="PackedScene" uid="uid://cdfb7fw5fpq2i" path="res://upgrades/vacuum.tscn" id="31_4rttx"]
+[ext_resource type="Resource" uid="uid://dldq0lmweq825" path="res://upgrades/auto_fire.tres" id="24_waa85"]
+[ext_resource type="Resource" uid="uid://dgnonhlostgr1" path="res://upgrades/bowling_ball.tres" id="25_sp5v5"]
+[ext_resource type="Resource" uid="uid://ctfombpw6rgc5" path="res://upgrades/centre_of_the_galaxy.tres" id="26_ut56q"]
+[ext_resource type="Resource" uid="uid://cyaggjp1rnnp" path="res://upgrades/concentrate.tres" id="27_immtv"]
+[ext_resource type="Resource" uid="uid://dyibhq84101vy" path="res://upgrades/detonator.tres" id="28_y2bcu"]
+[ext_resource type="Resource" uid="uid://cpkpumk5olo2q" path="res://upgrades/drill.tres" id="29_b6ral"]
+[ext_resource type="Resource" uid="uid://cvxev8t8bsds1" path="res://upgrades/minigun.tres" id="30_i6tjx"]
+[ext_resource type="Resource" uid="uid://6eqp1el3bb2c" path="res://upgrades/rpg.tres" id="31_jvyml"]
+[ext_resource type="Resource" uid="uid://c7p72w4p6xr5n" path="res://upgrades/split_shot.tres" id="32_gsko8"]
+[ext_resource type="Resource" uid="uid://x1q84ou5be48" path="res://upgrades/triple_shot.tres" id="33_2ccfo"]
 [ext_resource type="PackedScene" uid="uid://cwtvi2ph44p4d" path="res://scenes/UI/cursor_particles.tscn" id="33_aqxfn"]
+[ext_resource type="Resource" uid="uid://nh3ysny8kvkt" path="res://upgrades/vacuum.tres" id="34_i5jpp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f4bhn"]
 texture = ExtResource("11_1q6b4")
@@ -90,6 +93,10 @@ weapon_button_group = ExtResource("12_2ub6i")
 [node name="pause_menu" parent="." index="5"]
 visible = false
 
+[node name="ShopAlt" parent="." index="7" instance=ExtResource("17_w6kee")]
+process_mode = 2
+visible = false
+
 [node name="TerrainGenerator" parent="LogicComponents" index="1" node_paths=PackedStringArray("tile_map", "ysorter") instance=ExtResource("2_p0a1o")]
 tile_map = NodePath("../../YSort/TileMap")
 ysorter = NodePath("../../YSort")
@@ -104,12 +111,12 @@ enemy_resource_list = Array[Resource("res://scripts/characters/enemy_resource.gd
 enemy_ysort = NodePath("../../YSort/Enemies")
 
 [node name="ShopHandler" parent="LogicComponents" index="4" node_paths=PackedStringArray("enemyHandler", "ysorter", "objective_marker", "shop_node", "teleporter") instance=ExtResource("6_tokbn")]
-default_shop_upgrades_list = Array[PackedScene]([ExtResource("7_u0x6v"), ExtResource("8_k1bmm"), ExtResource("9_bpmue"), ExtResource("10_m47dc"), ExtResource("11_8f5jq"), ExtResource("12_s3b1r"), ExtResource("25_k7x3o"), ExtResource("30_1p54w"), ExtResource("31_4rttx")])
+default_shop_upgrades_list = Array[Resource("res://upgrades/upgrade_resource.gd")]([ExtResource("24_waa85"), ExtResource("25_sp5v5"), ExtResource("26_ut56q"), ExtResource("27_immtv"), ExtResource("28_y2bcu"), ExtResource("29_b6ral"), ExtResource("30_i6tjx"), ExtResource("31_jvyml"), ExtResource("32_gsko8"), ExtResource("33_2ccfo"), ExtResource("34_i5jpp")])
 default_shop_weapons_list = Array[Resource("res://scripts/objects/bullet_resource.gd")]([ExtResource("13_2dgq8"), ExtResource("14_soul3"), ExtResource("15_gx6j7"), ExtResource("16_fw7me")])
 enemyHandler = NodePath("../EnemyHandler")
 ysorter = NodePath("../../YSort")
 objective_marker = NodePath("../../ObjectiveMarker")
-shop_node = NodePath("../../Shop")
+shop_node = NodePath("../../ShopAlt")
 teleporter = NodePath("../../YSort/teleporter")
 
 [node name="BossHandler" parent="LogicComponents" index="5" node_paths=PackedStringArray("ysorter") instance=ExtResource("18_yysi3")]

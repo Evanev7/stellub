@@ -1,9 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cspycrpcbikif"]
+[gd_scene load_steps=2 format=3 uid="uid://cspycrpcbikif"]
 
 [ext_resource type="Script" path="res://upgrades/scripts/Detonator.gd" id="1_khiac"]
-[ext_resource type="Resource" uid="uid://br0f34os0blmt" path="res://upgrades/detonator_shot.tres" id="2_tgbvy"]
 
 [node name="Detonator" type="Node"]
 script = ExtResource("1_khiac")
-detonator_bullet = ExtResource("2_tgbvy")
 rarity = 0.5

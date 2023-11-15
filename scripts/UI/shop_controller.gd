@@ -6,6 +6,7 @@ signal remove_shop
 enum {SAVE, LOAD}
 
 @export var num_gui_attacks = 4
+@export var num_shop_nodes = 4
 
 var shop_attached_to
 
@@ -63,15 +64,22 @@ func attach_nodes(parent, children):
 
 
 func populate_shop(shop_items):
-	shop_items.shuffle()
-	for index in range(4):
+	for index in range(num_shop_nodes):
 		var shop_node = get_node("%Shop" + str(index+1))
 		shop_node.referenced_node = shop_items[index]
 		shop_node.refresh()
 	print("Shop contains: ", shop_items)
 
 
+func clear_shop():
+	for index in range(num_shop_nodes):
+		var shop_node = get_node("%Shop" + str(index+1))
+		if shop_node.referenced_node:
+			shop_node.referenced_node.queue_free()
+
+
 func open_shop(chosen_upgrades, weapon):
+	print(chosen_upgrades)
 	loadsave(LOAD)
 	populate_shop(chosen_upgrades)
 
@@ -81,11 +89,12 @@ func _on_shop_exit_pressed():
 
 func close_shop():
 	loadsave(SAVE)
+	clear_shop()
 	GameState.unpause_game()
 	set_visible(false)
 	#remove_shop.emit(shop_attached_to)
 
 
 func _on_shop_item_taken():
-	for i in range(1,5):
-		get_node("%Shop"+str(i)).disabled = true
+	for i in range(num_shop_nodes):
+		get_node("%Shop"+str(i+1)).disabled = true

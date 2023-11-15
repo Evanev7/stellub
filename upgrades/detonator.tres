@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=5 format=3 uid="uid://dyibhq84101vy"]
+
+[ext_resource type="Texture2D" uid="uid://dmy3xfs65igrt" path="res://art/bullets/player/Upgrades/Concentrate.png" id="1_iffnu"]
+[ext_resource type="Script" path="res://upgrades/upgrade_resource.gd" id="2_0irco"]
+[ext_resource type="Resource" uid="uid://br0f34os0blmt" path="res://upgrades/detonator_shot.tres" id="3_nqynk"]
+[ext_resource type="Script" path="res://upgrades/scripts/Detonator.gd" id="3_y3h6l"]
+
+[resource]
+script = ExtResource("2_0irco")
+upgrade_script = ExtResource("3_y3h6l")
+quantity = 10
+appears_in_shop = true
+appears_in_inventory = true
+icon = ExtResource("1_iffnu")
+script_data = {
+"bullet": ExtResource("3_nqynk")
+}

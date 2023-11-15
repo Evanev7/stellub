@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=3 format=3 uid="uid://cpkpumk5olo2q"]
+
+[ext_resource type="Script" path="res://upgrades/upgrade_resource.gd" id="2_n5r0g"]
+[ext_resource type="Script" path="res://upgrades/scripts/drill.gd" id="3_dagnk"]
+
+[resource]
+script = ExtResource("2_n5r0g")
+upgrade_script = ExtResource("3_dagnk")
+quantity = 10
+appears_in_shop = true
+appears_in_inventory = true
+script_data = {}

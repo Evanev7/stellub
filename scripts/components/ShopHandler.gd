@@ -5,9 +5,9 @@ signal remove_marker_from_circle(circle)
 @export var shop_scene: PackedScene
 @export var magic_circle_scene: PackedScene
 
-@export var default_shop_upgrades_list: Array[PackedScene]
+@export var default_shop_upgrades_list: Array[UpgradeResource]
 @export var default_shop_weapons_list: Array[BulletResource]
-var shop_upgrades_list: Array[PackedScene]
+var shop_upgrades_list: Array[UpgradeResource]
 var shop_weapons_list: Array[BulletResource]
 
 @export var enemyHandler: EnemyHandler
@@ -34,9 +34,7 @@ func start():
 	
 	var upgrades = []
 	for upgrade in shop_upgrades_list:
-		#this is bad but needs fixing
-		var upgrade_instance = upgrade.instantiate()
-		upgrades.append([upgrade_instance, int(upgrade_instance.rarity*10)])
+		upgrades.append([upgrade, upgrade.quantity])
 	upgrade_pool.populate(upgrades)
 	var weapons = []
 	for weapon in shop_weapons_list:
@@ -67,23 +65,34 @@ func _on_shop_entered(shop_attached_to):
 	var is_weapon_present := false
 	
 	if randf() <= 1:
-		chosen_upgrades = upgrade_pool.sample(3)
+		for upgrade in upgrade_pool.sample(3):
+			var upgrade_node = upgrade_from_res(upgrade)
+			chosen_upgrades.append(upgrade_node)
 		is_weapon_present = true
 		var weapon_node = Attack.new()
 		weapon_node.initial_bullet = weapon_pool.sample(1)
 		chosen_upgrades.append(weapon_node)
 	else: 
-		chosen_upgrades = upgrade_pool.sample(4)
-	
+		for upgrade in upgrade_pool.sample(4):
+			var upgrade_node = upgrade_from_res(upgrade)
+			chosen_upgrades.append(upgrade_node)
 	
 	open_shop(chosen_upgrades, is_weapon_present, shop_attached_to)
 
 
-func open_shop(stat_upgrades, is_weapon_present, shop_attached_to):
+func upgrade_from_res(upgrade_resource: UpgradeResource) -> Upgrade:
+	var upgrade_node: Upgrade = upgrade_resource.upgrade_script.new()
+	upgrade_node.script_data = upgrade_resource.script_data
+	upgrade_node.skip = not upgrade_resource.appears_in_inventory
+	upgrade_node.icon = upgrade_resource.icon
+	return upgrade_node
+
+
+func open_shop(chosen_upgrades, is_weapon_present, shop_attached_to):
 	GameState.pause_game()
 	shop_node.shop_attached_to = shop_attached_to
 	shop_node.set_visible(true)
-	shop_node.open_shop(stat_upgrades, is_weapon_present)
+	shop_node.open_shop(chosen_upgrades, is_weapon_present)
 	shop_node.connect('remove_shop', _remove_shop)
 
 func _on_spawn_shop(position):
