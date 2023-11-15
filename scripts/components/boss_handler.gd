@@ -9,5 +9,7 @@ class_name BossHandler
 func _on_player_send_loadout(loadout):
 	var boss = boss_scene.instantiate()
 	var boss_loadout = loadout.duplicate()
-	boss.get_node("Enemy/AttackHandler").add_child(boss_loadout)
+	var freed_handler = boss.get_node("Enemy/AttackHandler")
+	boss.get_node("Enemy/AttackHandler").replace_by(boss_loadout)
+	freed_handler.queue_free()
 	ysorter.add_child(boss)

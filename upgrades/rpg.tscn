@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://duwjhj2jw3wdw"]
+
+[ext_resource type="Script" path="res://upgrades/scripts/rpg.gd" id="1_2g8ij"]
+
+[node name="rpg" type="Node"]
+script = ExtResource("1_2g8ij")

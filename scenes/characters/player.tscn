@@ -248,7 +248,6 @@ wait_time = 0.1
 one_shot = true
 
 [node name="AttackHandler" parent="." instance=ExtResource("32_ju527")]
-target_mode = 1
 
 [node name="Pickup" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_51dqt")

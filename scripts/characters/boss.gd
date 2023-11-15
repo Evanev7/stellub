@@ -2,6 +2,8 @@ extends Node
 
 func _ready():
 	$Enemy/AttackHandler.passive_all_attacks()
+	$Enemy/AttackHandler.aim_attacks_at_player()
+	$Enemy/AttackHandler.refresh_all_attacks()
 	add_to_group("boss")
 	
 ## NEED TO ADD THESE MODIFIERS TO ALL WEAPONS

@@ -226,5 +226,5 @@ func _on_i_frames_timeout():
 
 
 func send_loadout_to_boss():
-	send_loadout.emit(attack_handler.get_child(0))
+	send_loadout.emit(attack_handler)
 

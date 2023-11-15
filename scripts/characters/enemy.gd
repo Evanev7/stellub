@@ -59,11 +59,15 @@ func load_resource(resource_to_load: EnemyResource):
 	if unique_multiplier > 1:
 		sprite.material.set_shader_parameter("line_color", Vector4(1, 0, 0, 1))
 		sprite.material.set_shader_parameter("line_thickness", (unique_multiplier * 2) ** 2)
+		
 	if resource_to_load.BULLET:
+		if resource_to_load.BULLET.target_mode == BulletResource.TARGET_MODE.MOUSE:
+			resource_to_load.BULLET.target_mode = BulletResource.TARGET_MODE.PLAYER
 		attack_handler.add_attack_from_resource(resource_to_load.BULLET)
 		attack_handler.passive_all_attacks()
 		if resource_to_load.BULLET.fire_on_hit:
 			fire_on_hit = true
+		
 	$CollisionShape2D.shape = resource_to_load.COLLIDER
 	$CollisionShape2D.rotation = resource_to_load.COLLISION_ROTATION
 	$Hitbox/CollisionShape2D.shape = resource_to_load.HITBOX
