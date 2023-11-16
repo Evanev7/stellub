@@ -14,6 +14,7 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	GameState.current_area = GameState.CURRENT_AREA.HEAVEN
 	var player = $YSort/Player
 	player.connect("level_up", _on_player_level_up)
 	player.connect("player_death", _on_player_death)
@@ -21,8 +22,10 @@ func _ready():
 	player.connect("send_loadout", $LogicComponents/BossHandler._on_player_send_loadout)
 	player.connect("credit_player", $LogicComponents/PickupHandler._on_pickup_credit_player)
 	start_level()
-	#$LogicComponents/ShopHandler.spawn_magic_circles()
+	$YSort/teleporter.position = Vector2(GameState.player.position.x + 2, GameState.player.position.y - 10000)
+	$ObjectiveMarker.add_target($YSort/teleporter)
 	$LogicComponents/TerrainGenerator.generate()
+	$LogicComponents/TerrainGenerator.cliff_generate()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
@@ -35,8 +38,7 @@ func _physics_process(_delta):
 func start_level():
 	enemy_handler.start_spawning()
 	GameState.player.position = $YSort/PlayerStart.position
-	#$LogicComponents/ShopHandler.start()
-	#start_magic_circles()
+	$LogicComponents/ShopHandler.start()
 	
 	HUD.show_message("All Hell Breaks Loose!")
 	HUD.show_health(GameState.player.hp, GameState.player.hp_max)
@@ -47,27 +49,8 @@ func restart_game():
 	get_node("/root/Heaven Area").queue_free()
 	get_tree().root.add_child(hell_area_node)
 
-#func start_magic_circles():
-#	var circles = get_tree().get_nodes_in_group("magic_circle")
-#	for circle in circles:
-#		circle.start()
-
 func _on_player_death():
-	game_over()
-
-
-func game_over():
-	enemy_handler.stop_spawning()
-	get_tree().call_group("enemy", "queue_free")
-	get_tree().call_group("bullet", "queue_free")
-	get_tree().call_group("pickup", "queue_free")
-	get_tree().call_group("boss", "queue_free")
-	
-	HUD.game_over()
-
-
-#func _on_hud_start_game():
-#	start_level()
+	GameState.game_over.emit()
 
 
 func _on_player_hp_changed(hp):
@@ -79,7 +62,8 @@ func _on_player_level_up(current_level):
 	HUD.show_health(GameState.player.hp, GameState.player.hp_max)
 	GameState.player.current_level += 1
 	GameState.player.souls += 1
-	enemy_handler.spawn_timer.wait_time /= 1.02
+	enemy_handler.spawn_timer.wait_time /= 1.04
+	enemy_handler.overall_multiplier += GameState.player.current_level / float(550)
 	
 
 #func teleport_to_boss_area():

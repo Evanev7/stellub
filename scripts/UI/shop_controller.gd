@@ -92,7 +92,7 @@ func close_shop():
 	clear_shop()
 	GameState.unpause_game()
 	set_visible(false)
-	#remove_shop.emit(shop_attached_to)
+	remove_shop.emit(shop_attached_to)
 
 
 func _on_shop_item_taken():

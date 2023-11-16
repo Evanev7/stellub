@@ -13,7 +13,6 @@
 
 [node name="ShopAlt" type="CanvasLayer"]
 script = ExtResource("1_gilh6")
-num_gui_attacks = 3
 
 [node name="Control" type="CenterContainer" parent="."]
 anchors_preset = 8

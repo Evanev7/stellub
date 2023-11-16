@@ -48,6 +48,9 @@ func generate() -> void:
 				populate(update_coords)
 				used_cells = tile_map.get_used_cells(0)
 
+func cliff_generate() -> void:
+	tile_map.set_cell(0,Vector2i(0,0),1,Vector2i(0,0),0)
+	pass
 
 func populate(coords) -> void:
 	tile_map.set_cell(0,coords,1,Vector2i(0,0),0)

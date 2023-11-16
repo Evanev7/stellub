@@ -5,12 +5,14 @@ signal open_pause_menu
 
 @onready var XP_Bar = $XPBar
 @onready var HP_Bar = $HPBar
+@onready var level = $XPBar/Level
 
 func _ready():
 	GameState.game_over.connect(game_over)
 
 func _process(_delta):
 	$FPS.set_text("FPS %d" % Engine.get_frames_per_second())
+	level.set_text(str(GameState.player.current_level))
 
 func show_message(text):
 	$TextDisplay.text = text

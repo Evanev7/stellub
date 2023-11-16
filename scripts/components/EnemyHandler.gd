@@ -2,12 +2,13 @@ extends Node
 class_name EnemyHandler
 
 signal register_enemy(enemy)
+signal spawn_shop_on_enemy(pos)
 
 @onready var spawn_timer: Timer = $SpawnTimer
 @onready var phase_up_timer: Timer = $PhaseUpTimer
 
 @export var safe_range: float = 800
-@export var default_spawn_time: float = 4.0
+@export var default_spawn_time: float = 4.08
 @export var overall_multiplier: float = 1.0
 
 @export var enemy_scene: PackedScene
@@ -38,13 +39,16 @@ func spawn_enemy(resourceID, center = GameState.player.position, spawn_range = s
 	enemy.resource.OVERALL_MULTIPLIER = overall_multi
 	var relative_spawn_position = Vector2(spawn_range,0).rotated(randf_range(0, 2*PI))
 	enemy.position = center + relative_spawn_position
+	enemy.connect("spawn_shop", spawn_shop)
 	enemy_ysort.add_child(enemy)
 	GameState.register_enemy.emit(enemy)
 	
+func spawn_shop(pos):
+	spawn_shop_on_enemy.emit(pos)
 	
 func start_spawning():
 	phase_limit = 1
-	spawn_timer.wait_time = default_spawn_time
+	spawn_timer.wait_time = default_spawn_time / (1.02 ** GameState.player.current_level)
 	spawn_timer.start()
 	phase_up_timer.start()
 	

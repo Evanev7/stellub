@@ -6,10 +6,13 @@ signal register_enemy
 
 var player: CharacterBody2D
 
+enum CURRENT_AREA {HELL, HEAVEN, BOSS}
+var current_area
 @onready var hell_area_to_instantiate: PackedScene = preload("res://scenes/levels/hell_area.tscn")
 @onready var heaven_area_to_instantiate: PackedScene = preload("res://scenes/levels/heaven_area.tscn")
 
 var debug = true
+
 
 func _ready():
 	randomize()
@@ -24,10 +27,12 @@ func _physics_process(_delta):
 			get_node("/root").get_child(1).get_node("pause_menu")._on_continue_pressed()
 	
 	
+	
 	##Debug ###############################
 	
 	if debug and Input.is_action_pressed("debug_gain_score"): ## R
 		player.gain_score(10)
+		print(get_node("/root").get_child(1).get_node("LogicComponents/EnemyHandler").spawn_timer.get_wait_time())
 		get_node("/root").get_child(1).get_node("HUD").show_score(player.score, player.level_threshold[player.current_level])
 	
 	if debug and Input.is_action_just_pressed("debug_evolve"): ## E

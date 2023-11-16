@@ -11,6 +11,7 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	GameState.current_area = GameState.CURRENT_AREA.HELL
 	start_game()
 	$LogicComponents/ShopHandler.spawn_magic_circles()
 	$LogicComponents/TerrainGenerator.generate()
@@ -59,13 +60,14 @@ func _on_player_level_up(current_level):
 	GameState.player.current_level += 1
 	GameState.player.souls += 1
 	enemy_handler.spawn_timer.wait_time /= 1.02
-	enemy_handler.overall_multiplier += GameState.player.current_level / float(400)
+	enemy_handler.overall_multiplier += GameState.player.current_level / float(600)
 	
 
 func teleport_to_heaven_area():
 	var heaven_area_node = GameState.heaven_area_to_instantiate.instantiate()
 	var player = GameState.player
 	player.get_parent().remove_child(player)
+	heaven_area_node.enemy_handler.overall_multiplier = enemy_handler.overall_multiplier
 	get_node("/root/Hell Area").queue_free()
 	heaven_area_node.get_child(0).add_child(player)
 	get_tree().root.add_child(heaven_area_node)

@@ -6,7 +6,6 @@
 
 [resource]
 script = ExtResource("2_p0cw3")
-name = "Triple Shot"
 upgrade_script = ExtResource("3_hmqjg")
 quantity = 20
 appears_in_shop = true

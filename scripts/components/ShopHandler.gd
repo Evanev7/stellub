@@ -87,7 +87,7 @@ func upgrade_from_res(upgrade_resource: UpgradeResource) -> Upgrade:
 	upgrade_node.script_data = upgrade_resource.script_data
 	upgrade_node.skip = not upgrade_resource.appears_in_inventory
 	upgrade_node.icon = upgrade_resource.icon
-	upgrade_node.name = upgrade_resource.name
+	#upgrade_node.name = upgrade_resource.name
 	return upgrade_node
 
 
@@ -125,7 +125,6 @@ func _on_shop_remove_upgrade(upgrade):
 		if upgrade.scene_file_path == shop_upgrades_list[i].get_path():
 			shop_upgrades_list.remove_at(i)
 			break
-
 
 func _on_shop_remove_weapon(weapon):
 	for i in shop_weapons_list.size():

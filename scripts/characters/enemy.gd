@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name EnemyBehaviour
 
 signal enemy_killed(enemy)
+signal spawn_shop(pos)
 
 @export var resource: EnemyResource
 @export var damage_scene: PackedScene
@@ -44,6 +45,7 @@ func _ready():
 	var mode = variants[randi() % variants.size()]
 	sprite.frame_progress = randf()
 	sprite.play(mode)
+	
 	
 	add_to_group("enemy")
 	sway()
@@ -137,6 +139,9 @@ func hurt(area):
 		enemy_killed.emit(self)
 		set_process(false)
 		visible = false
+		
+		if GameState.current_area == 1 and unique_multiplier > 1:
+			spawn_shop.emit(global_position)
 	
 func _on_death_sound_finished():
 	queue_free()
