@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://qhl6r2tbil5t"]
+[gd_scene load_steps=44 format=3 uid="uid://qhl6r2tbil5t"]
 
 [ext_resource type="PackedScene" uid="uid://dilk21k2nncq2" path="res://scenes/levels/level_template.tscn" id="1_ttjsf"]
 [ext_resource type="PackedScene" uid="uid://dfrum4te4lpmr" path="res://scenes/objects/teleporter.tscn" id="2_8o713"]
@@ -22,12 +22,14 @@
 [ext_resource type="PackedScene" uid="uid://dyhf18b3orycs" path="res://scenes/UI/shop.tscn" id="14_sb7gb"]
 [ext_resource type="Resource" uid="uid://coqyd5d8e6rm8" path="res://resources/bullets/player/particle_mace.tres" id="14_soul3"]
 [ext_resource type="Resource" uid="uid://b3v62pkd6hntd" path="res://resources/bullets/player/shotgun.tres" id="15_gx6j7"]
+[ext_resource type="PackedScene" uid="uid://rnajon2osv8v" path="res://scenes/UI/shop_alt.tscn" id="15_wuu6p"]
 [ext_resource type="Resource" uid="uid://8ogmebrr77xx" path="res://resources/bullets/player/black_hole.tres" id="16_fw7me"]
 [ext_resource type="PackedScene" uid="uid://b2tef800ecm8u" path="res://scenes/components/weapon_handler.tscn" id="17_gx7j2"]
 [ext_resource type="PackedScene" uid="uid://bco6kn11dyo6o" path="res://scenes/components/boss_handler.tscn" id="18_yysi3"]
 [ext_resource type="PackedScene" uid="uid://d23ddhgery8pq" path="res://scenes/characters/boss.tscn" id="20_gixqi"]
-[ext_resource type="Resource" uid="uid://cde86qx4smawg" path="res://resources/enemy/demon_lord.tres" id="21_jliye"]
+[ext_resource type="Resource" path="res://resources/enemy/demon_lord.tres" id="21_jliye"]
 [ext_resource type="Resource" uid="uid://dldq0lmweq825" path="res://upgrades/auto_fire.tres" id="22_vl2um"]
+[ext_resource type="PackedScene" uid="uid://be4i0yo3jsk42" path="res://scenes/components/attack.tscn" id="23_6mnt7"]
 [ext_resource type="Resource" uid="uid://dgnonhlostgr1" path="res://upgrades/bowling_ball.tres" id="23_ti1t0"]
 [ext_resource type="Resource" uid="uid://ctfombpw6rgc5" path="res://upgrades/centre_of_the_galaxy.tres" id="24_370hh"]
 [ext_resource type="Resource" uid="uid://brxqpkihvbfrk" path="res://upgrades/concentrate.tres" id="25_2mguo"]
@@ -84,10 +86,14 @@ position = Vector2(418, 419)
 [node name="Shop" parent="." index="3" instance=ExtResource("14_sb7gb")]
 visible = false
 
-[node name="UpgradeHUD" parent="." index="4"]
+[node name="ShopAlt" parent="." index="4" instance=ExtResource("15_wuu6p")]
+process_mode = 2
+visible = false
+
+[node name="UpgradeHUD" parent="." index="5"]
 weapon_button_group = ExtResource("12_2ub6i")
 
-[node name="pause_menu" parent="." index="5"]
+[node name="pause_menu" parent="." index="6"]
 visible = false
 
 [node name="TerrainGenerator" parent="LogicComponents" index="1" node_paths=PackedStringArray("tile_map", "ysorter") instance=ExtResource("2_p0a1o")]
@@ -104,12 +110,13 @@ enemy_resource_list = Array[Resource("res://scripts/characters/enemy_resource.gd
 enemy_ysort = NodePath("../../YSort/Enemies")
 
 [node name="ShopHandler" parent="LogicComponents" index="4" node_paths=PackedStringArray("enemyHandler", "ysorter", "objective_marker", "shop_node", "teleporter") instance=ExtResource("6_tokbn")]
+attack_scene = ExtResource("23_6mnt7")
 default_shop_upgrades_list = Array[Resource("res://upgrades/upgrade_resource.gd")]([ExtResource("22_vl2um"), ExtResource("23_ti1t0"), ExtResource("24_370hh"), ExtResource("25_2mguo"), ExtResource("26_sxgrq"), ExtResource("27_kwkmh"), ExtResource("28_1qd5n"), ExtResource("29_kgb5h"), ExtResource("30_nb1u1"), ExtResource("31_ftla6"), ExtResource("32_ve8tn")])
 default_shop_weapons_list = Array[Resource("res://scripts/objects/bullet_resource.gd")]([ExtResource("13_2dgq8"), ExtResource("14_soul3"), ExtResource("15_gx6j7"), ExtResource("16_fw7me")])
 enemyHandler = NodePath("../EnemyHandler")
 ysorter = NodePath("../../YSort")
 objective_marker = NodePath("../../ObjectiveMarker")
-shop_node = NodePath("../../Shop")
+shop_node = NodePath("../../ShopAlt")
 teleporter = NodePath("../../YSort/teleporter")
 
 [node name="BossHandler" parent="LogicComponents" index="5" node_paths=PackedStringArray("ysorter") instance=ExtResource("18_yysi3")]

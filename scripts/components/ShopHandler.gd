@@ -4,6 +4,7 @@ signal remove_marker_from_circle(circle)
 
 @export var shop_scene: PackedScene
 @export var magic_circle_scene: PackedScene
+@export var attack_scene: PackedScene
 
 @export var default_shop_upgrades_list: Array[UpgradeResource]
 @export var default_shop_weapons_list: Array[BulletResource]
@@ -69,9 +70,9 @@ func _on_shop_entered(shop_attached_to):
 			var upgrade_node = upgrade_from_res(upgrade)
 			chosen_upgrades.append(upgrade_node)
 		is_weapon_present = true
-		var weapon_node = Attack.new()
-		weapon_node.initial_bullet = weapon_pool.sample(1)
-		chosen_upgrades.append(weapon_node)
+		var weapon = weapon_pool.sample(1)
+		var attack_node = attack_from_res(weapon)
+		chosen_upgrades.append(attack_node)
 	else: 
 		for upgrade in upgrade_pool.sample(4):
 			var upgrade_node = upgrade_from_res(upgrade)
@@ -81,13 +82,26 @@ func _on_shop_entered(shop_attached_to):
 	
 	open_shop(chosen_upgrades, is_weapon_present, shop_attached_to)
 
+func attack_from_res(bullet: BulletResource) -> Attack:
+	var attack = attack_scene.instantiate()
+	attack.name = bullet.name
+	attack.initial_bullet = bullet
+	attack.control_mode = Attack.CONTROL_MODE.PASSIVE
+	attack.audio_player.stream = bullet.sound
+	attack.aim_mode = Attack.AIM_MODE.TARGETED
+	
+	for i in range(GameState.player.current_level):
+		attack.add_child(GameState.player.stat_upgrade.instantiate())
+	
+	return attack
+
 
 func upgrade_from_res(upgrade_resource: UpgradeResource) -> Upgrade:
 	var upgrade_node: Upgrade = upgrade_resource.upgrade_script.new()
 	upgrade_node.script_data = upgrade_resource.script_data
 	upgrade_node.skip = not upgrade_resource.appears_in_inventory
 	upgrade_node.icon = upgrade_resource.icon
-	#upgrade_node.name = upgrade_resource.name
+	upgrade_node.name = upgrade_resource.name
 	return upgrade_node
 
 

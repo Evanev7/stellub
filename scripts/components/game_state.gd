@@ -19,7 +19,7 @@ func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	game_over.connect(queue_free_groups)
 	
-func _physics_process(_delta):
+func _unhandled_input(event):
 	if Input.is_action_just_pressed("pause"):
 		if get_tree().paused == false:
 			get_node("/root").get_child(1).get_node("pause_menu")._on_hud_open_pause_menu()

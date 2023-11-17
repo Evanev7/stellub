@@ -6,6 +6,7 @@
 
 [resource]
 script = ExtResource("2_n5r0g")
+name = "Drill"
 upgrade_script = ExtResource("3_dagnk")
 quantity = 10
 appears_in_shop = true

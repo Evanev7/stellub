@@ -53,6 +53,8 @@ func _can_drop_data(_pos: Vector2, incoming_data) -> bool:
 		return false
 	if slot_type != incoming_data["slot_type"]:
 		return false
+	if incoming_data["slot_swappable"] == false and slot_type == SLOT_TYPE.ATTACK:
+		return true
 	if incoming_data["slot_swappable"] == false and referenced_node != null:
 		return false
 	return true
