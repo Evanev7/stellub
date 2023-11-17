@@ -5,11 +5,14 @@ signal game_over
 signal register_enemy
 
 var player: CharacterBody2D
+var pause_menu: CanvasLayer
+var shop_HUD: CanvasLayer
 
 enum CURRENT_AREA {HELL, HEAVEN, BOSS}
 var current_area
 @onready var hell_area_to_instantiate: PackedScene = preload("res://scenes/levels/hell_area.tscn")
 @onready var heaven_area_to_instantiate: PackedScene = preload("res://scenes/levels/heaven_area.tscn")
+
 
 var debug = true
 
@@ -19,12 +22,12 @@ func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	game_over.connect(queue_free_groups)
 	
-func _unhandled_input(event):
-	if Input.is_action_just_pressed("pause"):
+func _unhandled_input(_event):
+	if Input.is_action_just_pressed("pause") and shop_HUD.visible == false:
 		if get_tree().paused == false:
-			get_node("/root").get_child(1).get_node("pause_menu")._on_hud_open_pause_menu()
+			pause_menu._on_hud_open_pause_menu()
 		else:
-			get_node("/root").get_child(1).get_node("pause_menu")._on_continue_pressed()
+			pause_menu._on_continue_pressed()
 	
 	
 	

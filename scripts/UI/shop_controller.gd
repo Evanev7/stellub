@@ -10,6 +10,9 @@ enum {SAVE, LOAD}
 
 var shop_attached_to
 
+func _ready():
+	GameState.shop_HUD = self
+
 func get_attack_nodes(parent: Node) -> Array[Attack]:
 	var nodes: Array[Attack] = []
 	for child in parent.get_children():

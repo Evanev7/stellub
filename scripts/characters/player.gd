@@ -185,9 +185,9 @@ func activate_xp_vacuum():
 	get_tree().call_group("xp_pickup", "activate")
 
 func player_level_up():
-	hp_max *= 1.005
-	hp += hp_max * 0.005
-	speed *= 1.005
+	hp_max *= 1.01
+	hp += hp_max * 0.01
+	speed *= 1.01
 	pickup_range.scale *= 1.03
 	
 	attack_handler.upgrade_all_attacks(stat_upgrade)
