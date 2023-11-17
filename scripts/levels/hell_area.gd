@@ -45,6 +45,7 @@ func start_magic_circles():
 func _on_player_player_death():
 	GameState.game_over.emit()
 
+#hi :)
 
 func _on_hud_start_game():
 	start_game()

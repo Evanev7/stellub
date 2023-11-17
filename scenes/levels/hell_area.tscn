@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://qhl6r2tbil5t"]
+[gd_scene load_steps=41 format=3 uid="uid://qhl6r2tbil5t"]
 
 [ext_resource type="PackedScene" uid="uid://dilk21k2nncq2" path="res://scenes/levels/level_template.tscn" id="1_ttjsf"]
 [ext_resource type="PackedScene" uid="uid://dfrum4te4lpmr" path="res://scenes/objects/teleporter.tscn" id="2_8o713"]
@@ -17,12 +17,9 @@
 [ext_resource type="Texture2D" uid="uid://dvrx1ijrwk8a2" path="res://art/backgrounds/hell_level_1.png" id="11_1q6b4"]
 [ext_resource type="PackedScene" uid="uid://cnepphpba8e8u" path="res://scenes/characters/player.tscn" id="11_syo0k"]
 [ext_resource type="PackedScene" uid="uid://cp7lho542gmeu" path="res://scenes/objects/shop.tscn" id="11_vorht"]
-[ext_resource type="ButtonGroup" uid="uid://d3at0bq53qjdo" path="res://resources/upgrades/button_group_upgradeHUD_selected_weapons.tres" id="12_2ub6i"]
 [ext_resource type="Resource" uid="uid://ccpb4udi5owpj" path="res://resources/bullets/player/player_bullet.tres" id="13_2dgq8"]
-[ext_resource type="PackedScene" uid="uid://dyhf18b3orycs" path="res://scenes/UI/shop.tscn" id="14_sb7gb"]
 [ext_resource type="Resource" uid="uid://coqyd5d8e6rm8" path="res://resources/bullets/player/particle_mace.tres" id="14_soul3"]
 [ext_resource type="Resource" uid="uid://b3v62pkd6hntd" path="res://resources/bullets/player/shotgun.tres" id="15_gx6j7"]
-[ext_resource type="PackedScene" uid="uid://rnajon2osv8v" path="res://scenes/UI/shop_alt.tscn" id="15_wuu6p"]
 [ext_resource type="Resource" uid="uid://8ogmebrr77xx" path="res://resources/bullets/player/black_hole.tres" id="16_fw7me"]
 [ext_resource type="PackedScene" uid="uid://b2tef800ecm8u" path="res://scenes/components/weapon_handler.tscn" id="17_gx7j2"]
 [ext_resource type="PackedScene" uid="uid://bco6kn11dyo6o" path="res://scenes/components/boss_handler.tscn" id="18_yysi3"]
@@ -83,17 +80,7 @@ y_sort_enabled = true
 z_index = 51
 position = Vector2(418, 419)
 
-[node name="Shop" parent="." index="3" instance=ExtResource("14_sb7gb")]
-visible = false
-
-[node name="ShopAlt" parent="." index="4" instance=ExtResource("15_wuu6p")]
-process_mode = 2
-visible = false
-
-[node name="UpgradeHUD" parent="." index="5"]
-weapon_button_group = ExtResource("12_2ub6i")
-
-[node name="pause_menu" parent="." index="6"]
+[node name="pause_menu" parent="." index="4"]
 visible = false
 
 [node name="TerrainGenerator" parent="LogicComponents" index="1" node_paths=PackedStringArray("tile_map", "ysorter") instance=ExtResource("2_p0a1o")]
@@ -134,6 +121,5 @@ ysorter = NodePath("../../YSort")
 [connection signal="player_death" from="YSort/Player" to="." method="_on_player_player_death"]
 [connection signal="send_loadout" from="YSort/Player" to="LogicComponents/BossHandler" method="_on_player_send_loadout"]
 [connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
-[connection signal="remove_weapon" from="UpgradeHUD" to="LogicComponents/ShopHandler" method="_on_upgrade_hud_remove_weapon"]
 [connection signal="spawn_shop_on_enemy" from="LogicComponents/EnemyHandler" to="LogicComponents/ShopHandler" method="_on_spawn_shop"]
 [connection signal="remove_marker_from_circle" from="LogicComponents/ShopHandler" to="ObjectiveMarker" method="delete_target"]

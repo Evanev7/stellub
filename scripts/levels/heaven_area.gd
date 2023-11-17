@@ -33,6 +33,7 @@ func _physics_process(_delta):
 	#print("bullets: " + str(get_tree().get_nodes_in_group("bullet").size()))
 	pass
 
+# hi also :)
 
 # Start the timers we need, instantiate the HUD and get the player in the right spot.
 func start_level():
