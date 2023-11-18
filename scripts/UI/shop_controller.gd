@@ -56,6 +56,11 @@ func loadsave(mode: int):
 	for total in gui_total_attacks:
 		total.refresh_all()
 
+func _make_custom_tooltip(for_text):
+	var tooltip = preload("res://scenes/UI/Tooltip.tscn").instantiate()
+	print("Huh??")
+	tooltip.get_node("CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/UpgradeName").text = for_text
+	return tooltip
 
 func detach_nodes(parent, children):
 	for child in children:

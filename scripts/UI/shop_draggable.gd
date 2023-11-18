@@ -7,6 +7,7 @@ var button_texture = preload("res://art/UI/Shop/Button Empty.png")
 enum SLOT_TYPE {ATTACK, UPGRADE}
 
 @export var drag_preview_scene: PackedScene = preload("res://scenes/UI/drag_preview.tscn")
+@export var tooltip_scene: PackedScene = preload("res://scenes/UI/Tooltip.tscn")
 @export var slot_type: SLOT_TYPE = SLOT_TYPE.UPGRADE
 @export var swappable: bool = true
 var referenced_node
@@ -71,3 +72,10 @@ func _drop_data(_pos: Vector2, data) -> void:
 	
 	refresh()
 	data["origin_node"].refresh()
+
+func _make_custom_tooltip(for_text):
+	var tooltip = tooltip_scene.instantiate()
+	print("What??")
+	print(for_text)
+	tooltip.get_node("CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/UpgradeName").text = for_text
+	return tooltip

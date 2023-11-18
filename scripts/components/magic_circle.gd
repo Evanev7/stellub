@@ -17,6 +17,10 @@ var skeleton = 2
 var worshipper = 3
 ####
 
+@onready var barrier_edge_marker: Node2D = $Barrier/Marker2D
+@onready var success_timer: Timer = $SuccessTimer
+@onready var time_label: Label = $Time
+
 var wave_data = {}
 var distance_from_center: float = 0
 var size_of_barrier: float = 0
@@ -32,8 +36,8 @@ func start():
 	wave_active = false
 	set_waves()
 	$WaveTimer.stop()
-	$Time.hide()
-	$SuccessTimer.wait_time = 30
+	time_label.hide()
+	success_timer.wait_time = 30
 	
 func set_waves():
 	wave_data = {
@@ -136,39 +140,39 @@ func set_waves():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	$Time.text = str(int($WaveTimer.get_time_left() + 0.99))
+	time_label.text = str(int($WaveTimer.get_time_left() + 0.99))
 	
 	if wave_active:
-		size_of_barrier = $Barrier/Marker2D.global_position.distance_to(self.global_position)
+		size_of_barrier = barrier_edge_marker.global_position.distance_to(self.global_position)
 		distance_from_center = GameState.player.position.distance_to(self.position)
 		GameState.player.global_position = to_global(to_local(GameState.player.global_position).limit_length(size_of_barrier))
 			
-		$Time.text = str(int($SuccessTimer.get_time_left()))
-		if int($SuccessTimer.get_time_left()) % 10 == 0 && $SuccessTimer.get_time_left() > 1:
-			spawn_enemies(int($SuccessTimer.get_time_left()) / 10)
+		time_label.text = str(int(success_timer.get_time_left()))
+		if int(success_timer.get_time_left()) % 10 == 0 && success_timer.get_time_left() > 1:
+			spawn_enemies(int(success_timer.get_time_left()) / 10)
 
 
 func _on_circle_body_entered(body):
 	if body == GameState.player and not wave_active:
-		$Time.show()
+		time_label.show()
 		$WaveTimer.start()
 
 
 func _on_circle_body_exited(body):
 	if body == GameState.player:
 		if not wave_active:
-			$Time.hide()
+			time_label.hide()
 		$WaveTimer.stop()
 
 
 func _on_wave_timer_timeout():
 	wave_active = true
-	$SuccessTimer.wait_time = 20 + (9.99 * current_circle)
+	success_timer.wait_time = 20 + (9.99 * current_circle)
 	$Barrier.visible = true
 	$Barrier/CollisionPolygon2D.disabled = false
 	var tween: Tween = create_tween()
-	tween.tween_property($Barrier, "scale", Vector2(0.4, 0.4), $SuccessTimer.wait_time)
-	$SuccessTimer.start()
+	tween.tween_property($Barrier, "scale", Vector2(0.4, 0.4), success_timer.wait_time)
+	success_timer.start()
 	spawn_enemies((current_circle + 2))
 
 
@@ -177,7 +181,7 @@ func _on_success_timer_timeout():
 	wave_active = false
 	$Barrier.visible = false
 	$Barrier/CollisionPolygon2D.disabled = true
-	$Time.hide()
+	time_label.hide()
 	if current_circle < 12:
 		current_circle += 1
 		remove_objective_marker(self)
