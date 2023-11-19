@@ -21,6 +21,7 @@ func refresh() -> void:
 		slot_type = SLOT_TYPE.ATTACK
 	elif referenced_node is Upgrade:
 		slot_type = SLOT_TYPE.UPGRADE
+		tooltip_text = referenced_node.description
 	
 	if referenced_node and referenced_node.get("icon") != null:
 		texture_normal = referenced_node.icon
@@ -75,7 +76,5 @@ func _drop_data(_pos: Vector2, data) -> void:
 
 func _make_custom_tooltip(for_text):
 	var tooltip = tooltip_scene.instantiate()
-	print("What??")
-	print(for_text)
-	tooltip.get_node("CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/UpgradeName").text = for_text
+	tooltip.get_node("MarginContainer/MarginContainer/Desc").text = for_text
 	return tooltip

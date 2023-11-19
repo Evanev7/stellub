@@ -2,26 +2,18 @@
 
 [ext_resource type="Texture2D" uid="uid://dxtmrmjab36ky" path="res://art/UI/programmer 'art'.png" id="1_6brme"]
 
-[node name="Tooltip" type="Control"]
-layout_mode = 3
-anchors_preset = 0
+[node name="Tooltip" type="CenterContainer"]
+offset_right = 128.0
+offset_bottom = 128.0
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
-custom_minimum_size = Vector2(300, 200)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -64.0
-offset_right = 236.0
-offset_bottom = 136.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = -10
+theme_override_constants/margin_top = -5
+theme_override_constants/margin_right = -10
+theme_override_constants/margin_bottom = -5
 
-[node name="NinePatchRect" type="NinePatchRect" parent="CenterContainer"]
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer"]
 layout_mode = 2
 texture = ExtResource("1_6brme")
 region_rect = Rect2(64, 64, 256, 256)
@@ -32,17 +24,18 @@ patch_margin_bottom = 64
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/NinePatchRect"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 15
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/NinePatchRect/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
 layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 25
 
-[node name="UpgradeName" type="Label" parent="CenterContainer/NinePatchRect/MarginContainer/VBoxContainer"]
+[node name="Desc" type="Label" parent="MarginContainer/MarginContainer"]
 layout_mode = 2
-text = "<UPGRADE>"
+text = "<UPGRADE>
+
+<STATS>
+
+This is the greatest upgrade of all time, I believe"
+horizontal_alignment = 1

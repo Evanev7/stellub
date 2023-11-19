@@ -102,6 +102,7 @@ func upgrade_from_res(upgrade_resource: UpgradeResource) -> Upgrade:
 	upgrade_node.skip = not upgrade_resource.appears_in_inventory
 	upgrade_node.icon = upgrade_resource.icon
 	upgrade_node.name = upgrade_resource.name
+	upgrade_node.description = upgrade_resource.description
 	return upgrade_node
 
 

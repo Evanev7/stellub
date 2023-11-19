@@ -12,4 +12,6 @@ quantity = 10
 appears_in_shop = true
 appears_in_inventory = true
 icon = ExtResource("1_d0faa")
+description = "Creates a Vacuum field around your bullet. 
+Increases strength by 1, and radius by 30 units."
 script_data = {}

@@ -56,12 +56,6 @@ func loadsave(mode: int):
 	for total in gui_total_attacks:
 		total.refresh_all()
 
-func _make_custom_tooltip(for_text):
-	var tooltip = preload("res://scenes/UI/Tooltip.tscn").instantiate()
-	print("Huh??")
-	tooltip.get_node("CenterContainer/NinePatchRect/MarginContainer/VBoxContainer/UpgradeName").text = for_text
-	return tooltip
-
 func detach_nodes(parent, children):
 	for child in children:
 		parent.remove_child(child)
@@ -100,7 +94,7 @@ func close_shop():
 	clear_shop()
 	GameState.unpause_game()
 	set_visible(false)
-	remove_shop.emit(shop_attached_to)
+	#remove_shop.emit(shop_attached_to)
 
 
 func _on_shop_item_taken():
