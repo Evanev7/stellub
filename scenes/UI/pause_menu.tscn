@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c8xiwx0q2sf3m"]
+[gd_scene load_steps=8 format=3 uid="uid://c8xiwx0q2sf3m"]
 
 [ext_resource type="Script" path="res://scripts/UI/pause_menu.gd" id="1_uylrw"]
 [ext_resource type="PackedScene" uid="uid://ck84xpcgl0pv7" path="res://scenes/levels/menu.tscn" id="2_8leer"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://1nhqo37rxmf" path="res://art/UI/Pause_Menu/pause_menu_top_button.png" id="5_ir75b"]
 [ext_resource type="Texture2D" uid="uid://xtnnwrkn54ll" path="res://art/UI/Pause_Menu/pause_menu_middle_button.png" id="6_466m5"]
 [ext_resource type="Texture2D" uid="uid://cgt5paocwd1un" path="res://art/UI/Pause_Menu/pause_menu_bottom_button.png" id="7_83x8g"]
+[ext_resource type="PackedScene" uid="uid://dpba06kf6bgkm" path="res://scenes/UI/options_menu.tscn" id="7_u3l2s"]
 
 [node name="pause_menu" type="CanvasLayer"]
 process_mode = 2
@@ -156,5 +157,10 @@ text = "EXIT"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="options_menu" parent="." instance=ExtResource("7_u3l2s")]
+visible = false
+
 [connection signal="pressed" from="Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
+[connection signal="go_back" from="options_menu" to="." method="_on_options_menu_go_back"]
