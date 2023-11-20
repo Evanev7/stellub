@@ -60,7 +60,6 @@ func _unhandled_input(_event):
 	if debug and Input.is_action_just_pressed("debug_print_data"): # P
 		print("bullets: " + str(get_tree().get_nodes_in_group("bullet").size()))
 		print("enemies: " + str(get_tree().get_nodes_in_group("enemy").size()))
-		Node.print_orphan_nodes()
 		
 	#######################################
 

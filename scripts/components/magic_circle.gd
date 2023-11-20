@@ -191,7 +191,7 @@ func remove_objective_marker(circle):
 	
 	
 func spawn_enemies(timerValue):
-	var wave_index = clamp(current_circle+5,1,10)
+	var wave_index = clamp(current_circle,1,10)
 	
 	var wave = wave_data[wave_index][timerValue]
 	wave_data[wave_index][timerValue] = null
