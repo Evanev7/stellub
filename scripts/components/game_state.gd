@@ -39,7 +39,7 @@ func _unhandled_input(_event):
 	##Debug ###############################
 	
 	if debug and Input.is_action_pressed("debug_gain_score"): ## R
-		player.gain_score(1000)
+		player.gain_score(100)
 		print(get_node("/root").get_child(1).get_node("LogicComponents/EnemyHandler").spawn_timer.get_wait_time())
 		get_node("/root").get_child(1).get_node("HUD").show_score(player.score, player.level_threshold[player.current_level])
 	

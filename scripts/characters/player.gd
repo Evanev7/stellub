@@ -26,7 +26,6 @@ var level_threshold = [10, 20, 30, 50]
 var current_level: int
 var current_evolution: int
 var current_wave: int
-var souls: int
 var hp_max: float
 var speed: float
 var hp:  float
@@ -101,7 +100,6 @@ func set_default_stats():
 	current_level = 0
 	current_animation = "level 0"
 	current_evolution = 0
-	souls = 0
 	scale = default_scale
 	pickup_range.scale = default_pickup_range
 	rotation = 0
@@ -190,7 +188,6 @@ func player_level_up():
 	speed *= 1.01
 	pickup_range.scale *= 1.03
 	current_level += 1
-	souls += 1
 	
 	attack_handler.upgrade_all_attacks(stat_upgrade)
 

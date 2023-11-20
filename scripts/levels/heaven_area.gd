@@ -61,8 +61,6 @@ func _on_player_hp_changed(hp):
 func _on_player_level_up(current_level):
 	HUD.change_min_XP(GameState.player.level_threshold[GameState.player.current_level])
 	HUD.show_health(GameState.player.hp, GameState.player.hp_max)
-	GameState.player.current_level += 1
-	GameState.player.souls += 1
 	enemy_handler.spawn_timer.wait_time /= 1.04
 	enemy_handler.overall_multiplier += GameState.player.current_level / float(550)
 	

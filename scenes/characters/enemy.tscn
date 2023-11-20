@@ -93,12 +93,14 @@ vertical_alignment = 1
 stream = SubResource("AudioStreamRandomizer_f3g71")
 attenuation = 1.77963
 max_polyphony = 5
+bus = &"SFX"
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_qijd0")
 pitch_scale = 0.8
 attenuation = 1.77963
 max_polyphony = 5
+bus = &"SFX"
 
 [connection signal="area_entered" from="Hurtbox" to="." method="hurt"]
 [connection signal="finished" from="DeathSound" to="." method="_on_death_sound_finished"]

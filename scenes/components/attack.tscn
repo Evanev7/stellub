@@ -9,3 +9,4 @@ audio_player = NodePath("AudioStreamPlayer")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 volume_db = -10.48
 max_polyphony = 5
+bus = &"SFX"

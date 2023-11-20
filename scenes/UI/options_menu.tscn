@@ -1,0 +1,201 @@
+[gd_scene load_steps=11 format=3 uid="uid://dpba06kf6bgkm"]
+
+[ext_resource type="Script" path="res://scripts/UI/options_menu.gd" id="1_jrqa7"]
+[ext_resource type="Texture2D" uid="uid://been84ue6lj66" path="res://art/UI/Pause_Menu/pause_menu_background.png" id="1_pcs38"]
+[ext_resource type="Texture2D" uid="uid://xtnnwrkn54ll" path="res://art/UI/Pause_Menu/pause_menu_middle_button.png" id="2_c4rcp"]
+[ext_resource type="Script" path="res://scripts/UI/VolumeSlider.gd" id="3_mybf6"]
+[ext_resource type="AudioStream" uid="uid://dd6gtnmge0jsf" path="res://sounds/enemy_damage.wav" id="5_klcf8"]
+[ext_resource type="AudioStream" uid="uid://csifdlbjdrodm" path="res://sounds/normal_shot.wav" id="6_6ip6c"]
+[ext_resource type="Texture2D" uid="uid://cgt5paocwd1un" path="res://art/UI/Pause_Menu/pause_menu_bottom_button.png" id="7_rmdax"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ik47e"]
+bg_color = Color(0.0901961, 0.0901961, 0.0901961, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5brqb"]
+bg_color = Color(0, 0, 0, 1)
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="Theme" id="Theme_kbrp5"]
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_ik47e")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_5brqb")
+
+[node name="options_menu" type="CanvasLayer" node_paths=PackedStringArray("master_test", "SFX_test")]
+script = ExtResource("1_jrqa7")
+master_test = NodePath("Master")
+SFX_test = NodePath("SFX")
+
+[node name="OptionsBG" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -540.0
+offset_top = -377.0
+offset_right = 539.0
+offset_bottom = 377.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_pcs38")
+expand_mode = 1
+
+[node name="TempTitle" type="Label" parent="OptionsBG"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -68.0
+offset_top = 63.0
+offset_right = 68.0
+offset_bottom = 115.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 35
+text = "OPTIONS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 1394.0
+offset_top = 277.0
+offset_right = 1950.0
+offset_bottom = 792.0
+rotation = 1.5708
+texture = ExtResource("2_c4rcp")
+expand_mode = 1
+
+[node name="Volume" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 95.0
+offset_top = -158.0
+offset_right = 267.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Volume" type="Label" parent="Volume"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 28
+text = "VOLUME
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Master" type="Label" parent="Volume"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 28
+text = "Master
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MasterSlider" type="HSlider" parent="Volume"]
+layout_mode = 2
+theme = SubResource("Theme_kbrp5")
+max_value = 1.0
+step = 0.001
+value = 0.5
+script = ExtResource("3_mybf6")
+bus_name = "Master"
+
+[node name="SFX" type="Label" parent="Volume"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 28
+text = "SFX
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SFXSlider" type="HSlider" parent="Volume"]
+layout_mode = 2
+theme = SubResource("Theme_kbrp5")
+max_value = 1.0
+step = 0.001
+value = 0.5
+script = ExtResource("3_mybf6")
+bus_name = "SFX"
+
+[node name="Music" type="Label" parent="Volume"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 28
+text = "Music
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MusicSlider" type="HSlider" parent="Volume"]
+layout_mode = 2
+theme = SubResource("Theme_kbrp5")
+max_value = 1.0
+step = 0.001
+value = 0.5
+script = ExtResource("3_mybf6")
+bus_name = "Music"
+
+[node name="Master" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_klcf8")
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_6ip6c")
+bus = &"SFX"
+
+[node name="Back" type="TextureButton" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -359.0
+offset_top = 180.0
+offset_right = -71.0
+offset_bottom = 270.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("7_rmdax")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Volume" type="Label" parent="Back"]
+layout_mode = 0
+offset_left = 87.0
+offset_top = 23.0
+offset_right = 204.0
+offset_bottom = 65.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 28
+text = "BACK
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="value_changed" from="Volume/MasterSlider" to="." method="_on_master_slider_value_changed"]
+[connection signal="value_changed" from="Volume/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
