@@ -50,12 +50,25 @@ func loadsave(mode: int):
 		if mode == SAVE:
 			if attack:
 				new_attacks.append(attack)
+			print(new_attacks)
 	
 	if mode == SAVE:
-		attach_nodes(player_attack_handler, new_attacks)
+		reattach_nodes(player_attack_handler, new_attacks)
+		for attack in new_attacks:
+			attack.control_mode = Attack.CONTROL_MODE.PASSIVE
+		new_attacks[0].control_mode = Attack.CONTROL_MODE.PRIMARY
 	
-	for total in gui_total_attacks:
+	for total in gui_total_attacks: 
 		total.refresh_all()
+
+
+func reattach_nodes(parent, children):
+	print(name, " is Reattaching ", children, " to ", parent)
+	for child in children:
+		if child.get_parent():
+			child.get_parent().remove_child(child)
+	for child in children:
+		parent.add_child(child)
 
 func detach_nodes(parent, children):
 	for child in children:
