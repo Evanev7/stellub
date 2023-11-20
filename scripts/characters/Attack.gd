@@ -90,7 +90,10 @@ func refresh_bullet_resource():
 	bullet = initial_bullet.duplicate()
 	for upgrade in get_children():
 		if upgrade is Upgrade:
-			bullet = upgrade.modify_bullet_resource(bullet)
+			if bullet.spawned_bullet_resource:
+				bullet.spawned_bullet_resource = upgrade.modify_bullet_resource(bullet.spawned_bullet_resource)
+			else:
+				bullet = upgrade.modify_bullet_resource(bullet)
 		
 	
 

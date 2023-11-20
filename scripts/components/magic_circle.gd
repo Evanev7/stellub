@@ -11,10 +11,7 @@ static var current_circle: int = 1
 var wave_active: bool = false
 
 ####
-var skull = 0
-var dog = 1
-var skeleton = 2
-var worshipper = 3
+enum {skull, dog, skeleton, lord}
 ####
 
 @onready var barrier_edge_marker: Node2D = $Barrier/Marker2D
@@ -84,7 +81,7 @@ func set_waves():
 			4: {skeleton: 50, skull: 50},
 			3: {skeleton: 50, dog: 50, skull: 50},
 			2: {skeleton: 50, dog: 50, skull: 60},
-			1: {skeleton: 80, dog: 80, skull: 100}
+			1: {skeleton: 40, dog: 40, skull: 50}
 		},
 		7: {
 			9: {skeleton: 30, dog: 30, skull: 30},
@@ -95,7 +92,7 @@ func set_waves():
 			4: {skeleton: 80, dog: 80, skull: 80},
 			3: {skeleton: 80, dog: 80, skull: 100},
 			2: {skeleton: 80, dog: 80, skull: 100},
-			1: {worshipper: 10, skeleton: 60, dog: 60, skull: 60}
+			1: {lord: 10, skeleton: 40, dog: 40, skull: 40}
 		},
 		8: {
 			10: {skeleton: 30, dog: 30, skull: 30},
@@ -107,7 +104,7 @@ func set_waves():
 			4: {skeleton: 80, dog: 80, skull: 80},
 			3: {skeleton: 80, dog: 80, skull: 100},
 			2: {skeleton: 80, dog: 80, skull: 100},
-			1: {worshipper: 10, skeleton: 60, dog: 60, skull: 60}
+			1: {lord: 10, skeleton: 40, dog: 40, skull: 40}
 		},
 		9: {
 			11: {skeleton: 30, dog: 30, skull: 30},
@@ -120,7 +117,7 @@ func set_waves():
 			4: {skeleton: 80, dog: 80, skull: 80},
 			3: {skeleton: 80, dog: 80, skull: 100},
 			2: {skeleton: 80, dog: 80, skull: 100},
-			1: {worshipper: 10, skeleton: 60, dog: 60, skull: 60}
+			1: {lord: 10, skeleton: 40, dog: 40, skull: 40}
 		},
 		10: {
 			12: {skeleton: 30, dog: 30, skull: 30},
@@ -134,7 +131,7 @@ func set_waves():
 			4: {skeleton: 80, dog: 80, skull: 80},
 			3: {skeleton: 80, dog: 80, skull: 100},
 			2: {skeleton: 80, dog: 80, skull: 100},
-			1: {worshipper: 10, skeleton: 60, dog: 60, skull: 60}
+			1: {lord: 10, skeleton: 40, dog: 40, skull: 40}
 		},
 	}
 

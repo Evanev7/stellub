@@ -128,6 +128,7 @@ func transport(delta) -> void:
 			_traveled_distance += shot_speed * delta
 		
 		BulletResource.TRANSPORT_MODE.STATIC:
+			rotation += data.angular_velocity
 			pass
 			
 func _on_self_destruct_timeout():

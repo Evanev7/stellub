@@ -9,6 +9,7 @@ func _ready():
 # Change stats on pickup
 func modify_bullet_resource(bullet: BulletResource) -> BulletResource:
 	bomb_bullet = script_data["bullet"].duplicate()
+	bomb_bullet.spawned_bullet_resource = bullet.spawned_bullet_resource
 	bullet.spawned_bullet_resource = bomb_bullet
 	return bullet
 
