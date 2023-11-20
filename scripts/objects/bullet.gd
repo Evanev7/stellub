@@ -24,6 +24,7 @@ var vacuum
 # Set some initial rotations, and set different collision layer for player and
 # enemy bullets.
 func _ready():
+	GameState.num_bullets += 1
 	add_to_group("bullet")
 	var origin: Node2D = origin_ref.get_ref()
 	if data.vacuum:
@@ -80,7 +81,7 @@ func _physics_process(delta):
 	if _traveled_distance > data.bullet_range:
 		if data.spawn_on_timeout and spawned_bullet:
 			spawn_child()
-		queue_free()
+		remove()
 	
 	if piercing_cooldown > 0:
 		piercing_cooldown -= 1.0
@@ -108,7 +109,7 @@ func transport(delta) -> void:
 		BulletResource.TRANSPORT_MODE.ROTATING_FIXED_CENTRE:
 			var origin = origin_ref.get_ref()
 			if not origin:
-				queue_free()
+				remove()
 				return
 			rotation += data.angular_velocity * delta
 			position = origin.position + (Vector2.UP*data.start_range).rotated(rotation+PI/2)
@@ -134,7 +135,7 @@ func transport(delta) -> void:
 func _on_self_destruct_timeout():
 	if data.spawn_on_timeout and spawned_bullet:
 		spawn_child()
-	queue_free()
+	remove()
 
 
 func _on_area_entered(area):
@@ -161,7 +162,7 @@ func successful_hit(target):
 	#Handle bullet destruction.
 	piercing -= 1
 	if piercing == 0:
-		queue_free()
+		remove()
 
 func spawn_child() -> void:
 	#Spawn child bullets, currently continuing in the bullets direction.
@@ -169,3 +170,7 @@ func spawn_child() -> void:
 	fire_from.position = position
 	fire_from.direction = direction
 	GameState.fire_bullet.emit(origin_ref, spawned_bullet, fire_from)
+
+func remove() -> void:
+	queue_free()
+	GameState.num_bullets -= 1

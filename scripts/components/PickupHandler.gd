@@ -7,28 +7,34 @@ class_name PickupHandler
 @export var ysorter: Node2D
 @export var score_display: CanvasLayer
 
-var pool
+var reward_pool
+var xp_pools
 
 func _ready():
 	GameState.register_enemy.connect(attach_enemy)
-	pool = Pool.new()
-	pool.populate([[Pickup.hp_pickup,1], [Pickup.vacuum_pickup,1], [null,8]])
+	reward_pool = Pool.new()
+	reward_pool.populate([[Pickup.hp_pickup,1], [Pickup.vacuum_pickup,1], [null,8]])
 
 func attach_enemy(enemy):
 	enemy.enemy_killed.connect(_on_enemy_killed)
 
 func _on_enemy_killed(enemy):
-	for i in range(enemy.value):
-		spawn_pickup(enemy.position, Pickup.xp_pickup)
+	var value_remaining = enemy.value
+	while value_remaining > 0:
+		
+		var value = maths(value_remaining, enemy.value)
+		spawn_pickup(enemy.position, Pickup.xp_pickup, value)
+		value_remaining -= value
 	
-	var sample = pool.sample()
+	var sample = reward_pool.sample()
 	if sample:
 		spawn_pickup(enemy.position, sample)
 
-func spawn_pickup(pos, type):
+func spawn_pickup(pos, type, value = 1):
 	var pickup = pickup_scene.instantiate()
 	pickup.position = pos
 	pickup.pickup_type = type
+	pickup.value = value
 
 	ysorter.call_deferred("add_child", pickup)
 	
@@ -41,3 +47,10 @@ func _on_pickup_credit_player(value):
 			player.level_threshold[player.current_level]
 		)
 
+func maths(value_remaining, enemy_value):
+	if GameState.num_xp_pickups > 500:
+		return value_remaining
+	if enemy_value <= 10:
+		return 1
+	else:
+		return randi_range(1,value_remaining)

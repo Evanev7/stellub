@@ -34,8 +34,10 @@ var fire_on_hit: bool = false
 var damage_scene_pool: Array[DamageNumber] = []
 var movement_enabled: bool = true
 var enemy_limit = 125
+var dead: bool = false
 
 func _ready():
+	GameState.num_enemies += 1
 	if owner:
 		await(owner.ready)
 	load_resource(resource)
@@ -132,7 +134,8 @@ func hurt(area):
 	
 	
 	#Die when health is zero
-	if health <= 0:
+	if health <= 0 and not dead:
+		dead = true
 		$Hitbox/CollisionShape2D.set_deferred("disabled", true)
 		$Hurtbox/CollisionShape2D.set_deferred("disabled", true)
 		death_sound.play()
@@ -144,11 +147,14 @@ func hurt(area):
 			spawn_shop.emit(global_position)
 	
 func _on_death_sound_finished():
+	GameState.num_enemies -= 1
 	queue_free()
 	
 	
 func spawn_damage_number(damage_value: float):
 	var damage_number = get_damage_number()
+	if not damage_number:
+		return
 	var val = damage_value
 	var pos = damage_number_location.position
 	damage_numbers.add_child(damage_number, true)
@@ -157,19 +163,20 @@ func spawn_damage_number(damage_value: float):
 func get_damage_number() -> DamageNumber:
 	if damage_scene_pool.size() > 0:
 		return damage_scene_pool.pop_front()
-		
-	else:
+	elif GameState.num_damage_labels < 1000:
+		GameState.num_damage_labels += 1
 		var new_damage_number = damage_scene.instantiate()
 		new_damage_number.tree_exiting.connect(
 			func():
 				damage_scene_pool.append(new_damage_number))
 		return new_damage_number
+	else:
+		return null
 
 # Called when the enemy encounters something that it hurts.
 func hit(area):
 	if area.owner == GameState.player:
 		area.owner.hurt(self)
-
 
 
 

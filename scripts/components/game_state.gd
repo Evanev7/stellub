@@ -13,6 +13,11 @@ var current_area
 @onready var hell_area_to_instantiate: PackedScene = preload("res://scenes/levels/hell_area.tscn")
 @onready var heaven_area_to_instantiate: PackedScene = preload("res://scenes/levels/heaven_area.tscn")
 
+var num_enemies: int = 0
+var num_bullets: int = 0
+var num_xp_pickups: int = 0
+var num_damage_labels: int = 0
+
 
 var debug = true
 
@@ -34,7 +39,7 @@ func _unhandled_input(_event):
 	##Debug ###############################
 	
 	if debug and Input.is_action_pressed("debug_gain_score"): ## R
-		player.gain_score(10)
+		player.gain_score(1000)
 		print(get_node("/root").get_child(1).get_node("LogicComponents/EnemyHandler").spawn_timer.get_wait_time())
 		get_node("/root").get_child(1).get_node("HUD").show_score(player.score, player.level_threshold[player.current_level])
 	
@@ -53,7 +58,10 @@ func _unhandled_input(_event):
 		get_node("/root").get_child(1).get_node("LogicComponents/ShopHandler")._on_activate_teleporter()
 		
 	if debug and Input.is_action_just_pressed("debug_print_data"): # P
-		print_orphan_nodes()
+		print("bullets: " + str(get_tree().get_nodes_in_group("bullet").size()))
+		print("enemies: " + str(get_tree().get_nodes_in_group("enemy").size()))
+		Node.print_orphan_nodes()
+		
 	#######################################
 
 func pause_game():

@@ -23,8 +23,11 @@ var velocity: float = 0
 func _ready():
 	match pickup_type:
 		xp_pickup:
+			GameState.num_xp_pickups += 1
 			sprite.animation = "xp_pickup"
-			add_to_group("xp_pickup")
+			add_to_group("xp_pickup") 
+			var scale_ratio = 1+log(value)
+			apply_scale(Vector2(scale_ratio, scale_ratio))
 		hp_pickup:
 			sprite.animation = "hp_pickup"
 			value = randi() % 51 + 10
@@ -39,8 +42,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	lifetime += delta
 	if lifetime < activation_time:
+		lifetime += delta
 		var direction = Vector2.from_angle(launch_angle- PI/2)
 		position += launch_velocity * direction * delta + Vector2(0,lifetime*grav_scale)
 	if activated:
@@ -49,10 +52,11 @@ func _physics_process(delta):
 		position += velocity * direction * delta
 
 func activate():
+	process_mode = Node.PROCESS_MODE_INHERIT
 	activated = true
-
-func _on_self_destruct_timeout():
-	queue_free()
 	
 	# Add functionality to add value to another nearby pickup
 
+func _notification(what):
+	if what == NOTIFICATION_PREDELETE:
+		GameState.num_bullets -= 1

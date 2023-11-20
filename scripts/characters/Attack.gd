@@ -92,8 +92,7 @@ func refresh_bullet_resource():
 		if upgrade is Upgrade:
 			if bullet.spawned_bullet_resource:
 				bullet.spawned_bullet_resource = upgrade.modify_bullet_resource(bullet.spawned_bullet_resource)
-			else:
-				bullet = upgrade.modify_bullet_resource(bullet)
+			bullet = upgrade.modify_bullet_resource(bullet)
 		
 	
 

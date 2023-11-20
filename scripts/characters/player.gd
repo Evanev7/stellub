@@ -145,12 +145,12 @@ func get_pickup(area):
 	## pickup_type constants: enum {xp_pickup, hp_pickup, vacuum_pickup}
 	if area.is_in_group("pickup"):
 		match area.pickup_type:
-			0:
+			Pickup.xp_pickup:
 				credit_player.emit(area.value)
 				pickup_sound.play()
-			1:
+			Pickup.hp_pickup:
 				heal(area.value)
-			2:
+			Pickup.vacuum_pickup:
 				activate_xp_vacuum()
 		area.queue_free()
 
@@ -163,7 +163,7 @@ func gain_score(value):
 	else:
 		tween.tween_property(sprite, "self_modulate:v", 1, 0.25).from(5)
 	
-	if score >= level_threshold[current_level]:
+	while score >= level_threshold[current_level]:
 		level_up.emit(current_level)
 		player_level_up()
 		if level_threshold[current_level] > 2000:
@@ -189,6 +189,8 @@ func player_level_up():
 	hp += hp_max * 0.01
 	speed *= 1.01
 	pickup_range.scale *= 1.03
+	current_level += 1
+	souls += 1
 	
 	attack_handler.upgrade_all_attacks(stat_upgrade)
 
