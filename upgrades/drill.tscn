@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dynu0krtxh55c"]
-
-[ext_resource type="Script" path="res://upgrades/scripts/drill.gd" id="1_1homx"]
-
-[node name="drill" type="Node"]
-script = ExtResource("1_1homx")

@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://3bqmxujc0qkr"]
-
-[ext_resource type="Script" path="res://upgrades/scripts/CentreOfTheGalaxy.gd" id="1_3e4wp"]
-[ext_resource type="Texture2D" uid="uid://dtwe6u3g8px0x" path="res://art/objects/soul_3.png" id="2_hds83"]
-
-[node name="Centre of the Galaxy" type="Node"]
-script = ExtResource("1_3e4wp")
-rarity = 0.8
-icon = ExtResource("2_hds83")

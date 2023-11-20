@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://cdfb7fw5fpq2i"]
-
-[ext_resource type="Script" path="res://upgrades/scripts/vacuum.gd" id="1_hgy48"]
-[ext_resource type="Texture2D" uid="uid://c8bduam0tg1y5" path="res://art/objects/magic circle barrier.png" id="2_h8440"]
-
-[node name="vacuum" type="Node"]
-script = ExtResource("1_hgy48")
-icon = ExtResource("2_h8440")

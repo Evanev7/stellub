@@ -9,22 +9,25 @@ enum SLOT_TYPE {ATTACK, UPGRADE}
 @export var drag_preview_scene: PackedScene = preload("res://scenes/UI/drag_preview.tscn")
 @export var tooltip_scene: PackedScene = preload("res://scenes/UI/Tooltip.tscn")
 @export var slot_type: SLOT_TYPE = SLOT_TYPE.UPGRADE
-@export var swappable: bool = true
-var referenced_node
+@export var is_shop: bool = false
+var referenced_node: Node
 
 func _ready():
 	add_to_group("draggable")
 
 func refresh() -> void:
+	if referenced_node:
+		if referenced_node is Upgrade:
+			slot_type = SLOT_TYPE.UPGRADE
+			tooltip_text = referenced_node.description
+		
+		elif referenced_node is Attack:
+			slot_type = SLOT_TYPE.ATTACK
 	
-	if referenced_node is Attack:
-		slot_type = SLOT_TYPE.ATTACK
-	elif referenced_node is Upgrade:
-		slot_type = SLOT_TYPE.UPGRADE
-		tooltip_text = referenced_node.description
-	
-	if referenced_node and referenced_node.get("icon") != null:
-		texture_normal = referenced_node.icon
+		if referenced_node.get("icon") != null:
+			texture_normal = referenced_node.icon
+		else:
+			texture_normal = button_texture
 	else:
 		texture_normal = button_texture
 
@@ -33,7 +36,7 @@ func _get_drag_data(_pos: Vector2) -> Variant:
 		"origin_node" = self,
 		"referenced_node" = referenced_node,
 		"slot_type" = slot_type,
-		"slot_swappable" = swappable
+		"is_shop" = is_shop
 	}
 	
 	print("Drag Data: ", data)
@@ -55,20 +58,15 @@ func _can_drop_data(_pos: Vector2, incoming_data) -> bool:
 		return false
 	if slot_type != incoming_data["slot_type"]:
 		return false
-	if incoming_data["slot_swappable"] == false and slot_type == SLOT_TYPE.ATTACK:
-		return true
-	if incoming_data["slot_swappable"] == false and referenced_node != null:
+	if is_shop:
 		return false
 	return true
 
 
-func _drop_data(_pos: Vector2, data) -> void:	
-	if swappable and data["slot_swappable"]:
-		data["origin_node"].referenced_node = referenced_node
-		referenced_node = data["referenced_node"]
-	elif referenced_node == null:
-		data["origin_node"].referenced_node = null
-		referenced_node = data["referenced_node"]
+func _drop_data(_pos: Vector2, data) -> void:
+	data["origin_node"].referenced_node = referenced_node
+	referenced_node = data["referenced_node"]
+	if data["is_shop"]:
 		shop_item_taken.emit()
 	
 	refresh()

@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://cuppr631j5lhu"]
-
-[ext_resource type="Script" path="res://upgrades/scripts/concentrate.gd" id="1_q77s0"]
-[ext_resource type="Texture2D" uid="uid://dmy3xfs65igrt" path="res://art/bullets/player/Upgrades/Concentrate.png" id="2_pe6sy"]
-
-[node name="Concentrate" type="Node"]
-script = ExtResource("1_q77s0")
-icon = ExtResource("2_pe6sy")

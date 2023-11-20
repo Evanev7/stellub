@@ -25,7 +25,7 @@ func get_gui_upgrades() -> Array[Control]:
 	return gui_upgrades
 
 func reattach_nodes(parent, children):
-	print("Reattaching ", children, " to ", parent)
+	print(name, " is Reattaching ", children, " to ", parent)
 	for child in children:
 		if child.get_parent():
 			child.get_parent().remove_child(child)
@@ -45,14 +45,13 @@ func loadsave(mode: int, attack_node: Attack) -> Attack:
 	var gui_attack_node = get_node("%Attack")
 	var gui_upgrades: Array[Control] = get_gui_upgrades()
 	var player_upgrades: Array[Upgrade] = []
-	if not attack_node:
-		attack_node = Attack.new()
-	
-	gui_attack_node.referenced_node = attack_node
-	gui_attack_node.refresh()
 	
 	if mode == LOAD:
-		player_upgrades = get_upgrade_nodes(attack_node)
+		gui_attack_node.referenced_node = attack_node
+		if attack_node:
+			player_upgrades = get_upgrade_nodes(attack_node)
+	
+	gui_attack_node.refresh()
 	
 	for config_index in range(4):
 		var config_node: TextureButton = get_node(config_node_names[config_index])
@@ -72,8 +71,11 @@ func loadsave(mode: int, attack_node: Attack) -> Attack:
 		gui_upgrades[upgrade_index].refresh()
 	
 	if mode == SAVE:
-		reattach_nodes(attack_node, player_upgrades)
-		attack_node.refresh_bullet_resource()
+		if $%Attack.referenced_node != null:
+			attack_node = $%Attack.referenced_node
+		if attack_node:
+			reattach_nodes(attack_node, player_upgrades)
+			attack_node.refresh_bullet_resource()
 	
 	return attack_node
 	

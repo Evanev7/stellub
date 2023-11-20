@@ -48,7 +48,8 @@ func loadsave(mode: int):
 		else:
 			attack = gui_total_attacks[attack_index].loadsave(mode, null)
 		if mode == SAVE:
-			new_attacks.append(attack)
+			if attack:
+				new_attacks.append(attack)
 	
 	if mode == SAVE:
 		attach_nodes(player_attack_handler, new_attacks)

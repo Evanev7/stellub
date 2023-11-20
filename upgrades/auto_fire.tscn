@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://bgt31t0wymqk4"]
-
-[ext_resource type="Script" path="res://scripts/components/UpgradeBase.gd" id="1_tib7t"]
-[ext_resource type="Texture2D" uid="uid://bw0olwfct1s4n" path="res://art/objects/arrow-temp.png" id="2_alwwe"]
-
-[node name="auto_fire" type="Node"]
-script = ExtResource("1_tib7t")
-icon = ExtResource("2_alwwe")

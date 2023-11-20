@@ -73,7 +73,7 @@ texture_normal = SubResource("PlaceholderTexture2D_hcpdw")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("3_bkygl")
-swappable = false
+is_shop = true
 
 [node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer/Shop1"]
 z_index = -1
@@ -94,7 +94,7 @@ texture_normal = SubResource("PlaceholderTexture2D_dfl7m")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("3_bkygl")
-swappable = false
+is_shop = true
 
 [node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer/Shop2"]
 z_index = -1
@@ -119,7 +119,7 @@ texture_normal = SubResource("PlaceholderTexture2D_dfl7m")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("3_bkygl")
-swappable = false
+is_shop = true
 
 [node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer2/Shop3"]
 z_index = -1
@@ -141,7 +141,7 @@ texture_normal = SubResource("PlaceholderTexture2D_hcpdw")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("3_bkygl")
-swappable = false
+is_shop = true
 
 [node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer2/Shop4"]
 z_index = -1

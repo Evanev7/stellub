@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://c33wxtyp6pcj5"]
-
-[ext_resource type="Script" path="res://upgrades/scripts/SplitShot.gd" id="1_pjf17"]
-[ext_resource type="Texture2D" uid="uid://b6y7giikvs0aa" path="res://art/bullets/enemies/bullet_orange.png" id="2_1oixy"]
-
-[node name="Split Shot" type="Node"]
-script = ExtResource("1_pjf17")
-icon = ExtResource("2_1oixy")

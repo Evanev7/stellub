@@ -1,8 +1,8 @@
-[gd_scene load_steps=45 format=3 uid="uid://cnepphpba8e8u"]
+[gd_scene load_steps=46 format=3 uid="uid://cnepphpba8e8u"]
 
 [ext_resource type="Script" path="res://scripts/characters/player.gd" id="1_m0lvq"]
-[ext_resource type="PackedScene" uid="uid://cgjvip03rh3b4" path="res://upgrades/stat_upgrade.tscn" id="2_50n7q"]
 [ext_resource type="Texture2D" uid="uid://kwiitmwbn82r" path="res://art/player/level 0/player_0_1.png" id="3_ik71x"]
+[ext_resource type="Script" path="res://upgrades/scripts/stat_upgrade.gd" id="3_se1dn"]
 [ext_resource type="Texture2D" uid="uid://6fmtfmpb5kvf" path="res://art/player/level 0/player_0_2.png" id="4_p28ir"]
 [ext_resource type="Shader" path="res://scenes/characters/outline.gdshader" id="4_xdw23"]
 [ext_resource type="Texture2D" uid="uid://q4hnsccll683" path="res://art/player/level 0/player_0_3.png" id="5_3s83j"]
@@ -36,6 +36,19 @@
 [ext_resource type="Shader" path="res://scenes/characters/mask.gdshader" id="34_qqbj8"]
 [ext_resource type="Resource" uid="uid://ccpb4udi5owpj" path="res://resources/bullets/player/player_bullet.tres" id="35_8awst"]
 [ext_resource type="AudioStream" uid="uid://umpxr80y1hgh" path="res://sounds/pickup.wav" id="36_ys6vg"]
+
+[sub_resource type="PackedScene" id="PackedScene_ybrl7"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("Stats", "Node", "script"),
+"node_count": 1,
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 1, 2, 0, 0),
+"variants": [ExtResource("3_se1dn")],
+"version": 3
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_odef0"]
 size = Vector2(1066.67, 1066.67)
@@ -195,7 +208,7 @@ motion_mode = 1
 platform_on_leave = 2
 script = ExtResource("1_m0lvq")
 STARTING_WEAPON = ExtResource("35_8awst")
-stat_upgrade = ExtResource("2_50n7q")
+stat_upgrade = SubResource("PackedScene_ybrl7")
 attack_handler = NodePath("AttackHandler")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

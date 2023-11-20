@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://doyhlebmabr1l"]
-
-[ext_resource type="Script" path="res://upgrades/scripts/Minigun.gd" id="1_xqwxe"]
-[ext_resource type="Texture2D" uid="uid://dgyj58e4c5d1a" path="res://art/enemies/demon_skull_1.png" id="2_1qdj3"]
-
-[node name="Minigun" type="Node"]
-script = ExtResource("1_xqwxe")
-icon = ExtResource("2_1qdj3")

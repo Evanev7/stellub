@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cgjvip03rh3b4"]
-
-[ext_resource type="Script" path="res://upgrades/scripts/stat_upgrade.gd" id="1_0for7"]
-
-[node name="Stats" type="Node"]
-script = ExtResource("1_0for7")
