@@ -51,6 +51,9 @@ func _unhandled_input(_event):
 		
 	if debug and Input.is_action_just_pressed("debug_activate_teleporter"): # T
 		get_node("/root").get_child(1).get_node("LogicComponents/ShopHandler")._on_activate_teleporter()
+		
+	if debug and Input.is_action_just_pressed("debug_print_data"): # P
+		print_orphan_nodes()
 	#######################################
 
 func pause_game():

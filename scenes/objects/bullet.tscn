@@ -3,14 +3,12 @@
 [ext_resource type="Material" uid="uid://6vtco3gw7ve7" path="res://resources/warp_shader.tres" id="1_dilvh"]
 [ext_resource type="Script" path="res://scripts/objects/bullet.gd" id="1_vy7io"]
 [ext_resource type="Texture2D" uid="uid://bk3vxhcckppe1" path="res://art/enemies/demon_dog.png" id="2_dammb"]
+[ext_resource type="PackedScene" uid="uid://creqcpfcm3j5d" path="res://scenes/components/bullet_vacuum.tscn" id="2_jy2wq"]
 [ext_resource type="SpriteFrames" uid="uid://cbfq7bqkgh3ti" path="res://resources/bullets/player/player_bullet_spriteframes.tres" id="2_p3jja"]
 [ext_resource type="Texture2D" uid="uid://clyycn7uujclo" path="res://art/icon.svg" id="4_2d6mg"]
 [ext_resource type="Script" path="res://scripts/components/Shader.gd" id="5_5b5w5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rwjyl"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_xwujq"]
-radius = 100.0
 
 [node name="Bullet" type="Area2D"]
 collision_layer = 0
@@ -18,6 +16,7 @@ collision_mask = 2
 input_pickable = false
 monitorable = false
 script = ExtResource("1_vy7io")
+vacuum_scene = ExtResource("2_jy2wq")
 
 [node name="SelfDestruct" type="Timer" parent="."]
 one_shot = true
@@ -50,16 +49,6 @@ frame_progress = 0.134133
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(1.5, 1.5)
 shape = SubResource("CircleShape2D_rwjyl")
-
-[node name="Vacuum" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Vacuum"]
-position = Vector2(2, 0)
-shape = SubResource("CircleShape2D_xwujq")
-disabled = true
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -17,7 +17,8 @@ var origin_ref: WeakRef
 @onready var origin_position: Vector2
 
 var _hit_targets: Array
-
+@export var vacuum_scene: PackedScene
+var vacuum
 
 # Called when the node enters the scene tree for the first time.
 # Set some initial rotations, and set different collision layer for player and
@@ -25,9 +26,14 @@ var _hit_targets: Array
 func _ready():
 	add_to_group("bullet")
 	var origin: Node2D = origin_ref.get_ref()
+	if data.vacuum:
+		vacuum = vacuum_scene.instantiate()
+		add_child(vacuum)
+		if origin == GameState.player:
+			vacuum.set_collision_mask(4)
+	
 	if origin == GameState.player:
 		set_collision_mask(4)
-		$Vacuum.set_collision_mask(4)
 	scale = data.size
 	sprite.sprite_frames = data.animation
 	$SelfDestruct.wait_time = data.lifetime
@@ -52,17 +58,17 @@ func _ready():
 		$BackBufferCopy.copy_mode = BackBufferCopy.COPY_MODE_VIEWPORT
 		$Shader.process_mode = Node.PROCESS_MODE_INHERIT
 		$Shader.visible = true
-		$Vacuum/CollisionShape2D.disabled = false
-		$Vacuum/CollisionShape2D.shape.radius = data.vacuum_range
+		vacuum.get_node("CollisionShape2D").shape.radius = data.vacuum_range
 	
 	if data.activation_delay > 0:
 		$CollisionShape2D.disabled = true
-		$Vacuum/CollisionShape2D.disabled = true
+		if data.vacuum:
+			vacuum.get_node("CollisionShape2D").disabled = true
 		await get_tree().create_timer(data.activation_delay).timeout
 		
 		$CollisionShape2D.disabled = false
 		if data.vacuum:
-			$Vacuum/CollisionShape2D.disabled = false
+			vacuum.get_node("CollisionShape2D").disabled = false
 	
 	
 
@@ -84,8 +90,8 @@ func _physics_process(delta):
 			successful_hit(area.owner)
 		piercing_cooldown = data.piercing_cooldown
 	
-	if data.vacuum:
-		for area in $Vacuum.get_overlapping_areas():
+	if vacuum:
+		for area in vacuum.get_overlapping_areas():
 			if area.owner.has_method("hurt"):
 				var enemy = area.owner
 				enemy.position += (position - enemy.position).normalized()* (data.vacuum_strength / enemy.strength)
