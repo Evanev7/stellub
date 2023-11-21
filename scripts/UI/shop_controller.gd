@@ -50,7 +50,6 @@ func loadsave(mode: int):
 		if mode == SAVE:
 			if attack:
 				new_attacks.append(attack)
-			print(new_attacks)
 	
 	if mode == SAVE:
 		reattach_nodes(player_attack_handler, new_attacks)
@@ -63,7 +62,7 @@ func loadsave(mode: int):
 
 
 func reattach_nodes(parent, children):
-	print(name, " is Reattaching ", children, " to ", parent)
+	# print(name, " is Reattaching ", children, " to ", parent)
 	for child in children:
 		if child.get_parent():
 			child.get_parent().remove_child(child)
@@ -84,7 +83,6 @@ func populate_shop(shop_items):
 		var shop_node = get_node("%Shop" + str(index+1))
 		shop_node.referenced_node = shop_items[index]
 		shop_node.refresh()
-	print("Shop contains: ", shop_items)
 
 
 func clear_shop():
@@ -95,7 +93,6 @@ func clear_shop():
 
 
 func open_shop(chosen_upgrades, _weapon):
-	print(chosen_upgrades)
 	loadsave(LOAD)
 	populate_shop(chosen_upgrades)
 

@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://hjq7ajw2da3d"]
+
+[ext_resource type="Script" path="res://scripts/UI/shop_draggable.gd" id="1_hpu8w"]
+[ext_resource type="Texture2D" uid="uid://c1pc88qkwsmnl" path="res://art/UI/Shop/Button Empty.png" id="2_ll74f"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_hcpdw"]
+
+[node name="ShopDraggable" type="TextureButton"]
+clip_contents = true
+custom_minimum_size = Vector2(200, 200)
+texture_normal = SubResource("PlaceholderTexture2D_hcpdw")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("1_hpu8w")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ll74f")
+expand_mode = 1

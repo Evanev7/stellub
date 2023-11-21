@@ -112,7 +112,7 @@ func generate_description(upgrade_resource: UpgradeResource) -> String:
 	print(upgrade_resource.name)
 	print("size: ")
 	print(upgrade_resource.script_data.size())
-	for key in upgrade_resource.script_data.size():
+	for key in upgrade_resource.script_data.keys():
 		if upgrade_resource.script_data[key] == "bullet":
 			print("key: ")
 			print(upgrade_resource.script_data[key])

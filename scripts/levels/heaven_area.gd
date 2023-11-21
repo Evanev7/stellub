@@ -30,7 +30,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
 	randomize()
-	#print("bullets: " + str(get_tree().get_nodes_in_group("bullet").size()))
 	pass
 
 # hi also :)
