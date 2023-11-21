@@ -17,7 +17,7 @@ func _ready():
 	start_game()
 	$LogicComponents/ShopHandler.spawn_magic_circles()
 	$LogicComponents/TerrainGenerator.generate()
-
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
 	pass

@@ -30,6 +30,10 @@ window/size/viewport_height=1080
 window/size/initial_position_type=2
 window/stretch/mode="canvas_items"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/PerfBullets/plugin.cfg")
+
 [input]
 
 move_up={

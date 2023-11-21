@@ -11,10 +11,14 @@ class_name TerrainGenerator
 #How often to generate it
 @export var object_spawn_rate: Array[float]
 
-@onready var update_tick_rate: float = 1
+@export var bullet_border: BulletBorder
+
+@onready var update_tick_rate: float = 1.037
 @onready var tile_size: Vector2 = tile_map.scale * Vector2(tile_map.tile_set.tile_size)
 @onready var used_cells = tile_map.get_used_cells(0)
 
+var max_xy: Vector2
+var min_xy: Vector2
 
 var landing_attempts = 10
 
@@ -45,8 +49,21 @@ func generate() -> void:
 		for y in range(-update_range.y,update_range.y+1):
 			var update_coords = player_atlas_coords + Vector2i(x,y)
 			if update_coords not in used_cells:
+				
+				if update_coords.x > max_xy.x:
+					max_xy.x = update_coords.x
+				if update_coords.y > max_xy.y:
+					max_xy.y = update_coords.y
+				if update_coords.x < min_xy.x:
+					min_xy.x = update_coords.x
+				if update_coords.y < min_xy.y:
+					min_xy.y = update_coords.y
+				
 				populate(update_coords)
 				used_cells = tile_map.get_used_cells(0)
+	
+	bullet_border.get_node("TopLeft").position = min_xy * tile_size
+	bullet_border.get_node("BottomRight").position = max_xy * tile_size
 
 func cliff_generate() -> void:
 	tile_map.set_cell(0,Vector2i(0,0),1,Vector2i(0,0),0)

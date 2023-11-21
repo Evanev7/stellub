@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://qhl6r2tbil5t"]
+[gd_scene load_steps=44 format=3 uid="uid://qhl6r2tbil5t"]
 
 [ext_resource type="PackedScene" uid="uid://dilk21k2nncq2" path="res://scenes/levels/level_template.tscn" id="1_ttjsf"]
 [ext_resource type="PackedScene" uid="uid://dfrum4te4lpmr" path="res://scenes/objects/teleporter.tscn" id="2_8o713"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bxmk1htarl4v5" path="res://scenes/components/shop_handler.tscn" id="6_tokbn"]
 [ext_resource type="Resource" uid="uid://bnoj3uq3e6s17" path="res://resources/enemy/angel_warrior.tres" id="7_jjuad"]
 [ext_resource type="Resource" uid="uid://daslelns8qmfv" path="res://resources/enemy/angel_crusader.tres" id="8_rirxr"]
+[ext_resource type="Texture2D" uid="uid://dvrx1ijrwk8a2" path="res://art/backgrounds/hell_level_1.png" id="11_1q6b4"]
 [ext_resource type="PackedScene" uid="uid://cnepphpba8e8u" path="res://scenes/characters/player.tscn" id="11_syo0k"]
 [ext_resource type="PackedScene" uid="uid://cp7lho542gmeu" path="res://scenes/objects/shop.tscn" id="11_vorht"]
 [ext_resource type="Resource" uid="uid://ccpb4udi5owpj" path="res://resources/bullets/player/player_bullet.tres" id="13_2dgq8"]
@@ -39,9 +40,16 @@
 [ext_resource type="Resource" uid="uid://nh3ysny8kvkt" path="res://upgrades/vacuum.tres" id="32_ve8tn"]
 [ext_resource type="Resource" uid="uid://b1rd0nm53sjuw" path="res://upgrades/frag.tres" id="33_7jswi"]
 [ext_resource type="PackedScene" uid="uid://cwtvi2ph44p4d" path="res://scenes/UI/cursor_particles.tscn" id="33_aqxfn"]
+[ext_resource type="Script" path="res://addons/PerfBullets/GDScript_Classes/BulletBorder.gd" id="40_atkas"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_myus2"]
+texture = ExtResource("11_1q6b4")
+texture_region_size = Vector2i(1920, 1080)
+0:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_rqhpw"]
 tile_size = Vector2i(1920, 1080)
+sources/1 = SubResource("TileSetAtlasSource_myus2")
 
 [node name="Hell Area" node_paths=PackedStringArray("enemy_handler") instance=ExtResource("1_ttjsf")]
 script = ExtResource("2_myijk")
@@ -81,9 +89,10 @@ process_mode = 2
 [node name="pause_menu" parent="." index="4"]
 visible = false
 
-[node name="TerrainGenerator" parent="LogicComponents" index="1" node_paths=PackedStringArray("tile_map", "ysorter") instance=ExtResource("2_p0a1o")]
+[node name="TerrainGenerator" parent="LogicComponents" index="1" node_paths=PackedStringArray("tile_map", "ysorter", "bullet_border") instance=ExtResource("2_p0a1o")]
 tile_map = NodePath("../../YSort/TileMap")
 ysorter = NodePath("../../YSort")
+bullet_border = NodePath("../../BulletBorder")
 
 [node name="PickupHandler" parent="LogicComponents" index="2" node_paths=PackedStringArray("ysorter", "score_display") instance=ExtResource("3_be7sf")]
 pickup_scene = ExtResource("4_rcjv7")
@@ -110,6 +119,15 @@ ysorter = NodePath("../../YSort")
 
 [node name="WeaponHandler" parent="LogicComponents" index="6" node_paths=PackedStringArray("ysorter") instance=ExtResource("17_gx7j2")]
 ysorter = NodePath("../../YSort")
+
+[node name="BulletBorder" type="Node2D" parent="." index="7" node_paths=PackedStringArray("topLeft", "bottomRight")]
+script = ExtResource("40_atkas")
+topLeft = NodePath("TopLeft")
+bottomRight = NodePath("BottomRight")
+
+[node name="TopLeft" type="Node2D" parent="BulletBorder" index="0"]
+
+[node name="BottomRight" type="Node2D" parent="BulletBorder" index="1"]
 
 [connection signal="teleport_player" from="YSort/teleporter" to="." method="teleport_to_heaven_area"]
 [connection signal="shop_entered" from="YSort/Shop" to="LogicComponents/ShopHandler" method="_on_shop_entered"]
