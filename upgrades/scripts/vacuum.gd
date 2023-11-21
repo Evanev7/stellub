@@ -12,7 +12,7 @@ func modify_bullet_resource(bullet: BulletResource) -> BulletResource:
 	bullet.vacuum_range += 30
 	bullet.vacuum_strength += 1
 	bullet.activation_delay = 0.5
-	bullet.piercing += 3
+	bullet.piercing += 2
 	
 	if bullet.piercing_cooldown == 0:
 		bullet.piercing_cooldown = 50

@@ -102,8 +102,23 @@ func upgrade_from_res(upgrade_resource: UpgradeResource) -> Upgrade:
 	upgrade_node.skip = not upgrade_resource.appears_in_inventory
 	upgrade_node.icon = upgrade_resource.icon
 	upgrade_node.name = upgrade_resource.name
-	upgrade_node.description = upgrade_resource.description
+	upgrade_node.description = generate_description(upgrade_resource)
 	return upgrade_node
+
+func generate_description(upgrade_resource: UpgradeResource) -> String:
+	var description: String = upgrade_resource.description
+	var stats: String
+	print("upgrade: ")
+	print(upgrade_resource.name)
+	print("size: ")
+	print(upgrade_resource.script_data.size())
+	for key in upgrade_resource.script_data.size():
+		if upgrade_resource.script_data[key] == "bullet":
+			print("key: ")
+			print(upgrade_resource.script_data[key])
+			#stats += `{key}`
+	
+	return description
 
 
 func open_shop(chosen_upgrades, is_weapon_present, shop_attached_to):

@@ -34,8 +34,8 @@
 [ext_resource type="Resource" uid="uid://caeytpd302r1q" path="res://upgrades/drill.tres" id="27_kwkmh"]
 [ext_resource type="Resource" uid="uid://cvxev8t8bsds1" path="res://upgrades/minigun.tres" id="28_1qd5n"]
 [ext_resource type="Resource" uid="uid://xoj5pa4iabuk" path="res://upgrades/rpg.tres" id="29_kgb5h"]
+[ext_resource type="Resource" uid="uid://x1q84ou5be48" path="res://upgrades/multi_shot.tres" id="30_7nx4i"]
 [ext_resource type="Resource" uid="uid://c7p72w4p6xr5n" path="res://upgrades/split_shot.tres" id="30_nb1u1"]
-[ext_resource type="Resource" uid="uid://x1q84ou5be48" path="res://upgrades/triple_shot.tres" id="31_ftla6"]
 [ext_resource type="Resource" uid="uid://d2j0rt7130hds" path="res://upgrades/bomb.tres" id="32_nacy0"]
 [ext_resource type="Resource" uid="uid://nh3ysny8kvkt" path="res://upgrades/vacuum.tres" id="32_ve8tn"]
 [ext_resource type="Resource" uid="uid://b1rd0nm53sjuw" path="res://upgrades/frag.tres" id="33_7jswi"]
@@ -103,7 +103,7 @@ enemy_ysort = NodePath("../../YSort/Enemies")
 
 [node name="ShopHandler" parent="LogicComponents" index="4" node_paths=PackedStringArray("enemyHandler", "ysorter", "objective_marker", "shop_node", "teleporter") instance=ExtResource("6_tokbn")]
 attack_scene = ExtResource("23_6mnt7")
-default_shop_upgrades_list = Array[Resource("res://upgrades/upgrade_resource.gd")]([ExtResource("22_vl2um"), ExtResource("23_ti1t0"), ExtResource("24_370hh"), ExtResource("25_2mguo"), ExtResource("26_sxgrq"), ExtResource("27_kwkmh"), ExtResource("28_1qd5n"), ExtResource("29_kgb5h"), ExtResource("30_nb1u1"), ExtResource("31_ftla6"), ExtResource("32_ve8tn"), ExtResource("32_nacy0"), ExtResource("33_7jswi")])
+default_shop_upgrades_list = Array[Resource("res://upgrades/upgrade_resource.gd")]([ExtResource("22_vl2um"), ExtResource("23_ti1t0"), ExtResource("24_370hh"), ExtResource("25_2mguo"), ExtResource("26_sxgrq"), ExtResource("27_kwkmh"), ExtResource("28_1qd5n"), ExtResource("29_kgb5h"), ExtResource("30_nb1u1"), ExtResource("30_7nx4i"), ExtResource("32_ve8tn"), ExtResource("32_nacy0"), ExtResource("33_7jswi")])
 default_shop_weapons_list = Array[Resource("res://scripts/objects/bullet_resource.gd")]([ExtResource("13_2dgq8"), ExtResource("14_soul3"), ExtResource("15_gx6j7"), ExtResource("16_fw7me")])
 enemyHandler = NodePath("../EnemyHandler")
 ysorter = NodePath("../../YSort")

@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://ck84xpcgl0pv7"]
+[gd_scene load_steps=9 format=3 uid="uid://ck84xpcgl0pv7"]
 
 [ext_resource type="Texture2D" uid="uid://b2byn4ep7a4f8" path="res://art/backgrounds/heaven_level_1.png" id="1_8xy13"]
 [ext_resource type="Script" path="res://scripts/levels/menu.gd" id="1_we8ni"]
 [ext_resource type="SpriteFrames" uid="uid://buhg63ostt083" path="res://resources/objects/soul_pickup.tres" id="3_msxq3"]
+[ext_resource type="PackedScene" uid="uid://dpba06kf6bgkm" path="res://scenes/UI/options_menu.tscn" id="4_8vaed"]
 
 [sub_resource type="Gradient" id="Gradient_om6uu"]
 colors = PackedColorArray(0.0581837, 0.261051, 0.43165, 1, 1, 0, 0.615686, 1)
@@ -19,9 +20,9 @@ gradient = SubResource("Gradient_8qpqv")
 [node name="menu" type="Node2D"]
 script = ExtResource("1_we8ni")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Main Menu" type="CanvasLayer" parent="."]
 
-[node name="Background" type="TextureRect" parent="CanvasLayer"]
+[node name="Background" type="TextureRect" parent="Main Menu"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -29,7 +30,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture1D_0nni8")
 
-[node name="Title" type="TextureRect" parent="CanvasLayer/Background"]
+[node name="Title" type="TextureRect" parent="Main Menu/Background"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -40,7 +41,7 @@ offset_right = 325.5
 offset_bottom = 79.0
 grow_horizontal = 2
 
-[node name="TempTitle" type="Label" parent="CanvasLayer/Background/Title"]
+[node name="TempTitle" type="Label" parent="Main Menu/Background/Title"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -55,7 +56,7 @@ text = "FAUSTIAN HELL"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Buttons" type="TextureRect" parent="CanvasLayer/Background"]
+[node name="Buttons" type="TextureRect" parent="Main Menu/Background"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -69,7 +70,7 @@ offset_bottom = 191.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Play" type="TextureButton" parent="CanvasLayer/Background/Buttons"]
+[node name="Play" type="TextureButton" parent="Main Menu/Background/Buttons"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -86,7 +87,7 @@ texture_hover = ExtResource("1_8xy13")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="TempPlay" type="Label" parent="CanvasLayer/Background/Buttons/Play"]
+[node name="TempPlay" type="Label" parent="Main Menu/Background/Buttons/Play"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -101,7 +102,7 @@ text = "PLAY"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Options" type="TextureButton" parent="CanvasLayer/Background/Buttons"]
+[node name="Options" type="TextureButton" parent="Main Menu/Background/Buttons"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -118,7 +119,7 @@ texture_hover = ExtResource("1_8xy13")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="TempOptions" type="Label" parent="CanvasLayer/Background/Buttons/Options"]
+[node name="TempOptions" type="Label" parent="Main Menu/Background/Buttons/Options"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -133,7 +134,7 @@ text = "OPTIONS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Credits" type="TextureButton" parent="CanvasLayer/Background/Buttons"]
+[node name="Credits" type="TextureButton" parent="Main Menu/Background/Buttons"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -150,7 +151,7 @@ texture_hover = ExtResource("1_8xy13")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="TempCredits" type="Label" parent="CanvasLayer/Background/Buttons/Credits"]
+[node name="TempCredits" type="Label" parent="Main Menu/Background/Buttons/Credits"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -165,7 +166,7 @@ text = "CREDITS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="LoadingScreen" type="TextureRect" parent="CanvasLayer"]
+[node name="LoadingScreen" type="TextureRect" parent="Main Menu"]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -180,7 +181,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_hyj0y")
 
-[node name="LOADING" type="Label" parent="CanvasLayer/LoadingScreen"]
+[node name="LOADING" type="Label" parent="Main Menu/LoadingScreen"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -201,11 +202,16 @@ text = "LOADING"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/LoadingScreen"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Main Menu/LoadingScreen"]
 position = Vector2(1108, 602)
 scale = Vector2(0.040759, 0.040759)
 sprite_frames = ExtResource("3_msxq3")
 animation = &"xp_pickup"
 autoplay = "xp_pickup"
 
-[connection signal="pressed" from="CanvasLayer/Background/Buttons/Play" to="." method="_on_play_pressed"]
+[node name="options_menu" parent="." instance=ExtResource("4_8vaed")]
+visible = false
+
+[connection signal="pressed" from="Main Menu/Background/Buttons/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Main Menu/Background/Buttons/Options" to="." method="_on_options_pressed"]
+[connection signal="go_back" from="options_menu" to="." method="_on_options_menu_go_back"]

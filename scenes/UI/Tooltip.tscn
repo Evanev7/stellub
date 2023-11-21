@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://dxtmrmjab36ky" path="res://art/UI/programmer 'art'.png" id="1_6brme"]
 
 [node name="Tooltip" type="CenterContainer"]
-offset_right = 128.0
-offset_bottom = 128.0
+offset_right = 449.0
+offset_bottom = 170.0
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2

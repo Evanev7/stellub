@@ -14,10 +14,10 @@ func modify_bullet_resource(bullet: BulletResource) -> BulletResource:
 	if bullet.piercing_cooldown == 0:
 		bullet.piercing_cooldown = 30
 	else:
-		bullet.piercing_cooldown *= 0.9
+		bullet.piercing_cooldown *= 0.95
 		
-	bullet.damage /= 3
-	bullet.piercing += 10
+	bullet.damage /= 2
+	bullet.piercing += 20
 	bullet.fire_delay *= 2
 	return bullet
 

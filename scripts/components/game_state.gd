@@ -8,6 +8,8 @@ var player: CharacterBody2D
 var pause_menu: CanvasLayer
 var shop_HUD: CanvasLayer
 
+var damage_numbers_enabled: bool = true
+
 enum CURRENT_AREA {HELL, HEAVEN, BOSS}
 var current_area
 @onready var hell_area_to_instantiate: PackedScene = preload("res://scenes/levels/hell_area.tscn")
@@ -18,8 +20,7 @@ var num_bullets: int = 0
 var num_xp_pickups: int = 0
 var num_damage_labels: int = 0
 
-
-var debug = true
+var debug: bool = true
 
 
 func _ready():

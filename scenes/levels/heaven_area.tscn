@@ -27,7 +27,7 @@
 [ext_resource type="Resource" uid="uid://cvxev8t8bsds1" path="res://upgrades/minigun.tres" id="25_6rooh"]
 [ext_resource type="Resource" uid="uid://xoj5pa4iabuk" path="res://upgrades/rpg.tres" id="26_0rw8n"]
 [ext_resource type="Resource" uid="uid://c7p72w4p6xr5n" path="res://upgrades/split_shot.tres" id="27_avrd4"]
-[ext_resource type="Resource" uid="uid://x1q84ou5be48" path="res://upgrades/triple_shot.tres" id="28_vwet1"]
+[ext_resource type="Resource" uid="uid://x1q84ou5be48" path="res://upgrades/multi_shot.tres" id="28_vwet1"]
 [ext_resource type="Resource" uid="uid://nh3ysny8kvkt" path="res://upgrades/vacuum.tres" id="29_yq8m1"]
 [ext_resource type="Resource" uid="uid://ccpb4udi5owpj" path="res://resources/bullets/player/player_bullet.tres" id="30_ogi32"]
 [ext_resource type="Resource" uid="uid://coqyd5d8e6rm8" path="res://resources/bullets/player/particle_mace.tres" id="31_5dnue"]

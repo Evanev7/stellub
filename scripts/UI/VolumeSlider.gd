@@ -6,7 +6,6 @@ var bus_index: int
 
 func _ready() -> void:
 	bus_index = AudioServer.get_bus_index(bus_name)
-	print(bus_index)
 	value_changed.connect(_on_value_changed)
 	
 	value = db_to_linear(
@@ -18,4 +17,3 @@ func _on_value_changed(value: float) -> void:
 		bus_index,
 		linear_to_db(value)
 	)
-	print(bus_index, value)

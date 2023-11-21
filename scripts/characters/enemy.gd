@@ -127,7 +127,9 @@ func hurt(area):
 	var tween2 := create_tween()
 	tween2.tween_property(self, "global_scale", default_scale, 0.1)
 	tween2.tween_property($AnimatedSprite2D, "self_modulate:v", 1, 0.05).from(50)
-	spawn_damage_number(area.damage)
+	
+	if GameState.damage_numbers_enabled:
+		spawn_damage_number(area.damage)
 	
 	if fire_on_hit:
 		attack_handler.get_child(0).on_hit()
