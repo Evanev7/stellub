@@ -16,7 +16,7 @@ description = "Heavily increases fire rate,
 while decreasing damage."
 script_data = {
 "Damage": "x0.5",
-"Fire Rate": &"x6",
+"Fire Rate": &"x4",
 "Knockback": &"x0.5",
 "Shot Inaccuracy": &"x4",
 "Size": &"x0.77"

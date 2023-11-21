@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://cnepphpba8e8u"]
+[gd_scene load_steps=47 format=3 uid="uid://cnepphpba8e8u"]
 
 [ext_resource type="Script" path="res://scripts/characters/player.gd" id="1_m0lvq"]
 [ext_resource type="Texture2D" uid="uid://kwiitmwbn82r" path="res://art/player/level 0/player_0_1.png" id="3_ik71x"]
@@ -35,6 +35,7 @@
 [ext_resource type="PackedScene" uid="uid://u1hhvearq4oy" path="res://scenes/components/attack_handler.tscn" id="32_ju527"]
 [ext_resource type="Shader" path="res://scenes/characters/mask.gdshader" id="34_qqbj8"]
 [ext_resource type="Resource" uid="uid://ccpb4udi5owpj" path="res://resources/bullets/player/player_bullet.tres" id="35_8awst"]
+[ext_resource type="Texture2D" uid="uid://bpx5ybtqcrlpp" path="res://art/objects/shadow.png" id="35_ikv2g"]
 [ext_resource type="AudioStream" uid="uid://umpxr80y1hgh" path="res://sounds/pickup.wav" id="36_ys6vg"]
 
 [sub_resource type="PackedScene" id="PackedScene_ybrl7"]
@@ -183,13 +184,13 @@ shader = ExtResource("4_xdw23")
 shader_parameter/silhouette_color = Color(0, 0.8, 0.8, 1)
 shader_parameter/line_thickness = 1.0
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_cmodu"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_8fdeg"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q4c1u"]
 shader = ExtResource("34_qqbj8")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_otj7s"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_eu2gf"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gnh5g"]
@@ -211,6 +212,13 @@ STARTING_WEAPON = ExtResource("35_8awst")
 stat_upgrade = SubResource("PackedScene_ybrl7")
 attack_handler = NodePath("AttackHandler")
 
+[node name="Shadow" type="Sprite2D" parent="."]
+z_index = -1
+y_sort_enabled = true
+position = Vector2(0, 460)
+scale = Vector2(1.51111, 1.6)
+texture = ExtResource("35_ikv2g")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(0.3, 0.3)
 shape = SubResource("RectangleShape2D_odef0")
@@ -230,12 +238,12 @@ offset = Vector2(1950, 1950)
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 50
 material = SubResource("ShaderMaterial_5wfaw")
-texture = SubResource("ViewportTexture_cmodu")
+texture = SubResource("ViewportTexture_8fdeg")
 
 [node name="Mask" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_q4c1u")
 position = Vector2(1, 1)
-texture = SubResource("ViewportTexture_otj7s")
+texture = SubResource("ViewportTexture_eu2gf")
 
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 26
@@ -268,7 +276,9 @@ volume_db = -0.215
 max_polyphony = 30
 bus = &"SFX"
 
-[connection signal="area_entered" from="Hurtbox" to="." method="hurt"]
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+
 [connection signal="area_entered" from="Hurtbox" to="." method="get_pickup"]
+[connection signal="area_entered" from="Hurtbox" to="." method="hurt"]
 [connection signal="area_entered" from="PickupRange" to="." method="activate_pickup"]
 [connection signal="timeout" from="IFrames" to="." method="_on_i_frames_timeout"]

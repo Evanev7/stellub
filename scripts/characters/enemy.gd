@@ -10,9 +10,15 @@ signal spawn_shop(pos)
 @onready var unique_multiplier: float = resource.UNIQUE_MULTIPLIER
 @onready var overall_multiplier: float = resource.OVERALL_MULTIPLIER
 
+@onready var collider = $CollisionShape2D
+@onready var hitbox = $Hitbox
+@onready var hitbox_collisionshape = $Hitbox/CollisionShape2D
+@onready var hurtbox_collisionshape = $Hurtbox/CollisionShape2D
+@onready var shadow = $Shadow
+
+
 @onready var attack_handler: AttackHandler = $AttackHandler
 @onready var sprite = $AnimatedSprite2D
-@onready var hitbox = $Hitbox
 @onready var damage_sound = $DamageSound
 @onready var death_sound = $DeathSound
 @onready var health: float = resource.MAX_HP * unique_multiplier * overall_multiplier
@@ -23,7 +29,7 @@ signal spawn_shop(pos)
 @onready var flipped: bool = resource.FLIP_H
 @onready var floating: bool = resource.FLOATING
 @onready var default_angle: float = self.rotation
-@onready var default_scale: Vector2 = resource.SCALE * (0.5 + (unique_multiplier / 2))
+@onready var default_scale: Vector2 = resource.SCALE * (0.875 + (unique_multiplier / 8))
 @onready var variance = 1/default_scale.length()
 
 var fire_on_hit: bool = false
@@ -72,27 +78,30 @@ func load_resource(resource_to_load: EnemyResource):
 		if resource_to_load.BULLET.fire_on_hit:
 			fire_on_hit = true
 		
-	$CollisionShape2D.shape = resource_to_load.COLLIDER
-	$CollisionShape2D.rotation = resource_to_load.COLLISION_ROTATION
-	$Hitbox/CollisionShape2D.shape = resource_to_load.HITBOX
-	$Hitbox/CollisionShape2D.rotation = resource_to_load.COLLISION_ROTATION
-	$Hurtbox/CollisionShape2D.shape = resource_to_load.HURTBOX
-	$Hurtbox/CollisionShape2D.rotation = resource_to_load.COLLISION_ROTATION
+	collider.shape = resource_to_load.COLLIDER
+	collider.rotation = resource_to_load.COLLISION_ROTATION
+	hitbox_collisionshape.shape = resource_to_load.HITBOX
+	hitbox_collisionshape.rotation = resource_to_load.COLLISION_ROTATION
+	hurtbox_collisionshape.shape = resource_to_load.HURTBOX
+	hurtbox_collisionshape.rotation = resource_to_load.COLLISION_ROTATION
+	
+	shadow.position.y = (hitbox_collisionshape.shape.height / 2) - default_scale.length()
 
 
 # Function for easing sprites between two positions while 'idle'. I.e. enemy rotation.
 func sway():
 	var tween: Tween = create_tween()
 	if floating:
+		sprite.position = Vector2(0, 0)
 		tween.tween_property(sprite, "position", sprite.position + Vector2(0, 2*variance), 0.4) \
 				.set_ease(Tween.EASE_IN)
 		tween.tween_property(sprite, "position", sprite.position - Vector2(0, 2*variance), 0.4) \
 				.set_ease(Tween.EASE_OUT)
 		tween.tween_callback(sway)
 	else:
-		tween.tween_property(self, "rotation", default_angle + 0.03*variance, 0.4) \
+		tween.tween_property(sprite, "rotation", default_angle + 0.03*variance, 0.4) \
 				.set_ease(Tween.EASE_IN)
-		tween.tween_property(self, "rotation", default_angle - 0.03*variance, 0.4) \
+		tween.tween_property(sprite, "rotation", default_angle - 0.03*variance, 0.4) \
 				.set_ease(Tween.EASE_OUT)
 		tween.tween_callback(sway)
 

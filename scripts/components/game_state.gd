@@ -50,7 +50,7 @@ func _unhandled_input(_event):
 	
 	if debug and Input.is_action_just_pressed("debug_spawn_enemy"): # L
 		for i in range(10):
-			get_node("/root").get_child(1).get_node("LogicComponents/EnemyHandler").spawn_enemy(randi() % 6)
+			get_node("/root").get_child(1).get_node("LogicComponents/EnemyHandler").spawn_enemy(randi() % 7)
 		
 	if debug and Input.is_action_just_pressed("debug_spawn_boss"): # B
 		player.send_loadout_to_boss()
