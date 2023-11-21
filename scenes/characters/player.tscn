@@ -268,7 +268,7 @@ volume_db = -0.215
 max_polyphony = 30
 bus = &"SFX"
 
-[connection signal="area_entered" from="Hurtbox" to="." method="hurt"]
 [connection signal="area_entered" from="Hurtbox" to="." method="get_pickup"]
+[connection signal="area_entered" from="Hurtbox" to="." method="hurt"]
 [connection signal="area_entered" from="PickupRange" to="." method="activate_pickup"]
 [connection signal="timeout" from="IFrames" to="." method="_on_i_frames_timeout"]

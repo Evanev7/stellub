@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/UI/shop_total_attack.gd" id="1_6mrto"]
 [ext_resource type="Texture2D" uid="uid://c1pc88qkwsmnl" path="res://art/UI/Shop/Button Empty.png" id="2_q5ar0"]
-[ext_resource type="PackedScene" uid="uid://hjq7ajw2da3d" path="res://scenes/UI/shop_draggable.tscn" id="4_pkhjl"]
+[ext_resource type="PackedScene" uid="uid://domdhv4tthmyh" path="res://scenes/UI/shop_draggable.tscn" id="4_pkhjl"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_gbimq"]
 
@@ -108,6 +108,7 @@ layout_mode = 2
 
 [node name="Attack" parent="HBoxContainer/CenterContainer" instance=ExtResource("4_pkhjl")]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(110, 110)
 layout_mode = 2
 slot_type = 0
 
@@ -119,6 +120,7 @@ layout_mode = 2
 
 [node name="Upgrade1" parent="HBoxContainer/HBoxContainer/CenterUpgrade1" instance=ExtResource("4_pkhjl")]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 
 [node name="CenterUpgrade2" type="CenterContainer" parent="HBoxContainer/HBoxContainer"]
@@ -126,6 +128,7 @@ layout_mode = 2
 
 [node name="Upgrade2" parent="HBoxContainer/HBoxContainer/CenterUpgrade2" instance=ExtResource("4_pkhjl")]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 
 [node name="CenterUpgrade3" type="CenterContainer" parent="HBoxContainer/HBoxContainer"]
@@ -133,6 +136,7 @@ layout_mode = 2
 
 [node name="Upgrade3" parent="HBoxContainer/HBoxContainer/CenterUpgrade3" instance=ExtResource("4_pkhjl")]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 
 [node name="CenterUpgrade4" type="CenterContainer" parent="HBoxContainer/HBoxContainer"]
@@ -140,6 +144,7 @@ layout_mode = 2
 
 [node name="Upgrade4" parent="HBoxContainer/HBoxContainer/CenterUpgrade4" instance=ExtResource("4_pkhjl")]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 
 [node name="CenterUpgrade5" type="CenterContainer" parent="HBoxContainer/HBoxContainer"]
@@ -147,6 +152,7 @@ layout_mode = 2
 
 [node name="Upgrade5" parent="HBoxContainer/HBoxContainer/CenterUpgrade5" instance=ExtResource("4_pkhjl")]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 
 [node name="CenterUpgrade6" type="CenterContainer" parent="HBoxContainer/HBoxContainer"]
@@ -154,6 +160,7 @@ layout_mode = 2
 
 [node name="Upgrade6" parent="HBoxContainer/HBoxContainer/CenterUpgrade6" instance=ExtResource("4_pkhjl")]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 
 [node name="CenterUpgrade7" type="CenterContainer" parent="HBoxContainer/HBoxContainer"]
@@ -161,6 +168,7 @@ layout_mode = 2
 
 [node name="Upgrade7" parent="HBoxContainer/HBoxContainer/CenterUpgrade7" instance=ExtResource("4_pkhjl")]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 
 [node name="CenterUpgrade8" type="CenterContainer" parent="HBoxContainer/HBoxContainer"]
@@ -168,4 +176,5 @@ layout_mode = 2
 
 [node name="Upgrade8" parent="HBoxContainer/HBoxContainer/CenterUpgrade8" instance=ExtResource("4_pkhjl")]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
