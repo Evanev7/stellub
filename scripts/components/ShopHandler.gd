@@ -107,18 +107,15 @@ func upgrade_from_res(upgrade_resource: UpgradeResource) -> Upgrade:
 
 func generate_description(upgrade_resource: UpgradeResource) -> String:
 	var description: String = upgrade_resource.description
-	var stats: String
-	print("upgrade: ")
-	print(upgrade_resource.name)
-	print("size: ")
-	print(upgrade_resource.script_data.size())
+	var stats: String = """
+	"""
 	for key in upgrade_resource.script_data.keys():
-		if upgrade_resource.script_data[key] == "bullet":
-			print("key: ")
-			print(upgrade_resource.script_data[key])
-			#stats += `{key}`
-	
-	return description
+		if key != "bullet":
+			stats += "
+			" + key + ": " + upgrade_resource.script_data[key] + "
+			"
+	description += stats
+	return description 
 
 
 func open_shop(chosen_upgrades, is_weapon_present, shop_attached_to):
@@ -126,7 +123,6 @@ func open_shop(chosen_upgrades, is_weapon_present, shop_attached_to):
 	shop_node.shop_attached_to = shop_attached_to
 	shop_node.set_visible(true)
 	shop_node.open_shop(chosen_upgrades, is_weapon_present)
-	# this will error that is fine dw about it
 	shop_node.connect('remove_shop', _remove_shop)
 
 func _on_spawn_shop(position):

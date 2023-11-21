@@ -12,5 +12,10 @@ quantity = 10
 appears_in_shop = true
 appears_in_inventory = true
 icon = ExtResource("1_m80ch")
-description = "Default Upgrade Description"
-script_data = {}
+description = "Focuses your fire to increase damage, 
+but slows your fire rate."
+script_data = {
+"Damage": &"x1.5",
+"Fire Rate": &"x0.8",
+"Shot Spread": &"x0.67"
+}

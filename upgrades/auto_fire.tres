@@ -12,4 +12,7 @@ quantity = 10
 appears_in_shop = true
 appears_in_inventory = true
 icon = ExtResource("1_x3pwn")
-script_data = {}
+description = "Turns your weapon into a passive one."
+script_data = {
+"Fire Delay": &"x1.05"
+}

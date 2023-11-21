@@ -12,4 +12,9 @@ quantity = 8
 appears_in_shop = true
 appears_in_inventory = true
 icon = ExtResource("1_1fbjo")
-script_data = {}
+description = "Causes your bullets to orbit 
+around you, and adds more."
+script_data = {
+"Fire Delay": &"x1.2",
+"Multi Shot": &"x2"
+}

@@ -12,4 +12,9 @@ quantity = 10
 appears_in_shop = true
 appears_in_inventory = true
 icon = ExtResource("1_8p5me")
-script_data = {}
+description = "Shoots two small bullets horizontally
+on contact. Increases number of
+bullets with more stacks."
+script_data = {
+"Damage": &"x0.5"
+}

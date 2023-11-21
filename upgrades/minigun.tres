@@ -12,4 +12,12 @@ quantity = 10
 appears_in_shop = true
 appears_in_inventory = true
 icon = ExtResource("1_qn26c")
-script_data = {}
+description = "Heavily increases fire rate,
+while decreasing damage."
+script_data = {
+"Damage": "x0.5",
+"Fire Rate": &"x6",
+"Knockback": &"x0.5",
+"Shot Inaccuracy": &"x4",
+"Size": &"x0.77"
+}

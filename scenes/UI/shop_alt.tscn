@@ -1,12 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://rnajon2osv8v"]
+[gd_scene load_steps=9 format=3 uid="uid://rnajon2osv8v"]
 
 [ext_resource type="Script" path="res://scripts/UI/shop_controller.gd" id="1_gilh6"]
 [ext_resource type="Texture2D" uid="uid://dxtmrmjab36ky" path="res://art/UI/programmer 'art'.png" id="2_bcolm"]
 [ext_resource type="Script" path="res://scripts/UI/shop_draggable.gd" id="3_bkygl"]
-[ext_resource type="PackedScene" uid="uid://hjq7ajw2da3d" path="res://scenes/UI/shop_draggable.tscn" id="3_gqwbm"]
 [ext_resource type="Texture2D" uid="uid://c1pc88qkwsmnl" path="res://art/UI/Shop/Button Empty.png" id="4_xri81"]
 [ext_resource type="Texture2D" uid="uid://cdseftigmx86u" path="res://art/UI/no lmao.png" id="5_gccri"]
 [ext_resource type="PackedScene" uid="uid://jgeavrbmn7f2" path="res://scenes/UI/shop_total_attack.tscn" id="6_egsl6"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_hcpdw"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_dfl7m"]
 
 [node name="ShopAlt" type="CanvasLayer"]
 script = ExtResource("1_gilh6")
@@ -61,29 +64,95 @@ theme_override_constants/separation = 40
 layout_mode = 2
 theme_override_constants/separation = 50
 
-[node name="Shop1" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource("3_gqwbm")]
+[node name="Shop1" type="TextureButton" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
+clip_contents = true
+custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
+texture_normal = SubResource("PlaceholderTexture2D_hcpdw")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("3_bkygl")
 is_shop = true
 
-[node name="Shop3" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource("3_gqwbm")]
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer/Shop1"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_xri81")
+expand_mode = 1
+
+[node name="Shop2" type="TextureButton" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
+texture_normal = SubResource("PlaceholderTexture2D_dfl7m")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("3_bkygl")
 is_shop = true
+
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer/Shop2"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_xri81")
+expand_mode = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 50
 
-[node name="Shop2" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer2" instance=ExtResource("3_gqwbm")]
+[node name="Shop3" type="TextureButton" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer2"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
+texture_normal = SubResource("PlaceholderTexture2D_dfl7m")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("3_bkygl")
 is_shop = true
 
-[node name="Shop4" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer2" instance=ExtResource("3_gqwbm")]
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer2/Shop3"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_xri81")
+expand_mode = 1
+
+[node name="Shop4" type="TextureButton" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer2"]
 unique_name_in_owner = true
+clip_contents = true
+custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
+texture_normal = SubResource("PlaceholderTexture2D_hcpdw")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("3_bkygl")
 is_shop = true
+
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer2/Shop4"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_xri81")
+expand_mode = 1
 
 [node name="ShopExit" type="TextureButton" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer"]
 unique_name_in_owner = true
@@ -92,7 +161,6 @@ layout_mode = 2
 texture_normal = ExtResource("5_gccri")
 ignore_texture_size = true
 stretch_mode = 0
-script = ExtResource("3_bkygl")
 
 [node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/ShopExit"]
 z_index = -1

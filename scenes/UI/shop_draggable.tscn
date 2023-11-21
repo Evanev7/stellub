@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://hjq7ajw2da3d"]
+[gd_scene load_steps=4 format=3 uid="uid://domdhv4tthmyh"]
 
 [ext_resource type="Script" path="res://scripts/UI/shop_draggable.gd" id="1_hpu8w"]
 [ext_resource type="Texture2D" uid="uid://c1pc88qkwsmnl" path="res://art/UI/Shop/Button Empty.png" id="2_ll74f"]
