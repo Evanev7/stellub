@@ -1,10 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://jgeavrbmn7f2"]
 
 [ext_resource type="Script" path="res://scripts/UI/shop_total_attack.gd" id="1_6mrto"]
-[ext_resource type="Texture2D" uid="uid://c1pc88qkwsmnl" path="res://art/UI/Shop/Button Empty.png" id="2_q5ar0"]
+[ext_resource type="Texture2D" uid="uid://bnraeyqy86t88" path="res://art/UI/Mouse_Simple_Key_Dark.png" id="2_d6fa4"]
+[ext_resource type="Texture2D" uid="uid://ko4vghr4shrp" path="res://art/UI/Mouse_Left_Key_Dark.png" id="3_6h5ki"]
 [ext_resource type="PackedScene" uid="uid://domdhv4tthmyh" path="res://scenes/UI/shop_draggable.tscn" id="4_pkhjl"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_gbimq"]
 
 [node name="TotalAttack" type="MarginContainer"]
 theme_override_constants/margin_left = 20
@@ -12,96 +11,29 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 script = ExtResource("1_6mrto")
+unpressed_texture = ExtResource("2_d6fa4")
+pressed_texture = ExtResource("3_6h5ki")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 theme_override_constants/separation = 20
 
 [node name="CenterContainer2" type="CenterContainer" parent="HBoxContainer"]
-visible = false
 layout_mode = 2
 
 [node name="GridContainer" type="GridContainer" parent="HBoxContainer/CenterContainer2"]
 layout_mode = 2
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
-columns = 2
 
-[node name="Primary" type="TextureButton" parent="HBoxContainer/CenterContainer2/GridContainer"]
+[node name="ControlMode" type="TextureButton" parent="HBoxContainer/CenterContainer2/GridContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
-texture_normal = SubResource("PlaceholderTexture2D_gbimq")
+texture_normal = ExtResource("2_d6fa4")
+texture_pressed = ExtResource("3_6h5ki")
 ignore_texture_size = true
 stretch_mode = 0
-
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/CenterContainer2/GridContainer/Primary"]
-z_index = -1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_q5ar0")
-expand_mode = 1
-
-[node name="Secondary" type="TextureButton" parent="HBoxContainer/CenterContainer2/GridContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-texture_normal = SubResource("PlaceholderTexture2D_gbimq")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/CenterContainer2/GridContainer/Secondary"]
-z_index = -1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_q5ar0")
-expand_mode = 1
-
-[node name="Tertiary" type="TextureButton" parent="HBoxContainer/CenterContainer2/GridContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-texture_normal = SubResource("PlaceholderTexture2D_gbimq")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/CenterContainer2/GridContainer/Tertiary"]
-z_index = -1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_q5ar0")
-expand_mode = 1
-
-[node name="Passive" type="TextureButton" parent="HBoxContainer/CenterContainer2/GridContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-texture_normal = SubResource("PlaceholderTexture2D_gbimq")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/CenterContainer2/GridContainer/Passive"]
-z_index = -1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_q5ar0")
-expand_mode = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="HBoxContainer"]
 layout_mode = 2
@@ -178,3 +110,5 @@ layout_mode = 2
 unique_name_in_owner = true
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
+
+[connection signal="pressed" from="HBoxContainer/CenterContainer2/GridContainer/ControlMode" to="." method="_on_control_mode_pressed"]

@@ -53,9 +53,6 @@ func loadsave(mode: int):
 	
 	if mode == SAVE:
 		reattach_nodes(player_attack_handler, new_attacks)
-		for attack in new_attacks:
-			attack.control_mode = Attack.CONTROL_MODE.PASSIVE
-		new_attacks[0].control_mode = Attack.CONTROL_MODE.PRIMARY
 	
 	for total in gui_total_attacks: 
 		total.refresh_all()

@@ -1,14 +1,22 @@
 extends MarginContainer
 
-static var config_node_names = [
-	"%Primary", "%Secondary", "%Tertiary", "%Passive"]
-static var control_modes = [
-	Attack.CONTROL_MODE.PRIMARY, Attack.CONTROL_MODE.SECONDARY, Attack.CONTROL_MODE.TERTIARY, Attack.CONTROL_MODE.PASSIVE]
-
 @export var num_gui_upgrades = 8
+@export var control_mode: Attack.CONTROL_MODE = Attack.CONTROL_MODE.PASSIVE
+
+@export var unpressed_texture: CompressedTexture2D
+@export var pressed_texture: CompressedTexture2D
 
 enum {SAVE, LOAD}
 
+func _ready():
+	var gui_control_node: TextureButton = get_node("%ControlMode")
+	if control_mode == Attack.CONTROL_MODE.PASSIVE:
+		gui_control_node.texture_normal = unpressed_texture
+		gui_control_node.texture_pressed = pressed_texture
+	else:
+		gui_control_node.texture_normal = pressed_texture
+		gui_control_node.texture_pressed = unpressed_texture
+	
 
 func get_upgrade_nodes(attack_node) -> Array[Upgrade]:
 	var upgrades: Array[Upgrade] = []
@@ -53,11 +61,10 @@ func loadsave(mode: int, attack_node: Attack) -> Attack:
 	
 	gui_attack_node.refresh()
 	
-	for config_index in range(4):
-		var config_node: TextureButton = get_node(config_node_names[config_index])
-		var update_player_attack = func(): attack_node.control_mode = control_modes[config_index]
-		config_node.pressed.connect(update_player_attack)
-	
+	if mode == SAVE and attack_node:
+		print(control_mode)
+		attack_node.control_mode = control_mode
+		print("but ", attack_node.control_mode)
 	for upgrade_index in range(num_gui_upgrades):
 		if mode == LOAD:
 			if upgrade_index >= len(player_upgrades):
@@ -84,3 +91,16 @@ func refresh_all():
 	$%Attack.refresh()
 	for i in range(num_gui_upgrades):
 		get_node("%Upgrade"+str(i+1)).refresh()
+
+
+func _on_control_mode_pressed():
+	var gui_control_node: TextureButton = get_node("%ControlMode")
+	if control_mode == Attack.CONTROL_MODE.PRIMARY:
+		control_mode = Attack.CONTROL_MODE.PASSIVE
+		gui_control_node.texture_normal = unpressed_texture
+		gui_control_node.texture_pressed = pressed_texture
+	else:
+		control_mode = Attack.CONTROL_MODE.PRIMARY
+		gui_control_node.texture_normal = pressed_texture
+		gui_control_node.texture_pressed = unpressed_texture
+	
