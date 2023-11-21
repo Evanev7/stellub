@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://d05swenhbbosd" path="res://scenes/UI/objective_marker.tscn" id="5_bjn40"]
 [ext_resource type="PackedScene" uid="uid://kdeab812xwhx" path="res://scenes/components/bullet_handler.tscn" id="7_junnh"]
 
-[node name="Level_Template" type="Node"]
+[node name="LevelTemplate" type="Node"]
 
 [node name="YSort" type="Node2D" parent="."]
 y_sort_enabled = true

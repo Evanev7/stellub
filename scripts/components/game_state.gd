@@ -10,7 +10,7 @@ var shop_HUD: CanvasLayer
 
 var damage_numbers_enabled: bool = true
 
-enum CURRENT_AREA {HELL, HEAVEN, BOSS}
+enum CURRENT_AREA {HELL, HEAVEN, BOSS, TESTING}
 var current_area
 @onready var hell_area_to_instantiate: PackedScene = preload("res://scenes/levels/hell_area.tscn")
 @onready var heaven_area_to_instantiate: PackedScene = preload("res://scenes/levels/heaven_area.tscn")

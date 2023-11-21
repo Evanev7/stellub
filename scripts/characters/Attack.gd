@@ -26,6 +26,8 @@ var icon
 var active_upgrades: Array[Upgrade]
 
 func _ready():
+	if not attack_direction:
+		attack_direction = get_parent().attack_direction
 	assert(attack_direction or aim_mode == AIM_MODE.TARGETED, "Fixed attack created without attack direction!")
 	refresh_bullet_resource()
 	if initial_bullet:
@@ -77,9 +79,7 @@ func fire():
 	GameState.fire_bullet.emit(attack_handler.owner, bullet, attack_direction)
 
 func reset():
-	for child in get_children():
-		if child is Upgrade:
-			child.queue_free()
+	remove_upgrades()
 	initial_bullet = null
 	bullet = null
 
@@ -96,7 +96,10 @@ func refresh_bullet_resource():
 		
 	
 
-
+func remove_upgrades():
+	for child in get_children():
+		if child is Upgrade:
+			child.queue_free()
 
 
 

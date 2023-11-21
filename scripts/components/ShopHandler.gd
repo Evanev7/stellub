@@ -1,4 +1,5 @@
 extends Node
+class_name ShopHandler
 
 signal remove_marker_from_circle(circle)
 
@@ -97,7 +98,7 @@ func attack_from_res(bullet: BulletResource) -> Attack:
 	return attack
 
 
-func upgrade_from_res(upgrade_resource: UpgradeResource) -> Upgrade:
+static func upgrade_from_res(upgrade_resource: UpgradeResource) -> Upgrade:
 	var upgrade_node: Upgrade = upgrade_resource.upgrade_script.new()
 	upgrade_node.script_data = upgrade_resource.script_data
 	upgrade_node.skip = not upgrade_resource.appears_in_inventory
@@ -106,7 +107,7 @@ func upgrade_from_res(upgrade_resource: UpgradeResource) -> Upgrade:
 	upgrade_node.description = generate_description(upgrade_resource)
 	return upgrade_node
 
-func generate_description(upgrade_resource: UpgradeResource) -> String:
+static func generate_description(upgrade_resource: UpgradeResource) -> String:
 	var description: String = upgrade_resource.description
 	var stats: String = """
 	"""

@@ -104,9 +104,6 @@ func set_default_stats():
 	pickup_range.scale = default_pickup_range
 	rotation = 0
 	
-	## Weapon Stats
-#	if GameState.debug:
-#		return
 	for attack in attack_handler.get_children():
 		attack.queue_free()
 	attack_handler.add_attack_from_resource(STARTING_WEAPON)

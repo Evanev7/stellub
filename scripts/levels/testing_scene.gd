@@ -6,41 +6,51 @@ extends Node
 @export var enemy_resource_list: Array[EnemyResource]
 
 @export var enemy_handler: EnemyHandler
+@export var attack_handler: AttackHandler
+@export var attack: Attack
 
 @onready var HUD = $HUD
 
 @onready var player = GameState.player
 
+@export var attacks_list: Array[BulletResource]
+@export var upgrades_list: Array[UpgradeResource]
+@export var enemies_list: Array[EnemyResource]
+
+enum MODE {ENEMY, ATTACK, UPGRADE}
+@export var mode: MODE = MODE.UPGRADE
+var index
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	GameState.current_area = GameState.CURRENT_AREA.HELL
+	attack_handler.attack_direction.toward(attack_handler.position, $YSort/EnemyPosition.position)
+	GameState.current_area = GameState.CURRENT_AREA.TESTING
 	start_game()
-	$LogicComponents/ShopHandler.spawn_magic_circles()
 	$LogicComponents/TerrainGenerator.generate()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
 	pass
 
+func _unhandled_input(event):
+	if event.is_action_pressed("debug_confirm"):
+		match mode:
+			MODE.UPGRADE:
+				if index < len(upgrades_list):
+					index += 1
+				attack.remove_upgrades()
+				attack.add_child(ShopHandler.upgrade_from_res(upgrades_list[index]))
+				attack.refresh_bullet_resource()
+
 
 # Start the timers we need, instantiate the HUD and get the player in the right spot.
 func start_game():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-	enemy_handler.start_spawning()
 	player.start()
 	player.position = $YSort/PlayerStart.position
-	$LogicComponents/ShopHandler.start()
-	start_magic_circles()
-	
-	HUD.show_message("All Hell Breaks Loose!")
 	HUD.show_health(player.hp, player.hp_max)
 	HUD.show_score(player.score, player.level_threshold[player.current_level])
 	
-
-func start_magic_circles():
-	var circles = get_tree().get_nodes_in_group("magic_circle")
-	for circle in circles:
-		circle.start()
 
 func _on_player_player_death():
 	GameState.game_over.emit()
@@ -57,14 +67,11 @@ func _on_player_hp_changed(hp):
 func _on_player_level_up(current_level):
 	HUD.change_min_XP(player.level_threshold[player.current_level])
 	HUD.show_health(player.hp, player.hp_max)
-	enemy_handler.spawn_timer.wait_time /= 1.02
-	enemy_handler.overall_multiplier += player.current_level / float(600)
 	
 
 func teleport_to_heaven_area():
 	var heaven_area_node = GameState.heaven_area_to_instantiate.instantiate()
 	player.get_parent().remove_child(player)
-	heaven_area_node.enemy_handler.overall_multiplier = enemy_handler.overall_multiplier
 	get_node("/root/Hell Area").queue_free()
 	heaven_area_node.get_child(0).add_child(player)
 	get_tree().root.add_child(heaven_area_node)
