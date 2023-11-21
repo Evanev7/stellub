@@ -45,6 +45,8 @@ func _on_player_player_death():
 
 #hi :)
 
+#hello
+
 func _on_hud_start_game():
 	start_game()
 

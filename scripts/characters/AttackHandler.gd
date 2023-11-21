@@ -76,6 +76,7 @@ func aim_attacks_at_player():
 
 func stop() -> void:
 	for attack in get_children():
+		attack._timer = 20
 		attack.timer_active = false
 
 func clear_upgrades(attack) -> void:

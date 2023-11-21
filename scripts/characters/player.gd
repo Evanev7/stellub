@@ -127,8 +127,8 @@ func hurt(body):
 		sprite.modulate = Color(1,0,0,0.5)
 		
 	if hp <= 0:
-		hide()
 		attack_handler.stop()
+		hide()
 		set_physics_process(false)
 		$CollisionShape2D.set_deferred("disabled", true)
 		$Camera2D.set_deferred("enabled", false)
