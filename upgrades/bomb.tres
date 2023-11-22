@@ -13,7 +13,10 @@ quantity = 10
 appears_in_shop = true
 appears_in_inventory = true
 icon = ExtResource("1_2ewtt")
-description = "Adds an explosion on contact."
+description = "Adds an explosion on contact
+and slows down your bullet."
 script_data = {
+"Fire Rate": &"x0.67",
+"Shot Speed": &"x0.75",
 "bullet": ExtResource("2_xlamo")
 }

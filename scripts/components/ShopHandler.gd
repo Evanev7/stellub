@@ -31,6 +31,9 @@ func start():
 	shop_weapons_list = default_shop_weapons_list.duplicate()
 	teleporter.start()
 	
+	if GameState.debug:
+		_on_spawn_shop(Vector2(200, 200))
+	
 	upgrade_pool = Pool.new()
 	weapon_pool = Pool.new()
 	
@@ -133,6 +136,7 @@ func _on_spawn_shop(position):
 	shop.position = position
 	ysorter.add_child(shop)
 	shop.connect('shop_entered', _on_shop_entered)
+	shop.add_to_group("shop")
 
 func _remove_shop(shop):
 	shop.queue_free()

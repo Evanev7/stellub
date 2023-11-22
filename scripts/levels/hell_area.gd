@@ -34,7 +34,7 @@ func start_game():
 	
 	HUD.show_message("All Hell Breaks Loose!")
 	HUD.show_health(player.hp, player.hp_max)
-	HUD.show_score(player.score, player.level_threshold[player.current_level])
+	HUD.show_score(0, 10)
 	
 
 func start_magic_circles():

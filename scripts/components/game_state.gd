@@ -41,7 +41,6 @@ func _unhandled_input(_event):
 	
 	if debug and Input.is_action_pressed("debug_gain_score"): ## R
 		player.gain_score(100)
-		print(get_node("/root").get_child(1).get_node("LogicComponents/EnemyHandler").spawn_timer.get_wait_time())
 		get_node("/root").get_child(1).get_node("HUD").show_score(player.score, player.level_threshold[player.current_level])
 	
 	if debug and Input.is_action_just_pressed("debug_evolve"): ## E
@@ -76,6 +75,7 @@ func queue_free_groups():
 	get_tree().call_group("enemy", "queue_free")
 	get_tree().call_group("bullet", "queue_free")
 	get_tree().call_group("pickup", "queue_free")
+	get_tree().call_group("shop", "queue_free")
 	get_tree().call_group("boss", "queue_free")
 	
 	for circle in get_tree().get_nodes_in_group("magic_circle"):

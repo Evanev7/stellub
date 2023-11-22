@@ -12,9 +12,10 @@ quantity = 10
 appears_in_shop = true
 appears_in_inventory = true
 icon = ExtResource("1_ymuef")
-description = "Increases how often a bullet can hit the same enemy. 
+description = "Increases how often a bullet can go
+through an enemy. 
 Sets piercing cooldown to 30 frames when first picked."
 script_data = {
-"Piercing": &"+1",
-"Piercing Cooldown": &"x0.7"
+"Piercing": &"+6",
+"Piercing Cooldown": &"x0.95"
 }

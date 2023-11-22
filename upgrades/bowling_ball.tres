@@ -14,13 +14,13 @@ appears_in_inventory = true
 icon = ExtResource("1_yx28f")
 description = "Turns your bullet into a slow moving ball that
  passes through and damages enemies. 
-Sets piercing cooldown to 30 frames when first picked.
+Sets piercing cooldown to 15 frames when first picked.
 "
 script_data = {
 "Bullet Size": &"x1.5",
 "Damage": &"x0.5",
 "Fire Rate": &"x0.5",
-"Piercing": &"+20",
-"Piercing Cooldown": &"x0.95",
+"Piercing": &"+4",
+"Piercing Cooldown": &"x0.7",
 "Shot Speed": &"x0.5"
 }

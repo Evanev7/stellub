@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://qhl6r2tbil5t"]
+[gd_scene load_steps=42 format=3 uid="uid://qhl6r2tbil5t"]
 
 [ext_resource type="PackedScene" uid="uid://dilk21k2nncq2" path="res://scenes/levels/level_template.tscn" id="1_ttjsf"]
 [ext_resource type="PackedScene" uid="uid://dfrum4te4lpmr" path="res://scenes/objects/teleporter.tscn" id="2_8o713"]
@@ -16,7 +16,6 @@
 [ext_resource type="Resource" uid="uid://daslelns8qmfv" path="res://resources/enemy/angel_crusader.tres" id="8_rirxr"]
 [ext_resource type="Texture2D" uid="uid://dvrx1ijrwk8a2" path="res://art/backgrounds/hell_level_1.png" id="10_dov0s"]
 [ext_resource type="PackedScene" uid="uid://cnepphpba8e8u" path="res://scenes/characters/player.tscn" id="11_syo0k"]
-[ext_resource type="PackedScene" uid="uid://cp7lho542gmeu" path="res://scenes/objects/shop.tscn" id="11_vorht"]
 [ext_resource type="Resource" uid="uid://ccpb4udi5owpj" path="res://resources/bullets/player/player_bullet.tres" id="13_2dgq8"]
 [ext_resource type="Resource" uid="uid://coqyd5d8e6rm8" path="res://resources/bullets/player/particle_mace.tres" id="14_soul3"]
 [ext_resource type="Resource" uid="uid://b3v62pkd6hntd" path="res://resources/bullets/player/shotgun.tres" id="15_gx6j7"]
@@ -69,13 +68,11 @@ layer_0/tile_data = PackedInt32Array(0, 1, 0)
 [node name="PlayerStart" parent="YSort" index="2"]
 position = Vector2(0, 0)
 
-[node name="Shop" parent="YSort" index="3" instance=ExtResource("11_vorht")]
-position = Vector2(261, 336)
-
-[node name="Player" parent="YSort" index="4" instance=ExtResource("11_syo0k")]
+[node name="Player" parent="YSort" index="3" instance=ExtResource("11_syo0k")]
 y_sort_enabled = false
+STARTING_HP_MAX = 20.0
 
-[node name="Enemies" type="Node2D" parent="YSort" index="5"]
+[node name="Enemies" type="Node2D" parent="YSort" index="4"]
 y_sort_enabled = true
 
 [node name="cursor_particles" parent="." index="1" instance=ExtResource("33_aqxfn")]
@@ -119,7 +116,6 @@ ysorter = NodePath("../../YSort")
 ysorter = NodePath("../../YSort")
 
 [connection signal="teleport_player" from="YSort/teleporter" to="." method="teleport_to_heaven_area"]
-[connection signal="shop_entered" from="YSort/Shop" to="LogicComponents/ShopHandler" method="_on_shop_entered"]
 [connection signal="credit_player" from="YSort/Player" to="LogicComponents/PickupHandler" method="_on_pickup_credit_player"]
 [connection signal="hp_changed" from="YSort/Player" to="HUD" method="show_health"]
 [connection signal="level_up" from="YSort/Player" to="." method="_on_player_level_up"]

@@ -13,10 +13,13 @@ appears_in_shop = true
 appears_in_inventory = true
 icon = ExtResource("1_d0faa")
 description = "Creates a Vacuum field around your bullet
-that pulls enemies in."
+that pulls enemies in.
+Sets piercing cooldown to 50 frames
+when first picked."
 script_data = {
 "Piercing": &"+2",
 "Piercing Cooldown": &"x0.95",
+"Shot Acceleration": &"-0.1",
 "Vacuum Range": &"+30",
 "Vacuum Strength": &"+1"
 }
