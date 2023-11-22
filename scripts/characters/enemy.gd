@@ -3,6 +3,8 @@ class_name EnemyBehaviour
 
 signal enemy_killed(enemy)
 signal spawn_shop(pos)
+signal play_damage_sound(pos)
+signal play_death_sound(pos)
 
 @export var resource: EnemyResource
 @export var damage_scene: PackedScene
@@ -19,8 +21,6 @@ signal spawn_shop(pos)
 
 @onready var attack_handler: AttackHandler = $AttackHandler
 @onready var sprite = $AnimatedSprite2D
-@onready var damage_sound = $DamageSound
-@onready var death_sound = $DeathSound
 @onready var health: float = resource.MAX_HP * unique_multiplier * overall_multiplier
 @onready var damage: float = resource.DAMAGE * unique_multiplier * overall_multiplier
 @onready var value: float = resource.VALUE * unique_multiplier * overall_multiplier
@@ -40,7 +40,6 @@ var fire_on_hit: bool = false
 var damage_scene_pool: Array[DamageNumber] = []
 var movement_enabled: bool = true
 var enemy_limit = 125
-var dead: bool = false
 
 func _ready():
 	GameState.num_enemies += 1
@@ -130,7 +129,7 @@ func change_colour():
 # Called by _on_hurtbox_area_entered - will only be called if the Area2D is in the bullet group
 # Change the enemies health and tween to shrink the enemy briefly.
 func hurt(area):
-	damage_sound.play()
+	play_damage_sound.emit(global_position)
 	health -= area.damage
 	scale = default_scale * 0.65 
 	var tween2 := create_tween()
@@ -145,21 +144,15 @@ func hurt(area):
 	
 	
 	#Die when health is zero
-	if health <= 0 and not dead:
-		dead = true
-		$Hitbox/CollisionShape2D.set_deferred("disabled", true)
-		$Hurtbox/CollisionShape2D.set_deferred("disabled", true)
-		death_sound.play()
+	if health <= 0:
+		play_death_sound.emit(global_position)
 		enemy_killed.emit(self)
-		set_process(false)
-		visible = false
 		
 		if GameState.current_area == 1 and unique_multiplier > 1:
 			spawn_shop.emit(global_position)
-	
-func _on_death_sound_finished():
-	GameState.num_enemies -= 1
-	queue_free()
+			
+		GameState.num_enemies -= 1
+		queue_free()
 	
 	
 func spawn_damage_number(damage_value: float):

@@ -6,6 +6,8 @@ signal spawn_shop_on_enemy(pos)
 
 @onready var spawn_timer: Timer = $SpawnTimer
 @onready var phase_up_timer: Timer = $PhaseUpTimer
+@onready var damage_sound: AudioStreamPlayer2D = $DamageSound
+@onready var death_sound: AudioStreamPlayer2D = $DeathSound
 
 @export var safe_range: float = 800
 @export var default_spawn_time: float = 4.08
@@ -40,11 +42,21 @@ func spawn_enemy(resourceID, center = GameState.player.position, spawn_range = s
 	var relative_spawn_position = Vector2(spawn_range,0).rotated(randf_range(0, 2*PI))
 	enemy.position = center + relative_spawn_position
 	enemy.connect("spawn_shop", spawn_shop)
+	enemy.connect("play_damage_sound", play_damage_sound)
+	enemy.connect("play_death_sound", play_death_sound)
 	enemy_ysort.add_child(enemy)
 	GameState.register_enemy.emit(enemy)
 	
 func spawn_shop(pos):
 	spawn_shop_on_enemy.emit(pos)
+	
+func play_damage_sound(pos):
+	damage_sound.global_position = pos
+	damage_sound.play()
+	
+func play_death_sound(pos):
+	death_sound.global_position = pos
+	death_sound.play()
 	
 func start_spawning():
 	phase_limit = 1

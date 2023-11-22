@@ -138,6 +138,25 @@ offset_bottom = 91.0
 grow_horizontal = 2
 texture_normal = SubResource("GradientTexture2D_leb7c")
 
+[node name="Debug" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="EnemyCount" type="Label" parent="Debug"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 118.0
+offset_right = 76.0
+offset_bottom = 160.0
+
+[node name="BulletCount" type="Label" parent="Debug"]
+offset_left = 30.0
+offset_top = 174.0
+offset_right = 74.0
+offset_bottom = 220.0
+
 [connection signal="timeout" from="DisplayTimer" to="." method="_on_display_timer_timeout"]
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="PauseButton" to="." method="_on_pause_button_pressed"]

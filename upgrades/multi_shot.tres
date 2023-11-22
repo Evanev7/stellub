@@ -12,7 +12,7 @@ quantity = 20
 appears_in_shop = true
 appears_in_inventory = true
 icon = ExtResource("1_r8ls4")
-description = "Adds two bullets."
+description = "Adds one bullets."
 script_data = {
 "Multi Shot": &"+1"
 }

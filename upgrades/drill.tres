@@ -15,5 +15,6 @@ icon = ExtResource("1_ymuef")
 description = "Increases how often a bullet can hit the same enemy. 
 Sets piercing cooldown to 30 frames when first picked."
 script_data = {
+"Piercing": &"+1",
 "Piercing Cooldown": &"x0.7"
 }

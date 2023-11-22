@@ -39,52 +39,45 @@ func start():
 func set_waves():
 	wave_data = {
 		1: {
-			3: {skull: 10},
-			2: {skull: 10},
-			1: {dog: 10},
+			2: {skull: 5},
+			1: {dog: 5},
 		},
 		2: {
-			4: {skull: 10},
 			3: {skull: 10},
-			2: {dog: 10},
-			1: {skeleton: 10},
+			2: {dog: 5},
+			1: {skeleton: 5},
 		},
 		3: {
-			5: {skull: 15},
-			4: {skull: 20},
-			3: {dog: 20},
-			2: {skeleton: 20},
-			1: {skeleton: 20},
+			4: {skull: 15},
+			3: {dog: 10},
+			2: {skeleton: 10},
+			1: {skeleton: 5},
 		},
 		4: {
-			6: {skull: 20},
-			5: {skull: 30},
-			4: {dog: 30},
-			3: {skeleton: 30},
-			2: {skeleton: 20, skull: 20},
-			1: {skeleton: 15, dog: 15, skull: 15},
+			5: {skull: 20},
+			4: {dog: 20},
+			3: {skeleton: 20},
+			2: {skeleton: 15, skull: 15},
+			1: {skeleton: 10, dog: 10, skull: 10},
 		},
 		5: {
-			7: {skull: 40},
-			6: {skull: 50},
-			5: {dog: 40},
-			4: {skeleton: 40},
+			6: {skull: 40},
+			5: {dog: 20},
+			4: {skeleton: 20},
 			3: {skeleton: 20, skull: 20},
 			2: {skeleton: 20, dog: 20, skull: 20},
-			1: {skeleton: 30, dog: 30, skull: 30}
+			1: {skeleton: 15, dog: 15, skull: 15}
 		},
 		6: {
-			8: {skeleton: 20, dog: 20, skull: 20},
-			7: {skeleton: 30, dog: 30, skull: 30},
-			6: {skeleton: 50},
-			5: {skull: 100},
-			4: {skeleton: 50, skull: 50},
-			3: {skeleton: 50, dog: 50, skull: 50},
-			2: {skeleton: 50, dog: 50, skull: 60},
-			1: {skeleton: 40, dog: 40, skull: 50}
+			7: {skeleton: 15, dog: 15, skull: 15},
+			6: {skeleton: 30},
+			5: {skull: 50},
+			4: {skeleton: 30, skull: 30},
+			3: {skeleton: 30, dog: 30, skull: 30},
+			2: {skeleton: 30, dog: 30, skull: 40},
+			1: {skeleton: 20, dog: 20, skull: 25}
 		},
 		7: {
-			9: {skeleton: 30, dog: 30, skull: 30},
 			8: {skeleton: 30, dog: 30, skull: 30},
 			7: {skeleton: 80},
 			6: {skull: 200},
@@ -95,7 +88,6 @@ func set_waves():
 			1: {lord: 10, skeleton: 40, dog: 40, skull: 40}
 		},
 		8: {
-			10: {skeleton: 30, dog: 30, skull: 30},
 			9: {skeleton: 30, dog: 30, skull: 30},
 			8: {skeleton: 30, dog: 30, skull: 30},
 			7: {skeleton: 80},
@@ -107,7 +99,6 @@ func set_waves():
 			1: {lord: 10, skeleton: 40, dog: 40, skull: 40}
 		},
 		9: {
-			11: {skeleton: 30, dog: 30, skull: 30},
 			10: {skeleton: 30, dog: 30, skull: 30},
 			9: {skeleton: 30, dog: 30, skull: 30},
 			8: {skeleton: 30, dog: 30, skull: 30},
@@ -120,7 +111,6 @@ func set_waves():
 			1: {lord: 10, skeleton: 40, dog: 40, skull: 40}
 		},
 		10: {
-			12: {skeleton: 30, dog: 30, skull: 30},
 			11: {skeleton: 30, dog: 30, skull: 30},
 			10: {skeleton: 30, dog: 30, skull: 30},
 			9: {skeleton: 30, dog: 30, skull: 30},
@@ -164,20 +154,18 @@ func _on_circle_body_exited(body):
 
 func _on_wave_timer_timeout():
 	wave_active = true
-	success_timer.wait_time = 20 + (9.99 * current_circle)
+	success_timer.wait_time = 10 + (9.99 * current_circle)
 	$Barrier.visible = true
-	$Barrier/CollisionPolygon2D.disabled = false
 	var tween: Tween = create_tween()
 	tween.tween_property($Barrier, "scale", Vector2(0.4, 0.4), success_timer.wait_time)
 	success_timer.start()
-	spawn_enemies((current_circle + 2))
+	spawn_enemies((current_circle + 1))
 
 
 func _on_success_timer_timeout():
 	spawn_shop.emit(position)
 	wave_active = false
 	$Barrier.visible = false
-	$Barrier/CollisionPolygon2D.disabled = true
 	time_label.hide()
 	if current_circle < 12:
 		current_circle += 1
@@ -202,4 +190,4 @@ func spawn_enemies(timerValue):
 			for j in range(count):
 				if size_of_barrier == 0:
 					size_of_barrier = 500
-				spawn_enemy_in_wave.emit(enemy_type, position, size_of_barrier - 50)
+				spawn_enemy_in_wave.emit(enemy_type, position, 400)

@@ -161,7 +161,9 @@ func gain_score(value):
 	while score >= level_threshold[current_level]:
 		level_up.emit(current_level)
 		player_level_up()
-		if level_threshold[current_level] > 2000:
+		if level_threshold[current_level] > 10000:
+			level_threshold.append(level_threshold[current_level] * 1.1)
+		elif level_threshold[current_level] > 2000:
 			level_threshold.append(level_threshold[current_level] + 500)
 		elif level_threshold[current_level] > 1000:
 			level_threshold.append(level_threshold[current_level] + 200)

@@ -11,7 +11,7 @@ func modify_bullet_resource(bullet: BulletResource) -> BulletResource:
 	bomb_bullet = script_data["bullet"].duplicate()
 	bomb_bullet.spawned_bullet_resource = bullet.spawned_bullet_resource
 	bullet.spawned_bullet_resource = bomb_bullet
-	bullet.spawned_bullet_resource.animation.scale *= 4
+	#bullet.spawned_bullet_resource.animation.scale *= 4
 	return bullet
 
 

@@ -15,7 +15,7 @@ icon = ExtResource("1_m80ch")
 description = "Focuses your fire to increase damage, 
 but slows your fire rate."
 script_data = {
-"Damage": &"x1.5",
+"Damage": &"x1.4",
 "Fire Rate": &"x0.8",
-"Shot Spread": &"x0.67"
+"Shot Spread": &"x0.5"
 }

@@ -213,6 +213,7 @@ stat_upgrade = SubResource("PackedScene_ybrl7")
 attack_handler = NodePath("AttackHandler")
 
 [node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.533333)
 z_index = -1
 y_sort_enabled = true
 position = Vector2(0, 460)
@@ -272,7 +273,7 @@ one_shot = true
 
 [node name="Pickup" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_51dqt")
-volume_db = -0.215
+volume_db = -15.259
 max_polyphony = 30
 bus = &"SFX"
 

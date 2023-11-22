@@ -7,6 +7,9 @@ signal open_pause_menu
 @onready var HP_Bar = $HPBar
 @onready var level = $XPBar/Level
 
+@onready var enemy_count = $Debug/EnemyCount
+@onready var bullet_count = $Debug/BulletCount
+
 func _ready():
 	GameState.game_over.connect(game_over)
 
@@ -21,7 +24,8 @@ func show_message(text):
 
 
 func _on_display_timer_timeout():
-	$TextDisplay.hide() 
+	$TextDisplay.hide()
+	$Debug.hide() 
 
 
 func _on_start_button_pressed():
@@ -58,3 +62,10 @@ func game_over():
 
 func _on_pause_button_pressed():
 	open_pause_menu.emit()
+
+
+func show_debug():
+	$Debug.show()
+	bullet_count.text = "bullets: " + str(get_tree().get_nodes_in_group("bullet").size())
+	enemy_count.text = "enemies: " + str(get_tree().get_nodes_in_group("enemy").size())
+	$DisplayTimer.start()

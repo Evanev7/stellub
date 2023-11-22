@@ -116,16 +116,9 @@ disable_after_land = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnCollision"]
 shape = SubResource("CircleShape2D_yuvbf")
 
-[node name="Barrier" type="StaticBody2D" parent="."]
+[node name="Barrier" type="Node2D" parent="."]
 visible = false
-collision_layer = 15
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Barrier"]
-position = Vector2(-1.89592, -0.812589)
-scale = Vector2(0.45831, 0.45831)
-build_mode = 1
-polygon = PackedVector2Array(-1792, 5, -1723, 469, -1547, 897, -1253, 1260, -900, 1537, -468, 1719, 7, 1772, 472, 1713, 910, 1532, 1273, 1244, 1556, 875, 1726, 453, 1785, -11, 1721, -465, 1534, -892, 1252, -1254, 875, -1546, 453, -1717, 0, -1775, -476, -1712, -885, -1537, -1257, -1250, -1540, -886, -1711, -464)
-disabled = true
+z_index = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Barrier"]
 material = SubResource("ShaderMaterial_ykodi")
