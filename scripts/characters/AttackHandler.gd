@@ -4,8 +4,6 @@ class_name AttackHandler
 
 @export var attack_scene: PackedScene
 
-var target_mode
-
 var attack_direction: FireFrom = FireFrom.new()
 
 func add_attack_from_resource(
@@ -17,7 +15,6 @@ func add_attack_from_resource(
 	attack.name = bullet.name
 	attack.initial_bullet = bullet
 	attack.control_mode = control_mode
-	target_mode = bullet.target_mode
 	attack.audio_player.stream = bullet.sound
 	if target:
 		attack.aim_mode = Attack.AIM_MODE.FIXED
@@ -31,7 +28,7 @@ func add_attack_from_resource(
 	add_child(attack)
 
 
-func get_attack_direction() -> FireFrom:
+func get_attack_direction(target_mode) -> FireFrom:
 	match target_mode:
 		BulletResource.TARGET_MODE.MOUSE:
 			attack_direction.toward(position + owner.position, get_global_mouse_position())

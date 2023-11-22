@@ -12,6 +12,7 @@ var origin_ref: WeakRef
 @onready var sprite = $AnimatedSprite2D
 @onready var _traveled_distance: float = data.start_range
 @onready var shot_speed: float = data.shot_speed
+@onready var shot_speed_negative: bool = data.can_be_negative
 @onready var piercing: int = data.piercing
 @onready var damage: float = data.damage
 @onready var origin_position: Vector2
@@ -76,7 +77,10 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	transport(delta)
-	shot_speed = max(shot_speed + delta * data.shot_acceleration,0)
+	if shot_speed_negative:
+		shot_speed += delta * data.shot_acceleration
+	else:
+		shot_speed = max(shot_speed + delta * data.shot_acceleration,0)
 	
 	if _traveled_distance > data.bullet_range:
 		if data.spawn_on_timeout and spawned_bullet:
@@ -104,7 +108,7 @@ func transport(delta) -> void:
 		BulletResource.TRANSPORT_MODE.LINEAR:
 			assert(data.angular_velocity == 0, "Transport mode should not be linear")
 			position += direction * shot_speed * delta
-			_traveled_distance += shot_speed * delta
+			_traveled_distance += abs(shot_speed) * delta
 		
 		BulletResource.TRANSPORT_MODE.ROTATING_FIXED_CENTRE:
 			var origin = origin_ref.get_ref()
@@ -126,7 +130,7 @@ func transport(delta) -> void:
 			_direction += offset.rotated(PI/2) * data.angular_velocity
 			position += _direction * delta
 			rotation = _direction.angle()
-			_traveled_distance += shot_speed * delta
+			_traveled_distance += abs(shot_speed) * delta
 		
 		BulletResource.TRANSPORT_MODE.STATIC:
 			rotation += data.angular_velocity

@@ -8,6 +8,7 @@ enum FACING_DIRECTION {DEFAULT, UP, DOWN, LEFT, RIGHT}
 
 @export_category("Metadata")
 @export var name: String
+@export_multiline var description: String = "Default Upgrade Description"
 @export var animation: SpriteFrames
 @export var sound: AudioStreamRandomizer
 @export var rarity: float = 1
@@ -23,6 +24,7 @@ enum FACING_DIRECTION {DEFAULT, UP, DOWN, LEFT, RIGHT}
 @export var bullet_range: float = 1000
 @export var fire_delay: float = 15
 @export var shot_speed: float = 400
+@export var can_be_negative: bool = false
 @export var shot_acceleration: float = 0
 
 ## 2*PI for a full circle

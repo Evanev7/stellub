@@ -220,9 +220,8 @@ func get_all_attacks():
 	return attacks
 
 func evolve():
-	print(current_animation)
+	current_evolution += 1
 	current_animation = "level " + str(min(current_evolution, 6))
-	print(current_animation)
 	
 	var scaling_factors = {
 		1: 1.5,

@@ -31,6 +31,7 @@ signal play_death_sound(pos)
 @onready var default_angle: float = self.rotation
 @onready var default_scale: Vector2 = resource.SCALE * (0.875 + (unique_multiplier / 8))
 @onready var variance = 1/default_scale.length()
+var dead: bool = false
 
 var fire_on_hit: bool = false
 
@@ -145,7 +146,8 @@ func hurt(area):
 	
 	
 	#Die when health is zero
-	if health <= 0:
+	if health <= 0 and not dead:
+		dead = true
 		play_death_sound.emit(global_position)
 		
 		if GameState.current_area == 1 and unique_multiplier > 1:

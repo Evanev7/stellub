@@ -17,6 +17,8 @@ var attack_handler: AttackHandler
 @export var initial_bullet: BulletResource
 var bullet: BulletResource
 
+@export_multiline var description: String
+
 
 var timer_active: bool = true
 var _timer: float
@@ -64,7 +66,7 @@ func on_hit():
 	
 func pre_fire():
 	if aim_mode == AIM_MODE.TARGETED:
-		attack_direction = attack_handler.get_attack_direction()
+		attack_direction = attack_handler.get_attack_direction(bullet.target_mode)
 	
 	for upgrade in get_children():
 		if upgrade is Upgrade:

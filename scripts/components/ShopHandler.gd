@@ -93,6 +93,7 @@ func attack_from_res(bullet: BulletResource) -> Attack:
 	attack.audio_player.stream = bullet.sound
 	attack.aim_mode = Attack.AIM_MODE.TARGETED
 	attack.icon = bullet.icon
+	attack.description = bullet.description
 	
 	for i in range(GameState.player.current_level):
 		attack.add_child(GameState.player.stat_upgrade.instantiate())
