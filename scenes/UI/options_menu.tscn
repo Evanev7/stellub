@@ -55,9 +55,11 @@ corner_radius_bottom_left = 4
 HSlider/styles/grabber_area = SubResource("StyleBoxFlat_ik47e")
 HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_5brqb")
 
-[node name="options_menu" type="CanvasLayer" node_paths=PackedStringArray("master_test", "SFX_test", "damage_numbers_enabled")]
-visible = false
+[node name="options_menu" type="CanvasLayer" node_paths=PackedStringArray("master_slider", "sfx_slider", "music_slider", "master_test", "SFX_test", "damage_numbers_enabled")]
 script = ExtResource("1_jrqa7")
+master_slider = NodePath("TextureRect/Volume/MasterSlider")
+sfx_slider = NodePath("TextureRect/Volume/SFXSlider")
+music_slider = NodePath("TextureRect/Volume/MusicSlider")
 master_test = NodePath("Master")
 SFX_test = NodePath("SFX")
 damage_numbers_enabled = NodePath("TextureRect2/DamageNumbers")

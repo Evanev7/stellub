@@ -10,7 +10,7 @@ var shop_HUD: CanvasLayer
 
 var damage_numbers_enabled: bool = true
 
-enum CURRENT_AREA {HELL, HEAVEN, BOSS, TESTING}
+enum CURRENT_AREA {HELL, HEAVEN, BOSS, TESTING, MAIN_MENU}
 var current_area
 @onready var hell_area_to_instantiate: PackedScene = preload("res://scenes/levels/hell_area.tscn")
 @onready var heaven_area_to_instantiate: PackedScene = preload("res://scenes/levels/heaven_area.tscn")
@@ -29,11 +29,15 @@ func _ready():
 	game_over.connect(queue_free_groups)
 	
 func _unhandled_input(_event):
-	if Input.is_action_just_pressed("pause") and shop_HUD.visible == false:
-		if get_tree().paused == false:
-			pause_menu._on_hud_open_pause_menu()
+	if Input.is_action_just_pressed("pause"):
+		if current_area == CURRENT_AREA.MAIN_MENU:
+			get_tree().quit()
 		else:
-			pause_menu._on_continue_pressed()
+			if shop_HUD.visible == false:
+				if get_tree().paused == false:
+					pause_menu._on_hud_open_pause_menu()
+				else:
+					pause_menu._on_continue_pressed()
 	
 	
 	

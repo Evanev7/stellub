@@ -10,6 +10,8 @@ var play_pressed: bool = false
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	ResourceLoader.load_threaded_request(hell_scene)
+	GameState.current_area = GameState.CURRENT_AREA.MAIN_MENU
+
 	play_pressed = false
 	scene_load_status = 0
 	loading_screen.visible = false

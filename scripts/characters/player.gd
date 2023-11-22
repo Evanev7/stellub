@@ -20,6 +20,7 @@ signal credit_player(value)
 @onready var pickup_range: Area2D = $PickupRange
 @onready var strength: float = 5
 @onready var sprite: AnimatedSprite2D = $SubViewport/AnimatedSprite2D
+@onready var blood_particles: GPUParticles2D = $Blood
 @onready var pickup_sound: AudioStreamPlayer = $Pickup
 var control_mode: int = 0
 var level_threshold = [10, 20, 30, 50]
@@ -78,6 +79,10 @@ func _physics_process(_delta):
 	else:
 		sprite.play(current_animation)
 
+	if invuln:
+		blood_particles.emitting = true
+	else:
+		blood_particles.emitting = false
 
 # When the game starts, set the default values and show the player.
 func start():

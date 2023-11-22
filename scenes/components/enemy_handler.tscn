@@ -32,6 +32,7 @@ max_polyphony = 40
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_f3g71")
+pitch_scale = 0.8
 max_polyphony = 40
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
