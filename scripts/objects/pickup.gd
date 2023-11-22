@@ -30,7 +30,7 @@ func _ready():
 			apply_scale(Vector2(scale_ratio, scale_ratio))
 		hp_pickup:
 			sprite.animation = "hp_pickup"
-			value = randi() % 51 + 10
+			value = randi() % 31 + 5
 		vacuum_pickup:
 			sprite.animation = "vacuum_pickup"
 	sprite.play()

@@ -20,12 +20,17 @@ signal credit_player(value)
 @onready var pickup_range: Area2D = $PickupRange
 @onready var strength: float = 5
 @onready var sprite: AnimatedSprite2D = $SubViewport/AnimatedSprite2D
+@onready var i_frame_timer: Timer = $IFrames
 @onready var blood_particles: GPUParticles2D = $Blood
 @onready var pickup_sound: AudioStreamPlayer = $Pickup
+
 var control_mode: int = 0
 var level_threshold = [10, 20, 30, 50]
 var current_level: int
+
+var total_upgrades: int = 0
 var current_evolution: int
+
 var current_wave: int
 var hp_max: float
 var speed: float
@@ -83,6 +88,7 @@ func _physics_process(_delta):
 		blood_particles.emitting = true
 	else:
 		blood_particles.emitting = false
+		
 
 # When the game starts, set the default values and show the player.
 func start():
@@ -109,9 +115,13 @@ func set_default_stats():
 	pickup_range.scale = default_pickup_range
 	rotation = 0
 	
+	GameState.reset_statistics()
+	
+	## Weapon Stats
 	for attack in attack_handler.get_children():
 		attack.queue_free()
 	attack_handler.add_attack_from_resource(STARTING_WEAPON)
+	total_upgrades = 0
 
 func add_attack_from_resource(bullet: BulletResource):
 	var modes = Attack.CONTROL_MODE
@@ -125,7 +135,7 @@ func hurt(body):
 		hp = clamp(hp - body.damage, 0, hp_max)
 		hp_changed.emit(hp, hp_max)
 		invuln = true
-		$IFrames.start()
+		i_frame_timer.start()
 		sprite.modulate = Color(1,0,0,0.5)
 		
 	if hp <= 0:
@@ -157,6 +167,7 @@ func get_pickup(area):
 # Called when we've killed an enemy, and we can add to our score.
 func gain_score(value):
 	score += value
+	GameState.souls_collected += value
 	var tween: Tween = create_tween()
 	if current_level < 2:
 		tween.tween_property(sprite, "self_modulate:v", 1, 0.25).from(50)
@@ -198,6 +209,8 @@ func player_level_up():
 func upgrade_attack(upgrade, weapon_number):
 	attack_handler.get_child(weapon_number).add_child(upgrade)
 	attack_handler.get_child(weapon_number).refresh_bullet_resource()
+	
+	total_upgrades += 1
 
 #Marked for cleanup with new shop UI
 func get_all_attacks():
@@ -207,8 +220,9 @@ func get_all_attacks():
 	return attacks
 
 func evolve():
-	current_evolution += 1
+	print(current_animation)
 	current_animation = "level " + str(min(current_evolution, 6))
+	print(current_animation)
 	
 	var scaling_factors = {
 		1: 1.5,

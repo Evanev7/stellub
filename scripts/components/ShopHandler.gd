@@ -11,7 +11,6 @@ signal remove_marker_from_circle(circle)
 @export var default_shop_weapons_list: Array[BulletResource]
 var shop_upgrades_list: Array[UpgradeResource]
 var shop_weapons_list: Array[BulletResource]
-
 @export var enemyHandler: EnemyHandler
 @export var ysorter: Node2D
 @export var objective_marker: CanvasLayer

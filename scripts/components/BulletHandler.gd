@@ -10,6 +10,8 @@ func _ready():
 # We iterate over every bullet to be fired, instantiate them and point them at the player
 # OR at where the player is clicking.
 func _on_fire_bullet(origin, bullet_type: BulletResource, fire_from: FireFrom):
+	GameState.bullets_summoned += 1
+	
 	if not (origin is WeakRef):
 		origin = weakref(origin)
 	var inaccuracy_offset = randf_range(-bullet_type.shot_inaccuracy/2,bullet_type.shot_inaccuracy/2)

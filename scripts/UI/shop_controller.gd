@@ -53,6 +53,8 @@ func loadsave(mode: int):
 	
 	if mode == SAVE:
 		reattach_nodes(player_attack_handler, new_attacks)
+		if new_attacks.size() > player_attacks.size():
+			GameState.player.evolve()
 	
 	for total in gui_total_attacks: 
 		total.refresh_all()

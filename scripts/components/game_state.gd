@@ -22,11 +22,22 @@ var num_damage_labels: int = 0
 
 var debug: bool = true
 
+## STATS
+var enemies_killed: int = 0
+var souls_collected: float = 0
+var bullets_summoned: int = 0
+var damage_dealt: float = 0
 
 func _ready():
 	randomize()
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	game_over.connect(queue_free_groups)
+	
+func reset_statistics():
+	enemies_killed = 0
+	souls_collected = 0
+	bullets_summoned = 0
+	damage_dealt = 0
 	
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed("pause"):
@@ -48,7 +59,6 @@ func _unhandled_input(_event):
 		get_node("/root").get_child(1).get_node("HUD").show_score(player.score, player.level_threshold[player.current_level])
 	
 	if debug and Input.is_action_just_pressed("debug_evolve"): ## E
-		player.current_evolution += 1
 		player.evolve()
 	
 	if debug and Input.is_action_just_pressed("debug_spawn_enemy"): # L

@@ -10,8 +10,8 @@ signal open_pause_menu
 @onready var enemy_count = $Debug/EnemyCount
 @onready var bullet_count = $Debug/BulletCount
 
-func _ready():
-	GameState.game_over.connect(game_over)
+#func _ready():
+#	GameState.game_over.connect(game_over)
 
 func _process(_delta):
 	$FPS.set_text("FPS %d" % Engine.get_frames_per_second())
@@ -48,16 +48,6 @@ func show_score(number, max_number):
 
 func change_min_XP(number):
 	XP_Bar.min_value = int(number)
-
-
-func game_over():
-	show_message("You suck!")
-	await $DisplayTimer.timeout
-	
-	$TextDisplay.text = ""
-	$TextDisplay.show()
-	
-	$StartButton.show()
 
 
 func _on_pause_button_pressed():

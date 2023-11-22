@@ -152,6 +152,7 @@ offset_right = 76.0
 offset_bottom = 160.0
 
 [node name="BulletCount" type="Label" parent="Debug"]
+layout_mode = 0
 offset_left = 30.0
 offset_top = 174.0
 offset_right = 74.0

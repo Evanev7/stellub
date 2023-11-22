@@ -30,6 +30,7 @@ func start_game():
 	player.start()
 	player.position = $YSort/PlayerStart.position
 	$LogicComponents/ShopHandler.start()
+	$cursor_particles.emitting = true
 	start_magic_circles()
 	
 	HUD.show_message("All Hell Breaks Loose!")
@@ -44,11 +45,12 @@ func start_magic_circles():
 
 func _on_player_player_death():
 	GameState.game_over.emit()
-
-
-func _on_hud_start_game():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	$cursor_particles.emitting = false
+	
+	
+func on_restart_game():
 	start_game()
-
 
 func _on_player_hp_changed(hp):
 	HUD.show_health(hp, player.hp_max)

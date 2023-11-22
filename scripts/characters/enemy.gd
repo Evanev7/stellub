@@ -131,6 +131,7 @@ func change_colour():
 func hurt(area):
 	play_damage_sound.emit(global_position)
 	health -= area.damage
+	GameState.damage_dealt += area.damage
 	scale = default_scale * 0.65 
 	var tween2 := create_tween()
 	tween2.tween_property(self, "global_scale", default_scale, 0.1)
@@ -146,12 +147,13 @@ func hurt(area):
 	#Die when health is zero
 	if health <= 0:
 		play_death_sound.emit(global_position)
-		enemy_killed.emit(self)
 		
 		if GameState.current_area == 1 and unique_multiplier > 1:
 			spawn_shop.emit(global_position)
 			
 		GameState.num_enemies -= 1
+		GameState.enemies_killed += 1
+		enemy_killed.emit(self)
 		queue_free()
 	
 	

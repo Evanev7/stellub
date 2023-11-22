@@ -122,5 +122,6 @@ ysorter = NodePath("../../YSort")
 [connection signal="player_death" from="YSort/Player" to="." method="_on_player_player_death"]
 [connection signal="send_loadout" from="YSort/Player" to="LogicComponents/BossHandler" method="_on_player_send_loadout"]
 [connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
+[connection signal="restart_game" from="stat_screen" to="." method="on_restart_game"]
 [connection signal="spawn_shop_on_enemy" from="LogicComponents/EnemyHandler" to="LogicComponents/ShopHandler" method="_on_spawn_shop"]
 [connection signal="remove_marker_from_circle" from="LogicComponents/ShopHandler" to="ObjectiveMarker" method="delete_target"]
