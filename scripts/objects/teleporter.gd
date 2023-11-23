@@ -1,7 +1,8 @@
 extends Node2D
 
+@export var destination: GameState.CURRENT_AREA
 
-signal teleport_player()
+signal teleport_player
 
 @onready var default_scale = scale
 var tween: Tween
@@ -38,6 +39,7 @@ func _on_teleporter_body_entered(body):
 		# zoom camera in?
 		await tween.finished
 		teleport_player.emit()
+		GameState.teleport_to_area(destination)
 
 func _on_teleporter_body_exited(body):
 	if body == GameState.player:

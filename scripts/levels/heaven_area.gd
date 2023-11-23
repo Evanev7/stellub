@@ -17,6 +17,7 @@ extends Node
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GameState.current_area = GameState.CURRENT_AREA.HEAVEN
+	GameState.current_area_node = self
 	var player = $YSort/Player
 	player.connect("level_up", _on_player_level_up)
 	player.connect("player_death", _on_player_death)
@@ -29,12 +30,6 @@ func _ready():
 	$LogicComponents/TerrainGenerator.generate()
 	$LogicComponents/TerrainGenerator.cliff_generate()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(_delta):
-	randomize()
-	pass
-
-# hi also :)
 
 # Start the timers we need, instantiate the HUD and get the player in the right spot.
 func start_level():
@@ -49,9 +44,7 @@ func start_level():
 	HUD.show_score(player.score, player.level_threshold[player.current_level])
 
 func restart_game():
-	var hell_area_node = GameState.hell_area_to_instantiate.instantiate()
-	get_node("/root/Heaven Area").queue_free()
-	get_tree().root.add_child(hell_area_node)
+	GameState.load_area(GameState.CURRENT_AREA.HELL)
 
 func _on_player_death():
 	GameState.game_over.emit()
@@ -65,8 +58,4 @@ func _on_player_level_up(current_level):
 	HUD.show_health(player.hp, player.hp_max)
 	enemy_handler.spawn_timer.wait_time /= 1.02
 	enemy_handler.overall_multiplier += player.current_level / float(600)
-	
-
-#func teleport_to_boss_area():
-#	get_tree().change_scene_to_packed(ResourceLoader.load_threaded_get(heaven_area_scene))
 	

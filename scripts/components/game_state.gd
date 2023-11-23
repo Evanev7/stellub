@@ -14,12 +14,17 @@ var damage_numbers_enabled: bool = true
 
 enum CURRENT_AREA {HELL, HEAVEN, BOSS, TESTING, MAIN_MENU, FIRST_TIME}
 var current_area
-@onready var hell_area_to_instantiate: PackedScene = preload("res://scenes/levels/hell_area.tscn")
-@onready var heaven_area_to_instantiate: PackedScene = preload("res://scenes/levels/heaven_area.tscn")
+var current_area_node
+
+var area_scenes = {
+	CURRENT_AREA.HELL: preload("res://scenes/levels/hell_area.tscn"),
+	CURRENT_AREA.HEAVEN: preload("res://scenes/levels/heaven_area.tscn") 
+}
+var area_nodes = {}
 
 
-@onready var clicky_hand = load("res://art/UI/clicky finger.png")
-@onready var shooty_hand = load("res://art/UI/shooty finger.png")
+@onready var clicky_hand = preload("res://art/UI/clicky finger.png")
+@onready var shooty_hand = preload("res://art/UI/shooty finger.png")
 
 var num_enemies: int = 0
 var num_bullets: int = 0
@@ -39,7 +44,29 @@ func _ready():
 	randomize()
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	game_over.connect(queue_free_groups)
+
+
+func teleport_to_area(area: CURRENT_AREA):
+	load_area(area)
+	if current_area.get_node("YSort"):
+		player.get_parent().remove_child(player)
+		current_area.get_node("YSort").add_child(player)
+
+func load_area(area: CURRENT_AREA):
+	if area not in area_nodes.keys():
+		area_nodes[area] = area_scenes[area].instantiate()
+	var area_node = area_nodes[area]
+	print(area_node, area_scenes)
+	get_tree().root.add_child(area_node)
+	if area_node.enemy_handler and current_area_node.enemy_handler:
+		area_node.enemy_handler.overall_multiplier = current_area_node.enemy_handler.overall_multiplier
+	current_area_node.queue_free()
 	
+	
+	current_area = area
+	current_area_node = area_node
+
+
 func reset_statistics():
 	Input.set_custom_mouse_cursor(shooty_hand, Input.CURSOR_ARROW, Vector2i(16,16))
 	enemies_killed = 0
@@ -65,27 +92,27 @@ func _unhandled_input(_event):
 	##Debug ###############################
 	
 	if debug and Input.is_action_just_pressed("left_mouse") and current_area == CURRENT_AREA.FIRST_TIME:
-		get_parent().get_child(1).start_game()
+		current_area_node.start_game()
 		
 	if debug and Input.is_action_pressed("debug_gain_score"): ## R
 		player.gain_score(100)
-		get_node("/root").get_child(1).get_node("HUD").show_score(player.score, player.level_threshold[player.current_level])
+		current_area_node.get_node("HUD").show_score(player.score, player.level_threshold[player.current_level])
 	
 	if debug and Input.is_action_just_pressed("debug_evolve"): ## E
 		player.evolve()
 	
 	if debug and Input.is_action_just_pressed("debug_spawn_enemy"): # L
 		for i in range(10):
-			get_node("/root").get_child(1).get_node("LogicComponents/EnemyHandler").spawn_enemy(randi() % 7)
+			current_area_node.get_node("LogicComponents/EnemyHandler").spawn_enemy(randi() % 7)
 		
 	if debug and Input.is_action_just_pressed("debug_spawn_boss"): # B
 		player.send_loadout_to_boss()
 		
 	if debug and Input.is_action_just_pressed("debug_activate_teleporter"): # T
-		get_node("/root").get_child(1).get_node("LogicComponents/ShopHandler")._on_activate_teleporter()
+		current_area_node.get_node("LogicComponents/ShopHandler")._on_activate_teleporter()
 		
 	if debug and Input.is_action_just_pressed("debug_print_data"): # P
-		get_node("/root").get_child(1).get_node("HUD").show_debug()
+		current_area_node.get_node("HUD").show_debug()
 		
 	#######################################
 

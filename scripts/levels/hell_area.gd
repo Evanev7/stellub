@@ -14,13 +14,10 @@ extends Node
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GameState.current_area = GameState.CURRENT_AREA.HELL
+	GameState.current_area_node = self
 	start_game()
 	$LogicComponents/ShopHandler.spawn_magic_circles()
 	$LogicComponents/TerrainGenerator.generate()
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(_delta):
-	pass
 
 
 # Start the timers we need, instantiate the HUD and get the player in the right spot.
@@ -65,16 +62,6 @@ func _on_player_level_up(current_level):
 	HUD.show_health(player.hp, player.hp_max)
 	enemy_handler.spawn_timer.wait_time /= 1.02
 	enemy_handler.overall_multiplier += player.current_level / float(600)
-	
-
-func teleport_to_heaven_area():
-	var heaven_area_node = GameState.heaven_area_to_instantiate.instantiate()
-	player.get_parent().remove_child(player)
-	heaven_area_node.enemy_handler.overall_multiplier = enemy_handler.overall_multiplier
-	get_node("/root/Hell Area").queue_free()
-	heaven_area_node.get_child(0).add_child(player)
-	get_tree().root.add_child(heaven_area_node)
-
 
 
 

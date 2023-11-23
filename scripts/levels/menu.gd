@@ -14,18 +14,20 @@ func _ready():
 	play_pressed = false
 	scene_load_status = 0
 	loading_screen.visible = false
-	
-func _process(_delta):
+
+
+func _on_play_pressed():
+	loading_screen.visible = true
+	play_pressed = true
+	load_game()
+
+func load_game():
 	if play_pressed == true:
 		if GameState.first_time:
 			get_tree().change_scene_to_packed(first_timer_scene)
 		else:
-			get_node("/root/menu").queue_free()
-			get_tree().root.add_child(GameState.hell_area_to_instantiate.instantiate())
+			GameState.load_area(GameState.CURRENT_AREA.HELL)
 	
-func _on_play_pressed():
-	loading_screen.visible = true
-	play_pressed = true
 
 func _on_options_pressed():
 	options_menu.visible = true

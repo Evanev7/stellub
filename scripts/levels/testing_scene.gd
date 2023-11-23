@@ -66,14 +66,6 @@ func _on_player_hp_changed(hp):
 func _on_player_level_up(current_level):
 	HUD.change_min_XP(player.level_threshold[player.current_level])
 	HUD.show_health(player.hp, player.hp_max)
-	
-
-func teleport_to_heaven_area():
-	var heaven_area_node = GameState.heaven_area_to_instantiate.instantiate()
-	player.get_parent().remove_child(player)
-	get_node("/root/Hell Area").queue_free()
-	heaven_area_node.get_child(0).add_child(player)
-	get_tree().root.add_child(heaven_area_node)
 
 
 

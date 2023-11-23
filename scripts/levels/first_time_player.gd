@@ -7,6 +7,7 @@ extends CanvasLayer
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GameState.current_area = GameState.CURRENT_AREA.FIRST_TIME
+	GameState.current_area_node = self
 	$AudioStreamPlayer.play()
 	$Timer.start()
 
@@ -35,7 +36,8 @@ func fade_out():
 	tween2.tween_callback(start_game)
 	
 func start_game():
-	var hell_area_node = GameState.hell_area_to_instantiate.instantiate()
+	var hell_area_node = GameState.area_scenes[GameState.CURRENT_AREA.HELL].instantiate()
+	GameState.area_nodes[GameState.CURRENT_AREA.HELL] = hell_area_node
 	get_tree().root.add_child(hell_area_node)
 	var tween: Tween = create_tween()
 	tween.tween_property($TextureRect, "self_modulate:a", 0, 3)
