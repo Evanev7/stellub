@@ -13,9 +13,11 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	GameState.current_area = GameState.CURRENT_AREA.HELL
-	GameState.current_area_node = self
 	start_game()
+	
+	if GameState.first_time == false:
+		start_message()
+	
 	$LogicComponents/ShopHandler.spawn_magic_circles()
 	$LogicComponents/TerrainGenerator.generate()
 
@@ -26,14 +28,14 @@ func start_game():
 	player.start()
 	player.position = $YSort/PlayerStart.position
 	$LogicComponents/ShopHandler.start()
+	$cursor_particles.emitting = true
 	start_magic_circles()
-	
-	if GameState.first_time == false:
-		HUD.show_message("The TREE beckons once more.")
 		
 	HUD.show_health(player.hp, player.hp_max)
 	HUD.show_score(0, 10)
-	
+
+func start_message():
+	HUD.show_message("The TREE beckons once more.")
 
 func start_magic_circles():
 	var circles = get_tree().get_nodes_in_group("magic_circle")
@@ -41,7 +43,6 @@ func start_magic_circles():
 		circle.start()
 
 func _on_player_player_death():
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	GameState.queue_free_groups()
 	enemy_handler.stop_spawning()
 	

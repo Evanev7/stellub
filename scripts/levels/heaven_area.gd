@@ -2,12 +2,9 @@ extends Node
 
 
 #var boss_area_scene := preload("res://scenes/levels/boss_area.tscn").instantiate()
-#@export var hell_area_scene: PackedScene
-
 
 @export var enemy_resource_list: Array[EnemyResource]
 
-@export var bullet_handler: BulletHandler
 @export var enemy_handler: EnemyHandler
 
 @onready var HUD = $HUD
@@ -16,15 +13,12 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	GameState.current_area = GameState.CURRENT_AREA.HEAVEN
-	GameState.current_area_node = self
-	var player = $YSort/Player
 	player.connect("level_up", _on_player_level_up)
 	player.connect("player_death", _on_player_death)
 	player.connect("hp_changed", HUD.show_health)
 	player.connect("send_loadout", $LogicComponents/BossHandler._on_player_send_loadout)
 	player.connect("credit_player", $LogicComponents/PickupHandler._on_pickup_credit_player)
-	start_level()
+	start_game()
 	$YSort/teleporter.position = Vector2(GameState.player.position.x + 2, GameState.player.position.y - 10000)
 	$ObjectiveMarker.add_target($YSort/teleporter)
 	$LogicComponents/TerrainGenerator.generate()
@@ -32,8 +26,7 @@ func _ready():
 
 
 # Start the timers we need, instantiate the HUD and get the player in the right spot.
-func start_level():
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+func start_game():
 	enemy_handler.start_spawning()
 	
 	player.position = $YSort/PlayerStart.position
@@ -45,6 +38,9 @@ func start_level():
 
 func restart_game():
 	GameState.load_area(GameState.CURRENT_AREA.HELL)
+	
+func start_message():
+	pass
 
 func _on_player_death():
 	GameState.game_over.emit()
@@ -53,7 +49,7 @@ func _on_player_hp_changed(hp):
 	HUD.show_health(hp, GameState.player.hp_max)
 
 
-func _on_player_level_up(current_level):
+func _on_player_level_up(_current_level):
 	HUD.change_min_XP(player.level_threshold[player.current_level])
 	HUD.show_health(player.hp, player.hp_max)
 	enemy_handler.spawn_timer.wait_time /= 1.02

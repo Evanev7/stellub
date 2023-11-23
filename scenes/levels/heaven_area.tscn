@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://cv66w30at2uv0"]
+[gd_scene load_steps=37 format=3 uid="uid://cv66w30at2uv0"]
 
 [ext_resource type="PackedScene" uid="uid://dilk21k2nncq2" path="res://scenes/levels/level_template.tscn" id="1_kbvse"]
 [ext_resource type="Script" path="res://scripts/levels/heaven_area.gd" id="2_0y2ur"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://u4i2umpawot5" path="res://art/backgrounds/heaven_cliff.png" id="6_7yhwe"]
 [ext_resource type="PackedScene" uid="uid://d23ddhgery8pq" path="res://scenes/characters/boss.tscn" id="6_lb3xs"]
 [ext_resource type="Resource" uid="uid://djjvchiit0f0n" path="res://resources/enemy/angel_worshipper.tres" id="6_muf3o"]
+[ext_resource type="PackedScene" uid="uid://cwtvi2ph44p4d" path="res://scenes/UI/cursor_particles.tscn" id="6_tua3p"]
 [ext_resource type="Resource" uid="uid://bnoj3uq3e6s17" path="res://resources/enemy/angel_warrior.tres" id="7_a1v71"]
 [ext_resource type="Resource" uid="uid://daslelns8qmfv" path="res://resources/enemy/angel_crusader.tres" id="8_60soe"]
 [ext_resource type="PackedScene" uid="uid://41p1qgrud4ej" path="res://scenes/components/terrain_generator.tscn" id="8_74i65"]
@@ -48,10 +49,9 @@ tile_size = Vector2i(1280, 720)
 sources/1 = SubResource("TileSetAtlasSource_sqxyj")
 sources/2 = SubResource("TileSetAtlasSource_o1ema")
 
-[node name="Heaven Area" node_paths=PackedStringArray("bullet_handler", "enemy_handler") instance=ExtResource("1_kbvse")]
+[node name="Heaven Area" node_paths=PackedStringArray("enemy_handler") instance=ExtResource("1_kbvse")]
 script = ExtResource("2_0y2ur")
 enemy_resource_list = Array[Resource("res://scripts/characters/enemy_resource.gd")]([ExtResource("6_muf3o"), ExtResource("7_a1v71")])
-bullet_handler = NodePath("LogicComponents/BulletHandler")
 enemy_handler = NodePath("LogicComponents/EnemyHandler")
 
 [node name="teleporter" parent="YSort" index="0" instance=ExtResource("5_h7u4d")]
@@ -62,7 +62,11 @@ tile_set = SubResource("TileSet_vo6h4")
 format = 2
 layer_0/tile_data = PackedInt32Array(0, 1, 0, 65536, 2, 0)
 
-[node name="pause_menu" parent="." index="3"]
+[node name="cursor_particles" parent="." index="1" instance=ExtResource("6_tua3p")]
+z_index = 51
+position = Vector2(418, 419)
+
+[node name="pause_menu" parent="." index="4"]
 visible = false
 
 [node name="PickupHandler" parent="LogicComponents" index="1" node_paths=PackedStringArray("ysorter", "score_display") instance=ExtResource("2_pdelf")]

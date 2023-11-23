@@ -38,8 +38,8 @@ func _on_teleporter_body_entered(body):
 		tween.tween_property(self, "global_scale", default_scale / 3, 3)
 		# zoom camera in?
 		await tween.finished
-		teleport_player.emit()
-		GameState.teleport_to_area(destination)
+		#teleport_player.emit()
+		GameState.load_area(destination)
 
 func _on_teleporter_body_exited(body):
 	if body == GameState.player:

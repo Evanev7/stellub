@@ -20,8 +20,8 @@ func _process(_delta):
 func show_message(text):
 	$TextDisplay/TextDisplay.text = text
 	$TextDisplay.show()
-	$TextDisplay.modulate = Color(1, 1, 1, 1)
 	var tween: Tween = create_tween()
+	tween.tween_property($TextDisplay, "modulate:a", 1, 0.5)
 	tween.tween_property($TextDisplay, "modulate:a", 0, 2)
 	$DisplayTimer.start()
 

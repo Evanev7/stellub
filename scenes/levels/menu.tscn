@@ -151,6 +151,17 @@ text = "CREDITS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="FirstTime" type="CheckBox" parent="Main Menu/Background/Buttons"]
+visible = false
+layout_mode = 0
+offset_left = -255.5
+offset_top = 62.0
+offset_right = 13.5
+offset_bottom = 107.0
+theme_override_font_sizes/font_size = 36
+button_pressed = true
+text = "First time?"
+
 [node name="LoadingScreen" type="TextureRect" parent="Main Menu"]
 visible = false
 anchors_preset = 8
@@ -199,4 +210,5 @@ visible = false
 
 [connection signal="pressed" from="Main Menu/Background/Buttons/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Main Menu/Background/Buttons/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="toggled" from="Main Menu/Background/Buttons/FirstTime" to="." method="_on_first_time_toggled"]
 [connection signal="go_back" from="options_menu" to="." method="_on_options_menu_go_back"]

@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://c8xiwx0q2sf3m"]
+[gd_scene load_steps=7 format=3 uid="uid://c8xiwx0q2sf3m"]
 
 [ext_resource type="Script" path="res://scripts/UI/pause_menu.gd" id="1_uylrw"]
-[ext_resource type="PackedScene" uid="uid://ck84xpcgl0pv7" path="res://scenes/levels/menu.tscn" id="2_8leer"]
 [ext_resource type="Texture2D" uid="uid://been84ue6lj66" path="res://art/UI/Pause_Menu/pause_menu_background.png" id="3_j02on"]
 [ext_resource type="Texture2D" uid="uid://1nhqo37rxmf" path="res://art/UI/Pause_Menu/pause_menu_top_button.png" id="5_ir75b"]
 [ext_resource type="Texture2D" uid="uid://xtnnwrkn54ll" path="res://art/UI/Pause_Menu/pause_menu_middle_button.png" id="6_466m5"]
@@ -11,7 +10,6 @@
 [node name="pause_menu" type="CanvasLayer"]
 process_mode = 2
 script = ExtResource("1_uylrw")
-main_menu_scene = ExtResource("2_8leer")
 
 [node name="PausedBG" type="TextureRect" parent="."]
 anchors_preset = 8

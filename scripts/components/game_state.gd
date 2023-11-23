@@ -12,15 +12,17 @@ var shop_HUD: CanvasLayer
 
 var damage_numbers_enabled: bool = true
 
-enum CURRENT_AREA {HELL, HEAVEN, BOSS, TESTING, MAIN_MENU, FIRST_TIME}
+enum CURRENT_AREA {HELL, HEAVEN, MAIN_MENU, FIRST_TIME, BOSS, TESTING}
 var current_area
 var current_area_node
 
+
 var area_scenes = {
 	CURRENT_AREA.HELL: preload("res://scenes/levels/hell_area.tscn"),
-	CURRENT_AREA.HEAVEN: preload("res://scenes/levels/heaven_area.tscn") 
+	CURRENT_AREA.HEAVEN: preload("res://scenes/levels/heaven_area.tscn"),
+	CURRENT_AREA.MAIN_MENU: preload("res://scenes/levels/menu.tscn"),
+	CURRENT_AREA.FIRST_TIME: preload("res://scenes/levels/first_time_player.tscn"),
 }
-var area_nodes = {}
 
 
 @onready var clicky_hand = preload("res://art/UI/clicky finger.png")
@@ -44,24 +46,22 @@ func _ready():
 	randomize()
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	game_over.connect(queue_free_groups)
+	
+	current_area_node = get_parent().get_node("menu")
 
-
-func teleport_to_area(area: CURRENT_AREA):
-	load_area(area)
-	if current_area.get_node("YSort"):
-		player.get_parent().remove_child(player)
-		current_area.get_node("YSort").add_child(player)
 
 func load_area(area: CURRENT_AREA):
-	if area not in area_nodes.keys():
-		area_nodes[area] = area_scenes[area].instantiate()
-	var area_node = area_nodes[area]
-	print(area_node, area_scenes)
-	get_tree().root.add_child(area_node)
-	if area_node.enemy_handler and current_area_node.enemy_handler:
-		area_node.enemy_handler.overall_multiplier = current_area_node.enemy_handler.overall_multiplier
-	current_area_node.queue_free()
+	var area_node = area_scenes[area].instantiate()
 	
+	if "enemy_handler" in area_node and "enemy_handler" in current_area_node:
+		area_node.enemy_handler.overall_multiplier = current_area_node.enemy_handler.overall_multiplier
+		
+	if area_node.has_node("YSort") and current_area_node.has_node("YSort"):
+		player.get_parent().remove_child(player)
+		area_node.get_node("YSort").add_child(player)
+		
+	current_area_node.queue_free()
+	get_parent().add_child(area_node)
 	
 	current_area = area
 	current_area_node = area_node
@@ -90,10 +90,6 @@ func _unhandled_input(_event):
 	
 	
 	##Debug ###############################
-	
-	if debug and Input.is_action_just_pressed("left_mouse") and current_area == CURRENT_AREA.FIRST_TIME:
-		current_area_node.start_game()
-		
 	if debug and Input.is_action_pressed("debug_gain_score"): ## R
 		player.gain_score(100)
 		current_area_node.get_node("HUD").show_score(player.score, player.level_threshold[player.current_level])

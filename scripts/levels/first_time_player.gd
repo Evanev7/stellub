@@ -37,11 +37,12 @@ func fade_out():
 	
 func start_game():
 	var hell_area_node = GameState.area_scenes[GameState.CURRENT_AREA.HELL].instantiate()
-	GameState.area_nodes[GameState.CURRENT_AREA.HELL] = hell_area_node
 	get_tree().root.add_child(hell_area_node)
+	GameState.current_area = GameState.CURRENT_AREA.HELL
+	GameState.current_area_node = hell_area_node
 	var tween: Tween = create_tween()
 	tween.tween_property($TextureRect, "self_modulate:a", 0, 3)
 	tween.tween_callback(free_self)
 	
 func free_self():
-	get_node("/root/first_time_player").queue_free()
+	queue_free()

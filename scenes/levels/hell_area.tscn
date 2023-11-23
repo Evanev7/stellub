@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://qhl6r2tbil5t"]
+[gd_scene load_steps=43 format=3 uid="uid://qhl6r2tbil5t"]
 
 [ext_resource type="PackedScene" uid="uid://dilk21k2nncq2" path="res://scenes/levels/level_template.tscn" id="1_ttjsf"]
 [ext_resource type="PackedScene" uid="uid://dfrum4te4lpmr" path="res://scenes/objects/teleporter.tscn" id="2_8o713"]
@@ -16,6 +16,7 @@
 [ext_resource type="Resource" uid="uid://daslelns8qmfv" path="res://resources/enemy/angel_crusader.tres" id="8_rirxr"]
 [ext_resource type="Texture2D" uid="uid://dvrx1ijrwk8a2" path="res://art/backgrounds/hell_level_1.png" id="10_dov0s"]
 [ext_resource type="PackedScene" uid="uid://cnepphpba8e8u" path="res://scenes/characters/player.tscn" id="11_syo0k"]
+[ext_resource type="PackedScene" uid="uid://cwtvi2ph44p4d" path="res://scenes/UI/cursor_particles.tscn" id="12_7ylvp"]
 [ext_resource type="Resource" uid="uid://ccpb4udi5owpj" path="res://resources/bullets/player/player_bullet.tres" id="13_2dgq8"]
 [ext_resource type="Resource" uid="uid://coqyd5d8e6rm8" path="res://resources/bullets/player/particle_mace.tres" id="14_soul3"]
 [ext_resource type="Resource" uid="uid://b3v62pkd6hntd" path="res://resources/bullets/player/shotgun.tres" id="15_gx6j7"]
@@ -23,7 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://b2tef800ecm8u" path="res://scenes/components/weapon_handler.tscn" id="17_gx7j2"]
 [ext_resource type="PackedScene" uid="uid://bco6kn11dyo6o" path="res://scenes/components/boss_handler.tscn" id="18_yysi3"]
 [ext_resource type="PackedScene" uid="uid://d23ddhgery8pq" path="res://scenes/characters/boss.tscn" id="20_gixqi"]
-[ext_resource type="Resource" path="res://resources/enemy/demon_lord.tres" id="21_jliye"]
+[ext_resource type="Resource" uid="uid://cde86qx4smawg" path="res://resources/enemy/demon_lord.tres" id="21_jliye"]
 [ext_resource type="Resource" uid="uid://dldq0lmweq825" path="res://upgrades/auto_fire.tres" id="22_vl2um"]
 [ext_resource type="PackedScene" uid="uid://be4i0yo3jsk42" path="res://scenes/components/attack.tscn" id="23_6mnt7"]
 [ext_resource type="Resource" uid="uid://dgnonhlostgr1" path="res://upgrades/bowling_ball.tres" id="23_ti1t0"]
@@ -76,10 +77,12 @@ STARTING_HP_MAX = 20.0
 [node name="Enemies" type="Node2D" parent="YSort" index="4"]
 y_sort_enabled = true
 
-[node name="ShopAlt" parent="." index="2"]
+[node name="cursor_particles" parent="." index="1" instance=ExtResource("12_7ylvp")]
+
+[node name="ShopAlt" parent="." index="3"]
 process_mode = 2
 
-[node name="pause_menu" parent="." index="3"]
+[node name="pause_menu" parent="." index="4"]
 visible = false
 
 [node name="TerrainGenerator" parent="LogicComponents" index="1" node_paths=PackedStringArray("tile_map", "ysorter") instance=ExtResource("2_p0a1o")]
@@ -95,11 +98,10 @@ score_display = NodePath("../../HUD")
 enemy_resource_list = Array[Resource("res://scripts/characters/enemy_resource.gd")]([ExtResource("3_dr1lv"), ExtResource("4_j7txi"), ExtResource("5_yiyg4"), ExtResource("21_jliye"), ExtResource("6_7qtbu"), ExtResource("7_jjuad"), ExtResource("8_rirxr")])
 enemy_ysort = NodePath("../../YSort/Enemies")
 
-[node name="ShopHandler" parent="LogicComponents" index="4" node_paths=PackedStringArray("enemyHandler", "ysorter", "objective_marker", "shop_node", "teleporter") instance=ExtResource("6_tokbn")]
+[node name="ShopHandler" parent="LogicComponents" index="4" node_paths=PackedStringArray("ysorter", "objective_marker", "shop_node", "teleporter") instance=ExtResource("6_tokbn")]
 attack_scene = ExtResource("23_6mnt7")
 default_shop_upgrades_list = Array[Resource("res://upgrades/upgrade_resource.gd")]([ExtResource("22_vl2um"), ExtResource("23_ti1t0"), ExtResource("24_370hh"), ExtResource("25_2mguo"), ExtResource("26_sxgrq"), ExtResource("27_kwkmh"), ExtResource("28_1qd5n"), ExtResource("29_kgb5h"), ExtResource("30_nb1u1"), ExtResource("30_7nx4i"), ExtResource("32_ve8tn"), ExtResource("32_nacy0"), ExtResource("33_7jswi")])
 default_shop_weapons_list = Array[Resource("res://scripts/objects/bullet_resource.gd")]([ExtResource("13_2dgq8"), ExtResource("14_soul3"), ExtResource("15_gx6j7"), ExtResource("16_fw7me"), ExtResource("37_l8y3f")])
-enemyHandler = NodePath("../EnemyHandler")
 ysorter = NodePath("../../YSort")
 objective_marker = NodePath("../../ObjectiveMarker")
 shop_node = NodePath("../../ShopAlt")

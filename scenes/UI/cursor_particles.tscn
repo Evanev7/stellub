@@ -21,14 +21,14 @@ angular_velocity_max = 166.17
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
 damping_max = 5.31
-scale_min = 0.03
-scale_max = 0.06
+scale_min = 0.01
+scale_max = 0.03
 color = Color(0.2, 0.2, 0.2, 1)
 color_ramp = SubResource("GradientTexture1D_l0ro0")
 attractor_interaction_enabled = false
 
 [node name="cursor_particles" type="GPUParticles2D"]
-amount = 30
+amount = 50
 process_material = SubResource("ParticleProcessMaterial_vgujk")
 texture = ExtResource("1_wagyj")
 fixed_fps = 60

@@ -20,8 +20,9 @@ func _on_options_pressed():
 	
 func _on_exit_pressed():
 	GameState.unpause_game()
-	get_parent().queue_free()
-	get_tree().change_scene_to_packed(main_menu_scene)
+	Input.set_custom_mouse_cursor(GameState.clicky_hand, Input.CURSOR_ARROW, Vector2i(8,5))
+	set_visible(false)
+	GameState.load_area(GameState.CURRENT_AREA.MAIN_MENU)
 
 
 func _on_options_menu_go_back():
