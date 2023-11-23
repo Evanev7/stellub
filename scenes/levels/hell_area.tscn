@@ -88,6 +88,7 @@ visible = false
 [node name="TerrainGenerator" parent="LogicComponents" index="1" node_paths=PackedStringArray("tile_map", "ysorter") instance=ExtResource("2_p0a1o")]
 tile_map = NodePath("../../YSort/TileMap")
 ysorter = NodePath("../../YSort")
+update_range = Vector2i(3, 3)
 
 [node name="PickupHandler" parent="LogicComponents" index="2" node_paths=PackedStringArray("ysorter", "score_display") instance=ExtResource("3_be7sf")]
 pickup_scene = ExtResource("4_rcjv7")

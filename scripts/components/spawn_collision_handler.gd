@@ -21,6 +21,8 @@ func _ready():
 		collider.shape = circle
 		spawn_collider.add_child(collider)
 		add_child(spawn_collider)
+	if land_on_ready:
+		owner.hide()
 	await get_tree().physics_frame
 	if land_on_ready:
 		find_safe_landing(on_ready_variance, on_ready_attempts)
@@ -37,6 +39,7 @@ func find_safe_landing(variance:= on_ready_variance, attempts:= on_ready_attempt
 			if area.owner != owner:
 				safe_landing = false
 		if safe_landing:
+			owner.show()
 			safe_landing_found.emit()
 			if disable_after_land: disable_spawn_collider()
 			return 
@@ -50,6 +53,8 @@ func find_safe_landing(variance:= on_ready_variance, attempts:= on_ready_attempt
 	if disable_after_land: disable_spawn_collider()
 	if clear_on_bad_landing:
 		owner.queue_free()
+	else:
+		owner.show()
 
 func remove_obstructions(variance:= on_ready_variance, attempts:= on_ready_attempts):
 	for i in range(attempts):
