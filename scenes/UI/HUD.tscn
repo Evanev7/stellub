@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://yaht8i4bkv2u"]
+[gd_scene load_steps=10 format=3 uid="uid://yaht8i4bkv2u"]
 
 [ext_resource type="Script" path="res://scripts/UI/HUD.gd" id="1_tsnwf"]
 [ext_resource type="Texture2D" uid="uid://dl1gspa35j2xu" path="res://art/UI/vignette2.png" id="2_i7f4k"]
@@ -8,12 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://ckj36odxkb2o2" path="res://art/UI/HP_Bar/HP_Bar_Outline_2.png" id="5_4mon2"]
 [ext_resource type="Texture2D" uid="uid://cu2766polhb1a" path="res://art/UI/HP_Bar/HP_Bar_Outline_3.png" id="6_uftj7"]
 [ext_resource type="Texture2D" uid="uid://fxvxh8ufh5im" path="res://art/UI/HP_Bar/HP_Bar_Fill.png" id="7_ik5f6"]
-[ext_resource type="Texture2D" uid="uid://pi6nxes80imt" path="res://art/UI/Black_Background/black_bg_1.png" id="9_rguwd"]
-[ext_resource type="Texture2D" uid="uid://dfl8ox20w3xn" path="res://art/UI/Black_Background/black_bg_2.png" id="10_2spty"]
-[ext_resource type="Texture2D" uid="uid://bsmsy5dhk3vsp" path="res://art/UI/Black_Background/black_bg_3.png" id="11_mdu4k"]
-[ext_resource type="Texture2D" uid="uid://dq4qin2d2o6d3" path="res://art/UI/Black_Background/black_bg_4.png" id="12_528ku"]
-[ext_resource type="Texture2D" uid="uid://cywsutwou4bx4" path="res://art/UI/Black_Background/black_bg_5.png" id="13_stuvm"]
-[ext_resource type="AudioStream" uid="uid://c355h3avvx8ss" path="res://sounds/spooky intro ambience reversed.ogg" id="14_iatir"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_stpyq"]
 frames = 3
@@ -23,19 +17,6 @@ frame_1/texture = ExtResource("5_4mon2")
 frame_1/duration = 1.0
 frame_2/texture = ExtResource("6_uftj7")
 frame_2/duration = 1.0
-
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_2o1wi"]
-frames = 5
-speed_scale = 15.0
-frame_0/texture = ExtResource("9_rguwd")
-frame_1/texture = ExtResource("10_2spty")
-frame_1/duration = 1.0
-frame_2/texture = ExtResource("11_mdu4k")
-frame_2/duration = 1.0
-frame_3/texture = ExtResource("12_528ku")
-frame_3/duration = 1.0
-frame_4/texture = ExtResource("13_stuvm")
-frame_4/duration = 1.0
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_tsnwf")
@@ -60,6 +41,24 @@ offset_bottom = 44.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextDisplay" type="Label" parent="TextDisplay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -39.0
+offset_right = 20.0
+offset_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "The TREE beckons once more."
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -95,7 +94,6 @@ offset_bottom = -156.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 64
-shortcut = SubResource("Shortcut_lxmoi")
 text = "Restart"
 
 [node name="XPBar" type="TextureProgressBar" parent="."]
@@ -135,55 +133,6 @@ nine_patch_stretch = true
 texture_under = SubResource("AnimatedTexture_stpyq")
 texture_progress = ExtResource("7_ik5f6")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-self_modulate = Color(1, 1, 1, 0)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("AnimatedTexture_2o1wi")
-
-[node name="TextDisplay" type="TextureRect" parent="."]
-modulate = Color(1, 1, 1, 0)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -606.0
-offset_top = -108.0
-offset_right = 607.0
-offset_bottom = 102.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_luaxt")
-expand_mode = 1
-
-[node name="TextDisplay" type="Label" parent="TextDisplay"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -39.0
-offset_right = 20.0
-offset_bottom = 39.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 64
-text = "The TREE beckons once more."
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="DisplayTimer" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
-
-[node name="GameOverTimer" type="Timer" parent="."]
-
 [node name="FPS" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
@@ -208,7 +157,7 @@ offset_top = 174.0
 offset_right = 74.0
 offset_bottom = 220.0
 
-[node name="TextureRect2" type="TextureRect" parent="."]
+[node name="TextureRect3" type="TextureRect" parent="."]
 self_modulate = Color(1, 1, 1, 0.0784314)
 offset_right = 1920.0
 offset_bottom = 1080.0

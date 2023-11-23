@@ -89,11 +89,11 @@ func _unhandled_input(_event):
 	#######################################
 
 func pause_game():
-	Input.set_custom_mouse_cursor(clicky_hand, 0, Vector2i(8,5))
+	Input.set_custom_mouse_cursor(clicky_hand, Input.CURSOR_ARROW, Vector2i(8,5))
 	get_tree().paused = true
 
 func unpause_game():
-	Input.set_custom_mouse_cursor(shooty_hand, 0, Vector2i(16,16))
+	Input.set_custom_mouse_cursor(shooty_hand, Input.CURSOR_ARROW, Vector2i(16,16))
 	get_tree().paused = false
 
 
