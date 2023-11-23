@@ -151,6 +151,12 @@ theme_override_font_sizes/font_size = 40
 text = "Damage Dealt:"
 horizontal_alignment = 2
 
+[node name="Label5" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Circles Completed:"
+horizontal_alignment = 2
+
 [node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 mouse_filter = 2
@@ -177,6 +183,13 @@ text = "10"
 horizontal_alignment = 2
 
 [node name="Damage" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "10"
+horizontal_alignment = 2
+
+[node name="Circles" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer/HBoxContainer/VBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 40

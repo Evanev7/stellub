@@ -39,6 +39,7 @@ var enemies_killed: int = 0
 var souls_collected: float = 0
 var bullets_summoned: int = 0
 var damage_dealt: float = 0
+var circles_completed: int = 0
 
 func _ready():
 	Input.set_custom_mouse_cursor(clicky_hand, Input.CURSOR_POINTING_HAND, Vector2i(8,5))
@@ -47,7 +48,7 @@ func _ready():
 	game_over.connect(queue_free_groups)
 	
 	current_area_node = get_parent().get_node("menu")
-
+	
 
 func load_area(area: CURRENT_AREA):
 	var area_node = area_scenes[area].instantiate()
@@ -72,6 +73,7 @@ func reset_statistics():
 	souls_collected = 0
 	bullets_summoned = 0
 	damage_dealt = 0
+	circles_completed = 0
 	
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed("pause"):
@@ -128,3 +130,12 @@ func queue_free_groups():
 	get_tree().call_group("boss", "queue_free")
 	get_tree().call_group("magic_circle", "remove_objectie_marker")
 	get_tree().call_group("magic_circle", "queue_free")
+
+
+func _enter_tree() -> void:
+	get_tree().node_added.connect(on_node_added)
+
+func on_node_added(node: Node) -> void:
+	var pp := node as PopupPanel
+	if pp and pp.theme_type_variation == "TooltipPanel":
+		pp.transparent_bg = true

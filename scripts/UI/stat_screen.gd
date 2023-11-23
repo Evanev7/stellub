@@ -6,6 +6,7 @@ signal restart_game
 @onready var souls_collected: Label = %Souls
 @onready var bullets_summoned: Label = %Bullets
 @onready var damage_dealt: Label = %Damage
+@onready var circles_completed: Label = %Circles
 @onready var restart_button = %RestartButton
 
 func _ready():
@@ -24,6 +25,7 @@ func game_over():
 	souls_collected.text = str(int(GameState.souls_collected))
 	bullets_summoned.text = str(GameState.bullets_summoned)
 	damage_dealt.text = str(int(GameState.damage_dealt))
+	circles_completed.text = str(int(GameState.circles_completed))
 
 
 func _on_restart_button_pressed():

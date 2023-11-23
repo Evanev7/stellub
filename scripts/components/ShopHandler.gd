@@ -20,10 +20,8 @@ var shop_weapons_list: Array[BulletResource]
 var upgrade_pool: Pool
 var weapon_pool: Pool
 
-func _ready():
-	pass
-	
-	
+@export var min_rand_radius: int = 2000
+@export var max_rand_radius: int = 4000
 
 func start():
 	shop_upgrades_list = default_shop_upgrades_list.duplicate()
@@ -44,25 +42,35 @@ func start():
 	for weapon in shop_weapons_list:
 		weapons.append([weapon, int(weapon.rarity*2)])
 	weapon_pool.populate(weapons)
+
+
+func spawn_next_circle(centre):
+	var radius = Vector2(randf_range(min_rand_radius, max_rand_radius),0)
+	var block_out_angle = atan2(3000,centre.length())
+	var centre_angle = centre.angle()
+	var new_angle = centre_angle + randf_range(block_out_angle, 2*PI - block_out_angle)
+	var new_centre = centre + radius.rotated(new_angle)
+	spawn_circle(new_centre)
 	
 
+func spawn_circle(spawn_pos):
+	var magic_circle = magic_circle_scene.instantiate()
+	magic_circle.position = spawn_pos
+	ysorter.add_child(magic_circle)
+	objective_marker.add_target(magic_circle)
+	magic_circle.connect("spawn_shop", _on_spawn_shop)
+	magic_circle.connect("activate_teleporter", _on_activate_teleporter)
+	magic_circle.connect("spawn_enemy_in_wave", _on_spawn_enemy_in_wave)
+	magic_circle.connect("remove_from_hud", objective_marker.delete_target)
+	magic_circle.connect("add_to_hud", objective_marker.add_target)
+	magic_circle.connect("spawn_next_circle", spawn_next_circle)
+
+
 func spawn_magic_circles():
-	var count = 10
 	var radius = Vector2(3000, 0)
-	var center = Vector2(0, 0)
-	var step = 2 * PI / count
-	
-	for i in range(count):
-		var spawn_pos = center + radius.rotated(step*i)
-		var magic_circle = magic_circle_scene.instantiate()
-		magic_circle.position = spawn_pos
-		ysorter.add_child(magic_circle)
-		objective_marker.add_target(magic_circle)
-		magic_circle.connect("spawn_shop", _on_spawn_shop)
-		magic_circle.connect("activate_teleporter", _on_activate_teleporter)
-		magic_circle.connect("spawn_enemy_in_wave", _on_spawn_enemy_in_wave)
-		magic_circle.connect("remove_from_hud", objective_marker.delete_target)
-		magic_circle.connect("add_to_hud", objective_marker.add_target)
+	var centre = Vector2(0, 0)
+	spawn_circle(centre + radius.rotated(randf_range(0,2*PI)))
+
 
 
 func _on_shop_entered(shop_attached_to):

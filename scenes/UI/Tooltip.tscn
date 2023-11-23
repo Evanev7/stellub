@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://djihbt4xh14cm" path="res://scenes/UI/gui_rect.tscn" id="1_0pc15"]
 
 [node name="Tooltip" type="CenterContainer"]
-offset_right = 449.0
-offset_bottom = 170.0
+offset_right = 675.0
+offset_bottom = 280.0
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2

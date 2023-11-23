@@ -3,12 +3,12 @@ extends Node2D
 #This can be re-enabled if we want to change magic_circle behaviour
 #signal shop_entered
 signal spawn_shop(location: Vector2)
-signal activate_teleporter()
+signal activate_teleporter
 signal spawn_enemy_in_wave(resource)
 signal add_to_hud(circle)
 signal remove_from_hud(circle)
+signal spawn_next_circle(origin)
 
-static var current_circle: int = 1
 var wave_active: bool = false
 
 ####
@@ -18,6 +18,7 @@ enum {skull, dog, skeleton, lord}
 @onready var barrier_edge_marker: Node2D = $Barrier/Marker2D
 @onready var success_timer: Timer = $SuccessTimer
 @onready var time_label: Label = $Time
+
 
 var wave_data = {}
 var distance_from_center: float = 0
@@ -29,9 +30,9 @@ func _ready():
 	add_to_group("magic_circle")
 	start()
 
+
 func start():
 	get_node("Circle/CollisionShape2D").disabled = false
-	current_circle = 1
 	wave_active = false
 	set_waves()
 	$WaveTimer.stop()
@@ -156,12 +157,12 @@ func _on_circle_body_exited(body):
 
 func _on_wave_timer_timeout():
 	wave_active = true
-	success_timer.wait_time = 10 + (9.99 * current_circle)
+	success_timer.wait_time = 10 + (9.99 * GameState.circles_completed+1)
 	$Barrier.visible = true
 	var tween: Tween = create_tween()
 	tween.tween_property($Barrier, "scale", Vector2(0.4, 0.4), success_timer.wait_time)
 	success_timer.start()
-	spawn_enemies((current_circle + 1))
+	spawn_enemies((GameState.circles_completed + 2))
 
 
 func _on_success_timer_timeout():
@@ -169,11 +170,12 @@ func _on_success_timer_timeout():
 	wave_active = false
 	$Barrier.visible = false
 	time_label.hide()
-	if current_circle < 12:
-		current_circle += 1
+	if GameState.circles_completed+1 < 12:
+		GameState.circles_completed += 1
 		remove_objective_marker()
 		get_node("Circle/CollisionShape2D").disabled = true
-	if current_circle == 11:
+		spawn_next_circle.emit(self.global_position)
+	if GameState.circles_completed+1 == 11:
 		activate_teleporter.emit()
 	
 func remove_objective_marker():
@@ -181,7 +183,7 @@ func remove_objective_marker():
 	
 	
 func spawn_enemies(timerValue):
-	var wave_index = clamp(current_circle,1,10)
+	var wave_index = clamp(GameState.circles_completed+1,1,10)
 	
 	var wave = wave_data[wave_index][timerValue]
 	wave_data[wave_index][timerValue] = null

@@ -20,7 +20,7 @@ func _process(delta):
 	direction.x *= width_ratio
 	direction *= screen_height_ratio * screen_size.y/2 
 	offset = screen_centre + direction
-	if direction.length() <= distance - margin:
+	if node.visible and direction.length() <= distance - margin:
 		show()
 	else:
 		hide()
