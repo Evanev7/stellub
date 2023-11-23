@@ -46,11 +46,16 @@ func start_magic_circles():
 		circle.start()
 
 func _on_player_player_death():
-	GameState.game_over.emit()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	GameState.first_time = false
+	GameState.queue_free_groups()
+	enemy_handler.stop_spawning()
 	$cursor_particles.emitting = false
 	
+	if GameState.first_time == true:
+		HUD.show_first_time()
+	else:
+		HUD.show_message("The Tree beckons once more.")
+		GameState.game_over.emit()
 	
 func on_restart_game():
 	start_game()

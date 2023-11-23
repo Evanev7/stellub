@@ -20,21 +20,35 @@ func _process(_delta):
 func show_message(text):
 	$TextDisplay/TextDisplay.text = text
 	$TextDisplay.show()
-	$TextDisplay.self_modulate = Color(1, 1, 1, 1)
+	$TextDisplay.modulate = Color(1, 1, 1, 1)
 	var tween: Tween = create_tween()
 	tween.tween_property($TextDisplay, "modulate:a", 0, 2)
 	$DisplayTimer.start()
 
+func show_first_time():
+	$AudioStreamPlayer.play()
+	var tween: Tween = create_tween()
+	tween.tween_property($TextureRect, "self_modulate:a", 1, 5)
+	$TextDisplay/TextDisplay.text = "Alas. You have failed."
+	tween.tween_property($TextDisplay, "modulate:a", 1, 3)
+	tween.tween_property($TextDisplay, "modulate:a", 0, 2)
+	tween.tween_property($TextDisplay/TextDisplay, "text", "I will keep waiting.", 0.1)
+	tween.tween_property($TextDisplay, "modulate:a", 1, 3)
+	tween.tween_property($TextDisplay, "modulate:a", 0, 2)
+	tween.tween_property($TextDisplay/TextDisplay, "text", "For someone who can break through.", 0.1)
+	tween.tween_property($TextDisplay, "modulate:a", 1, 3)
+	tween.tween_property($TextDisplay, "modulate:a", 0, 2)
+	tween.tween_callback(game_over)
+
+func game_over():
+	GameState.game_over.emit()
+	$TextDisplay.modulate = Color(1, 1, 1, 0)
+	$TextureRect.modulate = Color(1, 1, 1, 0)
+	
 
 func _on_display_timer_timeout():
 	$TextDisplay.hide()
-	$Debug.hide() 
-
-
-func _on_start_button_pressed():
-	start_game.emit() 
-	$StartButton.hide()
-	XP_Bar.show()
+	$Debug.hide()
 
 
 func show_health(number, max_number):

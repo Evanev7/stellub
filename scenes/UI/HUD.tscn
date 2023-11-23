@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://yaht8i4bkv2u"]
+[gd_scene load_steps=19 format=3 uid="uid://yaht8i4bkv2u"]
 
 [ext_resource type="Script" path="res://scripts/UI/HUD.gd" id="1_tsnwf"]
 [ext_resource type="Texture2D" uid="uid://been84ue6lj66" path="res://art/UI/Pause_Menu/pause_menu_background.png" id="2_luaxt"]
@@ -8,21 +8,12 @@
 [ext_resource type="Texture2D" uid="uid://ckj36odxkb2o2" path="res://art/UI/HP_Bar/HP_Bar_Outline_2.png" id="5_4mon2"]
 [ext_resource type="Texture2D" uid="uid://cu2766polhb1a" path="res://art/UI/HP_Bar/HP_Bar_Outline_3.png" id="6_uftj7"]
 [ext_resource type="Texture2D" uid="uid://fxvxh8ufh5im" path="res://art/UI/HP_Bar/HP_Bar_Fill.png" id="7_ik5f6"]
-
-[sub_resource type="InputEventAction" id="InputEventAction_gf5y4"]
-action = &"start_game"
-
-[sub_resource type="Shortcut" id="Shortcut_lxmoi"]
-events = [SubResource("InputEventAction_gf5y4")]
-
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_stpyq"]
-frames = 3
-speed_scale = 10.0
-frame_0/texture = ExtResource("4_m51i6")
-frame_1/texture = ExtResource("5_4mon2")
-frame_1/duration = 1.0
-frame_2/texture = ExtResource("6_uftj7")
-frame_2/duration = 1.0
+[ext_resource type="Texture2D" uid="uid://pi6nxes80imt" path="res://art/UI/Black_Background/black_bg_1.png" id="9_rguwd"]
+[ext_resource type="Texture2D" uid="uid://dfl8ox20w3xn" path="res://art/UI/Black_Background/black_bg_2.png" id="10_2spty"]
+[ext_resource type="Texture2D" uid="uid://bsmsy5dhk3vsp" path="res://art/UI/Black_Background/black_bg_3.png" id="11_mdu4k"]
+[ext_resource type="Texture2D" uid="uid://dq4qin2d2o6d3" path="res://art/UI/Black_Background/black_bg_4.png" id="12_528ku"]
+[ext_resource type="Texture2D" uid="uid://cywsutwou4bx4" path="res://art/UI/Black_Background/black_bg_5.png" id="13_stuvm"]
+[ext_resource type="AudioStream" uid="uid://c355h3avvx8ss" path="res://sounds/spooky intro ambience reversed.ogg" id="14_iatir"]
 
 [sub_resource type="Gradient" id="Gradient_eikcu"]
 offsets = PackedFloat32Array(0, 0.0839161, 0.237762, 0.377622, 0.552448, 0.748252, 0.895105)
@@ -33,78 +24,41 @@ gradient = SubResource("Gradient_eikcu")
 fill_from = Vector2(0.23301, 0)
 fill_to = Vector2(0.742718, 0)
 
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_stpyq"]
+frames = 3
+speed_scale = 10.0
+frame_0/texture = ExtResource("4_m51i6")
+frame_1/texture = ExtResource("5_4mon2")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("6_uftj7")
+frame_2/duration = 1.0
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_2o1wi"]
+frames = 5
+speed_scale = 15.0
+frame_0/texture = ExtResource("9_rguwd")
+frame_1/texture = ExtResource("10_2spty")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("11_mdu4k")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("12_528ku")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("13_stuvm")
+frame_4/duration = 1.0
+
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_tsnwf")
 
-[node name="TextDisplay" type="TextureRect" parent="."]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -606.0
-offset_top = -108.0
-offset_right = 607.0
-offset_bottom = 102.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_luaxt")
-expand_mode = 1
-
-[node name="TextDisplay" type="Label" parent="TextDisplay"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -39.0
-offset_right = 20.0
-offset_bottom = 39.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 64
-text = "The TREE beckons once more."
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HealthDisplay" type="Label" parent="."]
+[node name="PauseButton" type="TextureButton" parent="."]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -20.0
-offset_top = 36.0
-offset_right = 20.0
-offset_bottom = 124.0
+offset_left = -32.0
+offset_top = 27.0
+offset_right = 32.0
+offset_bottom = 91.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 64
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="DisplayTimer" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
-
-[node name="GameOverTimer" type="Timer" parent="."]
-
-[node name="StartButton" type="Button" parent="."]
-visible = false
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -68.0
-offset_top = -252.0
-offset_right = 68.0
-offset_bottom = -156.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 64
-shortcut = SubResource("Shortcut_lxmoi")
-text = "Restart"
+texture_normal = SubResource("GradientTexture2D_leb7c")
 
 [node name="XPBar" type="TextureProgressBar" parent="."]
 anchors_preset = 1
@@ -143,20 +97,58 @@ nine_patch_stretch = true
 texture_under = SubResource("AnimatedTexture_stpyq")
 texture_progress = ExtResource("7_ik5f6")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AnimatedTexture_2o1wi")
+
+[node name="TextDisplay" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -606.0
+offset_top = -108.0
+offset_right = 607.0
+offset_bottom = 102.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_luaxt")
+expand_mode = 1
+
+[node name="TextDisplay" type="Label" parent="TextDisplay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -39.0
+offset_right = 20.0
+offset_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "The TREE beckons once more."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DisplayTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="GameOverTimer" type="Timer" parent="."]
+
 [node name="FPS" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
-
-[node name="PauseButton" type="TextureButton" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -32.0
-offset_top = 27.0
-offset_right = 32.0
-offset_bottom = 91.0
-grow_horizontal = 2
-texture_normal = SubResource("GradientTexture2D_leb7c")
 
 [node name="Debug" type="Control" parent="."]
 layout_mode = 3
@@ -178,6 +170,9 @@ offset_top = 174.0
 offset_right = 74.0
 offset_bottom = 220.0
 
-[connection signal="timeout" from="DisplayTimer" to="." method="_on_display_timer_timeout"]
-[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_iatir")
+pitch_scale = 0.8
+
 [connection signal="pressed" from="PauseButton" to="." method="_on_pause_button_pressed"]
+[connection signal="timeout" from="DisplayTimer" to="." method="_on_display_timer_timeout"]

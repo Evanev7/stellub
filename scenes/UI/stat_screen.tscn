@@ -1,12 +1,52 @@
-[gd_scene load_steps=5 format=3 uid="uid://ctkuvh4bwmtm2"]
+[gd_scene load_steps=11 format=3 uid="uid://ctkuvh4bwmtm2"]
 
 [ext_resource type="Script" path="res://scripts/UI/stat_screen.gd" id="1_grv8h"]
 [ext_resource type="Texture2D" uid="uid://dxtmrmjab36ky" path="res://art/UI/programmer 'art'.png" id="1_ihhs8"]
+[ext_resource type="Texture2D" uid="uid://pi6nxes80imt" path="res://art/UI/Black_Background/black_bg_1.png" id="2_a121a"]
 [ext_resource type="Texture2D" uid="uid://cgt5paocwd1un" path="res://art/UI/Pause_Menu/pause_menu_bottom_button.png" id="2_ry8e5"]
+[ext_resource type="Texture2D" uid="uid://dfl8ox20w3xn" path="res://art/UI/Black_Background/black_bg_2.png" id="3_2kyig"]
 [ext_resource type="Texture2D" uid="uid://xtnnwrkn54ll" path="res://art/UI/Pause_Menu/pause_menu_middle_button.png" id="4_4tgtj"]
+[ext_resource type="Texture2D" uid="uid://bsmsy5dhk3vsp" path="res://art/UI/Black_Background/black_bg_3.png" id="4_hfuso"]
+[ext_resource type="Texture2D" uid="uid://dq4qin2d2o6d3" path="res://art/UI/Black_Background/black_bg_4.png" id="5_apwj5"]
+[ext_resource type="Texture2D" uid="uid://cywsutwou4bx4" path="res://art/UI/Black_Background/black_bg_5.png" id="6_bom5n"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_2kkt6"]
+frames = 5
+speed_scale = 15.0
+frame_0/texture = ExtResource("2_a121a")
+frame_1/texture = ExtResource("3_2kyig")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("4_hfuso")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("5_apwj5")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("6_bom5n")
+frame_4/duration = 1.0
 
 [node name="stat_screen" type="CanvasLayer"]
 script = ExtResource("1_grv8h")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AnimatedTexture_2kkt6")
+
+[node name="Label" type="RichTextLabel" parent="TextureRect"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 324.0
+offset_top = 405.0
+offset_right = 1577.0
+offset_bottom = 588.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/normal_font_size = 100
+theme_override_font_sizes/italics_font_size = 100
+bbcode_enabled = true
+text = "[center][i]Ten Thousand Eternities Later...[/i][/center]"
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchors_preset = 15

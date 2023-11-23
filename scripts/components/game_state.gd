@@ -51,6 +51,8 @@ func _unhandled_input(_event):
 					pause_menu._on_hud_open_pause_menu()
 				else:
 					pause_menu._on_continue_pressed()
+			else:
+				shop_HUD.close_shop()
 	
 	
 	

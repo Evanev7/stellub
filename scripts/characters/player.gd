@@ -40,6 +40,7 @@ var walking: bool = false
 
 
 var invuln: bool = false
+var dead: bool = false
 var _h_flipped: bool = false
 var current_animation: String
 
@@ -97,6 +98,7 @@ func start():
 	show()
 	set_physics_process(true)
 	$CollisionShape2D.disabled = false
+	$Hurtbox/CollisionShape2D.disabled = false
 	$Camera2D.set_deferred("enabled", true)
 	attack_handler.start()
 
@@ -107,6 +109,8 @@ func set_default_stats():
 	speed = STARTING_SPEED
 	hp_max = STARTING_HP_MAX
 	hp = hp_max
+	invuln = false
+	dead = false
 	score = 0
 	current_level = 0
 	current_animation = "level 0"
@@ -138,12 +142,19 @@ func hurt(body):
 		i_frame_timer.start()
 		sprite.modulate = Color(1,0,0,0.5)
 		
-	if hp <= 0:
+	if hp <= 0 and not dead:
+		dead = true
 		attack_handler.stop()
-		hide()
+		if GameState.first_time == true:
+			i_frame_timer.stop()
+			sprite.modulate = Color(1,1,1,1)
+			invuln = true
+		else:
+			hide()
+			$CollisionShape2D.disabled = true
+			$Hurtbox/CollisionShape2D.disabled = true
+			$Camera2D.set_deferred("enabled", false)
 		set_physics_process(false)
-		$CollisionShape2D.set_deferred("disabled", true)
-		$Camera2D.set_deferred("enabled", false)
 		player_death.emit()
 
 
