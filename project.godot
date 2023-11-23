@@ -31,6 +31,7 @@ window/stretch/mode="canvas_items"
 
 [gui]
 
+theme/custom_font="res://art/UI/Fonts/feral.regular.ttf"
 timers/tooltip_delay_sec=0.03
 
 [input]

@@ -20,6 +20,7 @@ func _on_options_pressed():
 	
 func _on_exit_pressed():
 	GameState.unpause_game()
+	get_parent().queue_free()
 	get_tree().change_scene_to_packed(main_menu_scene)
 
 

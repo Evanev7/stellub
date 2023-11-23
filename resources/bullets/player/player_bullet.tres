@@ -14,6 +14,7 @@ stream_0/weight = 1.0
 [resource]
 script = ExtResource("1_dmiyo")
 name = "Normal Bullet"
+description = "Default Upgrade Description"
 animation = ExtResource("1_eteat")
 sound = SubResource("AudioStreamRandomizer_5xvx1")
 rarity = 1.0

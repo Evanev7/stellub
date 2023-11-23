@@ -17,6 +17,7 @@ animations = [{
 [resource]
 script = ExtResource("1_dhlpd")
 name = "Particle Mace"
+description = "Default Upgrade Description"
 animation = SubResource("SpriteFrames_l1ll2")
 rarity = 1.0
 icon = ExtResource("1_faxki")
@@ -28,6 +29,7 @@ lifetime = 30.0
 bullet_range = 1000.0
 fire_delay = 10.0
 shot_speed = 100.0
+can_be_negative = false
 shot_acceleration = 0.0
 shot_spread = 3.142
 shot_inaccuracy = 0.0981748

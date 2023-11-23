@@ -4,13 +4,15 @@ signal fire_bullet(origin, bullet: BulletResource, init: FireFrom)
 signal game_over
 signal register_enemy
 
+var first_time: bool = true
+
 var player: CharacterBody2D
 var pause_menu: CanvasLayer
 var shop_HUD: CanvasLayer
 
 var damage_numbers_enabled: bool = true
 
-enum CURRENT_AREA {HELL, HEAVEN, BOSS, TESTING, MAIN_MENU}
+enum CURRENT_AREA {HELL, HEAVEN, BOSS, TESTING, MAIN_MENU, FIRST_TIME}
 var current_area
 @onready var hell_area_to_instantiate: PackedScene = preload("res://scenes/levels/hell_area.tscn")
 @onready var heaven_area_to_instantiate: PackedScene = preload("res://scenes/levels/heaven_area.tscn")
@@ -41,7 +43,7 @@ func reset_statistics():
 	
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed("pause"):
-		if current_area == CURRENT_AREA.MAIN_MENU:
+		if current_area == CURRENT_AREA.MAIN_MENU or current_area == CURRENT_AREA.FIRST_TIME:
 			get_tree().quit()
 		else:
 			if shop_HUD.visible == false:
@@ -54,6 +56,9 @@ func _unhandled_input(_event):
 	
 	##Debug ###############################
 	
+	if debug and Input.is_action_just_pressed("left_mouse") and current_area == CURRENT_AREA.FIRST_TIME:
+		get_parent().get_child(1).start_game()
+		
 	if debug and Input.is_action_pressed("debug_gain_score"): ## R
 		player.gain_score(100)
 		get_node("/root").get_child(1).get_node("HUD").show_score(player.score, player.level_threshold[player.current_level])

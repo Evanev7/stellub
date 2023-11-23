@@ -18,8 +18,11 @@ func _process(_delta):
 	level.set_text(str(GameState.player.current_level))
 
 func show_message(text):
-	$TextDisplay.text = text
+	$TextDisplay/TextDisplay.text = text
 	$TextDisplay.show()
+	$TextDisplay.self_modulate = Color(1, 1, 1, 1)
+	var tween: Tween = create_tween()
+	tween.tween_property($TextDisplay, "modulate:a", 0, 2)
 	$DisplayTimer.start()
 
 

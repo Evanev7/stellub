@@ -33,7 +33,9 @@ func start_game():
 	$cursor_particles.emitting = true
 	start_magic_circles()
 	
-	HUD.show_message("All Hell Breaks Loose!")
+	if GameState.first_time == false:
+		HUD.show_message("The TREE beckons once more.")
+		
 	HUD.show_health(player.hp, player.hp_max)
 	HUD.show_score(0, 10)
 	
@@ -46,6 +48,7 @@ func start_magic_circles():
 func _on_player_player_death():
 	GameState.game_over.emit()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	GameState.first_time = false
 	$cursor_particles.emitting = false
 	
 	
