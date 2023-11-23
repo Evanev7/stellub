@@ -16,7 +16,6 @@ enum CURRENT_AREA {HELL, HEAVEN, MAIN_MENU, FIRST_TIME, BOSS, TESTING}
 var current_area
 var current_area_node
 
-
 var area_scenes = {
 	CURRENT_AREA.HELL: preload("res://scenes/levels/hell_area.tscn"),
 	CURRENT_AREA.HEAVEN: preload("res://scenes/levels/heaven_area.tscn"),
@@ -127,6 +126,5 @@ func queue_free_groups():
 	get_tree().call_group("pickup", "queue_free")
 	get_tree().call_group("shop", "queue_free")
 	get_tree().call_group("boss", "queue_free")
-	
-	for circle in get_tree().get_nodes_in_group("magic_circle"):
-		circle.call_deferred("remove_objective_marker", circle)
+	get_tree().call_group("magic_circle", "remove_objectie_marker")
+	get_tree().call_group("magic_circle", "queue_free")

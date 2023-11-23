@@ -18,12 +18,12 @@ func _ready():
 	if GameState.first_time == false:
 		start_message()
 	
-	$LogicComponents/ShopHandler.spawn_magic_circles()
 	$LogicComponents/TerrainGenerator.generate()
 
 
 # Start the timers we need, instantiate the HUD and get the player in the right spot.
 func start_game():
+	$LogicComponents/ShopHandler.spawn_magic_circles()
 	enemy_handler.start_spawning()
 	player.start()
 	player.position = $YSort/PlayerStart.position
@@ -46,6 +46,9 @@ func _on_player_player_death():
 	GameState.queue_free_groups()
 	enemy_handler.stop_spawning()
 	
+	for magic_circle in get_tree().get_nodes_in_group("magic_circle"):
+		magic_circle.remove_objective_marker()
+	
 	if GameState.first_time == true:
 		HUD.show_first_time()
 	else:
@@ -53,6 +56,7 @@ func _on_player_player_death():
 	
 func on_restart_game():
 	start_game()
+	
 
 func _on_player_hp_changed(hp):
 	HUD.show_health(hp, player.hp_max)

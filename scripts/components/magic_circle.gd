@@ -5,7 +5,8 @@ extends Node2D
 signal spawn_shop(location: Vector2)
 signal activate_teleporter()
 signal spawn_enemy_in_wave(resource)
-signal remove_circle_from_objective_marker(circle)
+signal add_to_hud(circle)
+signal remove_from_hud(circle)
 
 static var current_circle: int = 1
 var wave_active: bool = false
@@ -24,6 +25,7 @@ var size_of_barrier: float = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	add_to_hud.emit(self)
 	add_to_group("magic_circle")
 	start()
 
@@ -169,13 +171,13 @@ func _on_success_timer_timeout():
 	time_label.hide()
 	if current_circle < 12:
 		current_circle += 1
-		remove_objective_marker(self)
+		remove_objective_marker()
 		get_node("Circle/CollisionShape2D").disabled = true
 	if current_circle == 11:
 		activate_teleporter.emit()
 	
-func remove_objective_marker(circle):
-	remove_circle_from_objective_marker.emit(circle)
+func remove_objective_marker():
+	remove_from_hud.emit(self)
 	
 	
 func spawn_enemies(timerValue):

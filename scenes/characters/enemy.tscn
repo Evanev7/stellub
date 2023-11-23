@@ -65,6 +65,7 @@ attack_scene = ExtResource("8_70e2t")
 spawn_collider = NodePath("../Hitbox")
 on_ready_attempts = 10
 disable_after_land = false
+clear_on_bad_landing = false
 
 [node name="Damage" type="Label" parent="."]
 anchors_preset = 8

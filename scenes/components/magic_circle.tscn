@@ -112,6 +112,7 @@ land_on_ready = false
 on_ready_attempts = 0
 disable_after_land = false
 remove_obstruction = true
+clear_on_bad_landing = false
 
 [node name="SpawnCollision" type="Area2D" parent="."]
 

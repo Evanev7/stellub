@@ -48,6 +48,13 @@ offset_bottom = 1080.0
 texture = SubResource("AnimatedTexture_2kkt6")
 expand_mode = 1
 
+[node name="TextureRect2" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.67451)
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_i7f4k")
+expand_mode = 1
+
 [node name="TextDisplay" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 8

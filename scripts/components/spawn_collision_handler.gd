@@ -10,6 +10,7 @@ signal safe_landing_not_found
 @export var on_ready_attempts: int = 100
 @export var disable_after_land: bool = true
 @export var remove_obstruction: bool = false
+@export var clear_on_bad_landing: bool = true
 
 func _ready():
 	if not spawn_collider:
@@ -38,7 +39,7 @@ func find_safe_landing(variance:= on_ready_variance, attempts:= on_ready_attempt
 		if safe_landing:
 			safe_landing_found.emit()
 			if disable_after_land: disable_spawn_collider()
-			return
+			return 
 		
 		owner.position += Vector2(
 			randf_range(-variance.x, variance.x),
@@ -47,6 +48,8 @@ func find_safe_landing(variance:= on_ready_variance, attempts:= on_ready_attempt
 	
 	safe_landing_not_found.emit()
 	if disable_after_land: disable_spawn_collider()
+	if clear_on_bad_landing:
+		owner.queue_free()
 
 func remove_obstructions(variance:= on_ready_variance, attempts:= on_ready_attempts):
 	for i in range(attempts):

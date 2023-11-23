@@ -11,7 +11,7 @@ signal remove_marker_from_circle(circle)
 @export var default_shop_weapons_list: Array[BulletResource]
 var shop_upgrades_list: Array[UpgradeResource]
 var shop_weapons_list: Array[BulletResource]
-@export var enemyHandler: EnemyHandler
+@export var enemy_handler: EnemyHandler
 @export var ysorter: Node2D
 @export var objective_marker: CanvasLayer
 @export var shop_node: CanvasLayer
@@ -61,7 +61,8 @@ func spawn_magic_circles():
 		magic_circle.connect("spawn_shop", _on_spawn_shop)
 		magic_circle.connect("activate_teleporter", _on_activate_teleporter)
 		magic_circle.connect("spawn_enemy_in_wave", _on_spawn_enemy_in_wave)
-		magic_circle.connect("remove_circle_from_objective_marker", _on_remove_marker)
+		magic_circle.connect("remove_from_hud", objective_marker.delete_target)
+		magic_circle.connect("add_to_hud", objective_marker.add_target)
 
 
 func _on_shop_entered(shop_attached_to):
@@ -70,7 +71,7 @@ func _on_shop_entered(shop_attached_to):
 	
 	if randf() <= 1:
 		for upgrade in upgrade_pool.sample(3):
-			var upgrade_node = upgrade_from_res(upgrade)
+			var upgrade_node = ShopHandler.upgrade_from_res(upgrade)
 			chosen_upgrades.append(upgrade_node)
 		is_weapon_present = true
 		var weapon = weapon_pool.sample(1)
@@ -78,7 +79,7 @@ func _on_shop_entered(shop_attached_to):
 		chosen_upgrades.append(attack_node)
 	else: 
 		for upgrade in upgrade_pool.sample(4):
-			var upgrade_node = upgrade_from_res(upgrade)
+			var upgrade_node = ShopHandler.upgrade_from_res(upgrade)
 			chosen_upgrades.append(upgrade_node)
 	
 	chosen_upgrades.shuffle()
@@ -146,10 +147,8 @@ func _on_activate_teleporter():
 	
 	
 func _on_spawn_enemy_in_wave(resourceID, center, spawn_range):
-	enemyHandler.spawn_enemy(resourceID, center, spawn_range)
+	enemy_handler.spawn_enemy(resourceID, center, spawn_range)
 
-func _on_remove_marker(circle):
-	remove_marker_from_circle.emit(circle)
 
 func _on_shop_remove_upgrade(upgrade):
 	for i in shop_upgrades_list.size():

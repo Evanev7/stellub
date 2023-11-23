@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-signal restart_game()
+signal restart_game
 
 @onready var enemies_killed: Label = %Enemies
 @onready var souls_collected: Label = %Souls
