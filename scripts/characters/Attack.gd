@@ -2,8 +2,6 @@ extends Node
 class_name Attack
 
 
-@export var audio_player: AudioStreamPlayer
-
 enum CONTROL_MODE {PASSIVE, PRIMARY, SECONDARY, TERTIARY}
 const BIND = ["","primary_fire", "secondary_fire", "tertiary_fire"]
 @export var control_mode: CONTROL_MODE = CONTROL_MODE.PASSIVE
@@ -77,7 +75,6 @@ func pre_fire():
 		_timer += bullet.fire_delay
 
 func fire():
-	audio_player.play()
 	GameState.fire_bullet.emit(attack_handler.owner, bullet, attack_direction)
 
 func reset():

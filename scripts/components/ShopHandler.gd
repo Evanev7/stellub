@@ -90,7 +90,6 @@ func attack_from_res(bullet: BulletResource) -> Attack:
 	attack.name = bullet.name
 	attack.initial_bullet = bullet
 	attack.control_mode = Attack.CONTROL_MODE.PASSIVE
-	attack.audio_player.stream = bullet.sound
 	attack.aim_mode = Attack.AIM_MODE.TARGETED
 	attack.icon = bullet.icon
 	attack.description = bullet.description

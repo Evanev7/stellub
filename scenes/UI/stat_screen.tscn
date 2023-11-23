@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://ctkuvh4bwmtm2"]
 
 [ext_resource type="Script" path="res://scripts/UI/stat_screen.gd" id="1_grv8h"]
-[ext_resource type="PackedScene" uid="uid://djihbt4xh14cm" path="res://scenes/UI/gui_rect.tscn" id="2_bhg4i"]
 [ext_resource type="Texture2D" uid="uid://pi6nxes80imt" path="res://art/UI/Black_Background/black_bg_1.png" id="2_a121a"]
+[ext_resource type="PackedScene" uid="uid://djihbt4xh14cm" path="res://scenes/UI/gui_rect.tscn" id="2_bhg4i"]
 [ext_resource type="Texture2D" uid="uid://cgt5paocwd1un" path="res://art/UI/Pause_Menu/pause_menu_bottom_button.png" id="2_ry8e5"]
 [ext_resource type="Texture2D" uid="uid://dfl8ox20w3xn" path="res://art/UI/Black_Background/black_bg_2.png" id="3_2kyig"]
 [ext_resource type="Texture2D" uid="uid://xtnnwrkn54ll" path="res://art/UI/Pause_Menu/pause_menu_middle_button.png" id="4_4tgtj"]
@@ -27,6 +27,7 @@ frame_4/duration = 1.0
 script = ExtResource("1_grv8h")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -36,6 +37,7 @@ texture = SubResource("AnimatedTexture_2kkt6")
 
 [node name="Label" type="RichTextLabel" parent="TextureRect"]
 self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
 offset_left = 324.0
 offset_top = 405.0
 offset_right = 1577.0
@@ -49,6 +51,7 @@ bbcode_enabled = true
 text = "[center][i]Ten Thousand Eternities Later...[/i][/center]"
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
+modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -67,6 +70,7 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="GuiRect" parent="CenterContainer/VBoxContainer/MarginContainer2" instance=ExtResource("2_bhg4i")]
+z_index = 0
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/MarginContainer2"]
@@ -97,6 +101,7 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="GuiRect" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer" instance=ExtResource("2_bhg4i")]
+z_index = 0
 layout_mode = 2
 
 [node name="StatsPanel" type="MarginContainer" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer"]

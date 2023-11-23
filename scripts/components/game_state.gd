@@ -41,6 +41,7 @@ func _ready():
 	game_over.connect(queue_free_groups)
 	
 func reset_statistics():
+	Input.set_custom_mouse_cursor(shooty_hand, Input.CURSOR_ARROW, Vector2i(16,16))
 	enemies_killed = 0
 	souls_collected = 0
 	bullets_summoned = 0

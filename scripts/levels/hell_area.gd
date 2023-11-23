@@ -9,7 +9,7 @@ extends Node
 
 @onready var HUD = $HUD
 
-@onready var player = GameState.player
+@onready var player: CharacterBody2D = GameState.player
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -51,7 +51,6 @@ func _on_player_player_death():
 	if GameState.first_time == true:
 		HUD.show_first_time()
 	else:
-		HUD.show_message("The Tree beckons once more.")
 		GameState.game_over.emit()
 	
 func on_restart_game():

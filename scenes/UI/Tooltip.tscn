@@ -18,16 +18,21 @@ layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 65
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 65
+theme_override_constants/margin_left = 90
+theme_override_constants/margin_top = 90
+theme_override_constants/margin_right = 90
+theme_override_constants/margin_bottom = 60
 
 [node name="Desc" type="Label" parent="MarginContainer/MarginContainer"]
+custom_minimum_size = Vector2(0, 140)
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_constants/shadow_outline_size = 2
+theme_override_constants/line_spacing = -5
+theme_override_font_sizes/font_size = 28
 text = "<UPGRADE>
-
 <STATS>
-
 This is the greatest upgrade of all time, I believe"
 horizontal_alignment = 1

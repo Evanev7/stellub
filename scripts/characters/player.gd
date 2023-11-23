@@ -56,7 +56,7 @@ func _ready():
 
 func _input(event):
 	if event is InputEventMouseMotion:
-		$Camera2D.offset = (event.position - get_viewport_rect().size/2)/4
+		$Camera2D.offset = (event.position - get_viewport_rect().size/2)/32
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
@@ -213,8 +213,9 @@ func activate_xp_vacuum():
 	get_tree().call_group("xp_pickup", "activate")
 
 func player_level_up():
+	var old_hp_max = hp_max
 	hp_max *= 1.05
-	hp += hp_max * 0.01
+	hp += hp_max - old_hp_max
 	speed *= 1.01
 	pickup_range.scale *= 1.03
 	current_level += 1

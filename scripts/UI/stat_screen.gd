@@ -13,8 +13,13 @@ func _ready():
 
 func game_over():
 	show()
-	$CenterContainer.show()
-	$TextureRect.self_modulate = Color(1, 1, 1, 1)
+	var tween: Tween = create_tween()
+	if GameState.first_time == true:
+		$TextureRect.self_modulate = Color(1, 1, 1, 1)
+		tween.tween_property($CenterContainer, "modulate:a", 1, 2)
+	else:
+		tween.tween_property($TextureRect, "self_modulate:a", 1, 0.5)
+		tween.tween_property($CenterContainer, "modulate:a", 1, 0.5)
 	enemies_killed.text = str(GameState.enemies_killed)
 	souls_collected.text = str(int(GameState.souls_collected))
 	bullets_summoned.text = str(GameState.bullets_summoned)
@@ -35,6 +40,7 @@ func _on_restart_button_pressed():
 func restart():
 	restart_game.emit()
 	var tween: Tween = create_tween()
+	tween.tween_property($CenterContainer, "self_modulate:a", 0, 1)
 	tween.tween_property($TextureRect, "self_modulate:a", 0, 1)
 	hide()
 	
