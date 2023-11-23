@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://qhl6r2tbil5t"]
+[gd_scene load_steps=42 format=3 uid="uid://qhl6r2tbil5t"]
 
 [ext_resource type="PackedScene" uid="uid://dilk21k2nncq2" path="res://scenes/levels/level_template.tscn" id="1_ttjsf"]
 [ext_resource type="PackedScene" uid="uid://dfrum4te4lpmr" path="res://scenes/objects/teleporter.tscn" id="2_8o713"]
@@ -23,7 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://b2tef800ecm8u" path="res://scenes/components/weapon_handler.tscn" id="17_gx7j2"]
 [ext_resource type="PackedScene" uid="uid://bco6kn11dyo6o" path="res://scenes/components/boss_handler.tscn" id="18_yysi3"]
 [ext_resource type="PackedScene" uid="uid://d23ddhgery8pq" path="res://scenes/characters/boss.tscn" id="20_gixqi"]
-[ext_resource type="Resource" uid="uid://cde86qx4smawg" path="res://resources/enemy/demon_lord.tres" id="21_jliye"]
+[ext_resource type="Resource" path="res://resources/enemy/demon_lord.tres" id="21_jliye"]
 [ext_resource type="Resource" uid="uid://dldq0lmweq825" path="res://upgrades/auto_fire.tres" id="22_vl2um"]
 [ext_resource type="PackedScene" uid="uid://be4i0yo3jsk42" path="res://scenes/components/attack.tscn" id="23_6mnt7"]
 [ext_resource type="Resource" uid="uid://dgnonhlostgr1" path="res://upgrades/bowling_ball.tres" id="23_ti1t0"]
@@ -38,8 +38,7 @@
 [ext_resource type="Resource" uid="uid://d2j0rt7130hds" path="res://upgrades/bomb.tres" id="32_nacy0"]
 [ext_resource type="Resource" uid="uid://nh3ysny8kvkt" path="res://upgrades/vacuum.tres" id="32_ve8tn"]
 [ext_resource type="Resource" uid="uid://b1rd0nm53sjuw" path="res://upgrades/frag.tres" id="33_7jswi"]
-[ext_resource type="PackedScene" uid="uid://cwtvi2ph44p4d" path="res://scenes/UI/cursor_particles.tscn" id="33_aqxfn"]
-[ext_resource type="Resource" uid="uid://rnwcpficsckx" path="res://resources/bullets/player/boomerang.tres" id="37_l8y3f"]
+[ext_resource type="Resource" uid="uid://cyahshf3y21ai" path="res://resources/bullets/player/boomerang.tres" id="37_l8y3f"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e30b7"]
 texture = ExtResource("10_dov0s")
@@ -76,14 +75,10 @@ STARTING_HP_MAX = 20.0
 [node name="Enemies" type="Node2D" parent="YSort" index="4"]
 y_sort_enabled = true
 
-[node name="cursor_particles" parent="." index="1" instance=ExtResource("33_aqxfn")]
-z_index = 51
-position = Vector2(418, 419)
-
-[node name="ShopAlt" parent="." index="3"]
+[node name="ShopAlt" parent="." index="2"]
 process_mode = 2
 
-[node name="pause_menu" parent="." index="4"]
+[node name="pause_menu" parent="." index="3"]
 visible = false
 
 [node name="TerrainGenerator" parent="LogicComponents" index="1" node_paths=PackedStringArray("tile_map", "ysorter") instance=ExtResource("2_p0a1o")]

@@ -108,8 +108,10 @@ one_shot = true
 
 [node name="SpawnCollisionHandler" parent="." node_paths=PackedStringArray("spawn_collider") instance=ExtResource("3_4838f")]
 spawn_collider = NodePath("../SpawnCollision")
-on_ready_attempts = 1
+land_on_ready = false
+on_ready_attempts = 0
 disable_after_land = false
+remove_obstruction = true
 
 [node name="SpawnCollision" type="Area2D" parent="."]
 

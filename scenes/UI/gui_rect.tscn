@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://djihbt4xh14cm"]
+
+[ext_resource type="Texture2D" uid="uid://dp6x2n022bnm4" path="res://art/UI/pro grammar art.png" id="1_7o2a5"]
+
+[node name="GuiRect" type="NinePatchRect"]
+z_index = -2
+texture = ExtResource("1_7o2a5")
+region_rect = Rect2(0, 0, 384, 384)
+patch_margin_left = 104
+patch_margin_top = 104
+patch_margin_right = 104
+patch_margin_bottom = 104
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1

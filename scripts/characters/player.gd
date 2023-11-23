@@ -54,6 +54,10 @@ func _ready():
 	set_physics_process(false)
 	player_ready.emit()
 
+func _input(event):
+	if event is InputEventMouseMotion:
+		$Camera2D.offset = (event.position - get_viewport_rect().size/2)/4
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
 	velocity = Input.get_vector("move_left", "move_right","move_up", "move_down")

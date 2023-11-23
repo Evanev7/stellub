@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://ctkuvh4bwmtm2"]
 
 [ext_resource type="Script" path="res://scripts/UI/stat_screen.gd" id="1_grv8h"]
-[ext_resource type="Texture2D" uid="uid://dxtmrmjab36ky" path="res://art/UI/programmer 'art'.png" id="1_ihhs8"]
+[ext_resource type="PackedScene" uid="uid://djihbt4xh14cm" path="res://scenes/UI/gui_rect.tscn" id="2_bhg4i"]
 [ext_resource type="Texture2D" uid="uid://pi6nxes80imt" path="res://art/UI/Black_Background/black_bg_1.png" id="2_a121a"]
 [ext_resource type="Texture2D" uid="uid://cgt5paocwd1un" path="res://art/UI/Pause_Menu/pause_menu_bottom_button.png" id="2_ry8e5"]
 [ext_resource type="Texture2D" uid="uid://dfl8ox20w3xn" path="res://art/UI/Black_Background/black_bg_2.png" id="3_2kyig"]
@@ -54,6 +54,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(-134, 251)
 mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
@@ -65,19 +66,17 @@ theme_override_constants/separation = 25
 layout_mode = 2
 mouse_filter = 2
 
-[node name="NinePatchRect" type="NinePatchRect" parent="CenterContainer/VBoxContainer/MarginContainer2"]
+[node name="GuiRect" parent="CenterContainer/VBoxContainer/MarginContainer2" instance=ExtResource("2_bhg4i")]
 layout_mode = 2
-texture = ExtResource("1_ihhs8")
-region_rect = Rect2(64, 64, 256, 256)
-patch_margin_left = 64
-patch_margin_top = 64
-patch_margin_right = 64
-patch_margin_bottom = 64
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
 
-[node name="TempTitle" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer2"]
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/MarginContainer2"]
 layout_mode = 2
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_bottom = 90
+
+[node name="TempTitle" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer2/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 9
@@ -97,24 +96,16 @@ mouse_filter = 2
 layout_mode = 2
 mouse_filter = 2
 
-[node name="NinePatchRect" type="NinePatchRect" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer"]
+[node name="GuiRect" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer" instance=ExtResource("2_bhg4i")]
 layout_mode = 2
-texture = ExtResource("1_ihhs8")
-region_rect = Rect2(64, 64, 256, 256)
-patch_margin_left = 64
-patch_margin_top = 64
-patch_margin_right = 64
-patch_margin_bottom = 64
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
 
 [node name="StatsPanel" type="MarginContainer" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer"]
 layout_mode = 2
 mouse_filter = 2
-theme_override_constants/margin_left = 55
-theme_override_constants/margin_top = 35
-theme_override_constants/margin_right = 55
-theme_override_constants/margin_bottom = 35
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 80
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel"]
 layout_mode = 2

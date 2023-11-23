@@ -62,9 +62,7 @@ func loadsave(mode: int, attack_node: Attack) -> Attack:
 	gui_attack_node.refresh()
 	
 	if mode == SAVE and attack_node:
-		print(control_mode)
 		attack_node.control_mode = control_mode
-		print("but ", attack_node.control_mode)
 	for upgrade_index in range(num_gui_upgrades):
 		if mode == LOAD:
 			if upgrade_index >= len(player_upgrades):

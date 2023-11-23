@@ -45,7 +45,6 @@ func _unhandled_input(event):
 
 # Start the timers we need, instantiate the HUD and get the player in the right spot.
 func start_game():
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	player.start()
 	player.position = $YSort/PlayerStart.position
 	HUD.show_health(player.hp, player.hp_max)

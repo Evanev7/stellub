@@ -9,6 +9,7 @@ signal safe_landing_not_found
 @export var on_ready_variance: Vector2 = Vector2(200,200)
 @export var on_ready_attempts: int = 100
 @export var disable_after_land: bool = true
+@export var remove_obstruction: bool = false
 
 func _ready():
 	if not spawn_collider:
@@ -22,8 +23,11 @@ func _ready():
 	await get_tree().physics_frame
 	if land_on_ready:
 		find_safe_landing(on_ready_variance, on_ready_attempts)
+	if remove_obstruction:
+		remove_obstructions()
 
 func find_safe_landing(variance:= on_ready_variance, attempts:= on_ready_attempts) -> void:
+	enable_spawn_collider()
 	for i in range(attempts):
 		await get_tree().physics_frame
 		await get_tree().physics_frame
@@ -44,5 +48,18 @@ func find_safe_landing(variance:= on_ready_variance, attempts:= on_ready_attempt
 	safe_landing_not_found.emit()
 	if disable_after_land: disable_spawn_collider()
 
+func remove_obstructions(variance:= on_ready_variance, attempts:= on_ready_attempts):
+	for i in range(attempts):
+		await get_tree().physics_frame
+		await get_tree().physics_frame
+		for area in spawn_collider.get_overlapping_areas():
+			if not area.is_in_group("magic_circle"):
+				var aosch = area.owner.get_node("SpawnCollisionHandler")
+				if aosch:
+					aosch.find_safe_landing()
+
 func disable_spawn_collider():
 	spawn_collider.monitoring = false
+
+func enable_spawn_collider():
+	spawn_collider.monitoring = true

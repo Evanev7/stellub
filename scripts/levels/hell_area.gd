@@ -25,12 +25,10 @@ func _physics_process(_delta):
 
 # Start the timers we need, instantiate the HUD and get the player in the right spot.
 func start_game():
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	enemy_handler.start_spawning()
 	player.start()
 	player.position = $YSort/PlayerStart.position
 	$LogicComponents/ShopHandler.start()
-	$cursor_particles.emitting = true
 	start_magic_circles()
 	
 	if GameState.first_time == false:
@@ -49,7 +47,6 @@ func _on_player_player_death():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	GameState.queue_free_groups()
 	enemy_handler.stop_spawning()
-	$cursor_particles.emitting = false
 	
 	if GameState.first_time == true:
 		HUD.show_first_time()

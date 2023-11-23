@@ -17,6 +17,10 @@ var current_area
 @onready var hell_area_to_instantiate: PackedScene = preload("res://scenes/levels/hell_area.tscn")
 @onready var heaven_area_to_instantiate: PackedScene = preload("res://scenes/levels/heaven_area.tscn")
 
+
+@onready var clicky_hand = load("res://art/UI/clicky finger.png")
+@onready var shooty_hand = load("res://art/UI/shooty finger.png")
+
 var num_enemies: int = 0
 var num_bullets: int = 0
 var num_xp_pickups: int = 0
@@ -31,6 +35,7 @@ var bullets_summoned: int = 0
 var damage_dealt: float = 0
 
 func _ready():
+	Input.set_custom_mouse_cursor(clicky_hand, Input.CURSOR_POINTING_HAND, Vector2i(8,5))
 	randomize()
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	game_over.connect(queue_free_groups)
@@ -84,11 +89,11 @@ func _unhandled_input(_event):
 	#######################################
 
 func pause_game():
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	Input.set_custom_mouse_cursor(clicky_hand, 0, Vector2i(8,5))
 	get_tree().paused = true
 
 func unpause_game():
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	Input.set_custom_mouse_cursor(shooty_hand, 0, Vector2i(16,16))
 	get_tree().paused = false
 
 

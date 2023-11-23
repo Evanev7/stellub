@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="BulletResource" load_steps=7 format=3 uid="uid://rnwcpficsckx"]
+[gd_resource type="Resource" script_class="BulletResource" load_steps=7 format=3 uid="uid://cyahshf3y21ai"]
 
 [ext_resource type="Script" path="res://scripts/objects/bullet_resource.gd" id="1_3cnji"]
 [ext_resource type="Texture2D" uid="uid://bbu1gvj238af0" path="res://art/bullets/player/boomerang_1.png" id="1_a2512"]

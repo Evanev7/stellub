@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ds30hrmuws83j"]
 
-[ext_resource type="Texture2D" uid="uid://dxtmrmjab36ky" path="res://art/UI/programmer 'art'.png" id="1_6brme"]
+[ext_resource type="PackedScene" uid="uid://djihbt4xh14cm" path="res://scenes/UI/gui_rect.tscn" id="1_0pc15"]
 
 [node name="Tooltip" type="CenterContainer"]
 offset_right = 449.0
@@ -13,23 +13,15 @@ theme_override_constants/margin_top = -5
 theme_override_constants/margin_right = -10
 theme_override_constants/margin_bottom = -5
 
-[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer"]
+[node name="GuiRect" parent="MarginContainer" instance=ExtResource("1_0pc15")]
 layout_mode = 2
-texture = ExtResource("1_6brme")
-region_rect = Rect2(64, 64, 256, 256)
-patch_margin_left = 64
-patch_margin_top = 64
-patch_margin_right = 64
-patch_margin_bottom = 64
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 25
+theme_override_constants/margin_top = 65
 theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 25
+theme_override_constants/margin_bottom = 65
 
 [node name="Desc" type="Label" parent="MarginContainer/MarginContainer"]
 layout_mode = 2

@@ -29,7 +29,7 @@ signal play_death_sound(pos)
 @onready var flipped: bool = resource.FLIP_H
 @onready var floating: bool = resource.FLOATING
 @onready var default_angle: float = self.rotation
-@onready var default_scale: Vector2 = resource.SCALE * (0.875 + (unique_multiplier / 8))
+@onready var default_scale: Vector2 = resource.SCALE * (0.75 + (unique_multiplier / 4))
 @onready var variance = 1/default_scale.length()
 var dead: bool = false
 
