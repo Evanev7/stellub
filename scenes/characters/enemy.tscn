@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dpjckt12ipcw2"]
+[gd_scene load_steps=13 format=3 uid="uid://dpjckt12ipcw2"]
 
 [ext_resource type="Script" path="res://scripts/characters/enemy.gd" id="1_oyorq"]
 [ext_resource type="PackedScene" uid="uid://1bd6uenu01av" path="res://scenes/UI/damage_number.tscn" id="2_orbdq"]
@@ -10,7 +10,6 @@
 [ext_resource type="Shape2D" uid="uid://cttd8doc3fysn" path="res://resources/hitboxes/demon_dog_collisionbox.tres" id="7_5hsej"]
 [ext_resource type="PackedScene" uid="uid://cicwqsj3byj4u" path="res://scenes/components/spawn_collision_handler.tscn" id="7_ckcoh"]
 [ext_resource type="PackedScene" uid="uid://be4i0yo3jsk42" path="res://scenes/components/attack.tscn" id="8_70e2t"]
-[ext_resource type="Shape2D" uid="uid://uhegj44ubxiq" path="res://resources/hitboxes/demon_dog_hitbox.tres" id="8_x67tj"]
 [ext_resource type="Shape2D" uid="uid://d8q2wi5ojvhv" path="res://resources/hitboxes/demon_lord_hitbox.tres" id="9_6nrq5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fmm6i"]
@@ -47,7 +46,7 @@ collision_mask = 2
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-shape = ExtResource("8_x67tj")
+shape = ExtResource("9_6nrq5")
 
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 4
