@@ -30,8 +30,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ylayl"]
-radius = 1079.59
+[sub_resource type="CircleShape2D" id="CircleShape2D_2pffi"]
+radius = 131.015
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u23kn"]
 radius = 366.27
@@ -50,8 +50,9 @@ animation = &"shop_closed"
 [node name="OpenArea" type="Area2D" parent="."]
 collision_layer = 9
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="OpenArea"]
-shape = SubResource("CircleShape2D_ylayl")
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="OpenArea"]
+scale = Vector2(8, 4)
+shape = SubResource("CircleShape2D_2pffi")
 
 [node name="InteractArea" type="Area2D" parent="."]
 collision_mask = 9

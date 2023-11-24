@@ -51,11 +51,7 @@ theme_override_constants/separation = 30
 layout_mode = 2
 theme_override_constants/separation = 40
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 50
-
-[node name="Shop1" type="TextureButton" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Shop1" type="TextureButton" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 clip_contents = true
 custom_minimum_size = Vector2(200, 200)
@@ -66,7 +62,7 @@ stretch_mode = 0
 script = ExtResource("3_bkygl")
 is_shop = true
 
-[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer/Shop1"]
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/Shop1"]
 z_index = -1
 layout_mode = 1
 anchors_preset = 15
@@ -77,7 +73,7 @@ grow_vertical = 2
 texture = ExtResource("4_xri81")
 expand_mode = 1
 
-[node name="Shop2" type="TextureButton" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Shop2" type="TextureButton" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
@@ -87,7 +83,7 @@ stretch_mode = 0
 script = ExtResource("3_bkygl")
 is_shop = true
 
-[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer/Shop2"]
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/Shop2"]
 z_index = -1
 layout_mode = 1
 anchors_preset = 15
@@ -98,11 +94,11 @@ grow_vertical = 2
 texture = ExtResource("4_xri81")
 expand_mode = 1
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 50
+theme_override_constants/separation = 40
 
-[node name="Shop3" type="TextureButton" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer2"]
+[node name="Shop3" type="TextureButton" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
@@ -112,7 +108,7 @@ stretch_mode = 0
 script = ExtResource("3_bkygl")
 is_shop = true
 
-[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer2/Shop3"]
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer2/Shop3"]
 z_index = -1
 layout_mode = 1
 anchors_preset = 15
@@ -123,7 +119,7 @@ grow_vertical = 2
 texture = ExtResource("4_xri81")
 expand_mode = 1
 
-[node name="Shop4" type="TextureButton" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer2"]
+[node name="Shop4" type="TextureButton" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 clip_contents = true
 custom_minimum_size = Vector2(200, 200)
@@ -134,7 +130,7 @@ stretch_mode = 0
 script = ExtResource("3_bkygl")
 is_shop = true
 
-[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer2/Shop4"]
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer2/Shop4"]
 z_index = -1
 layout_mode = 1
 anchors_preset = 15
@@ -198,4 +194,8 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 
+[connection signal="gray_out_shop" from="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/Shop1" to="." method="_gray_out_shop"]
+[connection signal="gray_out_shop" from="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/Shop2" to="." method="_gray_out_shop"]
+[connection signal="gray_out_shop" from="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer2/Shop3" to="." method="_gray_out_shop"]
+[connection signal="gray_out_shop" from="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer2/Shop4" to="." method="_gray_out_shop"]
 [connection signal="pressed" from="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/ShopExit" to="." method="_on_shop_exit_pressed"]

@@ -8,7 +8,7 @@ enum {SAVE, LOAD}
 @export var num_gui_attacks = 3
 @export var num_shop_nodes = 4
 
-var shop_attached_to
+var attached_shop
 
 func _ready():
 	GameState.shop_HUD = self
@@ -34,6 +34,8 @@ func get_gui_attacks() -> Array[ShopDraggable]:
 	return gui_attack
 
 
+
+
 func loadsave(mode: int):
 	var player_attack_handler: Node2D = GameState.player.attack_handler
 	var player_attacks: Array[Attack] = get_attack_nodes(player_attack_handler)
@@ -55,8 +57,6 @@ func loadsave(mode: int):
 		reattach_nodes(player_attack_handler, new_attacks)
 		if new_attacks.size() > player_attacks.size():
 			GameState.player.evolve()
-		print(GameState.player.total_upgrades % 2)
-		print(GameState.player.total_upgrades)
 		if GameState.player.total_upgrades % 2 == 0 and GameState.player.total_upgrades > 0:
 			GameState.player.evolve() 
 	for total in gui_total_attacks: 
@@ -83,20 +83,25 @@ func attach_nodes(parent, children):
 func populate_shop(shop_items):
 	for index in range(num_shop_nodes):
 		var shop_node = get_node("%Shop" + str(index+1))
-		shop_node.referenced_node = shop_items[index]
+		if index < shop_items.size():
+			shop_node.referenced_node = shop_items[index]
+		else:
+			shop_node.referenced_node = null
 		shop_node.refresh()
 
 
 func clear_shop():
+	attached_shop.chosen_upgrades = []
 	for index in range(num_shop_nodes):
 		var shop_node = get_node("%Shop" + str(index+1))
 		if shop_node.referenced_node:
-			shop_node.referenced_node.queue_free()
+			attached_shop.chosen_upgrades.append(shop_node.referenced_node)
 
 
-func open_shop(chosen_upgrades, _weapon):
+func open_shop(shop):
+	attached_shop = shop
 	loadsave(LOAD)
-	populate_shop(chosen_upgrades)
+	populate_shop(attached_shop.chosen_upgrades)
 
 
 func _on_shop_exit_pressed():
@@ -104,12 +109,17 @@ func _on_shop_exit_pressed():
 
 func close_shop():
 	loadsave(SAVE)
-	clear_shop()
 	GameState.unpause_game()
 	set_visible(false)
-	#remove_shop.emit(shop_attached_to)
+	clear_shop()
 
 
 func _on_shop_item_taken():
 	for i in range(num_shop_nodes):
 		get_node("%Shop"+str(i+1)).disabled = true
+
+
+func _gray_out_shop():
+	print("D:")
+	for index in range(num_shop_nodes):
+		get_node("%Shop"+str(index+1)).refresh()

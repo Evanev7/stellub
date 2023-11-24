@@ -28,8 +28,6 @@ func start():
 	shop_weapons_list = default_shop_weapons_list.duplicate()
 	teleporter.start()
 	
-	if GameState.debug:
-		_on_spawn_shop(Vector2(500, 500))
 	
 	upgrade_pool = Pool.new()
 	weapon_pool = Pool.new()
@@ -42,6 +40,10 @@ func start():
 	for weapon in shop_weapons_list:
 		weapons.append([weapon, int(weapon.rarity*2)])
 	weapon_pool.populate(weapons)
+	
+	
+	if GameState.debug:
+		_on_spawn_shop(Vector2(500, 500))
 
 
 func spawn_next_circle(centre):
@@ -74,25 +76,7 @@ func spawn_magic_circles():
 
 
 func _on_shop_entered(shop_attached_to):
-	var chosen_upgrades = []
-	var is_weapon_present := false
-	
-	if randf() <= 1:
-		for upgrade in upgrade_pool.sample(3):
-			var upgrade_node = ShopHandler.upgrade_from_res(upgrade)
-			chosen_upgrades.append(upgrade_node)
-		is_weapon_present = true
-		var weapon = weapon_pool.sample(1)
-		var attack_node = attack_from_res(weapon)
-		chosen_upgrades.append(attack_node)
-	else: 
-		for upgrade in upgrade_pool.sample(4):
-			var upgrade_node = ShopHandler.upgrade_from_res(upgrade)
-			chosen_upgrades.append(upgrade_node)
-	
-	chosen_upgrades.shuffle()
-	
-	open_shop(chosen_upgrades, is_weapon_present, shop_attached_to)
+	open_shop(shop_attached_to)
 
 func attack_from_res(bullet: BulletResource) -> Attack:
 	var attack = attack_scene.instantiate()
@@ -131,12 +115,10 @@ static func generate_description(upgrade_resource: UpgradeResource) -> String:
 	return description 
 
 
-func open_shop(chosen_upgrades, is_weapon_present, shop_attached_to):
+func open_shop(shop_attached_to):
 	GameState.pause_game()
-	shop_node.shop_attached_to = shop_attached_to
 	shop_node.set_visible(true)
-	shop_node.open_shop(chosen_upgrades, is_weapon_present)
-	shop_node.connect('remove_shop', _remove_shop)
+	shop_node.open_shop(shop_attached_to)
 
 func _on_spawn_shop(position):
 	var shop = shop_scene.instantiate()
@@ -145,6 +127,30 @@ func _on_spawn_shop(position):
 	ysorter.add_child(shop)
 	shop.connect('shop_entered', _on_shop_entered)
 	shop.add_to_group("shop")
+	shop_node.connect('remove_shop', _remove_shop)
+	
+	
+	
+	var chosen_upgrades = []
+	var is_weapon_present := false
+	
+	if randf() <= 1:
+		for upgrade in upgrade_pool.sample(3):
+			var upgrade_node = ShopHandler.upgrade_from_res(upgrade)
+			chosen_upgrades.append(upgrade_node)
+		is_weapon_present = true
+		var weapon = weapon_pool.sample(1)
+		var attack_node = attack_from_res(weapon)
+		chosen_upgrades.append(attack_node)
+	else: 
+		for upgrade in upgrade_pool.sample(4):
+			var upgrade_node = ShopHandler.upgrade_from_res(upgrade)
+			chosen_upgrades.append(upgrade_node)
+	
+	chosen_upgrades.shuffle()
+	
+	shop.chosen_upgrades = chosen_upgrades
+	shop.is_weapon_present = is_weapon_present
 
 func _remove_shop(shop):
 	shop.queue_free()
