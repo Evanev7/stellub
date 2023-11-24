@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://dfrum4te4lpmr"]
+
+[ext_resource type="Script" path="res://scripts/objects/teleporter.gd" id="1_jufu7"]
+[ext_resource type="SpriteFrames" uid="uid://buhg63ostt083" path="res://resources/objects/soul_pickup.tres" id="1_rgcna"]
+[ext_resource type="PackedScene" uid="uid://cicwqsj3byj4u" path="res://scenes/components/spawn_collision_handler.tscn" id="3_40rsx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nfg5x"]
+radius = 131.015
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_68ibo"]
+radius = 296.138
+
+[node name="teleporter" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_jufu7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -50)
+scale = Vector2(0.653549, 0.32243)
+sprite_frames = ExtResource("1_rgcna")
+animation = &"hp_pickup"
+
+[node name="teleporter" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="teleporter"]
+scale = Vector2(2, 1)
+shape = SubResource("CircleShape2D_nfg5x")
+
+[node name="SpawnCollider" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnCollider"]
+scale = Vector2(2, 1)
+shape = SubResource("CircleShape2D_68ibo")
+
+[node name="SpawnCollisionHandler" parent="." node_paths=PackedStringArray("spawn_collider") instance=ExtResource("3_40rsx")]
+spawn_collider = NodePath("../SpawnCollider")
+on_ready_attempts = 1
+clear_on_bad_landing = false
+
+[connection signal="body_entered" from="teleporter" to="." method="_on_teleporter_body_entered"]
+[connection signal="body_exited" from="teleporter" to="." method="_on_teleporter_body_exited"]

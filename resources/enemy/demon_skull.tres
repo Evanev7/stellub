@@ -1,25 +1,25 @@
-[gd_resource type="Resource" script_class="EnemyResource" load_steps=6 format=3 uid="uid://dh8xipsw2bu5w"]
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=5 format=3 uid="uid://dh8xipsw2bu5w"]
 
 [ext_resource type="SpriteFrames" uid="uid://ca587shs88m53" path="res://resources/enemy/demon_skull_spriteframes.tres" id="1_2871i"]
-[ext_resource type="Resource" uid="uid://d1bfxwthry8hx" path="res://resources/bullets/demon_skull_bullet.tres" id="2_f1cd4"]
 [ext_resource type="Shape2D" uid="uid://dr5jvbncl03hq" path="res://resources/hitboxes/demon_skull_collisionbox.tres" id="2_tus1j"]
 [ext_resource type="Shape2D" uid="uid://djf6iuj2avegd" path="res://resources/hitboxes/demon_skull_hitbox.tres" id="3_ar40s"]
-[ext_resource type="Script" path="res://scripts/enemy_resource.gd" id="5_o1wk7"]
+[ext_resource type="Script" path="res://scripts/characters/enemy_resource.gd" id="5_o1wk7"]
 
 [resource]
 script = ExtResource("5_o1wk7")
 NAME = "demon_skull"
 ANIMATION = ExtResource("1_2871i")
-SPEED = 100
-MAX_HP = 3
-DAMAGE = 1
-VALUE = 1
 FLIP_H = false
 FLOATING = true
+SPEED = 80.0
+MAX_HP = 3.0
+DAMAGE = 1.0
+VALUE = 1.0
+STRENGTH = 0.5
 SCALE = Vector2(0.35, 0.35)
 COLLISION_ROTATION = 0.0
 HITBOX = ExtResource("3_ar40s")
 HURTBOX = ExtResource("3_ar40s")
 COLLIDER = ExtResource("2_tus1j")
-BULLET = ExtResource("2_f1cd4")
-SPAWN_RATE = 0.5
+UNIQUE_MULTIPLIER = 1.0
+OVERALL_MULTIPLIER = 1.0

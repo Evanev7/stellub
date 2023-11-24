@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://6n3k0svqvyjt"]
+
+[ext_resource type="Texture2D" uid="uid://kwiitmwbn82r" path="res://art/player/level 0/player_0_1.png" id="1_o0h5j"]
+[ext_resource type="Texture2D" uid="uid://cl8wobw8moqvi" path="res://art/objects/mountain_small.png" id="2_a48yx"]
+
+[node name="transparent test" type="Node2D"]
+
+[node name="player" type="Node2D" parent="."]
+visibility_layer = 7
+position = Vector2(269, -143)
+
+[node name="Normal" type="Sprite2D" parent="player"]
+position = Vector2(94, -294)
+scale = Vector2(0.434542, 0.434542)
+texture = ExtResource("1_o0h5j")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="player"]
+visible = false
+
+[node name="Overlay" type="PointLight2D" parent="player"]
+light_mask = 2
+visibility_layer = 2
+z_index = 1
+position = Vector2(94, -294)
+scale = Vector2(0.434542, 0.434542)
+color = Color(0, 0, 1, 1)
+energy = 26.65
+blend_mode = 2
+range_item_cull_mask = 6
+texture = ExtResource("1_o0h5j")
+
+[node name="oibject" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="oibject"]
+light_mask = 3
+position = Vector2(30, -326)
+texture = ExtResource("2_a48yx")

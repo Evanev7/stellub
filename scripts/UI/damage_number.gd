@@ -18,7 +18,7 @@ func set_values_and_animate(value: float, start_pos: Vector2, height:float, spre
 	var end_pos = Vector2(randf_range(-spread, spread), -height) + start_pos
 	var tween_length = ap.get_animation("rise_and_fade").length
 	
-	tween.tween_property(label_container, "global_position", end_pos, tween_length).from(start_pos)
+	tween.tween_property(label_container, "position", end_pos, tween_length).from(start_pos)
 	
 func remove() -> void:
 	ap.stop()

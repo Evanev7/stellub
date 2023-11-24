@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://uwjj5lippw8l"
+path="res://.godot/imported/heaven song loop.ogg-53fe5a54387b87e726e820101fe52022.oggvorbisstr"
+
+[deps]
+
+source_file="res://sounds/heaven song loop.ogg"
+dest_files=["res://.godot/imported/heaven song loop.ogg-53fe5a54387b87e726e820101fe52022.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

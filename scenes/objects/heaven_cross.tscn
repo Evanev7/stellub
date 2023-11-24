@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://dign34eo82ym4"]
+
+[ext_resource type="PackedScene" uid="uid://cicwqsj3byj4u" path="res://scenes/components/spawn_collision_handler.tscn" id="1_qhtl6"]
+[ext_resource type="Texture2D" uid="uid://bvo4oyd6230kr" path="res://art/objects/heaven_cross.png" id="2_1pssm"]
+[ext_resource type="Shader" path="res://terrain.gdshader" id="2_gwk3p"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7kgq8"]
+shader = ExtResource("2_gwk3p")
+
+[node name="HeavenCross" type="StaticBody2D"]
+
+[node name="SpawnCollisionHandler" parent="." node_paths=PackedStringArray("spawn_collider") instance=ExtResource("1_qhtl6")]
+spawn_collider = NodePath("../SpawnCollider")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_7kgq8")
+position = Vector2(0, -32.545)
+texture = ExtResource("2_1pssm")
+offset = Vector2(-31, -191.455)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, -32.545)
+polygon = PackedVector2Array(44, 86, 147, 86, 147, 23, 44, 23)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, -32.545)
+polygon = PackedVector2Array(-433, 109.545, -289, 105.545, -220, 51.545, -255, 25.545, -488, 32.545)
+
+[node name="SpawnCollider" type="Area2D" parent="."]
+position = Vector2(0, -32.545)
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="SpawnCollider"]
+polygon = PackedVector2Array(44, 86, 147, 86, 147, 23, 44, 23)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="SpawnCollider"]
+polygon = PackedVector2Array(-433, 109.545, -289, 105.545, -220, 51.545, -255, 25.545, -488, 32.545)
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, -32.545)
+collision_layer = 7
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(44, 86, 147, 86, 147, 23, 44, 23)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(-433, 109.545, -289, 105.545, -220, 51.545, -255, 25.545, -488, 32.545)

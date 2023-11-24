@@ -1,0 +1,40 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://buhg63ostt083"]
+
+[ext_resource type="Texture2D" uid="uid://b4d4inkobgtre" path="res://art/objects/soul_1.png" id="1_ggbx7"]
+[ext_resource type="Texture2D" uid="uid://bw0olwfct1s4n" path="res://art/objects/arrow-temp.png" id="1_kgy22"]
+[ext_resource type="Texture2D" uid="uid://8vk8e031gefk" path="res://art/objects/soul_2.png" id="2_avvdk"]
+[ext_resource type="Texture2D" uid="uid://c8pnpbue35ehb" path="res://art/objects/magic circle.png" id="2_pm0cd"]
+[ext_resource type="Texture2D" uid="uid://dtwe6u3g8px0x" path="res://art/objects/soul_3.png" id="3_0ycnl"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_kgy22")
+}],
+"loop": true,
+"name": &"hp_pickup",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_pm0cd")
+}],
+"loop": true,
+"name": &"vacuum_pickup",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ggbx7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_avvdk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_0ycnl")
+}],
+"loop": true,
+"name": &"xp_pickup",
+"speed": 6.0
+}]

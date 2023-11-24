@@ -1,0 +1,192 @@
+[gd_scene load_steps=18 format=3 uid="uid://yaht8i4bkv2u"]
+
+[ext_resource type="Script" path="res://scripts/UI/HUD.gd" id="1_tsnwf"]
+[ext_resource type="Texture2D" uid="uid://dl1gspa35j2xu" path="res://art/UI/vignette2.png" id="2_i7f4k"]
+[ext_resource type="Texture2D" uid="uid://pi6nxes80imt" path="res://art/UI/Black_Background/black_bg_1.png" id="2_nhpms"]
+[ext_resource type="Texture2D" uid="uid://cexobhotuupu4" path="res://art/UI/XP_Bar_Outline.png" id="2_rugy2"]
+[ext_resource type="Texture2D" uid="uid://bqjr66plhka4t" path="res://art/UI/XP_Bar_Fill.png" id="3_g0pwy"]
+[ext_resource type="Texture2D" uid="uid://dfl8ox20w3xn" path="res://art/UI/Black_Background/black_bg_2.png" id="3_k867k"]
+[ext_resource type="Texture2D" uid="uid://bsmsy5dhk3vsp" path="res://art/UI/Black_Background/black_bg_3.png" id="4_0fiv5"]
+[ext_resource type="Texture2D" uid="uid://bottvwnfwt65t" path="res://art/UI/HP_Bar/HP_Bar_Outline_1.png" id="4_m51i6"]
+[ext_resource type="Texture2D" uid="uid://dq4qin2d2o6d3" path="res://art/UI/Black_Background/black_bg_4.png" id="5_0gsxt"]
+[ext_resource type="Texture2D" uid="uid://ckj36odxkb2o2" path="res://art/UI/HP_Bar/HP_Bar_Outline_2.png" id="5_4mon2"]
+[ext_resource type="Texture2D" uid="uid://cywsutwou4bx4" path="res://art/UI/Black_Background/black_bg_5.png" id="6_r11fs"]
+[ext_resource type="Texture2D" uid="uid://cu2766polhb1a" path="res://art/UI/HP_Bar/HP_Bar_Outline_3.png" id="6_uftj7"]
+[ext_resource type="Texture2D" uid="uid://fxvxh8ufh5im" path="res://art/UI/HP_Bar/HP_Bar_Fill.png" id="7_ik5f6"]
+[ext_resource type="Texture2D" uid="uid://been84ue6lj66" path="res://art/UI/Pause_Menu/pause_menu_background.png" id="7_ordnq"]
+[ext_resource type="AudioStream" uid="uid://c355h3avvx8ss" path="res://sounds/spooky intro ambience reversed.ogg" id="9_dti2o"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_2kkt6"]
+frames = 5
+speed_scale = 15.0
+frame_0/texture = ExtResource("2_nhpms")
+frame_1/texture = ExtResource("3_k867k")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("4_0fiv5")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("5_0gsxt")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("6_r11fs")
+frame_4/duration = 1.0
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_stpyq"]
+frames = 3
+speed_scale = 10.0
+frame_0/texture = ExtResource("4_m51i6")
+frame_1/texture = ExtResource("5_4mon2")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("6_uftj7")
+frame_2/duration = 1.0
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_tsnwf")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = SubResource("AnimatedTexture_2kkt6")
+expand_mode = 1
+
+[node name="TextDisplay" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -541.0
+offset_top = -81.0
+offset_right = 541.0
+offset_bottom = 81.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_ordnq")
+expand_mode = 1
+
+[node name="TextDisplay" type="Label" parent="TextDisplay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -39.0
+offset_right = 20.0
+offset_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "The TREE beckons once more."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HealthDisplay" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -32.0
+offset_top = 27.0
+offset_right = 32.0
+offset_bottom = 91.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DisplayTimer" type="Timer" parent="."]
+wait_time = 2.5
+one_shot = true
+
+[node name="GameOverTimer" type="Timer" parent="."]
+
+[node name="StartButton" type="Button" parent="."]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -116.0
+offset_top = -252.0
+offset_right = 116.0
+offset_bottom = -156.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 64
+text = "Restart"
+
+[node name="XPBar" type="TextureProgressBar" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -458.0
+offset_bottom = 133.0
+grow_horizontal = 0
+step = 0.1
+fill_mode = 1
+nine_patch_stretch = true
+texture_under = ExtResource("2_rugy2")
+texture_progress = ExtResource("3_g0pwy")
+
+[node name="Level" type="Label" parent="XPBar"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 22.0
+offset_top = -1.5
+offset_right = 59.0
+offset_bottom = 24.5
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "100
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HPBar" type="TextureProgressBar" parent="."]
+offset_top = -10.0
+offset_right = 458.0
+offset_bottom = 123.0
+nine_patch_stretch = true
+texture_under = SubResource("AnimatedTexture_stpyq")
+texture_progress = ExtResource("7_ik5f6")
+
+[node name="FPS" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Debug" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="EnemyCount" type="Label" parent="Debug"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 118.0
+offset_right = 76.0
+offset_bottom = 160.0
+
+[node name="BulletCount" type="Label" parent="Debug"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 174.0
+offset_right = 74.0
+offset_bottom = 220.0
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.431373)
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_i7f4k")
+expand_mode = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_dti2o")
+pitch_scale = 0.8
+
+[connection signal="timeout" from="DisplayTimer" to="." method="_on_display_timer_timeout"]

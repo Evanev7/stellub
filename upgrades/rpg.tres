@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=4 format=3 uid="uid://xoj5pa4iabuk"]
+
+[ext_resource type="Texture2D" uid="uid://bxi0cpf8vefnt" path="res://art/enemies/demon_lord_1.png" id="1_476jv"]
+[ext_resource type="Script" path="res://upgrades/upgrade_resource.gd" id="2_hduqq"]
+[ext_resource type="Script" path="res://upgrades/scripts/rpg.gd" id="3_aet0s"]
+
+[resource]
+script = ExtResource("2_hduqq")
+name = "RPG"
+upgrade_script = ExtResource("3_aet0s")
+quantity = 10
+appears_in_shop = true
+appears_in_inventory = true
+icon = ExtResource("1_476jv")
+description = "Decreases speed and increases acceleration
+and damage."
+script_data = {
+"Damage": &"x1.5",
+"Shot Acceleration": &"+900",
+"Shot Speed": &"-400",
+"Size": &"x0.8"
+}

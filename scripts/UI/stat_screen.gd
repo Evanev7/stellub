@@ -25,7 +25,7 @@ func game_over():
 	souls_collected.text = str(int(GameState.souls_collected))
 	bullets_summoned.text = str(GameState.bullets_summoned)
 	damage_dealt.text = str(int(GameState.damage_dealt))
-	circles_completed.text = str(GameState.circles_completed + 1)
+	circles_completed.text = str(GameState.circles_completed - 1)
 
 
 func _on_restart_button_pressed():

@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://bvthr6v5vvolc"]
+
+[node name="debug" type="CanvasLayer"]
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(1, 1, 1, 0.603922)
+offset_left = 15.0
+offset_top = 20.0
+offset_right = 289.0
+offset_bottom = 287.0
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 32.0
+offset_bottom = 31.0
+text = "Bullets:"
+
+[node name="Label2" type="Label" parent="Panel"]
+offset_left = 8.0
+offset_top = 32.0
+offset_right = 40.0
+offset_bottom = 58.0
+text = "Enemies:"
+
+[node name="EnemyCount" type="Label" parent="Panel"]
+offset_left = 83.0
+offset_top = 33.0
+offset_right = 115.0
+offset_bottom = 59.0
+
+[node name="BulletCount" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 71.0
+offset_top = 9.0
+offset_right = 92.0
+offset_bottom = 32.0

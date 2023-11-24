@@ -1,0 +1,137 @@
+[gd_scene load_steps=13 format=3 uid="uid://bdsxfxpria0gp"]
+
+[ext_resource type="Script" path="res://scripts/components/magic_circle.gd" id="1_114ni"]
+[ext_resource type="PackedScene" uid="uid://cicwqsj3byj4u" path="res://scenes/components/spawn_collision_handler.tscn" id="3_4838f"]
+[ext_resource type="PackedScene" uid="uid://7pekoii3l4xw" path="res://scenes/objects/pillar.tscn" id="4_ciroy"]
+[ext_resource type="Texture2D" uid="uid://c8pnpbue35ehb" path="res://art/objects/magic circle.png" id="4_qd0oy"]
+[ext_resource type="Shader" path="res://scenes/characters/enemy.gdshader" id="5_tumd1"]
+[ext_resource type="Texture2D" uid="uid://c8bduam0tg1y5" path="res://art/objects/magic circle barrier.png" id="6_b21vk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i8l2e"]
+shader = ExtResource("5_tumd1")
+shader_parameter/line_color = Color(0.533333, 1, 1, 1)
+shader_parameter/line_thickness = 4.364
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xm67y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_qd0oy")
+}],
+"loop": true,
+"name": &"disabled",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qlfrf"]
+radius = 131.015
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yuvbf"]
+radius = 1278.18
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ykodi"]
+resource_local_to_scene = true
+shader = ExtResource("5_tumd1")
+shader_parameter/line_color = Color(0.517647, 0.411765, 1, 1)
+shader_parameter/line_thickness = 6.262
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2c16o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_b21vk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="magic_circle" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_114ni")
+
+[node name="Pillars" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Pillar" parent="Pillars" instance=ExtResource("4_ciroy")]
+y_sort_enabled = false
+position = Vector2(-700, 0)
+scale = Vector2(0.685, 0.685)
+
+[node name="Pillar2" parent="Pillars" instance=ExtResource("4_ciroy")]
+y_sort_enabled = false
+position = Vector2(700, 0)
+scale = Vector2(0.685, 0.685)
+
+[node name="Pillar3" parent="Pillars" instance=ExtResource("4_ciroy")]
+y_sort_enabled = false
+position = Vector2(0, -600)
+scale = Vector2(0.685, 0.685)
+
+[node name="Pillar4" parent="Pillars" instance=ExtResource("4_ciroy")]
+z_index = 1
+y_sort_enabled = false
+position = Vector2(0, 600)
+scale = Vector2(0.685, 0.685)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = -1
+material = SubResource("ShaderMaterial_i8l2e")
+position = Vector2(-1.99999, 0)
+scale = Vector2(0.564, 0.279)
+sprite_frames = SubResource("SpriteFrames_xm67y")
+animation = &"disabled"
+
+[node name="Circle" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Circle"]
+scale = Vector2(2, 1)
+shape = SubResource("CircleShape2D_qlfrf")
+
+[node name="Time" type="Label" parent="."]
+visible = false
+offset_left = -14.0
+offset_top = -221.0
+offset_right = 15.0
+offset_bottom = -149.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "0"
+
+[node name="SuccessTimer" type="Timer" parent="."]
+wait_time = 30.0
+one_shot = true
+
+[node name="WaveTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="SpawnCollisionHandler" parent="." node_paths=PackedStringArray("spawn_collider") instance=ExtResource("3_4838f")]
+spawn_collider = NodePath("../SpawnCollision")
+land_on_ready = false
+on_ready_attempts = 0
+disable_after_land = false
+remove_obstruction = true
+clear_on_bad_landing = false
+
+[node name="SpawnCollision" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnCollision"]
+shape = SubResource("CircleShape2D_yuvbf")
+
+[node name="Barrier" type="Node2D" parent="."]
+visible = false
+z_index = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Barrier"]
+material = SubResource("ShaderMaterial_ykodi")
+scale = Vector2(1.762, 1.762)
+sprite_frames = SubResource("SpriteFrames_2c16o")
+
+[node name="Marker2D" type="Marker2D" parent="Barrier"]
+position = Vector2(-796, 0)
+
+[connection signal="body_entered" from="Circle" to="." method="_on_circle_body_entered"]
+[connection signal="body_exited" from="Circle" to="." method="_on_circle_body_exited"]
+[connection signal="timeout" from="SuccessTimer" to="." method="_on_success_timer_timeout"]
+[connection signal="timeout" from="WaveTimer" to="." method="_on_wave_timer_timeout"]

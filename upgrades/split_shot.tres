@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=5 format=3 uid="uid://c7p72w4p6xr5n"]
+
+[ext_resource type="Texture2D" uid="uid://b6y7giikvs0aa" path="res://art/bullets/enemies/bullet_orange.png" id="1_8p5me"]
+[ext_resource type="Script" path="res://upgrades/upgrade_resource.gd" id="1_ox6ek"]
+[ext_resource type="AudioStream" uid="uid://htq6o2hlabug" path="res://sounds/split_shot_randomizer.tres" id="3_dxk3a"]
+[ext_resource type="Script" path="res://upgrades/scripts/SplitShot.gd" id="3_vsb3q"]
+
+[resource]
+script = ExtResource("1_ox6ek")
+name = "Split Shot"
+upgrade_script = ExtResource("3_vsb3q")
+quantity = 10
+appears_in_shop = true
+appears_in_inventory = true
+icon = ExtResource("1_8p5me")
+description = "Splits your bullet in two horizontally
+on contact. Increases number of
+bullets with more stacks."
+script_data = {
+"Damage": &"x0.5",
+"Size": &"x0.55",
+"bullet": ExtResource("3_dxk3a")
+}

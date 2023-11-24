@@ -202,7 +202,9 @@ control_mode = null
 [node name="TotalAttack3" parent="Control/MarginContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer" instance=ExtResource("6_egsl6")]
 unique_name_in_owner = true
 layout_mode = 2
-num_gui_upgrades = null
-control_mode = null
 
+[connection signal="gray_out_shop" from="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/Shop1" to="." method="_gray_out_shop"]
+[connection signal="gray_out_shop" from="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/Shop2" to="." method="_gray_out_shop"]
+[connection signal="gray_out_shop" from="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer2/Shop3" to="." method="_gray_out_shop"]
+[connection signal="gray_out_shop" from="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer2/Shop4" to="." method="_gray_out_shop"]
 [connection signal="pressed" from="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/ShopExit" to="." method="_on_shop_exit_pressed"]

@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://dilk21k2nncq2"]
+
+[ext_resource type="PackedScene" uid="uid://rnajon2osv8v" path="res://scenes/UI/shop_alt.tscn" id="2_5ra33"]
+[ext_resource type="PackedScene" uid="uid://c8xiwx0q2sf3m" path="res://scenes/UI/pause_menu.tscn" id="3_l42bc"]
+[ext_resource type="PackedScene" uid="uid://yaht8i4bkv2u" path="res://scenes/UI/HUD.tscn" id="3_uc26v"]
+[ext_resource type="PackedScene" uid="uid://d05swenhbbosd" path="res://scenes/UI/objective_marker.tscn" id="5_bjn40"]
+[ext_resource type="PackedScene" uid="uid://ctkuvh4bwmtm2" path="res://scenes/UI/stat_screen.tscn" id="5_ypkyo"]
+[ext_resource type="PackedScene" uid="uid://kdeab812xwhx" path="res://scenes/components/bullet_handler.tscn" id="7_junnh"]
+
+[node name="LevelTemplate" type="Node"]
+
+[node name="YSort" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="PlayerStart" type="Marker2D" parent="YSort"]
+position = Vector2(578, 324)
+
+[node name="HUD" parent="." instance=ExtResource("3_uc26v")]
+
+[node name="ShopAlt" parent="." instance=ExtResource("2_5ra33")]
+visible = false
+
+[node name="pause_menu" parent="." instance=ExtResource("3_l42bc")]
+
+[node name="ObjectiveMarker" parent="." instance=ExtResource("5_bjn40")]
+
+[node name="stat_screen" parent="." instance=ExtResource("5_ypkyo")]
+visible = false
+
+[node name="LogicComponents" type="Node" parent="."]
+
+[node name="BulletHandler" parent="LogicComponents" instance=ExtResource("7_junnh")]
+
+[connection signal="open_pause_menu" from="HUD" to="pause_menu" method="_on_hud_open_pause_menu"]

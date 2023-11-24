@@ -1,19 +1,33 @@
 [gd_resource type="Resource" script_class="BulletResource" load_steps=3 format=3 uid="uid://d1bfxwthry8hx"]
 
-[ext_resource type="Script" path="res://scripts/bullet_resource.gd" id="1_eenvt"]
+[ext_resource type="Script" path="res://scripts/objects/bullet_resource.gd" id="1_eenvt"]
 [ext_resource type="SpriteFrames" uid="uid://d35p6avthydix" path="res://resources/bullets/angel_worshipper_spriteframes.tres" id="1_hlmbc"]
 
 [resource]
 script = ExtResource("1_eenvt")
+transport_mode = 1
 animation = ExtResource("1_hlmbc")
-start_range = 100
+name = "demon_skull_bullet"
+rarity = 1.0
+start_range = 50
 lifetime = 1.0
 bullet_range = 1000
-damage = 1
-fire_delay = 60
+damage = 1.0
+fire_delay = 60.0
 multishot = 20
-size = Vector2(3, 1)
+size = Vector2(1.5, 0.5)
+colour = Color(1, 1, 1, 1)
+vacuum = false
+vacuum_range = 100.0
+vacuum_strength = 1.0
 shot_spread = 6.283
+angular_velocity = 1.0
+piercing = 10
+piercing_cooldown = 30
+knockback = 0.0
+splits = 1
+activation_delay = 0.0
+deactivation_range = 500
 shot_inaccuracy = 0.0
 shot_speed = 0.0
-angular_velocity = 1.0
+spawn_on_timeout = false

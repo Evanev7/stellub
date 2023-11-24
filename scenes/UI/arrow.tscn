@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://n5yok0nwfdbl"]
+
+[ext_resource type="Script" path="res://scripts/UI/arrow.gd" id="1_37vqa"]
+[ext_resource type="Texture2D" uid="uid://bw0olwfct1s4n" path="res://art/objects/arrow-temp.png" id="1_wle4l"]
+
+[node name="Arrow" type="CanvasLayer"]
+script = ExtResource("1_37vqa")
+
+[node name="Arrow-temp" type="Sprite2D" parent="."]
+rotation = -1.76819
+scale = Vector2(0.108167, 0.108166)
+skew = -1.17601
+texture = ExtResource("1_wle4l")

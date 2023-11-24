@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxmk1htarl4v5"]
+
+[ext_resource type="Script" path="res://scripts/components/ShopHandler.gd" id="1_l28hg"]
+[ext_resource type="PackedScene" uid="uid://cp7lho542gmeu" path="res://scenes/objects/shop.tscn" id="2_y806g"]
+[ext_resource type="PackedScene" uid="uid://bdsxfxpria0gp" path="res://scenes/components/magic_circle.tscn" id="3_ol2yg"]
+
+[node name="ShopHandler" type="Node"]
+script = ExtResource("1_l28hg")
+shop_scene = ExtResource("2_y806g")
+magic_circle_scene = ExtResource("3_ol2yg")

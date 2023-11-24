@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0xtya0pbmlje"]
+
+[ext_resource type="PackedScene" uid="uid://cicwqsj3byj4u" path="res://scenes/components/spawn_collision_handler.tscn" id="1_nxqri"]
+[ext_resource type="Texture2D" uid="uid://c008b3o2gyquv" path="res://art/objects/heaven_tree.png" id="2_in73l"]
+[ext_resource type="Shader" path="res://terrain.gdshader" id="2_y2v36"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_enwcm"]
+shader = ExtResource("2_y2v36")
+
+[node name="HeavenTree" type="StaticBody2D"]
+
+[node name="SpawnCollisionHandler" parent="." node_paths=PackedStringArray("spawn_collider") instance=ExtResource("1_nxqri")]
+spawn_collider = NodePath("../SpawnCollider")
+land_on_ready = false
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_enwcm")
+texture = ExtResource("2_in73l")
+offset = Vector2(-31, -200)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-4, -59)
+polygon = PackedVector2Array(286, 66, 198, 0, 66, 2, -62, 26, -168, 79, -112, 110, 12, 138, 212, 121)
+
+[node name="SpawnCollider" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SpawnCollider"]
+position = Vector2(-4, -59)
+polygon = PackedVector2Array(286, 66, 198, 0, 66, 2, -62, 26, -168, 79, -112, 110, 12, 138, 212, 121)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 7
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2(-4, -59)
+polygon = PackedVector2Array(286, 66, 198, 0, 66, 2, -62, 26, -168, 79, -112, 110, 12, 138, 212, 121)

@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://d23ddhgery8pq"]
+
+[ext_resource type="Script" path="res://scripts/characters/boss.gd" id="1_vq2wp"]
+[ext_resource type="PackedScene" uid="uid://dpjckt12ipcw2" path="res://scenes/characters/enemy.tscn" id="5_esugw"]
+[ext_resource type="Resource" uid="uid://p0ytgmgbgkky" path="res://resources/enemy/boss.tres" id="6_q7r1j"]
+
+[node name="boss" type="Node"]
+script = ExtResource("1_vq2wp")
+
+[node name="Enemy" parent="." instance=ExtResource("5_esugw")]
+resource = ExtResource("6_q7r1j")

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=5 format=3 uid="uid://d2j0rt7130hds"]
+
+[ext_resource type="Texture2D" uid="uid://b7im0npiawyyl" path="res://art/objects/shop_closed_temp.png" id="1_2ewtt"]
+[ext_resource type="Script" path="res://upgrades/upgrade_resource.gd" id="1_j5mnv"]
+[ext_resource type="Resource" uid="uid://ctfcugo2o7mc2" path="res://resources/bullets/player/bomb.tres" id="2_xlamo"]
+[ext_resource type="Script" path="res://upgrades/scripts/bomb.gd" id="4_oimer"]
+
+[resource]
+script = ExtResource("1_j5mnv")
+name = "Bomb"
+upgrade_script = ExtResource("4_oimer")
+quantity = 10
+appears_in_shop = true
+appears_in_inventory = true
+icon = ExtResource("1_2ewtt")
+description = "Adds an explosion on contact
+and slows down your bullet."
+script_data = {
+"Fire Rate": &"x0.67",
+"Shot Speed": &"x0.75",
+"bullet": ExtResource("2_xlamo")
+}

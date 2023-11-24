@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://d05swenhbbosd"]
+
+[ext_resource type="Script" path="res://scripts/components/objective_marker.gd" id="1_c6rh4"]
+[ext_resource type="PackedScene" uid="uid://n5yok0nwfdbl" path="res://scenes/UI/arrow.tscn" id="2_st77u"]
+
+[node name="ObjectiveMarker" type="CanvasLayer"]
+script = ExtResource("1_c6rh4")
+arrow_scene = ExtResource("2_st77u")

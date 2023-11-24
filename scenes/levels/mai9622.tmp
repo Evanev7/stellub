@@ -1,0 +1,81 @@
+[gd_scene load_steps=19 format=3 uid="uid://dfe6bc7mdpexj"]
+
+[ext_resource type="Script" path="res://scripts/levels/main.gd" id="1_u8uym"]
+[ext_resource type="PackedScene" uid="uid://dpjckt12ipcw2" path="res://scenes/characters/enemy.tscn" id="2_abhdw"]
+[ext_resource type="PackedScene" uid="uid://yaht8i4bkv2u" path="res://scenes/UI/HUD.tscn" id="3_8qfpp"]
+[ext_resource type="PackedScene" uid="uid://dldkm6m8ux87t" path="res://scenes/objects/bullet.tscn" id="3_8vuuc"]
+[ext_resource type="PackedScene" uid="uid://cjuw1uddg4foi" path="res://scenes/objects/pickup.tscn" id="4_3g6v5"]
+[ext_resource type="Resource" uid="uid://dh8xipsw2bu5w" path="res://resources/enemy/demon_skull.tres" id="4_ikhts"]
+[ext_resource type="PackedScene" uid="uid://1dmnavilcwx5" path="res://scenes/UI/upgradeHUD.tscn" id="4_ls5jb"]
+[ext_resource type="Resource" uid="uid://doalqpgaptgxa" path="res://resources/enemy/demon_dog.tres" id="5_3s043"]
+[ext_resource type="PackedScene" uid="uid://cnepphpba8e8u" path="res://scenes/characters/player.tscn" id="5_a3mdk"]
+[ext_resource type="Resource" uid="uid://bqyg0clrpkdim" path="res://resources/enemy/demon_skeleton.tres" id="6_8vwn2"]
+[ext_resource type="Resource" uid="uid://djjvchiit0f0n" path="res://resources/enemy/angel_worshipper.tres" id="7_c5yt3"]
+[ext_resource type="Resource" uid="uid://bnoj3uq3e6s17" path="res://resources/enemy/angel_warrior.tres" id="8_vk0tv"]
+[ext_resource type="Resource" uid="uid://daslelns8qmfv" path="res://resources/enemy/angel_crusader.tres" id="9_d18g6"]
+[ext_resource type="PackedScene" uid="uid://41p1qgrud4ej" path="res://scenes/components/terrain_generator.tscn" id="11_0axk0"]
+[ext_resource type="TileSet" uid="uid://bmawjll8sdo63" path="res://art/backgrounds/background_tileset.tres" id="12_hvjod"]
+[ext_resource type="PackedScene" uid="uid://d05swenhbbosd" path="res://scenes/UI/objective_marker.tscn" id="20_tncsu"]
+[ext_resource type="PackedScene" uid="uid://bdsxfxpria0gp" path="res://scenes/components/magic_circle.tscn" id="21_4yjc3"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_0ebua"]
+vertices = PackedVector2Array(-192, -168, 1906, -194, 2067, 1725, -718, 1613)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-192, -168, 1906, -194, 2067, 1725, -718, 1613)])
+
+[node name="Main" type="Node"]
+script = ExtResource("1_u8uym")
+enemy_scene = ExtResource("2_abhdw")
+bullet_scene = ExtResource("3_8vuuc")
+magic_circle_scene = ExtResource("21_4yjc3")
+pickup_scene = ExtResource("4_3g6v5")
+safe_range = 800
+enemy_resource_list = Array[Resource("res://scripts/characters/enemy_resource.gd")]([ExtResource("4_ikhts"), ExtResource("5_3s043"), ExtResource("6_8vwn2"), ExtResource("7_c5yt3"), ExtResource("8_vk0tv"), ExtResource("9_d18g6")])
+
+[node name="YSort" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="TerrainGenerator" parent="YSort" node_paths=PackedStringArray("tile_map", "ysorter") instance=ExtResource("11_0axk0")]
+tile_map = NodePath("../TileMap")
+ysorter = NodePath("..")
+
+[node name="TileMap" type="TileMap" parent="YSort"]
+z_index = -1
+scale = Vector2(0.75, 0.75)
+tile_set = ExtResource("12_hvjod")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 1, 0)
+
+[node name="Player" parent="YSort" instance=ExtResource("5_a3mdk")]
+z_index = 0
+position = Vector2(640, 360)
+
+[node name="Marker2D" type="Marker2D" parent="YSort"]
+position = Vector2(576, 324)
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+
+[node name="HUD" parent="." instance=ExtResource("3_8qfpp")]
+
+[node name="upgradeHUD" parent="." instance=ExtResource("4_ls5jb")]
+
+[node name="ObjectiveMarker" parent="." instance=ExtResource("20_tncsu")]
+
+[node name="magic_circle" parent="." instance=ExtResource("21_4yjc3")]
+position = Vector2(283, 924)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_0ebua")
+
+[connection signal="fire_bullet" from="YSort/Player" to="." method="_on_fire_bullet"]
+[connection signal="level_up" from="YSort/Player" to="." method="_on_player_level_up"]
+[connection signal="player_death" from="YSort/Player" to="." method="_on_player_player_death"]
+[connection signal="taken_damage" from="YSort/Player" to="." method="_on_player_taken_damage"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
+[connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]

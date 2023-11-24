@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=5 format=3 uid="uid://cde86qx4smawg"]
+
+[ext_resource type="Script" path="res://scripts/characters/enemy_resource.gd" id="1_5cwm5"]
+[ext_resource type="SpriteFrames" uid="uid://cjvxmcnq3xtj6" path="res://resources/enemy/demon_lord_spriteframes.tres" id="1_sxpx7"]
+[ext_resource type="Shape2D" uid="uid://bphvspsv4dssk" path="res://resources/hitboxes/demon_lord_collisionbox.tres" id="2_4uolh"]
+[ext_resource type="Shape2D" uid="uid://d8q2wi5ojvhv" path="res://resources/hitboxes/demon_lord_hitbox.tres" id="3_thjei"]
+
+[resource]
+script = ExtResource("1_5cwm5")
+NAME = "demon_lord"
+ANIMATION = ExtResource("1_sxpx7")
+FLIP_H = false
+FLOATING = false
+SPEED = 30.0
+MAX_HP = 50.0
+DAMAGE = 8.0
+VALUE = 8.0
+STRENGTH = 3.0
+SCALE = Vector2(2, 2)
+COLLISION_ROTATION = 0.0
+HITBOX = ExtResource("3_thjei")
+HURTBOX = ExtResource("3_thjei")
+COLLIDER = ExtResource("2_4uolh")
+UNIQUE_MULTIPLIER = 1.0
+OVERALL_MULTIPLIER = 1.0

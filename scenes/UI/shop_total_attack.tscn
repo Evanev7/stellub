@@ -1,0 +1,114 @@
+[gd_scene load_steps=5 format=3 uid="uid://jgeavrbmn7f2"]
+
+[ext_resource type="Script" path="res://scripts/UI/shop_total_attack.gd" id="1_6mrto"]
+[ext_resource type="Texture2D" uid="uid://bnraeyqy86t88" path="res://art/UI/Mouse_Simple_Key_Dark.png" id="2_d6fa4"]
+[ext_resource type="Texture2D" uid="uid://ko4vghr4shrp" path="res://art/UI/Mouse_Left_Key_Dark.png" id="3_6h5ki"]
+[ext_resource type="PackedScene" uid="uid://domdhv4tthmyh" path="res://scenes/UI/shop_draggable.tscn" id="4_pkhjl"]
+
+[node name="TotalAttack" type="MarginContainer"]
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+script = ExtResource("1_6mrto")
+unpressed_texture = ExtResource("2_d6fa4")
+pressed_texture = ExtResource("3_6h5ki")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="CenterContainer2" type="CenterContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer/CenterContainer2"]
+layout_mode = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+
+[node name="ControlMode" type="TextureButton" parent="HBoxContainer/CenterContainer2/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture_normal = ExtResource("2_d6fa4")
+texture_pressed = ExtResource("3_6h5ki")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Attack" parent="HBoxContainer/CenterContainer" instance=ExtResource("4_pkhjl")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(110, 110)
+layout_mode = 2
+slot_type = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="CenterUpgrade1" type="CenterContainer" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Upgrade1" parent="HBoxContainer/HBoxContainer/CenterUpgrade1" instance=ExtResource("4_pkhjl")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+
+[node name="CenterUpgrade2" type="CenterContainer" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Upgrade2" parent="HBoxContainer/HBoxContainer/CenterUpgrade2" instance=ExtResource("4_pkhjl")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+
+[node name="CenterUpgrade3" type="CenterContainer" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Upgrade3" parent="HBoxContainer/HBoxContainer/CenterUpgrade3" instance=ExtResource("4_pkhjl")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+
+[node name="CenterUpgrade4" type="CenterContainer" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Upgrade4" parent="HBoxContainer/HBoxContainer/CenterUpgrade4" instance=ExtResource("4_pkhjl")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+
+[node name="CenterUpgrade5" type="CenterContainer" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Upgrade5" parent="HBoxContainer/HBoxContainer/CenterUpgrade5" instance=ExtResource("4_pkhjl")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+
+[node name="CenterUpgrade6" type="CenterContainer" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Upgrade6" parent="HBoxContainer/HBoxContainer/CenterUpgrade6" instance=ExtResource("4_pkhjl")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+
+[node name="CenterUpgrade7" type="CenterContainer" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Upgrade7" parent="HBoxContainer/HBoxContainer/CenterUpgrade7" instance=ExtResource("4_pkhjl")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+
+[node name="CenterUpgrade8" type="CenterContainer" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Upgrade8" parent="HBoxContainer/HBoxContainer/CenterUpgrade8" instance=ExtResource("4_pkhjl")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+
+[connection signal="pressed" from="HBoxContainer/CenterContainer2/GridContainer/ControlMode" to="." method="_on_control_mode_pressed"]
