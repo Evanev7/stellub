@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="BulletResource" load_steps=7 format=3 uid="uid://cyahshf3y21ai"]
+[gd_resource type="Resource" script_class="BulletResource" load_steps=9 format=3 uid="uid://cyahshf3y21ai"]
 
 [ext_resource type="Script" path="res://scripts/objects/bullet_resource.gd" id="1_3cnji"]
 [ext_resource type="Texture2D" uid="uid://bbu1gvj238af0" path="res://art/bullets/player/boomerang_1.png" id="1_a2512"]
 [ext_resource type="Texture2D" uid="uid://c8k6llnm85118" path="res://art/enemies/demon_dog_2.png" id="2_fikg5"]
 [ext_resource type="Texture2D" uid="uid://d2a1v2o0w5eu3" path="res://art/bullets/player/boomerang_2.png" id="2_v5svo"]
 [ext_resource type="Texture2D" uid="uid://c368tklrelfn7" path="res://art/bullets/player/boomerang_3.png" id="3_u10vx"]
+[ext_resource type="AudioStream" uid="uid://31ou8mmtpl2h" path="res://sounds/boomerang.wav" id="6_r3ghb"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4nyni"]
 animations = [{
@@ -23,11 +24,20 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_gncqn"]
+streams_count = 1
+random_pitch = 1.2
+random_volume_offset_db = 1.0
+stream_0/stream = ExtResource("6_r3ghb")
+stream_0/weight = 1.0
+
 [resource]
 script = ExtResource("1_3cnji")
 name = "Boomerang"
-description = "Default Upgrade Description"
+description = "Aims for the nearest enemy, and
+then travels backwards."
 animation = SubResource("SpriteFrames_4nyni")
+sound = SubResource("AudioStreamRandomizer_gncqn")
 rarity = 1.0
 icon = ExtResource("2_fikg5")
 size = Vector2(1, 1)

@@ -29,6 +29,8 @@ func _ready():
 func start_game():
 	enemy_handler.start_spawning()
 	
+	SoundManager.heaven_start_play()
+	
 	player.position = $YSort/PlayerStart.position
 	$LogicComponents/ShopHandler.start()
 	$cursor_particles.emitting = true
@@ -37,6 +39,7 @@ func start_game():
 	HUD.show_score(player.score, player.level_threshold[player.current_level])
 
 func restart_game():
+	SoundManager.fade_out(SoundManager.currently_playing_music)
 	GameState.load_area(GameState.CURRENT_AREA.HELL)
 	
 func start_message():
@@ -44,6 +47,7 @@ func start_message():
 
 func _on_player_death():
 	GameState.game_over.emit()
+	SoundManager.currently_playing_music.volume_db = linear_to_db(0.5)
 
 func _on_player_hp_changed(hp):
 	HUD.show_health(hp, GameState.player.hp_max)

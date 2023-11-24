@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="BulletResource" load_steps=4 format=3 uid="uid://coqyd5d8e6rm8"]
+[gd_resource type="Resource" script_class="BulletResource" load_steps=6 format=3 uid="uid://coqyd5d8e6rm8"]
 
 [ext_resource type="Script" path="res://scripts/objects/bullet_resource.gd" id="1_dhlpd"]
 [ext_resource type="Texture2D" uid="uid://bhs2v6ujb61d6" path="res://art/bullets/temp_1.png" id="1_faxki"]
+[ext_resource type="AudioStream" uid="uid://r5ctaqmle1nc" path="res://sounds/particle_mace.wav" id="3_pgmdk"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_l1ll2"]
 animations = [{
@@ -14,11 +15,18 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_d40yl"]
+streams_count = 1
+random_pitch = 1.2
+stream_0/stream = ExtResource("3_pgmdk")
+stream_0/weight = 1.0
+
 [resource]
 script = ExtResource("1_dhlpd")
 name = "Particle Mace"
 description = "Default Upgrade Description"
 animation = SubResource("SpriteFrames_l1ll2")
+sound = SubResource("AudioStreamRandomizer_d40yl")
 rarity = 1.0
 icon = ExtResource("1_faxki")
 size = Vector2(0.5, 0.5)

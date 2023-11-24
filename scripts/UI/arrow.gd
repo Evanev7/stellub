@@ -10,7 +10,7 @@ var screen_centre = Vector2(960, 540)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	var direction = node.position - GameState.player.position
 	var distance = direction.length()
 	rotation = direction.angle()

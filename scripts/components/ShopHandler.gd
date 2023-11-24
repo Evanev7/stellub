@@ -29,7 +29,7 @@ func start():
 	teleporter.start()
 	
 	if GameState.debug:
-		_on_spawn_shop(Vector2(200, 200))
+		_on_spawn_shop(Vector2(500, 500))
 	
 	upgrade_pool = Pool.new()
 	weapon_pool = Pool.new()

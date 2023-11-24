@@ -79,6 +79,7 @@ func loadsave(mode: int, attack_node: Attack) -> Attack:
 		if $%Attack.referenced_node != null:
 			attack_node = $%Attack.referenced_node
 		if attack_node:
+			GameState.player.total_upgrades = player_upgrades.size()
 			reattach_nodes(attack_node, player_upgrades)
 			attack_node.refresh_bullet_resource()
 	

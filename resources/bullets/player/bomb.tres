@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="BulletResource" load_steps=4 format=3 uid="uid://ctfcugo2o7mc2"]
+[gd_resource type="Resource" script_class="BulletResource" load_steps=6 format=3 uid="uid://ctfcugo2o7mc2"]
 
 [ext_resource type="Texture2D" uid="uid://bhs2v6ujb61d6" path="res://art/bullets/temp_1.png" id="1_cxbib"]
 [ext_resource type="Script" path="res://scripts/objects/bullet_resource.gd" id="1_unmlb"]
+[ext_resource type="AudioStream" uid="uid://h5elwdsbb4dg" path="res://sounds/explosion.wav" id="3_8h0gv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_74svo"]
 animations = [{
@@ -14,11 +15,17 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4p1kx"]
+streams_count = 1
+stream_0/stream = ExtResource("3_8h0gv")
+stream_0/weight = 1.0
+
 [resource]
 script = ExtResource("1_unmlb")
 name = "Bomb"
 description = "Default Upgrade Description"
 animation = SubResource("SpriteFrames_74svo")
+sound = SubResource("AudioStreamRandomizer_4p1kx")
 rarity = 1.0
 size = Vector2(15, 15)
 colour = Color(0.796078, 0, 0.188235, 0.631373)

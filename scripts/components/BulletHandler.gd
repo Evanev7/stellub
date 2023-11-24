@@ -2,9 +2,10 @@ extends Node
 class_name BulletHandler
 
 @export var bullet_scene: PackedScene
-@export var max_polyphony: int = 30
+@export var max_polyphony: int = 80
 
 var total_audio_players: int = 0
+var concurrent_bullets_fired: int = 0
 
 func _ready():
 	GameState.fire_bullet.connect(_on_fire_bullet)
@@ -17,6 +18,17 @@ func _on_fire_bullet(origin, bullet_type: BulletResource, fire_from: FireFrom):
 	
 	if total_audio_players < max_polyphony:
 		play_audio(bullet_type.sound, fire_from.position)
+	else:
+		concurrent_bullets_fired += 1
+		
+		if concurrent_bullets_fired > max_polyphony / 2:
+			for child in get_children():
+				if child.is_in_group("bullet_audio"):
+					print("Hello")
+					child.stop()
+					free_audio_player(child)
+					play_audio(bullet_type.sound, fire_from.position)
+			concurrent_bullets_fired = 0
 	
 	if not (origin is WeakRef):
 		origin = weakref(origin)
@@ -52,9 +64,11 @@ func play_audio(sound, pos):
 	var audio_player = AudioStreamPlayer2D.new()
 	audio_player.stream = sound
 	audio_player.position = pos
+	audio_player.bus = "SFX"
 	audio_player.finished.connect(Callable(free_audio_player).bind(audio_player))
 	add_child(audio_player)
 	audio_player.play()
+	add_to_group("bullet_audio")
 	total_audio_players += 1
 	
 func free_audio_player(audio_player):

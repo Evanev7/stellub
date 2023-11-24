@@ -23,6 +23,7 @@ func refresh() -> void:
 		
 		elif referenced_node is Attack:
 			slot_type = SLOT_TYPE.ATTACK
+			tooltip_text = referenced_node.description
 	
 		if referenced_node.get("icon") != null:
 			texture_normal = referenced_node.icon
