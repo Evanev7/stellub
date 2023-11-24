@@ -1,0 +1,208 @@
+[gd_scene load_steps=9 format=3 uid="uid://ji1i3b27446e"]
+
+[ext_resource type="Script" path="res://scripts/UI/shop_controller.gd" id="1_gilh6"]
+[ext_resource type="PackedScene" path="res://scenes/UI/gui_rect.tscn" id="2_wac57"]
+[ext_resource type="Script" path="res://scripts/UI/shop_draggable.gd" id="3_bkygl"]
+[ext_resource type="Texture2D" path="res://art/UI/Shop/Button Empty.png" id="4_xri81"]
+[ext_resource type="Texture2D" path="res://art/UI/no lmao.png" id="5_gccri"]
+[ext_resource type="PackedScene" path="res://scenes/UI/shop_total_attack.tscn" id="6_egsl6"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_hcpdw"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_dfl7m"]
+
+[node name="ShopAlt" type="CanvasLayer"]
+script = ExtResource("1_gilh6")
+num_gui_attacks = null
+num_shop_nodes = null
+
+[node name="Control" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(943, 891)
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="Control/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="GuiRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer2" instance=ExtResource("2_wac57")]
+layout_mode = 2
+
+[node name="UpgradePanel" type="MarginContainer" parent="Control/MarginContainer/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Shop1" type="TextureButton" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+clip_contents = true
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+texture_normal = SubResource("PlaceholderTexture2D_hcpdw")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("3_bkygl")
+is_shop = true
+
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer/Shop1"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_xri81")
+expand_mode = 1
+
+[node name="Shop2" type="TextureButton" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+texture_normal = SubResource("PlaceholderTexture2D_dfl7m")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("3_bkygl")
+is_shop = true
+
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer/Shop2"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_xri81")
+expand_mode = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Shop3" type="TextureButton" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+texture_normal = SubResource("PlaceholderTexture2D_dfl7m")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("3_bkygl")
+is_shop = true
+
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer2/Shop3"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_xri81")
+expand_mode = 1
+
+[node name="Shop4" type="TextureButton" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+clip_contents = true
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+texture_normal = SubResource("PlaceholderTexture2D_hcpdw")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("3_bkygl")
+is_shop = true
+
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer2/Shop4"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_xri81")
+expand_mode = 1
+
+[node name="ShopExit" type="TextureButton" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+texture_normal = ExtResource("5_gccri")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/ShopExit"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_xri81")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_right = 80
+
+[node name="GuiRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer" instance=ExtResource("2_wac57")]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 70
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/MarginContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="TotalAttack1" parent="Control/MarginContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer" instance=ExtResource("6_egsl6")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+num_gui_upgrades = null
+control_mode = 1
+
+[node name="TotalAttack2" parent="Control/MarginContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer" instance=ExtResource("6_egsl6")]
+unique_name_in_owner = true
+layout_mode = 2
+num_gui_upgrades = null
+control_mode = null
+
+[node name="TotalAttack3" parent="Control/MarginContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer" instance=ExtResource("6_egsl6")]
+unique_name_in_owner = true
+layout_mode = 2
+num_gui_upgrades = null
+control_mode = null
+
+[connection signal="pressed" from="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/ShopExit" to="." method="_on_shop_exit_pressed"]
