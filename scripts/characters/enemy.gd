@@ -5,6 +5,7 @@ signal enemy_killed(enemy)
 signal spawn_shop(pos)
 signal play_damage_sound(pos)
 signal play_death_sound(pos)
+signal spawn_damage_number(damage_value: float, position: Vector2, size: Vector2)
 
 @export var resource: EnemyResource
 @export var damage_scene: PackedScene
@@ -139,7 +140,7 @@ func hurt(area):
 	tween2.tween_property($AnimatedSprite2D, "self_modulate:v", 1, 0.05).from(50)
 	
 	if GameState.damage_numbers_enabled:
-		spawn_damage_number(area.damage)
+		spawn_damage_number.emit(area.damage, damage_number_location.global_position, default_scale)
 	
 	if fire_on_hit:
 		attack_handler.get_child(0).on_hit()
@@ -156,32 +157,32 @@ func hurt(area):
 		GameState.num_enemies -= 1
 		GameState.enemies_killed += 1
 		enemy_killed.emit(self)
-		for child in damage_numbers.get_children():
-			damage_numbers.remove_child(child)
+#		for child in damage_numbers.get_children():
+#			child.remove()
 		queue_free()
 	
 	
-func spawn_damage_number(damage_value: float):
-	var damage_number = get_damage_number()
-	if not damage_number:
-		return
-	var val = damage_value
-	var pos = damage_number_location.position
-	damage_numbers.add_child(damage_number, true)
-	damage_number.set_values_and_animate(val, pos, damage_numbers.get_child_count() * 5, 100 + 5 * damage_numbers.get_child_count())
-
-func get_damage_number() -> DamageNumber:
-	if damage_scene_pool.size() > 0:
-		return damage_scene_pool.pop_front()
-	elif GameState.num_damage_labels < 1000:
-		GameState.num_damage_labels += 1
-		var new_damage_number = damage_scene.instantiate()
-		new_damage_number.tree_exiting.connect(
-			func():
-				damage_scene_pool.append(new_damage_number))
-		return new_damage_number
-	else:
-		return null
+#func spawn_damage_number(damage_value: float):
+#	var damage_number = get_damage_number()
+#	if not damage_number:
+#		return
+#	var val = damage_value
+#	var pos = damage_number_location.position
+#	damage_numbers.add_child(damage_number, true)
+#	damage_number.set_values_and_animate(val, pos, damage_numbers.get_child_count() * 5, 100 + 5 * damage_numbers.get_child_count())
+#
+#func get_damage_number() -> DamageNumber:
+#	if damage_scene_pool.size() > 0:
+#		return damage_scene_pool.pop_front()
+#	elif GameState.num_damage_labels < 10:
+#		GameState.num_damage_labels += 1
+#		var new_damage_number = damage_scene.instantiate()
+#		new_damage_number.on_remove.connect(
+#			func():
+#				damage_scene_pool.append(new_damage_number))
+#		return new_damage_number
+#	else:
+#		return null
 
 # Called when the enemy encounters something that it hurts.
 func hit(area):

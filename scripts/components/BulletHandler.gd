@@ -8,12 +8,15 @@ var total_audio_players: int = 0
 var concurrent_bullets_fired: int = 0
 
 var bullet_scene_pool: Array[Bullet] = []
-var maximum_bullets: int = 3000
+var maximum_bullets: int = 1000
 
 func _ready():
 	GameState.fire_bullet.connect(_on_fire_bullet)
 	for i in range(maximum_bullets):
 		var new_bullet = bullet_scene.instantiate()
+		new_bullet.on_remove.connect(
+			func():
+				bullet_scene_pool.append(new_bullet))
 		bullet_scene_pool.append(new_bullet)
 		call_deferred("add_child", new_bullet)
 
@@ -22,7 +25,7 @@ func _ready():
 # OR at where the player is clicking.
 func _on_fire_bullet(origin, bullet_type: BulletResource, fire_from: FireFrom):
 	GameState.bullets_summoned += 1
-	print(bullet_scene_pool.size())
+	GameState.num_bullets += 1
 	
 	if total_audio_players < max_polyphony:
 		play_audio(bullet_type.sound, fire_from.position)
@@ -32,7 +35,6 @@ func _on_fire_bullet(origin, bullet_type: BulletResource, fire_from: FireFrom):
 		if concurrent_bullets_fired > max_polyphony / 2:
 			for child in get_children():
 				if child.is_in_group("bullet_audio"):
-					print("Hello")
 					child.stop()
 					free_audio_player(child)
 					play_audio(bullet_type.sound, fire_from.position)
@@ -47,7 +49,7 @@ func _on_fire_bullet(origin, bullet_type: BulletResource, fire_from: FireFrom):
 	# is stored in .multishot)
 	for index in range(bullet_type.multishot):
 		var bullet = get_bullet()
-		bullet.add_to_group("bullet")
+		#bullet.add_to_group("bullet")
 		
 		var start_position = fire_from.position
 		
@@ -68,17 +70,22 @@ func _on_fire_bullet(origin, bullet_type: BulletResource, fire_from: FireFrom):
 		bullet.transport(0)
 		bullet.set_data()
 		
-		set_deferred("bullet.collision.disabled", false)
+		bullet.dead = false
 		bullet.set_physics_process(true)
 		bullet.show()
-		#call_deferred("add_child",bullet)
+		bullet.collision.set_deferred("disabled", false)
 		
 func get_bullet():
-	for bullet in bullet_scene_pool:
-		if bullet.is_physics_processing() == false:
-			return bullet
-		else:
-			return bullet
+	if bullet_scene_pool.size() > 0:
+		return bullet_scene_pool.pop_front()
+	else:
+		var new_bullet = bullet_scene.instantiate()
+		new_bullet.on_remove.connect(
+			func():
+				bullet_scene_pool.append(new_bullet))
+		call_deferred("add_child", new_bullet)
+		print(new_bullet)
+		return new_bullet
 #	var new_bullet = bullet_scene.instantiate()
 #	bullet_scene_pool.append(new_bullet)
 #	add_child(new_bullet)

@@ -8,8 +8,8 @@
 [ext_resource type="Resource" uid="uid://bqyg0clrpkdim" path="res://resources/enemy/demon_skeleton.tres" id="6_0fggt"]
 [ext_resource type="Resource" uid="uid://dh8xipsw2bu5w" path="res://resources/enemy/demon_skull.tres" id="7_is6nv"]
 [ext_resource type="Resource" uid="uid://doalqpgaptgxa" path="res://resources/enemy/demon_dog.tres" id="8_dvjnc"]
-[ext_resource type="AudioStream" path="res://sounds/enemy_damage.wav" id="9_igrv7"]
-[ext_resource type="PackedScene" uid="uid://ceydtmr5hmi7k" path="res://scenes/UI/damage_number.tscn" id="9_rom4q"]
+[ext_resource type="AudioStream" uid="uid://dd6gtnmge0jsf" path="res://sounds/enemy_damage.wav" id="9_igrv7"]
+[ext_resource type="PackedScene" uid="uid://1bd6uenu01av" path="res://scenes/UI/damage_number.tscn" id="9_rom4q"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_f3g71"]
 streams_count = 1

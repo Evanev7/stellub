@@ -1,6 +1,9 @@
 extends Area2D
 class_name Bullet
 
+signal on_remove()
+
+var dead: bool
 var data: BulletResource
 var spawned_bullet: BulletResource
 
@@ -26,6 +29,7 @@ var vacuum
 # Set some initial rotations, and set different collision layer for player and
 # enemy bullets.
 func _ready():
+	dead = true
 	collision.disabled = true
 	set_physics_process(false)
 	hide()
@@ -75,12 +79,12 @@ func set_data():
 		vacuum.get_node("CollisionShape2D").shape.radius = data.vacuum_range
 	
 	if data.activation_delay > 0:
-		$CollisionShape2D.disabled = true
+		collision.set_deferred("disabled", true)
 		if data.vacuum:
 			vacuum.get_node("CollisionShape2D").disabled = true
 		await get_tree().create_timer(data.activation_delay).timeout
 		
-		$CollisionShape2D.disabled = false
+		collision.disabled = false
 		if data.vacuum:
 			vacuum.get_node("CollisionShape2D").disabled = false
 
@@ -102,7 +106,8 @@ func _physics_process(delta):
 	#If a bullet is able to hit the same enemy multiple times.
 	elif piercing_cooldown <= 0 and data.piercing_cooldown != 0:
 		for area in get_overlapping_areas():
-			successful_hit(area.owner)
+			if not dead:
+				successful_hit(area.owner)
 		piercing_cooldown = data.piercing_cooldown
 	
 	if vacuum:
@@ -154,7 +159,7 @@ func _on_self_destruct_timeout():
 
 func _on_area_entered(area):
 	var area_owner = area.owner
-	if area_owner not in _hit_targets:
+	if area_owner not in _hit_targets and not dead:
 		#First hit on a new enemy should always count.
 		successful_hit(area_owner)
 		piercing_cooldown = data.piercing_cooldown
@@ -186,6 +191,12 @@ func spawn_child() -> void:
 	GameState.fire_bullet.emit(origin_ref, spawned_bullet, fire_from)
 
 func remove() -> void:
+	if not dead:
+		GameState.num_bullets -= 1
+	on_remove.emit()
+	dead = true
+	collision.set_deferred("disabled", true)
 	set_process(false)
 	hide()
-	GameState.num_bullets -= 1
+	_traveled_distance = 0
+	_hit_targets.clear()

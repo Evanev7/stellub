@@ -1,11 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://ji1i3b27446e"]
+[gd_scene load_steps=9 format=3 uid="uid://rnajon2osv8v"]
 
 [ext_resource type="Script" path="res://scripts/UI/shop_controller.gd" id="1_gilh6"]
-[ext_resource type="PackedScene" path="res://scenes/UI/gui_rect.tscn" id="2_wac57"]
+[ext_resource type="PackedScene" uid="uid://djihbt4xh14cm" path="res://scenes/UI/gui_rect.tscn" id="2_wac57"]
 [ext_resource type="Script" path="res://scripts/UI/shop_draggable.gd" id="3_bkygl"]
-[ext_resource type="Texture2D" path="res://art/UI/Shop/Button Empty.png" id="4_xri81"]
-[ext_resource type="Texture2D" path="res://art/UI/no lmao.png" id="5_gccri"]
-[ext_resource type="PackedScene" path="res://scenes/UI/shop_total_attack.tscn" id="6_egsl6"]
+[ext_resource type="Texture2D" uid="uid://c1pc88qkwsmnl" path="res://art/UI/Shop/Button Empty.png" id="4_xri81"]
+[ext_resource type="Texture2D" uid="uid://cdseftigmx86u" path="res://art/UI/no lmao.png" id="5_gccri"]
+[ext_resource type="PackedScene" uid="uid://jgeavrbmn7f2" path="res://scenes/UI/shop_total_attack.tscn" id="6_egsl6"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_hcpdw"]
 
@@ -13,8 +13,6 @@
 
 [node name="ShopAlt" type="CanvasLayer"]
 script = ExtResource("1_gilh6")
-num_gui_attacks = null
-num_shop_nodes = null
 
 [node name="Control" type="CenterContainer" parent="."]
 anchors_preset = 15
@@ -53,11 +51,7 @@ theme_override_constants/separation = 30
 layout_mode = 2
 theme_override_constants/separation = 40
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 50
-
-[node name="Shop1" type="TextureButton" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Shop1" type="TextureButton" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 clip_contents = true
 custom_minimum_size = Vector2(200, 200)
@@ -68,7 +62,7 @@ stretch_mode = 0
 script = ExtResource("3_bkygl")
 is_shop = true
 
-[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer/Shop1"]
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/Shop1"]
 z_index = -1
 layout_mode = 1
 anchors_preset = 15
@@ -79,7 +73,7 @@ grow_vertical = 2
 texture = ExtResource("4_xri81")
 expand_mode = 1
 
-[node name="Shop2" type="TextureButton" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Shop2" type="TextureButton" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
@@ -89,7 +83,7 @@ stretch_mode = 0
 script = ExtResource("3_bkygl")
 is_shop = true
 
-[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer/Shop2"]
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/Shop2"]
 z_index = -1
 layout_mode = 1
 anchors_preset = 15
@@ -100,11 +94,11 @@ grow_vertical = 2
 texture = ExtResource("4_xri81")
 expand_mode = 1
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 50
+theme_override_constants/separation = 40
 
-[node name="Shop3" type="TextureButton" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer2"]
+[node name="Shop3" type="TextureButton" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
@@ -114,7 +108,7 @@ stretch_mode = 0
 script = ExtResource("3_bkygl")
 is_shop = true
 
-[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer2/Shop3"]
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer2/Shop3"]
 z_index = -1
 layout_mode = 1
 anchors_preset = 15
@@ -125,7 +119,7 @@ grow_vertical = 2
 texture = ExtResource("4_xri81")
 expand_mode = 1
 
-[node name="Shop4" type="TextureButton" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer2"]
+[node name="Shop4" type="TextureButton" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 clip_contents = true
 custom_minimum_size = Vector2(200, 200)
@@ -136,7 +130,7 @@ stretch_mode = 0
 script = ExtResource("3_bkygl")
 is_shop = true
 
-[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/VBoxContainer2/Shop4"]
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer2/Shop4"]
 z_index = -1
 layout_mode = 1
 anchors_preset = 15
@@ -190,14 +184,11 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
-num_gui_upgrades = null
 control_mode = 1
 
 [node name="TotalAttack2" parent="Control/MarginContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer" instance=ExtResource("6_egsl6")]
 unique_name_in_owner = true
 layout_mode = 2
-num_gui_upgrades = null
-control_mode = null
 
 [node name="TotalAttack3" parent="Control/MarginContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer" instance=ExtResource("6_egsl6")]
 unique_name_in_owner = true

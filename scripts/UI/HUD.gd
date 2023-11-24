@@ -73,6 +73,6 @@ func _on_pause_button_pressed():
 
 func show_debug():
 	$Debug.show()
-	bullet_count.text = "bullets: " + str(get_tree().get_nodes_in_group("bullet").size())
+	bullet_count.text = "bullets: " + str(GameState.num_bullets)
 	enemy_count.text = "enemies: " + str(get_tree().get_nodes_in_group("enemy").size())
 	$DisplayTimer.start()
