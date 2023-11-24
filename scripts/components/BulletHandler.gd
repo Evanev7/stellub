@@ -24,9 +24,6 @@ func _ready():
 # We iterate over every bullet to be fired, instantiate them and point them at the player
 # OR at where the player is clicking.
 func _on_fire_bullet(origin, bullet_type: BulletResource, fire_from: FireFrom):
-	GameState.bullets_summoned += 1
-	GameState.num_bullets += 1
-	
 	if total_audio_players < max_polyphony:
 		play_audio(bullet_type.sound, fire_from.position)
 	else:
@@ -76,6 +73,8 @@ func _on_fire_bullet(origin, bullet_type: BulletResource, fire_from: FireFrom):
 		bullet.collision.set_deferred("disabled", false)
 		
 func get_bullet():
+	GameState.bullets_summoned += 1
+	GameState.num_bullets += 1
 	if bullet_scene_pool.size() > 0:
 		return bullet_scene_pool.pop_front()
 	else:
