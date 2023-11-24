@@ -1,0 +1,86 @@
+[gd_scene load_steps=13 format=3 uid="uid://dpjckt12ipcw2"]
+
+[ext_resource type="Script" path="res://scripts/characters/enemy.gd" id="1_oyorq"]
+[ext_resource type="Resource" uid="uid://doalqpgaptgxa" path="res://resources/enemy/demon_dog.tres" id="2_xlyir"]
+[ext_resource type="Shader" path="res://scenes/characters/enemy.gdshader" id="3_30b5x"]
+[ext_resource type="Texture2D" uid="uid://bpx5ybtqcrlpp" path="res://art/objects/shadow.png" id="3_m06xu"]
+[ext_resource type="SpriteFrames" uid="uid://c5w2hlo8p3tfl" path="res://resources/enemy/angel_crusader_spriteframes.tres" id="6_6sjni"]
+[ext_resource type="Script" path="res://scripts/characters/AttackHandler.gd" id="6_hcyh0"]
+[ext_resource type="Shape2D" uid="uid://cttd8doc3fysn" path="res://resources/hitboxes/demon_dog_collisionbox.tres" id="7_5hsej"]
+[ext_resource type="PackedScene" uid="uid://cicwqsj3byj4u" path="res://scenes/components/spawn_collision_handler.tscn" id="7_ckcoh"]
+[ext_resource type="PackedScene" uid="uid://be4i0yo3jsk42" path="res://scenes/components/attack.tscn" id="8_70e2t"]
+[ext_resource type="Shape2D" uid="uid://uhegj44ubxiq" path="res://resources/hitboxes/demon_dog_hitbox.tres" id="8_x67tj"]
+[ext_resource type="Shape2D" uid="uid://d8q2wi5ojvhv" path="res://resources/hitboxes/demon_lord_hitbox.tres" id="9_6nrq5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fmm6i"]
+resource_local_to_scene = true
+shader = ExtResource("3_30b5x")
+shader_parameter/line_color = Color(0, 0, 0, 1)
+shader_parameter/line_thickness = 0.0
+
+[node name="Enemy" type="CharacterBody2D"]
+scale = Vector2(0.7, 0.7)
+motion_mode = 1
+script = ExtResource("1_oyorq")
+resource = ExtResource("2_xlyir")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.490196)
+position = Vector2(3.8147e-05, 98.5714)
+scale = Vector2(0.228571, 0.171429)
+texture = ExtResource("3_m06xu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_fmm6i")
+scale = Vector2(0.07, 0.07)
+sprite_frames = ExtResource("6_6sjni")
+animation = &"crusader"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = ExtResource("7_5hsej")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = ExtResource("8_x67tj")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = ExtResource("9_6nrq5")
+
+[node name="AttackHandler" type="Node2D" parent="."]
+script = ExtResource("6_hcyh0")
+attack_scene = ExtResource("8_70e2t")
+
+[node name="SpawnCollisionHandler" parent="." node_paths=PackedStringArray("spawn_collider") instance=ExtResource("7_ckcoh")]
+spawn_collider = NodePath("../Hitbox")
+on_ready_attempts = 10
+disable_after_land = false
+clear_on_bad_landing = false
+
+[node name="Damage" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -102.857
+offset_right = 190.0
+offset_bottom = 988.143
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.03, 0.03)
+theme_override_font_sizes/font_size = 500
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DamageNumbers" type="Node2D" parent="."]
+
+[connection signal="area_entered" from="Hurtbox" to="." method="hurt"]
