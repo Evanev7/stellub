@@ -33,6 +33,7 @@ func _on_open_area_exited(body):
 		sprite.play("shop_closed")
 		fire_particles.emitting = false
 		if shop_opened:
+			ShopDraggable.shop_freed()
 			queue_free()
 
 func _on_interact_area_entered(body):
