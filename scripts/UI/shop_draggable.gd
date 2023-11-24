@@ -23,6 +23,9 @@ func refresh() -> void:
 	if shop_item_taken and is_shop:
 		for node in shop_nodes:
 			node.modulate = Color(0.6,0.6,0.6,1)
+	elif is_shop:
+		for node in shop_nodes:
+			node.modulate = Color(1,1,1,1)
 	if referenced_node:
 		if referenced_node is Upgrade:
 			slot_type = SLOT_TYPE.UPGRADE
@@ -89,3 +92,6 @@ func _make_custom_tooltip(for_text):
 	var tooltip = tooltip_scene.instantiate()
 	tooltip.get_node("MarginContainer/MarginContainer/Desc").text = for_text
 	return tooltip
+
+static func shop_freed():
+	shop_item_taken = false

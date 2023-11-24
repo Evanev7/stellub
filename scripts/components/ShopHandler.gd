@@ -44,6 +44,7 @@ func start():
 	
 	if GameState.debug:
 		_on_spawn_shop(Vector2(500, 500))
+		_on_spawn_shop(Vector2(550, 500))
 
 
 func spawn_next_circle(centre):

@@ -120,6 +120,5 @@ func _on_shop_item_taken():
 
 
 func _gray_out_shop():
-	print("D:")
 	for index in range(num_shop_nodes):
 		get_node("%Shop"+str(index+1)).refresh()
