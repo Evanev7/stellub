@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://7pekoii3l4xw"]
+[gd_scene load_steps=5 format=3 uid="uid://7pekoii3l4xw"]
 
 [ext_resource type="Texture2D" uid="uid://8sqypof0cjjv" path="res://art/objects/pillar.png" id="1_a203t"]
 [ext_resource type="PackedScene" uid="uid://cicwqsj3byj4u" path="res://scenes/components/spawn_collision_handler.tscn" id="1_uvxol"]
+[ext_resource type="Shader" path="res://terrain.gdshader" id="2_3g832"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0ybvx"]
+shader = ExtResource("2_3g832")
 
 [node name="Pillar" type="StaticBody2D"]
 y_sort_enabled = true
@@ -11,6 +15,7 @@ collision_layer = 7
 spawn_collider = NodePath("../SpawnCollider")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_0ybvx")
 texture = ExtResource("1_a203t")
 offset = Vector2(-31, -200)
 

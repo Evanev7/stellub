@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://cu0upewcndo61"]
+[gd_scene load_steps=5 format=3 uid="uid://cu0upewcndo61"]
 
 [ext_resource type="PackedScene" uid="uid://cicwqsj3byj4u" path="res://scenes/components/spawn_collision_handler.tscn" id="1_olfh1"]
 [ext_resource type="Texture2D" uid="uid://cl8wobw8moqvi" path="res://art/objects/mountain_small.png" id="1_tsp51"]
+[ext_resource type="Shader" path="res://terrain.gdshader" id="2_usaar"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ydqra"]
+shader = ExtResource("2_usaar")
 
 [node name="SmallMountain" type="StaticBody2D"]
 y_sort_enabled = true
@@ -30,5 +34,6 @@ position = Vector2(-79.2, -120)
 polygon = PackedVector2Array(150, -130, 26, -117, -77, 14, -99, 131, -16, 152, 180, 147, 297, 106, 266, 1, 226, -18, 196, -47, 180, -77)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ydqra")
 texture = ExtResource("1_tsp51")
 offset = Vector2(0, -199)

@@ -1,12 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://j8g4suxt2pa2"]
+[gd_scene load_steps=7 format=3 uid="uid://j8g4suxt2pa2"]
 
 [ext_resource type="Texture2D" uid="uid://cjvdy45l44e6u" path="res://art/objects/mountain_large.png" id="1_2w6ix"]
 [ext_resource type="Script" path="res://scripts/components/object_spawn_resource.gd" id="1_18eee"]
 [ext_resource type="PackedScene" uid="uid://cicwqsj3byj4u" path="res://scenes/components/spawn_collision_handler.tscn" id="2_71e2b"]
+[ext_resource type="Shader" path="res://terrain.gdshader" id="3_di1dl"]
 
 [sub_resource type="Resource" id="Resource_ggss2"]
 script = ExtResource("1_18eee")
 poisson_coefficient = 0.3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gpuoe"]
+shader = ExtResource("3_di1dl")
 
 [node name="LargeMountain" type="StaticBody2D"]
 y_sort_enabled = true
@@ -17,6 +21,7 @@ metadata/spawn_information = SubResource("Resource_ggss2")
 spawn_collider = NodePath("../SpawnCollider")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_gpuoe")
 texture = ExtResource("1_2w6ix")
 offset = Vector2(10, -218)
 

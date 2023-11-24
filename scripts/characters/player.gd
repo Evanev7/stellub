@@ -83,6 +83,9 @@ func _physics_process(_delta):
 			_h_flipped = false
 		
 		move_and_slide()
+		var screen_coords = get_viewport_transform() * global_position
+		var normalized_screen_coords = screen_coords / get_viewport().get_visible_rect().size
+		RenderingServer.global_shader_parameter_set("player_position", normalized_screen_coords)
 		
 		# Walk animation
 		sprite.play(current_animation)

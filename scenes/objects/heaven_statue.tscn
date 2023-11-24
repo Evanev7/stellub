@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://dqwjdome8j4gv"]
+[gd_scene load_steps=5 format=3 uid="uid://dqwjdome8j4gv"]
 
 [ext_resource type="PackedScene" uid="uid://cicwqsj3byj4u" path="res://scenes/components/spawn_collision_handler.tscn" id="1_cntgw"]
+[ext_resource type="Shader" path="res://terrain.gdshader" id="2_0xuj7"]
 [ext_resource type="Texture2D" uid="uid://cbj5l5vjksmfv" path="res://art/objects/heaven_statue.png" id="2_ne0x2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3uf4o"]
+shader = ExtResource("2_0xuj7")
 
 [node name="HeavenStatue" type="StaticBody2D"]
 
@@ -9,6 +13,7 @@
 spawn_collider = NodePath("../SpawnCollider")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_3uf4o")
 texture = ExtResource("2_ne0x2")
 offset = Vector2(-31, -200)
 

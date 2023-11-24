@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://dign34eo82ym4"]
+[gd_scene load_steps=5 format=3 uid="uid://dign34eo82ym4"]
 
 [ext_resource type="PackedScene" uid="uid://cicwqsj3byj4u" path="res://scenes/components/spawn_collision_handler.tscn" id="1_qhtl6"]
 [ext_resource type="Texture2D" uid="uid://bvo4oyd6230kr" path="res://art/objects/heaven_cross.png" id="2_1pssm"]
+[ext_resource type="Shader" path="res://terrain.gdshader" id="2_gwk3p"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7kgq8"]
+shader = ExtResource("2_gwk3p")
 
 [node name="HeavenCross" type="StaticBody2D"]
 
@@ -9,6 +13,7 @@
 spawn_collider = NodePath("../SpawnCollider")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_7kgq8")
 position = Vector2(0, -32.545)
 texture = ExtResource("2_1pssm")
 offset = Vector2(-31, -191.455)
