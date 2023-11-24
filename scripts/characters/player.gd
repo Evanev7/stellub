@@ -172,6 +172,10 @@ func activate_pickup(area):
 func get_pickup(area):
 	## pickup_type constants: enum {xp_pickup, hp_pickup, vacuum_pickup}
 	if area.is_in_group("pickup"):
+		if area.collected:
+			return
+		area.collected = true
+		
 		match area.pickup_type:
 			Pickup.xp_pickup:
 				credit_player.emit(area.value)

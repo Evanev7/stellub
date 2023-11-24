@@ -25,7 +25,6 @@ func add_target(node: Node2D):
 
 
 func delete_target(node: Node2D):
-	var to_delete: int
 	for arrow in arrows:
 		if arrow.node == node:
 			arrows.erase(arrow)

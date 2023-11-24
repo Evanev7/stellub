@@ -117,7 +117,7 @@ func pause_game():
 	get_tree().paused = true
 
 func unpause_game():
-	Input.set_custom_mouse_cursor(shooty_hand, Input.CURSOR_ARROW, Vector2i(16,16))
+	Input.set_custom_mouse_cursor(shooty_hand, Input.CURSOR_ARROW, Vector2(16.5,16.5))
 	get_tree().paused = false
 
 

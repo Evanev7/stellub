@@ -38,7 +38,7 @@ var fire_on_hit: bool = false
 @onready var damage_number_location = $Damage
 @onready var damage_numbers = $DamageNumbers
 
-var damage_scene_pool: Array[DamageNumber] = []
+static var damage_scene_pool: Array[DamageNumber] = []
 var movement_enabled: bool = true
 var enemy_limit = 125
 
@@ -156,6 +156,8 @@ func hurt(area):
 		GameState.num_enemies -= 1
 		GameState.enemies_killed += 1
 		enemy_killed.emit(self)
+		for child in damage_numbers.get_children():
+			damage_numbers.remove_child(child)
 		queue_free()
 	
 	

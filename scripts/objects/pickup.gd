@@ -17,6 +17,7 @@ var pickup_type: int
 var value: int = 1
 
 var activated: bool = false
+var collected: bool = false
 var lifetime: float = 0
 var velocity: float = 0
 
@@ -58,5 +59,5 @@ func activate():
 	# Add functionality to add value to another nearby pickup
 
 func _notification(what):
-	if what == NOTIFICATION_PREDELETE:
-		GameState.num_bullets -= 1
+	if what == NOTIFICATION_PREDELETE and pickup_type == xp_pickup:
+		GameState.num_xp_pickups -= 1
