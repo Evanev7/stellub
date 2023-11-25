@@ -128,9 +128,6 @@ func _on_spawn_shop(position):
 	ysorter.add_child(shop)
 	shop.connect('shop_entered', _on_shop_entered)
 	shop.add_to_group("shop")
-	shop_node.connect('remove_shop', _remove_shop)
-	
-	
 	
 	var chosen_upgrades = []
 	var is_weapon_present := false
@@ -152,9 +149,6 @@ func _on_spawn_shop(position):
 	
 	shop.chosen_upgrades = chosen_upgrades
 	shop.is_weapon_present = is_weapon_present
-
-func _remove_shop(shop):
-	shop.queue_free()
 
 func _on_activate_teleporter():
 	teleporter.set_process(true)

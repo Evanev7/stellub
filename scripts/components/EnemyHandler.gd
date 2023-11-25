@@ -10,6 +10,8 @@ signal spawn_shop_on_enemy(pos)
 @onready var death_sound: AudioStreamPlayer2D = $DeathSound
 @onready var damage_number_spawner = $DamageNumberSpawner
 
+@export var spawn_batch_size = 50
+var spawn_queue: Array = []
 
 @export var safe_range: float = 800
 @export var default_spawn_time: float = 4.08
@@ -32,6 +34,12 @@ var phase_limit = 1
 func _ready():
 	GameState.game_over.connect(stop_spawning)
 
+func _physics_process(delta):
+	if spawn_queue:
+		for i in range(min(spawn_queue.size(), spawn_batch_size)):
+			var data = spawn_queue.pop_back()
+			really_spawn_enemy(data[0], data[1], data[2], data[3], data[4])
+
 func _on_phase_up_timer_timeout():
 	if damage_scene_pool.size() > 1000:
 		damage_scene_pool.resize(1000)
@@ -45,14 +53,17 @@ func _on_spawn_timer_timeout():
 	spawn_enemy(resourceID)
 
 
-func spawn_enemy(resourceID, center = GameState.player.position, spawn_range = safe_range, unique_multiplier: float = 1, overall_multi = overall_multiplier):
+func spawn_enemy(resourceID, centre = GameState.player.position, spawn_range = safe_range, unique_multiplier: float = 1, overall_multi = overall_multiplier):
+	spawn_queue.push_front([resourceID, centre, spawn_range, unique_multiplier, overall_multi])
+
+func really_spawn_enemy(resourceID, centre = GameState.player.position, spawn_range = safe_range, unique_multiplier: float = 1, overall_multi = overall_multiplier):
 	var enemy = get_enemy()
 	GameState.num_enemies += 1
 	enemy.resource = enemy_resource_list[resourceID]
 	enemy.resource.UNIQUE_MULTIPLIER = unique_multiplier
 	enemy.resource.OVERALL_MULTIPLIER = overall_multi
 	var relative_spawn_position = Vector2(spawn_range,0).rotated(randf_range(0, 2*PI))
-	enemy.position = center + relative_spawn_position
+	enemy.position = centre + relative_spawn_position
 	
 	
 	enemy.set_data()

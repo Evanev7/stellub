@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dfrum4te4lpmr"]
+[gd_scene load_steps=13 format=3 uid="uid://dfrum4te4lpmr"]
 
 [ext_resource type="Script" path="res://scripts/objects/teleporter.gd" id="1_jufu7"]
 [ext_resource type="Texture2D" uid="uid://3l52y5uhoccl" path="res://art/objects/teleporter_active_1.png" id="2_4qqtc"]
@@ -46,15 +46,18 @@ radius = 141.014
 [sub_resource type="CircleShape2D" id="CircleShape2D_68ibo"]
 radius = 296.138
 
-[node name="teleporter" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c32m1"]
+size = Vector2(63, 43)
+
+[node name="teleporter" type="StaticBody2D"]
 y_sort_enabled = true
 script = ExtResource("1_jufu7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(31, -214)
 sprite_frames = SubResource("SpriteFrames_t7d8a")
 animation = &"active"
 autoplay = "inactive"
+offset = Vector2(31, -214)
 
 [node name="teleporter" type="Area2D" parent="."]
 position = Vector2(0, -55)
@@ -75,6 +78,14 @@ shape = SubResource("CircleShape2D_68ibo")
 spawn_collider = NodePath("../SpawnCollider")
 on_ready_attempts = 1
 clear_on_bad_landing = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-259.5, -18.5)
+shape = SubResource("RectangleShape2D_c32m1")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(281, -18.5)
+shape = SubResource("RectangleShape2D_c32m1")
 
 [connection signal="body_entered" from="teleporter" to="." method="_on_teleporter_body_entered"]
 [connection signal="body_exited" from="teleporter" to="." method="_on_teleporter_body_exited"]

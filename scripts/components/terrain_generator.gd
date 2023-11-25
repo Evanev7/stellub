@@ -27,7 +27,10 @@ func _process(_delta):
 	##Debug ###############################
 	
 	if GameState.debug and Input.is_key_pressed(KEY_M): ## Increase score by 10
-		populate(Vector2i(0,0))
+		var player_atlas_coords: Vector2i = Vector2i(
+				floori(GameState.player.position.x/tile_size.x),
+				floori(GameState.player.position.y/tile_size.y))
+		populate(player_atlas_coords)
 	
 	#######################################
 

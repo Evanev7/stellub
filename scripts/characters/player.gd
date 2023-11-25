@@ -19,7 +19,7 @@ signal credit_player(value)
 @onready var default_pickup_range: Vector2 = $PickupRange.scale
 @onready var pickup_range: Area2D = $PickupRange
 @onready var strength: float = 5
-@onready var sprite: AnimatedSprite2D = $SubViewport/AnimatedSprite2D
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var i_frame_timer: Timer = $IFrames
 @onready var blood_particles: GPUParticles2D = $Blood
 @onready var pickup_sound: AudioStreamPlayer = $Pickup
@@ -28,7 +28,6 @@ var control_mode: int = 0
 var level_threshold = [10, 20, 30, 50]
 var current_level: int
 
-var total_upgrades: int = 0
 var current_evolution: int
 
 var current_wave: int
@@ -41,13 +40,11 @@ var walking: bool = false
 
 var invuln: bool = false
 var dead: bool = false
-var _h_flipped: bool = false
 var current_animation: String
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	sprite.scale = Vector2(0.9, 0.9)
 	GameState.player = self
 	hide()
 	attack_handler.stop()
@@ -75,12 +72,10 @@ func _physics_process(_delta):
 			velocity = velocity.normalized() * speed
 		
 		# Flip the player sprite depending on the direction we're facing
-		if velocity.x < 0 and not _h_flipped:
-			scale = Vector2(-scale.x,scale.y)
-			_h_flipped = true
-		elif velocity.x > 0 and _h_flipped:
-			scale = Vector2(-scale.x,scale.y)
-			_h_flipped = false
+		if velocity.x < 0 and not sprite.flip_h:
+			sprite.flip_h = true
+		elif velocity.x > 0 and sprite.flip_h:
+			sprite.flip_h = false
 		
 		move_and_slide()
 		var screen_coords = get_viewport_transform() * global_position
@@ -132,7 +127,6 @@ func set_default_stats():
 	for attack in attack_handler.get_children():
 		attack.queue_free()
 	attack_handler.add_attack_from_resource(STARTING_WEAPON)
-	total_upgrades = 0
 
 func add_attack_from_resource(bullet: BulletResource):
 	var modes = Attack.CONTROL_MODE
@@ -240,9 +234,12 @@ func get_all_attacks():
 		attacks.append(attack)
 	return attacks
 
-func evolve():
-	current_evolution += 1
-	current_animation = "level " + str(min(current_evolution, 6))
+func evolve(val = -1):
+	if val == -1:
+		current_evolution += 1
+	else:
+		current_evolution = max(val, current_evolution)
+	current_animation = "level " + str(clamp(current_evolution, 0, 6))
 	
 	var scaling_factors = {
 		1: 1.5,
@@ -251,10 +248,13 @@ func evolve():
 		6: 1.1
 	}
 	
-	if current_evolution in scaling_factors.keys():
-		scale *= scaling_factors[current_evolution]
-	else:
-		scale *= 1.08
+	var total_scale := default_scale
+	for i in range(current_evolution):
+		if current_evolution in scaling_factors.keys():
+			total_scale *= scaling_factors[current_evolution]
+		else:
+			total_scale *= 1.08
+	scale = total_scale
 
 
 func _on_i_frames_timeout():

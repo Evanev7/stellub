@@ -3,19 +3,24 @@ extends MarginContainer
 @export var num_gui_upgrades = 8
 @export var control_mode: Attack.CONTROL_MODE = Attack.CONTROL_MODE.PASSIVE
 
-@export var unpressed_texture: CompressedTexture2D
-@export var pressed_texture: CompressedTexture2D
+@export var lmb_texture: CompressedTexture2D = preload("res://art/UI/Mouse_Left_Key_Dark.png")
+@export var rmb_texture: CompressedTexture2D = preload("res://art/UI/Mouse_Right_Key_Dark.png")
+@export var nmb_texture: CompressedTexture2D = preload("res://art/UI/Mouse_Simple_Key_Dark.png")
 
 enum {SAVE, LOAD}
+var num_upgrades: int = 0
 
 func _ready():
+	update_control_texture()
+	
+func update_control_texture():
 	var gui_control_node: TextureButton = get_node("%ControlMode")
-	if control_mode == Attack.CONTROL_MODE.PASSIVE:
-		gui_control_node.texture_normal = unpressed_texture
-		gui_control_node.texture_pressed = pressed_texture
+	if control_mode == Attack.CONTROL_MODE.PRIMARY:
+		gui_control_node.texture_normal = lmb_texture
+	elif control_mode == Attack.CONTROL_MODE.SECONDARY:
+		gui_control_node.texture_normal = rmb_texture
 	else:
-		gui_control_node.texture_normal = pressed_texture
-		gui_control_node.texture_pressed = unpressed_texture
+		gui_control_node.texture_normal = nmb_texture
 	
 
 func get_upgrade_nodes(attack_node) -> Array[Upgrade]:
@@ -59,6 +64,8 @@ func loadsave(mode: int, attack_node: Attack) -> Attack:
 		if attack_node:
 			player_upgrades = get_upgrade_nodes(attack_node)
 	
+	num_upgrades = player_upgrades.size()
+	
 	gui_attack_node.refresh()
 	
 	if mode == SAVE and attack_node:
@@ -78,9 +85,8 @@ func loadsave(mode: int, attack_node: Attack) -> Attack:
 	if mode == SAVE:
 		if $%Attack.referenced_node != null:
 			attack_node = $%Attack.referenced_node
-		if attack_node:
-			GameState.player.total_upgrades += player_upgrades.size()
 			reattach_nodes(attack_node, player_upgrades)
+			attack_node.control_mode = control_mode
 			attack_node.refresh_bullet_resource()
 	
 	return attack_node
@@ -92,14 +98,17 @@ func refresh_all():
 		get_node("%Upgrade"+str(i+1)).refresh()
 
 
-func _on_control_mode_pressed():
-	var gui_control_node: TextureButton = get_node("%ControlMode")
-	if control_mode == Attack.CONTROL_MODE.PRIMARY:
-		control_mode = Attack.CONTROL_MODE.PASSIVE
-		gui_control_node.texture_normal = unpressed_texture
-		gui_control_node.texture_pressed = pressed_texture
-	else:
-		control_mode = Attack.CONTROL_MODE.PRIMARY
-		gui_control_node.texture_normal = pressed_texture
-		gui_control_node.texture_pressed = unpressed_texture
+func _on_control_mode_pressed(event: InputEvent):
+	if event.is_action_pressed("primary_fire"):
+		if control_mode != Attack.CONTROL_MODE.PRIMARY:
+			control_mode = Attack.CONTROL_MODE.PRIMARY
+		else:
+			control_mode = Attack.CONTROL_MODE.PASSIVE
+	elif event.is_action_pressed("secondary_fire"):
+		if control_mode != Attack.CONTROL_MODE.SECONDARY:
+			control_mode = Attack.CONTROL_MODE.SECONDARY
+		else:
+			control_mode = Attack.CONTROL_MODE.PASSIVE
+	
+	update_control_texture()
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://cnepphpba8e8u"]
+[gd_scene load_steps=45 format=3 uid="uid://cnepphpba8e8u"]
 
 [ext_resource type="Script" path="res://scripts/characters/player.gd" id="1_m0lvq"]
 [ext_resource type="Texture2D" uid="uid://kwiitmwbn82r" path="res://art/player/level 0/player_0_1.png" id="3_ik71x"]
@@ -181,9 +181,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_8fdeg"]
-viewport_path = NodePath("SubViewport")
-
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_51dqt"]
 streams_count = 1
 random_volume_offset_db = 1.0
@@ -255,20 +252,9 @@ position = Vector2(0, 460)
 scale = Vector2(1.51111, 1.6)
 texture = ExtResource("35_ikv2g")
 
-[node name="SubViewport" type="SubViewport" parent="."]
-disable_3d = true
-transparent_bg = true
-mesh_lod_threshold = 0.0
-size = Vector2i(3500, 3500)
-render_target_update_mode = 4
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SubViewport"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_whc3w")
-animation = &"level 0"
-offset = Vector2(1950, 1950)
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("ViewportTexture_8fdeg")
+animation = &"level 1"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

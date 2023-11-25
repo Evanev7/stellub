@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/components/magic_circle.gd" id="1_114ni"]
 [ext_resource type="PackedScene" uid="uid://cicwqsj3byj4u" path="res://scenes/components/spawn_collision_handler.tscn" id="3_4838f"]
-[ext_resource type="PackedScene" uid="uid://ccn1gqdiqd0gk" path="res://scenes/objects/pillar_broken.tscn" id="3_ae15p"]
+[ext_resource type="PackedScene" path="res://scenes/objects/pillar_broken.tscn" id="3_ae15p"]
 [ext_resource type="PackedScene" uid="uid://7pekoii3l4xw" path="res://scenes/objects/pillar.tscn" id="4_ciroy"]
 [ext_resource type="Shader" path="res://scenes/characters/enemy.gdshader" id="5_tumd1"]
 [ext_resource type="Texture2D" uid="uid://c1nhkla47hafg" path="res://art/objects/magic_circle_active.png" id="5_w6cpg"]
@@ -14,7 +14,7 @@
 radius = 131.015
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yuvbf"]
-radius = 1278.18
+radius = 857.08
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ykodi"]
 resource_local_to_scene = true
@@ -41,21 +41,25 @@ script = ExtResource("1_114ni")
 y_sort_enabled = true
 
 [node name="Pillar" parent="Pillars" instance=ExtResource("4_ciroy")]
+process_mode = 3
 y_sort_enabled = false
 position = Vector2(-700, 0)
 scale = Vector2(0.685, 0.685)
 
 [node name="Pillar2" parent="Pillars" instance=ExtResource("4_ciroy")]
+process_mode = 3
 y_sort_enabled = false
 position = Vector2(700, 0)
 scale = Vector2(0.685, 0.685)
 
 [node name="Pillar3" parent="Pillars" instance=ExtResource("4_ciroy")]
+process_mode = 3
 y_sort_enabled = false
 position = Vector2(0, -600)
 scale = Vector2(0.685, 0.685)
 
 [node name="pillar_broken" parent="Pillars" instance=ExtResource("3_ae15p")]
+process_mode = 3
 position = Vector2(0, 600)
 scale = Vector2(0.8, 0.8)
 
@@ -75,7 +79,7 @@ texture = ExtResource("5_w6cpg")
 [node name="Cleared" type="Sprite2D" parent="."]
 visible = false
 z_index = -1
-position = Vector2(-1.99999, -107)
+position = Vector2(-28, -57)
 scale = Vector2(0.532374, 0.532374)
 texture = ExtResource("6_2klxm")
 
@@ -112,6 +116,8 @@ remove_obstruction = true
 clear_on_bad_landing = false
 
 [node name="SpawnCollision" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnCollision"]
 shape = SubResource("CircleShape2D_yuvbf")

@@ -13,6 +13,8 @@ signal safe_landing_not_found
 @export var clear_on_bad_landing: bool = true
 
 func _ready():
+	if owner.process_mode == PROCESS_MODE_ALWAYS:
+		return
 	if not spawn_collider:
 		spawn_collider = Area2D.new()
 		var circle = CircleShape2D.new()
@@ -51,12 +53,10 @@ func find_safe_landing(variance:= on_ready_variance, attempts:= on_ready_attempt
 	
 	safe_landing_not_found.emit()
 	if disable_after_land: disable_spawn_collider()
-	if clear_on_bad_landing:
-		owner.queue_free()
-	else:
-		owner.show()
+	if clear_on_bad_landing: owner.queue_free()
+	owner.show()
 
-func remove_obstructions(variance:= on_ready_variance, attempts:= on_ready_attempts):
+func remove_obstructions(attempts:= on_ready_attempts):
 	for i in range(attempts):
 		await get_tree().physics_frame
 		await get_tree().physics_frame

@@ -1,8 +1,5 @@
 extends CanvasLayer
 
-
-signal remove_shop
-
 enum {SAVE, LOAD}
 
 @export var num_gui_attacks = 3
@@ -55,8 +52,12 @@ func loadsave(mode: int):
 	
 	if mode == SAVE:
 		reattach_nodes(player_attack_handler, new_attacks)
-		if int(GameState.player.total_upgrades / 2) + new_attacks.size() - 1 > GameState.player.current_evolution:
-			GameState.player.evolve() 
+		var total_upgrades: int = 0
+		
+		for gui_attack in gui_total_attacks:
+			total_upgrades += gui_attack.num_upgrades
+		
+		GameState.player.evolve(total_upgrades / 2 + new_attacks.size() - 1) 
 	for total in gui_total_attacks: 
 		total.refresh_all()
 

@@ -23,6 +23,7 @@ var damage: float
 
 var _hit_targets: Array
 @export var vacuum_scene: PackedScene
+var has_vacuum = false
 var vacuum
 
 # Called when the node enters the scene tree for the first time.
@@ -44,7 +45,8 @@ func set_data():
 	piercing = data.piercing
 	damage = data.damage
 	var origin: Node2D = origin_ref.get_ref()
-	if data.vacuum and get_child_count() == 0:
+	if data.vacuum and has_vacuum == false:
+		has_vacuum = true
 		vacuum = vacuum_scene.instantiate()
 		add_child(vacuum)
 		if origin == GameState.player:

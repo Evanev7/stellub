@@ -10,10 +10,20 @@ class_name PickupHandler
 var reward_pool
 var xp_pools
 
+@export var spawn_batch_size = 50
+var spawn_queue: Array = []
+
 func _ready():
 	GameState.register_enemy.connect(attach_enemy)
 	reward_pool = Pool.new()
 	reward_pool.populate([[Pickup.hp_pickup,1], [Pickup.vacuum_pickup,1], [null,8]])
+
+
+func _physics_process(delta):
+	if spawn_queue:
+		for i in range(min(spawn_queue.size(), spawn_batch_size)):
+			var data = spawn_queue.pop_back()
+			really_spawn_pickup(data[0], data[1], data[2])
 
 func attach_enemy(enemy):
 	enemy.enemy_killed.connect(_on_enemy_killed)
@@ -31,6 +41,9 @@ func _on_enemy_killed(enemy):
 		spawn_pickup(enemy.position, sample)
 
 func spawn_pickup(pos, type, value = 1):
+	spawn_queue.append([pos,type,value])
+
+func really_spawn_pickup(pos, type, value = 1):
 	var pickup = pickup_scene.instantiate()
 	pickup.position = pos
 	pickup.pickup_type = type

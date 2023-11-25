@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://buh5fnkhb6vph"]
+[gd_scene load_steps=8 format=3 uid="uid://d2qk4vahd2ews"]
 
 [ext_resource type="PackedScene" uid="uid://cicwqsj3byj4u" path="res://scenes/components/spawn_collision_handler.tscn" id="1_mea4a"]
 [ext_resource type="Shader" path="res://terrain.gdshader" id="2_rd5fa"]
@@ -56,7 +56,6 @@ shape = SubResource("RectangleShape2D_chqrj")
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="SpawnCollider"]
 position = Vector2(-76.1613, 108.13)
 rotation = 0.0698709
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_1ntq8")
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="SpawnCollider"]
@@ -100,7 +99,6 @@ shape = SubResource("RectangleShape2D_chqrj")
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-76.1613, 108.13)
 rotation = 0.0698709
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_1ntq8")
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="Area2D"]
@@ -140,7 +138,6 @@ shape = SubResource("RectangleShape2D_chqrj")
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="."]
 position = Vector2(-76.3613, 75.5852)
 rotation = 0.0698709
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_1ntq8")
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="."]

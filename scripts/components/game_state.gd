@@ -1,6 +1,7 @@
 extends Node
 
 signal fire_bullet(origin, bullet: BulletResource, init: FireFrom)
+signal spawn_enemy
 signal game_over
 signal register_enemy
 
@@ -83,7 +84,10 @@ func _unhandled_input(_event):
 				if get_tree().paused == false:
 					pause_menu._on_hud_open_pause_menu()
 				else:
-					pause_menu._on_continue_pressed()
+					if pause_menu.options_menu.visible:
+						pause_menu.options_menu.go_back.emit()
+					else:
+						pause_menu._on_continue_pressed()
 			else:
 				shop_HUD.close_shop()
 	
