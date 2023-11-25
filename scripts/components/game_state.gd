@@ -22,6 +22,7 @@ var area_scenes = {
 	CURRENT_AREA.HEAVEN: preload("res://scenes/levels/heaven_area.tscn"),
 	CURRENT_AREA.MAIN_MENU: preload("res://scenes/levels/menu.tscn"),
 	CURRENT_AREA.FIRST_TIME: preload("res://scenes/levels/first_time_player.tscn"),
+	CURRENT_AREA.BOSS: preload("res://scenes/levels/boss_area.tscn"),
 }
 
 
@@ -47,7 +48,7 @@ func _ready():
 	randomize()
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	game_over.connect(queue_free_groups)
-	#current_area_node = get_parent().get_node("menu")
+	current_area_node = get_parent().get_node("menu")
 	
 
 func load_area(area: CURRENT_AREA):

@@ -24,7 +24,8 @@ stream_0/weight = 1.0
 [resource]
 script = ExtResource("1_dhlpd")
 name = "Particle Mace"
-description = "Default Upgrade Description"
+description = "Quickly fires small bullets that 
+loosely orbit around you."
 animation = SubResource("SpriteFrames_l1ll2")
 sound = SubResource("AudioStreamRandomizer_d40yl")
 rarity = 1.0

@@ -33,6 +33,7 @@ func _ready():
 	if initial_bullet:
 		icon = initial_bullet.icon
 	_timer = 0.01
+	target_range = bullet.deactivation_range
 	attack_handler = get_parent()
 
 

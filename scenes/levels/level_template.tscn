@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://dilk21k2nncq2"]
+[gd_scene load_steps=8 format=3 uid="uid://dilk21k2nncq2"]
 
+[ext_resource type="PackedScene" uid="uid://cwtvi2ph44p4d" path="res://scenes/UI/cursor_particles.tscn" id="1_1pco8"]
 [ext_resource type="PackedScene" uid="uid://rnajon2osv8v" path="res://scenes/UI/shop_alt.tscn" id="2_5ra33"]
 [ext_resource type="PackedScene" uid="uid://c8xiwx0q2sf3m" path="res://scenes/UI/pause_menu.tscn" id="3_l42bc"]
 [ext_resource type="PackedScene" uid="uid://yaht8i4bkv2u" path="res://scenes/UI/HUD.tscn" id="3_uc26v"]
@@ -14,6 +15,12 @@ y_sort_enabled = true
 
 [node name="PlayerStart" type="Marker2D" parent="YSort"]
 position = Vector2(578, 324)
+
+[node name="Enemies" type="Node2D" parent="YSort"]
+y_sort_enabled = true
+
+[node name="cursor_particles" parent="." instance=ExtResource("1_1pco8")]
+position = Vector2(878.947, 275.777)
 
 [node name="HUD" parent="." instance=ExtResource("3_uc26v")]
 

@@ -19,7 +19,7 @@ func _ready():
 	reward_pool.populate([[Pickup.hp_pickup,1], [Pickup.vacuum_pickup,1], [null,8]])
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if spawn_queue:
 		for i in range(min(spawn_queue.size(), spawn_batch_size)):
 			var data = spawn_queue.pop_back()

@@ -1,8 +1,8 @@
-[gd_scene load_steps=45 format=3 uid="uid://cnepphpba8e8u"]
+[gd_scene load_steps=44 format=3 uid="uid://cnepphpba8e8u"]
 
 [ext_resource type="Script" path="res://scripts/characters/player.gd" id="1_m0lvq"]
+[ext_resource type="Resource" uid="uid://qdvp5rtjvnll" path="res://upgrades/stat_upgrade.tres" id="3_b8qp8"]
 [ext_resource type="Texture2D" uid="uid://kwiitmwbn82r" path="res://art/player/level 0/player_0_1.png" id="3_ik71x"]
-[ext_resource type="Script" path="res://upgrades/scripts/stat_upgrade.gd" id="3_se1dn"]
 [ext_resource type="Texture2D" uid="uid://6fmtfmpb5kvf" path="res://art/player/level 0/player_0_2.png" id="4_p28ir"]
 [ext_resource type="Texture2D" uid="uid://q4hnsccll683" path="res://art/player/level 0/player_0_3.png" id="5_3s83j"]
 [ext_resource type="Texture2D" uid="uid://bjg8vyygbxi04" path="res://art/player/level 0/player_0_4.png" id="6_g2igm"]
@@ -36,19 +36,6 @@
 [ext_resource type="Texture2D" uid="uid://bpx5ybtqcrlpp" path="res://art/objects/shadow.png" id="35_ikv2g"]
 [ext_resource type="AudioStream" uid="uid://umpxr80y1hgh" path="res://sounds/pickup.wav" id="36_ys6vg"]
 [ext_resource type="Texture2D" uid="uid://bhs2v6ujb61d6" path="res://art/bullets/temp_1.png" id="38_uyywf"]
-
-[sub_resource type="PackedScene" id="PackedScene_ybrl7"]
-_bundled = {
-"conn_count": 0,
-"conns": PackedInt32Array(),
-"editable_instances": [],
-"names": PackedStringArray("Stats", "Node", "script"),
-"node_count": 1,
-"node_paths": [],
-"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 1, 2, 0, 0),
-"variants": [ExtResource("3_se1dn")],
-"version": 3
-}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_odef0"]
 size = Vector2(1066.67, 1066.67)
@@ -221,7 +208,7 @@ motion_mode = 1
 platform_on_leave = 2
 script = ExtResource("1_m0lvq")
 STARTING_WEAPON = ExtResource("35_8awst")
-stat_upgrade = SubResource("PackedScene_ybrl7")
+stat_upgrade = ExtResource("3_b8qp8")
 attack_handler = NodePath("AttackHandler")
 
 [node name="Hurtbox" type="Area2D" parent="."]
@@ -278,7 +265,7 @@ amount = 30
 process_material = SubResource("ParticleProcessMaterial_fjti8")
 texture = ExtResource("38_uyywf")
 
-[connection signal="area_entered" from="Hurtbox" to="." method="hurt"]
 [connection signal="area_entered" from="Hurtbox" to="." method="get_pickup"]
+[connection signal="area_entered" from="Hurtbox" to="." method="hurt"]
 [connection signal="area_entered" from="PickupRange" to="." method="activate_pickup"]
 [connection signal="timeout" from="IFrames" to="." method="_on_i_frames_timeout"]

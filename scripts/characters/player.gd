@@ -12,7 +12,7 @@ signal credit_player(value)
 @export var STARTING_HP_MAX: float = 100
 @export var STARTING_WEAPON: BulletResource
 
-@export var stat_upgrade: PackedScene
+@export var stat_upgrade: UpgradeResource
 @export var attack_handler: Node2D
 
 @onready var default_scale: Vector2 = self.scale

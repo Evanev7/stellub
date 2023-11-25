@@ -33,8 +33,16 @@ var phase_limit = 1
 
 func _ready():
 	GameState.game_over.connect(stop_spawning)
+	
+	for i in range(maximum_damage_numbers):
+		var new_damage_number = damage_scene.instantiate()
+		new_damage_number.on_remove.connect(
+			func():
+				damage_scene_pool.append(new_damage_number))
+		damage_scene_pool.append(new_damage_number)
+		call_deferred("add_child", new_damage_number)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if spawn_queue:
 		for i in range(min(spawn_queue.size(), spawn_batch_size)):
 			var data = spawn_queue.pop_back()
@@ -129,13 +137,6 @@ func start_spawning():
 	damage_scene_pool = []
 	enemy_scene_pool = []
 	
-	for i in range(maximum_damage_numbers):
-		var new_damage_number = damage_scene.instantiate()
-		new_damage_number.on_remove.connect(
-			func():
-				damage_scene_pool.append(new_damage_number))
-		damage_scene_pool.append(new_damage_number)
-		call_deferred("add_child", new_damage_number)
 		
 	for i in range(maximum_enemies):
 		var new_enemy = enemy_scene.instantiate()

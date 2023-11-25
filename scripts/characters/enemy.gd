@@ -70,6 +70,7 @@ func set_data():
 	
 	
 	load_resource(resource)
+	attack_handler.start()
 	
 	# Select mob texture variants (This code is functional just unnecessary since no enemies have variants)
 	var variants = sprite.sprite_frames.get_animation_names()
@@ -183,6 +184,7 @@ func hurt(area):
 func remove():
 	dead = true
 	on_remove.emit()
+	attack_handler.stop()
 	collider.set_deferred("disabled", true)
 	hitbox_collisionshape.set_deferred("disabled", true)
 	hurtbox_collisionshape.set_deferred("disabled", true)

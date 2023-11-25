@@ -1,8 +1,6 @@
 extends Node
 
 
-#var boss_area_scene := preload("res://scenes/levels/boss_area.tscn").instantiate()
-
 @export var enemy_resource_list: Array[EnemyResource]
 
 @export var enemy_handler: EnemyHandler
@@ -19,7 +17,7 @@ func _ready():
 	player.connect("send_loadout", $LogicComponents/BossHandler._on_player_send_loadout)
 	player.connect("credit_player", $LogicComponents/PickupHandler._on_pickup_credit_player)
 	start_game()
-	$YSort/teleporter.position = Vector2(GameState.player.position.x + 2, GameState.player.position.y - 10000)
+	$YSort/teleporter.position = Vector2(GameState.player.position.x + 2, GameState.player.position.y - 10)
 	$ObjectiveMarker.add_target($YSort/teleporter)
 	$LogicComponents/TerrainGenerator.generate()
 	$LogicComponents/TerrainGenerator.cliff_generate()

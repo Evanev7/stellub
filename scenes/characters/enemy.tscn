@@ -20,15 +20,15 @@ motion_mode = 1
 script = ExtResource("1_oyorq")
 damage_scene = ExtResource("2_orbdq")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-material = SubResource("ShaderMaterial_fmm6i")
-scale = Vector2(0.07, 0.07)
-
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.490196)
 position = Vector2(3.8147e-05, 90.0001)
 scale = Vector2(0.228571, 0.171429)
 texture = ExtResource("3_m06xu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_fmm6i")
+scale = Vector2(0.07, 0.07)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 14.2857)
