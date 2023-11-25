@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dfrum4te4lpmr"]
+[gd_scene load_steps=15 format=3 uid="uid://dfrum4te4lpmr"]
 
 [ext_resource type="Script" path="res://scripts/objects/teleporter.gd" id="1_jufu7"]
 [ext_resource type="Texture2D" uid="uid://3l52y5uhoccl" path="res://art/objects/teleporter_active_1.png" id="2_4qqtc"]
@@ -8,23 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://cwjhnbmwe7ux1" path="res://art/objects/teleporter_inactive_1.png" id="5_bsyxo"]
 [ext_resource type="Texture2D" uid="uid://cu1rr2flwpi41" path="res://art/objects/teleporter_inactive_2.png" id="6_cg3y7"]
 [ext_resource type="Texture2D" uid="uid://b3ri6od18exhb" path="res://art/objects/teleporter_inactive_3.png" id="7_vprkv"]
+[ext_resource type="Texture2D" uid="uid://been84ue6lj66" path="res://art/UI/Pause_Menu/pause_menu_background.png" id="8_tcwf1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_t7d8a"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_4qqtc")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_23s6l")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_edm0n")
-}],
-"loop": true,
-"name": &"active",
-"speed": 5.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("5_bsyxo")
@@ -37,6 +24,23 @@ animations = [{
 }],
 "loop": true,
 "name": &"inactive",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_me7pr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_4qqtc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_23s6l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_edm0n")
+}],
+"loop": true,
+"name": &"default",
 "speed": 5.0
 }]
 
@@ -53,13 +57,28 @@ size = Vector2(63, 43)
 y_sort_enabled = true
 script = ExtResource("1_jufu7")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Bones" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_t7d8a")
-animation = &"active"
+animation = &"inactive"
 autoplay = "inactive"
 offset = Vector2(31, -214)
 
+[node name="Active" type="AnimatedSprite2D" parent="."]
+visible = false
+light_mask = 2
+position = Vector2(27, -225)
+sprite_frames = SubResource("SpriteFrames_me7pr")
+autoplay = "default"
+
+[node name="PointLight2D" type="PointLight2D" parent="Active"]
+position = Vector2(-57, 72)
+color = Color(0, 0.870588, 0.870588, 1)
+energy = 45.3
+texture = ExtResource("8_tcwf1")
+texture_scale = 0.3
+
 [node name="teleporter" type="Area2D" parent="."]
+visible = false
 position = Vector2(0, -55)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="teleporter"]

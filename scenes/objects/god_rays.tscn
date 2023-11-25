@@ -43,7 +43,6 @@ _data = {
 }
 
 [node name="god_rays" type="Sprite2D"]
-self_modulate = Color(1, 1, 1, 0.0673469)
 texture = ExtResource("1_04ek0")
 
 [node name="SpawnCollisionHandler" type="Node" parent="." node_paths=PackedStringArray("spawn_collider")]

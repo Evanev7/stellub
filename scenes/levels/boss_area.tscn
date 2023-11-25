@@ -1,52 +1,30 @@
-[gd_scene load_steps=7 format=3 uid="uid://dk644duv8stih"]
+[gd_scene load_steps=3 format=3 uid="uid://dg6c8see5s58b"]
 
-[ext_resource type="PackedScene" uid="uid://dfe6bc7mdpexj" path="res://scenes/levels/main.tscn" id="1_god74"]
-[ext_resource type="Texture2D" uid="uid://b2byn4ep7a4f8" path="res://art/backgrounds/heaven_level_1.png" id="2_sr61f"]
+[ext_resource type="PackedScene" uid="uid://dilk21k2nncq2" path="res://scenes/levels/level_template.tscn" id="1_god74"]
+[ext_resource type="Texture2D" uid="uid://b3kwbsbykqq30" path="res://art/objects/Boss_Arena_ground.png" id="2_tmx4t"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ej08x"]
-texture = ExtResource("2_sr61f")
-texture_region_size = Vector2i(1920, 1080)
+[node name="Boss Area" instance=ExtResource("1_god74")]
 
-[sub_resource type="TileSet" id="TileSet_64qaf"]
-tile_size = Vector2i(1920, 1080)
-sources/1 = SubResource("TileSetAtlasSource_ej08x")
+[node name="BossArena" type="Area2D" parent="YSort" index="1"]
+z_index = -2
+position = Vector2(915, 237)
+monitoring = false
 
-[sub_resource type="Curve2D" id="Curve2D_v87fo"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -310.975, -1959.14, 0, 0, 0, 0, -74.1842, -1842.82, 0, 0, 0, 0, -39.0669, -1362.03, 0, 2.90476, 0, -2.90476, -714.322, -1125.51, 0, 0, 0, 0, -301.945, -1945.57, 0, 0, 0, 0, -310.975, -1959.14)
-}
-point_count = 6
+[node name="TextureRect" type="TextureRect" parent="YSort/BossArena" index="0"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2930.0
+offset_top = -1820.0
+offset_right = 1010.0
+offset_bottom = 740.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_tmx4t")
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_nbd1t"]
-
-[node name="Boss_Area" instance=ExtResource("1_god74")]
-metadata/_edit_horizontal_guides_ = []
-
-[node name="TileMap" parent="YSort" index="0"]
-tile_set = SubResource("TileSet_64qaf")
-layer_0/tile_data = PackedInt32Array()
-
-[node name="Sprite2D" type="Sprite2D" parent="YSort" index="4"]
-z_index = -1
-texture_repeat = 2
-position = Vector2(653, 356)
-scale = Vector2(5.09167, 5.09167)
-texture = ExtResource("2_sr61f")
-
-[node name="Path2D" type="Path2D" parent="YSort" index="5"]
-position = Vector2(1273.94, 521.549)
-scale = Vector2(0.996661, 0.515812)
-curve = SubResource("Curve2D_v87fo")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="YSort/Path2D" index="0"]
-position = Vector2(-310.975, -1959.14)
-rotation = 0.456612
-
-[node name="UpgradeHUD" parent="." index="3"]
-weapon_button_group = SubResource("ButtonGroup_nbd1t")
-
-[node name="TerrainGenerator" parent="LogicComponents" index="1"]
-objects = []
-
-[node name="BossHandler" parent="LogicComponents" index="6" node_paths=PackedStringArray("path_follow")]
-path_follow = NodePath("../../YSort/Path2D/PathFollow2D")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="YSort/BossArena" index="1"]
+position = Vector2(-1130, 207)
+build_mode = 1
+polygon = PackedVector2Array(-383, 12, -4, 2, 142, 37, 238, -23, 346, -43, 507, -26, 558, 1, 679, 21, 786, -16, 924, 11, 1012, -83, 1143, -130, 1284, -70, 1439, -110, 1526, -161, 1614, -164, 1685, -248, 1856, -305, 1907, -427, 2014, -468, 1993, -539, 2044, -560, 2078, -639, 2084, -878, 2092, -1094, 2055, -1227, 2051, -1298, 1922, -1525, 1889, -1559, 1873, -1612, 1779, -1646, 1768, -1683, 1662, -1740, 1590, -1744, 1462, -1823, 1398, -1831, 1322, -1865, 1133, -1914, 1039, -1891, 979, -1883, 839, -1929, 680, -1929, 635, -1917, 458, -1925, 405, -1910, 344, -1929, 246, -1933, 171, -1929, 12, -1933, -33, -1914, -173, -1944, -252, -1910, -452, -1940, -671, -1910, -705, -1865, -807, -1891, -985, -1861, -1026, -1793, -1121, -1789, -1143, -1751, -1215, -1744, -1219, -1706, -1324, -1672, -1360, -1594, -1516, -1558, -1546, -1504, -1538, -1442, -1580, -1414, -1592, -1362, -1626, -1352, -1636, -1338, -1690, -1304, -1684, -1228, -1750, -1206, -1746, -872, -1623, -449, -1551, -482, -1529, -363, -1413, -295, -1397, -250, -1357, -240, -1307, -212, -1294, -187, -1221, -205, -1193, -167, -1166, -162, -1148, -109, -1030, -94, -1025, -46, -815, -109, -707, -33, -720, -13, -652, 15, -579, 12, -513, -41)

@@ -15,6 +15,7 @@ func _ready():
 func start():
 	set_process(false)
 	$teleporter/CollisionShape2D.disabled = true
+	$Active.visible = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -23,7 +24,7 @@ func _process(_delta):
 
 func enabled():
 	$teleporter/CollisionShape2D.disabled = false
-	$AnimatedSprite2D.play("active")
+	$Active.visible = true
 
 
 func _on_teleporter_body_entered(body):

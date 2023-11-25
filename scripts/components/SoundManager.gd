@@ -7,9 +7,9 @@ var currently_playing_music: AudioStreamPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _process(_delta):
-	if is_equal_approx(heaven_start.get_playback_position(), 24.3) and currently_playing_music == heaven_start:
+	if heaven_start.get_playback_position() >= 24.3 and currently_playing_music == heaven_start:
 		_on_heaven_start_finished()
-	if heaven_loop.get_playback_position() >= 146.5:
+	if heaven_loop.get_playback_position() >= 145.8:
 		heaven_loop.stop()
 		_on_heaven_start_finished()
 	

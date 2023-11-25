@@ -14,18 +14,19 @@ spawn_collider = NodePath("../SpawnCollider")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_fkd4b")
-position = Vector2(65, 264)
-scale = Vector2(1.78933, 1.78933)
+position = Vector2(121, 370)
+scale = Vector2(2.47042, 2.47042)
 texture = ExtResource("3_ncxto")
 offset = Vector2(-31, -191.455)
 
 [node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="."]
-position = Vector2(-2.95612, -57.3392)
-scale = Vector2(1.95607, 1.99921)
+position = Vector2(17, -80.455)
+scale = Vector2(2.7728, 2.83395)
 polygon = PackedVector2Array(84.7738, 33.1946, 166.638, 21.178, 117, -23.455, 56.1754, -7.66029)
 
 [node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="."]
-position = Vector2(4, -36.455)
+position = Vector2(46, -49.455)
+scale = Vector2(1.41065, 1.41065)
 polygon = PackedVector2Array(-328, 42.455, -100, 89.455, -121, 34.455, -79, -20.545, -196, -37.545, -273, -15.545)
 
 [node name="SpawnCollider" type="Area2D" parent="."]
@@ -34,12 +35,13 @@ collision_layer = 8
 collision_mask = 8
 
 [node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="SpawnCollider"]
-position = Vector2(-2.95612, -25.3392)
-scale = Vector2(1.95607, 1.99921)
+position = Vector2(17, -48.455)
+scale = Vector2(2.7728, 2.83395)
 polygon = PackedVector2Array(84.7738, 33.1946, 166.638, 21.178, 117, -23.455, 56.1754, -7.66029)
 
 [node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="SpawnCollider"]
-position = Vector2(4, -3.455)
+position = Vector2(46, -17.455)
+scale = Vector2(1.41065, 1.41065)
 polygon = PackedVector2Array(-328, 42.455, -100, 89.455, -121, 34.455, -79, -20.545, -196, -37.545, -273, -15.545)
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -47,10 +49,11 @@ position = Vector2(0, -32.545)
 collision_layer = 7
 
 [node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Area2D"]
-position = Vector2(-2.95612, -25.3392)
-scale = Vector2(1.95607, 1.99921)
+position = Vector2(17, -48.455)
+scale = Vector2(2.7728, 2.83395)
 polygon = PackedVector2Array(84.7738, 33.1946, 166.638, 21.178, 117, -23.455, 56.1754, -7.66029)
 
 [node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="Area2D"]
-position = Vector2(4, -3.455)
+position = Vector2(46, -17.455)
+scale = Vector2(1.41065, 1.41065)
 polygon = PackedVector2Array(-328, 42.455, -100, 89.455, -121, 34.455, -79, -20.545, -196, -37.545, -273, -15.545)

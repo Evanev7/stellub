@@ -68,7 +68,6 @@ func really_spawn_enemy(resourceID, centre = GameState.player.position, spawn_ra
 	enemy.dead = false
 	enemy.set_physics_process(true)
 	enemy.sprite.visible = true
-	print(enemy.sprite)
 	enemy.shadow.visible = true
 	enemy.set_data()
 	enemy.collider.set_deferred("disabled", false)

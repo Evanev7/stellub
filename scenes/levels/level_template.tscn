@@ -21,6 +21,7 @@ position = Vector2(578, 324)
 visible = false
 
 [node name="pause_menu" parent="." instance=ExtResource("3_l42bc")]
+visible = false
 
 [node name="ObjectiveMarker" parent="." instance=ExtResource("5_bjn40")]
 

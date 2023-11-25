@@ -47,7 +47,7 @@ func _ready():
 	randomize()
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	game_over.connect(queue_free_groups)
-	current_area_node = get_parent().get_node("menu")
+	#current_area_node = get_parent().get_node("menu")
 	
 
 func load_area(area: CURRENT_AREA):
