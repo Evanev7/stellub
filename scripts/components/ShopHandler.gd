@@ -90,6 +90,7 @@ func attack_from_res(bullet: BulletResource) -> Attack:
 	
 	for i in range(GameState.player.current_level):
 		var upgrade_node: Upgrade = GameState.player.stat_upgrade.upgrade_script.new()
+		upgrade_node.script_data = GameState.player.stat_upgrade.script_data
 		attack.add_child(upgrade_node)
 	
 	return attack

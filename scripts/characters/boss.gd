@@ -40,10 +40,16 @@ func spawn_boss():
 	GameState.register_enemy.emit(enemy)
 	
 	for child in GameState.player.attack_handler.get_children():
+			
 		if child is Attack:
 			# remove child from player except for first weapon later
+			print(child)
+			print(child.bullet)
 			var new_attack = child.duplicate()
 			enemy.attack_handler.add_child(new_attack)
+#		if not child == GameState.player.attack_handler.get_children()[0]:
+#			child.get_parent().remove_child(child)
+			
 	enemy.attack_handler.passive_all_attacks()
 	enemy.attack_handler.aim_attacks_at_player()
 	enemy.attack_handler.refresh_all_attacks()

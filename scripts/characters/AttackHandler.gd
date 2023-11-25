@@ -23,6 +23,7 @@ func add_attack_from_resource(
 	
 	for i in range(GameState.player.current_level):
 		var upgrade_node: Upgrade = GameState.player.stat_upgrade.upgrade_script.new()
+		upgrade_node.script_data = GameState.player.stat_upgrade.script_data
 		attack.add_child(upgrade_node)
 		
 	add_child(attack)
@@ -53,6 +54,7 @@ func get_attack_direction(target_mode) -> FireFrom:
 func upgrade_all_attacks(upgrade: UpgradeResource):
 	for attack in get_children():
 		var upgrade_node: Upgrade = upgrade.upgrade_script.new()
+		upgrade_node.script_data = upgrade.script_data
 		attack.add_child(upgrade_node)
 		attack.refresh_bullet_resource()
 
@@ -67,7 +69,6 @@ func passive_all_attacks():
 		
 func aim_attacks_at_player():
 	for attack in get_children():
-		print("aimin attack")
 		attack.initial_bullet.target_mode = BulletResource.TARGET_MODE.PLAYER
 
 

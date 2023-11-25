@@ -9,7 +9,6 @@ const BIND = ["","primary_fire", "secondary_fire", "tertiary_fire"]
 enum AIM_MODE {FIXED, TARGETED}
 @export var aim_mode: AIM_MODE = AIM_MODE.TARGETED
 var attack_direction: FireFrom
-var target_range: float = 500
 
 var attack_handler: AttackHandler
 @export var initial_bullet: BulletResource
@@ -33,7 +32,6 @@ func _ready():
 	if initial_bullet:
 		icon = initial_bullet.icon
 	_timer = 0.01
-	target_range = bullet.deactivation_range
 	attack_handler = get_parent()
 
 
@@ -71,7 +69,7 @@ func pre_fire():
 		if upgrade is Upgrade:
 			upgrade.pre_fire()
 	
-	if attack_handler.owner == GameState.player or attack_direction.direction.length() < target_range:
+	if attack_handler.owner == GameState.player or attack_direction.direction.length() < bullet.deactivation_range:
 		fire()
 		_timer += bullet.fire_delay
 

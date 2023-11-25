@@ -115,6 +115,9 @@ func _unhandled_input(_event):
 	if debug and Input.is_action_just_pressed("debug_print_data"): # P
 		current_area_node.get_node("HUD").show_debug()
 		
+	if debug and Input.is_action_just_pressed("debug_spawn_shop"): # F
+		current_area_node.get_node("LogicComponents/ShopHandler")._on_spawn_shop(player.global_position)
+		
 	#######################################
 
 func pause_game():

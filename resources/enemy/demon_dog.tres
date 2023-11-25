@@ -1,9 +1,8 @@
-[gd_resource type="Resource" script_class="EnemyResource" load_steps=6 format=3 uid="uid://doalqpgaptgxa"]
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=5 format=3 uid="uid://doalqpgaptgxa"]
 
 [ext_resource type="Script" path="res://scripts/characters/enemy_resource.gd" id="1_hqusm"]
 [ext_resource type="SpriteFrames" uid="uid://6xmqo1j5gqfr" path="res://resources/enemy/demon_dog_spriteframes.tres" id="1_ocmja"]
 [ext_resource type="Shape2D" uid="uid://cttd8doc3fysn" path="res://resources/hitboxes/demon_dog_collisionbox.tres" id="2_56py6"]
-[ext_resource type="Resource" uid="uid://ccpb4udi5owpj" path="res://resources/bullets/player/player_bullet.tres" id="2_uf54v"]
 [ext_resource type="Shape2D" uid="uid://uhegj44ubxiq" path="res://resources/hitboxes/demon_dog_hitbox.tres" id="3_qc0to"]
 
 [resource]
@@ -24,4 +23,3 @@ HURTBOX = ExtResource("3_qc0to")
 COLLIDER = ExtResource("2_56py6")
 UNIQUE_MULTIPLIER = 1.0
 OVERALL_MULTIPLIER = 1.0
-BULLET = ExtResource("2_uf54v")
