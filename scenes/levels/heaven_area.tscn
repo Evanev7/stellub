@@ -59,7 +59,6 @@ enemy_resource_list = Array[Resource("res://scripts/characters/enemy_resource.gd
 enemy_handler = NodePath("LogicComponents/EnemyHandler")
 
 [node name="teleporter" parent="YSort" index="0" instance=ExtResource("5_h7u4d")]
-destination = 0
 
 [node name="TileMap" type="TileMap" parent="YSort" index="1"]
 z_index = -2

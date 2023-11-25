@@ -25,12 +25,12 @@
 [ext_resource type="PackedScene" uid="uid://7pekoii3l4xw" path="res://scenes/objects/pillar.tscn" id="16_48wth"]
 [ext_resource type="Resource" uid="uid://8ogmebrr77xx" path="res://resources/bullets/player/black_hole.tres" id="16_fw7me"]
 [ext_resource type="PackedScene" uid="uid://b2tef800ecm8u" path="res://scenes/components/weapon_handler.tscn" id="17_gx7j2"]
-[ext_resource type="PackedScene" path="res://scenes/objects/hell_roots.tscn" id="17_kyh5d"]
-[ext_resource type="PackedScene" path="res://scenes/objects/pillar_broken.tscn" id="18_uw2ke"]
+[ext_resource type="PackedScene" uid="uid://c0sja3tghmci5" path="res://scenes/objects/hell_roots.tscn" id="17_kyh5d"]
+[ext_resource type="PackedScene" uid="uid://ccn1gqdiqd0gk" path="res://scenes/objects/pillar_broken.tscn" id="18_uw2ke"]
 [ext_resource type="PackedScene" uid="uid://bco6kn11dyo6o" path="res://scenes/components/boss_handler.tscn" id="18_yysi3"]
 [ext_resource type="PackedScene" uid="uid://d2qk4vahd2ews" path="res://scenes/objects/bones.tscn" id="19_omeqv"]
 [ext_resource type="PackedScene" uid="uid://d23ddhgery8pq" path="res://scenes/characters/boss.tscn" id="20_gixqi"]
-[ext_resource type="Resource" path="res://resources/enemy/demon_lord.tres" id="21_jliye"]
+[ext_resource type="Resource" uid="uid://cde86qx4smawg" path="res://resources/enemy/demon_lord.tres" id="21_jliye"]
 [ext_resource type="Resource" uid="uid://dldq0lmweq825" path="res://upgrades/auto_fire.tres" id="22_vl2um"]
 [ext_resource type="PackedScene" uid="uid://be4i0yo3jsk42" path="res://scenes/components/attack.tscn" id="23_6mnt7"]
 [ext_resource type="Resource" uid="uid://dgnonhlostgr1" path="res://upgrades/bowling_ball.tres" id="23_ti1t0"]
@@ -94,7 +94,7 @@ visible = false
 tile_map = NodePath("../../YSort/TileMap")
 ysorter = NodePath("../../YSort")
 objects = Array[PackedScene]([ExtResource("14_kq46c"), ExtResource("15_oeqij"), ExtResource("16_48wth"), ExtResource("17_kyh5d"), ExtResource("18_uw2ke"), ExtResource("19_omeqv")])
-object_spawn_rate = Array[float]([0.3, 0.2, 0.5, 0.4, 0.3, 1.0])
+object_spawn_rate = Array[float]([0.3, 0.2, 0.5, 0.4, 0.3, 0.1])
 
 [node name="PickupHandler" parent="LogicComponents" index="2" node_paths=PackedStringArray("ysorter", "score_display") instance=ExtResource("3_be7sf")]
 pickup_scene = ExtResource("4_rcjv7")
