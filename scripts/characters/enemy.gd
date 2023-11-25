@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name EnemyBehaviour
 
 signal enemy_killed(enemy)
+signal on_remove()
 signal spawn_shop(pos)
 signal play_damage_sound(pos)
 signal play_death_sound(pos)
@@ -19,7 +20,6 @@ signal spawn_damage_number(damage_value: float, position: Vector2, size: Vector2
 @onready var hurtbox_collisionshape: CollisionShape2D = $Hurtbox/CollisionShape2D
 @onready var sprite = $AnimatedSprite2D
 @onready var shadow: Sprite2D = $Shadow
-var tween: Tween
 
 @onready var attack_handler: AttackHandler = $AttackHandler
 @onready var health: float
@@ -49,8 +49,8 @@ func _ready():
 	hitbox_collisionshape.set_deferred("disabled", true)
 	hurtbox_collisionshape.set_deferred("disabled", true)
 	set_physics_process(false)
-	sprite.hide()
-	shadow.hide()
+	sprite.visible = false
+	shadow.visible = false
 
 		
 func set_data():
@@ -68,6 +68,7 @@ func set_data():
 	default_scale = resource.SCALE * (0.75 + (unique_multiplier / 4))
 	variance = 1/default_scale.length()
 	
+	
 	load_resource(resource)
 	
 	# Select mob texture variants (This code is functional just unnecessary since no enemies have variants)
@@ -77,7 +78,7 @@ func set_data():
 	sprite.play(mode)
 	
 	add_to_group("enemy")
-	sway()
+	#sway()
 	
 	if GameState.num_enemies >= enemy_limit:
 		movement_enabled = false
@@ -111,7 +112,7 @@ func load_resource(resource_to_load: EnemyResource):
 
 # Function for easing sprites between two positions while 'idle'. I.e. enemy rotation.
 func sway():
-	tween = create_tween()
+	var tween: Tween = create_tween()
 	if floating:
 		sprite.position = Vector2(0, 0)
 		tween.tween_property(sprite, "position", sprite.position + Vector2(0, 2*variance), 0.4) \
@@ -180,14 +181,14 @@ func hurt(area):
 		enemy_killed.emit(self)
 	
 func remove():
-	tween.kill()
 	dead = true
+	on_remove.emit()
 	collider.set_deferred("disabled", true)
 	hitbox_collisionshape.set_deferred("disabled", true)
 	hurtbox_collisionshape.set_deferred("disabled", true)
 	set_physics_process(false)
-	sprite.hide()
-	shadow.hide()
+	sprite.visible = false
+	shadow.visible = false
 	remove_from_group("enemy")
 	
 #func spawn_damage_number(damage_value: float):

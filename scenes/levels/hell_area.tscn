@@ -64,6 +64,7 @@ metadata/_edit_vertical_guides_ = []
 
 [node name="TileMap" type="TileMap" parent="YSort" index="0"]
 z_index = -2
+scale = Vector2(0.8, 0.8)
 tile_set = SubResource("TileSet_rqhpw")
 format = 2
 layer_0/tile_data = PackedInt32Array(0, 1, 0)

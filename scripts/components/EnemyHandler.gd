@@ -65,12 +65,12 @@ func really_spawn_enemy(resourceID, centre = GameState.player.position, spawn_ra
 	var relative_spawn_position = Vector2(spawn_range,0).rotated(randf_range(0, 2*PI))
 	enemy.position = centre + relative_spawn_position
 	
-	
-	enemy.set_data()
 	enemy.dead = false
 	enemy.set_physics_process(true)
-	enemy.sprite.show()
-	enemy.shadow.show()
+	enemy.sprite.visible = true
+	print(enemy.sprite)
+	enemy.shadow.visible = true
+	enemy.set_data()
 	enemy.collider.set_deferred("disabled", false)
 	enemy.hitbox_collisionshape.set_deferred("disabled", false)
 	enemy.hurtbox_collisionshape.set_deferred("disabled", false)
@@ -87,7 +87,7 @@ func get_enemy():
 		return enemy_scene_pool.pop_front()
 	else:
 		var new_enemy = enemy_scene.instantiate()
-		new_enemy.enemy_killed.connect(
+		new_enemy.on_remove.connect(
 			func():
 				enemy_scene_pool.append(new_enemy))
 		enemy_ysort.call_deferred("add_child", new_enemy)
@@ -140,7 +140,7 @@ func start_spawning():
 		
 	for i in range(maximum_enemies):
 		var new_enemy = enemy_scene.instantiate()
-		new_enemy.enemy_killed.connect(
+		new_enemy.on_remove.connect(
 			func():
 				enemy_scene_pool.append(new_enemy))
 		enemy_scene_pool.append(new_enemy)
