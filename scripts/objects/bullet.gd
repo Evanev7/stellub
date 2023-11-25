@@ -196,7 +196,8 @@ func remove() -> void:
 	on_remove.emit()
 	dead = true
 	collision.set_deferred("disabled", true)
-	set_process(false)
+	set_physics_process(false)
 	hide()
+	remove_from_group("bullet")
 	_traveled_distance = 0
 	_hit_targets.clear()

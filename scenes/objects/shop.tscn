@@ -9,9 +9,9 @@
 [ext_resource type="Resource" uid="uid://dy031eh6o2sje" path="res://resources/upgrades/fire_delay.tres" id="6_eg2mr"]
 [ext_resource type="Resource" uid="uid://c4r52wyieaoyh" path="res://resources/upgrades/shot_size.tres" id="7_kre3s"]
 [ext_resource type="Resource" uid="uid://4jk8sjhmsuf" path="res://resources/upgrades/piercing_cooldown.tres" id="8_68ca0"]
-[ext_resource type="Texture2D" uid="uid://b5mt5cva70064" path="res://art/objects/shop_open_temp_1.png" id="10_5uu55"]
-[ext_resource type="Texture2D" uid="uid://c132jakthswn3" path="res://art/objects/shop_open_temp_2.png" id="11_sggqh"]
-[ext_resource type="Texture2D" uid="uid://l7dsv62mfjt6" path="res://art/objects/shop_open_temp_3.png" id="12_ww30d"]
+[ext_resource type="Texture2D" uid="uid://b5mt5cva70064" path="res://art/player/shop_open_temp_1.png" id="10_5uu55"]
+[ext_resource type="Texture2D" uid="uid://c132jakthswn3" path="res://art/player/shop_open_temp_2.png" id="11_sggqh"]
+[ext_resource type="Texture2D" uid="uid://l7dsv62mfjt6" path="res://art/player/shop_open_temp_3.png" id="12_ww30d"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_r6dcq"]
 animations = [{

@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://bg13nosxejcda"]
+
+[ext_resource type="PackedScene" uid="uid://cicwqsj3byj4u" path="res://scenes/components/spawn_collision_handler.tscn" id="1_syb8g"]
+[ext_resource type="Shader" path="res://terrain.gdshader" id="2_pj57o"]
+[ext_resource type="Texture2D" uid="uid://dmm7btuk18mak" path="res://art/objects/heaven_hole.png" id="3_pmnl8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sqjdm"]
+shader = ExtResource("2_pj57o")
+
+[node name="heaven_hole" type="StaticBody2D"]
+z_index = -1
+
+[node name="SpawnCollisionHandler" parent="." node_paths=PackedStringArray("spawn_collider") instance=ExtResource("1_syb8g")]
+spawn_collider = NodePath("../SpawnCollider")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_sqjdm")
+position = Vector2(49, 268)
+texture = ExtResource("3_pmnl8")
+offset = Vector2(-31, -200)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
+position = Vector2(-78, -81)
+polygon = PackedVector2Array(51, 106, -72, 139, -70, 205, -23, 228, 64, 220, 188, 220, 251, 165, 198, 128, 160, 82, 55, 87)
+
+[node name="SpawnCollider" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SpawnCollider"]
+position = Vector2(-78, -81)
+polygon = PackedVector2Array(51, 106, -72, 139, -70, 205, -23, 228, 64, 220, 188, 220, 251, 165, 198, 128, 160, 82, 55, 87)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 7
+monitoring = false
+monitorable = false
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2(-78, -81)
+polygon = PackedVector2Array(51, 106, -72, 139, -70, 205, -23, 228, 64, 220, 188, 220, 251, 165, 198, 128, 160, 82, 55, 87)

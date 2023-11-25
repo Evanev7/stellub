@@ -13,7 +13,9 @@ quantity = 10
 appears_in_shop = true
 appears_in_inventory = true
 icon = ExtResource("1_3qwq0")
-description = "Packages your bullet into a tiny orb."
+description = "Packages your bullet into a tiny orb, and carries it
+harmlessly before 
+releasing it."
 script_data = {
 "bullet": ExtResource("3_nqynk")
 }

@@ -14,11 +14,13 @@ spawn_collider = NodePath("../SpawnCollider")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_3uf4o")
+scale = Vector2(0.804729, 0.804729)
 texture = ExtResource("2_ne0x2")
 offset = Vector2(-31, -200)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2(-78, -81)
+position = Vector2(-67.9156, -66.8819)
+scale = Vector2(0.82462, 0.82462)
 polygon = PackedVector2Array(310, 37, 74, -51, -194, 33, -196, 122, 60, 212, 311, 123)
 
 [node name="SpawnCollider" type="Area2D" parent="."]
@@ -26,12 +28,14 @@ collision_layer = 8
 collision_mask = 8
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SpawnCollider"]
-position = Vector2(-78, -81)
+position = Vector2(-67.9156, -66.8819)
+scale = Vector2(0.82462, 0.82462)
 polygon = PackedVector2Array(310, 37, 74, -51, -194, 33, -196, 122, 60, 212, 311, 123)
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 7
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-position = Vector2(-78, -81)
+position = Vector2(-67.9156, -66.8819)
+scale = Vector2(0.82462, 0.82462)
 polygon = PackedVector2Array(310, 37, 74, -51, -194, 33, -196, 122, 60, 212, 311, 123)

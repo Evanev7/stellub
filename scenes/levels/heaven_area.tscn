@@ -1,14 +1,14 @@
-[gd_scene load_steps=40 format=3 uid="uid://cv66w30at2uv0"]
+[gd_scene load_steps=41 format=3 uid="uid://cv66w30at2uv0"]
 
 [ext_resource type="PackedScene" uid="uid://dilk21k2nncq2" path="res://scenes/levels/level_template.tscn" id="1_kbvse"]
 [ext_resource type="Script" path="res://scripts/levels/heaven_area.gd" id="2_0y2ur"]
 [ext_resource type="PackedScene" uid="uid://ugulpxhu6v48" path="res://scenes/components/pickup_handler.tscn" id="2_pdelf"]
-[ext_resource type="Texture2D" uid="uid://b2byn4ep7a4f8" path="res://art/backgrounds/heaven_level_1.png" id="2_tk8m1"]
 [ext_resource type="PackedScene" uid="uid://cjuw1uddg4foi" path="res://scenes/objects/pickup.tscn" id="3_7bv8e"]
 [ext_resource type="PackedScene" uid="uid://cnrpegq0voiht" path="res://scenes/components/enemy_handler.tscn" id="4_81g8t"]
 [ext_resource type="PackedScene" uid="uid://bco6kn11dyo6o" path="res://scenes/components/boss_handler.tscn" id="5_cfnl8"]
 [ext_resource type="PackedScene" uid="uid://dfrum4te4lpmr" path="res://scenes/objects/teleporter.tscn" id="5_h7u4d"]
 [ext_resource type="Texture2D" uid="uid://u4i2umpawot5" path="res://art/backgrounds/heaven_cliff.png" id="6_7yhwe"]
+[ext_resource type="Texture2D" uid="uid://448fgucckiyr" path="res://art/backgrounds/heaven_area_1.png" id="6_83hdw"]
 [ext_resource type="PackedScene" uid="uid://d23ddhgery8pq" path="res://scenes/characters/boss.tscn" id="6_lb3xs"]
 [ext_resource type="Resource" uid="uid://djjvchiit0f0n" path="res://resources/enemy/angel_worshipper.tres" id="6_muf3o"]
 [ext_resource type="PackedScene" uid="uid://cwtvi2ph44p4d" path="res://scenes/UI/cursor_particles.tscn" id="6_tua3p"]
@@ -20,9 +20,10 @@
 [ext_resource type="PackedScene" uid="uid://dqwjdome8j4gv" path="res://scenes/objects/heaven_statue.tscn" id="18_cjii1"]
 [ext_resource type="PackedScene" uid="uid://be4i0yo3jsk42" path="res://scenes/components/attack.tscn" id="18_ub2uf"]
 [ext_resource type="PackedScene" uid="uid://bxmk1htarl4v5" path="res://scenes/components/shop_handler.tscn" id="18_y7gnu"]
+[ext_resource type="PackedScene" uid="uid://cawgs3p58mg88" path="res://scenes/objects/heaven_roots.tscn" id="19_a4git"]
 [ext_resource type="Resource" uid="uid://dldq0lmweq825" path="res://upgrades/auto_fire.tres" id="19_g0ldb"]
-[ext_resource type="PackedScene" uid="uid://b0xtya0pbmlje" path="res://scenes/objects/heaven_tree.tscn" id="19_o0hwc"]
 [ext_resource type="Resource" uid="uid://dgnonhlostgr1" path="res://upgrades/bowling_ball.tres" id="20_jwfih"]
+[ext_resource type="PackedScene" uid="uid://bg13nosxejcda" path="res://scenes/objects/heaven_hole.tscn" id="20_tuugf"]
 [ext_resource type="Resource" uid="uid://ctfombpw6rgc5" path="res://upgrades/centre_of_the_galaxy.tres" id="21_u85uj"]
 [ext_resource type="Resource" uid="uid://brxqpkihvbfrk" path="res://upgrades/concentrate.tres" id="22_vapba"]
 [ext_resource type="Resource" uid="uid://ci7uxv4m433dh" path="res://upgrades/detonator.tres" id="23_0vkjh"]
@@ -38,7 +39,7 @@
 [ext_resource type="Resource" uid="uid://8ogmebrr77xx" path="res://resources/bullets/player/black_hole.tres" id="33_tr77u"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sqxyj"]
-texture = ExtResource("2_tk8m1")
+texture = ExtResource("6_83hdw")
 texture_region_size = Vector2i(1280, 720)
 0:0/0 = 0
 
@@ -58,9 +59,10 @@ enemy_resource_list = Array[Resource("res://scripts/characters/enemy_resource.gd
 enemy_handler = NodePath("LogicComponents/EnemyHandler")
 
 [node name="teleporter" parent="YSort" index="0" instance=ExtResource("5_h7u4d")]
+destination = 0
 
 [node name="TileMap" type="TileMap" parent="YSort" index="1"]
-z_index = -1
+z_index = -2
 tile_set = SubResource("TileSet_vo6h4")
 format = 2
 layer_0/tile_data = PackedInt32Array(0, 1, 0, 65536, 2, 0)
@@ -87,8 +89,8 @@ ysorter = NodePath("../../YSort")
 [node name="TerrainGenerator" parent="LogicComponents" index="4" node_paths=PackedStringArray("tile_map", "ysorter") instance=ExtResource("8_74i65")]
 tile_map = NodePath("../../YSort/TileMap")
 ysorter = NodePath("../../YSort")
-objects = Array[PackedScene]([ExtResource("17_uwvn0"), ExtResource("18_cjii1"), ExtResource("19_o0hwc")])
-object_spawn_rate = Array[float]([0.1, 0.3, 0.2])
+objects = Array[PackedScene]([ExtResource("17_uwvn0"), ExtResource("18_cjii1"), ExtResource("19_a4git"), ExtResource("20_tuugf")])
+object_spawn_rate = Array[float]([0.1, 0.3, 0.4, 0.3])
 
 [node name="ShopHandler" parent="LogicComponents" index="5" node_paths=PackedStringArray("ysorter", "objective_marker", "shop_node", "teleporter") instance=ExtResource("18_y7gnu")]
 attack_scene = ExtResource("18_ub2uf")

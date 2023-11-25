@@ -24,6 +24,9 @@ signal spawn_shop_on_enemy(pos)
 var damage_scene_pool: Array[DamageNumber] = []
 var maximum_damage_numbers: int = 300
 
+var enemy_scene_pool: Array[EnemyBehaviour] = []
+var maximum_enemies: int = 800
+
 var phase_limit = 1
 
 func _ready():
@@ -43,18 +46,41 @@ func _on_spawn_timer_timeout():
 
 
 func spawn_enemy(resourceID, center = GameState.player.position, spawn_range = safe_range, unique_multiplier: float = 1, overall_multi = overall_multiplier):
-	var enemy = enemy_scene.instantiate()
+	var enemy = get_enemy()
+	GameState.num_enemies += 1
 	enemy.resource = enemy_resource_list[resourceID]
 	enemy.resource.UNIQUE_MULTIPLIER = unique_multiplier
 	enemy.resource.OVERALL_MULTIPLIER = overall_multi
 	var relative_spawn_position = Vector2(spawn_range,0).rotated(randf_range(0, 2*PI))
 	enemy.position = center + relative_spawn_position
+	
+	
+	enemy.set_data()
+	enemy.dead = false
+	enemy.set_physics_process(true)
+	enemy.sprite.show()
+	enemy.shadow.show()
+	enemy.collider.set_deferred("disabled", false)
+	enemy.hitbox_collisionshape.set_deferred("disabled", false)
+	enemy.hurtbox_collisionshape.set_deferred("disabled", false)
+	
+	
 	enemy.connect("spawn_shop", spawn_shop)
 	enemy.connect("play_damage_sound", play_damage_sound)
 	enemy.connect("play_death_sound", play_death_sound)
 	enemy.connect("spawn_damage_number", spawn_damage_number)
-	enemy_ysort.add_child(enemy)
 	GameState.register_enemy.emit(enemy)
+	
+func get_enemy():
+	if enemy_scene_pool.size() > 0:
+		return enemy_scene_pool.pop_front()
+	else:
+		var new_enemy = enemy_scene.instantiate()
+		new_enemy.enemy_killed.connect(
+			func():
+				enemy_scene_pool.append(new_enemy))
+		enemy_ysort.call_deferred("add_child", new_enemy)
+		return new_enemy
 
 func spawn_shop(pos):
 	spawn_shop_on_enemy.emit(pos)
@@ -91,6 +117,8 @@ func play_death_sound(pos):
 
 func start_spawning():
 	damage_scene_pool = []
+	enemy_scene_pool = []
+	
 	for i in range(maximum_damage_numbers):
 		var new_damage_number = damage_scene.instantiate()
 		new_damage_number.on_remove.connect(
@@ -98,6 +126,16 @@ func start_spawning():
 				damage_scene_pool.append(new_damage_number))
 		damage_scene_pool.append(new_damage_number)
 		call_deferred("add_child", new_damage_number)
+		
+	for i in range(maximum_enemies):
+		var new_enemy = enemy_scene.instantiate()
+		new_enemy.enemy_killed.connect(
+			func():
+				enemy_scene_pool.append(new_enemy))
+		enemy_scene_pool.append(new_enemy)
+		enemy_ysort.call_deferred("add_child", new_enemy)
+		
+	overall_multiplier = 1
 	phase_limit = 1
 	spawn_timer.wait_time = default_spawn_time / (1.02 ** GameState.player.current_level)
 	spawn_timer.start()

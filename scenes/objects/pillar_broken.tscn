@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://ccn1gqdiqd0gk"]
+
+[ext_resource type="PackedScene" uid="uid://cicwqsj3byj4u" path="res://scenes/components/spawn_collision_handler.tscn" id="1_5qm6f"]
+[ext_resource type="Shader" path="res://terrain.gdshader" id="2_3wpgd"]
+[ext_resource type="Texture2D" uid="uid://b0vv07q8kyfky" path="res://art/objects/pillar_broken.png" id="3_po3b7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_siwxq"]
+shader = ExtResource("2_3wpgd")
+
+[node name="pillar_broken" type="StaticBody2D"]
+
+[node name="SpawnCollisionHandler" parent="." instance=ExtResource("1_5qm6f")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_siwxq")
+position = Vector2(28.2515, 149.074)
+scale = Vector2(0.691257, 0.691257)
+texture = ExtResource("3_po3b7")
+offset = Vector2(-31, -200)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-78, -81)
+polygon = PackedVector2Array(208, 94, 127, 25, 28, 27, -62, 108, 24, 191, 138, 188)
+
+[node name="SpawnCollider" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SpawnCollider"]
+position = Vector2(-78, -81)
+polygon = PackedVector2Array(208, 94, 127, 25, 28, 27, -62, 108, 24, 191, 138, 188)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 7
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2(-78, -81)
+polygon = PackedVector2Array(208, 94, 127, 25, 28, 27, -62, 108, 24, 191, 138, 188)

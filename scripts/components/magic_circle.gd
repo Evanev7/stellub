@@ -160,13 +160,15 @@ func _on_wave_timer_timeout():
 	success_timer.wait_time = 10 + (9.99 * GameState.circles_completed+1)
 	$Barrier.visible = true
 	var tween: Tween = create_tween()
-	tween.tween_property($Barrier, "scale", Vector2(0.4, 0.4), success_timer.wait_time)
+	tween.parallel().tween_property($Barrier, "scale", Vector2(0.4, 0.4), success_timer.wait_time)
+	tween.parallel().tween_property($Active, "modulate:a", 0.9, success_timer.wait_time)
 	success_timer.start()
 	spawn_enemies((GameState.circles_completed + 1))
 
 
 func _on_success_timer_timeout():
 	spawn_shop.emit(position)
+	$Cleared.visible = true
 	wave_active = false
 	$Barrier.visible = false
 	time_label.hide()

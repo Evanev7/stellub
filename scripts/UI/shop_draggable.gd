@@ -4,6 +4,9 @@ class_name ShopDraggable
 signal gray_out_shop
 
 var button_texture = preload("res://art/UI/Shop/Button Empty.png")
+var attack_indicator = preload("res://art/UI/clicky finger.png")
+var upgrade_indicator = preload("res://art/UI/shooty finger.png")
+@onready var indicator_type = [attack_indicator, upgrade_indicator]
 enum SLOT_TYPE {ATTACK, UPGRADE}
 
 @export var drag_preview_scene: PackedScene = preload("res://scenes/UI/drag_preview.tscn")
@@ -91,6 +94,7 @@ func _drop_data(_pos: Vector2, data) -> void:
 func _make_custom_tooltip(for_text):
 	var tooltip = tooltip_scene.instantiate()
 	tooltip.get_node("MarginContainer/MarginContainer/Desc").text = for_text
+	tooltip.get_node("MarginContainer/TypeMargin/TypeIndicator").texture = indicator_type[slot_type]
 	return tooltip
 
 static func shop_freed():

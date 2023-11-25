@@ -3,9 +3,10 @@ extends CanvasLayer
 signal start_game
 signal open_pause_menu
 
-@onready var XP_Bar = $XPBar
-@onready var HP_Bar = $HPBar
-@onready var level = $XPBar/Level
+@onready var XP_Bar := $XPBar
+@onready var HP_Bar := $HPBar
+@onready var level := $XPBar/Level
+@onready var vignette: TextureRect = $TextureRect3
 
 @onready var enemy_count = $Debug/EnemyCount
 @onready var bullet_count = $Debug/BulletCount

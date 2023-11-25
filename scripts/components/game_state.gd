@@ -122,7 +122,7 @@ func unpause_game():
 
 
 func queue_free_groups():
-	get_tree().call_group("enemy", "queue_free")
+	get_tree().call_group("enemy", "remove")
 	get_tree().call_group("bullet", "remove")
 	get_tree().call_group("pickup", "queue_free")
 	get_tree().call_group("shop", "queue_free")

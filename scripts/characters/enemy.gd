@@ -10,28 +10,28 @@ signal spawn_damage_number(damage_value: float, position: Vector2, size: Vector2
 @export var resource: EnemyResource
 @export var damage_scene: PackedScene
 
-@onready var unique_multiplier: float = resource.UNIQUE_MULTIPLIER
-@onready var overall_multiplier: float = resource.OVERALL_MULTIPLIER
+@onready var unique_multiplier: float
+@onready var overall_multiplier: float
 
-@onready var collider = $CollisionShape2D
-@onready var hitbox = $Hitbox
-@onready var hitbox_collisionshape = $Hitbox/CollisionShape2D
-@onready var hurtbox_collisionshape = $Hurtbox/CollisionShape2D
-@onready var shadow = $Shadow
-
+@onready var hitbox := $Hitbox
+@onready var collider: CollisionShape2D = $CollisionShape2D
+@onready var hitbox_collisionshape: CollisionShape2D = $Hitbox/CollisionShape2D
+@onready var hurtbox_collisionshape: CollisionShape2D = $Hurtbox/CollisionShape2D
+@onready var sprite = $AnimatedSprite2D
+@onready var shadow: Sprite2D = $Shadow
+var tween: Tween
 
 @onready var attack_handler: AttackHandler = $AttackHandler
-@onready var sprite := $AnimatedSprite2D
-@onready var health: float = resource.MAX_HP * unique_multiplier * overall_multiplier
-@onready var damage: float = resource.DAMAGE * unique_multiplier * overall_multiplier
-@onready var value: float = resource.VALUE * unique_multiplier * overall_multiplier
-@onready var strength: float = resource.STRENGTH * (0.5 + ((unique_multiplier  * overall_multiplier) / 2))
-@onready var speed: float = resource.SPEED / (0.9 + (unique_multiplier / 10))
-@onready var flipped: bool = resource.FLIP_H
-@onready var floating: bool = resource.FLOATING
-@onready var default_angle: float = self.rotation
-@onready var default_scale: Vector2 = resource.SCALE * (0.75 + (unique_multiplier / 4))
-@onready var variance := 1/default_scale.length()
+@onready var health: float
+@onready var damage: float
+@onready var value: float
+@onready var strength: float
+@onready var speed: float
+@onready var flipped: bool
+@onready var floating: bool
+@onready var default_angle: float
+@onready var default_scale: Vector2
+@onready var variance: float
 var dead: bool = false
 
 var fire_on_hit: bool = false
@@ -44,9 +44,30 @@ var movement_enabled: bool = true
 var enemy_limit = 125
 
 func _ready():
-	GameState.num_enemies += 1
-	if owner:
-		await(owner.ready)
+	dead = true
+	collider.set_deferred("disabled", true)
+	hitbox_collisionshape.set_deferred("disabled", true)
+	hurtbox_collisionshape.set_deferred("disabled", true)
+	set_physics_process(false)
+	sprite.hide()
+	shadow.hide()
+
+		
+func set_data():
+	unique_multiplier = resource.UNIQUE_MULTIPLIER
+	overall_multiplier = resource.OVERALL_MULTIPLIER
+	
+	health  = resource.MAX_HP * unique_multiplier * overall_multiplier
+	damage  = resource.DAMAGE * unique_multiplier * overall_multiplier
+	value  = resource.VALUE * unique_multiplier * overall_multiplier
+	strength  = resource.STRENGTH * (0.5 + ((unique_multiplier  * overall_multiplier) / 2))
+	speed  = resource.SPEED / (0.9 + (unique_multiplier / 10))
+	flipped = resource.FLIP_H
+	floating = resource.FLOATING
+	default_angle = self.rotation
+	default_scale = resource.SCALE * (0.75 + (unique_multiplier / 4))
+	variance = 1/default_scale.length()
+	
 	load_resource(resource)
 	
 	# Select mob texture variants (This code is functional just unnecessary since no enemies have variants)
@@ -55,11 +76,10 @@ func _ready():
 	sprite.frame_progress = randf()
 	sprite.play(mode)
 	
-	
 	add_to_group("enemy")
 	sway()
 	
-	if get_index() >= enemy_limit:
+	if GameState.num_enemies >= enemy_limit:
 		movement_enabled = false
 
 func load_resource(resource_to_load: EnemyResource):
@@ -69,7 +89,7 @@ func load_resource(resource_to_load: EnemyResource):
 	sprite.flip_h = flipped
 	if unique_multiplier > 1:
 		sprite.material.set_shader_parameter("line_color", Vector4(1, 0, 0, 1))
-		sprite.material.set_shader_parameter("line_thickness", (unique_multiplier * 2) ** 2)
+		sprite.material.set_shader_parameter("line_thickness", (unique_multiplier) ** 2)
 		
 	if resource_to_load.BULLET:
 		if resource_to_load.BULLET.target_mode == BulletResource.TARGET_MODE.MOUSE:
@@ -91,7 +111,7 @@ func load_resource(resource_to_load: EnemyResource):
 
 # Function for easing sprites between two positions while 'idle'. I.e. enemy rotation.
 func sway():
-	var tween: Tween = create_tween()
+	tween = create_tween()
 	if floating:
 		sprite.position = Vector2(0, 0)
 		tween.tween_property(sprite, "position", sprite.position + Vector2(0, 2*variance), 0.4) \
@@ -148,19 +168,27 @@ func hurt(area):
 	
 	#Die when health is zero
 	if health <= 0 and not dead:
+		GameState.num_enemies -= 1
+		GameState.enemies_killed += 1
 		dead = true
 		play_death_sound.emit(global_position)
 		
 		if GameState.current_area == 1 and unique_multiplier > 1:
 			spawn_shop.emit(global_position)
 			
-		GameState.num_enemies -= 1
-		GameState.enemies_killed += 1
+		remove()
 		enemy_killed.emit(self)
-#		for child in damage_numbers.get_children():
-#			child.remove()
-		queue_free()
 	
+func remove():
+	tween.kill()
+	dead = true
+	collider.set_deferred("disabled", true)
+	hitbox_collisionshape.set_deferred("disabled", true)
+	hurtbox_collisionshape.set_deferred("disabled", true)
+	set_physics_process(false)
+	sprite.hide()
+	shadow.hide()
+	remove_from_group("enemy")
 	
 #func spawn_damage_number(damage_value: float):
 #	var damage_number = get_damage_number()

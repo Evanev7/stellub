@@ -46,7 +46,7 @@ func _on_fire_bullet(origin, bullet_type: BulletResource, fire_from: FireFrom):
 	# is stored in .multishot)
 	for index in range(bullet_type.multishot):
 		var bullet = get_bullet()
-		#bullet.add_to_group("bullet")
+		bullet.add_to_group("bullet")
 		
 		var start_position = fire_from.position
 		
@@ -83,12 +83,7 @@ func get_bullet():
 			func():
 				bullet_scene_pool.append(new_bullet))
 		call_deferred("add_child", new_bullet)
-		print(new_bullet)
 		return new_bullet
-#	var new_bullet = bullet_scene.instantiate()
-#	bullet_scene_pool.append(new_bullet)
-#	add_child(new_bullet)
-	#return new_bullet
 
 func play_audio(sound, pos):
 	var audio_player = AudioStreamPlayer2D.new()

@@ -1,10 +1,10 @@
 extends Node2D
 
 @export var destination: GameState.CURRENT_AREA
+@export var HUD: CanvasLayer
 
 signal teleport_player
 
-@onready var default_scale = scale
 var tween: Tween
 
 # Called when the node enters the scene tree for the first time.
@@ -13,10 +13,6 @@ func _ready():
 	
 	
 func start():
-	scale = default_scale
-	$AnimatedSprite2D.animation = "xp_pickup"
-	$AnimatedSprite2D.stop()
-	$AnimatedSprite2D.self_modulate = Color(0.2, 0.2, 0.2)
 	set_process(false)
 	$teleporter/CollisionShape2D.disabled = true
 
@@ -27,15 +23,14 @@ func _process(_delta):
 
 func enabled():
 	$teleporter/CollisionShape2D.disabled = false
-	$AnimatedSprite2D.play()
-	$AnimatedSprite2D.self_modulate = Color(1, 1, 1)
+	$AnimatedSprite2D.play("active")
 
 
 func _on_teleporter_body_entered(body):
 	if body == GameState.player:
 		tween = create_tween()
-		tween.tween_property(self, "global_scale", default_scale / 3, 3)
-		# zoom camera in?
+		tween.parallel().tween_property(HUD.vignette, "self_modulate:a", 3, 3)
+		# zoom camera in?s
 		await tween.finished
 		#teleport_player.emit()
 		GameState.load_area(destination)
@@ -45,4 +40,4 @@ func _on_teleporter_body_exited(body):
 		if tween.is_running():
 			tween.stop()
 		tween = create_tween()
-		tween.tween_property(self, "global_scale", default_scale, 0.5)
+		tween.parallel().tween_property(HUD.vignette, "self_modulate:a", 0.43, 1)

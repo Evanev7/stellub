@@ -24,7 +24,7 @@ func game_over():
 	enemies_killed.text = str(GameState.enemies_killed)
 	souls_collected.text = str(int(GameState.souls_collected))
 	bullets_summoned.text = str(GameState.bullets_summoned)
-	damage_dealt.text = str(int(GameState.damage_dealt))
+	damage_dealt.text = str(int(GameState.damage_dealt * 10))
 	circles_completed.text = str(GameState.circles_completed - 1)
 
 
