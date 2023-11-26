@@ -1,14 +1,35 @@
-[gd_scene load_steps=4 format=3 uid="uid://domdhv4tthmyh"]
+[gd_scene load_steps=7 format=3 uid="uid://domdhv4tthmyh"]
 
 [ext_resource type="Script" path="res://scripts/UI/shop_draggable.gd" id="1_hpu8w"]
-[ext_resource type="Texture2D" uid="uid://c1pc88qkwsmnl" path="res://art/UI/Shop/Button Empty.png" id="2_ll74f"]
+[ext_resource type="Texture2D" uid="uid://bmhkpmre2sxkk" path="res://art/UI/Shop/inventory_weapon_2.png" id="2_ciods"]
+[ext_resource type="Texture2D" uid="uid://btotkcy5ml231" path="res://art/UI/Shop/inventory_weapon_1.png" id="2_gm3x0"]
+[ext_resource type="Texture2D" uid="uid://irebp7qv1h21" path="res://art/UI/Shop/inventory_weapon_3.png" id="3_m800c"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_hcpdw"]
+[sub_resource type="Animation" id="Animation_ru23g"]
+resource_name = "new_animation"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_gm3x0"), ExtResource("2_ciods"), ExtResource("3_m800c"), ExtResource("2_gm3x0")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4kitx"]
+_data = {
+"new_animation": SubResource("Animation_ru23g")
+}
 
 [node name="ShopDraggable" type="TextureButton"]
 clip_contents = true
 custom_minimum_size = Vector2(200, 200)
-texture_normal = SubResource("PlaceholderTexture2D_hcpdw")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("1_hpu8w")
@@ -21,5 +42,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_ll74f")
+texture = ExtResource("2_ciods")
 expand_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "new_animation"
+method_call_mode = 1
+libraries = {
+"": SubResource("AnimationLibrary_4kitx")
+}

@@ -16,8 +16,11 @@ enum SLOT_TYPE {ATTACK, UPGRADE}
 static var shop_item_taken
 static var shop_nodes = []
 var referenced_node: Node
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _ready():
+	if animation_player:
+		animation_player.set_speed_scale(randf_range(2.5, 4))
 	if is_shop and self not in shop_nodes:
 		shop_nodes.append(self)
 	add_to_group("draggable")
@@ -41,9 +44,9 @@ func refresh() -> void:
 		if referenced_node.get("icon") != null:
 			texture_normal = referenced_node.icon
 		else:
-			texture_normal = button_texture
+			texture_normal = null
 	else:
-		texture_normal = button_texture
+		texture_normal = null
 
 func _get_drag_data(_pos: Vector2) -> Variant:
 	var data = {
