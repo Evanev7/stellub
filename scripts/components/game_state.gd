@@ -76,7 +76,7 @@ func reset_statistics():
 	souls_collected = 0
 	bullets_summoned = 0
 	damage_dealt = 0
-	circles_completed = 9
+	circles_completed = 1
 	
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed("pause"):

@@ -25,6 +25,9 @@ func _ready():
 	add_to_group("draggable")
 
 func refresh() -> void:
+	for node in shop_nodes:
+		if not node:
+			shop_nodes.erase(node)
 	if shop_item_taken and is_shop:
 		for node in shop_nodes:
 			node.modulate = Color(0.6,0.6,0.6,1)
