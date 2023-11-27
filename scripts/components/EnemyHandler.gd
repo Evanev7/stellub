@@ -10,7 +10,7 @@ signal spawn_shop_on_enemy(pos)
 @onready var death_sound: AudioStreamPlayer2D = $DeathSound
 @onready var damage_number_spawner = $DamageNumberSpawner
 
-@export var spawn_batch_size = 50
+@export var spawn_batch_size = 1
 var spawn_queue: Array = []
 
 @export var safe_range: float = 800
@@ -83,10 +83,6 @@ func really_spawn_enemy(resourceID, centre = GameState.player.position, spawn_ra
 	enemy.hurtbox_collisionshape.set_deferred("disabled", false)
 	
 	
-	enemy.connect("spawn_shop", spawn_shop)
-	enemy.connect("play_damage_sound", play_damage_sound)
-	enemy.connect("play_death_sound", play_death_sound)
-	enemy.connect("spawn_damage_number", spawn_damage_number)
 	GameState.register_enemy.emit(enemy)
 	
 func get_enemy():
@@ -97,6 +93,7 @@ func get_enemy():
 		new_enemy.on_remove.connect(
 			func():
 				enemy_scene_pool.append(new_enemy))
+		connect_enemy(new_enemy)
 		enemy_ysort.call_deferred("add_child", new_enemy)
 		return new_enemy
 
@@ -144,13 +141,20 @@ func start_spawning():
 			func():
 				enemy_scene_pool.append(new_enemy))
 		enemy_scene_pool.append(new_enemy)
+		connect_enemy(new_enemy)
 		enemy_ysort.call_deferred("add_child", new_enemy)
 		
 	overall_multiplier = 1
 	phase_limit = 1
-	spawn_timer.wait_time = default_spawn_time / (1.02 ** GameState.player.current_level)
+	spawn_timer.wait_time = default_spawn_time / ((1.02 * (GameState.current_area + 1)) ** GameState.player.current_level)
 	spawn_timer.start()
 	phase_up_timer.start()
+	
+func connect_enemy(enemy):
+	enemy.connect("spawn_shop", spawn_shop)
+	enemy.connect("play_damage_sound", play_damage_sound)
+	enemy.connect("play_death_sound", play_death_sound)
+	enemy.connect("spawn_damage_number", spawn_damage_number)
 
 func stop_spawning():
 	spawn_timer.stop()

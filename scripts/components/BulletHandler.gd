@@ -4,11 +4,17 @@ class_name BulletHandler
 @export var bullet_scene: PackedScene
 @export var max_polyphony: int = 80
 
+@onready var bullets_parent: Node = $Bullets
+@onready var audio_players_parent: Node = $AudioPlayers
+
 var total_audio_players: int = 0
 var concurrent_bullets_fired: int = 0
 
 var bullet_scene_pool: Array[Bullet] = []
 var maximum_bullets: int = 1000
+
+var audio_player_pool: Array[AudioStreamPlayer2D] = []
+var maximum_audio_players: int = 300
 
 func _ready():
 	GameState.fire_bullet.connect(_on_fire_bullet)
@@ -18,24 +24,21 @@ func _ready():
 			func():
 				bullet_scene_pool.append(new_bullet))
 		bullet_scene_pool.append(new_bullet)
-		call_deferred("add_child", new_bullet)
+		bullets_parent.call_deferred("add_child", new_bullet)
+		
+	for i in range(maximum_audio_players):
+		var new_audio_player = AudioStreamPlayer2D.new()
+		audio_player_pool.append(new_audio_player)
+		new_audio_player.finished.connect(
+			func():
+				audio_player_pool.append(new_audio_player))
+		audio_players_parent.call_deferred("add_child", new_audio_player)
 
 # When a bullet is fired (by the player or an enemy) this function is "called". 
 # We iterate over every bullet to be fired, instantiate them and point them at the player
 # OR at where the player is clicking.
 func _on_fire_bullet(origin, bullet_type: BulletResource, fire_from: FireFrom):
-	if total_audio_players < max_polyphony:
-		play_audio(bullet_type.sound, fire_from.position)
-	else:
-		concurrent_bullets_fired += 1
-		
-		if concurrent_bullets_fired > max_polyphony / 2:
-			for child in get_children():
-				if child.is_in_group("bullet_audio"):
-					child.stop()
-					free_audio_player(child)
-					play_audio(bullet_type.sound, fire_from.position)
-			concurrent_bullets_fired = 0
+	play_audio(bullet_type.sound, fire_from.position)
 	
 	if not (origin is WeakRef):
 		origin = weakref(origin)
@@ -72,7 +75,7 @@ func _on_fire_bullet(origin, bullet_type: BulletResource, fire_from: FireFrom):
 		bullet.show()
 		bullet.collision.set_deferred("disabled", false)
 		
-func get_bullet():
+func get_bullet() -> Bullet:
 	GameState.bullets_summoned += 1
 	GameState.num_bullets += 1
 	if bullet_scene_pool.size() > 0:
@@ -82,20 +85,19 @@ func get_bullet():
 		new_bullet.on_remove.connect(
 			func():
 				bullet_scene_pool.append(new_bullet))
-		call_deferred("add_child", new_bullet)
+		bullets_parent.call_deferred("add_child", new_bullet)
 		return new_bullet
 
+
 func play_audio(sound, pos):
-	var audio_player = AudioStreamPlayer2D.new()
+	var audio_player = get_audio_player()
 	audio_player.stream = sound
 	audio_player.position = pos
 	audio_player.bus = "SFX"
-	audio_player.finished.connect(Callable(free_audio_player).bind(audio_player))
-	add_child(audio_player)
 	audio_player.play()
-	add_to_group("bullet_audio")
-	total_audio_players += 1
-	
-func free_audio_player(audio_player):
-	audio_player.queue_free()
-	total_audio_players -= 1
+
+func get_audio_player() -> AudioStreamPlayer2D:
+	if audio_player_pool.size() > 0:
+		return audio_player_pool.pop_front()
+	else:
+		return null

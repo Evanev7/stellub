@@ -196,4 +196,4 @@ func spawn_enemies(timerValue):
 			for j in range(count):
 				if size_of_barrier == 0:
 					size_of_barrier = 500
-				spawn_enemy_in_wave.emit(enemy_type, position, 400)
+				spawn_enemy_in_wave.emit(enemy_type, position, 750)

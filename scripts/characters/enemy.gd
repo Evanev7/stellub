@@ -10,6 +10,7 @@ signal spawn_damage_number(damage_value: float, position: Vector2, size: Vector2
 
 @export var resource: EnemyResource
 @export var damage_scene: PackedScene
+@export var teleport_back_to_player_range: int = 2000
 
 @onready var unique_multiplier: float
 @onready var overall_multiplier: float
@@ -41,7 +42,7 @@ var fire_on_hit: bool = false
 
 static var damage_scene_pool: Array[DamageNumber] = []
 var movement_enabled: bool = true
-var enemy_limit = 125
+var enemy_limit = 200
 
 func _ready():
 	dead = true
@@ -132,6 +133,11 @@ func sway():
 # if the fire_delay has elapsed.
 func _physics_process(_delta):
 	var player_direction = (GameState.player.position - position)
+	
+	if player_direction.length() > teleport_back_to_player_range:
+		var relative_spawn_position = Vector2(800,0).rotated(randf_range(0, 2*PI))
+		position = GameState.player.position + relative_spawn_position
+	
 	if player_direction.x < 0:
 		sprite.flip_h = (true != flipped)
 	else:
@@ -170,8 +176,6 @@ func hurt(area):
 	
 	#Die when health is zero
 	if health <= 0 and not dead:
-		GameState.num_enemies -= 1
-		GameState.enemies_killed += 1
 		dead = true
 		play_death_sound.emit(global_position)
 		
@@ -183,6 +187,8 @@ func hurt(area):
 	
 func remove():
 	dead = true
+	GameState.enemies_killed += 1
+	GameState.num_enemies -= 1
 	on_remove.emit()
 	attack_handler.stop()
 	collider.set_deferred("disabled", true)
@@ -192,28 +198,7 @@ func remove():
 	sprite.visible = false
 	shadow.visible = false
 	remove_from_group("enemy")
-	
-#func spawn_damage_number(damage_value: float):
-#	var damage_number = get_damage_number()
-#	if not damage_number:
-#		return
-#	var val = damage_value
-#	var pos = damage_number_location.position
-#	damage_numbers.add_child(damage_number, true)
-#	damage_number.set_values_and_animate(val, pos, damage_numbers.get_child_count() * 5, 100 + 5 * damage_numbers.get_child_count())
-#
-#func get_damage_number() -> DamageNumber:
-#	if damage_scene_pool.size() > 0:
-#		return damage_scene_pool.pop_front()
-#	elif GameState.num_damage_labels < 10:
-#		GameState.num_damage_labels += 1
-#		var new_damage_number = damage_scene.instantiate()
-#		new_damage_number.on_remove.connect(
-#			func():
-#				damage_scene_pool.append(new_damage_number))
-#		return new_damage_number
-#	else:
-#		return null
+
 
 # Called when the enemy encounters something that it hurts.
 func hit(area):

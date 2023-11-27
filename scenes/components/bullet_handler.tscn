@@ -6,3 +6,7 @@
 [node name="BulletHandler" type="Node"]
 script = ExtResource("1_0hnc5")
 bullet_scene = ExtResource("2_v0gfm")
+
+[node name="Bullets" type="Node" parent="."]
+
+[node name="AudioPlayers" type="Node" parent="."]
