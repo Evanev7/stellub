@@ -2,6 +2,7 @@ extends CanvasLayer
 
 signal restart_game
 
+@onready var levels_gained: Label = %Levels
 @onready var enemies_killed: Label = %Enemies
 @onready var souls_collected: Label = %Souls
 @onready var bullets_summoned: Label = %Bullets
@@ -21,6 +22,7 @@ func game_over():
 	else:
 		tween.tween_property($TextureRect, "self_modulate:a", 1, 0.5)
 		tween.tween_property($CenterContainer, "modulate:a", 1, 0.5)
+	levels_gained.text = str(GameState.player.current_level)
 	enemies_killed.text = str(GameState.enemies_killed)
 	souls_collected.text = str(int(GameState.souls_collected))
 	bullets_summoned.text = str(GameState.bullets_summoned)

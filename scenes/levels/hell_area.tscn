@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://qhl6r2tbil5t"]
+[gd_scene load_steps=47 format=3 uid="uid://qhl6r2tbil5t"]
 
 [ext_resource type="PackedScene" uid="uid://dilk21k2nncq2" path="res://scenes/levels/level_template.tscn" id="1_ttjsf"]
 [ext_resource type="PackedScene" uid="uid://dfrum4te4lpmr" path="res://scenes/objects/teleporter.tscn" id="2_8o713"]
@@ -16,7 +16,6 @@
 [ext_resource type="Resource" uid="uid://daslelns8qmfv" path="res://resources/enemy/angel_crusader.tres" id="8_rirxr"]
 [ext_resource type="Texture2D" uid="uid://dvrx1ijrwk8a2" path="res://art/backgrounds/hell_level_1.png" id="10_dov0s"]
 [ext_resource type="PackedScene" uid="uid://cnepphpba8e8u" path="res://scenes/characters/player.tscn" id="11_syo0k"]
-[ext_resource type="Resource" uid="uid://ccpb4udi5owpj" path="res://resources/bullets/player/player_bullet.tres" id="13_2dgq8"]
 [ext_resource type="PackedScene" uid="uid://j8g4suxt2pa2" path="res://scenes/objects/mountain_large.tscn" id="14_kq46c"]
 [ext_resource type="Resource" uid="uid://coqyd5d8e6rm8" path="res://resources/bullets/player/particle_mace.tres" id="14_soul3"]
 [ext_resource type="Resource" uid="uid://b3v62pkd6hntd" path="res://resources/bullets/player/shotgun.tres" id="15_gx6j7"]
@@ -100,7 +99,7 @@ enemy_ysort = NodePath("../../YSort/Enemies")
 [node name="ShopHandler" parent="LogicComponents" index="4" node_paths=PackedStringArray("enemy_handler", "ysorter", "objective_marker", "shop_node", "teleporter") instance=ExtResource("6_tokbn")]
 attack_scene = ExtResource("23_6mnt7")
 default_shop_upgrades_list = Array[Resource("res://upgrades/upgrade_resource.gd")]([ExtResource("22_vl2um"), ExtResource("23_ti1t0"), ExtResource("24_370hh"), ExtResource("25_2mguo"), ExtResource("26_sxgrq"), ExtResource("27_kwkmh"), ExtResource("28_1qd5n"), ExtResource("29_kgb5h"), ExtResource("30_nb1u1"), ExtResource("30_7nx4i"), ExtResource("32_ve8tn"), ExtResource("32_nacy0"), ExtResource("33_7jswi")])
-default_shop_weapons_list = Array[Resource("res://scripts/objects/bullet_resource.gd")]([ExtResource("13_2dgq8"), ExtResource("14_soul3"), ExtResource("15_gx6j7"), ExtResource("16_fw7me"), ExtResource("37_l8y3f")])
+default_shop_weapons_list = Array[Resource("res://scripts/objects/bullet_resource.gd")]([ExtResource("14_soul3"), ExtResource("15_gx6j7"), ExtResource("16_fw7me"), ExtResource("37_l8y3f")])
 enemy_handler = NodePath("../EnemyHandler")
 ysorter = NodePath("../../YSort")
 objective_marker = NodePath("../../ObjectiveMarker")

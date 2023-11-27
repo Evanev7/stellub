@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://cnepphpba8e8u"]
+[gd_scene load_steps=50 format=3 uid="uid://cnepphpba8e8u"]
 
 [ext_resource type="Script" path="res://scripts/characters/player.gd" id="1_m0lvq"]
 [ext_resource type="Resource" uid="uid://qdvp5rtjvnll" path="res://upgrades/stat_upgrade.tres" id="3_b8qp8"]
@@ -33,7 +33,10 @@
 [ext_resource type="Texture2D" uid="uid://d4hct8jpb8rpj" path="res://art/player/level 6/player_6_1.png" id="32_jmb7j"]
 [ext_resource type="PackedScene" uid="uid://u1hhvearq4oy" path="res://scenes/components/attack_handler.tscn" id="32_ju527"]
 [ext_resource type="Resource" uid="uid://ccpb4udi5owpj" path="res://resources/bullets/player/player_bullet.tres" id="35_8awst"]
+[ext_resource type="AudioStream" uid="uid://c7m6xuqfndntt" path="res://sounds/fire.wav" id="35_hudad"]
 [ext_resource type="Texture2D" uid="uid://bpx5ybtqcrlpp" path="res://art/objects/shadow.png" id="35_ikv2g"]
+[ext_resource type="AudioStream" uid="uid://dvmyi1ab7aafi" path="res://sounds/hp_pickup.wav" id="36_1j732"]
+[ext_resource type="AudioStream" uid="uid://brney5rm6n7qw" path="res://sounds/level_up.wav" id="36_ik3c3"]
 [ext_resource type="AudioStream" uid="uid://umpxr80y1hgh" path="res://sounds/pickup.wav" id="36_ys6vg"]
 [ext_resource type="Texture2D" uid="uid://bhs2v6ujb61d6" path="res://art/bullets/temp_1.png" id="38_uyywf"]
 
@@ -168,10 +171,28 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_yst2m"]
+streams_count = 1
+random_volume_offset_db = 1.0
+stream_0/stream = ExtResource("35_hudad")
+stream_0/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_k0a05"]
+streams_count = 1
+random_volume_offset_db = 1.0
+stream_0/stream = ExtResource("36_1j732")
+stream_0/weight = 1.0
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_51dqt"]
 streams_count = 1
 random_volume_offset_db = 1.0
 stream_0/stream = ExtResource("36_ys6vg")
+stream_0/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_r2jma"]
+streams_count = 1
+random_pitch = 1.03
+stream_0/stream = ExtResource("36_ik3c3")
 stream_0/weight = 1.0
 
 [sub_resource type="Gradient" id="Gradient_vribh"]
@@ -252,10 +273,27 @@ one_shot = true
 
 [node name="AttackHandler" parent="." instance=ExtResource("32_ju527")]
 
+[node name="VacuumPickup" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_yst2m")
+volume_db = -15.259
+max_polyphony = 30
+bus = &"SFX"
+
+[node name="HPPickup" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_k0a05")
+volume_db = -15.259
+max_polyphony = 30
+bus = &"SFX"
+
 [node name="Pickup" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_51dqt")
 volume_db = -15.259
 max_polyphony = 30
+bus = &"SFX"
+
+[node name="LevelUp" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_r2jma")
+max_polyphony = 3
 bus = &"SFX"
 
 [node name="Blood" type="GPUParticles2D" parent="."]
@@ -265,7 +303,7 @@ amount = 30
 process_material = SubResource("ParticleProcessMaterial_fjti8")
 texture = ExtResource("38_uyywf")
 
-[connection signal="area_entered" from="Hurtbox" to="." method="hurt"]
 [connection signal="area_entered" from="Hurtbox" to="." method="get_pickup"]
+[connection signal="area_entered" from="Hurtbox" to="." method="hurt"]
 [connection signal="area_entered" from="PickupRange" to="." method="activate_pickup"]
 [connection signal="timeout" from="IFrames" to="." method="_on_i_frames_timeout"]

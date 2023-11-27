@@ -12,7 +12,7 @@ monitoring = false
 script = ExtResource("1_rqpcu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -2)
+position = Vector2(0, -1)
 scale = Vector2(0.03, 0.03)
 sprite_frames = ExtResource("2_13irk")
 animation = &"xp_pickup"

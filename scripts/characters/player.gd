@@ -23,6 +23,9 @@ signal credit_player(value)
 @onready var i_frame_timer: Timer = $IFrames
 @onready var blood_particles: GPUParticles2D = $Blood
 @onready var pickup_sound: AudioStreamPlayer = $Pickup
+@onready var hp_pickup_sound: AudioStreamPlayer = $HPPickup
+@onready var vacuum_pickup_sound: AudioStreamPlayer = $VacuumPickup
+@onready var level_up_sound: AudioStreamPlayer = $LevelUp
 
 var control_mode: int = 0
 var level_threshold = [10, 20, 30, 50]
@@ -176,6 +179,7 @@ func get_pickup(area):
 				pickup_sound.play()
 			Pickup.hp_pickup:
 				heal(area.value)
+				hp_pickup_sound.play()
 			Pickup.vacuum_pickup:
 				activate_xp_vacuum()
 		area.queue_free()
@@ -220,6 +224,7 @@ func player_level_up():
 	speed *= 1.01
 	pickup_range.scale *= 1.03
 	current_level += 1
+	level_up_sound.play()
 	
 	attack_handler.upgrade_all_attacks(stat_upgrade)
 

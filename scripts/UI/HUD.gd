@@ -15,7 +15,11 @@ signal open_pause_menu
 #	GameState.game_over.connect(game_over)
 
 func _process(_delta):
-	$FPS.set_text("FPS %d" % Engine.get_frames_per_second())
+	if GameState.fps_enabled:
+		$FPS.visible = true
+		$FPS.set_text("FPS %d" % Engine.get_frames_per_second())
+	else:
+		$FPS.visible = false
 	level.set_text(str(GameState.player.current_level))
 
 func show_message(text):

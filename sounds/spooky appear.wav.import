@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c5mrt3o8dm37o"
+path="res://.godot/imported/spooky appear.wav-7eb98d5fcd243ee6e7891e9d4d10d14f.sample"
+
+[deps]
+
+source_file="res://sounds/spooky appear.wav"
+dest_files=["res://.godot/imported/spooky appear.wav-7eb98d5fcd243ee6e7891e9d4d10d14f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

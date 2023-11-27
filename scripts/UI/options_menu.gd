@@ -8,9 +8,11 @@ signal go_back
 @export var master_test: AudioStreamPlayer
 @export var SFX_test: AudioStreamPlayer
 @export var damage_numbers_enabled: CheckButton
+@export var fps_enabled: CheckButton
 
 func _ready():
 	damage_numbers_enabled.button_pressed = GameState.damage_numbers_enabled
+	fps_enabled.button_pressed = GameState.fps_enabled
 	master_slider.value = 0.7
 	sfx_slider.value = 0.7
 	music_slider.value = 0.7
@@ -32,3 +34,7 @@ func _on_back_pressed():
 
 func _on_damage_numbers_pressed():
 	GameState.damage_numbers_enabled = damage_numbers_enabled.button_pressed
+
+
+func _on_fps_pressed():
+	GameState.fps_enabled = fps_enabled.button_pressed

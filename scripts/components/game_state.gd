@@ -5,6 +5,8 @@ signal spawn_enemy
 signal game_over
 signal register_enemy
 
+var debug: bool = true
+
 var first_time: bool = true
 
 var player: CharacterBody2D
@@ -12,6 +14,7 @@ var pause_menu: CanvasLayer
 var shop_HUD: CanvasLayer
 
 var damage_numbers_enabled: bool = true
+@onready var fps_enabled: bool = debug
 
 enum CURRENT_AREA {HELL, HEAVEN, MAIN_MENU, FIRST_TIME, BOSS, TESTING}
 var current_area
@@ -34,7 +37,6 @@ var num_bullets: int = 0
 var num_xp_pickups: int = 0
 var num_damage_labels: int = 0
 
-var debug: bool = true
 
 ## STATS
 var enemies_killed: int = 0
