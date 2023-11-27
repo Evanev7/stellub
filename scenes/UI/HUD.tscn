@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://yaht8i4bkv2u"]
+[gd_scene load_steps=24 format=3 uid="uid://yaht8i4bkv2u"]
 
 [ext_resource type="Script" path="res://scripts/UI/HUD.gd" id="1_tsnwf"]
 [ext_resource type="Texture2D" uid="uid://dl1gspa35j2xu" path="res://art/UI/vignette2.png" id="2_i7f4k"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bqjr66plhka4t" path="res://art/UI/XP_Bar_Fill.png" id="3_g0pwy"]
 [ext_resource type="Texture2D" uid="uid://dfl8ox20w3xn" path="res://art/UI/Black_Background/black_bg_2.png" id="3_k867k"]
 [ext_resource type="Texture2D" uid="uid://bsmsy5dhk3vsp" path="res://art/UI/Black_Background/black_bg_3.png" id="4_0fiv5"]
+[ext_resource type="SpriteFrames" uid="uid://btd05ounitw4h" path="res://art/UI/magic_circle_indicator.tres" id="4_l2fes"]
 [ext_resource type="Texture2D" uid="uid://bottvwnfwt65t" path="res://art/UI/HP_Bar/HP_Bar_Outline_1.png" id="4_m51i6"]
 [ext_resource type="Texture2D" uid="uid://dq4qin2d2o6d3" path="res://art/UI/Black_Background/black_bg_4.png" id="5_0gsxt"]
 [ext_resource type="Texture2D" uid="uid://ckj36odxkb2o2" path="res://art/UI/HP_Bar/HP_Bar_Outline_2.png" id="5_4mon2"]
@@ -21,7 +22,7 @@
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_y7i4i"]
 frames = 3
-speed_scale = 3.0
+speed_scale = 5.0
 frame_0/texture = ExtResource("6_hfuq4")
 frame_1/texture = ExtResource("7_5t2y1")
 frame_1/duration = 1.0
@@ -154,6 +155,59 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 texture = ExtResource("2_i7f4k")
 expand_mode = 1
+
+[node name="CircleCounter" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 58.0
+offset_right = 20.0
+offset_bottom = 98.0
+grow_horizontal = 2
+
+[node name="Circle1" type="AnimatedSprite2D" parent="CircleCounter"]
+position = Vector2(-371, 99)
+rotation = -0.288296
+scale = Vector2(0.08, 0.08)
+sprite_frames = ExtResource("4_l2fes")
+animation = &"off"
+
+[node name="Circle2" type="AnimatedSprite2D" parent="CircleCounter"]
+position = Vector2(-247, 56)
+rotation = -0.136485
+scale = Vector2(0.08, 0.08)
+sprite_frames = ExtResource("4_l2fes")
+animation = &"off"
+
+[node name="Circle3" type="AnimatedSprite2D" parent="CircleCounter"]
+position = Vector2(-123, 43)
+rotation = -0.0565614
+scale = Vector2(0.08, 0.08)
+sprite_frames = ExtResource("4_l2fes")
+animation = &"off"
+
+[node name="Circle4" type="AnimatedSprite2D" parent="CircleCounter"]
+position = Vector2(20, 43)
+rotation = 0.0558505
+scale = Vector2(0.08, 0.08)
+sprite_frames = ExtResource("4_l2fes")
+animation = &"off"
+
+[node name="Circle5" type="AnimatedSprite2D" parent="CircleCounter"]
+position = Vector2(159, 56)
+rotation = 0.136136
+scale = Vector2(0.08, 0.08)
+sprite_frames = ExtResource("4_l2fes")
+animation = &"off"
+
+[node name="Circle6" type="AnimatedSprite2D" parent="CircleCounter"]
+position = Vector2(294, 99)
+rotation = 0.287979
+scale = Vector2(0.08, 0.08)
+sprite_frames = ExtResource("4_l2fes")
+animation = &"off"
 
 [node name="XPBar" type="TextureProgressBar" parent="."]
 anchors_preset = 1

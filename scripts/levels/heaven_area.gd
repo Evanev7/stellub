@@ -18,7 +18,7 @@ func _ready():
 	player.connect("credit_player", $LogicComponents/PickupHandler._on_pickup_credit_player)
 	start_game()
 	$YSort/teleporter.position = Vector2(GameState.player.position.x + 2, GameState.player.position.y - 10)
-	$ObjectiveMarker.add_target($YSort/teleporter)
+	$YSort/teleporter.enabled()
 	$LogicComponents/TerrainGenerator.generate()
 	$LogicComponents/TerrainGenerator.cliff_generate()
 

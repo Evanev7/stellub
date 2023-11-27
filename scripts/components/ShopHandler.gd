@@ -1,7 +1,7 @@
 extends Node
 class_name ShopHandler
 
-signal remove_marker_from_circle(circle)
+signal activate_previous_circle(circle_num)
 
 @export var shop_scene: PackedScene
 @export var magic_circle_scene: PackedScene
@@ -54,7 +54,7 @@ func spawn_next_circle(centre):
 	var new_angle = centre_angle + randf_range(block_out_angle, 2*PI - block_out_angle)
 	var new_centre = centre + radius.rotated(new_angle)
 	spawn_circle(new_centre)
-	
+	activate_previous_circle.emit(GameState.circles_completed - 1)
 
 func spawn_circle(spawn_pos):
 	var magic_circle = magic_circle_scene.instantiate()

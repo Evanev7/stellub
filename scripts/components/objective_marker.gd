@@ -13,12 +13,16 @@ var arrows: Array
 
 
 func add_target(node: Node2D):
+	print(node.name)
 	var arrow = arrow_scene.instantiate()
 	arrow.name = "Arrow " + str(len(arrows)+1)
 	arrow.node = node
 	arrow.width_ratio = width_ratio
 	arrow.screen_height_ratio = screen_height_ratio
 	arrow.margin = margin
+	
+	if node.name == "teleporter":
+		arrow.get_node("Arrow").modulate = Color(8, 7, 0)
 	
 	arrows.append(arrow)
 	add_child(arrow)

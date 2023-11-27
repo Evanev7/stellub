@@ -7,6 +7,7 @@ signal open_pause_menu
 @onready var HP_Bar := $HPBar
 @onready var level := $XPBar/Level
 @onready var vignette: TextureRect = $TextureRect3
+@onready var circle_counter: Control = $CircleCounter
 
 @onready var enemy_count = $Debug/EnemyCount
 @onready var bullet_count = $Debug/BulletCount
@@ -81,3 +82,8 @@ func show_debug():
 	bullet_count.text = "bullets: " + str(GameState.num_bullets)
 	enemy_count.text = "enemies: " + str(get_tree().get_nodes_in_group("enemy").size())
 	$DisplayTimer.start()
+
+
+func _on_shop_handler_activate_circle(circle):
+	var circle_to_turn_on = "Circle" + str(circle)
+	circle_counter.get_node(circle_to_turn_on).play("on")

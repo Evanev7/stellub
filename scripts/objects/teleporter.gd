@@ -4,6 +4,7 @@ extends Node2D
 @export var HUD: CanvasLayer
 
 signal teleport_player
+signal add_objective_marker(teleporter)
 
 var tween: Tween
 
@@ -25,6 +26,7 @@ func _process(_delta):
 func enabled():
 	$teleporter/CollisionShape2D.disabled = false
 	$Active.visible = true
+	add_objective_marker.emit(self)
 
 
 func _on_teleporter_body_entered(body):

@@ -22,6 +22,7 @@ func _on_exit_pressed():
 	GameState.unpause_game()
 	Input.set_custom_mouse_cursor(GameState.clicky_hand, Input.CURSOR_ARROW, Vector2i(8,5))
 	set_visible(false)
+	SoundManager.currently_playing_music.stop()
 	GameState.load_area(GameState.CURRENT_AREA.MAIN_MENU)
 
 

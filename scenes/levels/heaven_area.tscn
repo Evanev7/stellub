@@ -96,7 +96,7 @@ objective_marker = NodePath("../../ObjectiveMarker")
 shop_node = NodePath("../../ShopAlt")
 teleporter = NodePath("../../YSort/teleporter")
 
+[connection signal="add_objective_marker" from="YSort/teleporter" to="ObjectiveMarker" method="add_target"]
 [connection signal="start_game" from="HUD" to="." method="restart_game"]
 [connection signal="restart_game" from="stat_screen" to="." method="restart_game"]
 [connection signal="spawn_shop_on_enemy" from="LogicComponents/EnemyHandler" to="LogicComponents/ShopHandler" method="_on_spawn_shop"]
-[connection signal="remove_marker_from_circle" from="LogicComponents/ShopHandler" to="ObjectiveMarker" method="delete_target"]

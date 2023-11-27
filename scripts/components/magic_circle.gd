@@ -177,7 +177,7 @@ func _on_success_timer_timeout():
 		remove_objective_marker()
 		get_node("Circle/CollisionShape2D").disabled = true
 		spawn_next_circle.emit(self.global_position)
-	if GameState.circles_completed + 1 == 11:
+	if GameState.circles_completed + 1 == 7:
 		activate_teleporter.emit()
 	
 func remove_objective_marker():

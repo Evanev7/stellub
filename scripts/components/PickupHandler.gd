@@ -16,7 +16,7 @@ var spawn_queue: Array = []
 func _ready():
 	GameState.register_enemy.connect(attach_enemy)
 	reward_pool = Pool.new()
-	reward_pool.populate([[Pickup.hp_pickup,1], [Pickup.vacuum_pickup,1], [null,8]])
+	reward_pool.populate([[Pickup.hp_pickup,1], [Pickup.vacuum_pickup,1], [null,50]])
 
 
 func _physics_process(_delta):

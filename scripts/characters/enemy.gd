@@ -144,7 +144,7 @@ func _physics_process(_delta):
 		sprite.flip_h = (false != flipped)
 	velocity = player_direction.normalized() * speed
 	
-	if get_index() < enemy_limit:
+	if GameState.num_enemies < enemy_limit:
 		movement_enabled = true
 		
 	if movement_enabled:
