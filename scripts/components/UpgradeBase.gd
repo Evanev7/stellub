@@ -6,7 +6,7 @@ class_name Upgrade
 @export var icon: CompressedTexture2D
 @export_multiline var description: String
 @export var skip: bool = false
-var script_data
+var script_data: Dictionary
 
 func _ready():
 	pass

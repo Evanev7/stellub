@@ -16,10 +16,11 @@ func thanks_for_the_data(path):
 func physics_process(delta):
 	if pathfollow:
 		timer += delta
-		pathfollow.progress_ratio = (timer/duration)**exponent
-		owner.position = pathfollow.position
 		if timer >= duration:
 			change_state.emit(self, "randomizer")
+			return
+		pathfollow.progress_ratio = (timer/duration)**exponent
+		owner.position = pathfollow.position
 
 func enter():
 	timer = 0

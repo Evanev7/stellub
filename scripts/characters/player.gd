@@ -46,9 +46,12 @@ var walking: bool = false
 var invuln: bool = false
 var dead: bool = false
 var current_animation: String
+@export var disable_ready = false 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if disable_ready:
+		return
 	GameState.player = self
 	hide()
 	attack_handler.stop()

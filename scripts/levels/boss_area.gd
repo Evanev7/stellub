@@ -1,6 +1,6 @@
 extends Node
 
-var testing_boss_scene = true
+@export var testing_boss_scene = false
 
 
 @export var enemy_resource_list: Array[EnemyResource]

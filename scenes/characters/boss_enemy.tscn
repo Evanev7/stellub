@@ -57,3 +57,7 @@ script = ExtResource("10_f7qcd")
 
 [node name="Randomizer" type="Node" parent="FiniteStateMachine" index="5"]
 script = ExtResource("11_ahao5")
+
+[node name="EnrageChasePlayer" type="Node" parent="FiniteStateMachine" index="6"]
+
+[node name="RetreatRecover" type="Node" parent="FiniteStateMachine" index="7"]

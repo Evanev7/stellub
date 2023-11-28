@@ -36,6 +36,7 @@ polygon = PackedVector2Array(-383, 12, -38, 20, 142, 37, 238, -23, 346, -43, 507
 position = Vector2(908, 582)
 
 [node name="Player" parent="YSort" index="2" instance=ExtResource("5_q64ff")]
+disable_ready = true
 
 [node name="BossSpawner" parent="YSort" index="3" node_paths=PackedStringArray("enemy_handler", "boss_start", "enemy_ysort") instance=ExtResource("4_sqdkq")]
 position = Vector2(865, -373)
