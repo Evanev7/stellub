@@ -62,6 +62,18 @@ func _input(event):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
+	var direction: Vector2
+	var movement: Vector2
+	direction.x = Input.get_action_strength("move_cursor_right") - Input.get_action_strength("move_cursor_left")
+	direction.y = Input.get_action_strength("move_cursor_down") - Input.get_action_strength("move_cursor_up")
+	
+	if abs(direction.x) == 1 and abs(direction.y) == 1:
+		direction = direction.normalized()
+
+	movement = 800.0 * direction * _delta
+	get_viewport().warp_mouse(get_viewport().get_mouse_position() + movement)
+	
+	
 	velocity = Input.get_vector("move_left", "move_right","move_up", "move_down")
 	
 	# Handle user input
