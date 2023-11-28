@@ -176,10 +176,6 @@ move_cursor_right={
 2d_physics/layer_3="Enemy Damage"
 2d_physics/layer_4="Object Placement"
 
-[rendering]
-
-environment/defaults/default_clear_color=Color(1, 1, 1, 0)
-
 [shader_globals]
 
 player_position={

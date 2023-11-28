@@ -24,11 +24,10 @@
 [ext_resource type="Resource" uid="uid://8ogmebrr77xx" path="res://resources/bullets/player/black_hole.tres" id="16_fw7me"]
 [ext_resource type="PackedScene" uid="uid://b2tef800ecm8u" path="res://scenes/components/weapon_handler.tscn" id="17_gx7j2"]
 [ext_resource type="PackedScene" uid="uid://c0sja3tghmci5" path="res://scenes/objects/hell_roots.tscn" id="17_kyh5d"]
-[ext_resource type="PackedScene" uid="uid://ccn1gqdiqd0gk" path="res://scenes/objects/pillar_broken.tscn" id="18_uw2ke"]
+[ext_resource type="PackedScene" path="res://scenes/objects/pillar_broken.tscn" id="18_uw2ke"]
 [ext_resource type="PackedScene" uid="uid://bco6kn11dyo6o" path="res://scenes/components/boss_handler.tscn" id="18_yysi3"]
 [ext_resource type="PackedScene" uid="uid://d2qk4vahd2ews" path="res://scenes/objects/bones.tscn" id="19_omeqv"]
-[ext_resource type="PackedScene" uid="uid://d23ddhgery8pq" path="res://scenes/characters/boss.tscn" id="20_gixqi"]
-[ext_resource type="Resource" uid="uid://cde86qx4smawg" path="res://resources/enemy/demon_lord.tres" id="21_jliye"]
+[ext_resource type="Resource" path="res://resources/enemy/demon_lord.tres" id="21_jliye"]
 [ext_resource type="Resource" uid="uid://dldq0lmweq825" path="res://upgrades/auto_fire.tres" id="22_vl2um"]
 [ext_resource type="PackedScene" uid="uid://be4i0yo3jsk42" path="res://scenes/components/attack.tscn" id="23_6mnt7"]
 [ext_resource type="Resource" uid="uid://dgnonhlostgr1" path="res://upgrades/bowling_ball.tres" id="23_ti1t0"]
@@ -44,6 +43,7 @@
 [ext_resource type="Resource" uid="uid://nh3ysny8kvkt" path="res://upgrades/vacuum.tres" id="32_ve8tn"]
 [ext_resource type="Resource" uid="uid://b1rd0nm53sjuw" path="res://upgrades/frag.tres" id="33_7jswi"]
 [ext_resource type="Resource" uid="uid://cyahshf3y21ai" path="res://resources/bullets/player/boomerang.tres" id="37_l8y3f"]
+[ext_resource type="PackedScene" uid="uid://cc07v7n1u6cto" path="res://scenes/characters/boss_enemy.tscn" id="43_a3i5e"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e30b7"]
 texture = ExtResource("10_dov0s")
@@ -104,7 +104,7 @@ shop_node = NodePath("../../ShopAlt")
 teleporter = NodePath("../../YSort/teleporter")
 
 [node name="BossHandler" parent="LogicComponents" index="5" node_paths=PackedStringArray("ysorter") instance=ExtResource("18_yysi3")]
-boss_scene = ExtResource("20_gixqi")
+boss_scene = ExtResource("43_a3i5e")
 ysorter = NodePath("../../YSort")
 
 [node name="WeaponHandler" parent="LogicComponents" index="6" node_paths=PackedStringArray("ysorter") instance=ExtResource("17_gx7j2")]

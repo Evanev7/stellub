@@ -90,7 +90,6 @@ func really_spawn_enemy(resourceID, centre = GameState.player.position, spawn_ra
 	enemy.hurtbox_collisionshape.set_deferred("disabled", false)
 	
 	
-	GameState.register_enemy.emit(enemy)
 	
 func get_enemy():
 	if enemy_scene_pool.size() > 0:
@@ -162,6 +161,7 @@ func connect_enemy(enemy):
 	enemy.connect("play_damage_sound", play_damage_sound)
 	enemy.connect("play_death_sound", play_death_sound)
 	enemy.connect("spawn_damage_number", spawn_damage_number)
+	GameState.register_enemy.emit(enemy)
 
 func stop_spawning():
 	spawn_timer.stop()

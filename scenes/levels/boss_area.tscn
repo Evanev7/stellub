@@ -1,13 +1,20 @@
-[gd_scene load_steps=9 format=3 uid="uid://dg6c8see5s58b"]
+[gd_scene load_steps=11 format=3 uid="uid://dg6c8see5s58b"]
 
 [ext_resource type="PackedScene" uid="uid://dilk21k2nncq2" path="res://scenes/levels/level_template.tscn" id="1_god74"]
 [ext_resource type="Script" path="res://scripts/levels/boss_area.gd" id="2_58lyh"]
 [ext_resource type="Texture2D" uid="uid://b3kwbsbykqq30" path="res://art/objects/Boss_Arena_ground.png" id="2_tmx4t"]
 [ext_resource type="PackedScene" uid="uid://d23ddhgery8pq" path="res://scenes/characters/boss.tscn" id="4_sqdkq"]
 [ext_resource type="PackedScene" uid="uid://cnrpegq0voiht" path="res://scenes/components/enemy_handler.tscn" id="5_4wr2n"]
+[ext_resource type="PackedScene" uid="uid://cnepphpba8e8u" path="res://scenes/characters/player.tscn" id="5_q64ff"]
 [ext_resource type="Resource" uid="uid://p0ytgmgbgkky" path="res://resources/enemy/boss.tres" id="6_j8u0c"]
 [ext_resource type="PackedScene" uid="uid://ugulpxhu6v48" path="res://scenes/components/pickup_handler.tscn" id="6_yvi7m"]
 [ext_resource type="PackedScene" uid="uid://cjuw1uddg4foi" path="res://scenes/objects/pickup.tscn" id="7_32dji"]
+
+[sub_resource type="Curve2D" id="Curve2D_i2xvs"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1873, -2202, 0, 0, 0, 0, 1844, -1650, 0, 0, 0, 0, 1795, -1006, 0, 0, 0, 0, 1723, -705, 0, 0, 0, 0, 1557, -436, 0, 0, 0, 0, 1386, -285, 0, 0, 0, 0, 1191, -195, 0, 0, 0, 0, 989, -137)
+}
+point_count = 8
 
 [node name="Boss Area" instance=ExtResource("1_god74")]
 script = ExtResource("2_58lyh")
@@ -28,13 +35,15 @@ polygon = PackedVector2Array(-383, 12, -38, 20, 142, 37, 238, -23, 346, -43, 507
 [node name="PlayerStart" parent="YSort" index="1"]
 position = Vector2(908, 582)
 
-[node name="boss" parent="YSort" index="2" node_paths=PackedStringArray("enemy_handler", "boss_start", "enemy_ysort") instance=ExtResource("4_sqdkq")]
+[node name="Player" parent="YSort" index="2" instance=ExtResource("5_q64ff")]
+
+[node name="boss" parent="YSort" index="3" node_paths=PackedStringArray("enemy_handler", "boss_start", "enemy_ysort") instance=ExtResource("4_sqdkq")]
 position = Vector2(865, -373)
 enemy_handler = NodePath("../../LogicComponents/EnemyHandler")
 boss_start = NodePath("../BossStart")
-enemy_ysort = NodePath("../Enemies")
+enemy_ysort = NodePath("..")
 
-[node name="BossStart" type="Marker2D" parent="YSort" index="3"]
+[node name="BossStart" type="Marker2D" parent="YSort" index="4"]
 position = Vector2(868, -376)
 
 [node name="EnemyHandler" parent="LogicComponents" index="1" node_paths=PackedStringArray("enemy_ysort") instance=ExtResource("5_4wr2n")]
@@ -46,6 +55,11 @@ pickup_scene = ExtResource("7_32dji")
 ysorter = NodePath("../../YSort")
 score_display = NodePath("../../HUD")
 
-[node name="Node2D" type="Node2D" parent="." index="8"]
+[node name="IntroPath" type="Path2D" parent="." index="8"]
+curve = SubResource("Curve2D_i2xvs")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="IntroPath" index="0"]
+position = Vector2(1873, -2202)
+rotation = 1.62328
 
 [connection signal="start_game" from="HUD" to="." method="restart_game"]

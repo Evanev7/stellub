@@ -1,5 +1,7 @@
 extends Node
 
+var testing_boss_scene = true
+
 
 @export var enemy_resource_list: Array[EnemyResource]
 
@@ -16,13 +18,15 @@ func _ready():
 	player.connect("hp_changed", HUD.show_health)
 	#player.connect("credit_player", $LogicComponents/PickupHandler._on_pickup_credit_player)
 	start_game()
+	if testing_boss_scene:
+		GameState.player.start()
 
 
 # Start the timers we need, instantiate the HUD and get the player in the right spot.
 func start_game():
 	#enemy_handler.start_spawning()
-	
-	SoundManager.currently_playing_music.stop()
+	if SoundManager.currently_playing_music:
+		SoundManager.currently_playing_music.stop()
 	
 	player.position = $YSort/PlayerStart.position
 	$cursor_particles.emitting = true
@@ -51,3 +55,7 @@ func _on_player_level_up(_current_level):
 #	enemy_handler.spawn_timer.wait_time /= 1.02
 #	enemy_handler.overall_multiplier += player.current_level / float(600)
 	
+func heres_your_data(who):
+	if who.name.to_lower() == "bossinit":
+		var path = $IntroPath/PathFollow2D
+		who.thanks_for_the_data(path)

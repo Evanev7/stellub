@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://dpjckt12ipcw2"]
+[gd_scene load_steps=10 format=3 uid="uid://dpjckt12ipcw2"]
 
 [ext_resource type="Script" path="res://scripts/characters/enemy.gd" id="1_oyorq"]
 [ext_resource type="PackedScene" uid="uid://1bd6uenu01av" path="res://scenes/UI/damage_number.tscn" id="2_orbdq"]
+[ext_resource type="Resource" uid="uid://p0ytgmgbgkky" path="res://resources/enemy/boss.tres" id="2_quvqc"]
 [ext_resource type="Shader" path="res://scenes/characters/enemy.gdshader" id="3_30b5x"]
 [ext_resource type="Texture2D" uid="uid://bpx5ybtqcrlpp" path="res://art/objects/shadow.png" id="3_m06xu"]
 [ext_resource type="Script" path="res://scripts/characters/AttackHandler.gd" id="6_hcyh0"]
@@ -18,6 +19,7 @@ shader_parameter/line_thickness = 0.0
 scale = Vector2(0.7, 0.7)
 motion_mode = 1
 script = ExtResource("1_oyorq")
+resource = ExtResource("2_quvqc")
 damage_scene = ExtResource("2_orbdq")
 
 [node name="Shadow" type="Sprite2D" parent="."]
@@ -77,4 +79,6 @@ vertical_alignment = 1
 
 [node name="DamageNumbers" type="Node2D" parent="."]
 
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_exited" from="Hitbox" to="." method="_on_hitbox_area_exited"]
 [connection signal="area_entered" from="Hurtbox" to="." method="hurt"]

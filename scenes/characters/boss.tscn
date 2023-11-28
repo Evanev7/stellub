@@ -1,12 +1,12 @@
 [gd_scene load_steps=5 format=3 uid="uid://d23ddhgery8pq"]
 
 [ext_resource type="Script" path="res://scripts/characters/boss.gd" id="1_vq2wp"]
-[ext_resource type="PackedScene" uid="uid://dpjckt12ipcw2" path="res://scenes/characters/enemy.tscn" id="3_qeucr"]
+[ext_resource type="PackedScene" uid="uid://cc07v7n1u6cto" path="res://scenes/characters/boss_enemy.tscn" id="2_lhfsm"]
 [ext_resource type="Resource" uid="uid://d4hyik40h0kpq" path="res://upgrades/boss_upgrade.tres" id="4_y78di"]
 [ext_resource type="Resource" uid="uid://p0ytgmgbgkky" path="res://resources/enemy/boss.tres" id="6_q7r1j"]
 
-[node name="boss" type="Node2D"]
+[node name="Boss" type="Node2D"]
 script = ExtResource("1_vq2wp")
-enemy_scene = ExtResource("3_qeucr")
+enemy_scene = ExtResource("2_lhfsm")
 boss_resource = ExtResource("6_q7r1j")
 boss_upgrade = ExtResource("4_y78di")

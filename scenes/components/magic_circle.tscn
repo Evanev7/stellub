@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/components/magic_circle.gd" id="1_114ni"]
 [ext_resource type="PackedScene" uid="uid://cicwqsj3byj4u" path="res://scenes/components/spawn_collision_handler.tscn" id="3_4838f"]
-[ext_resource type="PackedScene" uid="uid://ccn1gqdiqd0gk" path="res://scenes/objects/pillar_broken.tscn" id="3_ae15p"]
+[ext_resource type="PackedScene" path="res://scenes/objects/pillar_broken.tscn" id="3_ae15p"]
 [ext_resource type="PackedScene" uid="uid://7pekoii3l4xw" path="res://scenes/objects/pillar.tscn" id="4_ciroy"]
 [ext_resource type="Shader" path="res://scenes/characters/enemy.gdshader" id="5_tumd1"]
 [ext_resource type="Texture2D" uid="uid://c1nhkla47hafg" path="res://art/objects/magic_circle_active.png" id="5_w6cpg"]

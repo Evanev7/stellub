@@ -47,7 +47,6 @@ var invuln: bool = false
 var dead: bool = false
 var current_animation: String
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GameState.player = self

@@ -1,0 +1,41 @@
+[gd_scene load_steps=11 format=3 uid="uid://cc07v7n1u6cto"]
+
+[ext_resource type="PackedScene" uid="uid://dpjckt12ipcw2" path="res://scenes/characters/enemy.tscn" id="1_wvsit"]
+[ext_resource type="Script" path="res://scripts/characters/BossEnemy.gd" id="2_6g3sa"]
+[ext_resource type="Shader" path="res://scenes/characters/enemy.gdshader" id="3_hd3a3"]
+[ext_resource type="Resource" uid="uid://p0ytgmgbgkky" path="res://resources/enemy/boss.tres" id="3_ypyyq"]
+[ext_resource type="SpriteFrames" path="res://resources/enemy/angel_boss_spriteframes.tres" id="5_pj87d"]
+[ext_resource type="Shape2D" uid="uid://cf1jvctq0mulw" path="res://resources/hitboxes/boss_hitbox.tres" id="6_pa8sf"]
+[ext_resource type="Shape2D" uid="uid://c862hatltraad" path="res://resources/hitboxes/boss_collisionbox.tres" id="7_4refy"]
+[ext_resource type="Script" path="res://scripts/components/finite_state_machine.gd" id="8_yg6au"]
+[ext_resource type="Script" path="res://scripts/characters/boss_init.gd" id="9_skdg4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3auua"]
+resource_local_to_scene = true
+shader = ExtResource("3_hd3a3")
+shader_parameter/line_color = Color(0, 0, 0, 1)
+shader_parameter/line_thickness = 0.0
+
+[node name="BossEnemy" instance=ExtResource("1_wvsit")]
+script = ExtResource("2_6g3sa")
+resource = ExtResource("3_ypyyq")
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+material = SubResource("ShaderMaterial_3auua")
+sprite_frames = ExtResource("5_pj87d")
+animation = &"boss"
+
+[node name="CollisionShape2D" parent="." index="2"]
+shape = ExtResource("6_pa8sf")
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = ExtResource("7_4refy")
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+shape = ExtResource("7_4refy")
+
+[node name="FiniteStateMachine" type="Node" parent="." index="9"]
+script = ExtResource("8_yg6au")
+
+[node name="BossInit" type="Node" parent="FiniteStateMachine" index="0"]
+script = ExtResource("9_skdg4")

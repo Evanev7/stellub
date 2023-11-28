@@ -10,7 +10,7 @@ class_name PickupHandler
 var reward_pool
 var xp_pools
 
-@export var spawn_batch_size = 50
+@export var spawn_batch_size = 1
 var spawn_queue: Array = []
 
 func _ready():

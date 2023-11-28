@@ -44,6 +44,8 @@ static var damage_scene_pool: Array[DamageNumber] = []
 var movement_enabled: bool = true
 var enemy_limit = 200
 
+var contact_areas: Array = []
+
 func _ready():
 	dead = true
 	collider.set_deferred("disabled", true)
@@ -150,8 +152,9 @@ func _physics_process(_delta):
 	if movement_enabled:
 		move_and_slide()
 	
-	for area in hitbox.get_overlapping_areas():
-		hit(area)
+	if contact_areas:
+		for area in contact_areas:
+			hit(area)
 
 func change_colour():
 	$AnimatedSprite2D.flip_v = true
@@ -209,3 +212,11 @@ func hit(area):
 
 
 
+
+
+func _on_hitbox_area_entered(area):
+	contact_areas.append(area)
+
+
+func _on_hitbox_area_exited(area):
+	contact_areas.erase(area)
