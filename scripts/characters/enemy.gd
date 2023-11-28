@@ -134,7 +134,7 @@ func sway():
 func _physics_process(_delta):
 	var player_direction = (GameState.player.position - position)
 	
-	if player_direction.length() > teleport_back_to_player_range:
+	if player_direction.length() > (teleport_back_to_player_range / (GameState.current_area + 1)):
 		var relative_spawn_position = Vector2(800,0).rotated(randf_range(0, 2*PI))
 		position = GameState.player.position + relative_spawn_position
 	

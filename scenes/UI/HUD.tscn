@@ -224,6 +224,7 @@ texture_under = ExtResource("2_rugy2")
 texture_progress = ExtResource("3_g0pwy")
 
 [node name="TextureRect2" type="TextureRect" parent="XPBar"]
+layout_mode = 0
 offset_left = -48.0
 offset_top = -32.0
 offset_right = 90.0

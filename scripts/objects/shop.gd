@@ -45,7 +45,3 @@ func _on_interact_area_entered(body):
 func disable():
 	process_mode = Node.PROCESS_MODE_DISABLED
 	hide()
-
-
-func _on_upgrade_hud_leave():
-	print("deprecated! please check!")

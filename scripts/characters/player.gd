@@ -22,10 +22,12 @@ signal credit_player(value)
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var i_frame_timer: Timer = $IFrames
 @onready var blood_particles: GPUParticles2D = $Blood
+
 @onready var pickup_sound: AudioStreamPlayer = $Pickup
 @onready var hp_pickup_sound: AudioStreamPlayer = $HPPickup
 @onready var vacuum_pickup_sound: AudioStreamPlayer = $VacuumPickup
 @onready var level_up_sound: AudioStreamPlayer = $LevelUp
+@onready var hurt_sound: AudioStreamPlayer = $Hurt
 
 var control_mode: int = 0
 var level_threshold = [10, 20, 30, 50]
@@ -142,6 +144,7 @@ func hurt(body):
 	if not invuln and not body.is_in_group("pickup"):
 		hp = clamp(hp - body.damage, 0, hp_max)
 		hp_changed.emit(hp, hp_max)
+		hurt_sound.play()
 		invuln = true
 		i_frame_timer.start()
 		sprite.modulate = Color(1,0,0,0.5)

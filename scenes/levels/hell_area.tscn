@@ -78,9 +78,6 @@ STARTING_HP_MAX = 20.0
 destination = 1
 HUD = NodePath("../../HUD")
 
-[node name="ShopAlt" parent="." index="3"]
-process_mode = 2
-
 [node name="TerrainGenerator" parent="LogicComponents" index="1" node_paths=PackedStringArray("tile_map", "ysorter") instance=ExtResource("2_p0a1o")]
 tile_map = NodePath("../../YSort/TileMap")
 ysorter = NodePath("../../YSort")

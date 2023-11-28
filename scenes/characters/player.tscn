@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://cnepphpba8e8u"]
+[gd_scene load_steps=52 format=3 uid="uid://cnepphpba8e8u"]
 
 [ext_resource type="Script" path="res://scripts/characters/player.gd" id="1_m0lvq"]
 [ext_resource type="Resource" uid="uid://qdvp5rtjvnll" path="res://upgrades/stat_upgrade.tres" id="3_b8qp8"]
@@ -39,6 +39,7 @@
 [ext_resource type="AudioStream" uid="uid://brney5rm6n7qw" path="res://sounds/level_up.wav" id="36_ik3c3"]
 [ext_resource type="AudioStream" uid="uid://umpxr80y1hgh" path="res://sounds/pickup.wav" id="36_ys6vg"]
 [ext_resource type="Texture2D" uid="uid://bhs2v6ujb61d6" path="res://art/bullets/temp_1.png" id="38_uyywf"]
+[ext_resource type="AudioStream" uid="uid://r5ctaqmle1nc" path="res://sounds/particle_mace.wav" id="39_qx4df"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_odef0"]
 size = Vector2(1066.67, 1066.67)
@@ -195,6 +196,12 @@ random_pitch = 1.03
 stream_0/stream = ExtResource("36_ik3c3")
 stream_0/weight = 1.0
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_5dgq8"]
+streams_count = 1
+random_volume_offset_db = 1.0
+stream_0/stream = ExtResource("39_qx4df")
+stream_0/weight = 1.0
+
 [sub_resource type="Gradient" id="Gradient_vribh"]
 offsets = PackedFloat32Array(0, 0.74569, 1)
 colors = PackedColorArray(1, 0, 0, 1, 1, 0.592157, 0.592157, 0.85098, 1, 1, 1, 0)
@@ -294,6 +301,12 @@ bus = &"SFX"
 [node name="LevelUp" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_r2jma")
 max_polyphony = 3
+bus = &"SFX"
+
+[node name="Hurt" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_5dgq8")
+volume_db = -15.259
+max_polyphony = 30
 bus = &"SFX"
 
 [node name="Blood" type="GPUParticles2D" parent="."]

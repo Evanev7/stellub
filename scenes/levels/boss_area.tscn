@@ -47,3 +47,5 @@ ysorter = NodePath("../../YSort")
 score_display = NodePath("../../HUD")
 
 [node name="Node2D" type="Node2D" parent="." index="8"]
+
+[connection signal="start_game" from="HUD" to="." method="restart_game"]

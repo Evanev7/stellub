@@ -13,7 +13,6 @@ var arrows: Array
 
 
 func add_target(node: Node2D):
-	print(node.name)
 	var arrow = arrow_scene.instantiate()
 	arrow.name = "Arrow " + str(len(arrows)+1)
 	arrow.node = node

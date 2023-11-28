@@ -59,6 +59,9 @@ func _on_phase_up_timer_timeout():
 func _on_spawn_timer_timeout():
 	var resourceID = min(randi() % enemy_resource_list.size(), phase_limit)
 	spawn_enemy(resourceID)
+	
+	if GameState.current_area == GameState.CURRENT_AREA.HEAVEN:
+		spawn_timer.wait_time /= 1.008
 
 
 func spawn_enemy(resourceID, centre = GameState.player.position, spawn_range = safe_range, unique_multiplier: float = 1, overall_multi = overall_multiplier):
@@ -70,7 +73,11 @@ func really_spawn_enemy(resourceID, centre = GameState.player.position, spawn_ra
 	enemy.resource = enemy_resource_list[resourceID]
 	enemy.resource.UNIQUE_MULTIPLIER = unique_multiplier
 	enemy.resource.OVERALL_MULTIPLIER = overall_multi
-	var relative_spawn_position = Vector2(spawn_range,0).rotated(randf_range(0, 2*PI))
+	var relative_spawn_position: Vector2
+	if GameState.current_area == GameState.CURRENT_AREA.HEAVEN:
+		relative_spawn_position = Vector2(spawn_range,0).rotated(randf_range(-PI, 0))
+	else:
+		relative_spawn_position = Vector2(spawn_range,0).rotated(randf_range(0, 2*PI))
 	enemy.position = centre + relative_spawn_position
 	
 	enemy.dead = false
@@ -144,9 +151,9 @@ func start_spawning():
 		connect_enemy(new_enemy)
 		enemy_ysort.call_deferred("add_child", new_enemy)
 		
-	overall_multiplier = 1
 	phase_limit = 1
 	spawn_timer.wait_time = default_spawn_time / ((1.02 * (GameState.current_area + 1)) ** GameState.player.current_level)
+	overall_multiplier = 1 + (GameState.player.current_level / float(600)) * GameState.player.current_level
 	spawn_timer.start()
 	phase_up_timer.start()
 	

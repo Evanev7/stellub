@@ -95,7 +95,6 @@ func _unhandled_input(_event):
 				shop_HUD.close_shop()
 	
 	
-	
 	##Debug ###############################
 	if debug and Input.is_action_pressed("debug_gain_score"): ## R
 		player.gain_score(100)

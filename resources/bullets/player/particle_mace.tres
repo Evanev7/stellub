@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/objects/bullet_resource.gd" id="1_dhlpd"]
 [ext_resource type="Texture2D" uid="uid://bhs2v6ujb61d6" path="res://art/bullets/temp_1.png" id="1_faxki"]
-[ext_resource type="AudioStream" uid="uid://r5ctaqmle1nc" path="res://sounds/particle_mace.wav" id="3_pgmdk"]
+[ext_resource type="AudioStream" uid="uid://cx2a0nci361l7" path="res://sounds/split_shot.wav" id="3_yi13j"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_l1ll2"]
 animations = [{
@@ -17,8 +17,8 @@ animations = [{
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_d40yl"]
 streams_count = 1
-random_pitch = 1.2
-stream_0/stream = ExtResource("3_pgmdk")
+random_pitch = 1.01
+stream_0/stream = ExtResource("3_yi13j")
 stream_0/weight = 1.0
 
 [resource]

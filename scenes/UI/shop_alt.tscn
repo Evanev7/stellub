@@ -18,6 +18,7 @@
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_dfl7m"]
 
 [node name="ShopAlt" type="CanvasLayer"]
+process_mode = 2
 script = ExtResource("1_gilh6")
 
 [node name="Control" type="CenterContainer" parent="."]
