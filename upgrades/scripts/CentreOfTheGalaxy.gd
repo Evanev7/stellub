@@ -13,7 +13,7 @@ func modify_bullet_resource(bullet: BulletResource) -> BulletResource:
 	bullet.fire_delay *= 1.2
 	bullet.multishot *= 2
 	bullet.shot_inaccuracy = 0
-	bullet.shot_spread = 2*PI
+	bullet.shot_spread = PI
 	bullet.angular_velocity = 1.5*PI
 	return bullet
 

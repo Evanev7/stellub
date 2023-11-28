@@ -14,6 +14,7 @@ var origin_ref: WeakRef
 
 var sprite: AnimatedSprite2D
 var _traveled_distance: float
+var _cur_range: float
 var shot_speed: float
 var shot_speed_negative: bool
 var piercing: int
@@ -39,6 +40,7 @@ func _ready():
 func set_data():
 	spawned_bullet = data.spawned_bullet_resource
 	sprite = $AnimatedSprite2D
+	_cur_range = 0
 	_traveled_distance = data.start_range
 	shot_speed = data.shot_speed
 	shot_speed_negative = data.can_be_negative
@@ -133,7 +135,8 @@ func transport(delta) -> void:
 				remove()
 				return
 			rotation += data.angular_velocity * delta
-			position = origin.position + (Vector2.UP*data.start_range).rotated(rotation+PI/2)
+			_cur_range = clamp(_cur_range + 500 * delta,0, data.start_range)
+			position = origin.position + (Vector2.RIGHT*_cur_range).rotated(rotation)
 			_traveled_distance += data.start_range * data.angular_velocity * delta
 		
 		BulletResource.TRANSPORT_MODE.ROTATING_LINEAR_CENTRE:

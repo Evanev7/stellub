@@ -19,7 +19,7 @@ func physics_process(delta):
 		pathfollow.progress_ratio = (timer/duration)**exponent
 		owner.position = pathfollow.position
 		if timer >= duration:
-			change_state.emit(self, "circleplayer")
+			change_state.emit(self, "randomizer")
 
 func enter():
 	timer = 0

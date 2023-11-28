@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cc07v7n1u6cto"]
+[gd_scene load_steps=13 format=3 uid="uid://cc07v7n1u6cto"]
 
 [ext_resource type="PackedScene" uid="uid://dpjckt12ipcw2" path="res://scenes/characters/enemy.tscn" id="1_wvsit"]
 [ext_resource type="Script" path="res://scripts/characters/BossEnemy.gd" id="2_6g3sa"]
@@ -9,6 +9,8 @@
 [ext_resource type="Script" path="res://scripts/components/finite_state_machine.gd" id="8_yg6au"]
 [ext_resource type="Script" path="res://scripts/characters/boss_circle_player.gd" id="9_r41so"]
 [ext_resource type="Script" path="res://scripts/characters/boss_init.gd" id="9_skdg4"]
+[ext_resource type="Script" path="res://scripts/characters/boss_drive_by.gd" id="10_f7qcd"]
+[ext_resource type="Script" path="res://scripts/characters/boss_random_next_state.gd" id="11_ahao5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3auua"]
 resource_local_to_scene = true
@@ -18,6 +20,7 @@ shader_parameter/line_thickness = 0.0
 
 [node name="BossEnemy" instance=ExtResource("1_wvsit")]
 collision_layer = 0
+collision_mask = 0
 script = ExtResource("2_6g3sa")
 
 [node name="AnimatedSprite2D" parent="." index="1"]
@@ -48,5 +51,9 @@ script = ExtResource("9_r41so")
 [node name="ErraticMovement" type="Node" parent="FiniteStateMachine" index="2"]
 
 [node name="DriveBy" type="Node" parent="FiniteStateMachine" index="3"]
+script = ExtResource("10_f7qcd")
 
 [node name="TerrainAttack" type="Node" parent="FiniteStateMachine" index="4"]
+
+[node name="Randomizer" type="Node" parent="FiniteStateMachine" index="5"]
+script = ExtResource("11_ahao5")

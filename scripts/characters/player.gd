@@ -70,7 +70,7 @@ func _physics_process(_delta):
 		direction = direction.normalized()
 
 	movement = 800.0 * direction * _delta
-	get_viewport().warp_mouse(get_viewport().get_mouse_position() + movement)
+	#get_viewport().warp_mouse(get_viewport().get_mouse_position() + movement)
 	
 	
 	velocity = Input.get_vector("move_left", "move_right","move_up", "move_down")

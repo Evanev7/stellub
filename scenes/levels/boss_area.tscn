@@ -37,7 +37,7 @@ position = Vector2(908, 582)
 
 [node name="Player" parent="YSort" index="2" instance=ExtResource("5_q64ff")]
 
-[node name="boss" parent="YSort" index="3" node_paths=PackedStringArray("enemy_handler", "boss_start", "enemy_ysort") instance=ExtResource("4_sqdkq")]
+[node name="BossSpawner" parent="YSort" index="3" node_paths=PackedStringArray("enemy_handler", "boss_start", "enemy_ysort") instance=ExtResource("4_sqdkq")]
 position = Vector2(865, -373)
 enemy_handler = NodePath("../../LogicComponents/EnemyHandler")
 boss_start = NodePath("../BossStart")

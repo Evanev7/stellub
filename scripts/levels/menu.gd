@@ -26,7 +26,6 @@ func _on_play_pressed():
 	load_game()
 
 func load_game():
-	if play_pressed == true:
 		if GameState.first_time:
 			GameState.load_area(GameState.CURRENT_AREA.FIRST_TIME)
 		else:
