@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://qhl6r2tbil5t"]
+[gd_scene load_steps=48 format=3 uid="uid://qhl6r2tbil5t"]
 
 [ext_resource type="PackedScene" uid="uid://dilk21k2nncq2" path="res://scenes/levels/level_template.tscn" id="1_ttjsf"]
 [ext_resource type="PackedScene" uid="uid://dfrum4te4lpmr" path="res://scenes/objects/teleporter.tscn" id="2_8o713"]
@@ -16,6 +16,7 @@
 [ext_resource type="Resource" uid="uid://daslelns8qmfv" path="res://resources/enemy/angel_crusader.tres" id="8_rirxr"]
 [ext_resource type="Texture2D" uid="uid://dvrx1ijrwk8a2" path="res://art/backgrounds/hell_level_1.png" id="10_dov0s"]
 [ext_resource type="PackedScene" uid="uid://cnepphpba8e8u" path="res://scenes/characters/player.tscn" id="11_syo0k"]
+[ext_resource type="PackedScene" uid="uid://cx84pw0whxyxq" path="res://scenes/UI/ember_particles.tscn" id="12_ffkww"]
 [ext_resource type="PackedScene" uid="uid://j8g4suxt2pa2" path="res://scenes/objects/mountain_large.tscn" id="14_kq46c"]
 [ext_resource type="Resource" uid="uid://coqyd5d8e6rm8" path="res://resources/bullets/player/particle_mace.tres" id="14_soul3"]
 [ext_resource type="Resource" uid="uid://b3v62pkd6hntd" path="res://resources/bullets/player/shotgun.tres" id="15_gx6j7"]
@@ -77,6 +78,9 @@ STARTING_HP_MAX = 20.0
 [node name="teleporter" parent="YSort" index="3" node_paths=PackedStringArray("HUD") instance=ExtResource("2_8o713")]
 destination = 1
 HUD = NodePath("../../HUD")
+
+[node name="ember_particles" parent="." index="2" instance=ExtResource("12_ffkww")]
+z_index = 19
 
 [node name="TerrainGenerator" parent="LogicComponents" index="1" node_paths=PackedStringArray("tile_map", "ysorter") instance=ExtResource("2_p0a1o")]
 tile_map = NodePath("../../YSort/TileMap")

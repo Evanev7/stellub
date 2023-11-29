@@ -196,14 +196,21 @@ func remove():
 	dead = true
 	GameState.enemies_killed += 1
 	GameState.num_enemies -= 1
+	
+	var tween: Tween = create_tween()
+	tween.parallel().tween_property(shadow, "self_modulate:a", 0.0, 0.5)
+	tween.parallel().tween_property(sprite.material, "shader_parameter/value", 0.0, 0.5)
+	tween.tween_callback(func(): 
+		sprite.self_modulate = Color(1, 1, 1)
+		sprite.visible = false
+		shadow.visible = false
+		sprite.material.set_shader_parameter("value", 1))
 	on_remove.emit()
 	attack_handler.stop()
 	collider.set_deferred("disabled", true)
 	hitbox_collisionshape.set_deferred("disabled", true)
 	hurtbox_collisionshape.set_deferred("disabled", true)
 	set_physics_process(false)
-	sprite.visible = false
-	shadow.visible = false
 	remove_from_group("enemy")
 
 

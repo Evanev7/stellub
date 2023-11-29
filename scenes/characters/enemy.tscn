@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dpjckt12ipcw2"]
+[gd_scene load_steps=13 format=3 uid="uid://dpjckt12ipcw2"]
 
 [ext_resource type="Script" path="res://scripts/characters/enemy.gd" id="1_oyorq"]
 [ext_resource type="PackedScene" uid="uid://1bd6uenu01av" path="res://scenes/UI/damage_number.tscn" id="2_orbdq"]
@@ -10,11 +10,19 @@
 [ext_resource type="PackedScene" uid="uid://cicwqsj3byj4u" path="res://scenes/components/spawn_collision_handler.tscn" id="7_ckcoh"]
 [ext_resource type="PackedScene" uid="uid://be4i0yo3jsk42" path="res://scenes/components/attack.tscn" id="8_70e2t"]
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_wv655"]
+seed = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_k47en"]
+noise = SubResource("FastNoiseLite_wv655")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fmm6i"]
 resource_local_to_scene = true
 shader = ExtResource("3_30b5x")
 shader_parameter/line_color = Color(0, 0, 0, 1)
 shader_parameter/line_thickness = 0.0
+shader_parameter/value = 1.0
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_k47en")
 
 [node name="Enemy" type="CharacterBody2D"]
 scale = Vector2(0.7, 0.7)

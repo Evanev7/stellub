@@ -17,6 +17,24 @@ func start():
 	set_process(false)
 	$teleporter/CollisionShape2D.disabled = true
 	$Active.visible = false
+	
+	if GameState.current_area == GameState.CURRENT_AREA.HELL:
+		$Bones.visible = true
+		$Tree.visible = false
+		$BonesCollision1.disabled = false
+		$BonesCollision2.disabled = false
+		$TreeCollision1.disabled = true
+		$TreeCollision2.disabled = true
+		$TreeCollision3.disabled = true
+		
+	elif GameState.current_area == GameState.CURRENT_AREA.HEAVEN:
+		$Bones.visible = false
+		$Tree.visible = true
+		$BonesCollision1.disabled = true
+		$BonesCollision2.disabled = true
+		$TreeCollision1.disabled = false
+		$TreeCollision2.disabled = false
+		$TreeCollision3.disabled = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -65,10 +65,12 @@ func load_area(area: CURRENT_AREA):
 		area_node.get_node("YSort").add_child(player)
 		
 	current_area_node.queue_free()
-	get_parent().add_child(area_node)
 	
 	current_area = area
 	current_area_node = area_node
+	
+	get_parent().add_child(area_node)
+	
 
 
 func reset_statistics():

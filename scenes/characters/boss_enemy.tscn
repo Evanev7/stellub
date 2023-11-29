@@ -17,6 +17,7 @@ resource_local_to_scene = true
 shader = ExtResource("3_hd3a3")
 shader_parameter/line_color = Color(0, 0, 0, 1)
 shader_parameter/line_thickness = 0.0
+shader_parameter/value = null
 
 [node name="BossEnemy" instance=ExtResource("1_wvsit")]
 collision_layer = 0
@@ -57,7 +58,3 @@ script = ExtResource("10_f7qcd")
 
 [node name="Randomizer" type="Node" parent="FiniteStateMachine" index="5"]
 script = ExtResource("11_ahao5")
-
-[node name="EnrageChasePlayer" type="Node" parent="FiniteStateMachine" index="6"]
-
-[node name="RetreatRecover" type="Node" parent="FiniteStateMachine" index="7"]

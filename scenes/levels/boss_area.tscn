@@ -1,11 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://dg6c8see5s58b"]
+[gd_scene load_steps=10 format=3 uid="uid://dg6c8see5s58b"]
 
 [ext_resource type="PackedScene" uid="uid://dilk21k2nncq2" path="res://scenes/levels/level_template.tscn" id="1_god74"]
 [ext_resource type="Script" path="res://scripts/levels/boss_area.gd" id="2_58lyh"]
 [ext_resource type="Texture2D" uid="uid://b3kwbsbykqq30" path="res://art/objects/Boss_Arena_ground.png" id="2_tmx4t"]
 [ext_resource type="PackedScene" uid="uid://d23ddhgery8pq" path="res://scenes/characters/boss.tscn" id="4_sqdkq"]
 [ext_resource type="PackedScene" uid="uid://cnrpegq0voiht" path="res://scenes/components/enemy_handler.tscn" id="5_4wr2n"]
-[ext_resource type="PackedScene" uid="uid://cnepphpba8e8u" path="res://scenes/characters/player.tscn" id="5_q64ff"]
 [ext_resource type="Resource" uid="uid://p0ytgmgbgkky" path="res://resources/enemy/boss.tres" id="6_j8u0c"]
 [ext_resource type="PackedScene" uid="uid://ugulpxhu6v48" path="res://scenes/components/pickup_handler.tscn" id="6_yvi7m"]
 [ext_resource type="PackedScene" uid="uid://cjuw1uddg4foi" path="res://scenes/objects/pickup.tscn" id="7_32dji"]
@@ -35,16 +34,13 @@ polygon = PackedVector2Array(-383, 12, -38, 20, 142, 37, 238, -23, 346, -43, 507
 [node name="PlayerStart" parent="YSort" index="1"]
 position = Vector2(908, 582)
 
-[node name="Player" parent="YSort" index="2" instance=ExtResource("5_q64ff")]
-disable_ready = true
-
-[node name="BossSpawner" parent="YSort" index="3" node_paths=PackedStringArray("enemy_handler", "boss_start", "enemy_ysort") instance=ExtResource("4_sqdkq")]
+[node name="BossSpawner" parent="YSort" index="2" node_paths=PackedStringArray("enemy_handler", "boss_start", "enemy_ysort") instance=ExtResource("4_sqdkq")]
 position = Vector2(865, -373)
 enemy_handler = NodePath("../../LogicComponents/EnemyHandler")
 boss_start = NodePath("../BossStart")
 enemy_ysort = NodePath("..")
 
-[node name="BossStart" type="Marker2D" parent="YSort" index="4"]
+[node name="BossStart" type="Marker2D" parent="YSort" index="3"]
 position = Vector2(868, -376)
 
 [node name="EnemyHandler" parent="LogicComponents" index="1" node_paths=PackedStringArray("enemy_ysort") instance=ExtResource("5_4wr2n")]

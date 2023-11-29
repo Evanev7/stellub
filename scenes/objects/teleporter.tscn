@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dfrum4te4lpmr"]
+[gd_scene load_steps=23 format=3 uid="uid://dfrum4te4lpmr"]
 
 [ext_resource type="Script" path="res://scripts/objects/teleporter.gd" id="1_jufu7"]
 [ext_resource type="Texture2D" uid="uid://3l52y5uhoccl" path="res://art/objects/teleporter_active_1.png" id="2_4qqtc"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cicwqsj3byj4u" path="res://scenes/components/spawn_collision_handler.tscn" id="3_40rsx"]
 [ext_resource type="Texture2D" uid="uid://bqdfyj2cj3j4v" path="res://art/objects/teleporter_active_3.png" id="4_edm0n"]
 [ext_resource type="Texture2D" uid="uid://cwjhnbmwe7ux1" path="res://art/objects/teleporter_inactive_1.png" id="5_bsyxo"]
+[ext_resource type="Texture2D" uid="uid://c008b3o2gyquv" path="res://art/objects/heaven_tree.png" id="6_55fgu"]
 [ext_resource type="Texture2D" uid="uid://cu1rr2flwpi41" path="res://art/objects/teleporter_inactive_2.png" id="6_cg3y7"]
 [ext_resource type="Texture2D" uid="uid://b3ri6od18exhb" path="res://art/objects/teleporter_inactive_3.png" id="7_vprkv"]
 [ext_resource type="Texture2D" uid="uid://been84ue6lj66" path="res://art/UI/Pause_Menu/pause_menu_background.png" id="8_tcwf1"]
@@ -25,6 +26,20 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("7_vprkv")
+}],
+"loop": true,
+"name": &"inactive",
+"speed": 5.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k5ei0"]
+shader = ExtResource("2_cpmhd")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_54ckh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_55fgu")
 }],
 "loop": true,
 "name": &"inactive",
@@ -57,6 +72,15 @@ radius = 296.138
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c32m1"]
 size = Vector2(63, 43)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3fp32"]
+size = Vector2(110.125, 125.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_snvgs"]
+size = Vector2(117.875, 125.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tiw72"]
+size = Vector2(277.75, 125.5)
+
 [node name="teleporter" type="StaticBody2D"]
 y_sort_enabled = true
 script = ExtResource("1_jufu7")
@@ -68,8 +92,16 @@ animation = &"inactive"
 autoplay = "inactive"
 offset = Vector2(31, -214)
 
+[node name="Tree" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_k5ei0")
+position = Vector2(64, -226)
+scale = Vector2(2.2685, 2.2685)
+sprite_frames = SubResource("SpriteFrames_54ckh")
+animation = &"inactive"
+autoplay = "inactive"
+offset = Vector2(-110, -120)
+
 [node name="Active" type="AnimatedSprite2D" parent="."]
-visible = false
 light_mask = 2
 position = Vector2(27, -225)
 sprite_frames = SubResource("SpriteFrames_me7pr")
@@ -103,13 +135,32 @@ spawn_collider = NodePath("../SpawnCollider")
 on_ready_attempts = 1
 clear_on_bad_landing = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="BonesCollision1" type="CollisionShape2D" parent="."]
 position = Vector2(-259.5, -18.5)
 shape = SubResource("RectangleShape2D_c32m1")
+disabled = true
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+[node name="BonesCollision2" type="CollisionShape2D" parent="."]
 position = Vector2(281, -18.5)
 shape = SubResource("RectangleShape2D_c32m1")
+disabled = true
+
+[node name="TreeCollision1" type="CollisionShape2D" parent="."]
+position = Vector2(-108, -215)
+rotation = 0.226246
+shape = SubResource("RectangleShape2D_3fp32")
+disabled = true
+
+[node name="TreeCollision2" type="CollisionShape2D" parent="."]
+position = Vector2(90, -221)
+rotation = -0.223404
+shape = SubResource("RectangleShape2D_snvgs")
+disabled = true
+
+[node name="TreeCollision3" type="CollisionShape2D" parent="."]
+position = Vector2(-11.125, -239)
+shape = SubResource("RectangleShape2D_tiw72")
+disabled = true
 
 [connection signal="body_entered" from="teleporter" to="." method="_on_teleporter_body_entered"]
 [connection signal="body_exited" from="teleporter" to="." method="_on_teleporter_body_exited"]

@@ -316,6 +316,7 @@ emitting = false
 amount = 30
 process_material = SubResource("ParticleProcessMaterial_fjti8")
 texture = ExtResource("38_uyywf")
+explosiveness = 0.3
 
 [connection signal="area_entered" from="Hurtbox" to="." method="hurt"]
 [connection signal="area_entered" from="Hurtbox" to="." method="get_pickup"]
