@@ -13,6 +13,7 @@ var player: CharacterBody2D
 var pause_menu: CanvasLayer
 var shop_HUD: CanvasLayer
 
+var gamepad_enabled: bool = false
 var damage_numbers_enabled: bool = true
 @onready var fps_enabled: bool = debug
 

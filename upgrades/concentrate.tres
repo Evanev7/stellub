@@ -17,5 +17,5 @@ but slows your fire rate."
 script_data = {
 "Damage": &"x1.4",
 "Fire Rate": &"x0.8",
-"Shot Spread": &"x0.5"
+"Shot Spread": &"x0.25"
 }

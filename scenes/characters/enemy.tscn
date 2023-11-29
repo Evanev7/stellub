@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://dpjckt12ipcw2"]
+[gd_scene load_steps=11 format=3 uid="uid://dpjckt12ipcw2"]
 
 [ext_resource type="Script" path="res://scripts/characters/enemy.gd" id="1_oyorq"]
 [ext_resource type="PackedScene" uid="uid://1bd6uenu01av" path="res://scenes/UI/damage_number.tscn" id="2_orbdq"]
 [ext_resource type="Resource" uid="uid://p0ytgmgbgkky" path="res://resources/enemy/boss.tres" id="2_quvqc"]
 [ext_resource type="Shader" path="res://scenes/characters/enemy.gdshader" id="3_30b5x"]
 [ext_resource type="Texture2D" uid="uid://bpx5ybtqcrlpp" path="res://art/objects/shadow.png" id="3_m06xu"]
+[ext_resource type="SpriteFrames" uid="uid://6xmqo1j5gqfr" path="res://resources/enemy/demon_dog_spriteframes.tres" id="6_dy24l"]
 [ext_resource type="Script" path="res://scripts/characters/AttackHandler.gd" id="6_hcyh0"]
 [ext_resource type="PackedScene" uid="uid://cicwqsj3byj4u" path="res://scenes/components/spawn_collision_handler.tscn" id="7_ckcoh"]
 [ext_resource type="PackedScene" uid="uid://be4i0yo3jsk42" path="res://scenes/components/attack.tscn" id="8_70e2t"]
@@ -24,13 +25,15 @@ damage_scene = ExtResource("2_orbdq")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.490196)
-position = Vector2(3.8147e-05, 90.0001)
-scale = Vector2(0.228571, 0.171429)
+position = Vector2(0, 14.2857)
+scale = Vector2(0.215873, 0.171429)
 texture = ExtResource("3_m06xu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_fmm6i")
 scale = Vector2(0.07, 0.07)
+sprite_frames = ExtResource("6_dy24l")
+animation = &"dog"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 14.2857)

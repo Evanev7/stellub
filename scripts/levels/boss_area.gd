@@ -28,6 +28,9 @@ func start_game():
 	if SoundManager.currently_playing_music:
 		SoundManager.currently_playing_music.stop()
 	
+	var tween: Tween = create_tween()
+	tween.tween_property(player.get_node("Camera2D"), "zoom", Vector2(0.8, 0.8), 4).\
+	set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 	player.position = $YSort/PlayerStart.position
 	$cursor_particles.emitting = true
 	

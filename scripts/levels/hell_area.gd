@@ -24,13 +24,14 @@ func _ready():
 # Start the timers we need, instantiate the HUD and get the player in the right spot.
 func start_game():
 	$LogicComponents/ShopHandler.spawn_magic_circles()
-	enemy_handler.start_spawning()
 	player.start()
+	enemy_handler.start_spawning()
 	player.position = $YSort/PlayerStart.position
 	$LogicComponents/ShopHandler.start()
 	$cursor_particles.emitting = true
 	start_magic_circles()
-		
+	
+	HUD.reset_circle_counters()	
 	HUD.show_health(player.hp, player.hp_max)
 	HUD.show_score(0, 10)
 

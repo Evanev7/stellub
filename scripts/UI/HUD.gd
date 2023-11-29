@@ -23,6 +23,10 @@ func _process(_delta):
 		$FPS.visible = false
 	level.set_text(str(GameState.player.current_level))
 
+func reset_circle_counters():
+	for sprite in circle_counter.get_children():
+		sprite.play("off")
+
 func show_message(text):
 	$TextDisplay/TextDisplay.text = text
 	$TextDisplay.show()

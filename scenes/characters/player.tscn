@@ -272,6 +272,7 @@ sprite_frames = SubResource("SpriteFrames_whc3w")
 animation = &"level 1"
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.2, 1.2)
 
 [node name="IFrames" type="Timer" parent="."]
 process_callback = 0

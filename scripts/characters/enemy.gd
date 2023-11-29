@@ -68,7 +68,7 @@ func set_data():
 	flipped = resource.FLIP_H
 	floating = resource.FLOATING
 	default_angle = self.rotation
-	default_scale = resource.SCALE * (0.75 + (unique_multiplier / 4))
+	default_scale = resource.SCALE * (0.875 + (unique_multiplier / 8))
 	variance = 1/default_scale.length()
 	
 	
@@ -105,13 +105,16 @@ func load_resource(resource_to_load: EnemyResource):
 			fire_on_hit = true
 		
 	collider.shape = resource_to_load.COLLIDER
-	collider.rotation = resource_to_load.COLLISION_ROTATION
+	collider.rotation = deg_to_rad(resource_to_load.COLLISION_ROTATION)
 	hitbox_collisionshape.shape = resource_to_load.HITBOX
-	hitbox_collisionshape.rotation = resource_to_load.COLLISION_ROTATION
+	hitbox_collisionshape.rotation = deg_to_rad(resource_to_load.COLLISION_ROTATION)
 	hurtbox_collisionshape.shape = resource_to_load.HURTBOX
-	hurtbox_collisionshape.rotation = resource_to_load.COLLISION_ROTATION
+	hurtbox_collisionshape.rotation = deg_to_rad(resource_to_load.COLLISION_ROTATION)
 	
-	shadow.position.y = (hitbox_collisionshape.shape.height / 2) - default_scale.length()
+	if resource_to_load.COLLISION_ROTATION == 90:
+		shadow.position.y = (hitbox_collisionshape.shape.radius / 2) - default_scale.length() + 20
+	else:
+		shadow.position.y = (hitbox_collisionshape.shape.height / 2) - default_scale.length() + 20
 
 
 # Function for easing sprites between two positions while 'idle'. I.e. enemy rotation.
@@ -134,6 +137,7 @@ func sway():
 # Move the enemy towards the player, handle deletion on death and fire bullets
 # if the fire_delay has elapsed.
 func _physics_process(_delta):
+	sprite.modulate = Color(2, 2, 2)
 	var player_direction = (GameState.player.position - position)
 	
 	if player_direction.length() > (teleport_back_to_player_range / (GameState.current_area + 1)):

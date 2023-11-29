@@ -27,7 +27,7 @@ func _ready():
 			GameState.num_xp_pickups += 1
 			sprite.animation = "xp_pickup"
 			add_to_group("xp_pickup") 
-			var scale_ratio = 1+log(value)
+			var scale_ratio = 0.6+log(value)
 			apply_scale(Vector2(scale_ratio, scale_ratio))
 		hp_pickup:
 			sprite.animation = "hp_pickup"

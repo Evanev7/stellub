@@ -19,6 +19,7 @@ class_name EnemyResource
 @export_category("Collision")
 ## Affects sprite and collision size
 @export var SCALE: Vector2 = Vector2(2, 2)
+## In Radians
 @export var COLLISION_ROTATION: float = 0
 @export var HITBOX: Shape2D
 @export var HURTBOX: Shape2D

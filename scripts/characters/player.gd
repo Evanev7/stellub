@@ -64,16 +64,17 @@ func _input(event):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
-	var direction: Vector2
-	var movement: Vector2
-	direction.x = Input.get_action_strength("move_cursor_right") - Input.get_action_strength("move_cursor_left")
-	direction.y = Input.get_action_strength("move_cursor_down") - Input.get_action_strength("move_cursor_up")
-	
-	if abs(direction.x) == 1 and abs(direction.y) == 1:
-		direction = direction.normalized()
+	if GameState.gamepad_enabled:
+		var direction: Vector2
+		var movement: Vector2
+		direction.x = Input.get_action_strength("move_cursor_right") - Input.get_action_strength("move_cursor_left")
+		direction.y = Input.get_action_strength("move_cursor_down") - Input.get_action_strength("move_cursor_up")
+		
+		if abs(direction.x) == 1 and abs(direction.y) == 1:
+			direction = direction.normalized()
 
-	movement = 800.0 * direction * _delta
-	#get_viewport().warp_mouse(get_viewport().get_mouse_position() + movement)
+		movement = 800.0 * direction * _delta
+		get_viewport().warp_mouse(get_viewport().get_mouse_position() + movement)
 	
 	
 	velocity = Input.get_vector("move_left", "move_right","move_up", "move_down")
@@ -235,12 +236,12 @@ func activate_xp_vacuum():
 	get_tree().call_group("xp_pickup", "activate")
 
 func player_level_up():
+	current_level += 1
 	var old_hp_max = hp_max
 	hp_max *= 1.05
 	hp += hp_max - old_hp_max
-	speed *= 1.01
+	speed *= 1.005
 	pickup_range.scale *= 1.03
-	current_level += 1
 	level_up_sound.play()
 	
 	attack_handler.upgrade_all_attacks(stat_upgrade)
@@ -264,16 +265,16 @@ func evolve(val = -1):
 	current_animation = "level " + str(clamp(current_evolution, 0, 6))
 	
 	var scaling_factors = {
-		1: 1.5,
-		2: 1.1,
-		3: 0.9,
-		6: 1.1
+		0: 1.5,
+		1: 1.1,
+		2: 0.9,
+		5: 1.1
 	}
 	
 	var total_scale := default_scale
 	for i in range(current_evolution):
-		if current_evolution in scaling_factors.keys():
-			total_scale *= scaling_factors[current_evolution]
+		if i in scaling_factors.keys():
+			total_scale *= scaling_factors[i]
 		else:
 			total_scale *= 1.08
 	scale = total_scale
