@@ -192,7 +192,7 @@ stream_0/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_r2jma"]
 streams_count = 1
-random_pitch = 1.03
+random_pitch = 1.0
 stream_0/stream = ExtResource("36_ik3c3")
 stream_0/weight = 1.0
 
@@ -301,13 +301,14 @@ bus = &"SFX"
 
 [node name="LevelUp" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_r2jma")
+volume_db = -15.0
 max_polyphony = 3
 bus = &"SFX"
 
 [node name="Hurt" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_5dgq8")
 volume_db = -15.259
-max_polyphony = 30
+max_polyphony = 5
 bus = &"SFX"
 
 [node name="Blood" type="GPUParticles2D" parent="."]

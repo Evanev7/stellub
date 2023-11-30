@@ -9,7 +9,6 @@ var currently_playing_music: AudioStreamPlayer
 func _process(_delta):
 	if heaven_start.get_playback_position() >= 24.31 and currently_playing_music == heaven_start:
 		_on_heaven_start_finished()
-		print("start heaven")
 	
 func heaven_start_play():
 	heaven_start.play()
@@ -22,6 +21,5 @@ func _on_heaven_start_finished():
 
 func fade_out(stream):
 	var tween: Tween = create_tween()
-	tween.tween_property(stream, "volume_db", -80, 2).from(linear_to_db(0.5))
+	tween.tween_property(stream, "volume_db", -80, 2).from(linear_to_db(0.4))
 	tween.tween_callback(stream.stop)
-	currently_playing_music = null

@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/spooky intro ambience reversed.ogg-4c9335ce1a
 [params]
 
 loop=false
-loop_offset=0
-bpm=0
+loop_offset=0.0
+bpm=0.0
 beat_count=0
 bar_beats=4

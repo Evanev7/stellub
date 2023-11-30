@@ -10,8 +10,10 @@ script = ExtResource("1_ml4oo")
 
 [node name="heaven_start" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_wp84u")
+volume_db = -6.0
 bus = &"Music"
 
 [node name="heaven_loop" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_rysif")
+volume_db = -6.0
 bus = &"Music"

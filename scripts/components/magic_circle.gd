@@ -18,6 +18,7 @@ enum {skull, dog, skeleton, lord}
 @onready var barrier_edge_marker: Node2D = $Barrier/Marker2D
 @onready var success_timer: Timer = $SuccessTimer
 @onready var time_label: Label = $Time
+@onready var activated_sound: AudioStreamPlayer2D = $activated_sound
 
 
 var wave_data = {}
@@ -159,7 +160,9 @@ func _on_wave_timer_timeout():
 	wave_active = true
 	success_timer.wait_time = 10 + (9.99 * GameState.circles_completed + 1)
 	$Barrier.visible = true
+	activated_sound.play()
 	var tween: Tween = create_tween()
+	tween.parallel().tween_property(activated_sound, "volume_db", 10, success_timer.wait_time).from(-20).set_ease(Tween.EASE_OUT)
 	tween.parallel().tween_property($Barrier, "scale", Vector2(0.4, 0.4), success_timer.wait_time)
 	tween.parallel().tween_property($Active, "modulate:a", 0.9, success_timer.wait_time)
 	success_timer.start()
@@ -170,6 +173,7 @@ func _on_success_timer_timeout():
 	spawn_shop.emit(position)
 	$Cleared.visible = true
 	wave_active = false
+	SoundManager.fade_out(activated_sound)
 	$Barrier.visible = false
 	time_label.hide()
 	if GameState.circles_completed + 1 < 12:

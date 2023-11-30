@@ -198,12 +198,13 @@ func remove():
 	GameState.num_enemies -= 1
 	
 	var tween: Tween = create_tween()
-	sprite.material.set_shader_parameter("line_color", Vector4(1, 0, 0, 1))
+	sprite.material.set_shader_parameter("line_color", Vector4(0.5, 0, 0, 1))
 	tween.parallel().tween_property(sprite.material, "shader_parameter/line_thickness", 90.0, 0.5)
 	tween.parallel().tween_property(shadow, "self_modulate:a", 0.0, 0.5)
 	tween.parallel().tween_property(sprite.material, "shader_parameter/value", 0.0, 0.5)
 	tween.tween_callback(func(): 
 		sprite.self_modulate = Color(1, 1, 1)
+		shadow.self_modulate = Color(1, 1, 1, 0.49)
 		sprite.visible = false
 		shadow.visible = false
 		sprite.material.set_shader_parameter("value", 1)

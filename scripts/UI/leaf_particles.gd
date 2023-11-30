@@ -11,11 +11,8 @@ func _process(_delta):
 	particle_spawner.global_position.x = top_left.x + size.x/2 
 	particle_spawner.global_position.y = top_left.y - 50
 	
-	var children: int = 0
 	for child in particle_spawner.get_children():
-		children += 1
 		child.get_process_material().set_emission_box_extents(Vector3(size.x, 50, 1))
-	print(children)
 	
 	if int(particle_spawner.global_position.y) < -(particles * 200):
 		spawn_new_particles()

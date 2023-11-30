@@ -26,7 +26,7 @@ func _ready():
 func start_game():
 	#enemy_handler.start_spawning()
 	if SoundManager.currently_playing_music:
-		SoundManager.currently_playing_music.stop()
+		SoundManager.fade_out(SoundManager.currently_playing_music)
 	
 	var tween: Tween = create_tween()
 	tween.tween_property(player.get_node("Camera2D"), "zoom", Vector2(0.8, 0.8), 4).\
