@@ -5,7 +5,6 @@ extends Node
 @export var boss_resource: EnemyResource
 @export var boss_start: Marker2D
 @export var enemy_ysort: Node2D
-@export var boss_upgrade: UpgradeResource
 
 var boss_reference: CharacterBody2D
 
@@ -44,21 +43,7 @@ func set_up(boss):
 	
 	
 	GameState.register_enemy.emit(boss)
-	
-	for child in GameState.player.attack_handler.get_children():
 			
-		if child is Attack:
-			# remove child from player except for first weapon later
-			var new_attack = child.duplicate()
-			boss.attack_handler.add_child(new_attack)
-#		if not child == GameState.player.attack_handler.get_children()[0]:
-#			child.get_parent().remove_child(child)
-			
-	boss.attack_handler.passive_all_attacks()
-	boss.attack_handler.aim_attacks_at_player()
-	boss.attack_handler.refresh_all_attacks()
-	
-	boss.attack_handler.upgrade_all_attacks(boss_upgrade)
 	
 ## NEED TO ADD THESE MODIFIERS TO ALL WEAPONS
 ## Make it an upgrade, call it Boss Upgrade and attach it directly

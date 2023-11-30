@@ -1,8 +1,5 @@
 extends Node
 
-@export var testing_boss_scene = false
-
-
 @export var enemy_resource_list: Array[EnemyResource]
 
 #@export var enemy_handler: EnemyHandler
@@ -18,8 +15,6 @@ func _ready():
 	player.connect("hp_changed", HUD.show_health)
 	#player.connect("credit_player", $LogicComponents/PickupHandler._on_pickup_credit_player)
 	start_game()
-	if testing_boss_scene:
-		GameState.player.start()
 
 
 # Start the timers we need, instantiate the HUD and get the player in the right spot.

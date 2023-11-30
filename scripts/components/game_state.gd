@@ -99,28 +99,33 @@ func _unhandled_input(_event):
 	
 	
 	##Debug ###############################
-	if debug and Input.is_action_pressed("debug_gain_score"): ## R
+	if not debug:
+		return
+	if Input.is_action_pressed("debug_gain_score"): ## R
 		player.gain_score(100)
 		current_area_node.get_node("HUD").show_score(player.score, player.level_threshold[player.current_level])
 	
-	if debug and Input.is_action_just_pressed("debug_evolve"): ## E
+	if Input.is_action_just_pressed("debug_evolve"): ## E
 		player.evolve()
 	
-	if debug and Input.is_action_just_pressed("debug_spawn_enemy"): # L
+	if Input.is_action_just_pressed("debug_spawn_enemy"): # L
 		for i in range(10):
 			current_area_node.get_node("LogicComponents/EnemyHandler").spawn_enemy(randi() % 7)
 		
-	if debug and Input.is_action_just_pressed("debug_spawn_boss"): # B
+	if Input.is_action_just_pressed("debug_spawn_boss"): # B
 		player.send_loadout_to_boss()
 		
-	if debug and Input.is_action_just_pressed("debug_activate_teleporter"): # T
+	if Input.is_action_just_pressed("debug_activate_teleporter"): # T
 		current_area_node.get_node("LogicComponents/ShopHandler")._on_activate_teleporter()
 		
-	if debug and Input.is_action_just_pressed("debug_print_data"): # P
+	if Input.is_action_just_pressed("debug_print_data"): # P
 		current_area_node.get_node("HUD").show_debug()
 		
-	if debug and Input.is_action_just_pressed("debug_spawn_shop"): # F
+	if Input.is_action_just_pressed("debug_spawn_shop"): # F
 		current_area_node.get_node("LogicComponents/ShopHandler")._on_spawn_shop(player.global_position)
+	
+	if Input.is_action_just_pressed("debug_enter_final_boss"): # G
+		load_area(CURRENT_AREA.BOSS)
 		
 	#######################################
 

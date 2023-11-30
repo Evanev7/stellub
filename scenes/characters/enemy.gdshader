@@ -22,7 +22,6 @@ void fragment() {
 	
 	vec4 color = texture(TEXTURE, UV);
 	
-	vec4 current_pixel = texture(TEXTURE,UV);
 	vec4 noise_pixel = texture(noise_texture,UV);
 	
 	if(noise_pixel.r > value)

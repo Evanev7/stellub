@@ -32,9 +32,9 @@ func add_attack_from_resource(
 func get_attack_direction(target_mode) -> FireFrom:
 	match target_mode:
 		BulletResource.TARGET_MODE.MOUSE:
-			attack_direction.toward(position + owner.position, get_global_mouse_position())
+			attack_direction.toward(global_position, get_global_mouse_position())
 		BulletResource.TARGET_MODE.PLAYER:
-			attack_direction.toward(position + owner.position, GameState.player.position)
+			attack_direction.toward(global_position, GameState.player.position)
 		BulletResource.TARGET_MODE.NEAREST_ENEMY:
 			var closest_enemy: Node = GameState.player
 			var closest_enemy_distance: float = 0
@@ -44,9 +44,9 @@ func get_attack_direction(target_mode) -> FireFrom:
 					closest_enemy = enemy
 					closest_enemy_distance = current_enemy_distance
 			if closest_enemy_distance == 0:
-				attack_direction.toward(position + owner.position, get_global_mouse_position())
+				attack_direction.toward(global_position, get_global_mouse_position())
 			else:
-				attack_direction.toward(position + owner.position, closest_enemy.position)
+				attack_direction.toward(global_position, closest_enemy.position)
 	
 	return attack_direction
 
