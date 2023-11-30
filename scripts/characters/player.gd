@@ -47,12 +47,9 @@ var walking: bool = false
 var invuln: bool = false
 var dead: bool = false
 var current_animation: String
-@export var disable_ready = false 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if disable_ready:
-		return
 	GameState.player = self
 	hide()
 	attack_handler.stop()
@@ -99,9 +96,6 @@ func _physics_process(_delta):
 			sprite.flip_h = false
 		
 		move_and_slide()
-		var screen_coords = get_viewport_transform() * global_position
-		var normalized_screen_coords = screen_coords / get_viewport().get_visible_rect().size
-		RenderingServer.global_shader_parameter_set("player_position", normalized_screen_coords)
 		
 		# Walk animation
 		sprite.play(current_animation)
@@ -113,6 +107,9 @@ func _physics_process(_delta):
 	else:
 		blood_particles.emitting = false
 		
+	var screen_coords = get_viewport_transform() * global_position
+	var normalized_screen_coords = screen_coords / Vector2(DisplayServer.screen_get_size())
+	RenderingServer.global_shader_parameter_set("player_position", normalized_screen_coords)
 
 # When the game starts, set the default values and show the player.
 func start():

@@ -5,10 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://ugulpxhu6v48" path="res://scenes/components/pickup_handler.tscn" id="2_pdelf"]
 [ext_resource type="PackedScene" uid="uid://cjuw1uddg4foi" path="res://scenes/objects/pickup.tscn" id="3_7bv8e"]
 [ext_resource type="PackedScene" uid="uid://cnrpegq0voiht" path="res://scenes/components/enemy_handler.tscn" id="4_81g8t"]
-[ext_resource type="PackedScene" uid="uid://bco6kn11dyo6o" path="res://scenes/components/boss_handler.tscn" id="5_cfnl8"]
 [ext_resource type="PackedScene" uid="uid://dfrum4te4lpmr" path="res://scenes/objects/teleporter.tscn" id="5_h7u4d"]
 [ext_resource type="Texture2D" uid="uid://448fgucckiyr" path="res://art/backgrounds/heaven_area_1.png" id="6_83hdw"]
-[ext_resource type="PackedScene" uid="uid://d23ddhgery8pq" path="res://scenes/characters/boss.tscn" id="6_lb3xs"]
 [ext_resource type="Resource" uid="uid://djjvchiit0f0n" path="res://resources/enemy/angel_worshipper.tres" id="6_muf3o"]
 [ext_resource type="PackedScene" uid="uid://c02sdl5hadl40" path="res://scenes/UI/leaf_particles.tscn" id="7_4nde1"]
 [ext_resource type="Resource" uid="uid://bnoj3uq3e6s17" path="res://resources/enemy/angel_warrior.tres" id="7_a1v71"]
@@ -60,13 +58,9 @@ score_display = NodePath("../../HUD")
 
 [node name="EnemyHandler" parent="LogicComponents" index="2" node_paths=PackedStringArray("enemy_ysort") instance=ExtResource("4_81g8t")]
 enemy_resource_list = Array[Resource("res://scripts/characters/enemy_resource.gd")]([ExtResource("6_muf3o"), ExtResource("7_a1v71"), ExtResource("8_60soe"), ExtResource("11_fi15b")])
-enemy_ysort = NodePath("../../YSort")
+enemy_ysort = NodePath("")
 
-[node name="BossHandler" parent="LogicComponents" index="3" node_paths=PackedStringArray("ysorter") instance=ExtResource("5_cfnl8")]
-boss_scene = ExtResource("6_lb3xs")
-ysorter = NodePath("../../YSort")
-
-[node name="TerrainGenerator" parent="LogicComponents" index="4" node_paths=PackedStringArray("tile_map", "ysorter") instance=ExtResource("8_74i65")]
+[node name="TerrainGenerator" parent="LogicComponents" index="3" node_paths=PackedStringArray("tile_map", "ysorter") instance=ExtResource("8_74i65")]
 tile_map = NodePath("../../YSort/TileMap")
 ysorter = NodePath("../../YSort")
 objects = Array[PackedScene]([ExtResource("17_uwvn0"), ExtResource("18_cjii1"), ExtResource("19_a4git"), ExtResource("20_tuugf"), ExtResource("21_gbptu")])
@@ -83,4 +77,3 @@ teleporter = NodePath("../../YSort/teleporter")
 [connection signal="add_objective_marker" from="YSort/teleporter" to="ObjectiveMarker" method="add_target"]
 [connection signal="start_game" from="HUD" to="." method="restart_game"]
 [connection signal="restart_game" from="stat_screen" to="." method="restart_game"]
-[connection signal="spawn_shop_on_enemy" from="LogicComponents/EnemyHandler" to="LogicComponents/ShopHandler" method="_on_spawn_shop"]

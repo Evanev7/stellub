@@ -22,8 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://7pekoii3l4xw" path="res://scenes/objects/pillar.tscn" id="16_48wth"]
 [ext_resource type="PackedScene" uid="uid://b2tef800ecm8u" path="res://scenes/components/weapon_handler.tscn" id="17_gx7j2"]
 [ext_resource type="PackedScene" uid="uid://c0sja3tghmci5" path="res://scenes/objects/hell_roots.tscn" id="17_kyh5d"]
-[ext_resource type="PackedScene" uid="uid://ccn1gqdiqd0gk" path="res://scenes/objects/pillar_broken.tscn" id="18_uw2ke"]
-[ext_resource type="PackedScene" uid="uid://bco6kn11dyo6o" path="res://scenes/components/boss_handler.tscn" id="18_yysi3"]
+[ext_resource type="PackedScene" path="res://scenes/objects/pillar_broken.tscn" id="18_uw2ke"]
 [ext_resource type="PackedScene" uid="uid://d2qk4vahd2ews" path="res://scenes/objects/bones.tscn" id="19_omeqv"]
 [ext_resource type="Resource" uid="uid://cde86qx4smawg" path="res://resources/enemy/demon_lord.tres" id="21_jliye"]
 [ext_resource type="PackedScene" uid="uid://be4i0yo3jsk42" path="res://scenes/components/attack.tscn" id="23_6mnt7"]
@@ -78,7 +77,7 @@ score_display = NodePath("../../HUD")
 
 [node name="EnemyHandler" parent="LogicComponents" index="3" node_paths=PackedStringArray("enemy_ysort") instance=ExtResource("5_qh5by")]
 enemy_resource_list = Array[Resource("res://scripts/characters/enemy_resource.gd")]([ExtResource("3_dr1lv"), ExtResource("4_j7txi"), ExtResource("5_yiyg4"), ExtResource("21_jliye"), ExtResource("6_7qtbu"), ExtResource("7_jjuad"), ExtResource("8_rirxr")])
-enemy_ysort = NodePath("../../YSort/Enemies")
+enemy_ysort = NodePath("../../YSort")
 
 [node name="ShopHandler" parent="LogicComponents" index="4" node_paths=PackedStringArray("enemy_handler", "ysorter", "objective_marker", "shop_node", "teleporter") instance=ExtResource("6_tokbn")]
 attack_scene = ExtResource("23_6mnt7")
@@ -88,21 +87,15 @@ objective_marker = NodePath("../../ObjectiveMarker")
 shop_node = NodePath("../../ShopAlt")
 teleporter = NodePath("../../YSort/teleporter")
 
-[node name="BossHandler" parent="LogicComponents" index="5" node_paths=PackedStringArray("ysorter") instance=ExtResource("18_yysi3")]
-boss_scene = ExtResource("43_a3i5e")
-ysorter = NodePath("../../YSort")
-
-[node name="WeaponHandler" parent="LogicComponents" index="6" node_paths=PackedStringArray("ysorter") instance=ExtResource("17_gx7j2")]
+[node name="WeaponHandler" parent="LogicComponents" index="5" node_paths=PackedStringArray("ysorter") instance=ExtResource("17_gx7j2")]
 ysorter = NodePath("../../YSort")
 
 [connection signal="credit_player" from="YSort/Player" to="LogicComponents/PickupHandler" method="_on_pickup_credit_player"]
 [connection signal="hp_changed" from="YSort/Player" to="HUD" method="show_health"]
 [connection signal="level_up" from="YSort/Player" to="." method="_on_player_level_up"]
 [connection signal="player_death" from="YSort/Player" to="." method="_on_player_player_death"]
-[connection signal="send_loadout" from="YSort/Player" to="LogicComponents/BossHandler" method="_on_player_send_loadout"]
 [connection signal="add_objective_marker" from="YSort/teleporter" to="ObjectiveMarker" method="add_target"]
 [connection signal="teleport_player" from="YSort/teleporter" to="." method="teleport_to_heaven_area"]
 [connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
 [connection signal="restart_game" from="stat_screen" to="." method="on_restart_game"]
-[connection signal="spawn_shop_on_enemy" from="LogicComponents/EnemyHandler" to="LogicComponents/ShopHandler" method="_on_spawn_shop"]
 [connection signal="activate_previous_circle" from="LogicComponents/ShopHandler" to="HUD" method="_on_shop_handler_activate_circle"]

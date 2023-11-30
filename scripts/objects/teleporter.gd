@@ -36,11 +36,6 @@ func start():
 		$TreeCollision2.disabled = false
 		$TreeCollision3.disabled = false
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
-
 func enabled():
 	$teleporter/CollisionShape2D.disabled = false
 	$Active.visible = true

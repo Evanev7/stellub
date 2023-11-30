@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bqjr66plhka4t" path="res://art/UI/XP_Bar_Fill.png" id="3_g0pwy"]
 [ext_resource type="Texture2D" uid="uid://dfl8ox20w3xn" path="res://art/UI/Black_Background/black_bg_2.png" id="3_k867k"]
 [ext_resource type="Texture2D" uid="uid://bsmsy5dhk3vsp" path="res://art/UI/Black_Background/black_bg_3.png" id="4_0fiv5"]
-[ext_resource type="SpriteFrames" uid="uid://btd05ounitw4h" path="res://art/UI/magic_circle_indicator.tres" id="4_l2fes"]
+[ext_resource type="SpriteFrames" path="res://art/UI/magic_circle_indicator.tres" id="4_l2fes"]
 [ext_resource type="Texture2D" uid="uid://bottvwnfwt65t" path="res://art/UI/HP_Bar/HP_Bar_Outline_1.png" id="4_m51i6"]
 [ext_resource type="Texture2D" uid="uid://hmp5g5v452h2" path="res://art/objects/circle_counter_bg.png" id="4_sisdd"]
 [ext_resource type="Texture2D" uid="uid://dq4qin2d2o6d3" path="res://art/UI/Black_Background/black_bg_4.png" id="5_0gsxt"]
@@ -53,6 +53,9 @@ frame_4/texture = ExtResource("6_r11fs")
 frame_4/duration = 1.0
 
 [sub_resource type="FontFile" id="FontFile_4ayeq"]
+face_index = null
+embolden = null
+transform = null
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0

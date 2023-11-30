@@ -18,7 +18,7 @@ static var shop_nodes = []
 var referenced_node: Node
 
 func _ready():
-	if $AnimationPlayer:
+	if get_node_or_null("AnimationPlayer"):
 		$AnimationPlayer.set_speed_scale(randf_range(2.5, 4))
 	if is_shop and self not in shop_nodes:
 		shop_nodes.append(self)
