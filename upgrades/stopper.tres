@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=4 format=3 uid="uid://2203aqc8w170"]
+
+[ext_resource type="Script" path="res://upgrades/upgrade_resource.gd" id="1_73oug"]
+[ext_resource type="Texture2D" uid="uid://dxtmrmjab36ky" path="res://art/UI/programmer 'art'.png" id="1_qhmso"]
+[ext_resource type="Script" path="res://upgrades/scripts/stopper.gd" id="3_ibsfr"]
+
+[resource]
+script = ExtResource("1_73oug")
+name = "Stopper"
+upgrade_script = ExtResource("3_ibsfr")
+quantity = 10
+appears_in_shop = true
+appears_in_inventory = true
+icon = ExtResource("1_qhmso")
+description = "Prevents your bullet from
+having negative speed."
+script_data = {}

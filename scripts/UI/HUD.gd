@@ -8,6 +8,10 @@ signal open_pause_menu
 @onready var level := $XPBar/Level
 @onready var vignette: TextureRect = $VignetteBottom
 @onready var circle_counter: Control = $CircleCounter
+@onready var main_text_container: TextureRect = $TextDisplay
+@onready var main_text_display: TextureRect = $TextDisplay/TextDisplay
+@onready var dialogue_text_container: TextureRect = $DialogueDisplay
+@onready var dialogue_text_display: TextureRect = $DialogueDisplay/TextDisplay
 
 @onready var enemy_count = $Debug/EnemyCount
 @onready var bullet_count = $Debug/BulletCount
@@ -28,36 +32,36 @@ func reset_circle_counters():
 		sprite.play("off")
 
 func show_message(text):
-	$TextDisplay/TextDisplay.text = text
-	$TextDisplay.show()
+	main_text_display.text = text
+	main_text_container.show()
 	var tween: Tween = create_tween()
-	tween.tween_property($TextDisplay, "modulate:a", 1, 0.5)
-	tween.tween_property($TextDisplay, "modulate:a", 0, 2)
+	tween.tween_property(main_text_container, "modulate:a", 1, 0.5)
+	tween.tween_property(main_text_container, "modulate:a", 0, 2)
 	$DisplayTimer.start()
 
 func show_first_time():
 	$AudioStreamPlayer.play()
 	var tween: Tween = create_tween()
 	tween.tween_property($VignetteBottom, "self_modulate:a", 1, 5)
-	$TextDisplay/TextDisplay.text = "Alas. You have failed."
-	tween.tween_property($TextDisplay, "modulate:a", 1, 3)
-	tween.tween_property($TextDisplay, "modulate:a", 0, 2)
-	tween.tween_property($TextDisplay/TextDisplay, "text", "I will keep waiting.", 0.1)
-	tween.tween_property($TextDisplay, "modulate:a", 1, 3)
-	tween.tween_property($TextDisplay, "modulate:a", 0, 2)
-	tween.tween_property($TextDisplay/TextDisplay, "text", "For someone who can break through.", 0.1)
-	tween.tween_property($TextDisplay, "modulate:a", 1, 3)
-	tween.tween_property($TextDisplay, "modulate:a", 0, 2)
+	main_text_display.text = "Alas. You have failed."
+	tween.tween_property(main_text_container, "modulate:a", 1, 3)
+	tween.tween_property(main_text_container, "modulate:a", 0, 2)
+	tween.tween_property(main_text_display, "text", "I will keep waiting.", 0.1)
+	tween.tween_property(main_text_container, "modulate:a", 1, 3)
+	tween.tween_property(main_text_container, "modulate:a", 0, 2)
+	tween.tween_property(main_text_display, "text", "For someone who can break through.", 0.1)
+	tween.tween_property(main_text_container, "modulate:a", 1, 3)
+	tween.tween_property(main_text_container, "modulate:a", 0, 2)
 	tween.tween_callback(game_over)
 
 func game_over():
 	GameState.game_over.emit()
-	$TextDisplay.modulate = Color(1, 1, 1, 0)
+	main_text_container.modulate = Color(1, 1, 1, 0)
 	$VignetteBottom.modulate = Color(1, 1, 1, 0)
 	
 
 func _on_display_timer_timeout():
-	$TextDisplay.hide()
+	main_text_container.hide()
 	$Debug.hide()
 
 

@@ -1,10 +1,34 @@
-[gd_scene load_steps=4 format=3 uid="uid://bxmk1htarl4v5"]
+[gd_scene load_steps=26 format=3 uid="uid://bxmk1htarl4v5"]
 
 [ext_resource type="Script" path="res://scripts/components/ShopHandler.gd" id="1_l28hg"]
 [ext_resource type="PackedScene" uid="uid://cp7lho542gmeu" path="res://scenes/objects/shop.tscn" id="2_y806g"]
 [ext_resource type="PackedScene" uid="uid://bdsxfxpria0gp" path="res://scenes/components/magic_circle.tscn" id="3_ol2yg"]
+[ext_resource type="Resource" uid="uid://dldq0lmweq825" path="res://upgrades/randomiser.tres" id="4_32vcq"]
+[ext_resource type="Resource" uid="uid://dgnonhlostgr1" path="res://upgrades/bowling_ball.tres" id="5_nwjlg"]
+[ext_resource type="Resource" uid="uid://ctfombpw6rgc5" path="res://upgrades/centre_of_the_galaxy.tres" id="6_3rqkh"]
+[ext_resource type="Resource" uid="uid://brxqpkihvbfrk" path="res://upgrades/concentrate.tres" id="7_o83s8"]
+[ext_resource type="Resource" uid="uid://ci7uxv4m433dh" path="res://upgrades/detonator.tres" id="8_d875m"]
+[ext_resource type="Resource" uid="uid://caeytpd302r1q" path="res://upgrades/drill.tres" id="9_uihkf"]
+[ext_resource type="Resource" uid="uid://cvxev8t8bsds1" path="res://upgrades/minigun.tres" id="10_0njyq"]
+[ext_resource type="Resource" uid="uid://xoj5pa4iabuk" path="res://upgrades/rpg.tres" id="11_ohx84"]
+[ext_resource type="Resource" uid="uid://c7p72w4p6xr5n" path="res://upgrades/split_shot.tres" id="12_qs6gk"]
+[ext_resource type="Resource" uid="uid://x1q84ou5be48" path="res://upgrades/multi_shot.tres" id="13_0u7qy"]
+[ext_resource type="Resource" uid="uid://nh3ysny8kvkt" path="res://upgrades/vacuum.tres" id="14_501c7"]
+[ext_resource type="Resource" uid="uid://d2j0rt7130hds" path="res://upgrades/bomb.tres" id="15_7yao1"]
+[ext_resource type="Resource" uid="uid://b1rd0nm53sjuw" path="res://upgrades/frag.tres" id="16_6qpab"]
+[ext_resource type="Resource" uid="uid://cwmkwxrnsjcr7" path="res://upgrades/knockbacker.tres" id="17_bcmbh"]
+[ext_resource type="Resource" uid="uid://2203aqc8w170" path="res://upgrades/stopper.tres" id="18_cggga"]
+[ext_resource type="Resource" uid="uid://bqgw42iprkn47" path="res://upgrades/slowdown.tres" id="19_x06l4"]
+[ext_resource type="Resource" uid="uid://coqyd5d8e6rm8" path="res://resources/bullets/player/particle_mace.tres" id="20_6gwkq"]
+[ext_resource type="Resource" uid="uid://c5t0pc3plmn8t" path="res://upgrades/spin.tres" id="20_lnrub"]
+[ext_resource type="Resource" uid="uid://bus2a8p1nxapb" path="res://upgrades/focus.tres" id="21_epu16"]
+[ext_resource type="Resource" uid="uid://b3v62pkd6hntd" path="res://resources/bullets/player/shotgun.tres" id="21_rb41q"]
+[ext_resource type="Resource" uid="uid://8ogmebrr77xx" path="res://resources/bullets/player/black_hole.tres" id="22_k2wjc"]
+[ext_resource type="Resource" uid="uid://cyahshf3y21ai" path="res://resources/bullets/player/boomerang.tres" id="23_d1bm0"]
 
 [node name="ShopHandler" type="Node"]
 script = ExtResource("1_l28hg")
 shop_scene = ExtResource("2_y806g")
 magic_circle_scene = ExtResource("3_ol2yg")
+default_shop_upgrades_list = Array[Resource("res://upgrades/upgrade_resource.gd")]([ExtResource("4_32vcq"), ExtResource("5_nwjlg"), ExtResource("6_3rqkh"), ExtResource("7_o83s8"), ExtResource("8_d875m"), ExtResource("9_uihkf"), ExtResource("10_0njyq"), ExtResource("11_ohx84"), ExtResource("12_qs6gk"), ExtResource("13_0u7qy"), ExtResource("14_501c7"), ExtResource("15_7yao1"), ExtResource("16_6qpab"), ExtResource("17_bcmbh"), ExtResource("18_cggga"), ExtResource("19_x06l4"), ExtResource("20_lnrub"), ExtResource("21_epu16")])
+default_shop_weapons_list = Array[Resource("res://scripts/objects/bullet_resource.gd")]([ExtResource("20_6gwkq"), ExtResource("21_rb41q"), ExtResource("22_k2wjc"), ExtResource("23_d1bm0")])

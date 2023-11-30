@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=4 format=3 uid="uid://cwmkwxrnsjcr7"]
+
+[ext_resource type="Texture2D" uid="uid://bjs8nkf0k72xg" path="res://art/enemies/angel_worshipper.png" id="1_avmy3"]
+[ext_resource type="Script" path="res://upgrades/upgrade_resource.gd" id="1_gnvrq"]
+[ext_resource type="Script" path="res://upgrades/scripts/knockbacker.gd" id="3_g7ifn"]
+
+[resource]
+script = ExtResource("1_gnvrq")
+name = "Knockbacker"
+upgrade_script = ExtResource("3_g7ifn")
+quantity = 10
+appears_in_shop = true
+appears_in_inventory = true
+icon = ExtResource("1_avmy3")
+description = "Increases knockback."
+script_data = {
+"Knockback": &"x5"
+}

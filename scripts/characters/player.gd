@@ -28,6 +28,7 @@ signal credit_player(value)
 @onready var vacuum_pickup_sound: AudioStreamPlayer = $VacuumPickup
 @onready var level_up_sound: AudioStreamPlayer = $LevelUp
 @onready var hurt_sound: AudioStreamPlayer = $Hurt
+@onready var death_sound: AudioStreamPlayer = $Die
 
 var control_mode: int = 0
 var level_threshold = [10, 20, 30, 50]
@@ -167,6 +168,7 @@ func hurt(body):
 	if hp <= 0 and not dead:
 		dead = true
 		attack_handler.stop()
+		death_sound.play()
 		if GameState.first_time == true:
 			i_frame_timer.stop()
 			sprite.modulate = Color(1,1,1,1)
@@ -175,7 +177,7 @@ func hurt(body):
 			hide()
 			$CollisionShape2D.disabled = true
 			$Hurtbox/CollisionShape2D.disabled = true
-			$Camera2D.set_deferred("enabled", false)
+			#$Camera2D.set_deferred("enabled", false)
 		set_physics_process(false)
 		player_death.emit()
 
@@ -200,6 +202,7 @@ func get_pickup(area):
 				hp_pickup_sound.play()
 			Pickup.vacuum_pickup:
 				activate_xp_vacuum()
+				vacuum_pickup_sound.play()
 		area.queue_free()
 
 # Called when we've killed an enemy, and we can add to our score.

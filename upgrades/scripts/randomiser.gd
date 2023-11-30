@@ -8,8 +8,13 @@ func _ready():
 
 # Change stats on pickup
 func modify_bullet_resource(bullet: BulletResource) -> BulletResource:
-	get_parent().control_mode = get_parent().CONTROL_MODE.PASSIVE
 	bullet.fire_delay *= 1.05
+	bullet.size *= 2
+	bullet.damage *= 1.5
+	if bullet.shot_inaccuracy == 0:
+		bullet.shot_inaccuracy = 100
+	else:
+		bullet.shot_inaccuracy *= 1000
 	return bullet
 
 
