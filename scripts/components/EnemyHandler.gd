@@ -38,9 +38,11 @@ func _ready():
 	enemy_rarity_pool = Pool.new()
 	
 	var enemies = []
-	for i in range(2):
-		enemies.append([i, enemy_resource_list[i].QUANTITY])
-	enemy_rarity_pool.populate(enemies)
+	
+	if not GameState.current_area == GameState.CURRENT_AREA.BOSS:
+		for i in range(2):
+			enemies.append([i, enemy_resource_list[i].QUANTITY])
+		enemy_rarity_pool.populate(enemies)
 	
 	for i in range(maximum_damage_numbers):
 		var new_damage_number = damage_scene.instantiate()
