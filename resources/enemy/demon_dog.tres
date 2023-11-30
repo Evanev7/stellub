@@ -9,6 +9,7 @@
 script = ExtResource("1_hqusm")
 NAME = "demon_dog"
 ANIMATION = ExtResource("1_ocmja")
+QUANTITY = 30
 FLIP_H = false
 FLOATING = false
 SPEED = 130.0

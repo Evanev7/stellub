@@ -14,7 +14,7 @@ signal spawn_shop_on_enemy(pos)
 var spawn_queue: Array = []
 
 @export var safe_range: float = 800
-@export var default_spawn_time: float = 4.08
+@export var default_spawn_time: float = 2.08
 @export var overall_multiplier: float = 1.0
 
 @export var enemy_scene: PackedScene
@@ -26,13 +26,21 @@ var spawn_queue: Array = []
 var damage_scene_pool: Array[DamageNumber] = []
 var maximum_damage_numbers: int = 300
 
+var enemy_rarity_pool: Pool
 var enemy_scene_pool: Array[EnemyBehaviour] = []
 var maximum_enemies: int = 800
 
-var phase_limit = 1
+@onready var phase_limit = 1
 
 func _ready():
 	GameState.game_over.connect(stop_spawning)
+	
+	enemy_rarity_pool = Pool.new()
+	
+	var enemies = []
+	for i in range(2):
+		enemies.append([i, enemy_resource_list[i].QUANTITY])
+	enemy_rarity_pool.populate(enemies)
 	
 	for i in range(maximum_damage_numbers):
 		var new_damage_number = damage_scene.instantiate()
@@ -53,11 +61,17 @@ func _on_phase_up_timer_timeout():
 		damage_scene_pool.resize(1000)
 	phase_limit += 1
 	phase_limit = clamp(phase_limit, 1, enemy_resource_list.size() - 1)
+	
+	var new_enemy = []
+	new_enemy.append([phase_limit, enemy_resource_list[phase_limit].QUANTITY])
+	enemy_rarity_pool.populate(new_enemy)
+	
 	spawn_enemy(phase_limit, GameState.player.position, safe_range, 3.5, overall_multiplier)
 
 
 func _on_spawn_timer_timeout():
-	var resourceID = min(randi() % enemy_resource_list.size(), phase_limit)
+	var resourceID = enemy_rarity_pool.sample()
+	
 	spawn_enemy(resourceID)
 	
 	if GameState.current_area == GameState.CURRENT_AREA.HEAVEN:

@@ -9,6 +9,7 @@
 script = ExtResource("1_5cwm5")
 NAME = "demon_lord"
 ANIMATION = ExtResource("1_sxpx7")
+QUANTITY = 5
 FLIP_H = false
 FLOATING = false
 SPEED = 30.0

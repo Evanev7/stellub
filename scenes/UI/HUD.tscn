@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://yaht8i4bkv2u"]
+[gd_scene load_steps=25 format=3 uid="uid://yaht8i4bkv2u"]
 
 [ext_resource type="Script" path="res://scripts/UI/HUD.gd" id="1_tsnwf"]
 [ext_resource type="Texture2D" uid="uid://dl1gspa35j2xu" path="res://art/UI/vignette2.png" id="2_i7f4k"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bsmsy5dhk3vsp" path="res://art/UI/Black_Background/black_bg_3.png" id="4_0fiv5"]
 [ext_resource type="SpriteFrames" uid="uid://btd05ounitw4h" path="res://art/UI/magic_circle_indicator.tres" id="4_l2fes"]
 [ext_resource type="Texture2D" uid="uid://bottvwnfwt65t" path="res://art/UI/HP_Bar/HP_Bar_Outline_1.png" id="4_m51i6"]
+[ext_resource type="Texture2D" uid="uid://hmp5g5v452h2" path="res://art/objects/circle_counter_bg.png" id="4_sisdd"]
 [ext_resource type="Texture2D" uid="uid://dq4qin2d2o6d3" path="res://art/UI/Black_Background/black_bg_4.png" id="5_0gsxt"]
 [ext_resource type="Texture2D" uid="uid://ckj36odxkb2o2" path="res://art/UI/HP_Bar/HP_Bar_Outline_2.png" id="5_4mon2"]
 [ext_resource type="Texture2D" uid="uid://b4d4inkobgtre" path="res://art/objects/soul_1.png" id="6_hfuq4"]
@@ -156,54 +157,59 @@ offset_bottom = 1080.0
 texture = ExtResource("2_i7f4k")
 expand_mode = 1
 
-[node name="CircleCounter" type="Control" parent="."]
-layout_mode = 3
+[node name="CircleCounterBG" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CircleCounter" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.505882)
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -20.0
-offset_top = 58.0
-offset_right = 20.0
-offset_bottom = 98.0
+offset_left = -450.0
+offset_top = 32.0
+offset_right = 450.0
+offset_bottom = 232.0
 grow_horizontal = 2
+texture = ExtResource("4_sisdd")
 
 [node name="Circle1" type="AnimatedSprite2D" parent="CircleCounter"]
-position = Vector2(-371, 99)
+position = Vector2(111.069, 99)
 rotation = -0.288296
 scale = Vector2(0.08, 0.08)
 sprite_frames = ExtResource("4_l2fes")
 animation = &"off"
 
 [node name="Circle2" type="AnimatedSprite2D" parent="CircleCounter"]
-position = Vector2(-247, 56)
+position = Vector2(235.069, 56)
 rotation = -0.136485
 scale = Vector2(0.08, 0.08)
 sprite_frames = ExtResource("4_l2fes")
 animation = &"off"
 
 [node name="Circle3" type="AnimatedSprite2D" parent="CircleCounter"]
-position = Vector2(-123, 43)
+position = Vector2(359.069, 43)
 rotation = -0.0565614
 scale = Vector2(0.08, 0.08)
 sprite_frames = ExtResource("4_l2fes")
 animation = &"off"
 
 [node name="Circle4" type="AnimatedSprite2D" parent="CircleCounter"]
-position = Vector2(20, 43)
+position = Vector2(502.069, 43)
 rotation = 0.0558505
 scale = Vector2(0.08, 0.08)
 sprite_frames = ExtResource("4_l2fes")
 animation = &"off"
 
 [node name="Circle5" type="AnimatedSprite2D" parent="CircleCounter"]
-position = Vector2(159, 56)
+position = Vector2(641.069, 56)
 rotation = 0.136136
 scale = Vector2(0.08, 0.08)
 sprite_frames = ExtResource("4_l2fes")
 animation = &"off"
 
 [node name="Circle6" type="AnimatedSprite2D" parent="CircleCounter"]
-position = Vector2(294, 99)
+position = Vector2(776.069, 99)
 rotation = 0.287979
 scale = Vector2(0.08, 0.08)
 sprite_frames = ExtResource("4_l2fes")

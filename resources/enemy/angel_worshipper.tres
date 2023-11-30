@@ -10,6 +10,7 @@
 script = ExtResource("5_7h6hr")
 NAME = "angel_worshipper"
 ANIMATION = ExtResource("1_5hdc1")
+QUANTITY = 30
 FLIP_H = false
 FLOATING = false
 SPEED = 60.0

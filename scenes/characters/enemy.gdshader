@@ -21,7 +21,6 @@ void fragment() {
 	outline = min(outline, 1.0);
 	
 	vec4 color = texture(TEXTURE, UV);
-	COLOR = mix(color, line_color, outline - color.a);
 	
 	vec4 current_pixel = texture(TEXTURE,UV);
 	vec4 noise_pixel = texture(noise_texture,UV);
@@ -32,6 +31,6 @@ void fragment() {
 	}
 	else
 	{
-		COLOR = current_pixel;
+		COLOR = mix(color, line_color, outline - color.a);
 	}
 }

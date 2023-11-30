@@ -5,6 +5,8 @@ class_name EnemyResource
 @export_category("Metadata")
 @export var NAME: String
 @export var ANIMATION: SpriteFrames
+## Chance of enemy spawning
+@export var QUANTITY: int = 10
 @export var FLIP_H: bool
 @export var FLOATING: bool
 

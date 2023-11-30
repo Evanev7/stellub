@@ -157,7 +157,7 @@ func _on_circle_body_exited(body):
 
 func _on_wave_timer_timeout():
 	wave_active = true
-	success_timer.wait_time = 10 + (9.99 * GameState.circles_completed+1)
+	success_timer.wait_time = 10 + (9.99 * GameState.circles_completed + 1)
 	$Barrier.visible = true
 	var tween: Tween = create_tween()
 	tween.parallel().tween_property($Barrier, "scale", Vector2(0.4, 0.4), success_timer.wait_time)

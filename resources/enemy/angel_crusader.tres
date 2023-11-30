@@ -9,6 +9,7 @@
 script = ExtResource("4_0qbpw")
 NAME = "angel_crusader"
 ANIMATION = ExtResource("1_xk1uw")
+QUANTITY = 5
 FLIP_H = false
 FLOATING = true
 SPEED = 30.0
