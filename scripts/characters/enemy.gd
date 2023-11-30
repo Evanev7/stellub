@@ -73,6 +73,7 @@ func set_data():
 	
 	
 	load_resource(resource)
+	spawn_animation()
 	attack_handler.start()
 	
 	# Select mob texture variants (This code is functional just unnecessary since no enemies have variants)
@@ -92,9 +93,6 @@ func load_resource(resource_to_load: EnemyResource):
 	scale = default_scale
 	sprite.sprite_frames = resource_to_load.ANIMATION
 	sprite.flip_h = flipped
-	if unique_multiplier > 1:
-		sprite.material.set_shader_parameter("line_color", Vector4(1, 0, 0, 1))
-		sprite.material.set_shader_parameter("line_thickness", (unique_multiplier) ** 2)
 		
 	if resource_to_load.BULLET:
 		if resource_to_load.BULLET.target_mode == BulletResource.TARGET_MODE.MOUSE:
@@ -116,7 +114,19 @@ func load_resource(resource_to_load: EnemyResource):
 	else:
 		shadow.position.y = (hitbox_collisionshape.shape.height / 2) - default_scale.length() + 20
 
-
+func spawn_animation():
+	sprite.material.set_shader_parameter("line_color", Vector4(1, 1, 1, 1))
+	var tween: Tween = create_tween()
+	tween.parallel().tween_property(sprite.material, "shader_parameter/line_thickness", 0, 0.5).from(180.0)
+	tween.parallel().tween_property(shadow, "self_modulate:a", 1.0, 0.5).from(0.0)
+	tween.parallel().tween_property(sprite.material, "shader_parameter/value", 1.0, 0.5).from(0.0)
+	tween.tween_callback(func():
+		if unique_multiplier > 1:
+			sprite.material.set_shader_parameter("line_color", Vector4(1, 0, 0, 1))
+			sprite.material.set_shader_parameter("line_thickness", (unique_multiplier) ** 2)
+		else:
+			sprite.material.set_shader_parameter("line_color", Vector4(0, 0, 0, 1)))
+			
 # Function for easing sprites between two positions while 'idle'. I.e. enemy rotation.
 func sway():
 	var tween: Tween = create_tween()
@@ -208,7 +218,7 @@ func remove():
 		sprite.visible = false
 		shadow.visible = false
 		sprite.material.set_shader_parameter("value", 1)
-		sprite.material.set_shader_parameter("line_color", Vector4(1, 1, 1, 1)))
+		sprite.material.set_shader_parameter("line_color", Vector4(0, 0, 0, 1)))
 	on_remove.emit()
 	attack_handler.stop()
 	collider.set_deferred("disabled", true)

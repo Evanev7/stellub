@@ -42,7 +42,7 @@ func _on_fire_bullet(origin, bullet_type: BulletResource, fire_from: FireFrom):
 	
 	if not (origin is WeakRef):
 		origin = weakref(origin)
-	var inaccuracy_offset = randf_range(-bullet_type.shot_inaccuracy/2,bullet_type.shot_inaccuracy/2)
+	
 		
 	
 	# Iterate over every bullet that's being fired (the number of bullets to fire
@@ -52,7 +52,7 @@ func _on_fire_bullet(origin, bullet_type: BulletResource, fire_from: FireFrom):
 		bullet.add_to_group("bullet")
 		
 		var start_position = fire_from.position
-		
+		var inaccuracy_offset = randf_range(-bullet_type.shot_inaccuracy/2,bullet_type.shot_inaccuracy/2)
 		var direction_offset = inaccuracy_offset
 		if bullet_type.multishot > 1:
 			direction_offset += remap(index, 0, bullet_type.multishot-1, -bullet_type.shot_spread/2, bullet_type.shot_spread/2)
@@ -91,6 +91,8 @@ func get_bullet() -> Bullet:
 
 func play_audio(sound, pos):
 	var audio_player = get_audio_player()
+	if audio_player == null:
+		return
 	audio_player.stream = sound
 	audio_player.position = pos
 	audio_player.bus = "SFX"

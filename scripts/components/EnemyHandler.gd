@@ -35,15 +35,6 @@ var maximum_enemies: int = 800
 func _ready():
 	GameState.game_over.connect(stop_spawning)
 	
-	enemy_rarity_pool = Pool.new()
-	
-	var enemies = []
-	
-	if not GameState.current_area == GameState.CURRENT_AREA.BOSS:
-		for i in range(2):
-			enemies.append([i, enemy_resource_list[i].QUANTITY])
-		enemy_rarity_pool.populate(enemies)
-	
 	for i in range(maximum_damage_numbers):
 		var new_damage_number = damage_scene.instantiate()
 		new_damage_number.on_remove.connect(
@@ -155,6 +146,14 @@ func play_death_sound(pos):
 func start_spawning():
 	damage_scene_pool = []
 	enemy_scene_pool = []
+	enemy_rarity_pool = Pool.new()
+	
+	var enemies = []
+	
+	if not GameState.current_area == GameState.CURRENT_AREA.BOSS:
+		for i in range(2):
+			enemies.append([i, enemy_resource_list[i].QUANTITY])
+		enemy_rarity_pool.populate(enemies)
 	
 		
 	for i in range(maximum_enemies):
@@ -167,7 +166,7 @@ func start_spawning():
 		enemy_ysort.call_deferred("add_child", new_enemy)
 		
 	phase_limit = 1
-	spawn_timer.wait_time = default_spawn_time / ((1.02 * (GameState.current_area + 1)) ** GameState.player.current_level)
+	spawn_timer.wait_time = default_spawn_time / ((1.02) ** GameState.player.current_level)
 	overall_multiplier = 1 + (GameState.player.current_level / float(600)) * GameState.player.current_level
 	spawn_timer.start()
 	phase_up_timer.start()

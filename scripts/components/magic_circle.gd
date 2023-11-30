@@ -60,47 +60,47 @@ func set_waves():
 		4: {
 			5: {skull: 20},
 			4: {dog: 20},
-			3: {skeleton: 20},
+			3: {skeleton: 15},
 			2: {skeleton: 15, skull: 15},
 			1: {skeleton: 10, dog: 10, skull: 10},
 		},
 		5: {
-			6: {skull: 40},
+			6: {skull: 30},
 			5: {dog: 20},
 			4: {skeleton: 20},
-			3: {skeleton: 20, skull: 20},
-			2: {skeleton: 20, dog: 20, skull: 20},
-			1: {skeleton: 15, dog: 15, skull: 15}
+			3: {skeleton: 15, skull: 15},
+			2: {skeleton: 15, dog: 15, skull: 15},
+			1: {skeleton: 10, dog: 10, skull: 10}
 		},
 		6: {
-			7: {skeleton: 15, dog: 15, skull: 15},
+			7: {skeleton: 10, dog: 10, skull: 10},
 			6: {skeleton: 30},
 			5: {skull: 50},
-			4: {skeleton: 30, skull: 30},
-			3: {skeleton: 30, dog: 30, skull: 30},
-			2: {skeleton: 30, dog: 30, skull: 40},
-			1: {skeleton: 20, dog: 20, skull: 25}
+			4: {skeleton: 20, skull: 20},
+			3: {skeleton: 20, dog: 20, skull: 20},
+			2: {skeleton: 20, dog: 20, skull: 40},
+			1: {lord: 2, skeleton: 15, dog: 15}
 		},
 		7: {
-			8: {skeleton: 30, dog: 30, skull: 30},
-			7: {skeleton: 80},
-			6: {skull: 200},
-			5: {skeleton: 60, skull: 60},
-			4: {skeleton: 80, dog: 80, skull: 80},
-			3: {skeleton: 80, dog: 80, skull: 100},
-			2: {skeleton: 80, dog: 80, skull: 100},
-			1: {lord: 10, skeleton: 40, dog: 40, skull: 40}
+			8: {skeleton: 20, dog: 20, skull: 20},
+			7: {skeleton: 30, dog: 10},
+			6: {lord: 1, skeleton: 20},
+			5: {dog: 20, skull: 50},
+			4: {skeleton: 20, skull: 30},
+			3: {skeleton: 25, dog: 25, skull: 25},
+			2: {skeleton: 25, dog: 25, skull: 45},
+			1: {lord: 2, skeleton: 15, dog: 15}
 		},
 		8: {
 			9: {skeleton: 30, dog: 30, skull: 30},
-			8: {skeleton: 30, dog: 30, skull: 30},
-			7: {skeleton: 80},
-			6: {skull: 200},
-			5: {skeleton: 60, skull: 60},
-			4: {skeleton: 80, dog: 80, skull: 80},
-			3: {skeleton: 80, dog: 80, skull: 100},
-			2: {skeleton: 80, dog: 80, skull: 100},
-			1: {lord: 10, skeleton: 40, dog: 40, skull: 40}
+			8: {skeleton: 20, dog: 20, skull: 20},
+			7: {skeleton: 30, dog: 10},
+			6: {lord: 1, skeleton: 20},
+			5: {dog: 20, skull: 50},
+			4: {skeleton: 20, skull: 30},
+			3: {skeleton: 25, dog: 25, skull: 25},
+			2: {skeleton: 25, dog: 25, skull: 45},
+			1: {lord: 2, skeleton: 15, dog: 15}
 		},
 		9: {
 			10: {skeleton: 30, dog: 30, skull: 30},

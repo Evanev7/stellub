@@ -93,6 +93,7 @@ shape = SubResource("CircleShape2D_qlfrf")
 
 [node name="Time" type="Label" parent="."]
 visible = false
+z_index = 2
 offset_left = -14.0
 offset_top = -221.0
 offset_right = 15.0
