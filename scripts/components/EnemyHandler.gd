@@ -70,6 +70,10 @@ func _on_spawn_timer_timeout():
 	if GameState.current_area == GameState.CURRENT_AREA.HEAVEN:
 		spawn_timer.wait_time /= 1.008
 
+func freeze(time):
+	spawn_timer.stop()
+	await get_tree().create_timer(time).timeout
+	spawn_timer.start()
 
 func spawn_enemy(resourceID, centre = GameState.player.position, spawn_range = safe_range, unique_multiplier: float = 1, overall_multi = overall_multiplier):
 	if GameState.num_enemies < maximum_enemies:

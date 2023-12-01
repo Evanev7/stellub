@@ -1,18 +1,35 @@
-[gd_resource type="SpriteFrames" load_steps=11 format=3 uid="uid://buhg63ostt083"]
+[gd_resource type="SpriteFrames" load_steps=14 format=3 uid="uid://buhg63ostt083"]
 
 [ext_resource type="Texture2D" uid="uid://bdnfmeqgjdhmk" path="res://art/objects/hp_pickup_1.png" id="1_4g2wp"]
 [ext_resource type="Texture2D" uid="uid://b4d4inkobgtre" path="res://art/objects/soul_1.png" id="1_ggbx7"]
+[ext_resource type="Texture2D" uid="uid://cjvdy45l44e6u" path="res://art/objects/mountain_large.png" id="1_plefs"]
 [ext_resource type="Texture2D" uid="uid://3l52y5uhoccl" path="res://art/objects/teleporter_active_1.png" id="1_xoiv2"]
 [ext_resource type="Texture2D" uid="uid://8vk8e031gefk" path="res://art/objects/soul_2.png" id="2_avvdk"]
 [ext_resource type="Texture2D" uid="uid://c8pnpbue35ehb" path="res://art/objects/magic circle.png" id="2_pm0cd"]
+[ext_resource type="Texture2D" uid="uid://cl8wobw8moqvi" path="res://art/objects/mountain_small.png" id="2_y80q0"]
 [ext_resource type="Texture2D" uid="uid://dohcipjgttsr0" path="res://art/objects/hp_pickup_2.png" id="2_ygtyn"]
 [ext_resource type="Texture2D" uid="uid://s0uvuelmllng" path="res://art/objects/teleporter_active_2.png" id="2_ym16f"]
 [ext_resource type="Texture2D" uid="uid://dtwe6u3g8px0x" path="res://art/objects/soul_3.png" id="3_0ycnl"]
 [ext_resource type="Texture2D" uid="uid://bqdfyj2cj3j4v" path="res://art/objects/teleporter_active_3.png" id="3_5rfso"]
 [ext_resource type="Texture2D" uid="uid://f112eqcb2m3n" path="res://art/objects/hp_pickup_3.png" id="3_ml13u"]
+[ext_resource type="Texture2D" uid="uid://8sqypof0cjjv" path="res://art/objects/pillar.png" id="3_n7xdb"]
 
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_plefs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_y80q0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_n7xdb")
+}],
+"loop": true,
+"name": &"fire_pickup",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_xoiv2")

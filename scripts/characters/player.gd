@@ -204,6 +204,12 @@ func get_pickup(area):
 				get_tree().call_group("enemy", "freeze", float(area.value))
 				freeze_pickup_sound.play()
 				show_freeze.emit(float(area.value))
+			Pickup.fire_pickup:
+				if attack_handler.get_node_or_null("Fire"):
+					free_fire_upgrade(float(area.value), true)
+				else:
+					attack_handler.add_attack_from_resource(preload("res://resources/bullets/player/fire.tres"), Attack.CONTROL_MODE.PASSIVE)
+					free_fire_upgrade(float(area.value))
 		area.queue_free()
 
 # Called when we've killed an enemy, and we can add to our score.
@@ -238,6 +244,16 @@ func heal(value):
 	
 func activate_xp_vacuum():
 	get_tree().call_group("xp_pickup", "activate")
+	
+func free_fire_upgrade(value, present: bool = false):
+	if present:
+		$FireTimer.wait_time += value
+	else:
+		$FireTimer.wait_time = value
+		$FireTimer.start()
+
+func _on_fire_timer_timeout():
+	attack_handler.remove_child(attack_handler.get_node("Fire"))
 
 func player_level_up():
 	current_level += 1
@@ -291,4 +307,5 @@ func _on_i_frames_timeout():
 
 func send_loadout_to_boss():
 	send_loadout.emit(attack_handler)
+
 

@@ -19,8 +19,9 @@ func _ready():
 	reward_pool.populate([
 		[Pickup.hp_pickup, 2], 
 		[Pickup.vacuum_pickup, 1], 
-		[Pickup.freeze_pickup, 1], 
-		[null, 80]
+		[Pickup.freeze_pickup, 1],
+		[Pickup.fire_pickup, 1],
+		[null, 1]
 		])
 
 
