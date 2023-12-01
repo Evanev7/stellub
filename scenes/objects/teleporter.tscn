@@ -93,6 +93,7 @@ autoplay = "inactive"
 offset = Vector2(31, -214)
 
 [node name="Tree" type="AnimatedSprite2D" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_k5ei0")
 position = Vector2(64, -226)
 scale = Vector2(2.2685, 2.2685)

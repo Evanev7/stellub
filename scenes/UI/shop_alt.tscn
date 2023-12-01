@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://rnajon2osv8v"]
+[gd_scene load_steps=16 format=3 uid="uid://rnajon2osv8v"]
 
 [ext_resource type="Script" path="res://scripts/UI/shop_controller.gd" id="1_gilh6"]
 [ext_resource type="PackedScene" uid="uid://djihbt4xh14cm" path="res://scenes/UI/gui_rect.tscn" id="2_wac57"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://ee7ei07rkxue" path="res://art/UI/Shop/shop_icon_4.png" id="7_rg8cr"]
 [ext_resource type="Texture2D" uid="uid://s6xk2s2tmexy" path="res://art/UI/Shop/shop_icon_5.png" id="9_eyx7u"]
 [ext_resource type="Texture2D" uid="uid://cdhwlo53alt2h" path="res://art/UI/Shop/inventory_bg.png" id="11_ge8vq"]
+[ext_resource type="Texture2D" uid="uid://been84ue6lj66" path="res://art/UI/Pause_Menu/pause_menu_background.png" id="13_l6rwh"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_hcpdw"]
 
@@ -221,6 +222,41 @@ layout_mode = 2
 [node name="TotalAttack3" parent="Control/MarginContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer" instance=ExtResource("6_egsl6")]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="Dialogue" type="TextureRect" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1212.0
+offset_top = -208.0
+offset_right = 26.0
+offset_bottom = -67.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("13_l6rwh")
+expand_mode = 1
+
+[node name="DialogueBox" type="Label" parent="Dialogue"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -323.5
+offset_top = -34.5
+offset_right = 323.5
+offset_bottom = 35.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "You will find me at every site of this type."
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="gray_out_shop" from="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/Shop1" to="." method="_gray_out_shop"]
 [connection signal="gray_out_shop" from="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/Shop2" to="." method="_gray_out_shop"]

@@ -2,6 +2,7 @@ extends Node
 
 @onready var heaven_start = $heaven_start
 @onready var heaven_loop = $heaven_loop
+@onready var merchant_dialogue = $merchant_dialogue
 
 var currently_playing_music: AudioStreamPlayer
 

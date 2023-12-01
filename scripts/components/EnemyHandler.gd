@@ -72,7 +72,8 @@ func _on_spawn_timer_timeout():
 
 
 func spawn_enemy(resourceID, centre = GameState.player.position, spawn_range = safe_range, unique_multiplier: float = 1, overall_multi = overall_multiplier):
-	spawn_queue.push_front([resourceID, centre, spawn_range, unique_multiplier, overall_multi])
+	if GameState.num_enemies < maximum_enemies:
+		spawn_queue.push_front([resourceID, centre, spawn_range, unique_multiplier, overall_multi])
 
 func really_spawn_enemy(resourceID, centre = GameState.player.position, spawn_range = safe_range, unique_multiplier: float = 1, overall_multi = overall_multiplier):
 	var enemy = get_enemy()

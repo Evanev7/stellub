@@ -17,7 +17,7 @@ func _ready():
 	
 	if GameState.debug:
 		$"Main Menu/Background/Buttons/FirstTime".visible = true
-		$"Main Menu/Background/Buttons/FirstTime".button_pressed = false
+		$"Main Menu/Background/Buttons/FirstTime".button_pressed = GameState.first_time
 
 
 func _on_play_pressed():
@@ -43,3 +43,4 @@ func _on_options_menu_go_back():
 
 func _on_first_time_toggled(button_pressed):
 	GameState.first_time = button_pressed
+	GameState.first_time_shop = button_pressed

@@ -1,42 +1,32 @@
-[gd_scene load_steps=18 format=3 uid="uid://cc07v7n1u6cto"]
+[gd_scene load_steps=13 format=3 uid="uid://cc07v7n1u6cto"]
 
 [ext_resource type="PackedScene" uid="uid://dpjckt12ipcw2" path="res://scenes/characters/enemy.tscn" id="1_wvsit"]
 [ext_resource type="Script" path="res://scripts/characters/BossEnemy.gd" id="2_6g3sa"]
 [ext_resource type="Shader" path="res://scenes/characters/enemy.gdshader" id="3_hd3a3"]
-[ext_resource type="Resource" uid="uid://d4hyik40h0kpq" path="res://upgrades/boss_upgrade.tres" id="3_top36"]
-[ext_resource type="SpriteFrames" path="res://resources/enemy/angel_boss_spriteframes.tres" id="5_pj87d"]
+[ext_resource type="SpriteFrames" uid="uid://fu03tfdn82ry" path="res://resources/enemy/angel_boss_spriteframes.tres" id="5_pj87d"]
 [ext_resource type="Shape2D" uid="uid://cf1jvctq0mulw" path="res://resources/hitboxes/boss_hitbox.tres" id="6_pa8sf"]
 [ext_resource type="Shape2D" uid="uid://c862hatltraad" path="res://resources/hitboxes/boss_collisionbox.tres" id="7_4refy"]
-[ext_resource type="Script" path="res://scripts/characters/Attack.gd" id="8_gadp6"]
 [ext_resource type="Script" path="res://scripts/components/finite_state_machine.gd" id="8_yg6au"]
-[ext_resource type="Resource" uid="uid://ccpb4udi5owpj" path="res://resources/bullets/player/player_bullet.tres" id="9_jjhnc"]
 [ext_resource type="Script" path="res://scripts/characters/boss_circle_player.gd" id="9_r41so"]
 [ext_resource type="Script" path="res://scripts/characters/boss_init.gd" id="9_skdg4"]
 [ext_resource type="Script" path="res://scripts/characters/boss_drive_by.gd" id="10_f7qcd"]
 [ext_resource type="Script" path="res://scripts/characters/boss_random_next_state.gd" id="11_ahao5"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_wv655"]
-seed = 2
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_k47en"]
-noise = SubResource("FastNoiseLite_wv655")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ka6k5"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3auua"]
 resource_local_to_scene = true
 shader = ExtResource("3_hd3a3")
 shader_parameter/line_color = Color(0, 0, 0, 1)
 shader_parameter/line_thickness = 0.0
-shader_parameter/value = 1.0
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_k47en")
+shader_parameter/value = null
 
 [node name="BossEnemy" instance=ExtResource("1_wvsit")]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("2_6g3sa")
-boss_upgrade = ExtResource("3_top36")
+boss_upgrade = null
 
 [node name="AnimatedSprite2D" parent="." index="1"]
-material = SubResource("ShaderMaterial_ka6k5")
+material = SubResource("ShaderMaterial_3auua")
 sprite_frames = ExtResource("5_pj87d")
 animation = &"boss"
 
@@ -48,11 +38,6 @@ shape = ExtResource("7_4refy")
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 shape = ExtResource("7_4refy")
-
-[node name="Attack" type="Node" parent="AttackHandler" index="0"]
-script = ExtResource("8_gadp6")
-control_mode = 1
-initial_bullet = ExtResource("9_jjhnc")
 
 [node name="FiniteStateMachine" type="Node" parent="." index="9" node_paths=PackedStringArray("state")]
 script = ExtResource("8_yg6au")

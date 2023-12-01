@@ -16,27 +16,30 @@ func _ready():
 	start_game()
 	
 	if GameState.first_time == false:
-		start_message()
+		HUD.show_message("The TREE beckons once more.")
 	
 	$LogicComponents/TerrainGenerator.generate()
 
-
 # Start the timers we need, instantiate the HUD and get the player in the right spot.
 func start_game():
-	$LogicComponents/ShopHandler.spawn_magic_circles()
 	player.start()
-	enemy_handler.start_spawning()
 	player.position = $YSort/PlayerStart.position
 	$LogicComponents/ShopHandler.start()
 	$cursor_particles.emitting = true
-	start_magic_circles()
 	
-	HUD.reset_circle_counters()	
+	if GameState.first_time == false:
+		start_enemy_handler_and_magic_circles()
+	else:
+		HUD.tutorial.first_dialogue()
+	
+	HUD.reset_circle_counters()
 	HUD.show_health(player.hp, player.hp_max)
 	HUD.show_score(0, 10)
-
-func start_message():
-	HUD.show_message("The TREE beckons once more.")
+	
+func start_enemy_handler_and_magic_circles():
+	$LogicComponents/ShopHandler.spawn_magic_circles()
+	start_magic_circles()
+	enemy_handler.start_spawning()
 
 func start_magic_circles():
 	var circles = get_tree().get_nodes_in_group("magic_circle")

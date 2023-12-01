@@ -43,8 +43,9 @@ enemy_ysort = NodePath("..")
 [node name="BossStart" type="Marker2D" parent="YSort" index="3"]
 position = Vector2(868, -376)
 
-[node name="EnemyHandler" parent="LogicComponents" index="1" instance=ExtResource("5_4wr2n")]
+[node name="EnemyHandler" parent="LogicComponents" index="1" node_paths=PackedStringArray("enemy_ysort") instance=ExtResource("5_4wr2n")]
 enemy_resource_list = Array[Resource("res://scripts/characters/enemy_resource.gd")]([ExtResource("6_j8u0c")])
+enemy_ysort = NodePath("../../YSort")
 
 [node name="PickupHandler" parent="LogicComponents" index="2" node_paths=PackedStringArray("ysorter", "score_display") instance=ExtResource("6_yvi7m")]
 pickup_scene = ExtResource("7_32dji")

@@ -2,6 +2,7 @@ extends CanvasLayer
 
 signal start_game
 signal open_pause_menu
+signal start_enemy_and_magic()
 
 @onready var XP_Bar := $XPBar
 @onready var HP_Bar := $HPBar
@@ -9,9 +10,10 @@ signal open_pause_menu
 @onready var vignette: TextureRect = $VignetteBottom
 @onready var circle_counter: Control = $CircleCounter
 @onready var main_text_container: TextureRect = $TextDisplay
-@onready var main_text_display: TextureRect = $TextDisplay/TextDisplay
+@onready var main_text_display: Label = $TextDisplay/TextDisplay
 @onready var dialogue_text_container: TextureRect = $DialogueDisplay
-@onready var dialogue_text_display: TextureRect = $DialogueDisplay/TextDisplay
+@onready var dialogue_text_display: Label = $DialogueDisplay/TextDisplay
+@onready var tutorial: Node = $Tutorial
 
 @onready var enemy_count = $Debug/EnemyCount
 @onready var bullet_count = $Debug/BulletCount
@@ -38,7 +40,20 @@ func show_message(text):
 	tween.tween_property(main_text_container, "modulate:a", 1, 0.5)
 	tween.tween_property(main_text_container, "modulate:a", 0, 2)
 	$DisplayTimer.start()
-
+	
+func show_dialogue(text: String):
+	dialogue_text_display.text = text
+	dialogue_text_container.show()
+	SoundManager.merchant_dialogue.play()
+	var tween: Tween = create_tween()
+	tween.tween_property(dialogue_text_container, "modulate:a", 1, 0.5)
+	tween.tween_callback($DisplayTimer.start)
+	
+	
+	
+func start_enemy_handler_and_magic_circles():
+	start_enemy_and_magic.emit()
+	
 func show_first_time():
 	$AudioStreamPlayer.play()
 	var tween: Tween = create_tween()
@@ -62,6 +77,9 @@ func game_over():
 
 func _on_display_timer_timeout():
 	main_text_container.hide()
+	var tween: Tween = create_tween()
+	tween.tween_property(dialogue_text_container, "modulate:a", 0, 1)
+	tween.tween_callback(dialogue_text_container.hide)
 	$Debug.hide()
 
 

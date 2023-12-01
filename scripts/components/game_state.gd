@@ -7,7 +7,9 @@ signal register_enemy
 
 var debug: bool = true
 
-var first_time: bool = true
+var first_time: bool = false
+var first_time_shop: bool = false
+var first_time_heaven: bool = false
 
 var player: CharacterBody2D
 var pause_menu: CanvasLayer

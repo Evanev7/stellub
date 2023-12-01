@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cv66w30at2uv0"]
+[gd_scene load_steps=23 format=3 uid="uid://cv66w30at2uv0"]
 
 [ext_resource type="PackedScene" uid="uid://dilk21k2nncq2" path="res://scenes/levels/level_template.tscn" id="1_kbvse"]
 [ext_resource type="Script" path="res://scripts/levels/heaven_area.gd" id="2_0y2ur"]
@@ -58,15 +58,15 @@ score_display = NodePath("../../HUD")
 
 [node name="EnemyHandler" parent="LogicComponents" index="2" node_paths=PackedStringArray("enemy_ysort") instance=ExtResource("4_81g8t")]
 enemy_resource_list = Array[Resource("res://scripts/characters/enemy_resource.gd")]([ExtResource("6_muf3o"), ExtResource("7_a1v71"), ExtResource("8_60soe"), ExtResource("11_fi15b")])
-enemy_ysort = NodePath("")
+enemy_ysort = NodePath("../../YSort/Enemies")
 
 [node name="TerrainGenerator" parent="LogicComponents" index="3" node_paths=PackedStringArray("tile_map", "ysorter") instance=ExtResource("8_74i65")]
 tile_map = NodePath("../../YSort/TileMap")
 ysorter = NodePath("../../YSort")
 objects = Array[PackedScene]([ExtResource("17_uwvn0"), ExtResource("18_cjii1"), ExtResource("19_a4git"), ExtResource("20_tuugf"), ExtResource("21_gbptu")])
-object_spawn_rate = Array[float]([0.05, 0.3, 0.4, 0.3, 0.3])
+object_spawn_rate = Array[float]([0.01, 0.3, 0.4, 0.3, 0.3])
 
-[node name="ShopHandler" parent="LogicComponents" index="5" node_paths=PackedStringArray("enemy_handler", "ysorter", "objective_marker", "shop_node", "teleporter") instance=ExtResource("18_y7gnu")]
+[node name="ShopHandler" parent="LogicComponents" index="4" node_paths=PackedStringArray("enemy_handler", "ysorter", "objective_marker", "shop_node", "teleporter") instance=ExtResource("18_y7gnu")]
 attack_scene = ExtResource("18_ub2uf")
 enemy_handler = NodePath("../EnemyHandler")
 ysorter = NodePath("../../YSort")
