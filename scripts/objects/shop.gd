@@ -7,6 +7,7 @@ signal remove_target
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var fire_particles: GPUParticles2D = $Fire
+@onready var appear: AudioStreamPlayer2D = $appear
 
 var chosen_upgrades
 var is_weapon_present
@@ -15,11 +16,9 @@ var shop_opened = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	fire_particles.emitting = false
-	
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
+	appear.play()
+	var tween: Tween = create_tween()
+	tween.parallel().tween_property(sprite.material, "shader_parameter/value", 1.0, 2).from(0.0)
 
 
 func _on_open_area_entered(body):
@@ -34,7 +33,7 @@ func _on_open_area_exited(body):
 		fire_particles.emitting = false
 		if shop_opened:
 			ShopDraggable.shop_freed()
-			queue_free()
+			remove()
 
 func _on_interact_area_entered(body):
 	if body == GameState.player:
@@ -42,6 +41,9 @@ func _on_interact_area_entered(body):
 		shop_opened = true
 
 
-func disable():
-	process_mode = Node.PROCESS_MODE_DISABLED
-	hide()
+func remove():
+	$InteractArea/CollisionShape2D.disabled = true
+	SoundManager.merchant_dialogue.play()
+	var tween: Tween = create_tween()
+	tween.tween_property(sprite.material, "shader_parameter/value", 0.0, 2).from(1.0)
+	tween.tween_callback(queue_free)

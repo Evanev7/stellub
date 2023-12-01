@@ -19,6 +19,7 @@ enum {skull, dog, skeleton, lord}
 @onready var success_timer: Timer = $SuccessTimer
 @onready var time_label: Label = $Time
 @onready var activated_sound: AudioStreamPlayer2D = $activated_sound
+@onready var finished_sound: AudioStreamPlayer2D = $finished_sound
 
 
 var wave_data = {}
@@ -174,6 +175,7 @@ func _on_success_timer_timeout():
 	$Cleared.visible = true
 	wave_active = false
 	SoundManager.fade_out(activated_sound)
+	finished_sound.play()
 	$Barrier.visible = false
 	time_label.hide()
 	if GameState.circles_completed + 1 < 12:

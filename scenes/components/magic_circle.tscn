@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bdsxfxpria0gp"]
+[gd_scene load_steps=16 format=3 uid="uid://bdsxfxpria0gp"]
 
 [ext_resource type="Script" path="res://scripts/components/magic_circle.gd" id="1_114ni"]
 [ext_resource type="PackedScene" uid="uid://cicwqsj3byj4u" path="res://scenes/components/spawn_collision_handler.tscn" id="3_4838f"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://c8bduam0tg1y5" path="res://art/objects/magic circle barrier.png" id="6_b21vk"]
 [ext_resource type="Texture2D" uid="uid://ccddokifbdglu" path="res://art/objects/magic_circle_idle.png" id="7_ris3l"]
 [ext_resource type="AudioStream" uid="uid://deai6fkwkew01" path="res://sounds/magic_circle.wav" id="10_n31i0"]
+[ext_resource type="AudioStream" uid="uid://cr2pcc8gnxpl4" path="res://sounds/magic_circle_activated.wav" id="11_bysre"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qlfrf"]
 radius = 131.015
@@ -140,6 +141,9 @@ position = Vector2(-796, 0)
 [node name="activated_sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_n31i0")
 bus = &"Music"
+
+[node name="finished_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_bysre")
 
 [connection signal="body_entered" from="Circle" to="." method="_on_circle_body_entered"]
 [connection signal="body_exited" from="Circle" to="." method="_on_circle_body_exited"]
