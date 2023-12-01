@@ -12,9 +12,9 @@ func modify_bullet_resource(bullet: BulletResource) -> BulletResource:
 	bullet.size *= 2
 	bullet.damage *= 1.5
 	if bullet.shot_inaccuracy == 0:
-		bullet.shot_inaccuracy = 100
+		bullet.shot_inaccuracy = 50
 	else:
-		bullet.shot_inaccuracy *= 1000
+		bullet.shot_inaccuracy *= 500
 	return bullet
 
 

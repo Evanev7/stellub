@@ -1,0 +1,60 @@
+[gd_resource type="Resource" script_class="BulletResource" load_steps=7 format=3 uid="uid://dgv7ken3yi2xv"]
+
+[ext_resource type="Script" path="res://scripts/objects/bullet_resource.gd" id="1_43cmv"]
+[ext_resource type="Texture2D" uid="uid://dxtmrmjab36ky" path="res://art/UI/programmer 'art'.png" id="1_hot7l"]
+[ext_resource type="Texture2D" uid="uid://8rgqksla1p8r" path="res://art/backgrounds/hell_level_1_temp.png" id="2_3doca"]
+[ext_resource type="AudioStream" uid="uid://v3ldghuybju" path="res://sounds/laser.wav" id="4_nl5wt"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6y3r2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_hot7l")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_lssqj"]
+streams_count = 1
+random_pitch = 1.3
+stream_0/stream = ExtResource("4_nl5wt")
+stream_0/weight = 1.0
+
+[resource]
+script = ExtResource("1_43cmv")
+name = "Laser"
+description = "A highly focused beam of energy."
+animation = SubResource("SpriteFrames_6y3r2")
+sound = SubResource("AudioStreamRandomizer_lssqj")
+rarity = 1.0
+icon = ExtResource("2_3doca")
+size = Vector2(1.5, 0.2)
+colour = Color(1, 1, 1, 1)
+fire_on_hit = false
+start_range = 0
+lifetime = 20.0
+bullet_range = 1000.0
+fire_delay = 0.0
+shot_speed = 200.0
+can_be_negative = false
+shot_acceleration = 0.0
+shot_spread = 0.0
+shot_inaccuracy = 0.0
+multishot = 1
+damage = 0.05
+transport_mode = 0
+target_mode = 1
+facing_direction = 0
+activation_delay = 0.0
+angular_velocity = 0.0
+piercing = 1
+piercing_cooldown = 0.0
+knockback = 0.0
+splits = 1
+deactivation_range = 500
+vacuum = false
+vacuum_range = 100.0
+vacuum_strength = 1.0
+spawn_on_timeout = false

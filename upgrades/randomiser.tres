@@ -12,11 +12,11 @@ quantity = 10
 appears_in_shop = true
 appears_in_inventory = true
 icon = ExtResource("1_5vwyq")
-description = "Shoots your weapon at random, but
+description = "Increases inaccuracy dramatically, but
 increases size and damage."
 script_data = {
 "Damage": &"x1.5",
 "Fire Delay": &"x1.05",
-"Shot Inaccuracy": &"x100",
+"Shot Inaccuracy": &"x50",
 "Size": &"x2"
 }

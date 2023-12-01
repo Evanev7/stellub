@@ -57,8 +57,9 @@ func start_enemy_handler_and_magic_circles():
 func show_first_time():
 	$AudioStreamPlayer.play()
 	var tween: Tween = create_tween()
-	tween.tween_property($VignetteBottom, "self_modulate:a", 1, 5)
+	tween.tween_property($VignetteTop, "self_modulate:a", 1, 5)
 	main_text_display.text = "Alas. You have failed."
+	main_text_container.show()
 	tween.tween_property(main_text_container, "modulate:a", 1, 3)
 	tween.tween_property(main_text_container, "modulate:a", 0, 2)
 	tween.tween_property(main_text_display, "text", "I will keep waiting.", 0.1)
@@ -94,6 +95,11 @@ func show_score(number, max_number):
 	XP_Bar.max_value = int(max_number)
 	XP_Bar.value = int(number)
 
+func freeze(time):
+	var tween: Tween = create_tween()
+	tween.tween_property($VignetteTop, "self_modulate", Color(0, 15, 22, 0.3), 0.2)
+	tween.tween_property($VignetteTop, "self_modulate", Color(0, 15, 22, 0), time - 0.3)
+	$VignetteTop.self_modulate = Color(1, 1, 1, 0)
 
 func change_min_XP(number):
 	XP_Bar.min_value = int(number)

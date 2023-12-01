@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=3 format=3 uid="uid://dbjcoxnrv072q"]
+
+[ext_resource type="Texture2D" uid="uid://br4o3dujegkr8" path="res://art/objects/objective_marker.png" id="1_72igq"]
+[ext_resource type="Script" path="res://upgrades/upgrade_resource.gd" id="1_i627t"]
+
+[resource]
+script = ExtResource("1_i627t")
+name = "Sniper"
+quantity = 10
+appears_in_shop = true
+appears_in_inventory = true
+icon = ExtResource("1_72igq")
+description = "Increase range and shot speed."
+script_data = {
+"Bullet Range": &"+500",
+"Shot Speed": &"+500"
+}

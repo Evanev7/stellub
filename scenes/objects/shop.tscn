@@ -115,6 +115,7 @@ process_material = SubResource("ParticleProcessMaterial_mqalf")
 [node name="appear" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("14_q631t")
 volume_db = 5.0
+pitch_scale = 0.8
 
 [connection signal="body_entered" from="OpenArea" to="." method="_on_open_area_entered"]
 [connection signal="body_exited" from="OpenArea" to="." method="_on_open_area_exited"]

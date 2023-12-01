@@ -11,7 +11,7 @@ signal credit_player(value)
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
-enum {xp_pickup, hp_pickup, vacuum_pickup}
+enum {xp_pickup, hp_pickup, vacuum_pickup, freeze_pickup}
 var pickup_type: int
 
 var value: int = 1
@@ -34,6 +34,9 @@ func _ready():
 			value = randi() % 31 + 5
 		vacuum_pickup:
 			sprite.animation = "vacuum_pickup"
+		freeze_pickup:
+			sprite.animation = "freeze_pickup"
+			value = randi() % 6 + 2
 	sprite.play()
 	
 	#Randomly distribute launch_angle according to proper distribution

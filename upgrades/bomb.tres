@@ -9,7 +9,7 @@
 script = ExtResource("1_j5mnv")
 name = "Bomb"
 upgrade_script = ExtResource("4_oimer")
-quantity = 10
+quantity = 5
 appears_in_shop = true
 appears_in_inventory = true
 icon = ExtResource("1_2ewtt")

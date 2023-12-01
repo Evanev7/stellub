@@ -42,6 +42,7 @@ var fire_on_hit: bool = false
 
 static var damage_scene_pool: Array[DamageNumber] = []
 var movement_enabled: bool = true
+var frozen: bool = false
 var enemy_limit = 200
 
 var contact_areas: Array = []
@@ -160,7 +161,7 @@ func _physics_process(_delta):
 		sprite.flip_h = (false != flipped)
 	velocity = player_direction.normalized() * speed
 	
-	if GameState.num_enemies < enemy_limit:
+	if GameState.num_enemies < enemy_limit and not frozen:
 		movement_enabled = true
 		
 	if movement_enabled:
@@ -172,6 +173,15 @@ func _physics_process(_delta):
 
 func change_colour():
 	$AnimatedSprite2D.flip_v = true
+	
+func freeze(time: float):
+	movement_enabled = false
+	frozen = true
+	sprite.stop()
+	await get_tree().create_timer(time).timeout
+	movement_enabled = true
+	frozen = false
+	sprite.play()
 	
 # Called by _on_hurtbox_area_entered - will only be called if the Area2D is in the bullet group
 # Change the enemies health and tween to shrink the enemy briefly.

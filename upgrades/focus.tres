@@ -8,7 +8,7 @@
 script = ExtResource("1_vcail")
 name = "Focus"
 upgrade_script = ExtResource("2_38ww1")
-quantity = 10
+quantity = 5
 appears_in_shop = true
 appears_in_inventory = true
 icon = ExtResource("1_rn4tp")

@@ -33,7 +33,7 @@ func _on_open_area_exited(body):
 		fire_particles.emitting = false
 		if shop_opened:
 			ShopDraggable.shop_freed()
-			remove()
+			call_deferred("remove")
 
 func _on_interact_area_entered(body):
 	if body == GameState.player:
@@ -42,6 +42,7 @@ func _on_interact_area_entered(body):
 
 
 func remove():
+	shop_opened = false
 	$InteractArea/CollisionShape2D.disabled = true
 	SoundManager.merchant_dialogue.play()
 	var tween: Tween = create_tween()

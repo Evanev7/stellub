@@ -6,6 +6,7 @@ signal level_up(level)
 signal send_loadout(loadout)
 signal player_ready
 signal credit_player(value)
+signal show_freeze(time)
 
 ## Player Stats
 @export var STARTING_SPEED: float = 300.0
@@ -26,6 +27,7 @@ signal credit_player(value)
 @onready var pickup_sound: AudioStreamPlayer = $Pickup
 @onready var hp_pickup_sound: AudioStreamPlayer = $HPPickup
 @onready var vacuum_pickup_sound: AudioStreamPlayer = $VacuumPickup
+@onready var freeze_pickup_sound: AudioStreamPlayer = $FreezePickup
 @onready var level_up_sound: AudioStreamPlayer = $LevelUp
 @onready var hurt_sound: AudioStreamPlayer = $Hurt
 @onready var death_sound: AudioStreamPlayer = $Die
@@ -174,7 +176,6 @@ func hurt(body):
 			hide()
 			$CollisionShape2D.disabled = true
 			$Hurtbox/CollisionShape2D.disabled = true
-			#$Camera2D.set_deferred("enabled", false)
 		set_physics_process(false)
 		player_death.emit()
 
@@ -184,7 +185,6 @@ func activate_pickup(area):
 		area.activate()
 
 func get_pickup(area):
-	## pickup_type constants: enum {xp_pickup, hp_pickup, vacuum_pickup}
 	if area.is_in_group("pickup"):
 		if area.collected:
 			return
@@ -200,6 +200,10 @@ func get_pickup(area):
 			Pickup.vacuum_pickup:
 				activate_xp_vacuum()
 				vacuum_pickup_sound.play()
+			Pickup.freeze_pickup:
+				get_tree().call_group("enemy", "freeze", float(area.value))
+				freeze_pickup_sound.play()
+				show_freeze.emit(float(area.value))
 		area.queue_free()
 
 # Called when we've killed an enemy, and we can add to our score.

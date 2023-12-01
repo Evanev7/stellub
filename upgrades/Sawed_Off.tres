@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=4 format=3 uid="uid://c1bn8hlyij02i"]
+
+[ext_resource type="Texture2D" uid="uid://c1pc88qkwsmnl" path="res://art/UI/Shop/Button Empty.png" id="1_2hl5k"]
+[ext_resource type="Script" path="res://upgrades/upgrade_resource.gd" id="1_41djb"]
+[ext_resource type="Script" path="res://upgrades/scripts/sawed_off.gd" id="3_v5ywp"]
+
+[resource]
+script = ExtResource("1_41djb")
+name = "Sawed Off"
+upgrade_script = ExtResource("3_v5ywp")
+quantity = 5
+appears_in_shop = true
+appears_in_inventory = true
+icon = ExtResource("1_2hl5k")
+description = "Reduces range and
+increases damage."
+script_data = {
+"Bullet Range": &"x0.1",
+"Damage": &"x2"
+}
