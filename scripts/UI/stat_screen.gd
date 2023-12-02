@@ -8,10 +8,22 @@ signal restart_game
 @onready var bullets_summoned: Label = %Bullets
 @onready var damage_dealt: Label = %Damage
 @onready var circles_completed: Label = %Circles
+@onready var deaths: Label = %Deaths
+@onready var pickups_gathered: Label = %Pickups
+
 @onready var restart_button = %RestartButton
+
+var main = false
 
 func _ready():
 	GameState.game_over.connect(game_over)
+	%DeathsLabel.hide()
+	%PickupsLabel.hide()
+	%LevelsLabel.show()
+	levels_gained.show()
+	deaths.hide()
+	pickups_gathered.hide()
+	%Restart.text = "RESTART"
 
 func game_over():
 	GameState.save_game()
@@ -32,15 +44,26 @@ func game_over():
 
 
 func _on_restart_button_pressed():
-	if GameState.player_data.first_time == true:
+	if main == true:
 		var tween: Tween = create_tween()
-		tween.tween_property($CenterContainer, "modulate:a", 0, 0.5)
-		tween.tween_property($TextureRect/Label, "self_modulate:a", 1, 2)
-		tween.tween_property($TextureRect/Label, "self_modulate:a", 0, 2)
-		GameState.player_data.first_time = false
-		tween.tween_callback(restart)
+		var tween2: Tween = create_tween()
+		tween.tween_property($CenterContainer, "modulate:a", 0, 1)
+		tween2.tween_property($TextureRect, "self_modulate:a", 0, 1)
+		tween.tween_callback(hide)
+		tween2.tween_callback(func(): 
+			get_parent().show()
+			main = false
+			)
 	else:
-		restart()
+		if GameState.player_data.first_time == true:
+			var tween: Tween = create_tween()
+			tween.tween_property($CenterContainer, "modulate:a", 0, 0.5)
+			tween.tween_property($TextureRect/Label, "self_modulate:a", 1, 2)
+			tween.tween_property($TextureRect/Label, "self_modulate:a", 0, 2)
+			GameState.player_data.first_time = false
+			tween.tween_callback(restart)
+		else:
+			restart()
 		
 func restart():
 	var tween: Tween = create_tween()
@@ -50,4 +73,26 @@ func restart():
 	tween2.tween_callback(hide)
 	restart_game.emit()
 	tween2.tween_callback(get_parent().start_message)
+
+func opened_via_main():
+	show()
+	var tween: Tween = create_tween()
+	tween.parallel().tween_property($TextureRect, "self_modulate:a", 1, 0.5)
+	tween.parallel().tween_property($CenterContainer, "modulate:a", 1, 0.5)
+	main = true
+	%DeathsLabel.show()
+	%PickupsLabel.show()
+	%LevelsLabel.hide()
+	levels_gained.hide()
+	deaths.show()
+	pickups_gathered.show()
+	%Restart.text = "BACK"
+	
+	enemies_killed.text = str(GameState.player_data.total_enemies_killed)
+	souls_collected.text = str(int(GameState.player_data.total_souls_collected))
+	bullets_summoned.text = str(GameState.player_data.total_bullets_summoned)
+	damage_dealt.text = str(int(GameState.player_data.total_damage_dealt * 10))
+	circles_completed.text = str(GameState.player_data.total_circles_completed)
+	deaths.text = str(GameState.player_data.total_deaths)
+	pickups_gathered.text = str(GameState.player_data.total_pickups_collected)
 	

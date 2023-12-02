@@ -51,7 +51,6 @@ bbcode_enabled = true
 text = "[center][i]Ten Thousand Eternities Later...[/i][/center]"
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
-modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -115,19 +114,24 @@ theme_override_constants/margin_bottom = 80
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel"]
 layout_mode = 2
 mouse_filter = 2
-theme_override_constants/separation = 200
+theme_override_constants/separation = 112
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 200
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer/HBoxContainer"]
+[node name="Titles" type="VBoxContainer" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer/ScrollContainer/HBoxContainer"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 4
 
-[node name="Label6" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="LevelsLabel" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer/ScrollContainer/HBoxContainer/Titles"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
@@ -136,7 +140,7 @@ theme_override_font_sizes/font_size = 40
 text = "Levels Gained:"
 horizontal_alignment = 2
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Enemies" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer/ScrollContainer/HBoxContainer/Titles"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
@@ -145,7 +149,7 @@ theme_override_font_sizes/font_size = 40
 text = "Enemies Killed:"
 horizontal_alignment = 2
 
-[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Souls" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer/ScrollContainer/HBoxContainer/Titles"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
@@ -154,16 +158,16 @@ theme_override_font_sizes/font_size = 40
 text = "Souls Gained:"
 horizontal_alignment = 2
 
-[node name="Label3" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Bullets" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer/ScrollContainer/HBoxContainer/Titles"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 3
 theme_override_font_sizes/font_size = 40
-text = "Bullets summoned: "
+text = "Bullets summoned:"
 horizontal_alignment = 2
 
-[node name="Label4" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Damage" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer/ScrollContainer/HBoxContainer/Titles"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
@@ -172,7 +176,7 @@ theme_override_font_sizes/font_size = 40
 text = "Damage Dealt:"
 horizontal_alignment = 2
 
-[node name="Label5" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Circles" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer/ScrollContainer/HBoxContainer/Titles"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
@@ -181,48 +185,110 @@ theme_override_font_sizes/font_size = 40
 text = "Circles Completed:"
 horizontal_alignment = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer/HBoxContainer"]
+[node name="DeathsLabel" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer/ScrollContainer/HBoxContainer/Titles"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 40
+text = "Deaths:"
+horizontal_alignment = 2
+
+[node name="PickupsLabel" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer/ScrollContainer/HBoxContainer/Titles"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 40
+text = "Pickups Gathered:"
+horizontal_alignment = 2
+
+[node name="Scores" type="VBoxContainer" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer/ScrollContainer/HBoxContainer"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Levels" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer/HBoxContainer/VBoxContainer2"]
+[node name="Levels" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer/ScrollContainer/HBoxContainer/Scores"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
 theme_override_font_sizes/font_size = 40
 text = "10"
 horizontal_alignment = 2
 
-[node name="Enemies" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer/HBoxContainer/VBoxContainer2"]
+[node name="Enemies" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer/ScrollContainer/HBoxContainer/Scores"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 2
 theme_override_font_sizes/font_size = 40
 text = "10"
 horizontal_alignment = 2
 
-[node name="Souls" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer/HBoxContainer/VBoxContainer2"]
+[node name="Souls" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer/ScrollContainer/HBoxContainer/Scores"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 2
 theme_override_font_sizes/font_size = 40
 text = "10"
 horizontal_alignment = 2
 
-[node name="Bullets" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer/HBoxContainer/VBoxContainer2"]
+[node name="Bullets" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer/ScrollContainer/HBoxContainer/Scores"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 2
 theme_override_font_sizes/font_size = 40
 text = "10"
 horizontal_alignment = 2
 
-[node name="Damage" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer/HBoxContainer/VBoxContainer2"]
+[node name="Damage" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer/ScrollContainer/HBoxContainer/Scores"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 2
 theme_override_font_sizes/font_size = 40
 text = "10"
 horizontal_alignment = 2
 
-[node name="Circles" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer/HBoxContainer/VBoxContainer2"]
+[node name="Circles" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer/ScrollContainer/HBoxContainer/Scores"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 40
+text = "10"
+horizontal_alignment = 2
+
+[node name="Deaths" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer/ScrollContainer/HBoxContainer/Scores"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 40
+text = "10"
+horizontal_alignment = 2
+
+[node name="Pickups" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer/ScrollContainer/HBoxContainer/Scores"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
 theme_override_font_sizes/font_size = 40
 text = "10"
 horizontal_alignment = 2
@@ -243,6 +309,7 @@ ignore_texture_size = true
 stretch_mode = 0
 
 [node name="Restart" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer/MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)

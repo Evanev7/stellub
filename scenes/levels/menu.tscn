@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://ck84xpcgl0pv7"]
+[gd_scene load_steps=10 format=3 uid="uid://ck84xpcgl0pv7"]
 
 [ext_resource type="Script" path="res://scripts/levels/menu.gd" id="1_we8ni"]
 [ext_resource type="Texture2D" uid="uid://been84ue6lj66" path="res://art/UI/Pause_Menu/pause_menu_background.png" id="2_d3q7b"]
 [ext_resource type="SpriteFrames" uid="uid://buhg63ostt083" path="res://resources/objects/soul_pickup.tres" id="3_msxq3"]
 [ext_resource type="PackedScene" uid="uid://dpba06kf6bgkm" path="res://scenes/UI/options_menu.tscn" id="4_8vaed"]
+[ext_resource type="PackedScene" uid="uid://ctkuvh4bwmtm2" path="res://scenes/UI/stat_screen.tscn" id="5_61v17"]
 
 [sub_resource type="Gradient" id="Gradient_om6uu"]
 colors = PackedColorArray(0.0123347, 0.108402, 0.196759, 1, 0.264532, 2.52686e-07, 0.148133, 1)
@@ -129,6 +130,28 @@ text = "OPTIONS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Stats" type="TextureButton" parent="Main Menu/Background/Buttons/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+texture_hover = ExtResource("2_d3q7b")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TempStats" type="Label" parent="Main Menu/Background/Buttons/VBoxContainer/Stats"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 88
+text = "STATS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Credits" type="TextureButton" parent="Main Menu/Background/Buttons/VBoxContainer"]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
@@ -208,7 +231,11 @@ autoplay = "xp_pickup"
 [node name="options_menu" parent="." instance=ExtResource("4_8vaed")]
 visible = false
 
+[node name="stat_screen" parent="." instance=ExtResource("5_61v17")]
+visible = false
+
 [connection signal="pressed" from="Main Menu/Background/Buttons/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Main Menu/Background/Buttons/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Main Menu/Background/Buttons/VBoxContainer/Stats" to="." method="_on_stats_pressed"]
 [connection signal="toggled" from="Main Menu/Background/Buttons/FirstTime" to="." method="_on_first_time_toggled"]
 [connection signal="go_back" from="options_menu" to="." method="_on_options_menu_go_back"]
