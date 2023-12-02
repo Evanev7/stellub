@@ -28,7 +28,7 @@ texture_region_size = Vector2i(1280, 720)
 
 [sub_resource type="TileSet" id="TileSet_oruxo"]
 tile_size = Vector2i(1280, 720)
-sources/0 = SubResource("TileSetAtlasSource_xdtfr")
+sources/1 = SubResource("TileSetAtlasSource_xdtfr")
 
 [node name="Heaven Area" node_paths=PackedStringArray("enemy_handler") instance=ExtResource("1_kbvse")]
 script = ExtResource("2_0y2ur")
@@ -40,7 +40,7 @@ z_index = -2
 scale = Vector2(1, 0.985583)
 tile_set = SubResource("TileSet_oruxo")
 format = 2
-layer_0/tile_data = PackedInt32Array(0, 0, 0)
+layer_0/tile_data = PackedInt32Array(0, 1, 0)
 
 [node name="PlayerStart" parent="YSort" index="1"]
 position = Vector2(578, 0)

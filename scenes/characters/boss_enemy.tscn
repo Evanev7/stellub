@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://cc07v7n1u6cto"]
+[gd_scene load_steps=14 format=3 uid="uid://cc07v7n1u6cto"]
 
 [ext_resource type="PackedScene" uid="uid://dpjckt12ipcw2" path="res://scenes/characters/enemy.tscn" id="1_wvsit"]
 [ext_resource type="Script" path="res://scripts/characters/BossEnemy.gd" id="2_6g3sa"]
 [ext_resource type="Shader" path="res://scenes/characters/enemy.gdshader" id="3_hd3a3"]
+[ext_resource type="Resource" uid="uid://d4hyik40h0kpq" path="res://upgrades/boss_upgrade.tres" id="3_nn2pr"]
 [ext_resource type="SpriteFrames" uid="uid://fu03tfdn82ry" path="res://resources/enemy/angel_boss_spriteframes.tres" id="5_pj87d"]
 [ext_resource type="Shape2D" uid="uid://cf1jvctq0mulw" path="res://resources/hitboxes/boss_hitbox.tres" id="6_pa8sf"]
 [ext_resource type="Shape2D" uid="uid://c862hatltraad" path="res://resources/hitboxes/boss_collisionbox.tres" id="7_4refy"]
@@ -17,13 +18,13 @@ resource_local_to_scene = true
 shader = ExtResource("3_hd3a3")
 shader_parameter/line_color = Color(0, 0, 0, 1)
 shader_parameter/line_thickness = 0.0
-shader_parameter/value = null
+shader_parameter/value = 1.0
 
 [node name="BossEnemy" instance=ExtResource("1_wvsit")]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("2_6g3sa")
-boss_upgrade = null
+boss_upgrade = ExtResource("3_nn2pr")
 
 [node name="AnimatedSprite2D" parent="." index="1"]
 material = SubResource("ShaderMaterial_3auua")
