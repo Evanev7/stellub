@@ -136,7 +136,7 @@ func open_shop(shop):
 
 
 func _on_shop_exit_pressed():
-	GameState.first_time_shop = false
+	GameState.player_data.first_time_shop = false
 	close_shop()
 
 func close_shop():

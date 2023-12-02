@@ -35,9 +35,9 @@ func start_game():
 	HUD.show_health(player.hp, player.hp_max)
 	HUD.show_score(player.score, player.level_threshold[player.current_level])
 	
-	if GameState.first_time_heaven:
+	if GameState.player_data.first_time_heaven:
 		HUD.show_dialogue("Hurry. You MUST make it to the tree.")
-		GameState.first_time_heaven = false
+		GameState.player_data.first_time_heaven = false
 
 func restart_game():
 	SoundManager.fade_out(SoundManager.currently_playing_music)

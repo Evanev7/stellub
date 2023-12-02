@@ -11,11 +11,11 @@ signal go_back
 @export var fps_enabled: CheckButton
 
 func _ready():
-	damage_numbers_enabled.button_pressed = GameState.damage_numbers_enabled
-	fps_enabled.button_pressed = GameState.fps_enabled
-	master_slider.value = 0.7
-	sfx_slider.value = 0.7
-	music_slider.value = 0.7
+	damage_numbers_enabled.button_pressed = GameState.player_data.damage_numbers_enabled
+	fps_enabled.button_pressed = GameState.player_data.fps_enabled
+	master_slider.value = GameState.player_data.master_volume
+	sfx_slider.value = GameState.player_data.sfx_volume
+	music_slider.value = GameState.player_data.music_volume
 
 
 func _on_master_slider_value_changed(value):
@@ -29,12 +29,13 @@ func _on_sfx_slider_value_changed(value):
 
 
 func _on_back_pressed():
+	GameState.save_game()
 	go_back.emit()
 
 
 func _on_damage_numbers_pressed():
-	GameState.damage_numbers_enabled = damage_numbers_enabled.button_pressed
+	GameState.player_data.damage_numbers_enabled = damage_numbers_enabled.button_pressed
 
 
 func _on_fps_pressed():
-	GameState.fps_enabled = fps_enabled.button_pressed
+	GameState.player_data.fps_enabled = fps_enabled.button_pressed

@@ -17,7 +17,7 @@ func _ready():
 	
 	if GameState.debug:
 		$"Main Menu/Background/Buttons/FirstTime".visible = true
-		$"Main Menu/Background/Buttons/FirstTime".button_pressed = GameState.first_time
+		$"Main Menu/Background/Buttons/FirstTime".button_pressed = GameState.player_data.first_time
 
 
 func _on_play_pressed():
@@ -26,7 +26,7 @@ func _on_play_pressed():
 	load_game()
 
 func load_game():
-		if GameState.first_time:
+		if GameState.player_data.first_time:
 			GameState.load_area(GameState.CURRENT_AREA.FIRST_TIME)
 		else:
 			GameState.load_area(GameState.CURRENT_AREA.HELL)
@@ -42,5 +42,5 @@ func _on_options_menu_go_back():
 	visible = true
 
 func _on_first_time_toggled(button_pressed):
-	GameState.first_time = button_pressed
-	GameState.first_time_shop = button_pressed
+	GameState.player_data.first_time = button_pressed
+	GameState.player_data.first_time_shop = button_pressed

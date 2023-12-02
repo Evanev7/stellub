@@ -14,9 +14,10 @@ func _ready():
 	GameState.game_over.connect(game_over)
 
 func game_over():
+	GameState.save_game()
 	show()
 	var tween: Tween = create_tween()
-	if GameState.first_time == true:
+	if GameState.player_data.first_time == true:
 		$TextureRect.self_modulate = Color(1, 1, 1, 1)
 		tween.tween_property($CenterContainer, "modulate:a", 1, 2)
 	else:
@@ -31,12 +32,12 @@ func game_over():
 
 
 func _on_restart_button_pressed():
-	if GameState.first_time == true:
+	if GameState.player_data.first_time == true:
 		var tween: Tween = create_tween()
 		tween.tween_property($CenterContainer, "modulate:a", 0, 0.5)
 		tween.tween_property($TextureRect/Label, "self_modulate:a", 1, 2)
 		tween.tween_property($TextureRect/Label, "self_modulate:a", 0, 2)
-		GameState.first_time = false
+		GameState.player_data.first_time = false
 		tween.tween_callback(restart)
 	else:
 		restart()

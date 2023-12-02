@@ -180,6 +180,7 @@ func _on_success_timer_timeout():
 	time_label.hide()
 	if GameState.circles_completed + 1 < 12:
 		GameState.circles_completed += 1
+		GameState.player_data.total_circles_completed += 1
 		remove_objective_marker()
 		get_node("Circle/CollisionShape2D").disabled = true
 		spawn_next_circle.emit(self.global_position)

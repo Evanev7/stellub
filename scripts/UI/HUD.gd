@@ -22,7 +22,7 @@ signal start_enemy_and_magic()
 #	GameState.game_over.connect(game_over)
 
 func _process(_delta):
-	if GameState.fps_enabled:
+	if GameState.player_data.fps_enabled:
 		$FPS.visible = true
 		$FPS.set_text("FPS %d" % Engine.get_frames_per_second())
 	else:

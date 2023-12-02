@@ -77,6 +77,7 @@ func _on_fire_bullet(origin, bullet_type: BulletResource, fire_from: FireFrom):
 		
 func get_bullet() -> Bullet:
 	GameState.bullets_summoned += 1
+	GameState.player_data.total_bullets_summoned += 1
 	GameState.num_bullets += 1
 	if bullet_scene_pool.size() > 0:
 		return bullet_scene_pool.pop_front()

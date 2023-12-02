@@ -5,19 +5,14 @@ signal spawn_enemy
 signal game_over
 signal register_enemy
 
-var debug: bool = true
+var _save: SaveGame
 
-var first_time: bool = false
-var first_time_shop: bool = false
-var first_time_heaven: bool = false
+var debug: bool = true
 
 var player: CharacterBody2D
 var pause_menu: CanvasLayer
 var shop_HUD: CanvasLayer
 
-var gamepad_enabled: bool = false
-var damage_numbers_enabled: bool = true
-@onready var fps_enabled: bool = debug
 
 enum CURRENT_AREA {HELL, HEAVEN, MAIN_MENU, FIRST_TIME, BOSS, TESTING}
 var current_area
@@ -40,6 +35,8 @@ var num_bullets: int = 0
 var num_xp_pickups: int = 0
 var num_damage_labels: int = 0
 
+## SETTINGS
+var player_data = PlayerData: set = set_stats
 
 ## STATS
 var enemies_killed: int = 0
@@ -48,14 +45,18 @@ var bullets_summoned: int = 0
 var damage_dealt: float = 0
 var circles_completed: int = 0
 
+
 func _ready():
 	Input.set_custom_mouse_cursor(clicky_hand, Input.CURSOR_POINTING_HAND, Vector2i(8,5))
 	randomize()
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	game_over.connect(queue_free_groups)
 	current_area_node = get_parent().get_node("menu")
+	create_or_load_save()
 	
-
+func set_stats(new_stats: PlayerData):
+	player_data = new_stats
+	
 func load_area(area: CURRENT_AREA):
 	var area_node = area_scenes[area].instantiate()
 	
@@ -157,3 +158,24 @@ func on_node_added(node: Node) -> void:
 	var pp := node as PopupPanel
 	if pp and pp.theme_type_variation == "TooltipPanel":
 		pp.transparent_bg = true
+		
+func _notification(what):
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		GameState.save_game()
+		get_tree().quit()
+
+func create_or_load_save():
+	if SaveGame.save_exists():
+		_save = SaveGame.load_savegame() as SaveGame
+	else:
+		_save = SaveGame.new()
+		_save.write_savegame()
+
+	player_data = _save.player_data
+	
+	AudioServer.set_bus_volume_db(0, linear_to_db(player_data.master_volume))
+	AudioServer.set_bus_volume_db(1, linear_to_db(player_data.sfx_volume))
+	AudioServer.set_bus_volume_db(2, linear_to_db(player_data.music_volume))
+	
+func save_game():
+	_save.write_savegame()

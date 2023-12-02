@@ -189,12 +189,13 @@ func hurt(area):
 	play_damage_sound.emit(global_position)
 	health -= area.damage
 	GameState.damage_dealt += area.damage
+	GameState.player_data.total_damage_dealt += area.damage
 	scale = default_scale * 0.65 
 	var tween2 := create_tween()
 	tween2.tween_property(self, "global_scale", default_scale, 0.1)
 	tween2.tween_property($AnimatedSprite2D, "self_modulate:v", 1, 0.05).from(50)
 	
-	if GameState.damage_numbers_enabled:
+	if GameState.player_data.damage_numbers_enabled:
 		spawn_damage_number.emit(area.damage, damage_number_location.global_position, default_scale)
 	
 	if fire_on_hit:
@@ -215,6 +216,7 @@ func hurt(area):
 func remove():
 	dead = true
 	GameState.enemies_killed += 1
+	GameState.player_data.total_enemies_killed += 1
 	GameState.num_enemies -= 1
 	
 	var tween: Tween = create_tween()

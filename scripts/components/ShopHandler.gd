@@ -79,7 +79,7 @@ func spawn_magic_circles():
 func _on_shop_entered(shop_attached_to):
 	open_shop(shop_attached_to)
 	
-	if GameState.first_time_shop:
+	if GameState.player_data.first_time_shop:
 		shop_node.first_time_dialogue()
 
 func attack_from_res(bullet: BulletResource) -> Attack:

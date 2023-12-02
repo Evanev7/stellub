@@ -64,7 +64,7 @@ func _input(event):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
-	if GameState.gamepad_enabled:
+	if GameState.player_data.gamepad_enabled:
 		var direction: Vector2
 		var movement: Vector2
 		direction.x = Input.get_action_strength("move_cursor_right") - Input.get_action_strength("move_cursor_left")
@@ -166,9 +166,10 @@ func hurt(body):
 		
 	if hp <= 0 and not dead:
 		dead = true
+		GameState.player_data.total_deaths += 1
 		attack_handler.stop()
 		death_sound.play()
-		if GameState.first_time == true:
+		if GameState.player_data.first_time == true:
 			i_frame_timer.stop()
 			sprite.modulate = Color(1,1,1,1)
 			invuln = true
@@ -197,25 +198,30 @@ func get_pickup(area):
 			Pickup.hp_pickup:
 				heal(area.value)
 				hp_pickup_sound.play()
+				GameState.player_data.total_pickups_collected += 1
 			Pickup.vacuum_pickup:
 				activate_xp_vacuum()
 				vacuum_pickup_sound.play()
+				GameState.player_data.total_pickups_collected += 1
 			Pickup.freeze_pickup:
 				get_tree().call_group("enemy", "freeze", float(area.value))
 				freeze_pickup_sound.play()
 				show_freeze.emit(float(area.value))
+				GameState.player_data.total_pickups_collected += 1
 			Pickup.fire_pickup:
 				if attack_handler.get_node_or_null("Fire"):
 					free_fire_upgrade(float(area.value), true)
 				else:
 					attack_handler.add_attack_from_resource(preload("res://resources/bullets/player/fire.tres"), Attack.CONTROL_MODE.PASSIVE)
 					free_fire_upgrade(float(area.value))
+				GameState.player_data.total_pickups_collected += 1
 		area.queue_free()
 
 # Called when we've killed an enemy, and we can add to our score.
 func gain_score(value):
 	score += value
 	GameState.souls_collected += value
+	GameState.player_data.total_souls_collected += value
 	var tween: Tween = create_tween()
 	if current_level < 2:
 		tween.tween_property(sprite, "self_modulate:v", 1, 0.25).from(50)

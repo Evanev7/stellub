@@ -15,7 +15,7 @@ extends Node
 func _ready():
 	start_game()
 	
-	if GameState.first_time == false:
+	if GameState.player_data.first_time == false:
 		HUD.show_message("The TREE beckons once more.")
 	
 	$LogicComponents/TerrainGenerator.generate()
@@ -27,7 +27,7 @@ func start_game():
 	$LogicComponents/ShopHandler.start()
 	$cursor_particles.emitting = true
 	
-	if GameState.first_time == false:
+	if GameState.player_data.first_time == false:
 		start_enemy_handler_and_magic_circles()
 	else:
 		HUD.tutorial.first_dialogue()
@@ -45,6 +45,9 @@ func start_magic_circles():
 	var circles = get_tree().get_nodes_in_group("magic_circle")
 	for circle in circles:
 		circle.start()
+		
+func start_message():
+	HUD.show_message("The TREE beckons once more.")
 
 func _on_player_player_death():
 	GameState.queue_free_groups()
@@ -53,7 +56,7 @@ func _on_player_player_death():
 	for magic_circle in get_tree().get_nodes_in_group("magic_circle"):
 		magic_circle.remove_objective_marker()
 	
-	if GameState.first_time == true:
+	if GameState.player_data.first_time == true:
 		HUD.show_first_time()
 	else:
 		GameState.game_over.emit()
