@@ -25,9 +25,12 @@ func _ready():
 	attack_handler.aim_attacks_at_player()
 	attack_handler.refresh_all_attacks()
 	attack_handler.upgrade_all_attacks(boss_upgrade)
+	boss_health_changed.emit(health, resource.MAX_HP*overall_multiplier*unique_multiplier)
+
 
 func _physics_process(_delta):
 	move_and_slide()
+
 
 func hurt(area):
 	super(area)

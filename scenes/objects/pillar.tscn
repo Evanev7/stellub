@@ -1,15 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://7pekoii3l4xw"]
+[gd_scene load_steps=8 format=3 uid="uid://7pekoii3l4xw"]
 
 [ext_resource type="Texture2D" uid="uid://8sqypof0cjjv" path="res://art/objects/pillar.png" id="1_a203t"]
+[ext_resource type="Script" path="res://scripts/objects/terrain.gd" id="1_dp1h5"]
 [ext_resource type="PackedScene" uid="uid://cicwqsj3byj4u" path="res://scenes/components/spawn_collision_handler.tscn" id="1_uvxol"]
 [ext_resource type="Shader" path="res://terrain.gdshader" id="2_3g832"]
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_58g3w"]
+seed = 3
+frequency = 0.0177
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_s1k4m"]
+noise = SubResource("FastNoiseLite_58g3w")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0ybvx"]
 shader = ExtResource("2_3g832")
+shader_parameter/value = 1.0
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_s1k4m")
 
 [node name="Pillar" type="AnimatableBody2D"]
 y_sort_enabled = true
 collision_layer = 7
+script = ExtResource("1_dp1h5")
 
 [node name="SpawnCollisionHandler" parent="." node_paths=PackedStringArray("spawn_collider") instance=ExtResource("1_uvxol")]
 spawn_collider = NodePath("../SpawnCollider")

@@ -125,7 +125,10 @@ func _unhandled_input(_event):
 		current_area_node.get_node("LogicComponents/ShopHandler")._on_spawn_shop(player.global_position)
 	
 	if Input.is_action_just_pressed("debug_enter_final_boss"): # G
-		load_area(CURRENT_AREA.BOSS)
+		if current_area != CURRENT_AREA.BOSS:
+			load_area(CURRENT_AREA.BOSS)
+		else:
+			current_area_node.get_node("YSort/angel_boss").health -= 100
 		
 	#######################################
 

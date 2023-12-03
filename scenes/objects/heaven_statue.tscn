@@ -1,13 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://dqwjdome8j4gv"]
+[gd_scene load_steps=8 format=3 uid="uid://dqwjdome8j4gv"]
 
 [ext_resource type="PackedScene" uid="uid://cicwqsj3byj4u" path="res://scenes/components/spawn_collision_handler.tscn" id="1_cntgw"]
+[ext_resource type="Script" path="res://scripts/objects/terrain.gd" id="1_ypl6s"]
 [ext_resource type="Shader" path="res://terrain.gdshader" id="2_0xuj7"]
 [ext_resource type="Texture2D" uid="uid://cbj5l5vjksmfv" path="res://art/objects/heaven_statue.png" id="2_ne0x2"]
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_65ye0"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wjo1u"]
+noise = SubResource("FastNoiseLite_65ye0")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3uf4o"]
 shader = ExtResource("2_0xuj7")
+shader_parameter/value = 1.0
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_wjo1u")
 
 [node name="HeavenStatue" type="AnimatableBody2D"]
+script = ExtResource("1_ypl6s")
 
 [node name="SpawnCollisionHandler" parent="." node_paths=PackedStringArray("spawn_collider") instance=ExtResource("1_cntgw")]
 spawn_collider = NodePath("../SpawnCollider")

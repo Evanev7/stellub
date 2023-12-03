@@ -33,7 +33,12 @@ func sample(n: int = 1, unique_draw: bool = true):
 	var output = []
 	if not unique_draw:
 		var items = []
+		var count = 1000
 		while len(items) < n:
+			count -= 1
+			if count <= 0:
+				print("Pool running out!!! Watch out!!!")
+				break
 			var index = randi_range(0,len(pool)-1)
 			if not items.has(index):
 				items.append(index)
@@ -42,7 +47,12 @@ func sample(n: int = 1, unique_draw: bool = true):
 		for index in items:
 			output.append(pool[index])
 	else:
+		var count = 1000
 		while len(output) < n:
+			count -= 1
+			if count <= 0:
+				print("Pool running out!!! Watch out!!!")
+				break
 			var index = randi_range(0,len(pool)-1)
 			if not output.has(pool[index]):
 				output.append(pool[index])

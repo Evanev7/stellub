@@ -3,7 +3,8 @@ extends State
 var ysort_node: Node2D
 var object_locations: PathFollow2D
 var origin: Vector2
-@export var objects_list: Array[PackedScene]
+@export var statue: PackedScene
+@export var shadow_scene: PackedScene
 
 var last_pos
 @export var origin_approach_velocity: float = 600
@@ -12,8 +13,8 @@ var timer
 var cur_to_drop
 var dropped
 @export var drop_height: float = 1000
-@export var item_drop_gap: float = 0.4
-@export var num_to_drop: int = 5
+@export var item_drop_gap: float = 5
+@export var num_to_drop: int = 3
 @export var num_variance: int = 1
 
 func _ready():
@@ -42,17 +43,11 @@ func physics_process(delta):
 	else:
 		timer += delta
 	
-	if fmod(timer, item_drop_gap) > fmod(timer + delta, item_drop_gap) and dropped < num_to_drop:
-		drop_a_brick_on_their_head()
-		dropped += 1
+		if fmod(timer, item_drop_gap) > fmod(timer + delta, item_drop_gap) and dropped < num_to_drop:
+			drop_a_brick_on_their_head()
+			dropped += 1
 
 func drop_a_brick_on_their_head():
-	object_locations.progress_ratio = randf()
-	var pos = object_locations.position
-	var object = objects_list.pick_random().instantiate()
+	var object = statue.instantiate()
 	ysort_node.add_child(object)
-	object.position = pos + Vector2(0,-drop_height)
-	
-	var tween: Tween = create_tween()
-	tween.parallel().tween_property(object, "position", pos, 1)
-	
+	object.drop(drop_height)

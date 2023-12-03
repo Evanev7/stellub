@@ -16,6 +16,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g8b86"]
 shader = ExtResource("2_cpmhd")
+shader_parameter/value = null
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_t7d8a"]
 animations = [{
@@ -36,6 +37,7 @@ animations = [{
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k5ei0"]
 shader = ExtResource("2_cpmhd")
+shader_parameter/value = null
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_54ckh"]
 animations = [{

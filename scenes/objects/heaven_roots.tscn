@@ -1,13 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://cawgs3p58mg88"]
+[gd_scene load_steps=6 format=3 uid="uid://cawgs3p58mg88"]
 
 [ext_resource type="PackedScene" uid="uid://cicwqsj3byj4u" path="res://scenes/components/spawn_collision_handler.tscn" id="1_ajcyq"]
+[ext_resource type="Script" path="res://scripts/objects/terrain.gd" id="1_gn35x"]
 [ext_resource type="Shader" path="res://terrain.gdshader" id="2_l8d8p"]
 [ext_resource type="Texture2D" uid="uid://bl7ykeh5ultaf" path="res://art/objects/heaven_roots.png" id="3_ncxto"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fkd4b"]
 shader = ExtResource("2_l8d8p")
+shader_parameter/value = null
 
 [node name="heaven_roots" type="AnimatableBody2D"]
+script = ExtResource("1_gn35x")
 
 [node name="SpawnCollisionHandler" parent="." node_paths=PackedStringArray("spawn_collider") instance=ExtResource("1_ajcyq")]
 spawn_collider = NodePath("../SpawnCollider")

@@ -1,15 +1,18 @@
-[gd_scene load_steps=9 format=3 uid="uid://d2qk4vahd2ews"]
+[gd_scene load_steps=10 format=3 uid="uid://d2qk4vahd2ews"]
 
 [ext_resource type="PackedScene" uid="uid://cicwqsj3byj4u" path="res://scenes/components/spawn_collision_handler.tscn" id="1_mea4a"]
+[ext_resource type="Script" path="res://scripts/objects/terrain.gd" id="1_q31ji"]
 [ext_resource type="Shader" path="res://terrain.gdshader" id="2_rd5fa"]
 [ext_resource type="Texture2D" uid="uid://drwttjbgfkqig" path="res://art/objects/bones.png" id="3_apk22"]
 [ext_resource type="Texture2D" uid="uid://cvfhxovb8ktg4" path="res://art/objects/bones_overlay.png" id="4_e4xew"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ijfli"]
 shader = ExtResource("2_rd5fa")
+shader_parameter/value = null
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nsueg"]
 shader = ExtResource("2_rd5fa")
+shader_parameter/value = null
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_chqrj"]
 size = Vector2(42.8138, 33.3246)
@@ -19,6 +22,7 @@ size = Vector2(39.9416, 16.3132)
 
 [node name="bones" type="AnimatableBody2D"]
 position = Vector2(19, 70)
+script = ExtResource("1_q31ji")
 
 [node name="SpawnCollisionHandler" parent="." node_paths=PackedStringArray("spawn_collider") instance=ExtResource("1_mea4a")]
 spawn_collider = NodePath("../SpawnCollider")

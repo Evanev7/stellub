@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cc07v7n1u6cto"]
+[gd_scene load_steps=25 format=3 uid="uid://cc07v7n1u6cto"]
 
 [ext_resource type="PackedScene" uid="uid://dpjckt12ipcw2" path="res://scenes/characters/enemy.tscn" id="1_wvsit"]
 [ext_resource type="Script" path="res://scripts/characters/BossEnemy.gd" id="2_6g3sa"]
@@ -16,10 +16,10 @@
 [ext_resource type="Script" path="res://scripts/characters/boss_random_next_state.gd" id="11_ahao5"]
 [ext_resource type="Script" path="res://scripts/characters/boss_erratic_movement.gd" id="13_rpxmm"]
 [ext_resource type="Script" path="res://scripts/characters/boss_terrain_attack.gd" id="15_jib71"]
+[ext_resource type="PackedScene" uid="uid://cvx0gmeyb27al" path="res://scenes/objects/boss_heaven_statue.tscn" id="16_iagdp"]
 [ext_resource type="Script" path="res://scripts/characters/boss_health_interruptor.gd" id="16_ibn11"]
 [ext_resource type="Script" path="res://scripts/characters/boss_anger.gd" id="16_rlt60"]
-[ext_resource type="PackedScene" uid="uid://dign34eo82ym4" path="res://scenes/objects/heaven_cross.tscn" id="16_tplj1"]
-[ext_resource type="PackedScene" uid="uid://dqwjdome8j4gv" path="res://scenes/objects/heaven_statue.tscn" id="17_qdtqn"]
+[ext_resource type="Texture2D" uid="uid://bpx5ybtqcrlpp" path="res://art/objects/shadow.png" id="17_26byg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3auua"]
 resource_local_to_scene = true
@@ -27,6 +27,50 @@ shader = ExtResource("3_hd3a3")
 shader_parameter/line_color = Color(0, 0, 0, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
+
+[sub_resource type="Shader" id="Shader_cyudj"]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+
+
+uniform vec4 line_color : source_color = vec4(1.0);
+uniform float line_thickness : hint_range(0, 10) = 1.0;
+uniform float height: hint_range(0,10);
+
+
+void fragment() {
+	float _height = height;
+	if (height == 0.) {
+		_height = 0.001;
+	};
+	vec2 diff = UV - vec2(0.5,0.5);
+	diff / TEXTURE_PIXEL_SIZE;
+	float dist = sqrt(diff.x * diff.x + diff.y * diff.y);
+	float smoothed = smoothstep(0.1*_height, 0.05*_height, dist);
+	COLOR.a = min(smoothed*0.5+0.5, COLOR.a);
+	COLOR = mix(COLOR, line_color, 1.0 - COLOR.a);
+	
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g0l6o"]
+shader = SubResource("Shader_cyudj")
+shader_parameter/line_color = Color(1, 0, 0, 1)
+shader_parameter/line_thickness = 0.0
+shader_parameter/height = 0.0
+
+[sub_resource type="PackedScene" id="PackedScene_h64my"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("Shadow", "material", "texture", "Sprite2D"),
+"node_count": 1,
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 3, 0, -1, 2, 1, 0, 2, 1, 0),
+"variants": [SubResource("ShaderMaterial_g0l6o"), ExtResource("17_26byg")],
+"version": 3
+}
 
 [node name="BossEnemy" node_paths=PackedStringArray("finite_state_machine") instance=ExtResource("1_wvsit")]
 collision_layer = 0
@@ -73,7 +117,8 @@ script = ExtResource("10_f7qcd")
 
 [node name="TerrainAttack" type="Node" parent="FiniteStateMachine" index="4"]
 script = ExtResource("15_jib71")
-objects_list = Array[PackedScene]([ExtResource("16_tplj1"), ExtResource("17_qdtqn")])
+statue = ExtResource("16_iagdp")
+shadow_scene = SubResource("PackedScene_h64my")
 
 [node name="Anger" type="Node" parent="FiniteStateMachine" index="5"]
 script = ExtResource("16_rlt60")

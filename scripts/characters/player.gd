@@ -40,7 +40,9 @@ var current_evolution: int
 
 var current_wave: int
 var hp_max: float
-var speed: float
+var speed: float:
+	set(value):
+		speed = clamp(value, 100, 600)
 var hp:  float
 var score: float
 var walking: bool = false
