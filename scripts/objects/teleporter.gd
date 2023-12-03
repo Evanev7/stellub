@@ -2,6 +2,8 @@ extends Node2D
 
 @export var destination: GameState.CURRENT_AREA
 @export var HUD: CanvasLayer
+@onready var teleport_sound: AudioStreamPlayer2D = $teleport_sound
+@onready var arrive_sound: AudioStreamPlayer = $arrive_sound
 
 signal teleport_player
 signal add_objective_marker(teleporter)
@@ -56,12 +58,14 @@ func _on_teleporter_body_entered(body):
 		GameState.player.get_node("CollisionShape2D").disabled = true
 		GameState.player.get_node("Hurtbox/CollisionShape2D").disabled = true
 		GameState.player.set_physics_process(false)
+		teleport_sound.play()
 		var tween2: Tween = create_tween()
 		tween2.parallel().tween_property(HUD.get_node("VignetteTop"), "self_modulate", Color(100, 100, 100, 1), 2)
 		tween2.parallel().tween_property(camera, "zoom", Vector2(0.9, 0.9), 2).\
 		set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 		await tween2.finished
 		GameState.load_area(destination)
+		arrive_sound.play()
 
 func _on_teleporter_body_exited(body):
 	if body == GameState.player:

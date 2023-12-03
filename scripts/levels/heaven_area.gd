@@ -18,6 +18,7 @@ func _ready():
 	start_game()
 	$YSort/teleporter.position = Vector2(GameState.player.position.x + randf_range(-100, 100), GameState.player.position.y - 20)
 	$YSort/teleporter.enabled()
+	$YSort/teleporter.arrive_sound.play()
 	$LogicComponents/TerrainGenerator.generate()
 	$LogicComponents/TerrainGenerator.cliff_generate()
 

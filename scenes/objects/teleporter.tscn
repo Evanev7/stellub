@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dfrum4te4lpmr"]
+[gd_scene load_steps=25 format=3 uid="uid://dfrum4te4lpmr"]
 
 [ext_resource type="Script" path="res://scripts/objects/teleporter.gd" id="1_jufu7"]
 [ext_resource type="Texture2D" uid="uid://3l52y5uhoccl" path="res://art/objects/teleporter_active_1.png" id="2_4qqtc"]
@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://cu1rr2flwpi41" path="res://art/objects/teleporter_inactive_2.png" id="6_cg3y7"]
 [ext_resource type="Texture2D" uid="uid://b3ri6od18exhb" path="res://art/objects/teleporter_inactive_3.png" id="7_vprkv"]
 [ext_resource type="Texture2D" uid="uid://been84ue6lj66" path="res://art/UI/Pause_Menu/pause_menu_background.png" id="8_tcwf1"]
+[ext_resource type="AudioStream" uid="uid://c51u67i11bss0" path="res://sounds/teleport.wav" id="12_ixvm8"]
+[ext_resource type="AudioStream" uid="uid://d1cajp3dqnn0o" path="res://sounds/arrive.wav" id="13_yf42q"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g8b86"]
 shader = ExtResource("2_cpmhd")
@@ -162,6 +164,15 @@ disabled = true
 position = Vector2(-11.125, -239)
 shape = SubResource("RectangleShape2D_tiw72")
 disabled = true
+
+[node name="teleport_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_ixvm8")
+bus = &"SFX"
+
+[node name="arrive_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_yf42q")
+volume_db = 3.0
+bus = &"SFX"
 
 [connection signal="body_entered" from="teleporter" to="." method="_on_teleporter_body_entered"]
 [connection signal="body_exited" from="teleporter" to="." method="_on_teleporter_body_exited"]
