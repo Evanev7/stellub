@@ -17,7 +17,7 @@ size = Vector2(42.8138, 33.3246)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ntq8"]
 size = Vector2(39.9416, 16.3132)
 
-[node name="bones" type="StaticBody2D"]
+[node name="bones" type="AnimatableBody2D"]
 position = Vector2(19, 70)
 
 [node name="SpawnCollisionHandler" parent="." node_paths=PackedStringArray("spawn_collider") instance=ExtResource("1_mea4a")]

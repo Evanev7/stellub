@@ -6,7 +6,6 @@ extends State
 var pathfollow: PathFollow2D
 var timer: float = 0
 
-# not currently getting data >:(
 func _ready():
 	owner.give_me_data.emit(self)
 
@@ -17,13 +16,10 @@ func physics_process(delta):
 	if pathfollow:
 		timer += delta
 		if timer >= duration:
-			change_state.emit(self, "randomizer")
+			change_state.emit(self, "circleplayer")
 			return
 		pathfollow.progress_ratio = (timer/duration)**exponent
 		owner.position = pathfollow.position
 
 func enter():
 	timer = 0
-
-func exit():
-	queue_free()

@@ -44,7 +44,8 @@ func start_message():
 
 func _on_player_death():
 	GameState.game_over.emit()
-	SoundManager.currently_playing_music.volume_db = linear_to_db(0.5)
+	if SoundManager.currently_playing_music:
+		SoundManager.currently_playing_music.volume_db = linear_to_db(0.5)
 
 func _on_player_hp_changed(hp):
 	HUD.show_health(hp, GameState.player.hp_max)
@@ -60,3 +61,8 @@ func heres_your_data(who):
 	if who.name.to_lower() == "bossinit":
 		var path = $IntroPath/PathFollow2D
 		who.thanks_for_the_data(path)
+	elif who.name.to_lower() == "terrainattack":
+		var ysort = $YSort
+		var path = $TerrainAttackPath/PathFollow2D
+		var centre = $YSort/BossCentre
+		who.thanks_for_the_data(ysort, path, centre)

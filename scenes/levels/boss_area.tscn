@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dg6c8see5s58b"]
+[gd_scene load_steps=11 format=3 uid="uid://dg6c8see5s58b"]
 
 [ext_resource type="PackedScene" uid="uid://dilk21k2nncq2" path="res://scenes/levels/level_template.tscn" id="1_god74"]
 [ext_resource type="Script" path="res://scripts/levels/boss_area.gd" id="2_58lyh"]
@@ -14,6 +14,12 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 1873, -2202, 0, 0, 0, 0, 1844, -1650, 0, 0, 0, 0, 1795, -1006, 0, 0, 0, 0, 1723, -705, 0, 0, 0, 0, 1557, -436, 0, 0, 0, 0, 1386, -285, 0, 0, 0, 0, 1191, -195, 0, 0, 0, 0, 989, -137)
 }
 point_count = 8
+
+[sub_resource type="Curve2D" id="Curve2D_dlvro"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -505, -1, 0, 0, 0, 0, -338, -397, 0, 0, 0, 0, 323, -541, 0, 0, 0, 0, 935, -397, 0, 0, 0, 0, 1859, -503, 0, 0, 0, 0, 2349, -109, 0, 0, 0, 0, 2067, 417, 0, 0, 0, 0, 1580, 487, 0, 0, 0, 0, 1139, 343, 0, 0, 0, 0, 505, 606, 0, 0, 0, 0, -10, 358, 0, 0, 0, 0, -505, -1)
+}
+point_count = 12
 
 [node name="Boss Area" instance=ExtResource("1_god74")]
 script = ExtResource("2_58lyh")
@@ -37,11 +43,11 @@ position = Vector2(908, 582)
 [node name="BossSpawner" parent="YSort" index="2" node_paths=PackedStringArray("enemy_handler", "boss_start", "enemy_ysort") instance=ExtResource("4_sqdkq")]
 position = Vector2(865, -373)
 enemy_handler = NodePath("../../LogicComponents/EnemyHandler")
-boss_start = NodePath("../BossStart")
+boss_start = NodePath("../BossCentre")
 enemy_ysort = NodePath("..")
 
-[node name="BossStart" type="Marker2D" parent="YSort" index="3"]
-position = Vector2(868, -376)
+[node name="BossCentre" type="Marker2D" parent="YSort" index="3"]
+position = Vector2(927, -3)
 
 [node name="EnemyHandler" parent="LogicComponents" index="1" node_paths=PackedStringArray("enemy_ysort") instance=ExtResource("5_4wr2n")]
 enemy_resource_list = Array[Resource("res://scripts/characters/enemy_resource.gd")]([ExtResource("6_j8u0c")])
@@ -58,5 +64,12 @@ curve = SubResource("Curve2D_i2xvs")
 [node name="PathFollow2D" type="PathFollow2D" parent="IntroPath" index="0"]
 position = Vector2(1873, -2202)
 rotation = 1.62328
+
+[node name="TerrainAttackPath" type="Path2D" parent="." index="9"]
+curve = SubResource("Curve2D_dlvro")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="TerrainAttackPath" index="0"]
+position = Vector2(-505, -1)
+rotation = -1.17171
 
 [connection signal="start_game" from="HUD" to="." method="restart_game"]

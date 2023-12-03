@@ -12,7 +12,7 @@ poisson_coefficient = 0.3
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gpuoe"]
 shader = ExtResource("3_di1dl")
 
-[node name="LargeMountain" type="StaticBody2D"]
+[node name="LargeMountain" type="AnimatableBody2D"]
 y_sort_enabled = true
 collision_layer = 7
 metadata/spawn_information = SubResource("Resource_ggss2")

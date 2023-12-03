@@ -7,7 +7,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0ybvx"]
 shader = ExtResource("2_3g832")
 
-[node name="Pillar" type="StaticBody2D"]
+[node name="Pillar" type="AnimatableBody2D"]
 y_sort_enabled = true
 collision_layer = 7
 

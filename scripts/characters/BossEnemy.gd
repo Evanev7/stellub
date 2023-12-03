@@ -1,6 +1,7 @@
 extends EnemyBehaviour
 
 signal give_me_data(who)
+signal boss_health_changed(new_hp, max_hp)
 
 @export var finite_state_machine: Node
 @export var boss_upgrade: UpgradeResource
@@ -27,3 +28,7 @@ func _ready():
 
 func _physics_process(_delta):
 	move_and_slide()
+
+func hurt(area):
+	super(area)
+	boss_health_changed.emit(health, resource.MAX_HP*overall_multiplier*unique_multiplier)

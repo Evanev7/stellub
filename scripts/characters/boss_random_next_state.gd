@@ -2,7 +2,8 @@ extends State
 
 var available_states = [
 	"circleplayer",
-	"driveby"
+	"driveby",
+	"erraticmovement"
 ]
 
 func enter():

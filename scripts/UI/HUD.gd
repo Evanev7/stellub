@@ -88,6 +88,12 @@ func show_health(number, max_number):
 	HP_Bar.max_value = int(max_number)
 	HP_Bar.value = int(number)
 
+func show_boss_health(number, max_number):
+	if not $BossHPBar.visible:
+		$BossHPBar.visible = true
+	$BossHPBar.max_value = int(max_number)
+	$BossHPBar.value = int(number)
+
 
 func show_score(number, max_number):
 	if number >= max_number:

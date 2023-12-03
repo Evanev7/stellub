@@ -1,17 +1,25 @@
-[gd_scene load_steps=14 format=3 uid="uid://cc07v7n1u6cto"]
+[gd_scene load_steps=22 format=3 uid="uid://cc07v7n1u6cto"]
 
 [ext_resource type="PackedScene" uid="uid://dpjckt12ipcw2" path="res://scenes/characters/enemy.tscn" id="1_wvsit"]
 [ext_resource type="Script" path="res://scripts/characters/BossEnemy.gd" id="2_6g3sa"]
 [ext_resource type="Shader" path="res://scenes/characters/enemy.gdshader" id="3_hd3a3"]
-[ext_resource type="Resource" uid="uid://d4hyik40h0kpq" path="res://upgrades/boss_upgrade.tres" id="3_nn2pr"]
-[ext_resource type="SpriteFrames" uid="uid://fu03tfdn82ry" path="res://resources/enemy/angel_boss_spriteframes.tres" id="5_pj87d"]
+[ext_resource type="Resource" uid="uid://d4hyik40h0kpq" path="res://upgrades/boss_upgrade.tres" id="3_q4jo8"]
+[ext_resource type="SpriteFrames" path="res://resources/enemy/angel_boss_spriteframes.tres" id="5_pj87d"]
 [ext_resource type="Shape2D" uid="uid://cf1jvctq0mulw" path="res://resources/hitboxes/boss_hitbox.tres" id="6_pa8sf"]
 [ext_resource type="Shape2D" uid="uid://c862hatltraad" path="res://resources/hitboxes/boss_collisionbox.tres" id="7_4refy"]
+[ext_resource type="Script" path="res://scripts/characters/Attack.gd" id="8_wucx7"]
 [ext_resource type="Script" path="res://scripts/components/finite_state_machine.gd" id="8_yg6au"]
 [ext_resource type="Script" path="res://scripts/characters/boss_circle_player.gd" id="9_r41so"]
 [ext_resource type="Script" path="res://scripts/characters/boss_init.gd" id="9_skdg4"]
+[ext_resource type="Resource" uid="uid://ccpb4udi5owpj" path="res://resources/bullets/player/player_bullet.tres" id="9_ue13c"]
 [ext_resource type="Script" path="res://scripts/characters/boss_drive_by.gd" id="10_f7qcd"]
 [ext_resource type="Script" path="res://scripts/characters/boss_random_next_state.gd" id="11_ahao5"]
+[ext_resource type="Script" path="res://scripts/characters/boss_erratic_movement.gd" id="13_rpxmm"]
+[ext_resource type="Script" path="res://scripts/characters/boss_terrain_attack.gd" id="15_jib71"]
+[ext_resource type="Script" path="res://scripts/characters/boss_health_interruptor.gd" id="16_ibn11"]
+[ext_resource type="Script" path="res://scripts/characters/boss_anger.gd" id="16_rlt60"]
+[ext_resource type="PackedScene" uid="uid://dign34eo82ym4" path="res://scenes/objects/heaven_cross.tscn" id="16_tplj1"]
+[ext_resource type="PackedScene" uid="uid://dqwjdome8j4gv" path="res://scenes/objects/heaven_statue.tscn" id="17_qdtqn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3auua"]
 resource_local_to_scene = true
@@ -20,11 +28,12 @@ shader_parameter/line_color = Color(0, 0, 0, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
 
-[node name="BossEnemy" instance=ExtResource("1_wvsit")]
+[node name="BossEnemy" node_paths=PackedStringArray("finite_state_machine") instance=ExtResource("1_wvsit")]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("2_6g3sa")
-boss_upgrade = ExtResource("3_nn2pr")
+finite_state_machine = NodePath("FiniteStateMachine")
+boss_upgrade = ExtResource("3_q4jo8")
 
 [node name="AnimatedSprite2D" parent="." index="1"]
 material = SubResource("ShaderMaterial_3auua")
@@ -40,6 +49,11 @@ shape = ExtResource("7_4refy")
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 shape = ExtResource("7_4refy")
 
+[node name="Attack" type="Node" parent="AttackHandler" index="0"]
+script = ExtResource("8_wucx7")
+control_mode = 1
+initial_bullet = ExtResource("9_ue13c")
+
 [node name="FiniteStateMachine" type="Node" parent="." index="9" node_paths=PackedStringArray("state")]
 script = ExtResource("8_yg6au")
 state = NodePath("BossInit")
@@ -52,11 +66,20 @@ duration = 8.214
 script = ExtResource("9_r41so")
 
 [node name="ErraticMovement" type="Node" parent="FiniteStateMachine" index="2"]
+script = ExtResource("13_rpxmm")
 
 [node name="DriveBy" type="Node" parent="FiniteStateMachine" index="3"]
 script = ExtResource("10_f7qcd")
 
 [node name="TerrainAttack" type="Node" parent="FiniteStateMachine" index="4"]
+script = ExtResource("15_jib71")
+objects_list = Array[PackedScene]([ExtResource("16_tplj1"), ExtResource("17_qdtqn")])
 
-[node name="Randomizer" type="Node" parent="FiniteStateMachine" index="5"]
+[node name="Anger" type="Node" parent="FiniteStateMachine" index="5"]
+script = ExtResource("16_rlt60")
+
+[node name="Randomizer" type="Node" parent="FiniteStateMachine" index="6"]
 script = ExtResource("11_ahao5")
+
+[node name="HealthInterruptor" type="Node" parent="FiniteStateMachine" index="7"]
+script = ExtResource("16_ibn11")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://ccn1gqdiqd0gk"]
+[gd_scene load_steps=5 format=3 uid="uid://bk5hh7qxofgw5"]
 
 [ext_resource type="PackedScene" uid="uid://cicwqsj3byj4u" path="res://scenes/components/spawn_collision_handler.tscn" id="1_5qm6f"]
 [ext_resource type="Shader" path="res://terrain.gdshader" id="2_3wpgd"]
@@ -7,7 +7,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_siwxq"]
 shader = ExtResource("2_3wpgd")
 
-[node name="pillar_broken" type="StaticBody2D"]
+[node name="pillar_broken" type="AnimatableBody2D"]
 
 [node name="SpawnCollisionHandler" parent="." instance=ExtResource("1_5qm6f")]
 

@@ -15,6 +15,9 @@ func _ready():
 
 
 func _process(delta):
+	for checking_state in states.keys():
+		if states[checking_state].check_interrupt():
+			switch_state(state, checking_state)
 	if state:
 		state.process(delta)
 
