@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d2qk4vahd2ews"]
+[gd_scene load_steps=9 format=3 uid="uid://d2qk4vahd2ews"]
 
 [ext_resource type="PackedScene" uid="uid://cicwqsj3byj4u" path="res://scenes/components/spawn_collision_handler.tscn" id="1_mea4a"]
 [ext_resource type="Shader" path="res://terrain.gdshader" id="2_rd5fa"]
@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://cvfhxovb8ktg4" path="res://art/objects/bones_overlay.png" id="4_e4xew"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ijfli"]
+shader = ExtResource("2_rd5fa")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nsueg"]
 shader = ExtResource("2_rd5fa")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_chqrj"]
@@ -31,6 +34,7 @@ offset = Vector2(-31, -191.455)
 [node name="Sprite2D2" type="Sprite2D" parent="Sprite2D"]
 self_modulate = Color(0.807843, 0.807843, 0.807843, 1)
 z_index = 1
+material = SubResource("ShaderMaterial_nsueg")
 texture = ExtResource("4_e4xew")
 offset = Vector2(-31, -191.455)
 

@@ -27,6 +27,7 @@ frame_4/duration = 1.0
 script = ExtResource("1_grv8h")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -50,6 +51,7 @@ bbcode_enabled = true
 text = "[center][i]Ten Thousand Eternities Later...[/i][/center]"
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
+modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

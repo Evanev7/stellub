@@ -25,9 +25,10 @@ func _ready():
 # Start the timers we need, instantiate the HUD and get the player in the right spot.
 func start_game():
 	enemy_handler.start_spawning()
-	
+	animate_entry()
 	SoundManager.heaven_start_play()
 	
+	player.enable()
 	player.position = $YSort/PlayerStart.position
 	$LogicComponents/ShopHandler.start()
 	$cursor_particles.emitting = true
@@ -38,6 +39,12 @@ func start_game():
 	if GameState.player_data.first_time_heaven:
 		HUD.show_dialogue("Hurry. You MUST make it to the tree.")
 		GameState.player_data.first_time_heaven = false
+
+func animate_entry():
+	var tween: Tween = create_tween()
+	tween.parallel().tween_property(HUD.get_node("VignetteTop"), "self_modulate", Color(1, 1, 1, 0), 3).from(Color(100, 100, 100, 1))
+	tween.parallel().tween_property(player.get_node("Camera2D"), "zoom", Vector2(1.2, 1.2), 0.5).\
+	set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC).from(Vector2(0.9, 0.9))
 
 func restart_game():
 	SoundManager.fade_out(SoundManager.currently_playing_music)

@@ -49,6 +49,18 @@ func _on_teleporter_body_entered(body):
 		# zoom camera in?s
 		await tween.finished
 		#teleport_player.emit()
+		get_tree().call_group("enemy", "remove")
+		var camera = GameState.player.get_node("Camera2D")
+		GameState.player.attack_handler.stop()
+		GameState.player.hide()
+		GameState.player.get_node("CollisionShape2D").disabled = true
+		GameState.player.get_node("Hurtbox/CollisionShape2D").disabled = true
+		GameState.player.set_physics_process(false)
+		var tween2: Tween = create_tween()
+		tween2.parallel().tween_property(HUD.get_node("VignetteTop"), "self_modulate", Color(100, 100, 100, 1), 2)
+		tween2.parallel().tween_property(camera, "zoom", Vector2(0.9, 0.9), 2).\
+		set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+		await tween2.finished
 		GameState.load_area(destination)
 
 func _on_teleporter_body_exited(body):

@@ -117,13 +117,14 @@ func _physics_process(_delta):
 func start():
 	current_wave = 1
 	set_default_stats()
+	enable()
+
+func enable():
 	show()
 	set_physics_process(true)
 	$CollisionShape2D.disabled = false
 	$Hurtbox/CollisionShape2D.disabled = false
-	$Camera2D.set_deferred("enabled", true)
 	attack_handler.start()
-
 
 # Set default player stats
 func set_default_stats():
@@ -163,6 +164,9 @@ func hurt(body):
 		invuln = true
 		i_frame_timer.start()
 		sprite.modulate = Color(1,0,0,0.5)
+		sprite.material.set_shader_parameter("line_color", Vector4(1, 0, 0, 1))
+		sprite.material.set_shader_parameter("line_thickness", 5)
+		sprite.material.set_shader_parameter("value", randf_range(0.4, 0.6))
 		
 	if hp <= 0 and not dead:
 		dead = true
@@ -179,6 +183,7 @@ func hurt(body):
 			$Hurtbox/CollisionShape2D.disabled = true
 		set_physics_process(false)
 		player_death.emit()
+
 
 
 func activate_pickup(area):
@@ -308,6 +313,9 @@ func evolve(val = -1):
 
 func _on_i_frames_timeout():
 	sprite.modulate = Color(1,1,1,1)
+	sprite.material.set_shader_parameter("line_color", Vector4(1, 1, 1, 0))
+	sprite.material.set_shader_parameter("line_thickness", 0)
+	sprite.material.set_shader_parameter("value", 1)
 	invuln = false
 
 

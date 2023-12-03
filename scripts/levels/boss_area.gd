@@ -24,8 +24,11 @@ func start_game():
 		SoundManager.fade_out(SoundManager.currently_playing_music)
 	
 	var tween: Tween = create_tween()
+	tween.parallel().tween_property(HUD.get_node("VignetteTop"), "self_modulate", Color(1, 1, 1, 0), 2).from(Color(100, 100, 100, 1))
 	tween.tween_property(player.get_node("Camera2D"), "zoom", Vector2(0.8, 0.8), 4).\
 	set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+	
+	player.enable()
 	player.position = $YSort/PlayerStart.position
 	$cursor_particles.emitting = true
 	

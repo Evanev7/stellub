@@ -1,10 +1,11 @@
-[gd_scene load_steps=56 format=3 uid="uid://cnepphpba8e8u"]
+[gd_scene load_steps=60 format=3 uid="uid://cnepphpba8e8u"]
 
 [ext_resource type="Script" path="res://scripts/characters/player.gd" id="1_m0lvq"]
 [ext_resource type="Resource" uid="uid://qdvp5rtjvnll" path="res://upgrades/stat_upgrade.tres" id="3_b8qp8"]
 [ext_resource type="Texture2D" uid="uid://kwiitmwbn82r" path="res://art/player/level 0/player_0_1.png" id="3_ik71x"]
 [ext_resource type="Texture2D" uid="uid://6fmtfmpb5kvf" path="res://art/player/level 0/player_0_2.png" id="4_p28ir"]
 [ext_resource type="Texture2D" uid="uid://q4hnsccll683" path="res://art/player/level 0/player_0_3.png" id="5_3s83j"]
+[ext_resource type="Shader" path="res://scenes/characters/enemy.gdshader" id="5_rv610"]
 [ext_resource type="Texture2D" uid="uid://bjg8vyygbxi04" path="res://art/player/level 0/player_0_4.png" id="6_g2igm"]
 [ext_resource type="Texture2D" uid="uid://o0msfnfm4y7o" path="res://art/player/level 0/player_0_5.png" id="7_4eppl"]
 [ext_resource type="Texture2D" uid="uid://tmp2otav6p5l" path="res://art/player/level 0/player_0_6.png" id="8_kdnob"]
@@ -48,6 +49,18 @@ size = Vector2(1066.67, 1066.67)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gnh5g"]
 radius = 1841.74
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0yml3"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_nhcwl"]
+noise = SubResource("FastNoiseLite_0yml3")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j1jo8"]
+shader = ExtResource("5_rv610")
+shader_parameter/line_color = Color(0, 0, 0, 0)
+shader_parameter/line_thickness = 0.0
+shader_parameter/value = 1.0
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_nhcwl")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_whc3w"]
 animations = [{
@@ -282,6 +295,7 @@ scale = Vector2(1.51111, 1.6)
 texture = ExtResource("35_ikv2g")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_j1jo8")
 sprite_frames = SubResource("SpriteFrames_whc3w")
 animation = &"level 1"
 

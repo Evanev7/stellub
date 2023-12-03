@@ -60,9 +60,6 @@ func set_stats(new_stats: PlayerData):
 func load_area(area: CURRENT_AREA):
 	var area_node = area_scenes[area].instantiate()
 	
-	if "enemy_handler" in area_node and "enemy_handler" in current_area_node:
-		area_node.enemy_handler.overall_multiplier = current_area_node.enemy_handler.overall_multiplier
-		
 	if area_node.has_node("YSort") and current_area_node.has_node("YSort"):
 		player.get_parent().remove_child(player)
 		area_node.get_node("YSort").add_child(player)
