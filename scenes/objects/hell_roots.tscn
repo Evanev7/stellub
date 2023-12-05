@@ -7,7 +7,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0e4f0"]
 shader = ExtResource("2_pokm3")
-shader_parameter/value = null
+shader_parameter/value = 1.0
 
 [node name="hell_roots" type="AnimatableBody2D"]
 position = Vector2(0, -9)

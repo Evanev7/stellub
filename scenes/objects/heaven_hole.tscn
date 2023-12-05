@@ -7,7 +7,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sqjdm"]
 shader = ExtResource("2_pj57o")
-shader_parameter/value = null
+shader_parameter/value = 1.0
 
 [node name="heaven_hole" type="AnimatableBody2D"]
 z_index = -1

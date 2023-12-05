@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://be4i0yo3jsk42" path="res://scenes/components/attack.tscn" id="18_ub2uf"]
 [ext_resource type="PackedScene" uid="uid://bxmk1htarl4v5" path="res://scenes/components/shop_handler.tscn" id="18_y7gnu"]
 [ext_resource type="PackedScene" uid="uid://cawgs3p58mg88" path="res://scenes/objects/heaven_roots.tscn" id="19_a4git"]
-[ext_resource type="PackedScene" uid="uid://bg13nosxejcda" path="res://scenes/objects/heaven_hole.tscn" id="20_tuugf"]
+[ext_resource type="PackedScene" uid="uid://cviqooaayaf5j" path="res://scenes/objects/heaven_hole.tscn" id="20_tuugf"]
 [ext_resource type="PackedScene" uid="uid://bb58r60s2313s" path="res://scenes/objects/god_rays.tscn" id="21_gbptu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xdtfr"]

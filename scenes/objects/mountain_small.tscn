@@ -7,7 +7,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ydqra"]
 shader = ExtResource("2_usaar")
-shader_parameter/value = null
+shader_parameter/value = 1.0
 
 [node name="SmallMountain" type="AnimatableBody2D"]
 y_sort_enabled = true

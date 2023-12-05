@@ -12,7 +12,7 @@ poisson_coefficient = 0.3
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gpuoe"]
 shader = ExtResource("3_di1dl")
-shader_parameter/value = null
+shader_parameter/value = 1.0
 
 [node name="LargeMountain" type="AnimatableBody2D"]
 y_sort_enabled = true

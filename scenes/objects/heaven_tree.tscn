@@ -7,7 +7,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_enwcm"]
 shader = ExtResource("2_y2v36")
-shader_parameter/value = null
+shader_parameter/value = 1.0
 
 [node name="HeavenTree" type="AnimatableBody2D"]
 script = ExtResource("1_ctott")

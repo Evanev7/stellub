@@ -8,11 +8,11 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ijfli"]
 shader = ExtResource("2_rd5fa")
-shader_parameter/value = null
+shader_parameter/value = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nsueg"]
 shader = ExtResource("2_rd5fa")
-shader_parameter/value = null
+shader_parameter/value = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_chqrj"]
 size = Vector2(42.8138, 33.3246)

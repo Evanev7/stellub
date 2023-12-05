@@ -7,7 +7,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_siwxq"]
 shader = ExtResource("2_3wpgd")
-shader_parameter/value = null
+shader_parameter/value = 1.0
 
 [node name="pillar_broken" type="AnimatableBody2D"]
 script = ExtResource("1_ftuoi")
