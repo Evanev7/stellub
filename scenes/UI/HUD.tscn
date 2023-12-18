@@ -124,10 +124,6 @@ offset_bottom = 1080.0
 texture = ExtResource("2_i7f4k")
 expand_mode = 1
 
-[node name="CircleCounterBG" type="TextureRect" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
-
 [node name="CircleCounter" type="TextureRect" parent="."]
 self_modulate = Color(1, 1, 1, 0.505882)
 anchors_preset = 5

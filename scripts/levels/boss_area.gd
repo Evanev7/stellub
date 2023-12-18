@@ -14,6 +14,7 @@ func _ready():
 	player.connect("player_death", _on_player_death)
 	player.connect("hp_changed", HUD.show_health)
 	#player.connect("credit_player", $LogicComponents/PickupHandler._on_pickup_credit_player)
+	HUD.get_node("CircleCounter").hide()
 	start_game()
 
 
