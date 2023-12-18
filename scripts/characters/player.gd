@@ -177,7 +177,7 @@ func hurt(body):
 		death_sound.play()
 		if GameState.player_data.first_time == true:
 			i_frame_timer.stop()
-			sprite.modulate = Color(1,1,1,1)
+			_on_i_frames_timeout()
 			invuln = true
 		else:
 			hide()
@@ -230,10 +230,9 @@ func gain_score(value):
 	GameState.souls_collected += value
 	GameState.player_data.total_souls_collected += value
 	var tween: Tween = create_tween()
-	if current_level < 2:
-		tween.tween_property(sprite, "self_modulate:v", 1, 0.25).from(50)
-	else:
-		tween.tween_property(sprite, "self_modulate:v", 1, 0.25).from(5)
+	sprite.material.set_shader_parameter("line_color", Vector4(1, 1, 1, 1))
+	tween.tween_property(sprite.material, "shader_parameter/line_thickness", 0, 0.2).from(10.0)
+	tween.tween_callback(func(): sprite.material.set_shader_parameter("line_color", Vector4(0, 0, 0, 0)))
 	
 	while score >= level_threshold[current_level]:
 		level_up.emit(current_level)

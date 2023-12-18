@@ -55,8 +55,16 @@ func start_message():
 	pass
 
 func _on_player_death():
-	GameState.game_over.emit()
-	SoundManager.currently_playing_music.volume_db = linear_to_db(0.5)
+	GameState.queue_free_groups()
+	enemy_handler.stop_spawning()
+	
+	if GameState.player_data.first_time == true:
+		SoundManager.fade_out(SoundManager.currently_playing_music)
+		HUD.show_first_time()
+	else:
+		GameState.game_over.emit()
+		SoundManager.currently_playing_music.volume_db = linear_to_db(0.5)
+		
 
 func _on_player_hp_changed(hp):
 	HUD.show_health(hp, GameState.player.hp_max)

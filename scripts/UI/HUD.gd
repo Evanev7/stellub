@@ -59,7 +59,6 @@ func show_first_time():
 	var tween: Tween = create_tween()
 	tween.tween_property($VignetteTop, "self_modulate:a", 1, 5)
 	main_text_display.text = "Alas. You have failed."
-	main_text_container.show()
 	tween.tween_property(main_text_container, "modulate:a", 1, 3)
 	tween.tween_property(main_text_container, "modulate:a", 0, 2)
 	tween.tween_property(main_text_display, "text", "I will keep waiting.", 0.1)
@@ -73,11 +72,11 @@ func show_first_time():
 func game_over():
 	GameState.game_over.emit()
 	main_text_container.modulate = Color(1, 1, 1, 0)
-	$VignetteBottom.modulate = Color(1, 1, 1, 0)
+	$VignetteTop.modulate = Color(1, 1, 1, 0)
 	
 
 func _on_display_timer_timeout():
-	main_text_container.hide()
+	main_text_container.modulate = Color(1, 1, 1, 0)
 	var tween: Tween = create_tween()
 	tween.tween_property(dialogue_text_container, "modulate:a", 0, 1)
 	tween.tween_callback(dialogue_text_container.hide)
