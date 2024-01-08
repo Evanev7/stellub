@@ -73,7 +73,8 @@ func _on_fire_bullet(origin, bullet_type: BulletResource, fire_from: FireFrom):
 		bullet.dead = false
 		bullet.set_physics_process(true)
 		bullet.show()
-		bullet.collision.set_deferred("disabled", false)
+		if bullet.collision:
+			bullet.collision.set_deferred("disabled", false)
 		
 func get_bullet() -> Bullet:
 	GameState.bullets_summoned += 1

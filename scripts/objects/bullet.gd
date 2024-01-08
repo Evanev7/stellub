@@ -59,7 +59,7 @@ func set_data():
 	scale = data.size
 	sprite.sprite_frames = data.animation
 	$SelfDestruct.wait_time = data.lifetime
-	$SelfDestruct.start()
+	$SelfDestruct.autostart = true
 	
 	match data.facing_direction:
 		BulletResource.FACING_DIRECTION.DEFAULT:

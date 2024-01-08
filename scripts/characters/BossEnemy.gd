@@ -25,6 +25,7 @@ func _ready():
 	attack_handler.aim_attacks_at_player()
 	attack_handler.refresh_all_attacks()
 	attack_handler.upgrade_all_attacks(boss_upgrade)
+	await get_tree().create_timer(1.5).timeout
 	boss_health_changed.emit(health, resource.MAX_HP*overall_multiplier*unique_multiplier)
 
 

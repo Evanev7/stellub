@@ -3,7 +3,6 @@ extends CharacterBody2D
 signal hp_changed(hp)
 signal player_death
 signal level_up(level)
-signal send_loadout(loadout)
 signal player_ready
 signal credit_player(value)
 signal show_freeze(time)
@@ -318,9 +317,5 @@ func _on_i_frames_timeout():
 	sprite.material.set_shader_parameter("line_thickness", 0)
 	sprite.material.set_shader_parameter("value", 1)
 	invuln = false
-
-
-func send_loadout_to_boss():
-	send_loadout.emit(attack_handler)
 
 

@@ -106,14 +106,12 @@ func _unhandled_input(_event):
 		current_area_node.get_node("HUD").show_score(player.score, player.level_threshold[player.current_level])
 	
 	if Input.is_action_just_pressed("debug_evolve"): ## E
-		player.evolve()
+		#player.evolve()
+		player.attack_handler.get_child(0).add_child(ShopHandler.upgrade_from_res(load("res://upgrades/multi_shot.tres")))
 	
 	if Input.is_action_just_pressed("debug_spawn_enemy"): # L
-		for i in range(10):
+		for i in range(100):
 			current_area_node.get_node("LogicComponents/EnemyHandler").spawn_enemy(randi() % 7)
-		
-	if Input.is_action_just_pressed("debug_spawn_boss"): # B
-		player.send_loadout_to_boss()
 		
 	if Input.is_action_just_pressed("debug_activate_teleporter"): # T
 		current_area_node.get_node("LogicComponents/ShopHandler")._on_activate_teleporter()

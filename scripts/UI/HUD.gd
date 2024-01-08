@@ -90,6 +90,9 @@ func show_health(number, max_number):
 func show_boss_health(number, max_number):
 	if not $BossHPBar.visible:
 		$BossHPBar.visible = true
+		var tween = $BossHPBar.create_tween()
+		tween.tween_property($BossHPBar, "modulate", Color(1,1,1,1),1.5).from(Color(1,1,1,0))
+		
 	$BossHPBar.max_value = int(max_number)
 	$BossHPBar.value = int(number)
 
