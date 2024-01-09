@@ -73,6 +73,7 @@ _bundled = {
 }
 
 [node name="BossEnemy" node_paths=PackedStringArray("finite_state_machine") instance=ExtResource("1_wvsit")]
+scale = Vector2(1, 1)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("2_6g3sa")

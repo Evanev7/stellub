@@ -71,5 +71,3 @@ curve = SubResource("Curve2D_dlvro")
 [node name="PathFollow2D" type="PathFollow2D" parent="TerrainAttackPath" index="0"]
 position = Vector2(-505, -1)
 rotation = -1.17171
-
-[connection signal="restart_game" from="stat_screen" to="." method="restart_game"]

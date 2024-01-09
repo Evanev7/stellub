@@ -3,7 +3,6 @@ extends CharacterBody2D
 signal hp_changed(hp)
 signal player_death
 signal level_up(level)
-signal player_ready
 signal credit_player(value)
 signal show_freeze(time)
 
@@ -57,7 +56,6 @@ func _ready():
 	hide()
 	attack_handler.stop()
 	set_physics_process(false)
-	player_ready.emit()
 
 func _input(event):
 	if event is InputEventMouseMotion:
