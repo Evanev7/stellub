@@ -75,5 +75,4 @@ shop_node = NodePath("../../ShopAlt")
 teleporter = NodePath("../../YSort/teleporter")
 
 [connection signal="add_objective_marker" from="YSort/teleporter" to="ObjectiveMarker" method="add_target"]
-[connection signal="start_game" from="HUD" to="." method="restart_game"]
 [connection signal="restart_game" from="stat_screen" to="." method="restart_game"]

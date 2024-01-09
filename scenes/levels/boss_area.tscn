@@ -72,4 +72,4 @@ curve = SubResource("Curve2D_dlvro")
 position = Vector2(-505, -1)
 rotation = -1.17171
 
-[connection signal="start_game" from="HUD" to="." method="restart_game"]
+[connection signal="restart_game" from="stat_screen" to="." method="restart_game"]

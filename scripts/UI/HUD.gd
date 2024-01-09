@@ -1,6 +1,5 @@
 extends CanvasLayer
 
-signal start_game
 signal open_pause_menu
 signal start_enemy_and_magic()
 
