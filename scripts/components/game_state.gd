@@ -13,6 +13,7 @@ var player: CharacterBody2D
 var pause_menu: CanvasLayer
 var shop_HUD: CanvasLayer
 
+var hue_rotation: Array
 
 enum CURRENT_AREA {HELL, HEAVEN, MAIN_MENU, FIRST_TIME, BOSS, TESTING}
 var current_area
@@ -44,7 +45,6 @@ var souls_collected: float = 0
 var bullets_summoned: int = 0
 var damage_dealt: float = 0
 var circles_completed: int = 0
-
 
 func _ready():
 	Input.set_custom_mouse_cursor(clicky_hand, Input.CURSOR_POINTING_HAND, Vector2i(8,5))
@@ -85,22 +85,26 @@ func _unhandled_input(_event):
 	if Input.is_action_just_pressed("pause"):
 		if current_area == CURRENT_AREA.MAIN_MENU or current_area == CURRENT_AREA.FIRST_TIME:
 			get_tree().quit()
+			return
+		if shop_HUD.visible == true:
+			shop_HUD.close_shop()
+			return
+		if get_tree().paused == false:
+			pause_menu._on_hud_open_pause_menu()
+			return
+		
+		if pause_menu.options_menu.visible:
+			pause_menu.options_menu.go_back.emit()
 		else:
-			if shop_HUD.visible == false:
-				if get_tree().paused == false:
-					pause_menu._on_hud_open_pause_menu()
-				else:
-					if pause_menu.options_menu.visible:
-						pause_menu.options_menu.go_back.emit()
-					else:
-						pause_menu._on_continue_pressed()
-			else:
-				shop_HUD.close_shop()
+			pause_menu._on_continue_pressed()
 	
 	
 	##Debug ###############################
-	if not debug:
-		return
+	if debug:
+		handle_debug_input(_event)
+	#######################################
+	##Debug ###############################
+func handle_debug_input(_event):
 	if Input.is_action_pressed("debug_gain_score"): ## R
 		player.gain_score(100)
 		current_area_node.get_node("HUD").show_score(player.score, player.level_threshold[player.current_level])
@@ -127,8 +131,8 @@ func _unhandled_input(_event):
 			load_area(CURRENT_AREA.BOSS)
 		else:
 			current_area_node.get_node("YSort/angel_boss").health -= 100
-		
 	#######################################
+
 
 func pause_game():
 	Input.set_custom_mouse_cursor(clicky_hand, Input.CURSOR_ARROW, Vector2i(8,5))

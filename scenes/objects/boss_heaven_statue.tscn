@@ -2,88 +2,75 @@
 
 [ext_resource type="Script" path="res://scripts/objects/boss_heaven_statue.gd" id="1_fsf3j"]
 [ext_resource type="Texture2D" uid="uid://bpx5ybtqcrlpp" path="res://art/objects/shadow.png" id="2_dig8n"]
+[ext_resource type="Shader" path="res://boss_heaven_statue.gdshader" id="2_r7nkm"]
 [ext_resource type="Shader" path="res://terrain.gdshader" id="3_l5yki"]
 [ext_resource type="Texture2D" uid="uid://cbj5l5vjksmfv" path="res://art/objects/heaven_statue.png" id="4_ofktj"]
 
-[sub_resource type="Shader" id="Shader_pem8e"]
-code = "shader_type canvas_item;
-render_mode blend_mix;
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u7b4y"]
+shader = ExtResource("2_r7nkm")
+shader_parameter/value = 0.0
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_58g3w"]
+seed = 3
+frequency = 0.0177
 
-global uniform vec2 player_position;
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_m8w2f"]
+noise = SubResource("FastNoiseLite_58g3w")
 
-uniform float value : hint_range(0,1);
-
-void fragment() {
-	vec2 diff = vec2(0.5,0.5) - UV;
-	diff / TEXTURE_PIXEL_SIZE;
-	float dist = sqrt(diff.x * diff.x + diff.y * diff.y);
-	float smoothed = 1.-smoothstep(0.5* value, 1. * value, dist);
-	COLOR.a = min(smoothed*0.5+0.5, COLOR.a);
-}
-"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_uh33v"]
-shader = SubResource("Shader_pem8e")
-shader_parameter/value = 1.0
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_65ye0"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wjo1u"]
-noise = SubResource("FastNoiseLite_65ye0")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3uf4o"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5s8uv"]
 shader = ExtResource("3_l5yki")
 shader_parameter/value = 1.0
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_wjo1u")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_m8w2f")
 
-[node name="BossHeavenStatue" type="AnimatableBody2D"]
+[node name="StatueDropper" type="Node"]
 script = ExtResource("1_fsf3j")
 
 [node name="Shadow" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_uh33v")
-position = Vector2(-17, 35)
-scale = Vector2(0.952778, 1.18489)
+material = SubResource("ShaderMaterial_u7b4y")
 texture = ExtResource("2_dig8n")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_3uf4o")
+[node name="BossHeavenStatue" type="AnimatableBody2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="BossHeavenStatue"]
+material = SubResource("ShaderMaterial_5s8uv")
 scale = Vector2(0.804729, 0.804729)
 texture = ExtResource("4_ofktj")
 offset = Vector2(-31, -200)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BossHeavenStatue"]
 visible = false
 position = Vector2(-67.9156, -66.8819)
 scale = Vector2(0.82462, 0.82462)
 polygon = PackedVector2Array(310, 37, 74, -51, -194, 33, -196, 122, 60, 212, 311, 123)
 
-[node name="SpawnCollider" type="Area2D" parent="."]
+[node name="SpawnCollider" type="Area2D" parent="BossHeavenStatue"]
 collision_layer = 8
 collision_mask = 8
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SpawnCollider"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BossHeavenStatue/SpawnCollider"]
 visible = false
 position = Vector2(-67.9156, -66.8819)
 scale = Vector2(0.82462, 0.82462)
 polygon = PackedVector2Array(310, 37, 74, -51, -194, 33, -196, 122, 60, 212, 311, 123)
 
-[node name="BulletMask" type="Area2D" parent="."]
+[node name="BulletMask" type="Area2D" parent="BossHeavenStatue"]
 collision_layer = 7
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BulletMask"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BossHeavenStatue/BulletMask"]
 visible = false
 position = Vector2(-67.9156, -66.8819)
 scale = Vector2(0.82462, 0.82462)
 polygon = PackedVector2Array(310, 37, 74, -51, -194, 33, -196, 122, 60, 212, 311, 123)
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="BossHeavenStatue"]
 scale = Vector2(1.2, 1.2)
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitbox"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BossHeavenStatue/Hitbox"]
 position = Vector2(-67.9156, -66.8819)
 scale = Vector2(0.82462, 0.82462)
 polygon = PackedVector2Array(60, 40, -196, 122, 60, 212, 311, 123)

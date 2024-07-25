@@ -7,7 +7,7 @@ signal start_enemy_and_magic()
 @onready var HP_Bar := $HPBar
 @onready var level := $XPBar/Level
 @onready var vignette: TextureRect = $VignetteBottom
-@onready var circle_counter: Control = $CircleCounter
+#@onready var circle_counter: Control = $CircleCounter
 @onready var main_text_container: TextureRect = $TextDisplay
 @onready var main_text_display: Label = $TextDisplay/TextDisplay
 @onready var dialogue_text_container: TextureRect = $DialogueDisplay
@@ -28,9 +28,10 @@ func _process(_delta):
 		$FPS.visible = false
 	level.set_text(str(GameState.player.current_level))
 
-func reset_circle_counters():
-	for sprite in circle_counter.get_children():
-		sprite.play("off")
+# I think this feature sucks. I'm removing it.
+#func reset_circle_counters():
+#	for sprite in circle_counter.get_children():
+#		sprite.play("off")
 
 func show_message(text):
 	main_text_display.text = text
@@ -122,7 +123,7 @@ func show_debug():
 	enemy_count.text = "enemies: " + str(get_tree().get_nodes_in_group("enemy").size())
 	$DisplayTimer.start()
 
-
-func _on_shop_handler_activate_circle(circle):
-	var circle_to_turn_on = "Circle" + str(circle)
-	circle_counter.get_node(circle_to_turn_on).play("on")
+# I think this feature sucks. I'm removing it.
+#func _on_shop_handler_activate_circle(circle):
+#	var circle_to_turn_on = "Circle" + str(circle)
+#	circle_counter.get_node(circle_to_turn_on).play("on")

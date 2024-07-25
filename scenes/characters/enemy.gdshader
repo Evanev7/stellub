@@ -11,25 +11,44 @@ const vec2 OFFSETS[8] = {
 	vec2(1, -1), vec2(1, 0), vec2(1, 1)
 };
 
+uniform vec3 hsl_offset;
+
+vec3 hsv_to_rgb(vec3 color) {
+	vec4 K = vec4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
+	vec3 p = abs(fract(color.xxx + K.xyz) * 6.0 - K.www);
+	return color.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), color.y);
+}
+
+vec3 rgb_to_hsv(vec3 color) {
+	vec4 K = vec4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);
+	vec4 p = mix(vec4(color.bg, K.wz), vec4(color.gb, K.xy), step(color.b, color.g));
+	vec4 q = mix(vec4(p.xyw, color.r), vec4(color.r, p.yzx), step(p.x, color.r));
+	float d = q.x - min(q.w, q.y);
+	float e = 1.0e-10;
+	return vec3(abs(q.z + (q.w - q.y) / (6.0 * d + e)), d / (q.x + e), q.x);
+}
+
 void fragment() {
 	vec2 size = TEXTURE_PIXEL_SIZE * line_thickness;
-	float outline = 0.0;
+	float outline_weight = 0.0;
 	
+	// gets a positive value for any point with nearby opaque-ness.
 	for (int i = 0; i < OFFSETS.length(); i++) {
-		outline += texture(TEXTURE, UV + size * OFFSETS[i]).a;
+		outline_weight += texture(TEXTURE, UV + size * OFFSETS[i]).a;
 	}
-	outline = min(outline, 1.0);
+	outline_weight = min(outline_weight, 1.0);
+	outline_weight -= COLOR.a;
 	
-	vec4 color = texture(TEXTURE, UV);
+	if (line_thickness > 0.05)
+	{
+		COLOR = mix(COLOR, line_color, outline_weight);
+	}
 	
 	vec4 noise_pixel = texture(noise_texture,UV);
+	if (noise_pixel.r > value)
+	{
+		COLOR.a -= 1.;
+	}
 	
-	if(noise_pixel.r > value)
-	{
-		COLOR.a -= 1.f;
-	}
-	else
-	{
-		COLOR = mix(color, line_color, outline - color.a);
-	}
+	COLOR.rgb = hsv_to_rgb(rgb_to_hsv(COLOR.rgb) + hsl_offset);
 }

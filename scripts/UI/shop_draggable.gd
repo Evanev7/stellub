@@ -9,6 +9,8 @@ var upgrade_indicator = preload("res://art/UI/shooty finger.png")
 @onready var indicator_type = [attack_indicator, upgrade_indicator]
 enum SLOT_TYPE {ATTACK, UPGRADE}
 
+static var hue_shift: float = 0.66
+
 @export var drag_preview_scene: PackedScene = preload("res://scenes/UI/drag_preview.tscn")
 @export var tooltip_scene: PackedScene = preload("res://scenes/UI/Tooltip.tscn")
 @export var slot_type: SLOT_TYPE = SLOT_TYPE.UPGRADE
@@ -49,6 +51,15 @@ func refresh() -> void:
 			texture_normal = null
 	else:
 		texture_normal = null
+	
+	if not material:
+		return
+	
+	match slot_type:
+		SLOT_TYPE.ATTACK:
+			material.set_shader_parameter("hsl_offset", [hue_shift,0,0])
+		SLOT_TYPE.UPGRADE:
+			material.set_shader_parameter("hsl_offset", [0,0,0])
 
 func _get_drag_data(_pos: Vector2) -> Variant:
 	var data = {

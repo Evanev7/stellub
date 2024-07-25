@@ -36,7 +36,6 @@ var current_level: int
 
 var current_evolution: int
 
-var current_wave: int
 var hp_max: float
 var speed: float:
 	set(value):
@@ -114,7 +113,6 @@ func _physics_process(_delta):
 
 # When the game starts, set the default values and show the player.
 func start():
-	current_wave = 1
 	set_default_stats()
 	enable()
 
@@ -190,36 +188,37 @@ func activate_pickup(area):
 		area.activate()
 
 func get_pickup(area):
-	if area.is_in_group("pickup"):
-		if area.collected:
-			return
-		area.collected = true
-		
-		match area.pickup_type:
-			Pickup.xp_pickup:
-				credit_player.emit(area.value)
-				pickup_sound.play()
-			Pickup.hp_pickup:
-				heal(area.value)
-				hp_pickup_sound.play()
-				GameState.player_data.total_pickups_collected += 1
-			Pickup.vacuum_pickup:
-				activate_xp_vacuum()
-				vacuum_pickup_sound.play()
-				GameState.player_data.total_pickups_collected += 1
-			Pickup.freeze_pickup:
-				get_tree().call_group("enemy", "freeze", float(area.value))
-				freeze_pickup_sound.play()
-				show_freeze.emit(float(area.value))
-				GameState.player_data.total_pickups_collected += 1
-			Pickup.fire_pickup:
-				if attack_handler.get_node_or_null("Fire"):
-					free_fire_upgrade(float(area.value), true)
-				else:
-					attack_handler.add_attack_from_resource(preload("res://resources/bullets/player/fire.tres"), Attack.CONTROL_MODE.PASSIVE)
-					free_fire_upgrade(float(area.value))
-				GameState.player_data.total_pickups_collected += 1
-		area.queue_free()
+	if not area.is_in_group("pickup"):
+		return
+	if area.collected:
+		return
+	area.collected = true
+	
+	match area.pickup_type:
+		Pickup.xp_pickup:
+			credit_player.emit(area.value)
+			pickup_sound.play()
+		Pickup.hp_pickup:
+			heal(area.value)
+			hp_pickup_sound.play()
+			GameState.player_data.total_pickups_collected += 1
+		Pickup.vacuum_pickup:
+			activate_xp_vacuum()
+			vacuum_pickup_sound.play()
+			GameState.player_data.total_pickups_collected += 1
+		Pickup.freeze_pickup:
+			get_tree().call_group("enemy", "freeze", float(area.value))
+			freeze_pickup_sound.play()
+			show_freeze.emit(float(area.value))
+			GameState.player_data.total_pickups_collected += 1
+		Pickup.fire_pickup:
+			if attack_handler.get_node_or_null("Fire"):
+				free_fire_upgrade(float(area.value), true)
+			else:
+				attack_handler.add_attack_from_resource(preload("res://resources/bullets/player/fire.tres"), Attack.CONTROL_MODE.PASSIVE)
+				free_fire_upgrade(float(area.value))
+			GameState.player_data.total_pickups_collected += 1
+	area.queue_free()
 
 # Called when we've killed an enemy, and we can add to our score.
 func gain_score(value):

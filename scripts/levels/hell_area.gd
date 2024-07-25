@@ -31,8 +31,9 @@ func start_game():
 		start_enemy_handler_and_magic_circles()
 	else:
 		HUD.tutorial.first_dialogue()
-	
-	HUD.reset_circle_counters()
+
+#	See HUD code	
+#	HUD.reset_circle_counters()
 	HUD.show_health(player.hp, player.hp_max)
 	HUD.show_score(0, 10)
 	
