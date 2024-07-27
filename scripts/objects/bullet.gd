@@ -56,6 +56,8 @@ func set_data():
 	
 	if origin == GameState.player:
 		set_collision_mask(4)
+	else:
+		set_collision_mask(2)
 	scale = data.size
 	sprite.sprite_frames = data.animation
 	$SelfDestruct.wait_time = data.lifetime

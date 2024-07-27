@@ -119,8 +119,8 @@ func start():
 func enable():
 	show()
 	set_physics_process(true)
-	$CollisionShape2D.disabled = false
-	$Hurtbox/CollisionShape2D.disabled = false
+	$CollisionShape2D.set_deferred("disabled", false)
+	$Hurtbox/CollisionShape2D.set_deferred("disabled", false)
 	attack_handler.start()
 
 # Set default player stats
@@ -144,6 +144,8 @@ func set_default_stats():
 	## Weapon Stats
 	for attack in attack_handler.get_children():
 		attack.queue_free()
+	# If starting weapon is normal bullet
+	STARTING_WEAPON.target_mode = BulletResource.TARGET_MODE.MOUSE
 	attack_handler.add_attack_from_resource(STARTING_WEAPON)
 
 func add_attack_from_resource(bullet: BulletResource):
@@ -176,8 +178,8 @@ func hurt(body):
 			invuln = true
 		else:
 			hide()
-			$CollisionShape2D.disabled = true
-			$Hurtbox/CollisionShape2D.disabled = true
+			$CollisionShape2D.set_deferred("disabled", true)
+			$Hurtbox/CollisionShape2D.set_deferred("disabled", true)
 		set_physics_process(false)
 		player_death.emit()
 

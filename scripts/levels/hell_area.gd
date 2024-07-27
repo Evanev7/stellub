@@ -63,6 +63,7 @@ func _on_player_player_death():
 		GameState.game_over.emit()
 	
 func on_restart_game():
+	SoundManager.fade_out(SoundManager.currently_playing_music)
 	start_game()
 	
 

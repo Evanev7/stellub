@@ -54,9 +54,6 @@ frame_4/texture = ExtResource("6_r11fs")
 frame_4/duration = 1.0
 
 [sub_resource type="FontFile" id="FontFile_4ayeq"]
-face_index = null
-embolden = null
-transform = null
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
