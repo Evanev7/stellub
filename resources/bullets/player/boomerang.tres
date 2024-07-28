@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" path="res://scripts/objects/bullet_resource.gd" id="1_3cnji"]
 [ext_resource type="Texture2D" uid="uid://bbu1gvj238af0" path="res://art/bullets/player/boomerang_1.png" id="1_a2512"]
-[ext_resource type="Texture2D" uid="uid://c8k6llnm85118" path="res://art/enemies/demon_dog_2.png" id="2_fikg5"]
 [ext_resource type="Texture2D" uid="uid://d2a1v2o0w5eu3" path="res://art/bullets/player/boomerang_2.png" id="2_v5svo"]
 [ext_resource type="Texture2D" uid="uid://c368tklrelfn7" path="res://art/bullets/player/boomerang_3.png" id="3_u10vx"]
 [ext_resource type="AudioStream" uid="uid://31ou8mmtpl2h" path="res://sounds/boomerang.wav" id="6_r3ghb"]
@@ -24,6 +23,23 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_dv5uq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_a2512")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_v5svo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_u10vx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_gncqn"]
 streams_count = 1
 random_pitch = 1.2
@@ -39,7 +55,7 @@ then travels backwards."
 animation = SubResource("SpriteFrames_4nyni")
 sound = SubResource("AudioStreamRandomizer_gncqn")
 rarity = 1.0
-icon = ExtResource("2_fikg5")
+icon = SubResource("SpriteFrames_dv5uq")
 size = Vector2(1, 1)
 colour = Color(1, 1, 1, 1)
 fire_on_hit = false

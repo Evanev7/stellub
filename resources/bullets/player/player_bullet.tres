@@ -1,9 +1,28 @@
-[gd_resource type="Resource" script_class="BulletResource" load_steps=6 format=3 uid="uid://ccpb4udi5owpj"]
+[gd_resource type="Resource" script_class="BulletResource" load_steps=9 format=3 uid="uid://ccpb4udi5owpj"]
 
 [ext_resource type="Script" path="res://scripts/objects/bullet_resource.gd" id="1_dmiyo"]
 [ext_resource type="SpriteFrames" uid="uid://cbfq7bqkgh3ti" path="res://resources/bullets/player/player_bullet_spriteframes.tres" id="1_eteat"]
-[ext_resource type="Texture2D" uid="uid://cy2ajprj0e7h5" path="res://art/bullets/player/simple_bullet_1.png" id="2_ayv1f"]
+[ext_resource type="Texture2D" uid="uid://ct83ymd7t3xlf" path="res://art/bullets/player/Upgrades/BasicBullet_0000.png" id="2_o5w4o"]
+[ext_resource type="Texture2D" uid="uid://cqsg6436xk722" path="res://art/bullets/player/Upgrades/BasicBullet_0002.png" id="3_qn17a"]
+[ext_resource type="Texture2D" uid="uid://bhrdt4i0isu13" path="res://art/bullets/player/Upgrades/BasicBullet_0004.png" id="4_l062u"]
 [ext_resource type="AudioStream" uid="uid://csifdlbjdrodm" path="res://sounds/normal_shot.wav" id="4_sjyjo"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sr5hd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_o5w4o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_qn17a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_l062u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_5xvx1"]
 streams_count = 1
@@ -18,7 +37,7 @@ description = "Default Upgrade Description"
 animation = ExtResource("1_eteat")
 sound = SubResource("AudioStreamRandomizer_5xvx1")
 rarity = 1.0
-icon = ExtResource("2_ayv1f")
+icon = SubResource("SpriteFrames_sr5hd")
 size = Vector2(1, 1)
 colour = Color(1, 1, 1, 1)
 fire_on_hit = false

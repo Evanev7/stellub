@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cjiqgr0g1hxqn"]
+[gd_scene load_steps=6 format=3 uid="uid://cjiqgr0g1hxqn"]
 
 [ext_resource type="Script" path="res://scripts/components/SoundManager.gd" id="1_ml4oo"]
 [ext_resource type="AudioStream" uid="uid://3btfp30iocsf" path="res://sounds/heaven song start.ogg" id="2_wp84u"]
 [ext_resource type="AudioStream" uid="uid://uwjj5lippw8l" path="res://sounds/heaven song loop.ogg" id="3_rysif"]
 [ext_resource type="AudioStream" uid="uid://c5mrt3o8dm37o" path="res://sounds/spooky appear.wav" id="4_1imy8"]
+[ext_resource type="AudioStream" uid="uid://dcd83rjefcly5" path="res://sounds/hell song.mp3" id="4_kjolj"]
 
 [node name="SoundManager" type="Node"]
 process_mode = 3
@@ -16,6 +17,11 @@ bus = &"Music"
 
 [node name="heaven_loop" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_rysif")
+volume_db = -6.0
+bus = &"Music"
+
+[node name="hell_song" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_kjolj")
 volume_db = -6.0
 bus = &"Music"
 

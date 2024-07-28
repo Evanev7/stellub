@@ -24,6 +24,7 @@ func _ready():
 func start_game():
 	player.start()
 	player.position = $YSort/PlayerStart.position
+	SoundManager.hell_song_play()
 	$LogicComponents/ShopHandler.start()
 	$cursor_particles.emitting = true
 	
@@ -58,12 +59,17 @@ func _on_player_player_death():
 		magic_circle.remove_objective_marker()
 	
 	if GameState.player_data.first_time == true:
+		if SoundManager.currently_playing_music:
+			SoundManager.fade_out(SoundManager.currently_playing_music)
 		HUD.show_first_time()
 	else:
 		GameState.game_over.emit()
+		if SoundManager.currently_playing_music:
+			SoundManager.currently_playing_music.volume_db = linear_to_db(0.5)
 	
 func on_restart_game():
-	SoundManager.fade_out(SoundManager.currently_playing_music)
+	if SoundManager.currently_playing_music:
+		SoundManager.fade_out(SoundManager.currently_playing_music)
 	start_game()
 	
 

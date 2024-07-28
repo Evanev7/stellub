@@ -48,7 +48,8 @@ func animate_entry():
 	set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC).from(Vector2(0.9, 0.9))
 
 func restart_game():
-	SoundManager.fade_out(SoundManager.currently_playing_music)
+	if SoundManager.currently_playing_music:
+		SoundManager.fade_out(SoundManager.currently_playing_music)
 	GameState.load_area(GameState.CURRENT_AREA.HELL)
 	
 func start_message():
@@ -59,11 +60,13 @@ func _on_player_death():
 	enemy_handler.stop_spawning()
 	
 	if GameState.player_data.first_time == true:
-		SoundManager.fade_out(SoundManager.currently_playing_music)
+		if SoundManager.currently_playing_music:
+			SoundManager.fade_out(SoundManager.currently_playing_music)
 		HUD.show_first_time()
 	else:
 		GameState.game_over.emit()
-		SoundManager.currently_playing_music.volume_db = linear_to_db(0.5)
+		if SoundManager.currently_playing_music:
+			SoundManager.currently_playing_music.volume_db = linear_to_db(0.5)
 		
 
 func _on_player_hp_changed(hp):

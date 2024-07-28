@@ -12,6 +12,7 @@ func modify_bullet_resource(bullet: BulletResource) -> BulletResource:
 	bullet.bullet_range *= 5
 	bullet.start_range *= 2
 	bullet.size *= 3
+	bullet.damage *= 2
 	return bullet
 
 

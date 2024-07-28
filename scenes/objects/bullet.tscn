@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scripts/components/Shader.gd" id="5_5b5w5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rwjyl"]
+radius = 4.0
 
 [node name="Bullet" type="Area2D"]
 z_index = -1
@@ -44,9 +45,9 @@ lifetime_timer = NodePath("../SelfDestruct")
 scale = Vector2(0.03, 0.03)
 sprite_frames = ExtResource("2_p3jja")
 animation = &"simple"
-frame_progress = 0.434517
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4, 0)
 scale = Vector2(1.5, 1.5)
 shape = SubResource("CircleShape2D_rwjyl")
 

@@ -66,7 +66,6 @@ texture_normal = SubResource("PlaceholderTexture2D_uedsp")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("1_xieai")
-swappable = false
 
 [node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/UpgradePanel/HBoxContainer/Shop1"]
 z_index = -1
@@ -87,7 +86,6 @@ texture_normal = SubResource("PlaceholderTexture2D_gbimq")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("1_xieai")
-swappable = false
 
 [node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/UpgradePanel/HBoxContainer/Shop2"]
 z_index = -1
@@ -108,7 +106,6 @@ texture_normal = SubResource("PlaceholderTexture2D_gbimq")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("1_xieai")
-swappable = false
 
 [node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/UpgradePanel/HBoxContainer/Shop3"]
 z_index = -1
@@ -129,7 +126,6 @@ texture_normal = SubResource("PlaceholderTexture2D_gbimq")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("1_xieai")
-swappable = false
 
 [node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/UpgradePanel/HBoxContainer/Shop4"]
 z_index = -1

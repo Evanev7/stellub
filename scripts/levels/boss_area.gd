@@ -21,8 +21,6 @@ func _ready():
 # Start the timers we need, instantiate the HUD and get the player in the right spot.
 func start_game():
 	#enemy_handler.start_spawning()
-	if SoundManager.currently_playing_music:
-		SoundManager.fade_out(SoundManager.currently_playing_music)
 	
 	var tween: Tween = create_tween()
 	tween.parallel().tween_property(HUD.get_node("VignetteTop"), "self_modulate", Color(1, 1, 1, 0), 2).from(Color(100, 100, 100, 1))
@@ -37,7 +35,8 @@ func start_game():
 	HUD.show_score(player.score, player.level_threshold[player.current_level])
 
 func restart_game():
-	SoundManager.fade_out(SoundManager.currently_playing_music)
+	if SoundManager.currently_playing_music:
+		SoundManager.fade_out(SoundManager.currently_playing_music)
 	GameState.load_area(GameState.CURRENT_AREA.HELL)
 	
 func start_message():
@@ -45,8 +44,16 @@ func start_message():
 
 func _on_player_death():
 	GameState.game_over.emit()
-	if SoundManager.currently_playing_music:
-		SoundManager.currently_playing_music.volume_db = linear_to_db(0.5)
+	GameState.queue_free_groups()
+	
+	if GameState.player_data.first_time == true:
+		if SoundManager.currently_playing_music:
+			SoundManager.fade_out(SoundManager.currently_playing_music)
+		HUD.show_first_time()
+	else:
+		GameState.game_over.emit()
+		if SoundManager.currently_playing_music:
+			SoundManager.currently_playing_music.volume_db = linear_to_db(0.5)
 
 func _on_player_hp_changed(hp):
 	HUD.show_health(hp, GameState.player.hp_max)

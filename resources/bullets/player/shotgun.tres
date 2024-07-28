@@ -1,9 +1,20 @@
-[gd_resource type="Resource" script_class="BulletResource" load_steps=6 format=3 uid="uid://b3v62pkd6hntd"]
+[gd_resource type="Resource" script_class="BulletResource" load_steps=7 format=3 uid="uid://b3v62pkd6hntd"]
 
 [ext_resource type="Script" path="res://scripts/objects/bullet_resource.gd" id="1_3xi33"]
 [ext_resource type="SpriteFrames" uid="uid://cbfq7bqkgh3ti" path="res://resources/bullets/player/player_bullet_spriteframes.tres" id="1_nan3p"]
 [ext_resource type="Texture2D" uid="uid://b6y7giikvs0aa" path="res://art/bullets/enemies/bullet_orange.png" id="2_keac3"]
 [ext_resource type="AudioStream" uid="uid://csd5resv0mgp0" path="res://sounds/shotgun.wav" id="4_dktcp"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vl6o6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_keac3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_rj5vv"]
 streams_count = 1
@@ -18,7 +29,7 @@ of bullets."
 animation = ExtResource("1_nan3p")
 sound = SubResource("AudioStreamRandomizer_rj5vv")
 rarity = 1.0
-icon = ExtResource("2_keac3")
+icon = SubResource("SpriteFrames_vl6o6")
 size = Vector2(0.9, 0.9)
 colour = Color(1, 1, 0.470588, 1)
 fire_on_hit = false

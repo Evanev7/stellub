@@ -12,7 +12,7 @@ enum FACING_DIRECTION {DEFAULT, UP, DOWN, LEFT, RIGHT}
 @export var animation: SpriteFrames
 @export var sound: AudioStreamRandomizer
 @export var rarity: float = 1
-@export var icon: CompressedTexture2D
+@export var icon: SpriteFrames
 @export var size: Vector2 = Vector2(1, 1)
 @export var colour: Color = Color(1,1,1,1)
 @export var fire_on_hit: bool = false

@@ -50,7 +50,8 @@ func _on_teleporter_body_entered(body):
 		tween.parallel().tween_property(HUD.vignette, "self_modulate:a", 3, 3)
 		# zoom camera in?s
 		await tween.finished
-		#teleport_player.emit()
+		if SoundManager.currently_playing_music:
+			SoundManager.fade_out(SoundManager.currently_playing_music)
 		get_tree().call_group("enemy", "remove")
 		var camera = GameState.player.get_node("Camera2D")
 		GameState.player.attack_handler.stop()

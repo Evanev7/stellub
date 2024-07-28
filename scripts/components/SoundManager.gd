@@ -1,7 +1,8 @@
 extends Node
 
-@onready var heaven_start = $heaven_start
-@onready var heaven_loop = $heaven_loop
+@onready var heaven_start: AudioStreamPlayer = $heaven_start
+@onready var heaven_loop: AudioStreamPlayer = $heaven_loop
+@onready var hell_song: AudioStreamPlayer = $hell_song
 @onready var merchant_dialogue = $merchant_dialogue
 
 var currently_playing_music: AudioStreamPlayer
@@ -12,15 +13,23 @@ func _process(_delta):
 		_on_heaven_start_finished()
 	
 func heaven_start_play():
+	heaven_start.volume_db = -6
 	heaven_start.play()
 	currently_playing_music = heaven_start
 
 func _on_heaven_start_finished():
+	heaven_loop.volume_db = -6
 	heaven_loop.play()
 	currently_playing_music = heaven_loop
 
+func hell_song_play():
+	hell_song.volume_db = -6
+	hell_song.play()
+	currently_playing_music = hell_song
 
 func fade_out(stream):
 	var tween: Tween = create_tween()
 	tween.tween_property(stream, "volume_db", -80, 2).from(linear_to_db(0.4))
 	tween.tween_callback(stream.stop)
+	stream.volume_db = -6
+	currently_playing_music = null
