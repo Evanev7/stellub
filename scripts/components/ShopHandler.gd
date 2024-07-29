@@ -40,11 +40,7 @@ func start():
 	for weapon in shop_weapons_list:
 		weapons.append([weapon, int(weapon.rarity*2)])
 	weapon_pool.populate(weapons)
-	
-	
-	if GameState.debug:
-		_on_spawn_shop(Vector2(500, 500))
-		_on_spawn_shop(Vector2(550, 500))
+
 
 
 func spawn_next_circle(centre):

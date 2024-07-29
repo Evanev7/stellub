@@ -65,11 +65,11 @@ func _on_player_player_death():
 	else:
 		GameState.game_over.emit()
 		if SoundManager.currently_playing_music:
-			SoundManager.currently_playing_music.volume_db = linear_to_db(0.5)
+			SoundManager.currently_playing_music.volume_db -= 10
 	
 func on_restart_game():
 	if SoundManager.currently_playing_music:
-		SoundManager.fade_out(SoundManager.currently_playing_music)
+		SoundManager.currently_playing_music.stop()
 	start_game()
 	
 

@@ -21,6 +21,7 @@ var piercing: int
 var damage: float
 @onready var origin_position: Vector2
 @onready var collision: CollisionShape2D = $CollisionShape2D
+@onready var self_destruct = $SelfDestruct
 
 var _hit_targets: Array
 @export var vacuum_scene: PackedScene
@@ -60,8 +61,8 @@ func set_data():
 		set_collision_mask(2)
 	scale = data.size
 	sprite.sprite_frames = data.animation
-	$SelfDestruct.wait_time = data.lifetime
-	$SelfDestruct.autostart = true
+	self_destruct.wait_time = data.lifetime
+	self_destruct.start()
 	
 	match data.facing_direction:
 		BulletResource.FACING_DIRECTION.DEFAULT:

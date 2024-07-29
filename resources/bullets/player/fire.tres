@@ -35,7 +35,6 @@ description = "Default Upgrade Description"
 animation = SubResource("SpriteFrames_k7xdv")
 sound = SubResource("AudioStreamRandomizer_8pp78")
 rarity = 1.0
-icon = ExtResource("2_urdvf")
 size = Vector2(2, 2)
 colour = Color(0.839216, 0.152941, 0.027451, 1)
 fire_on_hit = false

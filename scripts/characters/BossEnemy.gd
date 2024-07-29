@@ -21,6 +21,9 @@ func _ready():
 	attack_handler.owner = self
 	GameState.player.attack_handler.owner = GameState.player
 	
+	for child in attack_handler.get_children():
+		if child.name == "Fire":
+			attack_handler.remove_child(child)
 	attack_handler.passive_all_attacks()
 	attack_handler.aim_attacks_at_player()
 	attack_handler.refresh_all_attacks()

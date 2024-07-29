@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/hell song.mp3-630be496f4f8a0ab359e63efd4131dc
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

@@ -257,13 +257,15 @@ func activate_xp_vacuum():
 	
 func free_fire_upgrade(value, present: bool = false):
 	if present:
-		$FireTimer.wait_time += value
+		$FireTimer.wait_time = $FireTimer.time_left + value
+		$FireTimer.start()
 	else:
 		$FireTimer.wait_time = value
 		$FireTimer.start()
 
 func _on_fire_timer_timeout():
-	attack_handler.remove_child(attack_handler.get_node("Fire"))
+	if attack_handler.get_node_or_null("Fire"):
+		attack_handler.remove_child(attack_handler.get_node("Fire"))
 
 func player_level_up():
 	current_level += 1

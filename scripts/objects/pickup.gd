@@ -36,9 +36,12 @@ func _ready():
 			sprite.animation = "vacuum_pickup"
 		freeze_pickup:
 			sprite.animation = "freeze_pickup"
+			## temp
+			sprite.modulate = Color(0, 0.3, 1)
 			value = randi() % 6 + 2
 		fire_pickup:
 			sprite.animation = "fire_pickup"
+			sprite.modulate = Color(1, 0, 0)
 			value = randi() % 10 + 3
 	sprite.play()
 	

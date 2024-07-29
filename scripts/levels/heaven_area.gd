@@ -49,7 +49,7 @@ func animate_entry():
 
 func restart_game():
 	if SoundManager.currently_playing_music:
-		SoundManager.fade_out(SoundManager.currently_playing_music)
+		SoundManager.currently_playing_music.stop()
 	GameState.load_area(GameState.CURRENT_AREA.HELL)
 	
 func start_message():
@@ -66,7 +66,7 @@ func _on_player_death():
 	else:
 		GameState.game_over.emit()
 		if SoundManager.currently_playing_music:
-			SoundManager.currently_playing_music.volume_db = linear_to_db(0.5)
+			SoundManager.currently_playing_music.volume_db -= 10
 		
 
 func _on_player_hp_changed(hp):

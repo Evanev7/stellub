@@ -20,7 +20,7 @@ enum FACING_DIRECTION {DEFAULT, UP, DOWN, LEFT, RIGHT}
 @export_category("Shooting Stats")
 @export var start_range: int = 0
 ## Float in seconds
-@export var lifetime: float = 20.0
+@export var lifetime: float = 1.0
 @export var bullet_range: float = 1000
 @export var fire_delay: float = 15
 @export var shot_speed: float = 400

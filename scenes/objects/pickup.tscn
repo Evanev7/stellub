@@ -15,9 +15,7 @@ script = ExtResource("1_rqpcu")
 position = Vector2(0, -1)
 scale = Vector2(0.03, 0.03)
 sprite_frames = ExtResource("2_13irk")
-animation = &"fire_pickup"
-frame = 2
-frame_progress = 0.647051
+animation = &"freeze_pickup"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(1.5, 1.5)
