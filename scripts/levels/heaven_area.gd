@@ -44,7 +44,7 @@ func start_game():
 func animate_entry():
 	var tween: Tween = create_tween()
 	tween.parallel().tween_property(HUD.get_node("VignetteTop"), "self_modulate", Color(1, 1, 1, 0), 3).from(Color(100, 100, 100, 1))
-	tween.parallel().tween_property(player.get_node("Camera2D"), "zoom", Vector2(1.2, 1.2), 0.5).\
+	tween.parallel().tween_property(player.camera_2d, "zoom", Vector2(1.2, 1.2), 0.5).\
 	set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC).from(Vector2(0.9, 0.9))
 
 func restart_game():

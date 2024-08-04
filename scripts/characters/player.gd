@@ -29,6 +29,7 @@ signal show_freeze(time)
 @onready var level_up_sound: AudioStreamPlayer = $LevelUp
 @onready var hurt_sound: AudioStreamPlayer = $Hurt
 @onready var death_sound: AudioStreamPlayer = $Die
+@onready var camera_2d = $Camera2D
 
 var control_mode: int = 0
 var level_threshold = [10, 20, 30, 50]
@@ -58,7 +59,7 @@ func _ready():
 
 func _input(event):
 	if event is InputEventMouseMotion:
-		$Camera2D.offset = (event.position - get_viewport_rect().size/2)/32
+		camera_2d.offset = (event.position - get_viewport_rect().size/2)/32
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):

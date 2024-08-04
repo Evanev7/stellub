@@ -53,7 +53,7 @@ func _on_teleporter_body_entered(body):
 		if SoundManager.currently_playing_music:
 			SoundManager.fade_out(SoundManager.currently_playing_music)
 		get_tree().call_group("enemy", "remove")
-		var camera = GameState.player.get_node("Camera2D")
+		var camera = GameState.player.camera_2d
 		GameState.player.attack_handler.stop()
 		GameState.player.hide()
 		GameState.player.get_node("CollisionShape2D").disabled = true

@@ -30,6 +30,9 @@ func _ready():
 	attack_handler.upgrade_all_attacks(boss_upgrade)
 	await get_tree().create_timer(1.5).timeout
 	boss_health_changed.emit(health, resource.MAX_HP*overall_multiplier*unique_multiplier)
+	
+	await get_tree().create_timer(4.0).timeout
+	GameState.player.camera_2d.boss = self
 
 
 func _physics_process(_delta):

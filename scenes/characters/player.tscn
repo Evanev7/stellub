@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://cnepphpba8e8u"]
+[gd_scene load_steps=61 format=3 uid="uid://cnepphpba8e8u"]
 
 [ext_resource type="Script" path="res://scripts/characters/player.gd" id="1_m0lvq"]
 [ext_resource type="Resource" uid="uid://qdvp5rtjvnll" path="res://upgrades/stat_upgrade.tres" id="3_b8qp8"]
@@ -36,6 +36,7 @@
 [ext_resource type="Resource" uid="uid://ccpb4udi5owpj" path="res://resources/bullets/player/player_bullet.tres" id="35_8awst"]
 [ext_resource type="AudioStream" uid="uid://by71ab3bqy54q" path="res://sounds/vacuum.wav" id="35_hr2l7"]
 [ext_resource type="Texture2D" uid="uid://bpx5ybtqcrlpp" path="res://art/objects/shadow.png" id="35_ikv2g"]
+[ext_resource type="Script" path="res://scripts/characters/Camera2D.gd" id="35_ixbcx"]
 [ext_resource type="AudioStream" uid="uid://h5elwdsbb4dg" path="res://sounds/explosion.wav" id="35_uypww"]
 [ext_resource type="AudioStream" uid="uid://dvmyi1ab7aafi" path="res://sounds/hp_pickup.wav" id="36_1j732"]
 [ext_resource type="AudioStream" uid="uid://brney5rm6n7qw" path="res://sounds/level_up.wav" id="36_ik3c3"]
@@ -302,6 +303,7 @@ animation = &"level 1"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.2, 1.2)
+script = ExtResource("35_ixbcx")
 
 [node name="IFrames" type="Timer" parent="."]
 process_callback = 0
