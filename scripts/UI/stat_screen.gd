@@ -17,6 +17,7 @@ var main = false
 
 func _ready():
 	GameState.game_over.connect(game_over)
+	GameState.stat_screen = self
 	%DeathsLabel.hide()
 	%PickupsLabel.hide()
 	%LevelsLabel.show()
@@ -45,6 +46,7 @@ func game_over():
 
 func _on_restart_button_pressed():
 	if main == true:
+		SoundManager.select.play()
 		var tween: Tween = create_tween()
 		var tween2: Tween = create_tween()
 		tween.tween_property($CenterContainer, "modulate:a", 0, 1)
@@ -66,6 +68,7 @@ func _on_restart_button_pressed():
 			restart()
 		
 func restart():
+	SoundManager.important_select.play()
 	var tween: Tween = create_tween()
 	var tween2: Tween = create_tween()
 	tween.tween_property($CenterContainer, "modulate:a", 0, 1)
@@ -96,3 +99,7 @@ func opened_via_main():
 	deaths.text = str(GameState.player_data.total_deaths)
 	pickups_gathered.text = str(GameState.player_data.total_pickups_collected)
 	
+
+
+func _on_restart_button_mouse_entered():
+	SoundManager.button_hover.play()

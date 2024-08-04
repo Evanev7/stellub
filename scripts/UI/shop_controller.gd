@@ -136,6 +136,7 @@ func open_shop(shop):
 
 
 func _on_shop_exit_pressed():
+	SoundManager.select.play()
 	GameState.player_data.first_time_shop = false
 	close_shop()
 

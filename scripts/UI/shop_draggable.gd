@@ -70,6 +70,7 @@ func _get_drag_data(_pos: Vector2) -> Variant:
 	}
 	
 	print("Drag Data: ", data)
+	SoundManager.select.play()
 	
 	if not referenced_node:
 		return {}
@@ -104,6 +105,7 @@ func _drop_data(_pos: Vector2, data) -> void:
 		shop_item_taken = true
 		gray_out_shop.emit()
 	
+	SoundManager.place_upgrade.play()
 	refresh()
 	data["origin_node"].refresh()
 

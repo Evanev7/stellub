@@ -210,14 +210,14 @@ func hurt(area):
 		if GameState.current_area == 1 and unique_multiplier > 1:
 			spawn_shop.emit(global_position)
 			
+		GameState.enemies_killed += 1
+		GameState.player_data.total_enemies_killed += 1
+		GameState.num_enemies -= 1
 		remove()
 		enemy_killed.emit(self)
 	
 func remove():
 	dead = true
-	GameState.enemies_killed += 1
-	GameState.player_data.total_enemies_killed += 1
-	GameState.num_enemies -= 1
 	
 	var tween: Tween = create_tween()
 	sprite.material.set_shader_parameter("line_color", Vector4(0.5, 0, 0, 1))

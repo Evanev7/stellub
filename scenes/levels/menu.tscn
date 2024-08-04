@@ -234,8 +234,12 @@ visible = false
 [node name="stat_screen" parent="." instance=ExtResource("5_61v17")]
 visible = false
 
+[connection signal="mouse_entered" from="Main Menu/Background/Buttons/VBoxContainer/Play" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="Main Menu/Background/Buttons/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="mouse_entered" from="Main Menu/Background/Buttons/VBoxContainer/Options" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="Main Menu/Background/Buttons/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="mouse_entered" from="Main Menu/Background/Buttons/VBoxContainer/Stats" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="Main Menu/Background/Buttons/VBoxContainer/Stats" to="." method="_on_stats_pressed"]
+[connection signal="mouse_entered" from="Main Menu/Background/Buttons/VBoxContainer/Credits" to="." method="_on_button_mouse_entered"]
 [connection signal="toggled" from="Main Menu/Background/Buttons/FirstTime" to="." method="_on_first_time_toggled"]
 [connection signal="go_back" from="options_menu" to="." method="_on_options_menu_go_back"]

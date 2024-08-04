@@ -54,7 +54,7 @@ func _on_player_death():
 	else:
 		GameState.game_over.emit()
 		if SoundManager.currently_playing_music:
-			SoundManager.currently_playing_music.volume_db = linear_to_db(0.5)
+			SoundManager.currently_playing_music.volume_db -= 10
 
 func _on_player_hp_changed(hp):
 	HUD.show_health(hp, GameState.player.hp_max)

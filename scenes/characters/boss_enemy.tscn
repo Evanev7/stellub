@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cc07v7n1u6cto"]
+[gd_scene load_steps=27 format=3 uid="uid://cc07v7n1u6cto"]
 
 [ext_resource type="PackedScene" uid="uid://dpjckt12ipcw2" path="res://scenes/characters/enemy.tscn" id="1_wvsit"]
 [ext_resource type="Script" path="res://scripts/characters/BossEnemy.gd" id="2_6g3sa"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" path="res://scripts/characters/boss_health_interruptor.gd" id="16_ibn11"]
 [ext_resource type="Script" path="res://scripts/characters/boss_anger.gd" id="16_rlt60"]
 [ext_resource type="Texture2D" uid="uid://bpx5ybtqcrlpp" path="res://art/objects/shadow.png" id="17_26byg"]
+[ext_resource type="AudioStream" uid="uid://dk2wd6kayp41f" path="res://sounds/boss_dash.wav" id="21_5mjld"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3auua"]
 resource_local_to_scene = true
@@ -28,6 +29,13 @@ shader_parameter/line_color = Color(0, 0, 0, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
 shader_parameter/hsl_offset = null
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_gne13"]
+streams_count = 1
+random_pitch = 1.03
+random_volume_offset_db = 1.0
+stream_0/stream = ExtResource("21_5mjld")
+stream_0/weight = 1.0
 
 [sub_resource type="Shader" id="Shader_cyudj"]
 code = "shader_type canvas_item;
@@ -116,6 +124,10 @@ script = ExtResource("13_rpxmm")
 
 [node name="DriveBy" type="Node" parent="FiniteStateMachine" index="3"]
 script = ExtResource("10_f7qcd")
+
+[node name="Dash" type="AudioStreamPlayer" parent="FiniteStateMachine/DriveBy" index="0"]
+stream = SubResource("AudioStreamRandomizer_gne13")
+pitch_scale = 0.9
 
 [node name="TerrainAttack" type="Node" parent="FiniteStateMachine" index="4"]
 script = ExtResource("15_jib71")

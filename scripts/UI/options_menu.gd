@@ -29,13 +29,20 @@ func _on_sfx_slider_value_changed(value):
 
 
 func _on_back_pressed():
+	SoundManager.select.play()
 	GameState.save_game()
 	go_back.emit()
 
 
 func _on_damage_numbers_pressed():
+	SoundManager.select.play()
 	GameState.player_data.damage_numbers_enabled = damage_numbers_enabled.button_pressed
 
 
 func _on_fps_pressed():
+	SoundManager.select.play()
 	GameState.player_data.fps_enabled = fps_enabled.button_pressed
+
+
+func _on_back_mouse_entered():
+	SoundManager.button_hover.play()

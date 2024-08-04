@@ -4,6 +4,10 @@ extends Node
 @onready var heaven_loop: AudioStreamPlayer = $heaven_loop
 @onready var hell_song: AudioStreamPlayer = $hell_song
 @onready var merchant_dialogue = $merchant_dialogue
+@onready var important_select = $important_select
+@onready var select = $select
+@onready var button_hover = $button_hover
+@onready var place_upgrade = $place_upgrade
 
 var currently_playing_music: AudioStreamPlayer
 

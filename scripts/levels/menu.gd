@@ -22,6 +22,7 @@ func _ready():
 
 
 func _on_play_pressed():
+	SoundManager.important_select.play()
 	loading_screen.visible = true
 	play_pressed = true
 	load_game()
@@ -35,14 +36,17 @@ func load_game():
 	
 
 func _on_options_pressed():
+	SoundManager.select.play()
 	options_menu.visible = true
 	visible = false
 
 func _on_stats_pressed():
+	SoundManager.select.play()
 	stat_screen.opened_via_main()
 	visible = false
 	
 func _on_options_menu_go_back():
+	SoundManager.select.play()
 	options_menu.visible = false
 	visible = true
 
@@ -51,3 +55,6 @@ func _on_first_time_toggled(button_pressed):
 	GameState.player_data.first_time_shop = button_pressed
 
 
+
+func _on_button_mouse_entered():
+	SoundManager.button_hover.play()

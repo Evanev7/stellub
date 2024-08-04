@@ -42,3 +42,10 @@ func _physics_process(_delta):
 func hurt(area):
 	super(area)
 	boss_health_changed.emit(health, resource.MAX_HP*overall_multiplier*unique_multiplier)
+	if dead == true:
+		GameState.game_over.emit()
+		GameState.player.attack_handler.stop()
+		GameState.player.hide()
+		GameState.player.set_physics_process(false)
+		if SoundManager.currently_playing_music:
+			SoundManager.currently_playing_music.volume_db -= 10

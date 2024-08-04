@@ -12,6 +12,7 @@ var debug: bool = true
 var player: CharacterBody2D
 var pause_menu: CanvasLayer
 var shop_HUD: CanvasLayer
+var stat_screen: CanvasLayer
 
 var hue_rotation: Array
 
@@ -88,6 +89,9 @@ func _unhandled_input(_event):
 			return
 		if shop_HUD.visible == true:
 			shop_HUD.close_shop()
+			return
+		if stat_screen.visible == true:
+			stat_screen._on_restart_button_pressed()
 			return
 		if get_tree().paused == false:
 			pause_menu._on_hud_open_pause_menu()

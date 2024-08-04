@@ -161,7 +161,10 @@ vertical_alignment = 1
 [node name="options_menu" parent="." instance=ExtResource("7_u3l2s")]
 visible = false
 
+[connection signal="mouse_entered" from="Continue" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="Continue" to="." method="_on_continue_pressed"]
+[connection signal="mouse_entered" from="Options" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="Options" to="." method="_on_options_pressed"]
+[connection signal="mouse_entered" from="Exit" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
 [connection signal="go_back" from="options_menu" to="." method="_on_options_menu_go_back"]

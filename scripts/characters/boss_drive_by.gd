@@ -7,6 +7,7 @@ var cur_player_direction: Vector2
 @export var dash_duration: float = 1
 @export var dash_speed: float = 1000
 @export var num_dashes: int = 3
+@onready var dash = $Dash
 
 func enter():
 	target_player()
@@ -19,6 +20,7 @@ func target_player():
 func physics_process(delta):
 	timer = (timer + delta) 
 	if timer < dash_windup:
+		dash.play()
 		owner.velocity = Vector2(0,0)
 	elif timer > dash_windup + dash_duration:
 		timer -= dash_windup + dash_duration
