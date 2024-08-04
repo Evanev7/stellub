@@ -1,6 +1,8 @@
 extends Node
 
-var damage: float = 10
+@onready var landing_sfx = $LandingSFX
+
+@onready var damage: float = GameState.player.hp_max * 0.3
 var following_player: bool = true
 var height_above_player
 var pos: Vector2
@@ -8,13 +10,15 @@ var _height
 var falling: bool = false
 var _drop_time
 
+func _ready():
+	$BossHeavenStatue/Hitbox.set_deferred("disabled", false)
+
 func _physics_process(delta):
 	if following_player:
 		$BossHeavenStatue.position = GameState.player.position + Vector2(0,-height_above_player)
 		pos = GameState.player.position
 	if falling:
 		var dist = delta * height_above_player/_drop_time
-		
 		_height = max(_height - dist,0)
 		$BossHeavenStatue.position = pos - Vector2(0,_height)
 	$Shadow.position = pos
@@ -22,6 +26,7 @@ func _physics_process(delta):
 	if _height < 100:
 		$BossHeavenStatue.collision_mask = 1
 		$BossHeavenStatue.collision_layer = 1
+	
 
 func drop(height, drop_time = 0.6, shader_time = 0.6):
 	_drop_time = drop_time
@@ -39,4 +44,9 @@ func drop(height, drop_time = 0.6, shader_time = 0.6):
 	tween.chain().tween_callback(disable_damagebox)
 
 func disable_damagebox():
-	$BossHeavenStatue/Hitbox.process_mode = $BossHeavenStatue/Hitbox.PROCESS_MODE_DISABLED
+	$BossHeavenStatue/Hitbox.set_deferred("disabled", true)
+	landing_sfx.play()
+
+func _on_hitbox_area_entered(area):
+	if area.owner == GameState.player:
+		GameState.player.hurt(self)

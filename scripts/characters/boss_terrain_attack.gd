@@ -44,10 +44,13 @@ func physics_process(delta):
 		timer += delta
 	
 		if fmod(timer, item_drop_gap) > fmod(timer + delta, item_drop_gap) and dropped < num_to_drop:
-			drop_a_brick_on_their_head()
 			dropped += 1
+			drop_a_brick_on_their_head()
 
 func drop_a_brick_on_their_head():
 	var object = statue.instantiate()
 	ysort_node.add_child(object)
 	object.drop(drop_height)
+	
+	if dropped >= num_to_drop:
+		change_state.emit(self, "randomizer")

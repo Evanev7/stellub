@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d3t4v8j5d11"
+path="res://.godot/imported/stone landing.wav-1c5691852ef4a4a80266f8e631242a4a.sample"
+
+[deps]
+
+source_file="res://sounds/stone landing.wav"
+dest_files=["res://.godot/imported/stone landing.wav-1c5691852ef4a4a80266f8e631242a4a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
