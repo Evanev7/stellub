@@ -22,5 +22,5 @@ func pre_fire():
 	pass
 
 
-func second_pass(bullet: BulletResource) -> BulletResource:
+func global_second_pass(bullet: BulletResource) -> BulletResource:
 	return bullet
