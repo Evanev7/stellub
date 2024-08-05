@@ -25,7 +25,7 @@ func _ready():
 		if attack.name == "Fire":
 			attack_handler.remove_child(attack)
 		for upgrade in attack.get_children():
-			if upgrade.name.contains("Node"):
+			if upgrade.type == Upgrade.TYPE.STAT:
 				attack.remove_child(upgrade)
 				
 	attack_handler.passive_all_attacks()

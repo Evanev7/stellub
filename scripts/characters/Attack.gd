@@ -92,10 +92,9 @@ func refresh_bullet_resource():
 			if bullet_ref.spawned_bullet_resource:
 				bullet_ref = bullet_ref.spawned_bullet_resource
 			bullet_ref = upgrade.modify_bullet_resource(bullet_ref)
-	# Second pass, back to the top of queue
 	for upgrade in get_children():
 		if upgrade is Upgrade:
-			bullet = upgrade.global_second_pass(bullet)
+			bullet = upgrade.modify_toplevel(bullet)
 	
 	
 	

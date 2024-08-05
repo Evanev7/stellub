@@ -8,6 +8,9 @@ class_name Upgrade
 @export var skip: bool = false
 var script_data: Dictionary
 
+enum TYPE {STAT, BOSS, SHOP}
+@export var type: TYPE = TYPE.SHOP
+
 func _ready():
 	pass
 
@@ -22,5 +25,5 @@ func pre_fire():
 	pass
 
 
-func global_second_pass(bullet: BulletResource) -> BulletResource:
+func modify_toplevel(bullet: BulletResource) -> BulletResource:
 	return bullet
