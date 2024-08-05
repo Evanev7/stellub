@@ -3,7 +3,7 @@ extends Upgrade
 func _ready():
 	skip = true
 
-func modify_bullet_resource(bullet: BulletResource) -> BulletResource:
+func second_pass(bullet: BulletResource) -> BulletResource:
 	bullet.damage *= 1.015
 	bullet.size *= 1.01
 	bullet.shot_speed *= 1.01

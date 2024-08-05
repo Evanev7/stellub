@@ -20,3 +20,7 @@ func modify_bullet_resource(bullet: BulletResource) -> BulletResource:
 # Used for code to execute before firing
 func pre_fire():
 	pass
+
+
+func second_pass(bullet: BulletResource) -> BulletResource:
+	return bullet
