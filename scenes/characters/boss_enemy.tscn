@@ -130,6 +130,7 @@ script = ExtResource("10_f7qcd")
 stream = SubResource("AudioStreamRandomizer_gne13")
 volume_db = -6.0
 pitch_scale = 0.9
+bus = &"SFX"
 
 [node name="TerrainAttack" type="Node" parent="FiniteStateMachine" index="4"]
 script = ExtResource("15_jib71")

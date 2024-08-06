@@ -26,7 +26,7 @@ func _physics_process(delta):
 	if _height < 100:
 		$BossHeavenStatue.collision_mask = 1
 		$BossHeavenStatue.collision_layer = 1
-	
+
 
 func drop(height, drop_time = 0.6, shader_time = 0.6):
 	_drop_time = drop_time

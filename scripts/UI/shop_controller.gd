@@ -95,7 +95,6 @@ func loadsave(mode: int):
 
 
 func reattach_nodes(parent, children):
-	# print(name, " is Reattaching ", children, " to ", parent)
 	for child in children:
 		if child.get_parent():
 			child.get_parent().remove_child(child)
