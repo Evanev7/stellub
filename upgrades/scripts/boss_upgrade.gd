@@ -3,6 +3,7 @@ extends Upgrade
 
 #
 func _ready():
+	type = TYPE.BOSS
 	pass
 
 

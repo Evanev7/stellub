@@ -86,13 +86,17 @@ func refresh_bullet_resource():
 		return
 	
 	bullet = initial_bullet.duplicate()
+	var bullet_ref = bullet
 	for upgrade in get_children():
 		if upgrade is Upgrade:
-			if bullet.spawned_bullet_resource:
-				bullet.spawned_bullet_resource = upgrade.modify_bullet_resource(bullet.spawned_bullet_resource)
-			else:
-				bullet = upgrade.modify_bullet_resource(bullet)
-		
+			if bullet_ref.spawned_bullet_resource:
+				bullet_ref = bullet_ref.spawned_bullet_resource
+			bullet_ref = upgrade.modify_bullet_resource(bullet_ref)
+	for upgrade in get_children():
+		if upgrade is Upgrade:
+			bullet = upgrade.modify_toplevel(bullet)
+	
+	
 	
 
 func remove_upgrades():
