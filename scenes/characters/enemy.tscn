@@ -22,6 +22,7 @@ shader = ExtResource("3_30b5x")
 shader_parameter/line_color = Color(1, 0, 0, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
+shader_parameter/Shift_Hue = 0.0
 shader_parameter/hsl_offset = Vector3(0, 0, 0)
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_k47en")
 

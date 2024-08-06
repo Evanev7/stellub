@@ -283,14 +283,9 @@ func upgrade_attack(upgrade, weapon_number):
 	attack_handler.get_child(weapon_number).add_child(upgrade)
 	attack_handler.get_child(weapon_number).refresh_bullet_resource()
 
-#Marked for cleanup with new shop UI
-func get_all_attacks():
-	var attacks = []
-	for attack in attack_handler.get_children():
-		attacks.append(attack)
-	return attacks
 
 func evolve(val = -1):
+	print(val)
 	if val == -1:
 		current_evolution += 1
 	else:

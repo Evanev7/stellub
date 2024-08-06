@@ -84,7 +84,7 @@ func set_data():
 	sprite.play(mode)
 	
 	add_to_group("enemy")
-	#sway()
+	sway()
 	
 	if GameState.num_enemies >= enemy_limit:
 		movement_enabled = false

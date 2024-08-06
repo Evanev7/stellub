@@ -1,10 +1,5 @@
 extends Node
 
-
-#@export var heaven_area_scene: PackedScene
-
-@export var enemy_resource_list: Array[EnemyResource]
-
 @export var enemy_handler: EnemyHandler
 
 @onready var HUD = $HUD

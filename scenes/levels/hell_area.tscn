@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://qhl6r2tbil5t"]
+[gd_scene load_steps=27 format=3 uid="uid://qhl6r2tbil5t"]
 
 [ext_resource type="PackedScene" uid="uid://dilk21k2nncq2" path="res://scenes/levels/level_template.tscn" id="1_ttjsf"]
 [ext_resource type="PackedScene" uid="uid://dfrum4te4lpmr" path="res://scenes/objects/teleporter.tscn" id="2_8o713"]
@@ -12,8 +12,6 @@
 [ext_resource type="Resource" uid="uid://bqyg0clrpkdim" path="res://resources/enemy/demon_skeleton.tres" id="5_yiyg4"]
 [ext_resource type="Resource" uid="uid://djjvchiit0f0n" path="res://resources/enemy/angel_worshipper.tres" id="6_7qtbu"]
 [ext_resource type="PackedScene" uid="uid://bxmk1htarl4v5" path="res://scenes/components/shop_handler.tscn" id="6_tokbn"]
-[ext_resource type="Resource" uid="uid://bnoj3uq3e6s17" path="res://resources/enemy/angel_warrior.tres" id="7_jjuad"]
-[ext_resource type="Resource" uid="uid://daslelns8qmfv" path="res://resources/enemy/angel_crusader.tres" id="8_rirxr"]
 [ext_resource type="Texture2D" uid="uid://dvrx1ijrwk8a2" path="res://art/backgrounds/hell_level_1.png" id="10_dov0s"]
 [ext_resource type="PackedScene" uid="uid://cnepphpba8e8u" path="res://scenes/characters/player.tscn" id="11_syo0k"]
 [ext_resource type="PackedScene" uid="uid://cx84pw0whxyxq" path="res://scenes/UI/ember_particles.tscn" id="12_ffkww"]
@@ -38,7 +36,6 @@ sources/1 = SubResource("TileSetAtlasSource_e30b7")
 
 [node name="Hell Area" node_paths=PackedStringArray("enemy_handler") instance=ExtResource("1_ttjsf")]
 script = ExtResource("2_myijk")
-enemy_resource_list = Array[Resource("res://scripts/characters/enemy_resource.gd")]([ExtResource("3_dr1lv"), ExtResource("4_j7txi"), ExtResource("5_yiyg4"), ExtResource("6_7qtbu"), ExtResource("7_jjuad"), ExtResource("8_rirxr")])
 enemy_handler = NodePath("LogicComponents/EnemyHandler")
 metadata/_edit_vertical_guides_ = []
 
@@ -75,7 +72,7 @@ ysorter = NodePath("../../YSort")
 score_display = NodePath("../../HUD")
 
 [node name="EnemyHandler" parent="LogicComponents" index="3" node_paths=PackedStringArray("enemy_ysort") instance=ExtResource("5_qh5by")]
-enemy_resource_list = Array[Resource("res://scripts/characters/enemy_resource.gd")]([ExtResource("3_dr1lv"), ExtResource("4_j7txi"), ExtResource("5_yiyg4"), ExtResource("21_jliye"), ExtResource("6_7qtbu"), ExtResource("7_jjuad"), ExtResource("8_rirxr")])
+enemy_resource_list = Array[Resource("res://scripts/characters/enemy_resource.gd")]([ExtResource("3_dr1lv"), ExtResource("4_j7txi"), ExtResource("5_yiyg4"), ExtResource("21_jliye"), ExtResource("6_7qtbu")])
 enemy_ysort = NodePath("../../YSort")
 
 [node name="ShopHandler" parent="LogicComponents" index="4" node_paths=PackedStringArray("enemy_handler", "ysorter", "objective_marker", "shop_node", "teleporter") instance=ExtResource("6_tokbn")]

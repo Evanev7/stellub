@@ -53,10 +53,9 @@ func _on_phase_up_timer_timeout():
 	if damage_scene_pool.size() > 1000:
 		damage_scene_pool.resize(1000)
 	phase_limit += 1
-	phase_limit = clamp(phase_limit, 1, enemy_resource_list.size() - 1)
 	
 	var new_enemy = []
-	new_enemy.append([phase_limit, enemy_resource_list[phase_limit].QUANTITY])
+	new_enemy.append([phase_limit, enemy_resource_list[clamp(phase_limit, 1, enemy_resource_list.size() - 1)].QUANTITY])
 	enemy_rarity_pool.populate(new_enemy)
 	
 	spawn_enemy(phase_limit, GameState.player.position, safe_range, 3.5, overall_multiplier)
@@ -82,6 +81,11 @@ func spawn_enemy(resourceID, centre = GameState.player.position, spawn_range = s
 func really_spawn_enemy(resourceID, centre = GameState.player.position, spawn_range = safe_range, unique_multiplier: float = 1, overall_multi = overall_multiplier):
 	var enemy = get_enemy()
 	GameState.num_enemies += 1
+	
+	if resourceID > enemy_resource_list.size() - 1:
+		resourceID = int(randf_range(0, enemy_resource_list.size() - 1))
+		unique_multiplier += enemy_resource_list.size() - resourceID
+		
 	enemy.resource = enemy_resource_list[resourceID]
 	enemy.resource.UNIQUE_MULTIPLIER = unique_multiplier
 	enemy.resource.OVERALL_MULTIPLIER = overall_multi
@@ -96,6 +100,8 @@ func really_spawn_enemy(resourceID, centre = GameState.player.position, spawn_ra
 	enemy.set_physics_process(true)
 	enemy.sprite.visible = true
 	enemy.shadow.visible = true
+	if phase_limit > 5:
+		enemy.sprite.material.set_shader_parameter("Shift_Hue", randf_range(-1.0, 1.0))
 	enemy.set_data()
 	enemy.collider.set_deferred("disabled", false)
 	enemy.hitbox_collisionshape.set_deferred("disabled", false)
