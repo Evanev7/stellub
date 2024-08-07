@@ -285,7 +285,6 @@ func upgrade_attack(upgrade, weapon_number):
 
 
 func evolve(val = -1):
-	print(val)
 	if val == -1:
 		current_evolution += 1
 	else:

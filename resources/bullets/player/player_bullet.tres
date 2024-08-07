@@ -2,22 +2,22 @@
 
 [ext_resource type="Script" path="res://scripts/objects/bullet_resource.gd" id="1_dmiyo"]
 [ext_resource type="SpriteFrames" uid="uid://cbfq7bqkgh3ti" path="res://resources/bullets/player/player_bullet_spriteframes.tres" id="1_eteat"]
-[ext_resource type="Texture2D" uid="uid://ct83ymd7t3xlf" path="res://art/bullets/player/Upgrades/BasicBullet_0000.png" id="2_o5w4o"]
-[ext_resource type="Texture2D" uid="uid://cqsg6436xk722" path="res://art/bullets/player/Upgrades/BasicBullet_0002.png" id="3_qn17a"]
-[ext_resource type="Texture2D" uid="uid://bhrdt4i0isu13" path="res://art/bullets/player/Upgrades/BasicBullet_0004.png" id="4_l062u"]
+[ext_resource type="Texture2D" uid="uid://ct83ymd7t3xlf" path="res://art/bullets/player/BasicBullet_0000.png" id="2_g41uv"]
+[ext_resource type="Texture2D" uid="uid://cqsg6436xk722" path="res://art/bullets/player/BasicBullet_0002.png" id="3_ygci5"]
 [ext_resource type="AudioStream" uid="uid://csifdlbjdrodm" path="res://sounds/normal_shot.wav" id="4_sjyjo"]
+[ext_resource type="Texture2D" uid="uid://bhrdt4i0isu13" path="res://art/bullets/player/BasicBullet_0004.png" id="4_v8ytc"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sr5hd"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_o5w4o")
+"texture": ExtResource("2_g41uv")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_qn17a")
+"texture": ExtResource("3_ygci5")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_l062u")
+"texture": ExtResource("4_v8ytc")
 }],
 "loop": true,
 "name": &"default",

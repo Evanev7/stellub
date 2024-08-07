@@ -10,7 +10,7 @@ func _ready():
 # Change stats on pickup
 func modify_toplevel(bullet: BulletResource) -> BulletResource:
 	bullet.deactivation_range *= 50
-	bullet.bullet_range *= 5
+	bullet.bullet_range *= 2
 	bullet.start_range *= 2
 	bullet.size *= 3
 	bullet.damage *= 2

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqsg6436xk722"
-path="res://.godot/imported/BasicBullet_0002.png-1243100a35bd4fc7b73db71b1305c489.ctex"
+uid="uid://3my721x7h7ec"
+path="res://.godot/imported/Orbital_0006.png-b10da8453b69a2a16faad64172724144.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/bullets/player/Upgrades/BasicBullet_0002.png"
-dest_files=["res://.godot/imported/BasicBullet_0002.png-1243100a35bd4fc7b73db71b1305c489.ctex"]
+source_file="res://art/bullets/player/Orbital_0006.png"
+dest_files=["res://.godot/imported/Orbital_0006.png-b10da8453b69a2a16faad64172724144.ctex"]
 
 [params]
 

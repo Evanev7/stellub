@@ -1,39 +1,25 @@
-[gd_resource type="Resource" script_class="BulletResource" load_steps=9 format=3 uid="uid://cyahshf3y21ai"]
+[gd_resource type="Resource" script_class="BulletResource" load_steps=7 format=3 uid="uid://cyahshf3y21ai"]
 
 [ext_resource type="Script" path="res://scripts/objects/bullet_resource.gd" id="1_3cnji"]
-[ext_resource type="Texture2D" uid="uid://bbu1gvj238af0" path="res://art/bullets/player/boomerang_1.png" id="1_a2512"]
-[ext_resource type="Texture2D" uid="uid://d2a1v2o0w5eu3" path="res://art/bullets/player/boomerang_2.png" id="2_v5svo"]
-[ext_resource type="Texture2D" uid="uid://c368tklrelfn7" path="res://art/bullets/player/boomerang_3.png" id="3_u10vx"]
+[ext_resource type="Texture2D" uid="uid://bmlj0f8k87tjw" path="res://art/bullets/player/Boomerang.png" id="1_iyb0m"]
 [ext_resource type="AudioStream" uid="uid://31ou8mmtpl2h" path="res://sounds/boomerang.wav" id="6_r3ghb"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_4nyni"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_kb2dv"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_a2512")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_v5svo")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_u10vx")
+"texture": ExtResource("1_iyb0m")
 }],
 "loop": true,
 "name": &"default",
-"speed": 12.0
+"speed": 5.0
 }]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dv5uq"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_a2512")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_v5svo")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_u10vx")
+"texture": ExtResource("1_iyb0m")
 }],
 "loop": true,
 "name": &"default",
@@ -52,11 +38,11 @@ script = ExtResource("1_3cnji")
 name = "Boomerang"
 description = "Aims for the nearest enemy, and
 then travels backwards."
-animation = SubResource("SpriteFrames_4nyni")
+animation = SubResource("SpriteFrames_kb2dv")
 sound = SubResource("AudioStreamRandomizer_gncqn")
 rarity = 1.0
 icon = SubResource("SpriteFrames_dv5uq")
-size = Vector2(1, 1)
+size = Vector2(3.5, 3.5)
 colour = Color(1, 1, 1, 1)
 fire_on_hit = false
 start_range = 0

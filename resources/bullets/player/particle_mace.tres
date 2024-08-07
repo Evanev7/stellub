@@ -1,14 +1,25 @@
-[gd_resource type="Resource" script_class="BulletResource" load_steps=6 format=3 uid="uid://coqyd5d8e6rm8"]
+[gd_resource type="Resource" script_class="BulletResource" load_steps=7 format=3 uid="uid://coqyd5d8e6rm8"]
 
+[ext_resource type="Texture2D" uid="uid://dltol0vlrfgha" path="res://art/bullets/player/ParticleMace.png" id="1_2xt5k"]
 [ext_resource type="Script" path="res://scripts/objects/bullet_resource.gd" id="1_dhlpd"]
-[ext_resource type="Texture2D" uid="uid://bhs2v6ujb61d6" path="res://art/bullets/temp_1.png" id="1_faxki"]
-[ext_resource type="AudioStream" uid="uid://cx2a0nci361l7" path="res://sounds/split_shot.wav" id="3_yi13j"]
+[ext_resource type="AudioStream" uid="uid://dwjbwpak7yy6k" path="res://sounds/particle_mace_1.wav" id="3_h5ijo"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_l1ll2"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_faxki")
+"texture": ExtResource("1_2xt5k")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2lt5j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2xt5k")
 }],
 "loop": true,
 "name": &"default",
@@ -18,7 +29,7 @@ animations = [{
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_d40yl"]
 streams_count = 1
 random_pitch = 1.01
-stream_0/stream = ExtResource("3_yi13j")
+stream_0/stream = ExtResource("3_h5ijo")
 stream_0/weight = 1.0
 
 [resource]
@@ -29,8 +40,8 @@ loosely orbit around you."
 animation = SubResource("SpriteFrames_l1ll2")
 sound = SubResource("AudioStreamRandomizer_d40yl")
 rarity = 1.0
-icon = ExtResource("1_faxki")
-size = Vector2(0.5, 0.5)
+icon = SubResource("SpriteFrames_2lt5j")
+size = Vector2(1, 1)
 colour = Color(1, 1, 1, 1)
 fire_on_hit = false
 start_range = 0

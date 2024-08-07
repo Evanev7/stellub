@@ -44,11 +44,20 @@ func refresh() -> void:
 		elif referenced_node is Attack:
 			slot_type = SLOT_TYPE.ATTACK
 			tooltip_text = referenced_node.description
-	
+		
 		if referenced_node.get("icon") != null:
-			texture_normal = referenced_node.icon
+			if referenced_node.icon is CompressedTexture2D:
+				texture_normal = referenced_node.icon
+			elif referenced_node.icon is SpriteFrames:
+				var anim_length: int = referenced_node.icon.get_frame_count("default")
+				texture_normal = AnimatedTexture.new()
+				texture_normal.frames = anim_length
+				texture_normal.speed_scale = 8
+				for frame in anim_length:
+					texture_normal.set_frame_texture(frame, referenced_node.icon.get_frame_texture("default", frame))
 		else:
 			texture_normal = null
+		
 	else:
 		texture_normal = null
 	
@@ -69,7 +78,6 @@ func _get_drag_data(_pos: Vector2) -> Variant:
 		"is_shop" = is_shop
 	}
 	
-	print("Drag Data: ", data)
 	SoundManager.select.play()
 	
 	if not referenced_node:

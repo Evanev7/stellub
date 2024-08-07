@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://qhl6r2tbil5t"]
+[gd_scene load_steps=34 format=3 uid="uid://qhl6r2tbil5t"]
 
 [ext_resource type="PackedScene" uid="uid://dilk21k2nncq2" path="res://scenes/levels/level_template.tscn" id="1_ttjsf"]
 [ext_resource type="PackedScene" uid="uid://dfrum4te4lpmr" path="res://scenes/objects/teleporter.tscn" id="2_8o713"]
@@ -24,6 +24,13 @@
 [ext_resource type="PackedScene" uid="uid://d2qk4vahd2ews" path="res://scenes/objects/bones.tscn" id="19_omeqv"]
 [ext_resource type="Resource" uid="uid://cde86qx4smawg" path="res://resources/enemy/demon_lord.tres" id="21_jliye"]
 [ext_resource type="PackedScene" uid="uid://be4i0yo3jsk42" path="res://scenes/components/attack.tscn" id="23_6mnt7"]
+[ext_resource type="Resource" uid="uid://coqyd5d8e6rm8" path="res://resources/bullets/player/particle_mace.tres" id="24_8ykrw"]
+[ext_resource type="Resource" uid="uid://b3v62pkd6hntd" path="res://resources/bullets/player/shotgun.tres" id="25_v7jer"]
+[ext_resource type="Resource" uid="uid://8ogmebrr77xx" path="res://resources/bullets/player/black_hole.tres" id="26_klscm"]
+[ext_resource type="Resource" uid="uid://cyahshf3y21ai" path="res://resources/bullets/player/boomerang.tres" id="27_iw6vn"]
+[ext_resource type="Resource" uid="uid://dgv7ken3yi2xv" path="res://resources/bullets/player/laser.tres" id="28_fjm00"]
+[ext_resource type="Resource" uid="uid://cttw5mxt1sn0l" path="res://resources/bullets/player/orbital_laser.tres" id="29_w0nb2"]
+[ext_resource type="Resource" uid="uid://cnwaewfb52b8q" path="res://resources/bullets/player/forcefield.tres" id="30_l8qwc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e30b7"]
 texture = ExtResource("10_dov0s")
@@ -77,6 +84,7 @@ enemy_ysort = NodePath("../../YSort")
 
 [node name="ShopHandler" parent="LogicComponents" index="4" node_paths=PackedStringArray("enemy_handler", "ysorter", "objective_marker", "shop_node", "teleporter") instance=ExtResource("6_tokbn")]
 attack_scene = ExtResource("23_6mnt7")
+default_shop_weapons_list = Array[Resource("res://scripts/objects/bullet_resource.gd")]([ExtResource("24_8ykrw"), ExtResource("25_v7jer"), ExtResource("26_klscm"), ExtResource("27_iw6vn"), ExtResource("28_fjm00"), ExtResource("29_w0nb2"), ExtResource("30_l8qwc")])
 enemy_handler = NodePath("../EnemyHandler")
 ysorter = NodePath("../../YSort")
 objective_marker = NodePath("../../ObjectiveMarker")

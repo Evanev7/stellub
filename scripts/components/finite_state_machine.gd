@@ -26,7 +26,6 @@ func _physics_process(delta):
 		state.physics_process(delta)
 
 func switch_state(from_state: State, to_state: String):
-	print("Switching from ", from_state.name, " to ", to_state)
 	if from_state != state:
 		return
 	

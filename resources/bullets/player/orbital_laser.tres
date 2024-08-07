@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="BulletResource" load_steps=5 format=3 uid="uid://cttw5mxt1sn0l"]
+[gd_resource type="Resource" script_class="BulletResource" load_steps=8 format=3 uid="uid://cttw5mxt1sn0l"]
 
 [ext_resource type="Texture2D" uid="uid://4wjxcbqqugcw" path="res://art/bullets/player/orbital_laser_1.png" id="1_1diqs"]
 [ext_resource type="Script" path="res://scripts/objects/bullet_resource.gd" id="1_eucd2"]
-[ext_resource type="Texture2D" uid="uid://b2byn4ep7a4f8" path="res://art/backgrounds/heaven_level_1.png" id="1_mqmd4"]
+[ext_resource type="Texture2D" uid="uid://buo1t76hvepgm" path="res://art/bullets/player/Orbital_0000.png" id="2_7q06m"]
+[ext_resource type="Texture2D" uid="uid://q1ieepxy76ny" path="res://art/bullets/player/Orbital_0004.png" id="3_5i8yg"]
+[ext_resource type="Texture2D" uid="uid://3my721x7h7ec" path="res://art/bullets/player/Orbital_0006.png" id="4_fk0xa"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cafwm"]
 animations = [{
@@ -15,12 +17,30 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_soyt3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_7q06m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5i8yg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_fk0xa")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [resource]
 script = ExtResource("1_eucd2")
 name = "Orbital Laser"
+description = "Default Upgrade Description"
 animation = SubResource("SpriteFrames_cafwm")
 rarity = 1.0
-icon = ExtResource("1_mqmd4")
+icon = SubResource("SpriteFrames_soyt3")
 size = Vector2(15, 80)
 colour = Color(1, 1, 1, 1)
 fire_on_hit = false
@@ -29,6 +49,7 @@ lifetime = 2.0
 bullet_range = 1000.0
 fire_delay = 15.0
 shot_speed = 0.0
+can_be_negative = false
 shot_acceleration = 0.0
 shot_spread = 0.261799
 shot_inaccuracy = 0.0981748

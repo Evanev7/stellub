@@ -1,8 +1,27 @@
-[gd_resource type="Resource" script_class="BulletResource" load_steps=4 format=3 uid="uid://8ogmebrr77xx"]
+[gd_resource type="Resource" script_class="BulletResource" load_steps=7 format=3 uid="uid://8ogmebrr77xx"]
 
 [ext_resource type="SpriteFrames" uid="uid://cbfq7bqkgh3ti" path="res://resources/bullets/player/player_bullet_spriteframes.tres" id="1_h814f"]
 [ext_resource type="Script" path="res://scripts/objects/bullet_resource.gd" id="1_rvk35"]
-[ext_resource type="Texture2D" uid="uid://dvrx1ijrwk8a2" path="res://art/backgrounds/hell_level_1.png" id="2_8qrgf"]
+[ext_resource type="Texture2D" uid="uid://ds74sncp2hj42" path="res://art/bullets/player/BlackHole_0000.png" id="2_qe82o"]
+[ext_resource type="Texture2D" uid="uid://bj5f01ak7rna2" path="res://art/bullets/player/BlackHole_0002.png" id="3_fckp8"]
+[ext_resource type="Texture2D" uid="uid://cns0avfuxo6b3" path="res://art/bullets/player/BlackHole_0004.png" id="4_xfnne"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_og6ia"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_qe82o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_fckp8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xfnne")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [resource]
 script = ExtResource("1_rvk35")
@@ -10,8 +29,8 @@ name = "Black Hole"
 description = "Giant and all consuming."
 animation = ExtResource("1_h814f")
 rarity = 1.0
-icon = ExtResource("2_8qrgf")
-size = Vector2(3, 3)
+icon = SubResource("SpriteFrames_og6ia")
+size = Vector2(5, 5)
 colour = Color(0.239216, 0, 0.243137, 1)
 fire_on_hit = false
 start_range = 0

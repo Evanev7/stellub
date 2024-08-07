@@ -1,15 +1,25 @@
 [gd_resource type="Resource" script_class="BulletResource" load_steps=7 format=3 uid="uid://b3v62pkd6hntd"]
 
 [ext_resource type="Script" path="res://scripts/objects/bullet_resource.gd" id="1_3xi33"]
-[ext_resource type="SpriteFrames" uid="uid://cbfq7bqkgh3ti" path="res://resources/bullets/player/player_bullet_spriteframes.tres" id="1_nan3p"]
-[ext_resource type="Texture2D" uid="uid://b6y7giikvs0aa" path="res://art/bullets/enemies/bullet_orange.png" id="2_keac3"]
+[ext_resource type="Texture2D" uid="uid://du2jqxky0h3op" path="res://art/bullets/player/Shotgun.png" id="2_ls4ep"]
 [ext_resource type="AudioStream" uid="uid://csd5resv0mgp0" path="res://sounds/shotgun.wav" id="4_dktcp"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_vl6o6"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_1y3om"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_keac3")
+"texture": ExtResource("2_ls4ep")
+}],
+"loop": true,
+"name": &"simple",
+"speed": 10.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r5miq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ls4ep")
 }],
 "loop": true,
 "name": &"default",
@@ -26,12 +36,12 @@ script = ExtResource("1_3xi33")
 name = "Shotgun"
 description = "A short-range but powerful spray
 of bullets."
-animation = ExtResource("1_nan3p")
+animation = SubResource("SpriteFrames_1y3om")
 sound = SubResource("AudioStreamRandomizer_rj5vv")
 rarity = 1.0
-icon = SubResource("SpriteFrames_vl6o6")
-size = Vector2(0.9, 0.9)
-colour = Color(1, 1, 0.470588, 1)
+icon = SubResource("SpriteFrames_r5miq")
+size = Vector2(1.2, 1.2)
+colour = Color(1, 1, 1, 1)
 fire_on_hit = false
 start_range = 0
 lifetime = 1.0

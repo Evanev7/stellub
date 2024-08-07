@@ -140,7 +140,7 @@ func transport(delta) -> void:
 				remove()
 				return
 			_cur_range = clamp(_cur_range + 500 * delta,0, data.start_range)
-			_angle += data.angular_velocity*delta
+			_angle += data.angular_velocity * delta
 			position = origin.position + (Vector2.RIGHT*_cur_range).rotated(_angle)
 			rotation = _angle + TAU/4 * (_cur_range/data.start_range)
 			_traveled_distance += data.start_range * data.angular_velocity * delta
