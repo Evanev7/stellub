@@ -132,10 +132,9 @@ func spawn_animation():
 func sway():
 	var tween: Tween = create_tween()
 	if floating:
-		sprite.position = Vector2(0, 0)
-		tween.tween_property(sprite, "position", sprite.position + Vector2(0, 2*variance), 0.4) \
+		tween.tween_property(sprite, "position", Vector2(0, 2*variance), 0.4) \
 				.set_ease(Tween.EASE_IN)
-		tween.tween_property(sprite, "position", sprite.position - Vector2(0, 2*variance), 0.4) \
+		tween.tween_property(sprite, "position", Vector2(0, -2*variance), 0.4) \
 				.set_ease(Tween.EASE_OUT)
 		tween.tween_callback(sway)
 	else:

@@ -2,8 +2,6 @@ extends Node
 
 @export var enemy_resource_list: Array[EnemyResource]
 
-#@export var enemy_handler: EnemyHandler
-
 @onready var HUD = $HUD
 
 @onready var player: CharacterBody2D = GameState.player
@@ -20,7 +18,6 @@ func _ready():
 
 # Start the timers we need, instantiate the HUD and get the player in the right spot.
 func start_game():
-	#enemy_handler.start_spawning()
 	
 	var tween: Tween = create_tween()
 	tween.parallel().tween_property(HUD.get_node("VignetteTop"), "self_modulate", Color(1, 1, 1, 0), 2).from(Color(100, 100, 100, 1))
@@ -63,8 +60,6 @@ func _on_player_hp_changed(hp):
 func _on_player_level_up(_current_level):
 	HUD.change_min_XP(player.level_threshold[player.current_level])
 	HUD.show_health(player.hp, player.hp_max)
-#	enemy_handler.spawn_timer.wait_time /= 1.02
-#	enemy_handler.overall_multiplier += player.current_level / float(600)
 	
 func heres_your_data(who):
 	if who.name.to_lower() == "bossinit":

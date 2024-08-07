@@ -15,6 +15,7 @@ func modify_bullet_resource(bullet: BulletResource) -> BulletResource:
 	bullet.shot_inaccuracy = 0
 	bullet.shot_spread = PI
 	bullet.angular_velocity = 1.5*PI
+	bullet.bullet_range += 500
 	return bullet
 
 

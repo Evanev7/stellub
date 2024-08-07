@@ -48,7 +48,6 @@ func _on_teleporter_body_entered(body):
 	if body == GameState.player:
 		tween = create_tween()
 		tween.parallel().tween_property(HUD.vignette, "self_modulate:a", 3, 3)
-		# zoom camera in?s
 		await tween.finished
 		if SoundManager.currently_playing_music:
 			SoundManager.fade_out(SoundManager.currently_playing_music)

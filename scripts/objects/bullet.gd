@@ -51,7 +51,7 @@ func set_data():
 	if data.vacuum and has_vacuum == false:
 		has_vacuum = true
 		vacuum = vacuum_scene.instantiate()
-		add_child(vacuum)
+		call_deferred("add_child", vacuum)
 		if origin == GameState.player:
 			vacuum.set_collision_mask(4)
 	
@@ -137,9 +137,9 @@ func transport(delta) -> void:
 			if not origin:
 				remove()
 				return
-			rotation += data.angular_velocity * delta
 			_cur_range = clamp(_cur_range + 500 * delta,0, data.start_range)
-			position = origin.position + (Vector2.RIGHT*_cur_range).rotated(rotation)
+			rotation += (data.angular_velocity + 500 * int(_cur_range < data.start_range) ) *delta
+			position = origin.position + (Vector2.RIGHT*_cur_range).rotated(rotation - TAU/4 * _cur_range/data.start_range)
 			_traveled_distance += data.start_range * data.angular_velocity * delta
 		
 		BulletResource.TRANSPORT_MODE.ROTATING_LINEAR_CENTRE:
