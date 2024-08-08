@@ -1,10 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://domdhv4tthmyh"]
+[gd_scene load_steps=14 format=3 uid="uid://domdhv4tthmyh"]
 
 [ext_resource type="Script" path="res://scripts/UI/shop_draggable.gd" id="1_hpu8w"]
 [ext_resource type="Shader" path="res://scenes/characters/enemy.gdshader" id="1_shuwh"]
 [ext_resource type="Texture2D" uid="uid://bmhkpmre2sxkk" path="res://art/UI/Shop/inventory_weapon_2.png" id="2_ciods"]
 [ext_resource type="Texture2D" uid="uid://btotkcy5ml231" path="res://art/UI/Shop/inventory_weapon_1.png" id="2_gm3x0"]
 [ext_resource type="Texture2D" uid="uid://irebp7qv1h21" path="res://art/UI/Shop/inventory_weapon_3.png" id="3_m800c"]
+[ext_resource type="Texture2D" uid="uid://1bs86knuodj1" path="res://art/UI/Shop/inventory_weapon_1_overlay.png" id="4_f3mm2"]
+[ext_resource type="Texture2D" uid="uid://dkyrmpe1abigp" path="res://art/UI/Shop/inventory_weapon_2_overlay.png" id="5_hoc5i"]
+[ext_resource type="Texture2D" uid="uid://cwjfcma7rggi6" path="res://art/UI/Shop/inventory_weapon_3_overlay.png" id="6_0d2cx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6j57c"]
 resource_local_to_scene = true
@@ -16,6 +19,15 @@ shader_parameter/Shift_Hue = null
 shader_parameter/hsl_offset = null
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_81a1y"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_6hh8e"]
+frames = 3
+speed_scale = 3.0
+frame_0/texture = ExtResource("4_f3mm2")
+frame_1/texture = ExtResource("5_hoc5i")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("6_0d2cx")
+frame_2/duration = 1.0
 
 [sub_resource type="Animation" id="Animation_ru23g"]
 resource_name = "new_animation"
@@ -39,13 +51,14 @@ _data = {
 "new_animation": SubResource("Animation_ru23g")
 }
 
-[node name="ShopDraggable" type="TextureButton"]
+[node name="ShopDraggable" type="TextureButton" node_paths=PackedStringArray("overlay")]
 material = SubResource("ShaderMaterial_6j57c")
 clip_contents = true
 custom_minimum_size = Vector2(200, 200)
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("1_hpu8w")
+overlay = NodePath("Overlay")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 z_index = -1
@@ -57,7 +70,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_ciods")
+texture = ExtResource("2_gm3x0")
+expand_mode = 1
+
+[node name="Overlay" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AnimatedTexture_6hh8e")
 expand_mode = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

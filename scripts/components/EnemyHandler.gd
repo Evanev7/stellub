@@ -67,7 +67,7 @@ func _on_spawn_timer_timeout():
 	spawn_enemy(resourceID)
 	
 	if GameState.current_area == GameState.CURRENT_AREA.HEAVEN:
-		spawn_timer.wait_time /= 1.008
+		spawn_timer.wait_time /= 1.003
 
 func freeze(time):
 	spawn_timer.stop()

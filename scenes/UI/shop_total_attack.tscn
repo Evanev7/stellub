@@ -5,76 +5,85 @@
 [ext_resource type="PackedScene" uid="uid://domdhv4tthmyh" path="res://scenes/UI/shop_draggable.tscn" id="4_pkhjl"]
 [ext_resource type="Shader" path="res://scenes/characters/enemy.gdshader" id="4_tv570"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_y7nt2"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ah1pk"]
 resource_local_to_scene = true
 shader = ExtResource("4_tv570")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
+shader_parameter/Shift_Hue = null
 shader_parameter/hsl_offset = null
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_mdxar"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dorw2"]
 resource_local_to_scene = true
 shader = ExtResource("4_tv570")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
+shader_parameter/Shift_Hue = null
 shader_parameter/hsl_offset = null
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ihnej"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a3rrl"]
 resource_local_to_scene = true
 shader = ExtResource("4_tv570")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
+shader_parameter/Shift_Hue = null
 shader_parameter/hsl_offset = null
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_cmhyu"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8edak"]
 resource_local_to_scene = true
 shader = ExtResource("4_tv570")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
+shader_parameter/Shift_Hue = null
 shader_parameter/hsl_offset = null
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hjyxq"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_njy6c"]
 resource_local_to_scene = true
 shader = ExtResource("4_tv570")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
+shader_parameter/Shift_Hue = null
 shader_parameter/hsl_offset = null
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_itkvk"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rjsho"]
 resource_local_to_scene = true
 shader = ExtResource("4_tv570")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
+shader_parameter/Shift_Hue = null
 shader_parameter/hsl_offset = null
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wmmpv"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8ae1m"]
 resource_local_to_scene = true
 shader = ExtResource("4_tv570")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
+shader_parameter/Shift_Hue = null
 shader_parameter/hsl_offset = null
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_k5k1c"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_si4ix"]
 resource_local_to_scene = true
 shader = ExtResource("4_tv570")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
+shader_parameter/Shift_Hue = null
 shader_parameter/hsl_offset = null
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_o2bi1"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w4drd"]
 resource_local_to_scene = true
 shader = ExtResource("4_tv570")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
+shader_parameter/Shift_Hue = null
 shader_parameter/hsl_offset = null
 
 [node name="TotalAttack" type="MarginContainer"]
@@ -109,7 +118,7 @@ layout_mode = 2
 
 [node name="Attack" parent="HBoxContainer/CenterContainer" instance=ExtResource("4_pkhjl")]
 unique_name_in_owner = true
-material = SubResource("ShaderMaterial_y7nt2")
+material = SubResource("ShaderMaterial_ah1pk")
 custom_minimum_size = Vector2(110, 110)
 layout_mode = 2
 slot_type = 0
@@ -122,7 +131,7 @@ layout_mode = 2
 
 [node name="Upgrade1" parent="HBoxContainer/HBoxContainer/CenterUpgrade1" instance=ExtResource("4_pkhjl")]
 unique_name_in_owner = true
-material = SubResource("ShaderMaterial_mdxar")
+material = SubResource("ShaderMaterial_dorw2")
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 
@@ -131,7 +140,7 @@ layout_mode = 2
 
 [node name="Upgrade2" parent="HBoxContainer/HBoxContainer/CenterUpgrade2" instance=ExtResource("4_pkhjl")]
 unique_name_in_owner = true
-material = SubResource("ShaderMaterial_ihnej")
+material = SubResource("ShaderMaterial_a3rrl")
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 
@@ -140,7 +149,7 @@ layout_mode = 2
 
 [node name="Upgrade3" parent="HBoxContainer/HBoxContainer/CenterUpgrade3" instance=ExtResource("4_pkhjl")]
 unique_name_in_owner = true
-material = SubResource("ShaderMaterial_cmhyu")
+material = SubResource("ShaderMaterial_8edak")
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 
@@ -149,7 +158,7 @@ layout_mode = 2
 
 [node name="Upgrade4" parent="HBoxContainer/HBoxContainer/CenterUpgrade4" instance=ExtResource("4_pkhjl")]
 unique_name_in_owner = true
-material = SubResource("ShaderMaterial_hjyxq")
+material = SubResource("ShaderMaterial_njy6c")
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 
@@ -158,7 +167,7 @@ layout_mode = 2
 
 [node name="Upgrade5" parent="HBoxContainer/HBoxContainer/CenterUpgrade5" instance=ExtResource("4_pkhjl")]
 unique_name_in_owner = true
-material = SubResource("ShaderMaterial_itkvk")
+material = SubResource("ShaderMaterial_rjsho")
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 
@@ -167,7 +176,7 @@ layout_mode = 2
 
 [node name="Upgrade6" parent="HBoxContainer/HBoxContainer/CenterUpgrade6" instance=ExtResource("4_pkhjl")]
 unique_name_in_owner = true
-material = SubResource("ShaderMaterial_wmmpv")
+material = SubResource("ShaderMaterial_8ae1m")
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 
@@ -176,7 +185,7 @@ layout_mode = 2
 
 [node name="Upgrade7" parent="HBoxContainer/HBoxContainer/CenterUpgrade7" instance=ExtResource("4_pkhjl")]
 unique_name_in_owner = true
-material = SubResource("ShaderMaterial_k5k1c")
+material = SubResource("ShaderMaterial_si4ix")
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 
@@ -185,7 +194,7 @@ layout_mode = 2
 
 [node name="Upgrade8" parent="HBoxContainer/HBoxContainer/CenterUpgrade8" instance=ExtResource("4_pkhjl")]
 unique_name_in_owner = true
-material = SubResource("ShaderMaterial_o2bi1")
+material = SubResource("ShaderMaterial_w4drd")
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 

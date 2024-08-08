@@ -6,7 +6,8 @@ signal gray_out_shop
 var button_texture = preload("res://art/UI/Shop/Button Empty.png")
 var attack_indicator = preload("res://art/UI/clicky finger.png")
 var upgrade_indicator = preload("res://art/UI/shooty finger.png")
-@onready var indicator_type = [attack_indicator, upgrade_indicator]
+@onready var indicator_type := [attack_indicator, upgrade_indicator]
+@export var overlay: TextureRect
 enum SLOT_TYPE {ATTACK, UPGRADE}
 
 static var hue_shift: float = 0.66
@@ -44,6 +45,8 @@ func refresh() -> void:
 		elif referenced_node is Attack:
 			slot_type = SLOT_TYPE.ATTACK
 			tooltip_text = referenced_node.description
+			if overlay != null:
+				overlay.visible = true
 		
 		if referenced_node.get("icon") != null:
 			if referenced_node.icon is CompressedTexture2D:

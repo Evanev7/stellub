@@ -3,6 +3,7 @@ extends Node2D
 @onready var options_menu: CanvasLayer = $options_menu 
 @onready var stat_screen: CanvasLayer = $stat_screen 
 @onready var loading_screen: TextureRect = $"Main Menu/LoadingScreen"
+@onready var credits_screen = $credits_screen
 
 var scene_load_status = 0
 var play_pressed: bool = false
@@ -44,6 +45,16 @@ func _on_stats_pressed():
 	SoundManager.select.play()
 	stat_screen.opened_via_main()
 	visible = false
+	
+func _on_credits_pressed():
+	SoundManager.select.play()
+	credits_screen.visible = true
+	visible = false
+
+func _on_credits_go_back():
+	SoundManager.select.play()
+	credits_screen.visible = false
+	visible = true
 	
 func _on_options_menu_go_back():
 	SoundManager.select.play()

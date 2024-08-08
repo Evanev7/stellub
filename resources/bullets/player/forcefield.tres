@@ -35,7 +35,7 @@ stream_0/weight = 1.0
 [resource]
 script = ExtResource("1_m3io2")
 name = "Forcefield"
-description = "Makes a close area around you
+description = "Makes an area around you
 dangerous to others."
 animation = SubResource("SpriteFrames_jmayk")
 sound = SubResource("AudioStreamRandomizer_n0eev")

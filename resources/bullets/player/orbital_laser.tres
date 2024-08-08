@@ -37,7 +37,7 @@ animations = [{
 [resource]
 script = ExtResource("1_eucd2")
 name = "Orbital Laser"
-description = "Default Upgrade Description"
+description = "Channel ethereal power from above to smite your enemies"
 animation = SubResource("SpriteFrames_cafwm")
 rarity = 1.0
 icon = SubResource("SpriteFrames_soyt3")

@@ -1,7 +1,6 @@
-[gd_resource type="Resource" script_class="EnemyResource" load_steps=6 format=3 uid="uid://djjvchiit0f0n"]
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=5 format=3 uid="uid://djjvchiit0f0n"]
 
 [ext_resource type="SpriteFrames" uid="uid://b1je1icd33jis" path="res://resources/enemy/angel_worshipper_spriteframes.tres" id="1_5hdc1"]
-[ext_resource type="Resource" uid="uid://djfx5xxn1qv5u" path="res://resources/bullets/angel_worshipper_bullet.tres" id="2_6537s"]
 [ext_resource type="Shape2D" uid="uid://7xwt0rsj0o65" path="res://resources/hitboxes/angel_worshipper_collisionbox.tres" id="2_elxt0"]
 [ext_resource type="Shape2D" uid="uid://cxbqrv8nixb3k" path="res://resources/hitboxes/angel_worshipper_hitbox.tres" id="3_7orl6"]
 [ext_resource type="Script" path="res://scripts/characters/enemy_resource.gd" id="5_7h6hr"]
@@ -25,4 +24,3 @@ HURTBOX = ExtResource("3_7orl6")
 COLLIDER = ExtResource("2_elxt0")
 UNIQUE_MULTIPLIER = 1.0
 OVERALL_MULTIPLIER = 1.0
-BULLET = ExtResource("2_6537s")

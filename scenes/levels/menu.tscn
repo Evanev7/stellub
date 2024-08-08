@@ -1,22 +1,36 @@
-[gd_scene load_steps=10 format=3 uid="uid://ck84xpcgl0pv7"]
+[gd_scene load_steps=16 format=3 uid="uid://ck84xpcgl0pv7"]
 
 [ext_resource type="Script" path="res://scripts/levels/menu.gd" id="1_we8ni"]
+[ext_resource type="Texture2D" uid="uid://cy7rcqst0p6lf" path="res://art/faustian_hell.png" id="2_2caip"]
 [ext_resource type="Texture2D" uid="uid://been84ue6lj66" path="res://art/UI/Pause_Menu/pause_menu_background.png" id="2_d3q7b"]
 [ext_resource type="SpriteFrames" uid="uid://buhg63ostt083" path="res://resources/objects/soul_pickup.tres" id="3_msxq3"]
 [ext_resource type="PackedScene" uid="uid://dpba06kf6bgkm" path="res://scenes/UI/options_menu.tscn" id="4_8vaed"]
 [ext_resource type="PackedScene" uid="uid://ctkuvh4bwmtm2" path="res://scenes/UI/stat_screen.tscn" id="5_61v17"]
-
-[sub_resource type="Gradient" id="Gradient_om6uu"]
-colors = PackedColorArray(0.0123347, 0.108402, 0.196759, 1, 0.264532, 2.52686e-07, 0.148133, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_0nni8"]
-gradient = SubResource("Gradient_om6uu")
+[ext_resource type="Texture2D" uid="uid://pi6nxes80imt" path="res://art/UI/Black_Background/black_bg_1.png" id="6_jy3lx"]
+[ext_resource type="Texture2D" uid="uid://dfl8ox20w3xn" path="res://art/UI/Black_Background/black_bg_2.png" id="7_talcg"]
+[ext_resource type="Texture2D" uid="uid://bsmsy5dhk3vsp" path="res://art/UI/Black_Background/black_bg_3.png" id="8_v18fu"]
+[ext_resource type="Texture2D" uid="uid://dq4qin2d2o6d3" path="res://art/UI/Black_Background/black_bg_4.png" id="9_g0oj2"]
+[ext_resource type="Texture2D" uid="uid://cywsutwou4bx4" path="res://art/UI/Black_Background/black_bg_5.png" id="10_e32b0"]
+[ext_resource type="Texture2D" uid="uid://cgt5paocwd1un" path="res://art/UI/Pause_Menu/pause_menu_bottom_button.png" id="11_bwecr"]
 
 [sub_resource type="Gradient" id="Gradient_8qpqv"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_hyj0y"]
 gradient = SubResource("Gradient_8qpqv")
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_fvujr"]
+frames = 5
+speed_scale = 10.0
+frame_0/texture = ExtResource("6_jy3lx")
+frame_1/texture = ExtResource("7_talcg")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("8_v18fu")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("9_g0oj2")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("10_e32b0")
+frame_4/duration = 1.0
 
 [node name="menu" type="Node2D"]
 script = ExtResource("1_we8ni")
@@ -29,37 +43,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture1D_0nni8")
-
-[node name="Title" type="TextureRect" parent="Main Menu/Background"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -325.5
-offset_top = 13.0
-offset_right = 325.5
-offset_bottom = 79.0
-grow_horizontal = 2
-
-[node name="TempTitle" type="Label" parent="Main Menu/Background/Title"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -151.5
-offset_top = -15.5
-offset_right = 151.5
-offset_bottom = 107.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 9
-theme_override_font_sizes/font_size = 135
-text = "FAUSTIAN HELL"
-horizontal_alignment = 1
-vertical_alignment = 1
+texture = ExtResource("2_2caip")
 
 [node name="Buttons" type="TextureRect" parent="Main Menu/Background"]
 layout_mode = 1
@@ -78,10 +62,16 @@ mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Main Menu/Background/Buttons"]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
+anchor_bottom = 0.5
+offset_left = 179.0
+offset_top = -337.5
+offset_right = 548.0
+offset_bottom = 337.5
+grow_horizontal = 0
 grow_vertical = 2
 mouse_filter = 2
 theme_override_constants/separation = 25
@@ -234,6 +224,170 @@ visible = false
 [node name="stat_screen" parent="." instance=ExtResource("5_61v17")]
 visible = false
 
+[node name="credits_screen" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Background" type="TextureRect" parent="credits_screen"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AnimatedTexture_fvujr")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="credits_screen/Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="credits_screen/Background/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 4
+
+[node name="Title" type="RichTextLabel" parent="credits_screen/Background/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 291.04)
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/normal_font_size = 260
+bbcode_enabled = true
+text = "[center]Credits[/center]"
+
+[node name="Heading" type="RichTextLabel" parent="credits_screen/Background/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100.915)
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/normal_font_size = 88
+bbcode_enabled = true
+text = "[center]Programming[/center]"
+
+[node name="Subheading" type="RichTextLabel" parent="credits_screen/Background/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 74.555)
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/normal_font_size = 63
+bbcode_enabled = true
+text = "[center]Turquoise[/center]"
+
+[node name="Subheading2" type="RichTextLabel" parent="credits_screen/Background/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 74.555)
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/normal_font_size = 63
+bbcode_enabled = true
+text = "[center]Evan  I  Caedesyth[/center]"
+
+[node name="Heading2" type="RichTextLabel" parent="credits_screen/Background/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100.915)
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/normal_font_size = 88
+bbcode_enabled = true
+text = "[center]ART[/center]"
+
+[node name="Subheading3" type="RichTextLabel" parent="credits_screen/Background/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 74.555)
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/normal_font_size = 63
+bbcode_enabled = true
+text = "[center]Karo[/center]"
+
+[node name="Subheading4" type="RichTextLabel" parent="credits_screen/Background/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 74.555)
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/normal_font_size = 63
+bbcode_enabled = true
+text = "[center]Kinga[/center]"
+
+[node name="Subheading5" type="RichTextLabel" parent="credits_screen/Background/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 74.555)
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/normal_font_size = 63
+bbcode_enabled = true
+text = "[center]Ashanna[/center]"
+
+[node name="Heading3" type="RichTextLabel" parent="credits_screen/Background/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100.915)
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/normal_font_size = 88
+bbcode_enabled = true
+text = "[center]ASSETS[/center]"
+
+[node name="Subheading8" type="RichTextLabel" parent="credits_screen/Background/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 84)
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/normal_font_size = 63
+bbcode_enabled = true
+text = "[center]Music for Heaven  I  Turquoise[/center]"
+
+[node name="Subheading7" type="RichTextLabel" parent="credits_screen/Background/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 84)
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/normal_font_size = 63
+bbcode_enabled = true
+text = "[center]Music for Hell  I  Amaksi[/center]"
+
+[node name="Subheading6" type="RichTextLabel" parent="credits_screen/Background/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 84)
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/normal_font_size = 63
+bbcode_enabled = true
+text = "[center]Some Sound Effects  I  Pixabay[/center]"
+
+[node name="Back" type="TextureButton" parent="credits_screen/Background"]
+layout_mode = 1
+offset_left = 40.0
+offset_top = 49.0
+offset_right = 328.0
+offset_bottom = 139.0
+texture_normal = ExtResource("11_bwecr")
+texture_hover = ExtResource("2_d3q7b")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Back" type="Label" parent="credits_screen/Background/Back"]
+layout_mode = 0
+offset_left = 87.0
+offset_top = 23.0
+offset_right = 204.0
+offset_bottom = 65.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 28
+text = "BACK
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="mouse_entered" from="Main Menu/Background/Buttons/VBoxContainer/Play" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="Main Menu/Background/Buttons/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="mouse_entered" from="Main Menu/Background/Buttons/VBoxContainer/Options" to="." method="_on_button_mouse_entered"]
@@ -241,5 +395,7 @@ visible = false
 [connection signal="mouse_entered" from="Main Menu/Background/Buttons/VBoxContainer/Stats" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="Main Menu/Background/Buttons/VBoxContainer/Stats" to="." method="_on_stats_pressed"]
 [connection signal="mouse_entered" from="Main Menu/Background/Buttons/VBoxContainer/Credits" to="." method="_on_button_mouse_entered"]
+[connection signal="pressed" from="Main Menu/Background/Buttons/VBoxContainer/Credits" to="." method="_on_credits_pressed"]
 [connection signal="toggled" from="Main Menu/Background/Buttons/FirstTime" to="." method="_on_first_time_toggled"]
 [connection signal="go_back" from="options_menu" to="." method="_on_options_menu_go_back"]
+[connection signal="pressed" from="credits_screen/Background/Back" to="." method="_on_credits_go_back"]
