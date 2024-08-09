@@ -2,6 +2,8 @@ extends Node2D
 
 signal shop_entered(shop)
 signal remove_target
+signal remove_from_hud(shop)
+signal add_to_hud(shop)
 
 @export var shop_resource_list: Array[ShopResource]
 
@@ -39,10 +41,11 @@ func _on_interact_area_entered(body):
 	if body == GameState.player:
 		shop_entered.emit(self)
 		shop_opened = true
-
-
+	
+	
 func remove():
 	shop_opened = false
+	remove_from_hud.emit(self)
 	$InteractArea/CollisionShape2D.disabled = true
 	SoundManager.merchant_dialogue.play()
 	var tween: Tween = create_tween()

@@ -12,6 +12,7 @@ class_name PlayerData
 @export var first_time: bool = true
 @export var first_time_shop: bool = true
 @export var first_time_heaven: bool = true
+@export var first_time_boss: bool = true
 @export var gamepad_enabled: bool = false
 @export var damage_numbers_enabled: bool = true
 @export var fps_enabled: bool = false

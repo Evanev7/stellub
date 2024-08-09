@@ -5,6 +5,7 @@ signal boss_health_changed(new_hp, max_hp)
 
 @export var finite_state_machine: Node
 @export var boss_upgrade: UpgradeResource
+@onready var flap = $flap
 
 func _ready():
 	super()
@@ -37,7 +38,7 @@ func _ready():
 	
 	
 	await get_tree().create_timer(1.5).timeout
-	boss_health_changed.emit(health, resource.MAX_HP*overall_multiplier*unique_multiplier)
+	
 	
 	await get_tree().create_timer(4.0).timeout
 	GameState.player.camera_2d.boss = self
@@ -45,7 +46,8 @@ func _ready():
 
 func _physics_process(_delta):
 	move_and_slide()
-
+	if !flap.playing:
+		flap.play()
 
 func hurt(area):
 	super(area)

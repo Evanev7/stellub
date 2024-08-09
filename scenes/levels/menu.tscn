@@ -340,7 +340,17 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 3
 theme_override_font_sizes/normal_font_size = 63
 bbcode_enabled = true
-text = "[center]Music for Heaven  I  Turquoise[/center]"
+text = "[center]Music  I  Turquoise[/center]"
+
+[node name="Subheading9" type="RichTextLabel" parent="credits_screen/Background/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 84)
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/normal_font_size = 63
+bbcode_enabled = true
+text = "[center]Final Music from Vampire Survivors (temp)[/center]"
 
 [node name="Subheading7" type="RichTextLabel" parent="credits_screen/Background/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 84)
@@ -350,7 +360,7 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 3
 theme_override_font_sizes/normal_font_size = 63
 bbcode_enabled = true
-text = "[center]Music for Hell  I  Amaksi[/center]"
+text = "[center]Some Drums  I  Amaksi[/center]"
 
 [node name="Subheading6" type="RichTextLabel" parent="credits_screen/Background/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 84)

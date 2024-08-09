@@ -122,7 +122,8 @@ func _drop_data(_pos: Vector2, data) -> void:
 
 func _make_custom_tooltip(for_text):
 	var tooltip = tooltip_scene.instantiate()
-	tooltip.get_node("MarginContainer/MarginContainer/Desc").text = for_text
+	tooltip.get_node("MarginContainer/MarginContainer/VBoxContainer/Desc").text = for_text
+	tooltip.get_node("MarginContainer/MarginContainer/VBoxContainer/Title").text = referenced_node.name
 	tooltip.get_node("MarginContainer/TypeMargin/TypeIndicator").texture = indicator_type[slot_type]
 	return tooltip
 

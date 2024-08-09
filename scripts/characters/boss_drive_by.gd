@@ -13,6 +13,7 @@ func enter():
 	target_player()
 	dash_count = 0
 	timer = 0
+	owner.attack_handler.stop()
 
 func target_player():
 	cur_player_direction = (GameState.player.position - owner.position).normalized()
@@ -21,12 +22,15 @@ func physics_process(delta):
 	timer = (timer + delta) 
 	if timer < dash_windup:
 		dash.play()
+		owner.attack_handler.start()
 		owner.velocity = Vector2(0,0)
 	elif timer > dash_windup + dash_duration:
 		timer -= dash_windup + dash_duration
 		target_player()
 		dash_count += 1
+		owner.attack_handler.start()
 		if dash_count >= num_dashes:
 			change_state.emit(self, "randomizer")
 	else:
 		owner.velocity = cur_player_direction * dash_speed
+		#owner.attack_handler.stop()

@@ -18,6 +18,8 @@ func check_interrupt() -> bool:
 func enter():
 	match cur_segment:
 		0.8, 0.4:
+			owner.attack_handler.start()
 			change_state.emit(self, "terrainattack")
 		0.6, 0.2:
+			owner.attack_handler.start()
 			change_state.emit(self, "anger")

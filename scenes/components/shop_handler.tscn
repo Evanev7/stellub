@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bxmk1htarl4v5"]
+[gd_scene load_steps=31 format=3 uid="uid://bxmk1htarl4v5"]
 
 [ext_resource type="Script" path="res://scripts/components/ShopHandler.gd" id="1_l28hg"]
 [ext_resource type="PackedScene" uid="uid://cp7lho542gmeu" path="res://scenes/objects/shop.tscn" id="2_y806g"]
@@ -28,10 +28,12 @@
 [ext_resource type="Resource" uid="uid://cyahshf3y21ai" path="res://resources/bullets/player/boomerang.tres" id="23_d1bm0"]
 [ext_resource type="Resource" uid="uid://dbjcoxnrv072q" path="res://upgrades/sniper.tres" id="23_p0r1p"]
 [ext_resource type="Resource" uid="uid://dgv7ken3yi2xv" path="res://resources/bullets/player/laser.tres" id="28_ng548"]
+[ext_resource type="Resource" uid="uid://cnwaewfb52b8q" path="res://resources/bullets/player/forcefield.tres" id="29_veht3"]
+[ext_resource type="Resource" uid="uid://cttw5mxt1sn0l" path="res://resources/bullets/player/orbital_laser.tres" id="30_s4aaa"]
 
 [node name="ShopHandler" type="Node"]
 script = ExtResource("1_l28hg")
 shop_scene = ExtResource("2_y806g")
 magic_circle_scene = ExtResource("3_ol2yg")
 default_shop_upgrades_list = Array[Resource("res://upgrades/upgrade_resource.gd")]([ExtResource("4_32vcq"), ExtResource("5_nwjlg"), ExtResource("6_3rqkh"), ExtResource("7_o83s8"), ExtResource("8_d875m"), ExtResource("9_uihkf"), ExtResource("10_0njyq"), ExtResource("11_ohx84"), ExtResource("12_qs6gk"), ExtResource("13_0u7qy"), ExtResource("14_501c7"), ExtResource("15_7yao1"), ExtResource("16_6qpab"), ExtResource("17_bcmbh"), ExtResource("18_cggga"), ExtResource("19_x06l4"), ExtResource("20_lnrub"), ExtResource("21_epu16"), ExtResource("22_xigg7"), ExtResource("23_p0r1p")])
-default_shop_weapons_list = Array[Resource("res://scripts/objects/bullet_resource.gd")]([ExtResource("20_6gwkq"), ExtResource("21_rb41q"), ExtResource("22_k2wjc"), ExtResource("23_d1bm0"), ExtResource("28_ng548")])
+default_shop_weapons_list = Array[Resource("res://scripts/objects/bullet_resource.gd")]([ExtResource("20_6gwkq"), ExtResource("21_rb41q"), ExtResource("22_k2wjc"), ExtResource("23_d1bm0"), ExtResource("28_ng548"), ExtResource("29_veht3"), ExtResource("30_s4aaa")])

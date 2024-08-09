@@ -35,6 +35,10 @@ var maximum_enemies: int = 800
 func _ready():
 	GameState.game_over.connect(stop_spawning)
 	
+	phase_up_timer.wait_time = 120
+	if GameState.current_area == GameState.CURRENT_AREA.HEAVEN:
+		phase_up_timer.wait_time /= 2
+	
 	for i in range(maximum_damage_numbers):
 		var new_damage_number = damage_scene.instantiate()
 		new_damage_number.on_remove.connect(

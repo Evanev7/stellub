@@ -31,6 +31,7 @@ window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/mode=3
 window/stretch/mode="canvas_items"
+window/per_pixel_transparency/allowed=true
 mouse_cursor/custom_image="res://art/UI/clicky finger.png"
 
 [gui]
@@ -180,6 +181,10 @@ debug_enter_final_boss={
 2d_physics/layer_2="Player Damage"
 2d_physics/layer_3="Enemy Damage"
 2d_physics/layer_4="Object Placement"
+
+[rendering]
+
+viewport/transparent_background=true
 
 [shader_globals]
 

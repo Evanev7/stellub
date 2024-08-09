@@ -11,6 +11,7 @@ var play_pressed: bool = false
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	GameState.current_area = GameState.CURRENT_AREA.MAIN_MENU
+	SoundManager.main_menu_song_play()
 
 	play_pressed = false
 	scene_load_status = 0
@@ -26,6 +27,7 @@ func _on_play_pressed():
 	SoundManager.important_select.play()
 	loading_screen.visible = true
 	play_pressed = true
+	SoundManager.fade_out(SoundManager.currently_playing_music)
 	load_game()
 
 func load_game():

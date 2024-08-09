@@ -31,6 +31,13 @@ func start_game():
 	HUD.show_health(player.hp, player.hp_max)
 	HUD.show_score(player.score, player.level_threshold[player.current_level])
 	
+	if GameState.player_data.first_time_boss:
+		await get_tree().create_timer(2.0).timeout
+		HUD.show_dialogue("Your...your runes, they...")
+		await get_tree().create_timer(4.0).timeout
+		HUD.show_dialogue("...they've been stolen?!")
+		GameState.player_data.first_time_boss = false
+	
 
 func restart_game():
 	if SoundManager.currently_playing_music:

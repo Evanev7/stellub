@@ -16,6 +16,10 @@ func physics_process(delta):
 	if pathfollow:
 		timer += delta
 		if timer >= duration:
+			SoundManager.boss_song_play()
+			owner.attack_handler.start()
+			owner.flap.volume_db = -6
+			owner.boss_health_changed.emit(owner.health, owner.resource.MAX_HP*owner.overall_multiplier*owner.unique_multiplier)
 			change_state.emit(self, "circleplayer")
 			return
 		pathfollow.progress_ratio = (timer/duration)**exponent

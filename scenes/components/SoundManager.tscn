@@ -1,14 +1,16 @@
-[gd_scene load_steps=13 format=3 uid="uid://cjiqgr0g1hxqn"]
+[gd_scene load_steps=15 format=3 uid="uid://cjiqgr0g1hxqn"]
 
 [ext_resource type="Script" path="res://scripts/components/SoundManager.gd" id="1_ml4oo"]
 [ext_resource type="AudioStream" uid="uid://3btfp30iocsf" path="res://sounds/heaven song start.ogg" id="2_wp84u"]
 [ext_resource type="AudioStream" uid="uid://uwjj5lippw8l" path="res://sounds/heaven song loop.ogg" id="3_rysif"]
 [ext_resource type="AudioStream" uid="uid://c5mrt3o8dm37o" path="res://sounds/spooky appear.wav" id="4_1imy8"]
-[ext_resource type="AudioStream" uid="uid://dcd83rjefcly5" path="res://sounds/hell song.mp3" id="4_kjolj"]
+[ext_resource type="AudioStream" uid="uid://b0wprxm2sn8fj" path="res://sounds/hell song.ogg" id="4_lvp5d"]
 [ext_resource type="AudioStream" uid="uid://cufdvsk6pjltn" path="res://sounds/select.wav" id="6_pqu0v"]
 [ext_resource type="AudioStream" uid="uid://uo0l2ichm5y" path="res://sounds/important_select.wav" id="6_s7b2f"]
 [ext_resource type="AudioStream" uid="uid://h0ifdujji4ks" path="res://sounds/hover.wav" id="8_1ql0m"]
 [ext_resource type="AudioStream" uid="uid://b5pq3dcruvcpf" path="res://sounds/place upgrade.wav" id="9_yefo8"]
+[ext_resource type="AudioStream" uid="uid://3e8rfypr6jgx" path="res://sounds/spooky.ogg" id="10_r6el4"]
+[ext_resource type="AudioStream" uid="uid://oo0ppxv30n67" path="res://sounds/Vampire Survivors Soundtrack - Unholy Invocation.ogg" id="11_tigl0"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4iujt"]
 streams_count = 1
@@ -46,8 +48,7 @@ volume_db = -6.0
 bus = &"Music"
 
 [node name="hell_song" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_kjolj")
-volume_db = -6.0
+stream = ExtResource("4_lvp5d")
 bus = &"Music"
 
 [node name="merchant_dialogue" type="AudioStreamPlayer" parent="."]
@@ -72,3 +73,11 @@ bus = &"SFX"
 stream = SubResource("AudioStreamRandomizer_qcg3o")
 max_polyphony = 3
 bus = &"SFX"
+
+[node name="main_menu" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_r6el4")
+bus = &"Music"
+
+[node name="boss_song" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_tigl0")
+bus = &"Music"

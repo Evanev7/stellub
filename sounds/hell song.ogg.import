@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b0wprxm2sn8fj"
+path="res://.godot/imported/hell song.ogg-e0575bc35ea1681d2ec6ad216a588398.oggvorbisstr"
+
+[deps]
+
+source_file="res://sounds/hell song.ogg"
+dest_files=["res://.godot/imported/hell song.ogg-e0575bc35ea1681d2ec6ad216a588398.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=108.0
+beat_count=148
+bar_beats=4

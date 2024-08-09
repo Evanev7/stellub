@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cc07v7n1u6cto"]
+[gd_scene load_steps=29 format=3 uid="uid://cc07v7n1u6cto"]
 
 [ext_resource type="PackedScene" uid="uid://dpjckt12ipcw2" path="res://scenes/characters/enemy.tscn" id="1_wvsit"]
 [ext_resource type="Script" path="res://scripts/characters/BossEnemy.gd" id="2_6g3sa"]
@@ -21,6 +21,7 @@
 [ext_resource type="Script" path="res://scripts/characters/boss_anger.gd" id="16_rlt60"]
 [ext_resource type="Texture2D" uid="uid://bpx5ybtqcrlpp" path="res://art/objects/shadow.png" id="17_26byg"]
 [ext_resource type="AudioStream" uid="uid://dk2wd6kayp41f" path="res://sounds/boss_dash.wav" id="21_5mjld"]
+[ext_resource type="AudioStream" uid="uid://wmbso7e0xho6" path="res://sounds/flapwings.wav" id="22_58j52"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3auua"]
 resource_local_to_scene = true
@@ -82,6 +83,12 @@ _bundled = {
 "version": 3
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_igrsw"]
+streams_count = 1
+random_pitch = 1.07
+stream_0/stream = ExtResource("22_58j52")
+stream_0/weight = 1.0
+
 [node name="BossEnemy" node_paths=PackedStringArray("finite_state_machine") instance=ExtResource("1_wvsit")]
 z_index = 1
 scale = Vector2(1, 1)
@@ -97,10 +104,17 @@ sprite_frames = ExtResource("5_pj87d")
 animation = &"boss"
 
 [node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(-2, 3.2857)
 shape = ExtResource("6_pa8sf")
+
+[node name="Hitbox" parent="." index="3"]
+position = Vector2(-2, -11)
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 shape = ExtResource("7_4refy")
+
+[node name="Hurtbox" parent="." index="4"]
+position = Vector2(-2, -11)
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 shape = ExtResource("7_4refy")
@@ -146,3 +160,9 @@ script = ExtResource("11_ahao5")
 
 [node name="HealthInterruptor" type="Node" parent="FiniteStateMachine" index="7"]
 script = ExtResource("16_ibn11")
+
+[node name="flap" type="AudioStreamPlayer" parent="." index="10"]
+stream = SubResource("AudioStreamRandomizer_igrsw")
+pitch_scale = 0.95
+max_polyphony = 3
+bus = &"SFX"

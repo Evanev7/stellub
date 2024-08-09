@@ -164,6 +164,7 @@ func on_node_added(node: Node) -> void:
 	var pp := node as PopupPanel
 	if pp and pp.theme_type_variation == "TooltipPanel":
 		pp.transparent_bg = true
+		pp.transparent = true
 		
 func _notification(what):
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:

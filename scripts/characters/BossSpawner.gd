@@ -41,6 +41,7 @@ func set_up(boss):
 	boss.hitbox_collisionshape.set_deferred("disabled", false)
 	boss.hurtbox_collisionshape.set_deferred("disabled", false)
 	boss.boss_health_changed.connect(owner.HUD.show_boss_health)
+	boss.attack_handler.stop()
 	
 	GameState.register_enemy.emit(boss)
 

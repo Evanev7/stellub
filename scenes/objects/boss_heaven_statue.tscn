@@ -59,6 +59,7 @@ scale = Vector2(0.82462, 0.82462)
 polygon = PackedVector2Array(310, 37, 74, -51, -194, 33, -196, 122, 60, 212, 311, 123)
 
 [node name="SpawnCollider" type="Area2D" parent="BossHeavenStatue"]
+visible = false
 collision_layer = 8
 collision_mask = 8
 
@@ -69,6 +70,7 @@ scale = Vector2(0.82462, 0.82462)
 polygon = PackedVector2Array(310, 37, 74, -51, -194, 33, -196, 122, 60, 212, 311, 123)
 
 [node name="BulletMask" type="Area2D" parent="BossHeavenStatue"]
+visible = false
 collision_layer = 7
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BossHeavenStatue/BulletMask"]
