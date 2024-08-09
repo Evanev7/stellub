@@ -5,6 +5,9 @@ extends CanvasLayer
 
 func _ready():
 	GameState.pause_menu = self
+	await get_tree().create_timer(2.1).timeout
+	
+	$Exit.disabled = false
 
 func _on_hud_open_pause_menu():
 	GameState.pause_game()

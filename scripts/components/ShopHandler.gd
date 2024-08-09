@@ -102,7 +102,6 @@ static func upgrade_from_res(upgrade_resource: UpgradeResource) -> Upgrade:
 	upgrade_node.icon = upgrade_resource.icon
 	upgrade_node.name = upgrade_resource.name
 	upgrade_node.description = generate_description(upgrade_resource)
-	# upgrade_node.title = upgrade_resource.name
 	return upgrade_node
 
 static func generate_description(upgrade_resource: UpgradeResource) -> String:
@@ -112,9 +111,6 @@ static func generate_description(upgrade_resource: UpgradeResource) -> String:
 	
 	for key in upgrade_resource.script_data.keys():
 		if key != "bullet":
-#			stats += "
-#			" + key + ": " + upgrade_resource.script_data[key] + "
-#			"
 			stats += "
 			" + key + ": " + upgrade_resource.script_data[key] + " "
 	description += stats

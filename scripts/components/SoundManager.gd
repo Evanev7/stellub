@@ -47,5 +47,8 @@ func boss_song_play():
 func fade_out(stream):
 	var tween: Tween = create_tween()
 	tween.tween_property(stream, "volume_db", -80, 2).from(linear_to_db(0.4))
-	tween.tween_callback(stream.stop)
+	tween.tween_callback(func():
+		stream.volume_db = 0 
+		stream.stop()
+		)
 	currently_playing_music = null

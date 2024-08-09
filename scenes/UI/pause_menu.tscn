@@ -132,6 +132,7 @@ offset_right = 276.0
 offset_bottom = 280.0
 grow_horizontal = 2
 grow_vertical = 2
+disabled = true
 texture_normal = ExtResource("7_83x8g")
 texture_hover = ExtResource("3_j02on")
 ignore_texture_size = true

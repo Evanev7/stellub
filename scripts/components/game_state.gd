@@ -132,6 +132,8 @@ func handle_debug_input(_event):
 	
 	if Input.is_action_just_pressed("debug_enter_final_boss"): # G
 		if current_area != CURRENT_AREA.BOSS:
+			if SoundManager.currently_playing_music:
+				SoundManager.currently_playing_music.stop()
 			load_area(CURRENT_AREA.BOSS)
 		else:
 			current_area_node.get_node("YSort/angel_boss").health -= 100

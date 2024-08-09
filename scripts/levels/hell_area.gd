@@ -19,9 +19,9 @@ func _ready():
 func start_game():
 	player.start()
 	player.position = $YSort/PlayerStart.position
-	SoundManager.hell_song_play()
 	$LogicComponents/ShopHandler.start()
 	$cursor_particles.emitting = true
+	SoundManager.hell_song_play()
 	
 	if GameState.player_data.first_time == false:
 		start_enemy_handler_and_magic_circles()
@@ -32,6 +32,7 @@ func start_game():
 #	HUD.reset_circle_counters()
 	HUD.show_health(player.hp, player.hp_max)
 	HUD.show_score(0, 10)
+	
 	
 func start_enemy_handler_and_magic_circles():
 	$LogicComponents/ShopHandler.spawn_magic_circles()
