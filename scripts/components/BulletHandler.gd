@@ -40,6 +40,10 @@ func _ready():
 func _on_fire_bullet(origin, bullet_type: BulletResource, fire_from: FireFrom):
 	play_audio(bullet_type.sound, fire_from.position)
 	
+	var layer_up: bool = false
+	if origin.name == "angel_boss":
+		layer_up = true
+		
 	if not (origin is WeakRef):
 		origin = weakref(origin)
 	
@@ -69,6 +73,7 @@ func _on_fire_bullet(origin, bullet_type: BulletResource, fire_from: FireFrom):
 		bullet.position = start_position
 		bullet.transport(0)
 		bullet.set_data()
+		bullet.z_index += 2 * int(layer_up)
 		
 		bullet.dead = false
 		bullet.set_physics_process(true)

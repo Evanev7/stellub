@@ -1,8 +1,9 @@
-[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://fu03tfdn82ry"]
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://fu03tfdn82ry"]
 
 [ext_resource type="Texture2D" uid="uid://nejpyofndmq8" path="res://art/enemies/angel_boss_1.png" id="1_e3yae"]
 [ext_resource type="Texture2D" uid="uid://c8bpgk3o1coov" path="res://art/enemies/angel_boss_2.png" id="2_nljkr"]
 [ext_resource type="Texture2D" uid="uid://catcqu1hxg882" path="res://art/enemies/angel_boss_3.png" id="3_fch41"]
+[ext_resource type="Texture2D" uid="uid://bk505o0tch8ry" path="res://art/enemies/angel_boss_hold.png" id="4_hswmw"]
 
 [resource]
 animations = [{
@@ -18,5 +19,13 @@ animations = [{
 }],
 "loop": true,
 "name": &"boss",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_hswmw")
+}],
+"loop": true,
+"name": &"hold",
 "speed": 5.0
 }]

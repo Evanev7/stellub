@@ -42,6 +42,7 @@ func physics_process(delta):
 		owner.position = last_pos * (1-percentage) + origin * percentage
 	else:
 		timer += delta
+		owner.sprite.animation = "hold"
 	
 		if fmod(timer, item_drop_gap) > fmod(timer + delta, item_drop_gap) and dropped < num_to_drop:
 			dropped += 1
@@ -53,4 +54,5 @@ func drop_a_brick_on_their_head():
 	object.drop(drop_height)
 	
 	if dropped >= num_to_drop:
+		owner.sprite.animation = "boss"
 		change_state.emit(self, "randomizer")
