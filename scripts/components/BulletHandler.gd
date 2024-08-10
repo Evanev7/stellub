@@ -41,8 +41,9 @@ func _on_fire_bullet(origin, bullet_type: BulletResource, fire_from: FireFrom):
 	play_audio(bullet_type.sound, fire_from.position)
 	
 	var layer_up: bool = false
-	if origin.name == "angel_boss":
-		layer_up = true
+	if "name" in origin:
+		if origin.name == "angel_boss":
+			layer_up = true
 		
 	if not (origin is WeakRef):
 		origin = weakref(origin)
