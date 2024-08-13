@@ -210,7 +210,6 @@ func get_pickup(area):
 			vacuum_pickup_sound.play()
 			GameState.player_data.total_pickups_collected += 1
 		Pickup.freeze_pickup:
-			get_tree().call_group("enemy", "freeze", float(area.value))
 			freeze_pickup_sound.play()
 			show_freeze.emit(float(area.value))
 			GameState.player_data.total_pickups_collected += 1

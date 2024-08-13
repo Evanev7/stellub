@@ -126,7 +126,7 @@ func _on_spawn_shop(position):
 	var shop = shop_scene.instantiate()
 	shop.show()
 	shop.position = position
-	ysorter.add_child(shop)
+	ysorter.call_deferred("add_child", shop)
 	shop.connect('shop_entered', _on_shop_entered)
 	shop.connect("remove_from_hud", objective_marker.delete_target)
 	objective_marker.add_target(shop)

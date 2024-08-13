@@ -4,7 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://3btfp30iocsf" path="res://sounds/heaven song start.ogg" id="2_wp84u"]
 [ext_resource type="AudioStream" uid="uid://uwjj5lippw8l" path="res://sounds/heaven song loop.ogg" id="3_rysif"]
 [ext_resource type="AudioStream" uid="uid://c5mrt3o8dm37o" path="res://sounds/spooky appear.wav" id="4_1imy8"]
-[ext_resource type="AudioStream" uid="uid://b0wprxm2sn8fj" path="res://sounds/hell song.ogg" id="4_lvp5d"]
+[ext_resource type="AudioStream" uid="uid://c2b0vixnfa58r" path="res://sounds/hell song.wav" id="4_o0ust"]
 [ext_resource type="AudioStream" uid="uid://cufdvsk6pjltn" path="res://sounds/select.wav" id="6_pqu0v"]
 [ext_resource type="AudioStream" uid="uid://uo0l2ichm5y" path="res://sounds/important_select.wav" id="6_s7b2f"]
 [ext_resource type="AudioStream" uid="uid://h0ifdujji4ks" path="res://sounds/hover.wav" id="8_1ql0m"]
@@ -48,7 +48,7 @@ volume_db = -6.0
 bus = &"Music"
 
 [node name="hell_song" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_lvp5d")
+stream = ExtResource("4_o0ust")
 bus = &"Music"
 
 [node name="merchant_dialogue" type="AudioStreamPlayer" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://qhl6r2tbil5t"]
+[gd_scene load_steps=33 format=3 uid="uid://qhl6r2tbil5t"]
 
 [ext_resource type="PackedScene" uid="uid://dilk21k2nncq2" path="res://scenes/levels/level_template.tscn" id="1_ttjsf"]
 [ext_resource type="PackedScene" uid="uid://dfrum4te4lpmr" path="res://scenes/objects/teleporter.tscn" id="2_8o713"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://ugulpxhu6v48" path="res://scenes/components/pickup_handler.tscn" id="3_be7sf"]
 [ext_resource type="Resource" uid="uid://dh8xipsw2bu5w" path="res://resources/enemy/demon_skull.tres" id="3_dr1lv"]
 [ext_resource type="Resource" uid="uid://doalqpgaptgxa" path="res://resources/enemy/demon_dog.tres" id="4_j7txi"]
-[ext_resource type="PackedScene" uid="uid://cjuw1uddg4foi" path="res://scenes/objects/pickup.tscn" id="4_rcjv7"]
 [ext_resource type="PackedScene" uid="uid://cnrpegq0voiht" path="res://scenes/components/enemy_handler.tscn" id="5_qh5by"]
 [ext_resource type="Resource" uid="uid://bqyg0clrpkdim" path="res://resources/enemy/demon_skeleton.tres" id="5_yiyg4"]
 [ext_resource type="Resource" uid="uid://djjvchiit0f0n" path="res://resources/enemy/angel_worshipper.tres" id="6_7qtbu"]
@@ -74,7 +73,6 @@ objects = Array[PackedScene]([ExtResource("14_kq46c"), ExtResource("15_oeqij"), 
 object_spawn_rate = Array[float]([0.3, 0.2, 0.5, 0.4, 0.3, 0.1])
 
 [node name="PickupHandler" parent="LogicComponents" index="2" node_paths=PackedStringArray("ysorter", "score_display") instance=ExtResource("3_be7sf")]
-pickup_scene = ExtResource("4_rcjv7")
 ysorter = NodePath("../../YSort")
 score_display = NodePath("../../HUD")
 
@@ -104,3 +102,5 @@ ysorter = NodePath("../../YSort")
 [connection signal="teleport_player" from="YSort/teleporter" to="." method="teleport_to_heaven_area"]
 [connection signal="start_enemy_and_magic" from="HUD" to="." method="start_enemy_handler_and_magic_circles"]
 [connection signal="restart_game" from="stat_screen" to="." method="on_restart_game"]
+[connection signal="spawn_shop_on_enemy" from="LogicComponents/EnemyHandler" to="LogicComponents/ShopHandler" method="_on_spawn_shop"]
+[connection signal="unfreeze_hud" from="LogicComponents/EnemyHandler" to="HUD" method="end_freeze"]

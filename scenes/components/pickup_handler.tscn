@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://ugulpxhu6v48"]
+[gd_scene load_steps=3 format=3 uid="uid://ugulpxhu6v48"]
 
 [ext_resource type="Script" path="res://scripts/components/PickupHandler.gd" id="1_w77vg"]
+[ext_resource type="PackedScene" uid="uid://cjuw1uddg4foi" path="res://scenes/objects/pickup.tscn" id="2_a25nl"]
 
 [node name="PickupHandler" type="Node"]
 script = ExtResource("1_w77vg")
+pickup_scene = ExtResource("2_a25nl")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

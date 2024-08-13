@@ -103,11 +103,14 @@ func show_score(number, max_number):
 	XP_Bar.max_value = int(max_number)
 	XP_Bar.value = int(number)
 
-func freeze(time):
+func freeze(_time):
 	var tween: Tween = create_tween()
 	tween.tween_property($VignetteTop, "self_modulate", Color(0, 15, 22, 0.3), 0.2)
-	tween.tween_property($VignetteTop, "self_modulate", Color(0, 15, 22, 0), time - 0.3)
-	$VignetteTop.self_modulate = Color(1, 1, 1, 0)
+	
+func end_freeze():
+	var tween: Tween = create_tween()
+	tween.tween_property($VignetteTop, "self_modulate", Color(0, 15, 22, 0), 0.8)
+	tween.tween_callback(func(): $VignetteTop.self_modulate = Color(1, 1, 1, 0))
 
 func change_min_XP(number):
 	XP_Bar.min_value = int(number)

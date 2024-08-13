@@ -41,6 +41,9 @@ damage_scene = ExtResource("9_rom4q")
 [node name="PhaseUpTimer" type="Timer" parent="."]
 wait_time = 120.0
 
+[node name="FreezeTimer" type="Timer" parent="."]
+one_shot = true
+
 [node name="DamageSound" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_f3g71")
 max_polyphony = 40
@@ -55,3 +58,4 @@ max_polyphony = 40
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="PhaseUpTimer" to="." method="_on_phase_up_timer_timeout"]
+[connection signal="timeout" from="FreezeTimer" to="." method="end_freeze"]

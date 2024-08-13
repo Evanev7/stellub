@@ -3,9 +3,12 @@ class_name EnemyHandler
 
 signal register_enemy(enemy)
 signal spawn_shop_on_enemy(pos)
+signal unfreeze_hud()
 
 @onready var spawn_timer: Timer = $SpawnTimer
 @onready var phase_up_timer: Timer = $PhaseUpTimer
+@onready var freeze_timer = $FreezeTimer
+@onready var enemies_frozen: bool = false
 @onready var damage_sound: AudioStreamPlayer2D = $DamageSound
 @onready var death_sound: AudioStreamPlayer2D = $DeathSound
 @onready var damage_number_spawner = $DamageNumberSpawner
@@ -35,7 +38,7 @@ var maximum_enemies: int = 800
 func _ready():
 	GameState.game_over.connect(stop_spawning)
 	
-	phase_up_timer.wait_time = 120
+	phase_up_timer.wait_time = 120 # 120
 	if GameState.current_area == GameState.CURRENT_AREA.HEAVEN:
 		phase_up_timer.wait_time /= 2
 	
@@ -73,11 +76,21 @@ func _on_spawn_timer_timeout():
 	if GameState.current_area == GameState.CURRENT_AREA.HEAVEN:
 		spawn_timer.wait_time /= 1.003
 
-func freeze(time):
-	spawn_timer.stop()
-	await get_tree().create_timer(time).timeout
-	spawn_timer.start()
+func freeze(_value):
+	if freeze_timer.time_left > 0:
+		freeze_timer.wait_time = freeze_timer.time_left + _value
+		freeze_timer.start()
+	else:
+		freeze_timer.wait_time = _value
+		freeze_timer.start()
+	enemies_frozen = true
+	get_tree().call_group("enemy", "freeze")
 
+func end_freeze():
+	enemies_frozen = false
+	unfreeze_hud.emit()
+	get_tree().call_group("enemy", "end_freeze")
+	
 func spawn_enemy(resourceID, centre = GameState.player.position, spawn_range = safe_range, unique_multiplier: float = 1, overall_multi = overall_multiplier):
 	if GameState.num_enemies < maximum_enemies:
 		spawn_queue.push_front([resourceID, centre, spawn_range, unique_multiplier, overall_multi])
@@ -107,6 +120,9 @@ func really_spawn_enemy(resourceID, centre = GameState.player.position, spawn_ra
 	if phase_limit > 5:
 		enemy.sprite.material.set_shader_parameter("Shift_Hue", randf_range(-1.0, 1.0))
 	enemy.set_data()
+	if enemies_frozen:
+		enemy.freeze()
+		enemy.sprite.stop()
 	enemy.collider.set_deferred("disabled", false)
 	enemy.hitbox_collisionshape.set_deferred("disabled", false)
 	enemy.hurtbox_collisionshape.set_deferred("disabled", false)

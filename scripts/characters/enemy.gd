@@ -39,10 +39,12 @@ var fire_on_hit: bool = false
 
 @onready var damage_number_location = $Damage
 @onready var damage_numbers = $DamageNumbers
+@onready var freeze_timer = $FreezeTimer
+
 
 static var damage_scene_pool: Array[DamageNumber] = []
+var frozen: bool
 var movement_enabled: bool = true
-var frozen: bool = false
 var enemy_limit = 200
 
 var contact_areas: Array = []
@@ -131,6 +133,9 @@ func spawn_animation():
 # Function for easing sprites between two positions while 'idle'. I.e. enemy rotation.
 func sway():
 	var tween: Tween = create_tween()
+	if frozen:
+		tween.kill()
+		return
 	if floating:
 		tween.tween_property(sprite, "position", Vector2(0, 2*variance), 0.4) \
 				.set_ease(Tween.EASE_IN)
@@ -153,15 +158,15 @@ func _physics_process(_delta):
 	if player_direction.length() > (teleport_back_to_player_range / (GameState.current_area + 1)):
 		var relative_spawn_position = Vector2(800,0).rotated(randf_range(0, 2*PI))
 		position = GameState.player.position + relative_spawn_position
-	
-	if player_direction.x < 0:
-		sprite.flip_h = (true != flipped)
-	else:
-		sprite.flip_h = (false != flipped)
+
 	velocity = player_direction.normalized() * speed
 	
 	if GameState.num_enemies < enemy_limit and not frozen:
-		movement_enabled = true
+		movement_enabled = true	
+		if player_direction.x < 0:
+			sprite.flip_h = (true != flipped)
+		else:
+			sprite.flip_h = (false != flipped)
 		
 	if movement_enabled:
 		move_and_slide()
@@ -173,15 +178,19 @@ func _physics_process(_delta):
 func change_colour():
 	$AnimatedSprite2D.flip_v = true
 	
-func freeze(time: float):
+func freeze():
 	movement_enabled = false
 	frozen = true
 	sprite.stop()
-	await get_tree().create_timer(time).timeout
+	hitbox.monitoring = false
+
+func end_freeze():
 	movement_enabled = true
 	frozen = false
 	sprite.play()
-	
+	hitbox.monitoring = true
+	sway()
+
 # Called by _on_hurtbox_area_entered - will only be called if the Area2D is in the bullet group
 # Change the enemies health and tween to shrink the enemy briefly.
 func hurt(area):
@@ -206,7 +215,7 @@ func hurt(area):
 		dead = true
 		play_death_sound.emit(global_position)
 		
-		if GameState.current_area == 1 and unique_multiplier > 1:
+		if GameState.current_area == GameState.CURRENT_AREA.HEAVEN and unique_multiplier > 1:
 			spawn_shop.emit(global_position)
 			
 		GameState.enemies_killed += 1

@@ -65,6 +65,8 @@ func _on_options_menu_go_back():
 
 func _on_first_time_toggled(button_pressed):
 	GameState.player_data.first_time = button_pressed
+	GameState.player_data.first_time_heaven = button_pressed
+	GameState.player_data.first_time_boss = button_pressed
 	GameState.player_data.first_time_shop = button_pressed
 
 

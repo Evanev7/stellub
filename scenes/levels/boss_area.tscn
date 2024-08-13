@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dg6c8see5s58b"]
+[gd_scene load_steps=10 format=3 uid="uid://dg6c8see5s58b"]
 
 [ext_resource type="PackedScene" uid="uid://dilk21k2nncq2" path="res://scenes/levels/level_template.tscn" id="1_god74"]
 [ext_resource type="Script" path="res://scripts/levels/boss_area.gd" id="2_58lyh"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://cnrpegq0voiht" path="res://scenes/components/enemy_handler.tscn" id="5_4wr2n"]
 [ext_resource type="Resource" uid="uid://p0ytgmgbgkky" path="res://resources/enemy/boss.tres" id="6_j8u0c"]
 [ext_resource type="PackedScene" uid="uid://ugulpxhu6v48" path="res://scenes/components/pickup_handler.tscn" id="6_yvi7m"]
-[ext_resource type="PackedScene" uid="uid://cjuw1uddg4foi" path="res://scenes/objects/pickup.tscn" id="7_32dji"]
 
 [sub_resource type="Curve2D" id="Curve2D_i2xvs"]
 _data = {
@@ -53,10 +52,7 @@ position = Vector2(927, -3)
 enemy_resource_list = Array[Resource("res://scripts/characters/enemy_resource.gd")]([ExtResource("6_j8u0c")])
 enemy_ysort = NodePath("../../YSort")
 
-[node name="PickupHandler" parent="LogicComponents" index="2" node_paths=PackedStringArray("ysorter", "score_display") instance=ExtResource("6_yvi7m")]
-pickup_scene = ExtResource("7_32dji")
-ysorter = NodePath("../../YSort")
-score_display = NodePath("../../HUD")
+[node name="PickupHandler" parent="LogicComponents" index="2" instance=ExtResource("6_yvi7m")]
 
 [node name="IntroPath" type="Path2D" parent="." index="8"]
 curve = SubResource("Curve2D_i2xvs")

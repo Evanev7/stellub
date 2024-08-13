@@ -9,10 +9,11 @@
 script = ExtResource("5_x8v1y")
 NAME = "angel_warrior"
 ANIMATION = ExtResource("1_d4qhg")
+QUANTITY = 10
 FLIP_H = true
 FLOATING = false
 SPEED = 60.0
-MAX_HP = 50.0
+MAX_HP = 35.0
 DAMAGE = 8.0
 VALUE = 8.0
 STRENGTH = 1.5

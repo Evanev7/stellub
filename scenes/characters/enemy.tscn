@@ -92,6 +92,9 @@ vertical_alignment = 1
 
 [node name="DamageNumbers" type="Node2D" parent="."]
 
+[node name="FreezeTimer" type="Timer" parent="."]
+
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_exited" from="Hitbox" to="." method="_on_hitbox_area_exited"]
 [connection signal="area_entered" from="Hurtbox" to="." method="hurt"]
+[connection signal="timeout" from="FreezeTimer" to="." method="end_freeze"]
