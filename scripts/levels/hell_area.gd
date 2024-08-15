@@ -24,12 +24,13 @@ func start_game():
 	SoundManager.hell_song_play()
 	
 	if GameState.player_data.first_time == false:
-		start_enemy_handler_and_magic_circles()
+		start_enemy_handler_and_magic_circles() 
 	else:
 		HUD.tutorial.first_dialogue()
 
 #	See HUD code	
 #	HUD.reset_circle_counters()
+	HUD.change_min_XP(0)
 	HUD.show_health(player.hp, player.hp_max)
 	HUD.show_score(0, 10)
 	

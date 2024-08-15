@@ -32,8 +32,8 @@ stream_0/weight = 1.0
 
 [resource]
 script = ExtResource("1_dmiyo")
-name = "Normal Bullet"
-description = "Default Upgrade Description"
+name = "Soul Bullet"
+description = "A manifestation of your soul energy. After many centuries of waiting, it is almost powerful enough to carry you through the tree."
 animation = ExtResource("1_eteat")
 sound = SubResource("AudioStreamRandomizer_5xvx1")
 rarity = 1.0

@@ -28,6 +28,8 @@ func _ready():
 	add_to_group("draggable")
 
 func refresh() -> void:
+	if overlay != null:
+		overlay.visible = false
 	for node in shop_nodes:
 		if not node:
 			shop_nodes.erase(node)
@@ -122,10 +124,11 @@ func _drop_data(_pos: Vector2, data) -> void:
 
 func _make_custom_tooltip(for_text):
 	var tooltip = tooltip_scene.instantiate()
-	tooltip.get_node("MarginContainer/MarginContainer/VBoxContainer/Desc").text = for_text
-	tooltip.get_node("MarginContainer/MarginContainer/VBoxContainer/Title").text = referenced_node.name
-	tooltip.get_node("MarginContainer/TypeMargin/TypeIndicator").texture = indicator_type[slot_type]
-	return tooltip
+	if referenced_node != null:
+		tooltip.get_node("MarginContainer/MarginContainer/VBoxContainer/Desc").text = for_text
+		tooltip.get_node("MarginContainer/MarginContainer/VBoxContainer/Title").text = referenced_node.name
+		tooltip.get_node("MarginContainer/TypeMargin/TypeIndicator").texture = indicator_type[slot_type]
+		return tooltip
 
 static func shop_freed():
 	shop_item_taken = false

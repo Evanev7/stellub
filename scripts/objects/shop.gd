@@ -45,9 +45,13 @@ func _on_interact_area_entered(body):
 	
 func remove():
 	shop_opened = false
-	remove_from_hud.emit(self)
+	remove_objective_marker()
 	$InteractArea/CollisionShape2D.disabled = true
 	SoundManager.merchant_dialogue.play()
 	var tween: Tween = create_tween()
 	tween.tween_property(sprite.material, "shader_parameter/value", 0.0, 2).from(1.0)
 	tween.tween_callback(queue_free)
+
+func remove_objective_marker():
+	remove_from_hud.emit(self)
+	

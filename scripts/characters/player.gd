@@ -279,6 +279,7 @@ func player_level_up():
 	attack_handler.upgrade_all_attacks(stat_upgrade)
 
 func upgrade_attack(upgrade, weapon_number):
+	print(upgrade)
 	attack_handler.get_child(weapon_number).add_child(upgrade)
 	attack_handler.get_child(weapon_number).refresh_bullet_resource()
 

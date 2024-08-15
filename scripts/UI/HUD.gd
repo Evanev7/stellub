@@ -98,8 +98,6 @@ func show_boss_health(number, max_number):
 
 
 func show_score(number, max_number):
-	if number >= max_number:
-		XP_Bar.min_value = int(number)
 	XP_Bar.max_value = int(max_number)
 	XP_Bar.value = int(number)
 
