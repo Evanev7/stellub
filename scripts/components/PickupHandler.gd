@@ -14,16 +14,19 @@ var xp_pools
 var spawn_queue: Array = []
 
 func _ready():
+	add_to_group("pickup_handler")
 	GameState.register_enemy.connect(attach_enemy)
 	reward_pool = Pool.new()
 	reward_pool.populate([
-		[Pickup.hp_pickup, 2], 
-		[Pickup.vacuum_pickup, 1], 
+		[Pickup.hp_pickup, 2],
+		[Pickup.vacuum_pickup, 1],
 		[Pickup.freeze_pickup, 1],
 		[Pickup.fire_pickup, 1],
 		[null, 120] # 120
 		])
 
+func cleanup():
+	spawn_queue = []
 
 func _physics_process(_delta):
 	if spawn_queue:
@@ -37,11 +40,11 @@ func attach_enemy(enemy):
 func _on_enemy_killed(enemy):
 	var value_remaining = enemy.value
 	while value_remaining > 0:
-		
+
 		var value = maths(value_remaining, enemy.value)
 		spawn_pickup(enemy.position, Pickup.xp_pickup, value)
 		value_remaining -= value
-	
+
 	var sample = reward_pool.sample()
 	if sample:
 		spawn_pickup(enemy.position, sample)
@@ -55,8 +58,8 @@ func really_spawn_pickup(pos, type, value = 1):
 	pickup.pickup_type = type
 	pickup.value = value
 
-	ysorter.call_deferred("add_child", pickup)
-	
+	ysorter.add_child(pickup)
+
 func _on_pickup_credit_player(value):
 	var player = GameState.player
 	player.gain_score(value)

@@ -43,13 +43,13 @@ func refresh() -> void:
 		if referenced_node is Upgrade:
 			slot_type = SLOT_TYPE.UPGRADE
 			tooltip_text = referenced_node.description
-		
+
 		elif referenced_node is Attack:
 			slot_type = SLOT_TYPE.ATTACK
 			tooltip_text = referenced_node.description
 			if overlay != null:
 				overlay.visible = true
-		
+
 		if referenced_node.get("icon") != null:
 			if referenced_node.icon is CompressedTexture2D:
 				texture_normal = referenced_node.icon
@@ -62,13 +62,13 @@ func refresh() -> void:
 					texture_normal.set_frame_texture(frame, referenced_node.icon.get_frame_texture("default", frame))
 		else:
 			texture_normal = null
-		
+
 	else:
 		texture_normal = null
-	
+
 	if not material:
 		return
-	
+
 	match slot_type:
 		SLOT_TYPE.ATTACK:
 			material.set_shader_parameter("hsl_offset", [hue_shift,0,0])
@@ -82,24 +82,24 @@ func _get_drag_data(_pos: Vector2) -> Variant:
 		"slot_type" = slot_type,
 		"is_shop" = is_shop
 	}
-	
+
 	SoundManager.select.play()
-	
+
 	if not referenced_node:
 		return {}
 	if shop_item_taken and is_shop:
 		return {}
-	
+
 	var drag_preview: Sprite2D = drag_preview_scene.instantiate()
 	drag_preview.texture = texture_normal
 	drag_preview.apply_scale(Vector2(64.0/texture_normal.get_width(),64.0/texture_normal.get_height()))
 	drag_preview.set_rotation(0.2)
 	owner.add_child(drag_preview)
-	
+
 	return data
 
 
-func _can_drop_data(_pos: Vector2, incoming_data) -> bool: 
+func _can_drop_data(_pos: Vector2, incoming_data) -> bool:
 	if incoming_data == {}:
 		return false
 	if incoming_data["referenced_node"] == null:
@@ -117,7 +117,7 @@ func _drop_data(_pos: Vector2, data) -> void:
 	if data["is_shop"]:
 		shop_item_taken = true
 		gray_out_shop.emit()
-	
+
 	SoundManager.place_upgrade.play()
 	refresh()
 	data["origin_node"].refresh()

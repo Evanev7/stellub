@@ -1,12 +1,12 @@
 extends CanvasLayer
 
 @export var main_menu_scene: PackedScene
-@onready var options_menu: CanvasLayer = $options_menu 
+@onready var options_menu: CanvasLayer = $options_menu
 
 func _ready():
 	GameState.pause_menu = self
 	await get_tree().create_timer(2.1).timeout
-	
+
 	$Exit.disabled = false
 
 func _on_hud_open_pause_menu():
@@ -22,7 +22,7 @@ func _on_options_pressed():
 	SoundManager.select.play()
 	options_menu.visible = true
 	visible = false
-	
+
 func _on_exit_pressed():
 	SoundManager.select.play()
 	GameState.unpause_game()

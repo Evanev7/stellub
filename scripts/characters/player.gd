@@ -50,6 +50,12 @@ var invuln: bool = false
 var dead: bool = false
 var current_animation: String
 
+const scaling_factors = {
+	0: 1.5,
+	1: 1.1,
+	2: 0.9,
+	5: 1.1
+}
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GameState.player = self
@@ -68,36 +74,36 @@ func _physics_process(_delta):
 		var movement: Vector2
 		direction.x = Input.get_action_strength("move_cursor_right") - Input.get_action_strength("move_cursor_left")
 		direction.y = Input.get_action_strength("move_cursor_down") - Input.get_action_strength("move_cursor_up")
-		
+
 		if abs(direction.x) == 1 and abs(direction.y) == 1:
 			direction = direction.normalized()
 
 		movement = 800.0 * direction * _delta
 		get_viewport().warp_mouse(get_viewport().get_mouse_position() + movement)
-	
-	
+
+
 	velocity = Input.get_vector("move_left", "move_right","move_up", "move_down")
-	
+
 	# Handle user input
 	if Input.is_action_just_pressed("walk"):
 		walking = true
 	if Input.is_action_just_released("walk"):
 		walking = false
-	
+
 	if velocity.length() > 0:
 		if walking:
 			velocity = velocity.normalized() * speed/2
 		else:
 			velocity = velocity.normalized() * speed
-		
+
 		# Flip the player sprite depending on the direction we're facing
 		if velocity.x < 0 and not sprite.flip_h:
 			sprite.flip_h = true
 		elif velocity.x > 0 and sprite.flip_h:
 			sprite.flip_h = false
-		
+
 		move_and_slide()
-		
+
 		# Walk animation
 		sprite.play(current_animation)
 	else:
@@ -107,7 +113,7 @@ func _physics_process(_delta):
 		blood_particles.emitting = true
 	else:
 		blood_particles.emitting = false
-		
+
 	var screen_coords = get_viewport_transform() * global_position
 	var normalized_screen_coords = screen_coords / Vector2(DisplayServer.screen_get_size())
 	RenderingServer.global_shader_parameter_set("player_position", normalized_screen_coords)
@@ -139,9 +145,9 @@ func set_default_stats():
 	scale = default_scale
 	pickup_range.scale = default_pickup_range
 	rotation = 0
-	
+
 	GameState.reset_statistics()
-	
+
 	## Weapon Stats
 	for attack in attack_handler.get_children():
 		attack.queue_free()
@@ -167,7 +173,7 @@ func hurt(body):
 		sprite.material.set_shader_parameter("line_color", Vector4(1, 0, 0, 1))
 		sprite.material.set_shader_parameter("line_thickness", 5)
 		sprite.material.set_shader_parameter("value", randf_range(0.4, 0.6))
-		
+
 	if hp <= 0 and not dead:
 		dead = true
 		GameState.player_data.total_deaths += 1
@@ -196,7 +202,7 @@ func get_pickup(area):
 	if area.collected:
 		return
 	area.collected = true
-	
+
 	match area.pickup_type:
 		Pickup.xp_pickup:
 			credit_player.emit(area.value)
@@ -231,7 +237,7 @@ func gain_score(value):
 	sprite.material.set_shader_parameter("line_color", Vector4(1, 1, 1, 1))
 	tween.tween_property(sprite.material, "shader_parameter/line_thickness", 0, 0.2).from(10.0)
 	tween.tween_callback(func(): sprite.material.set_shader_parameter("line_color", Vector4(0, 0, 0, 0)))
-	
+
 	while score >= level_threshold[current_level]:
 		level_up.emit(current_level)
 		player_level_up()
@@ -246,15 +252,15 @@ func gain_score(value):
 		elif level_threshold[current_level] > 200:
 			level_threshold.append(level_threshold[current_level] + 50)
 		elif level_threshold[current_level] > 49:
-			level_threshold.append(level_threshold[current_level] + 30) 
+			level_threshold.append(level_threshold[current_level] + 30)
 
 func heal(value):
 	hp = clamp(hp + value, 0, hp_max)
 	hp_changed.emit(hp, hp_max)
-	
+
 func activate_xp_vacuum():
 	get_tree().call_group("xp_pickup", "activate")
-	
+
 func free_fire_upgrade(value, present: bool = false):
 	if present:
 		$FireTimer.wait_time = $FireTimer.time_left + value
@@ -275,7 +281,7 @@ func player_level_up():
 	speed *= 1.005
 	pickup_range.scale *= 1.03
 	level_up_sound.play()
-	
+
 	attack_handler.upgrade_all_attacks(stat_upgrade)
 
 func upgrade_attack(upgrade, weapon_number):
@@ -290,14 +296,7 @@ func evolve(val = -1):
 	else:
 		current_evolution = max(val, current_evolution)
 	current_animation = "level " + str(clamp(current_evolution, 0, 6))
-	
-	var scaling_factors = {
-		0: 1.5,
-		1: 1.1,
-		2: 0.9,
-		5: 1.1
-	}
-	
+
 	var total_scale := default_scale
 	for i in range(current_evolution):
 		if i in scaling_factors.keys():

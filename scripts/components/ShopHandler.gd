@@ -27,11 +27,11 @@ func start():
 	shop_upgrades_list = default_shop_upgrades_list.duplicate()
 	shop_weapons_list = default_shop_weapons_list.duplicate()
 	teleporter.start()
-	
-	
+
+
 	upgrade_pool = Pool.new()
 	weapon_pool = Pool.new()
-	
+
 	var upgrades = []
 	for upgrade in shop_upgrades_list:
 		upgrades.append([upgrade, upgrade.quantity])
@@ -74,7 +74,7 @@ func spawn_magic_circles():
 
 func _on_shop_entered(shop_attached_to):
 	open_shop(shop_attached_to)
-	
+
 	if GameState.player_data.first_time_shop:
 		shop_node.first_time_dialogue()
 
@@ -86,12 +86,12 @@ func attack_from_res(bullet: BulletResource) -> Attack:
 	attack.aim_mode = Attack.AIM_MODE.TARGETED
 	attack.icon = bullet.icon
 	attack.description = bullet.description
-	
+
 	for i in range(GameState.player.current_level):
 		var upgrade_node: Upgrade = GameState.player.stat_upgrade.upgrade_script.new()
 		upgrade_node.script_data = GameState.player.stat_upgrade.script_data
 		attack.add_child(upgrade_node)
-	
+
 	return attack
 
 
@@ -108,13 +108,13 @@ static func generate_description(upgrade_resource: UpgradeResource) -> String:
 	var description: String = upgrade_resource.description
 	var stats: String = """
 	"""
-	
+
 	for key in upgrade_resource.script_data.keys():
 		if key != "bullet":
 			stats += "
 			" + key + ": " + upgrade_resource.script_data[key] + " "
 	description += stats
-	return description 
+	return description
 
 
 func open_shop(shop_attached_to):
@@ -131,10 +131,10 @@ func _on_spawn_shop(position):
 	shop.connect("remove_from_hud", objective_marker.delete_target)
 	objective_marker.add_target(shop)
 	shop.add_to_group("shop")
-	
+
 	var chosen_upgrades = []
 	var is_weapon_present := false
-	
+
 	if randf() <= 1:
 		for upgrade in upgrade_pool.sample(3):
 			var upgrade_node = ShopHandler.upgrade_from_res(upgrade)
@@ -143,21 +143,21 @@ func _on_spawn_shop(position):
 		var weapon = weapon_pool.sample(1)
 		var attack_node = attack_from_res(weapon)
 		chosen_upgrades.append(attack_node)
-	else: 
+	else:
 		for upgrade in upgrade_pool.sample(4):
 			var upgrade_node = ShopHandler.upgrade_from_res(upgrade)
 			chosen_upgrades.append(upgrade_node)
-	
+
 	chosen_upgrades.shuffle()
-	
+
 	shop.chosen_upgrades = chosen_upgrades
 	shop.is_weapon_present = is_weapon_present
 
 func _on_activate_teleporter():
 	teleporter.set_process(true)
 	teleporter.enabled()
-	
-	
+
+
 func _on_spawn_enemy_in_wave(resourceID, center, spawn_range):
 	enemy_handler.spawn_enemy(resourceID, center, spawn_range)
 

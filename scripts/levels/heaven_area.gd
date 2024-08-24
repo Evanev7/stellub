@@ -30,15 +30,15 @@ func start_game():
 	enemy_handler.start_spawning()
 	animate_entry()
 	SoundManager.heaven_start_play()
-	
+
 	player.enable()
 	player.position = $YSort/PlayerStart.position
 	$LogicComponents/ShopHandler.start()
 	$cursor_particles.emitting = true
-	
+
 	HUD.show_health(player.hp, player.hp_max)
 	HUD.show_score(player.score, player.level_threshold[player.current_level])
-	
+
 	if GameState.player_data.first_time_heaven:
 		HUD.show_dialogue("Hurry. You MUST make it to the tree.")
 		GameState.player_data.first_time_heaven = false
@@ -53,14 +53,14 @@ func restart_game():
 	if SoundManager.currently_playing_music:
 		SoundManager.currently_playing_music.stop()
 	GameState.load_area(GameState.CURRENT_AREA.HELL)
-	
+
 func start_message():
 	pass
 
 func _on_player_death():
 	GameState.queue_free_groups()
 	enemy_handler.stop_spawning()
-	
+
 	if GameState.player_data.first_time == true:
 		if SoundManager.currently_playing_music:
 			SoundManager.fade_out(SoundManager.currently_playing_music)
@@ -69,7 +69,7 @@ func _on_player_death():
 		GameState.game_over.emit()
 		if SoundManager.currently_playing_music:
 			SoundManager.currently_playing_music.volume_db -= 10
-		
+
 
 func _on_player_hp_changed(hp):
 	HUD.show_health(hp, GameState.player.hp_max)
@@ -80,4 +80,4 @@ func _on_player_level_up(_current_level):
 	HUD.show_health(player.hp, player.hp_max)
 	enemy_handler.spawn_timer.wait_time /= 1.04
 	enemy_handler.overall_multiplier += player.current_level / float(600)
-	
+

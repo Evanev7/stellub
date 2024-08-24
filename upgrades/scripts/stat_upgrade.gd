@@ -13,5 +13,5 @@ func modify_toplevel(bullet: BulletResource) -> BulletResource:
 		bullet.fire_delay = 0
 	if bullet.spawned_bullet_resource:
 		bullet.spawned_bullet_resource = modify_toplevel(bullet.spawned_bullet_resource)
-	
+
 	return bullet

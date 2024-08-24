@@ -7,7 +7,7 @@
 //uniform float line_thickness : hint_range(0, 10) = 1.0;
 //
 //const vec2 OFFSETS[8] = {
-//	vec2(-1, -1), vec2(-1, 0), vec2(-1, 1), vec2(0, -1), vec2(0, 1), 
+//	vec2(-1, -1), vec2(-1, 0), vec2(-1, 1), vec2(0, -1), vec2(0, 1),
 //	vec2(1, -1), vec2(1, 0), vec2(1, 1)
 //};
 //
@@ -47,7 +47,7 @@ uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
 uniform vec4 silhouette_color : source_color = vec4(0.0, 0.8, 0.8, 1.0);
 uniform float line_thickness : hint_range(0, 10) = 1.0;
 const vec2 OFFSETS[8] = {
-	vec2(-1, -1), vec2(-1, 0), vec2(-1, 1), vec2(0, -1), vec2(0, 1), 
+	vec2(-1, -1), vec2(-1, 0), vec2(-1, 1), vec2(0, -1), vec2(0, 1),
 	vec2(1, -1), vec2(1, 0), vec2(1, 1)
 };
 void fragment() {

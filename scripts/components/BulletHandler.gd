@@ -25,7 +25,7 @@ func _ready():
 				bullet_scene_pool.append(new_bullet))
 		bullet_scene_pool.append(new_bullet)
 		bullets_parent.call_deferred("add_child", new_bullet)
-		
+
 	for i in range(maximum_audio_players):
 		var new_audio_player = AudioStreamPlayer2D.new()
 		audio_player_pool.append(new_audio_player)
@@ -34,40 +34,40 @@ func _ready():
 				audio_player_pool.append(new_audio_player))
 		audio_players_parent.call_deferred("add_child", new_audio_player)
 
-# When a bullet is fired (by the player or an enemy) this function is "called". 
+# When a bullet is fired (by the player or an enemy) this function is "called".
 # We iterate over every bullet to be fired, instantiate them and point them at the player
 # OR at where the player is clicking.
 func _on_fire_bullet(origin, bullet_type: BulletResource, fire_from: FireFrom):
 	play_audio(bullet_type.sound, fire_from.position)
-	
+
 	var layer_up: bool = false
 	if "name" in origin:
 		if origin.name == "angel_boss":
 			layer_up = true
-		
+
 	if not (origin is WeakRef):
 		origin = weakref(origin)
-	
-		
-	
+
+
+
 	# Iterate over every bullet that's being fired (the number of bullets to fire
 	# is stored in .multishot)
 	for index in range(bullet_type.multishot):
 		var bullet = get_bullet()
 		bullet.add_to_group("bullet")
-		
+
 		var start_position = fire_from.position
 		var inaccuracy_offset = randf_range(-bullet_type.shot_inaccuracy/2,bullet_type.shot_inaccuracy/2)
 		var direction_offset = inaccuracy_offset
 		if bullet_type.multishot > 1:
 			direction_offset += remap(index, 0, bullet_type.multishot-1, -bullet_type.shot_spread/2, bullet_type.shot_spread/2)
 		var start_direction = fire_from.direction.normalized().rotated(direction_offset)
-		
+
 		# The distance from the 'firer' that the bullet starts at.
 		var start_range = Vector2(bullet_type.start_range, bullet_type.start_range)
 		start_range *= start_direction
 		start_position += start_range
-		
+
 		bullet.direction = start_direction
 		bullet.data = bullet_type
 		bullet.origin_ref = origin
@@ -75,13 +75,13 @@ func _on_fire_bullet(origin, bullet_type: BulletResource, fire_from: FireFrom):
 		bullet.transport(0)
 		bullet.set_data()
 		bullet.z_index += 2 * int(layer_up)
-		
+
 		bullet.dead = false
 		bullet.set_physics_process(true)
 		bullet.show()
 		if bullet.collision:
 			bullet.collision.set_deferred("disabled", false)
-		
+
 func get_bullet() -> Bullet:
 	GameState.bullets_summoned += 1
 	GameState.player_data.total_bullets_summoned += 1

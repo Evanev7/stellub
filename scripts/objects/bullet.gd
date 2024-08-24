@@ -38,7 +38,7 @@ func _ready():
 	set_physics_process(false)
 	hide()
 
-	
+
 func set_data():
 	spawned_bullet = data.spawned_bullet_resource
 	sprite = $AnimatedSprite2D
@@ -55,7 +55,7 @@ func set_data():
 		call_deferred("add_child", vacuum)
 		if origin == GameState.player:
 			vacuum.set_collision_mask(4)
-	
+
 	if origin == GameState.player:
 		set_collision_mask(4)
 	else:
@@ -64,7 +64,7 @@ func set_data():
 	sprite.sprite_frames = data.animation
 	self_destruct.wait_time = data.lifetime
 	self_destruct.start()
-	
+
 	match data.facing_direction:
 		BulletResource.FACING_DIRECTION.DEFAULT:
 			rotation = direction.angle()
@@ -77,22 +77,22 @@ func set_data():
 		BulletResource.FACING_DIRECTION.RIGHT:
 			rotation = Vector2(-1, 0).angle()
 	_angle = rotation
-			
+
 	$AnimatedSprite2D.modulate = data.colour
 	$AnimatedSprite2D.play()
-	
+
 	if data.vacuum:
 		$BackBufferCopy.copy_mode = BackBufferCopy.COPY_MODE_VIEWPORT
 		$Shader.process_mode = Node.PROCESS_MODE_INHERIT
 		$Shader.visible = true
 		vacuum.get_node("CollisionShape2D").shape.radius = data.vacuum_range
-	
+
 	if data.activation_delay > 0:
 		collision.set_deferred("disabled", true)
 		if data.vacuum:
 			vacuum.get_node("CollisionShape2D").disabled = true
 		await get_tree().create_timer(data.activation_delay).timeout
-		
+
 		collision.disabled = false
 		if data.vacuum:
 			vacuum.get_node("CollisionShape2D").disabled = false
@@ -104,21 +104,20 @@ func _physics_process(delta):
 		shot_speed += delta * data.shot_acceleration
 	else:
 		shot_speed = max(shot_speed + delta * data.shot_acceleration,0)
-	
+
 	if _traveled_distance > data.bullet_range:
 		if data.spawn_on_timeout and spawned_bullet:
 			spawn_child()
 		remove()
-	
+
 	if piercing_cooldown > 0:
 		piercing_cooldown -= 1.0
 	#If a bullet is able to hit the same enemy multiple times.
-	elif piercing_cooldown <= 0 and data.piercing_cooldown != 0:
+	elif piercing_cooldown <= 0 and data.piercing_cooldown != 0 and not dead:
 		for area in get_overlapping_areas():
-			if not dead:
-				successful_hit(area.owner)
+			successful_hit(area.owner)
 		piercing_cooldown = data.piercing_cooldown
-	
+
 	if vacuum:
 		for area in vacuum.get_overlapping_areas():
 			if area.owner.has_method("hurt"):
@@ -133,7 +132,7 @@ func transport(delta) -> void:
 			assert(data.angular_velocity == 0, "Transport mode should not be linear")
 			position += direction * shot_speed * delta
 			_traveled_distance += abs(shot_speed) * delta
-		
+
 		BulletResource.TRANSPORT_MODE.ROTATING_FIXED_CENTRE:
 			var origin = origin_ref.get_ref()
 			if not origin:
@@ -144,10 +143,10 @@ func transport(delta) -> void:
 			position = origin.position + (Vector2.RIGHT*_cur_range).rotated(_angle)
 			rotation = _angle + TAU/4 * (_cur_range/data.start_range)
 			_traveled_distance += data.start_range * data.angular_velocity * delta
-		
+
 		BulletResource.TRANSPORT_MODE.ROTATING_LINEAR_CENTRE:
 			assert(false, "Not yet implemented")
-		
+
 		BulletResource.TRANSPORT_MODE.ROTATING_NO_CENTRE:
 			var origin = origin_ref.get_ref()
 			if origin:
@@ -157,11 +156,11 @@ func transport(delta) -> void:
 			position += _direction * delta
 			rotation = _direction.angle()
 			_traveled_distance += abs(shot_speed) * delta
-		
+
 		BulletResource.TRANSPORT_MODE.STATIC:
 			rotation += data.angular_velocity
 			pass
-			
+
 func _on_self_destruct_timeout():
 	if data.spawn_on_timeout and spawned_bullet:
 		spawn_child()
@@ -179,16 +178,16 @@ func _on_area_entered(area):
 func successful_hit(target):
 	if target and target not in _hit_targets:
 		_hit_targets.append(target)
-		
+
 	#Damage target
 	if target.has_method("hurt"):
 		if target is EnemyBehaviour:
 			target.position -= target.velocity * data.knockback / (10 * target.resource.STRENGTH)
 		target.hurt(self)
-	
+
 	if spawned_bullet:
 		spawn_child()
-	
+
 	#Handle bullet destruction.
 	piercing -= 1
 	if piercing == 0:

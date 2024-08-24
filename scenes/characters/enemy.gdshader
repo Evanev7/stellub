@@ -9,7 +9,7 @@ uniform sampler2D noise_texture;
 uniform float Shift_Hue;
 
 const vec2 OFFSETS[8] = {
-	vec2(-1, -1), vec2(-1, 0), vec2(-1, 1), vec2(0, -1), vec2(0, 1), 
+	vec2(-1, -1), vec2(-1, 0), vec2(-1, 1), vec2(0, -1), vec2(0, 1),
 	vec2(1, -1), vec2(1, 0), vec2(1, 1)
 };
 
@@ -33,16 +33,16 @@ vec3 rgb_to_hsv(vec3 color) {
 void fragment() {
 	vec2 size = TEXTURE_PIXEL_SIZE * line_thickness;
 	float outline_weight = 0.0;
-	
+
 	// gets a positive value for any point with nearby opaque-ness.
 	for (int i = 0; i < OFFSETS.length(); i++) {
 		outline_weight += texture(TEXTURE, UV + size * OFFSETS[i]).a;
 	}
 	outline_weight = min(outline_weight, 1.0);
 	outline_weight -= COLOR.a;
-	
 
-	
+
+
 	// Input:3
 	vec3 input_color;
 	vec4 texture_color = texture(TEXTURE, UV);
@@ -74,12 +74,12 @@ void fragment() {
 // Output:0
 	texture_color = vec4(color_rgb.rgb,texture_color.a);
 	COLOR.rgba = texture_color;
-	
+
 	if (line_thickness > 0.05)
 	{
 		COLOR = mix(COLOR, line_color, outline_weight);
 	}
-	
+
 	vec4 noise_pixel = texture(noise_texture,UV);
 	if (noise_pixel.r > value)
 	{

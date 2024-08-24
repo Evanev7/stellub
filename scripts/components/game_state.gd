@@ -54,24 +54,24 @@ func _ready():
 	game_over.connect(queue_free_groups)
 	current_area_node = get_parent().get_node("menu")
 	create_or_load_save()
-	
+
 func set_stats(new_stats: PlayerData):
 	player_data = new_stats
-	
+
 func load_area(area: CURRENT_AREA):
 	var area_node = area_scenes[area].instantiate()
-	
+
 	if area_node.has_node("YSort") and current_area_node.has_node("YSort"):
 		player.get_parent().remove_child(player)
 		area_node.get_node("YSort").add_child(player)
-		
+
 	current_area_node.queue_free()
-	
+
 	current_area = area
 	current_area_node = area_node
-	
+
 	get_parent().add_child(area_node)
-	
+
 
 
 func reset_statistics():
@@ -81,7 +81,7 @@ func reset_statistics():
 	bullets_summoned = 0
 	damage_dealt = 0
 	circles_completed = 1
-	
+
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed("pause"):
 		if current_area == CURRENT_AREA.MAIN_MENU or current_area == CURRENT_AREA.FIRST_TIME:
@@ -96,13 +96,13 @@ func _unhandled_input(_event):
 		if get_tree().paused == false:
 			pause_menu._on_hud_open_pause_menu()
 			return
-		
+
 		if pause_menu.options_menu.visible:
 			pause_menu.options_menu.go_back.emit()
 		else:
 			pause_menu._on_continue_pressed()
-	
-	
+
+
 	##Debug ###############################
 	if debug:
 		handle_debug_input(_event)
@@ -112,24 +112,24 @@ func handle_debug_input(_event):
 	if Input.is_action_pressed("debug_gain_score"): ## R
 		player.gain_score(100)
 		current_area_node.get_node("HUD").show_score(player.score, player.level_threshold[player.current_level])
-	
+
 	if Input.is_action_just_pressed("debug_evolve"): ## E
 		#player.evolve()
 		player.attack_handler.get_child(0).add_child(ShopHandler.upgrade_from_res(load("res://upgrades/multi_shot.tres")))
-	
+
 	if Input.is_action_just_pressed("debug_spawn_enemy"): # L
 		for i in range(100):
 			current_area_node.get_node("LogicComponents/EnemyHandler").spawn_enemy(randi() % 7)
-		
+
 	if Input.is_action_just_pressed("debug_activate_teleporter"): # T
 		current_area_node.get_node("LogicComponents/ShopHandler")._on_activate_teleporter()
-		
+
 	if Input.is_action_just_pressed("debug_print_data"): # P
 		current_area_node.get_node("HUD").show_debug()
-		
+
 	if Input.is_action_just_pressed("debug_spawn_shop"): # F
 		current_area_node.get_node("LogicComponents/ShopHandler")._on_spawn_shop(player.global_position)
-	
+
 	if Input.is_action_just_pressed("debug_enter_final_boss"): # G
 		if current_area != CURRENT_AREA.BOSS:
 			if SoundManager.currently_playing_music:
@@ -150,6 +150,7 @@ func unpause_game():
 
 
 func queue_free_groups():
+	get_tree().call_group("pickup_handler", "cleanup")
 	get_tree().call_group("enemy", "remove")
 	get_tree().call_group("bullet", "remove")
 	get_tree().call_group("pickup", "queue_free")
@@ -168,7 +169,7 @@ func on_node_added(node: Node) -> void:
 	if pp and pp.theme_type_variation == "TooltipPanel":
 		pp.transparent_bg = true
 		pp.transparent = true
-		
+
 func _notification(what):
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		GameState.save_game()
@@ -182,10 +183,10 @@ func create_or_load_save():
 		_save.write_savegame()
 
 	player_data = _save.player_data
-	
+
 	AudioServer.set_bus_volume_db(0, linear_to_db(player_data.master_volume))
 	AudioServer.set_bus_volume_db(1, linear_to_db(player_data.sfx_volume))
 	AudioServer.set_bus_volume_db(2, linear_to_db(player_data.music_volume))
-	
+
 func save_game():
 	_save.write_savegame()

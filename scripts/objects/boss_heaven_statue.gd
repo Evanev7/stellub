@@ -26,7 +26,7 @@ func _physics_process(delta):
 		_height = max(_height - dist,0)
 		boss_heaven_statue.position = pos - Vector2(0,_height)
 	shadow.position = pos
-	
+
 	if _height < 10:
 		hitbox.monitoring = true
 		boss_heaven_statue.collision_mask = 1

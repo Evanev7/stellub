@@ -24,6 +24,7 @@ shader = ExtResource("5_tumd1")
 shader_parameter/line_color = Color(0.517647, 0.411765, 1, 1)
 shader_parameter/line_thickness = 6.479
 shader_parameter/value = 1.0
+shader_parameter/Shift_Hue = null
 shader_parameter/hsl_offset = null
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2c16o"]

@@ -58,11 +58,11 @@ func _ready():
 	sprite.visible = false
 	shadow.visible = false
 
-		
+
 func set_data():
 	unique_multiplier = resource.UNIQUE_MULTIPLIER
 	overall_multiplier = resource.OVERALL_MULTIPLIER
-	
+
 	health  = resource.MAX_HP * unique_multiplier * overall_multiplier
 	damage  = resource.DAMAGE * unique_multiplier * overall_multiplier
 	value  = resource.VALUE * unique_multiplier * overall_multiplier
@@ -73,21 +73,21 @@ func set_data():
 	default_angle = self.rotation
 	default_scale = resource.SCALE * (0.875 + (unique_multiplier / 8))
 	variance = 1/default_scale.length()
-	
-	
+
+
 	load_resource(resource)
 	spawn_animation()
 	attack_handler.start()
-	
+
 	# Select mob texture variants (This code is functional just unnecessary since no enemies have variants)
 	var variants = sprite.sprite_frames.get_animation_names()
 	var mode = variants[randi() % variants.size()]
 	sprite.frame_progress = randf()
 	sprite.play(mode)
-	
+
 	add_to_group("enemy")
 	sway()
-	
+
 	if GameState.num_enemies >= enemy_limit:
 		movement_enabled = false
 
@@ -96,7 +96,7 @@ func load_resource(resource_to_load: EnemyResource):
 	scale = default_scale
 	sprite.sprite_frames = resource_to_load.ANIMATION
 	sprite.flip_h = flipped
-		
+
 	if resource_to_load.BULLET:
 		if resource_to_load.BULLET.target_mode == BulletResource.TARGET_MODE.MOUSE:
 			resource_to_load.BULLET.target_mode = BulletResource.TARGET_MODE.PLAYER
@@ -104,14 +104,14 @@ func load_resource(resource_to_load: EnemyResource):
 		attack_handler.passive_all_attacks()
 		if resource_to_load.BULLET.fire_on_hit:
 			fire_on_hit = true
-		
+
 	collider.shape = resource_to_load.COLLIDER
 	collider.rotation = deg_to_rad(resource_to_load.COLLISION_ROTATION)
 	hitbox_collisionshape.shape = resource_to_load.HITBOX
 	hitbox_collisionshape.rotation = deg_to_rad(resource_to_load.COLLISION_ROTATION)
 	hurtbox_collisionshape.shape = resource_to_load.HURTBOX
 	hurtbox_collisionshape.rotation = deg_to_rad(resource_to_load.COLLISION_ROTATION)
-	
+
 	if resource_to_load.COLLISION_ROTATION == 90:
 		shadow.position.y = (hitbox_collisionshape.shape.radius / 2) - default_scale.length() + 20
 	else:
@@ -129,7 +129,7 @@ func spawn_animation():
 			sprite.material.set_shader_parameter("line_thickness", (unique_multiplier) ** 2)
 		else:
 			sprite.material.set_shader_parameter("line_color", Vector4(0, 0, 0, 1)))
-			
+
 # Function for easing sprites between two positions while 'idle'. I.e. enemy rotation.
 func sway():
 	var tween: Tween = create_tween()
@@ -154,30 +154,30 @@ func sway():
 func _physics_process(_delta):
 	sprite.modulate = Color(2, 2, 2)
 	var player_direction = (GameState.player.position - position)
-	
+
 	if player_direction.length() > (teleport_back_to_player_range / (GameState.current_area + 1)):
 		var relative_spawn_position = Vector2(800,0).rotated(randf_range(0, 2*PI))
 		position = GameState.player.position + relative_spawn_position
 
 	velocity = player_direction.normalized() * speed
-	
+
 	if GameState.num_enemies < enemy_limit and not frozen:
-		movement_enabled = true	
+		movement_enabled = true
 		if player_direction.x < 0:
 			sprite.flip_h = (true != flipped)
 		else:
 			sprite.flip_h = (false != flipped)
-		
+
 	if movement_enabled:
 		move_and_slide()
-	
+
 	if contact_areas:
 		for area in contact_areas:
 			hit(area)
 
 func change_colour():
 	$AnimatedSprite2D.flip_v = true
-	
+
 func freeze():
 	movement_enabled = false
 	frozen = true
@@ -198,41 +198,41 @@ func hurt(area):
 	health -= area.damage
 	GameState.damage_dealt += area.damage
 	GameState.player_data.total_damage_dealt += area.damage
-	scale = default_scale * 0.65 
+	scale = default_scale * 0.65
 	var tween2 := create_tween()
 	tween2.tween_property(self, "global_scale", default_scale, 0.1)
 	tween2.tween_property($AnimatedSprite2D, "self_modulate:v", 1, 0.05).from(50)
-	
+
 	if GameState.player_data.damage_numbers_enabled:
 		spawn_damage_number.emit(area.damage, damage_number_location.global_position, default_scale)
-	
+
 	if fire_on_hit:
 		attack_handler.get_child(0).on_hit()
-	
-	
+
+
 	#Die when health is zero
 	if health <= 0 and not dead:
 		dead = true
 		play_death_sound.emit(global_position)
-		
+
 		if GameState.current_area == GameState.CURRENT_AREA.HEAVEN and unique_multiplier > 1:
 			spawn_shop.emit(global_position)
-			
+
 		GameState.enemies_killed += 1
 		GameState.player_data.total_enemies_killed += 1
 		GameState.num_enemies -= 1
 		remove()
 		enemy_killed.emit(self)
-	
+
 func remove():
 	dead = true
-	
+
 	var tween: Tween = create_tween()
 	sprite.material.set_shader_parameter("line_color", Vector4(0.5, 0, 0, 1))
 	tween.parallel().tween_property(sprite.material, "shader_parameter/line_thickness", 90.0, 0.5)
 	tween.parallel().tween_property(shadow, "self_modulate:a", 0.0, 0.5)
 	tween.parallel().tween_property(sprite.material, "shader_parameter/value", 0.0, 0.5)
-	tween.tween_callback(func(): 
+	tween.tween_callback(func():
 		sprite.self_modulate = Color(1, 1, 1)
 		shadow.self_modulate = Color(1, 1, 1, 0.49)
 		sprite.visible = false

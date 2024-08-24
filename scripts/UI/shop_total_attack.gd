@@ -12,7 +12,7 @@ var num_upgrades: int = 0
 
 func _ready():
 	update_control_texture()
-	
+
 func update_control_texture():
 	var gui_control_node: TextureButton = get_node("%ControlMode")
 	if control_mode == Attack.CONTROL_MODE.PRIMARY:
@@ -21,7 +21,7 @@ func update_control_texture():
 		gui_control_node.texture_normal = rmb_texture
 	else:
 		gui_control_node.texture_normal = nmb_texture
-	
+
 
 func get_upgrade_nodes(attack_node) -> Array[Upgrade]:
 	var upgrades: Array[Upgrade] = []
@@ -57,16 +57,16 @@ func loadsave(mode: int, attack_node: Attack) -> Attack:
 	var gui_attack_node = get_node("%Attack")
 	var gui_upgrades: Array[Control] = get_gui_upgrades()
 	var player_upgrades: Array[Upgrade] = []
-	
+
 	if mode == LOAD:
 		gui_attack_node.referenced_node = attack_node
 		if attack_node:
 			player_upgrades = get_upgrade_nodes(attack_node)
-	
+
 	num_upgrades = player_upgrades.size()
-	
+
 	gui_attack_node.refresh()
-	
+
 	if mode == SAVE and attack_node:
 		attack_node.control_mode = control_mode
 	for upgrade_index in range(num_gui_upgrades):
@@ -80,16 +80,16 @@ func loadsave(mode: int, attack_node: Attack) -> Attack:
 			if gui_upgrades[upgrade_index].referenced_node != null:
 				player_upgrades.append(gui_upgrades[upgrade_index].referenced_node)
 		gui_upgrades[upgrade_index].refresh()
-	
+
 	if mode == SAVE:
 		if $%Attack.referenced_node != null:
 			attack_node = $%Attack.referenced_node
 			reattach_nodes(attack_node, player_upgrades)
 			attack_node.control_mode = control_mode
 			attack_node.refresh_bullet_resource()
-	
+
 	return attack_node
-	
+
 
 func refresh_all():
 	$%Attack.refresh()
@@ -108,6 +108,6 @@ func _on_control_mode_pressed(event: InputEvent):
 			control_mode = Attack.CONTROL_MODE.SECONDARY
 		else:
 			control_mode = Attack.CONTROL_MODE.PASSIVE
-	
+
 	update_control_texture()
-	
+

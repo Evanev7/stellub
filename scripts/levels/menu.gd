@@ -1,7 +1,7 @@
 extends Node2D
 
-@onready var options_menu: CanvasLayer = $options_menu 
-@onready var stat_screen: CanvasLayer = $stat_screen 
+@onready var options_menu: CanvasLayer = $options_menu
+@onready var stat_screen: CanvasLayer = $stat_screen
 @onready var loading_screen: TextureRect = $"Main Menu/LoadingScreen"
 @onready var credits_screen = $credits_screen
 
@@ -16,8 +16,8 @@ func _ready():
 	play_pressed = false
 	scene_load_status = 0
 	loading_screen.visible = false
-	
-	
+
+
 	if GameState.debug:
 		$"Main Menu/Background/Buttons/FirstTime".visible = true
 		$"Main Menu/Background/Buttons/FirstTime".button_pressed = GameState.player_data.first_time
@@ -36,7 +36,7 @@ func load_game():
 		else:
 			GameState.load_area(GameState.CURRENT_AREA.HELL)
 		loading_screen.visible = false
-	
+
 
 func _on_options_pressed():
 	SoundManager.select.play()
@@ -47,7 +47,7 @@ func _on_stats_pressed():
 	SoundManager.select.play()
 	stat_screen.opened_via_main()
 	visible = false
-	
+
 func _on_credits_pressed():
 	SoundManager.select.play()
 	credits_screen.visible = true
@@ -57,7 +57,7 @@ func _on_credits_go_back():
 	SoundManager.select.play()
 	credits_screen.visible = false
 	visible = true
-	
+
 func _on_options_menu_go_back():
 	SoundManager.select.play()
 	options_menu.visible = false

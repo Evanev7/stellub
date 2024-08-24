@@ -38,14 +38,14 @@ func _ready():
 func _physics_process(_delta):
 	if not bullet:
 		return
-	
+
 	if not bullet.fire_on_hit:
 		if timer_active and _timer > 0:
 			_timer -= 1
 		elif _timer <= 0:
 			if control_mode == CONTROL_MODE.PASSIVE:
 				pre_fire()
-		
+
 		if control_mode != CONTROL_MODE.PASSIVE:
 			if _timer <= 0 and Input.is_action_pressed(BIND[control_mode]):
 				pre_fire()
@@ -60,15 +60,15 @@ func on_hit():
 	hit = true
 	if _timer <= 0:
 		pre_fire()
-	
+
 func pre_fire():
 	if aim_mode == AIM_MODE.TARGETED:
 		attack_direction = attack_handler.get_attack_direction(bullet.target_mode)
-	
+
 	for upgrade in get_children():
 		if upgrade is Upgrade:
 			upgrade.pre_fire()
-	
+
 	if attack_handler.owner == GameState.player or attack_direction.direction.length() < bullet.deactivation_range:
 		fire()
 		_timer += bullet.fire_delay
@@ -84,7 +84,7 @@ func reset():
 func refresh_bullet_resource():
 	if not initial_bullet:
 		return
-	
+
 	bullet = initial_bullet.duplicate()
 	var bullet_ref = bullet
 	for upgrade in get_children():
@@ -95,9 +95,9 @@ func refresh_bullet_resource():
 	for upgrade in get_children():
 		if upgrade is Upgrade:
 			bullet = upgrade.modify_toplevel(bullet)
-	
-	
-	
+
+
+
 
 func remove_upgrades():
 	for child in get_children():

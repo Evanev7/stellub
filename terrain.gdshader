@@ -13,15 +13,15 @@ void fragment() {
 	float dist = sqrt(diff.x * diff.x + diff.y * diff.y);
 	float smoothed = smoothstep(0.05, 0.1, dist);
 	COLOR.a = min(smoothed*0.5+0.5, COLOR.a);
-	
-	
+
+
 	float outline = 0.0;
-	
-	
+
+
 	vec4 color = texture(TEXTURE, UV);
-	
+
 	vec4 noise_pixel = texture(noise_texture,UV);
-	
+
 	if(noise_pixel.r > value)
 	{
 		COLOR.a -= 1.f;

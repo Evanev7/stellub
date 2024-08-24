@@ -20,7 +20,7 @@ func first_time_dialogue():
 	SoundManager.merchant_dialogue.play()
 	await get_tree().create_timer(2.0).timeout
 	continue_dialogue()
-	
+
 func continue_dialogue():
 	await get_tree().create_timer(3.0).timeout
 	dialogue_text.text = "You may take one Rune every time we meet."
@@ -81,16 +81,16 @@ func loadsave(mode: int):
 		if mode == SAVE:
 			if attack:
 				new_attacks.append(attack)
-	
+
 	if mode == SAVE:
 		reattach_nodes(player_attack_handler, new_attacks)
 		var total_upgrades: int = 0
-		
+
 		for gui_attack in gui_total_attacks:
 			total_upgrades += gui_attack.num_upgrades
-		
-		GameState.player.evolve(total_upgrades / 2 + new_attacks.size() - 1) 
-	for total in gui_total_attacks: 
+
+		GameState.player.evolve(total_upgrades / 2 + new_attacks.size() - 1)
+	for total in gui_total_attacks:
 		total.refresh_all()
 
 

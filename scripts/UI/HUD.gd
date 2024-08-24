@@ -40,7 +40,7 @@ func show_message(text):
 	tween.tween_property(main_text_container, "modulate:a", 1, 0.5)
 	tween.tween_property(main_text_container, "modulate:a", 0, 2)
 	$DisplayTimer.start()
-	
+
 func show_dialogue(text: String):
 	dialogue_text_display.text = text
 	dialogue_text_container.show()
@@ -48,12 +48,12 @@ func show_dialogue(text: String):
 	var tween: Tween = create_tween()
 	tween.tween_property(dialogue_text_container, "modulate:a", 1, 0.5)
 	tween.tween_callback($DisplayTimer.start)
-	
-	
-	
+
+
+
 func start_enemy_handler_and_magic_circles():
 	start_enemy_and_magic.emit()
-	
+
 func show_first_time():
 	$AudioStreamPlayer.play()
 	var tween: Tween = create_tween()
@@ -73,7 +73,7 @@ func game_over():
 	GameState.game_over.emit()
 	main_text_container.modulate = Color(1, 1, 1, 0)
 	$VignetteTop.modulate = Color(1, 1, 1, 0)
-	
+
 
 func _on_display_timer_timeout():
 	main_text_container.modulate = Color(1, 1, 1, 0)
@@ -92,7 +92,7 @@ func show_boss_health(number, max_number):
 		$BossHPBar.visible = true
 		var tween = $BossHPBar.create_tween()
 		tween.tween_property($BossHPBar, "modulate", Color(1,1,1,1),1.5).from(Color(1,1,1,0))
-		
+
 	$BossHPBar.max_value = int(max_number)
 	$BossHPBar.value = int(number)
 
@@ -104,7 +104,7 @@ func show_score(number, max_number):
 func freeze(_time):
 	var tween: Tween = create_tween()
 	tween.tween_property($VignetteTop, "self_modulate", Color(0, 15, 22, 0.3), 0.2)
-	
+
 func end_freeze():
 	var tween: Tween = create_tween()
 	tween.tween_property($VignetteTop, "self_modulate", Color(0, 15, 22, 0), 0.8)

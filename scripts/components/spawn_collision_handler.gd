@@ -44,13 +44,13 @@ func find_safe_landing(variance:= on_ready_variance, attempts:= on_ready_attempt
 			owner.show()
 			safe_landing_found.emit()
 			if disable_after_land: disable_spawn_collider()
-			return 
-		
+			return
+
 		owner.position += Vector2(
 			randf_range(-variance.x, variance.x),
 			randf_range(-variance.y, variance.y)
 		)
-	
+
 	safe_landing_not_found.emit()
 	if disable_after_land: disable_spawn_collider()
 	if clear_on_bad_landing: owner.queue_free()
