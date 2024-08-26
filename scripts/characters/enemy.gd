@@ -156,7 +156,11 @@ func _physics_process(_delta):
 	var player_direction = (GameState.player.position - position)
 
 	if player_direction.length() > (teleport_back_to_player_range / (GameState.current_area + 1)):
-		var relative_spawn_position = Vector2(800,0).rotated(randf_range(0, 2*PI))
+		var relative_spawn_position: Vector2
+		if GameState.current_area == GameState.CURRENT_AREA.HEAVEN:
+			relative_spawn_position = Vector2(800,0).rotated(randf_range(-3*PI/4, -PI/4))
+		else:
+			relative_spawn_position = Vector2(800,0).rotated(randf_range(0, 2*PI))
 		position = GameState.player.position + relative_spawn_position
 
 	velocity = player_direction.normalized() * speed
