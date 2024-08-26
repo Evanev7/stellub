@@ -23,4 +23,3 @@ func modify_toplevel(bullet: BulletResource) -> BulletResource:
 # Used for code to execute before firing
 func pre_fire():
 	pass
-

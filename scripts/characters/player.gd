@@ -313,5 +313,3 @@ func _on_i_frames_timeout():
 	sprite.material.set_shader_parameter("line_thickness", 0)
 	sprite.material.set_shader_parameter("value", 1)
 	invuln = false
-
-

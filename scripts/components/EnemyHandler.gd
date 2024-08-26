@@ -1,7 +1,6 @@
 extends Node 
 class_name EnemyHandler
 
-signal register_enemy(enemy)
 signal spawn_shop_on_enemy(pos)
 signal unfreeze_hud()
 

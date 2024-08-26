@@ -51,6 +51,7 @@ var contact_areas: Array = []
 
 func _ready():
 	dead = true
+	movement_enabled = true
 	collider.set_deferred("disabled", true)
 	hitbox_collisionshape.set_deferred("disabled", true)
 	hurtbox_collisionshape.set_deferred("disabled", true)

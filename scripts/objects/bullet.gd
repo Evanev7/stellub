@@ -90,7 +90,7 @@ func set_data():
 	if data.activation_delay > 0:
 		collision.set_deferred("disabled", true)
 		if data.vacuum:
-			vacuum.get_node("CollisionShape2D").disabled = true
+			vacuum.get_node("CollisionShape2D").set_deferred("disabled", true)
 		await get_tree().create_timer(data.activation_delay).timeout
 
 		collision.disabled = false

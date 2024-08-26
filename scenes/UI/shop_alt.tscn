@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://rnajon2osv8v"]
+[gd_scene load_steps=18 format=3 uid="uid://rnajon2osv8v"]
 
 [ext_resource type="Script" path="res://scripts/UI/shop_controller.gd" id="1_gilh6"]
 [ext_resource type="PackedScene" uid="uid://djihbt4xh14cm" path="res://scenes/UI/gui_rect.tscn" id="2_wac57"]
@@ -17,6 +17,11 @@
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_hcpdw"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_dfl7m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v8514"]
+
+[sub_resource type="Theme" id="Theme_gi6gx"]
+TooltipPanel/styles/panel = SubResource("StyleBoxEmpty_v8514")
 
 [node name="ShopAlt" type="CanvasLayer"]
 process_mode = 2
@@ -213,6 +218,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
+theme = SubResource("Theme_gi6gx")
 control_mode = 1
 
 [node name="TotalAttack2" parent="Control/MarginContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer" instance=ExtResource("6_egsl6")]

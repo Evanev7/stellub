@@ -16,4 +16,3 @@ func _process(delta):
 		global_position = global_position.lerp(0.5 * (GameState.player.global_position + boss.global_position), move_speed * delta)
 		zoom_target = clamp(600/(boss.global_position - GameState.player.position).length(), max_zoom, min_zoom)
 		zoom = lerp(zoom, zoom_target * Vector2.ONE, zoom_speed * delta)
-

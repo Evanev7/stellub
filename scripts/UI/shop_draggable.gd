@@ -65,6 +65,7 @@ func refresh() -> void:
 
 	else:
 		texture_normal = null
+		tooltip_text = ""
 
 	if not material:
 		return
@@ -123,7 +124,7 @@ func _drop_data(_pos: Vector2, data) -> void:
 	data["origin_node"].refresh()
 
 func _make_custom_tooltip(for_text):
-	var tooltip = tooltip_scene.instantiate()
+	var tooltip: CenterContainer = tooltip_scene.instantiate()
 	if referenced_node != null:
 		tooltip.get_node("MarginContainer/MarginContainer/VBoxContainer/Desc").text = for_text
 		tooltip.get_node("MarginContainer/MarginContainer/VBoxContainer/Title").text = referenced_node.name

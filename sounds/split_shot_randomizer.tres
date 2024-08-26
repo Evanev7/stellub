@@ -3,7 +3,6 @@
 [ext_resource type="AudioStream" uid="uid://cx2a0nci361l7" path="res://sounds/split_shot.wav" id="1_u0bbl"]
 
 [resource]
-streams_count = 1
 random_volume_offset_db = 1.48
+streams_count = 1
 stream_0/stream = ExtResource("1_u0bbl")
-stream_0/weight = 1.0

@@ -1,8 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://cv66w30at2uv0"]
+[gd_scene load_steps=22 format=3 uid="uid://cv66w30at2uv0"]
 
 [ext_resource type="PackedScene" uid="uid://dilk21k2nncq2" path="res://scenes/levels/level_template.tscn" id="1_kbvse"]
 [ext_resource type="Script" path="res://scripts/levels/heaven_area.gd" id="2_0y2ur"]
 [ext_resource type="PackedScene" uid="uid://ugulpxhu6v48" path="res://scenes/components/pickup_handler.tscn" id="2_pdelf"]
+[ext_resource type="Script" path="res://scripts/characters/enemy_resource.gd" id="3_0dc4r"]
 [ext_resource type="PackedScene" uid="uid://cnrpegq0voiht" path="res://scenes/components/enemy_handler.tscn" id="4_81g8t"]
 [ext_resource type="PackedScene" uid="uid://dfrum4te4lpmr" path="res://scenes/objects/teleporter.tscn" id="5_h7u4d"]
 [ext_resource type="Texture2D" uid="uid://448fgucckiyr" path="res://art/backgrounds/heaven_area_1.png" id="6_83hdw"]
@@ -30,7 +31,7 @@ sources/1 = SubResource("TileSetAtlasSource_xdtfr")
 
 [node name="Heaven Area" node_paths=PackedStringArray("enemy_handler") instance=ExtResource("1_kbvse")]
 script = ExtResource("2_0y2ur")
-enemy_resource_list = Array[Resource("res://scripts/characters/enemy_resource.gd")]([ExtResource("6_muf3o"), ExtResource("7_a1v71")])
+enemy_resource_list = Array[ExtResource("3_0dc4r")]([ExtResource("6_muf3o"), ExtResource("7_a1v71")])
 enemy_handler = NodePath("LogicComponents/EnemyHandler")
 
 [node name="TileMap" type="TileMap" parent="YSort" index="0"]
@@ -54,7 +55,7 @@ ysorter = NodePath("../../YSort")
 score_display = NodePath("../../HUD")
 
 [node name="EnemyHandler" parent="LogicComponents" index="2" node_paths=PackedStringArray("enemy_ysort") instance=ExtResource("4_81g8t")]
-enemy_resource_list = Array[Resource("res://scripts/characters/enemy_resource.gd")]([ExtResource("6_muf3o"), ExtResource("7_a1v71"), ExtResource("8_60soe")])
+enemy_resource_list = Array[ExtResource("3_0dc4r")]([ExtResource("6_muf3o"), ExtResource("7_a1v71"), ExtResource("8_60soe")])
 enemy_ysort = NodePath("../../YSort/Enemies")
 
 [node name="TerrainGenerator" parent="LogicComponents" index="3" node_paths=PackedStringArray("tile_map", "ysorter") instance=ExtResource("8_74i65")]

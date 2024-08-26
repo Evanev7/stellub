@@ -1,9 +1,7 @@
 extends Node2D
 
 signal shop_entered(shop)
-signal remove_target
 signal remove_from_hud(shop)
-signal add_to_hud(shop)
 
 @export var shop_resource_list: Array[ShopResource]
 

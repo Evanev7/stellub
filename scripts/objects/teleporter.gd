@@ -5,7 +5,6 @@ extends Node2D
 @onready var teleport_sound: AudioStreamPlayer2D = $teleport_sound
 @onready var arrive_sound: AudioStreamPlayer = $arrive_sound
 
-signal teleport_player
 signal add_objective_marker(teleporter)
 
 var tween: Tween

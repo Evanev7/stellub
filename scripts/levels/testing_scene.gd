@@ -66,7 +66,3 @@ func _on_player_hp_changed(hp):
 func _on_player_level_up(current_level):
 	HUD.change_min_XP(player.level_threshold[player.current_level])
 	HUD.show_health(player.hp, player.hp_max)
-
-
-
-

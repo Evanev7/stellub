@@ -33,11 +33,10 @@ shader_parameter/Shift_Hue = 0.0
 shader_parameter/hsl_offset = Vector3(0, 0, 0)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_gne13"]
-streams_count = 1
 random_pitch = 1.03
 random_volume_offset_db = 1.0
+streams_count = 1
 stream_0/stream = ExtResource("21_5mjld")
-stream_0/weight = 1.0
 
 [sub_resource type="Shader" id="Shader_cyudj"]
 code = "shader_type canvas_item;
@@ -84,10 +83,9 @@ _bundled = {
 }
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_igrsw"]
-streams_count = 1
 random_pitch = 1.07
+streams_count = 1
 stream_0/stream = ExtResource("22_58j52")
-stream_0/weight = 1.0
 
 [node name="BossEnemy" node_paths=PackedStringArray("finite_state_machine") instance=ExtResource("1_wvsit")]
 z_index = 1

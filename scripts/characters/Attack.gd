@@ -103,11 +103,3 @@ func remove_upgrades():
 	for child in get_children():
 		if child is Upgrade:
 			child.queue_free()
-
-
-
-
-
-
-
-

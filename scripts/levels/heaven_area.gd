@@ -18,7 +18,7 @@ func _ready():
 	player.connect("hp_changed", HUD.show_health)
 	player.connect("credit_player", $LogicComponents/PickupHandler._on_pickup_credit_player)
 	start_game()
-	$YSort/teleporter.position = Vector2(GameState.player.position.x + randf_range(-100, 100), GameState.player.position.y - 20000) # 20000
+	$YSort/teleporter.position = Vector2(GameState.player.position.x + randf_range(-100, 100), GameState.player.position.y - 200) # 20000
 	$YSort/teleporter.enabled()
 	$YSort/teleporter.arrive_sound.play()
 	$LogicComponents/TerrainGenerator.generate()
@@ -80,4 +80,3 @@ func _on_player_level_up(_current_level):
 	HUD.show_health(player.hp, player.hp_max)
 	enemy_handler.spawn_timer.wait_time /= 1.04
 	enemy_handler.overall_multiplier += player.current_level / float(600)
-

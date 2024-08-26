@@ -1,5 +1,6 @@
 extends EnemyBehaviour
 
+@warning_ignore("unused_signal")
 signal give_me_data(who)
 signal boss_health_changed(new_hp, max_hp)
 
@@ -9,6 +10,7 @@ signal boss_health_changed(new_hp, max_hp)
 
 func _ready():
 	super()
+	sprite.animation = "boss"
 	var temp_handler = attack_handler
 	attack_handler = GameState.player.attack_handler
 	GameState.player.attack_handler = temp_handler
@@ -53,6 +55,9 @@ func hurt(area):
 	super(area)
 	boss_health_changed.emit(health, resource.MAX_HP*overall_multiplier*unique_multiplier)
 	if dead == true:
+		attack_handler.stop()
+		set_physics_process(false)
+		finite_state_machine.state = null
 		GameState.game_over.emit()
 		GameState.player.attack_handler.stop()
 		GameState.player.hide()

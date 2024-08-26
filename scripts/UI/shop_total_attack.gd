@@ -110,4 +110,3 @@ func _on_control_mode_pressed(event: InputEvent):
 			control_mode = Attack.CONTROL_MODE.PASSIVE
 
 	update_control_texture()
-

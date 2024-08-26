@@ -44,4 +44,3 @@ func set_up(boss):
 	boss.attack_handler.stop()
 	
 	GameState.register_enemy.emit(boss)
-

@@ -26,11 +26,10 @@ shader_parameter/value = 1.0
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_m8w2f")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_0wdce"]
-streams_count = 1
 random_pitch = 1.03
 random_volume_offset_db = 1.0
+streams_count = 1
 stream_0/stream = ExtResource("6_8ccjc")
-stream_0/weight = 1.0
 
 [node name="StatueDropper" type="Node"]
 script = ExtResource("1_fsf3j")

@@ -30,7 +30,6 @@ animations = [{
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_n0eev"]
 streams_count = 1
 stream_0/stream = ExtResource("3_3es0x")
-stream_0/weight = 1.0
 
 [resource]
 script = ExtResource("1_m3io2")

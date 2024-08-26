@@ -1,8 +1,6 @@
 extends Area2D
 class_name Pickup
 
-signal credit_player(value)
-
 @export var launch_angle: float = PI/6
 @export var launch_velocity: float = 250
 @export var activation_time: float = 2

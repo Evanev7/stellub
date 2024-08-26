@@ -191,46 +191,38 @@ animations = [{
 }]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_a6wws"]
-streams_count = 1
 random_volume_offset_db = 1.0
+streams_count = 1
 stream_0/stream = ExtResource("35_uypww")
-stream_0/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_yst2m"]
-streams_count = 1
 random_volume_offset_db = 1.0
+streams_count = 1
 stream_0/stream = ExtResource("35_hr2l7")
-stream_0/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_k0a05"]
-streams_count = 1
 random_volume_offset_db = 1.0
+streams_count = 1
 stream_0/stream = ExtResource("36_1j732")
-stream_0/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_51dqt"]
-streams_count = 1
 random_volume_offset_db = 1.0
+streams_count = 1
 stream_0/stream = ExtResource("36_ys6vg")
-stream_0/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_r2jma"]
 streams_count = 1
-random_pitch = 1.0
 stream_0/stream = ExtResource("36_ik3c3")
-stream_0/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_5dgq8"]
-streams_count = 1
 random_volume_offset_db = 1.0
+streams_count = 1
 stream_0/stream = ExtResource("39_qx4df")
-stream_0/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_mmpd2"]
-streams_count = 1
 random_volume_offset_db = 1.0
+streams_count = 1
 stream_0/stream = ExtResource("40_6nd5v")
-stream_0/weight = 1.0
 
 [sub_resource type="Gradient" id="Gradient_vribh"]
 offsets = PackedFloat32Array(0, 0.74569, 1)
@@ -244,20 +236,18 @@ lifetime_randomness = 0.24
 particle_flag_disable_z = true
 direction = Vector3(1, -1500, 0)
 spread = 180.0
-gravity = Vector3(0, 98, 0)
 initial_velocity_max = 1500.0
 angular_velocity_max = 322.24
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
+gravity = Vector3(0, 98, 0)
 linear_accel_min = -35.62
 linear_accel_max = -5.15
+attractor_interaction_enabled = false
 scale_min = 0.01
 scale_max = 0.02
 color = Color(1, 0, 0, 1)
 color_ramp = SubResource("GradientTexture1D_dwkf2")
-hue_variation_min = -0.13
-hue_variation_max = 0.13
-attractor_interaction_enabled = false
+hue_variation_min = -0.04
+hue_variation_max = 0.03
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("attack_handler")]
 y_sort_enabled = true

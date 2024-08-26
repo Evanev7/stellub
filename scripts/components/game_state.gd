@@ -1,8 +1,11 @@
 extends Node
 
+@warning_ignore("unused_signal")
 signal fire_bullet(origin, bullet: BulletResource, init: FireFrom)
+@warning_ignore("unused_signal")
 signal spawn_enemy
 signal game_over
+@warning_ignore("unused_signal")
 signal register_enemy
 
 var _save: SaveGame
@@ -161,18 +164,9 @@ func queue_free_groups():
 	get_tree().call_group("magic_circle", "queue_free")
 
 
-func _enter_tree() -> void:
-	get_tree().node_added.connect(on_node_added)
-
-func on_node_added(node: Node) -> void:
-	var pp := node as PopupPanel
-	if pp and pp.theme_type_variation == "TooltipPanel":
-		pp.transparent_bg = true
-		pp.transparent = true
-
 func _notification(what):
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
-		GameState.save_game()
+		await GameState.save_game()
 		get_tree().quit()
 
 func create_or_load_save():

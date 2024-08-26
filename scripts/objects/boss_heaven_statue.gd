@@ -42,7 +42,7 @@ func drop(height, drop_time = 0.6, shader_time = 0.6):
 	tween.tween_property($BossHeavenStatue/Sprite2D.material, "shader_parameter/value", 1., shader_time)
 	tween.tween_interval(2)
 	tween.tween_callback(func(): following_player = false)
-	tween.tween_interval(1)
+	tween.tween_interval(0.4)
 	tween.tween_callback(func(): falling = true)
 	tween.tween_property(shadow, "offset", Vector2(0,0), drop_time)
 	tween.parallel().tween_property(shadow.material, "shader_parameter/value", 1., drop_time)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://domdhv4tthmyh"]
+[gd_scene load_steps=16 format=3 uid="uid://domdhv4tthmyh"]
 
 [ext_resource type="Script" path="res://scripts/UI/shop_draggable.gd" id="1_hpu8w"]
 [ext_resource type="Shader" path="res://scenes/characters/enemy.gdshader" id="1_shuwh"]
@@ -17,6 +17,11 @@ shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
 shader_parameter/Shift_Hue = null
 shader_parameter/hsl_offset = null
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5xn7l"]
+
+[sub_resource type="Theme" id="Theme_0i8lt"]
+TooltipPanel/styles/panel = SubResource("StyleBoxEmpty_5xn7l")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_81a1y"]
 
@@ -55,6 +60,7 @@ _data = {
 material = SubResource("ShaderMaterial_6j57c")
 clip_contents = true
 custom_minimum_size = Vector2(200, 200)
+theme = SubResource("Theme_0i8lt")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("1_hpu8w")
@@ -85,8 +91,8 @@ texture = SubResource("AnimatedTexture_6hh8e")
 expand_mode = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "new_animation"
-method_call_mode = 1
+callback_mode_method = 1
 libraries = {
 "": SubResource("AnimationLibrary_4kitx")
 }
+autoplay = "new_animation"

@@ -5,10 +5,9 @@
 [ext_resource type="AudioStream" uid="uid://d3adxm8olqcsu" path="res://sounds/frag.wav" id="3_krj0j"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_obxr8"]
-streams_count = 1
 random_volume_offset_db = 1.0
+streams_count = 1
 stream_0/stream = ExtResource("3_krj0j")
-stream_0/weight = 1.0
 
 [resource]
 script = ExtResource("1_m651b")

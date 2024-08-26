@@ -27,10 +27,9 @@ animations = [{
 }]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_d40yl"]
-streams_count = 1
 random_pitch = 1.01
+streams_count = 1
 stream_0/stream = ExtResource("3_h5ijo")
-stream_0/weight = 1.0
 
 [resource]
 script = ExtResource("1_dhlpd")
