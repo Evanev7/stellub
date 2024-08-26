@@ -62,7 +62,7 @@ func really_spawn_pickup(pos, type, value = 1):
 
 func _on_pickup_credit_player(value):
 	var player = GameState.player
-	player.gain_score(value)
+	player.call_deferred("gain_score", value)
 	if score_display:
 		score_display.show_score(
 			player.score,

@@ -241,18 +241,20 @@ func gain_score(value):
 	while score >= level_threshold[current_level]:
 		level_up.emit(current_level)
 		player_level_up()
-		if level_threshold[current_level] > 10000:
-			level_threshold.append(level_threshold[current_level] * 1.1)
-		elif level_threshold[current_level] > 2000:
-			level_threshold.append(level_threshold[current_level] + 500)
-		elif level_threshold[current_level] > 1000:
-			level_threshold.append(level_threshold[current_level] + 200)
-		elif level_threshold[current_level] > 500:
-			level_threshold.append(level_threshold[current_level] + 100)
-		elif level_threshold[current_level] > 200:
-			level_threshold.append(level_threshold[current_level] + 50)
+		var current_threshold = level_threshold[current_level]
+
+		if current_threshold > 10000:
+			level_threshold.append(current_threshold * 1.1)
+		elif current_threshold > 2000:
+			level_threshold.append(current_threshold + 500)
+		elif current_threshold > 1000:
+			level_threshold.append(current_threshold + 200)
+		elif current_threshold > 500:
+			level_threshold.append(current_threshold + 100)
+		elif current_threshold > 200:
+			level_threshold.append(current_threshold + 50)
 		elif level_threshold[current_level] > 49:
-			level_threshold.append(level_threshold[current_level] + 30)
+			level_threshold.append(current_threshold + 30)
 
 func heal(value):
 	hp = clamp(hp + value, 0, hp_max)
