@@ -8,7 +8,7 @@ signal show_freeze(time)
 
 ## Player Stats
 @export var STARTING_SPEED: float = 300.0
-@export var STARTING_HP_MAX: float = 100
+@export var STARTING_HP_MAX: float = 20
 @export var STARTING_WEAPON: BulletResource
 
 @export var stat_upgrade: UpgradeResource

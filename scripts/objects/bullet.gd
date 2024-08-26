@@ -201,8 +201,9 @@ func spawn_child() -> void:
 	GameState.fire_bullet.emit(origin_ref, spawned_bullet, fire_from)
 
 func remove() -> void:
-	GameState.num_bullets -= 1
 	on_remove.emit()
+	if dead == false:
+		GameState.num_bullets -= 1
 	dead = true
 	collision.set_deferred("disabled", true)
 	set_physics_process(false)

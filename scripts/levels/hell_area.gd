@@ -8,6 +8,12 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	player.connect("level_up", _on_player_level_up)
+	player.connect("player_death", _on_player_player_death)
+	player.connect("show_freeze", HUD.freeze)
+	player.connect("show_freeze", enemy_handler.freeze)
+	player.connect("hp_changed", HUD.show_health)
+	player.connect("credit_player", $LogicComponents/PickupHandler._on_pickup_credit_player)
 	start_game()
 
 	if GameState.player_data.first_time == false:
