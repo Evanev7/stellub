@@ -22,7 +22,7 @@ func _ready():
 		[Pickup.vacuum_pickup, 1],
 		[Pickup.freeze_pickup, 1],
 		[Pickup.fire_pickup, 1],
-		[null, 120] # 120
+		[null, 150] # Default: 150
 		])
 
 func cleanup():

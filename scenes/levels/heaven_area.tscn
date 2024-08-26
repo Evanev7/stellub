@@ -49,7 +49,9 @@ HUD = NodePath("../../HUD")
 
 [node name="leaf_particles" parent="." index="2" instance=ExtResource("7_4nde1")]
 
-[node name="PickupHandler" parent="LogicComponents" index="1" instance=ExtResource("2_pdelf")]
+[node name="PickupHandler" parent="LogicComponents" index="1" node_paths=PackedStringArray("ysorter", "score_display") instance=ExtResource("2_pdelf")]
+ysorter = NodePath("../../YSort")
+score_display = NodePath("../../HUD")
 
 [node name="EnemyHandler" parent="LogicComponents" index="2" node_paths=PackedStringArray("enemy_ysort") instance=ExtResource("4_81g8t")]
 enemy_resource_list = Array[Resource("res://scripts/characters/enemy_resource.gd")]([ExtResource("6_muf3o"), ExtResource("7_a1v71"), ExtResource("8_60soe")])

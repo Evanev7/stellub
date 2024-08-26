@@ -51,4 +51,3 @@ func fade_out(stream):
 		stream.volume_db = 0
 		stream.stop()
 		)
-	currently_playing_music = null
