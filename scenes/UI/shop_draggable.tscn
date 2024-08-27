@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://domdhv4tthmyh"]
+[gd_scene load_steps=18 format=3 uid="uid://domdhv4tthmyh"]
 
 [ext_resource type="Script" path="res://scripts/UI/shop_draggable.gd" id="1_hpu8w"]
 [ext_resource type="Shader" path="res://scenes/characters/enemy.gdshader" id="1_shuwh"]
@@ -18,9 +18,15 @@ shader_parameter/value = 1.0
 shader_parameter/Shift_Hue = null
 shader_parameter/hsl_offset = null
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hk60t"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4qeqp"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5xn7l"]
 
 [sub_resource type="Theme" id="Theme_0i8lt"]
+Panel/styles/panel = SubResource("StyleBoxEmpty_hk60t")
+PopupPanel/styles/panel = SubResource("StyleBoxEmpty_4qeqp")
 TooltipPanel/styles/panel = SubResource("StyleBoxEmpty_5xn7l")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_81a1y"]
