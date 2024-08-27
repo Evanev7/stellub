@@ -1,20 +1,20 @@
 [gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://cbfq7bqkgh3ti"]
 
-[ext_resource type="Texture2D" uid="uid://cy2ajprj0e7h5" path="res://art/bullets/player/simple_bullet_1.png" id="1_e5j0q"]
-[ext_resource type="Texture2D" uid="uid://b1vinjcjjtwic" path="res://art/bullets/player/simple_bullet_2.png" id="2_2xlka"]
-[ext_resource type="Texture2D" uid="uid://3u505qc8u7bp" path="res://art/bullets/player/simple_bullet_3.png" id="3_60yrn"]
+[ext_resource type="Texture2D" uid="uid://cixy4bwrk0k7u" path="res://art/bullets/player/resized/simple_bullet_1.png" id="1_vmdtr"]
+[ext_resource type="Texture2D" uid="uid://d5fi004r6ka8" path="res://art/bullets/player/resized/simple_bullet_2.png" id="2_2vk6d"]
+[ext_resource type="Texture2D" uid="uid://nctkp6ngf5w0" path="res://art/bullets/player/resized/simple_bullet_3.png" id="3_8k727"]
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_e5j0q")
+"texture": ExtResource("1_vmdtr")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_2xlka")
+"texture": ExtResource("2_2vk6d")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_60yrn")
+"texture": ExtResource("3_8k727")
 }],
 "loop": true,
 "name": &"simple",

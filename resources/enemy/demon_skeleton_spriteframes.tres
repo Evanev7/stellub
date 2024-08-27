@@ -1,12 +1,12 @@
 [gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://bpernxx6xbtyn"]
 
-[ext_resource type="Texture2D" uid="uid://nm60sm6hcvxw" path="res://art/enemies/demon_skeleton.png" id="1_br76i"]
+[ext_resource type="Texture2D" uid="uid://bpnf02dj0t33n" path="res://art/enemies/resized/demon_skeleton.png" id="1_1x8le"]
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_br76i")
+"texture": ExtResource("1_1x8le")
 }],
 "loop": true,
 "name": &"skeleton",

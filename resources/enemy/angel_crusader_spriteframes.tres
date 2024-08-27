@@ -1,12 +1,12 @@
 [gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://c5w2hlo8p3tfl"]
 
-[ext_resource type="Texture2D" uid="uid://bqiq7m00kuq25" path="res://art/enemies/angel_crusader.png" id="1_blmm7"]
+[ext_resource type="Texture2D" uid="uid://bt3wnkxrbk20j" path="res://art/enemies/resized/angel_crusader.png" id="1_jvj2q"]
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_blmm7")
+"texture": ExtResource("1_jvj2q")
 }],
 "loop": true,
 "name": &"crusader",

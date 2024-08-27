@@ -1,21 +1,21 @@
 [gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://fu03tfdn82ry"]
 
-[ext_resource type="Texture2D" uid="uid://nejpyofndmq8" path="res://art/enemies/angel_boss_1.png" id="1_e3yae"]
-[ext_resource type="Texture2D" uid="uid://c8bpgk3o1coov" path="res://art/enemies/angel_boss_2.png" id="2_nljkr"]
-[ext_resource type="Texture2D" uid="uid://catcqu1hxg882" path="res://art/enemies/angel_boss_3.png" id="3_fch41"]
-[ext_resource type="Texture2D" uid="uid://bk505o0tch8ry" path="res://art/enemies/angel_boss_hold.png" id="4_hswmw"]
+[ext_resource type="Texture2D" uid="uid://jmi4x4b24xjd" path="res://art/enemies/resized/angel_boss_1.png" id="1_1d6rn"]
+[ext_resource type="Texture2D" uid="uid://crxunk4fxhxet" path="res://art/enemies/resized/angel_boss_2.png" id="2_riw1y"]
+[ext_resource type="Texture2D" uid="uid://bs2u3thglscmj" path="res://art/enemies/resized/angel_boss_3.png" id="3_xwnnj"]
+[ext_resource type="Texture2D" uid="uid://dft8bjg4acx08" path="res://art/enemies/resized/angel_boss_hold.png" id="4_00tlv"]
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_e3yae")
+"texture": ExtResource("1_1d6rn")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_nljkr")
+"texture": ExtResource("2_riw1y")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_fch41")
+"texture": ExtResource("3_xwnnj")
 }],
 "loop": true,
 "name": &"boss",
@@ -23,7 +23,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_hswmw")
+"texture": ExtResource("4_00tlv")
 }],
 "loop": true,
 "name": &"hold",

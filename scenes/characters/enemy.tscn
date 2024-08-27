@@ -32,6 +32,7 @@ motion_mode = 1
 script = ExtResource("1_oyorq")
 resource = ExtResource("2_quvqc")
 damage_scene = ExtResource("2_orbdq")
+metadata/_edit_vertical_guides_ = [52.0]
 
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.490196)
@@ -41,9 +42,10 @@ texture = ExtResource("3_m06xu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_fmm6i")
-scale = Vector2(0.07, 0.07)
+scale = Vector2(0.280918, 0.280918)
 sprite_frames = ExtResource("6_dy24l")
 animation = &"dog"
+frame_progress = 0.829203
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 14.2857)

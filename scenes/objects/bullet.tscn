@@ -1,15 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://dldkm6m8ux87t"]
+[gd_scene load_steps=8 format=3 uid="uid://dldkm6m8ux87t"]
 
 [ext_resource type="Material" uid="uid://6vtco3gw7ve7" path="res://resources/warp_shader.tres" id="1_dilvh"]
 [ext_resource type="Script" path="res://scripts/objects/bullet.gd" id="1_vy7io"]
-[ext_resource type="Texture2D" uid="uid://bk3vxhcckppe1" path="res://art/enemies/demon_dog.png" id="2_dammb"]
 [ext_resource type="PackedScene" uid="uid://creqcpfcm3j5d" path="res://scenes/components/bullet_vacuum.tscn" id="2_jy2wq"]
 [ext_resource type="SpriteFrames" uid="uid://cbfq7bqkgh3ti" path="res://resources/bullets/player/player_bullet_spriteframes.tres" id="2_p3jja"]
 [ext_resource type="Texture2D" uid="uid://clyycn7uujclo" path="res://art/icon.svg" id="4_2d6mg"]
 [ext_resource type="Script" path="res://scripts/components/Shader.gd" id="5_5b5w5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rwjyl"]
-radius = 4.0
+radius = 6.03692
 
 [node name="Bullet" type="Area2D"]
 z_index = -1
@@ -22,12 +21,6 @@ vacuum_scene = ExtResource("2_jy2wq")
 
 [node name="SelfDestruct" type="Timer" parent="."]
 one_shot = true
-
-[node name="ShaderTestingSprite" type="Sprite2D" parent="."]
-process_mode = 4
-visible = false
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_dammb")
 
 [node name="BackBufferCopy" type="BackBufferCopy" parent="."]
 copy_mode = 0
@@ -42,14 +35,15 @@ script = ExtResource("5_5b5w5")
 lifetime_timer = NodePath("../SelfDestruct")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.03, 0.03)
+scale = Vector2(0.121212, 0.121212)
 sprite_frames = ExtResource("2_p3jja")
 animation = &"simple"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(4, 0)
+position = Vector2(7, 0)
 scale = Vector2(1.5, 1.5)
 shape = SubResource("CircleShape2D_rwjyl")
+debug_color = Color(0.579023, 0.383732, 1, 0.42)
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="timeout" from="SelfDestruct" to="." method="_on_self_destruct_timeout"]

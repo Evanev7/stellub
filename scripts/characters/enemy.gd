@@ -10,7 +10,7 @@ signal spawn_damage_number(damage_value: float, position: Vector2, size: Vector2
 
 @export var resource: EnemyResource
 @export var damage_scene: PackedScene
-@export var teleport_back_to_player_range: int = 2000
+@export var teleport_back_to_player_range: int = 3000
 
 @onready var unique_multiplier: float
 @onready var overall_multiplier: float
@@ -124,13 +124,13 @@ func load_resource(resource_to_load: EnemyResource):
 func spawn_animation():
 	sprite.material.set_shader_parameter("line_color", Vector4(1, 1, 1, 1))
 	var tween: Tween = create_tween()
-	tween.parallel().tween_property(sprite.material, "shader_parameter/line_thickness", 0, 0.5).from(180.0)
+	tween.parallel().tween_property(sprite.material, "shader_parameter/line_thickness", 0, 0.5).from(10.0)
 	tween.parallel().tween_property(shadow, "self_modulate:a", 1.0, 0.5).from(0.0)
 	tween.parallel().tween_property(sprite.material, "shader_parameter/value", 1.0, 0.5).from(0.0)
 	tween.tween_callback(func():
 		if unique_multiplier > 1:
 			sprite.material.set_shader_parameter("line_color", Vector4(1, 0, 0, 1))
-			sprite.material.set_shader_parameter("line_thickness", (unique_multiplier) ** 2)
+			sprite.material.set_shader_parameter("line_thickness", (unique_multiplier))
 		else:
 			sprite.material.set_shader_parameter("line_color", Vector4(0, 0, 0, 1)))
 
@@ -241,7 +241,7 @@ func remove():
 
 	var tween: Tween = create_tween()
 	sprite.material.set_shader_parameter("line_color", Vector4(0.5, 0, 0, 1))
-	tween.parallel().tween_property(sprite.material, "shader_parameter/line_thickness", 90.0, 0.5)
+	tween.parallel().tween_property(sprite.material, "shader_parameter/line_thickness", 10.0, 0.5)
 	tween.parallel().tween_property(shadow, "self_modulate:a", 0.0, 0.5)
 	tween.parallel().tween_property(sprite.material, "shader_parameter/value", 0.0, 0.5)
 	tween.tween_callback(func():
@@ -264,11 +264,6 @@ func remove():
 func hit(area):
 	if area.owner == GameState.player:
 		area.owner.hurt(self)
-
-
-
-
-
 
 
 func _on_hitbox_area_entered(area):

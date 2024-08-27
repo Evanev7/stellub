@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://buhg63ostt083"]
+[gd_resource type="SpriteFrames" load_steps=11 format=3 uid="uid://buhg63ostt083"]
 
 [ext_resource type="Texture2D" uid="uid://bdnfmeqgjdhmk" path="res://art/objects/hp_pickup_1.png" id="1_4g2wp"]
 [ext_resource type="Texture2D" uid="uid://b4d4inkobgtre" path="res://art/objects/soul_1.png" id="1_ggbx7"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://dohcipjgttsr0" path="res://art/objects/hp_pickup_2.png" id="2_ygtyn"]
 [ext_resource type="Texture2D" uid="uid://dtwe6u3g8px0x" path="res://art/objects/soul_3.png" id="3_0ycnl"]
 [ext_resource type="Texture2D" uid="uid://f112eqcb2m3n" path="res://art/objects/hp_pickup_3.png" id="3_ml13u"]
+[ext_resource type="Texture2D" uid="uid://d3b8pl1fnivob" path="res://art/objects/resized/soul_1.png" id="8_wxlbu"]
+[ext_resource type="Texture2D" uid="uid://4frgcel4eh22" path="res://art/objects/resized/soul_2.png" id="9_paoc7"]
+[ext_resource type="Texture2D" uid="uid://dmdrwikfjy5dj" path="res://art/objects/resized/soul_3.png" id="10_ajsb0"]
 
 [resource]
 animations = [{
@@ -56,13 +59,13 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_ggbx7")
+"texture": ExtResource("8_wxlbu")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_avvdk")
+"texture": ExtResource("9_paoc7")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_0ycnl")
+"texture": ExtResource("10_ajsb0")
 }],
 "loop": true,
 "name": &"xp_pickup",

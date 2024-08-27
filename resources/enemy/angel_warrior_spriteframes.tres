@@ -1,12 +1,12 @@
 [gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://c22qlxbjv85pf"]
 
-[ext_resource type="Texture2D" uid="uid://dm0cohiqw3sbk" path="res://art/enemies/angel_warrior.png" id="1_efrcl"]
+[ext_resource type="Texture2D" uid="uid://dvlyvbk14y6e3" path="res://art/enemies/resized/angel_warrior.png" id="1_yjgfh"]
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_efrcl")
+"texture": ExtResource("1_yjgfh")
 }],
 "loop": true,
 "name": &"warrior",

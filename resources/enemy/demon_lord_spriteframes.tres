@@ -1,32 +1,32 @@
 [gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://cjvxmcnq3xtj6"]
 
-[ext_resource type="Texture2D" uid="uid://bxi0cpf8vefnt" path="res://art/enemies/demon_lord_1.png" id="1_k6f8o"]
-[ext_resource type="Texture2D" uid="uid://ciud42lig8dfb" path="res://art/enemies/demon_lord_2.png" id="2_wgwau"]
-[ext_resource type="Texture2D" uid="uid://cft8n2rwkdi4t" path="res://art/enemies/demon_lord_3.png" id="3_yhxf4"]
-[ext_resource type="Texture2D" uid="uid://cks1k3d3w0p7y" path="res://art/enemies/demon_lord_4.png" id="4_qqv04"]
-[ext_resource type="Texture2D" uid="uid://dt5dafi7e7a70" path="res://art/enemies/demon_lord_5.png" id="5_tvmtg"]
-[ext_resource type="Texture2D" uid="uid://br20grux6rjuk" path="res://art/enemies/demon_lord_6.png" id="6_v405h"]
+[ext_resource type="Texture2D" uid="uid://bfu22o6h2kmt7" path="res://art/enemies/resized/demon_lord_1.png" id="1_dow2v"]
+[ext_resource type="Texture2D" uid="uid://cbjix0672u3sv" path="res://art/enemies/resized/demon_lord_2.png" id="2_046a2"]
+[ext_resource type="Texture2D" uid="uid://d35afwpqqunm6" path="res://art/enemies/resized/demon_lord_3.png" id="3_q38cx"]
+[ext_resource type="Texture2D" uid="uid://yk3kyf04fvdq" path="res://art/enemies/resized/demon_lord_4.png" id="4_3cttp"]
+[ext_resource type="Texture2D" uid="uid://cughpjrkwbii2" path="res://art/enemies/resized/demon_lord_5.png" id="5_gusvh"]
+[ext_resource type="Texture2D" uid="uid://dng7sgxo84ka8" path="res://art/enemies/resized/demon_lord_6.png" id="6_jupfl"]
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_k6f8o")
+"texture": ExtResource("1_dow2v")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_wgwau")
+"texture": ExtResource("2_046a2")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_yhxf4")
+"texture": ExtResource("3_q38cx")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_qqv04")
+"texture": ExtResource("4_3cttp")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_tvmtg")
+"texture": ExtResource("5_gusvh")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_v405h")
+"texture": ExtResource("6_jupfl")
 }],
 "loop": true,
 "name": &"lord",

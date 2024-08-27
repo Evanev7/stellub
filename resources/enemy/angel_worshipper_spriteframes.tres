@@ -1,12 +1,12 @@
 [gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://b1je1icd33jis"]
 
-[ext_resource type="Texture2D" uid="uid://bjs8nkf0k72xg" path="res://art/enemies/angel_worshipper.png" id="1_2o5g4"]
+[ext_resource type="Texture2D" uid="uid://gyafvno4tt6" path="res://art/enemies/resized/angel_worshipper.png" id="1_j488a"]
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_2o5g4")
+"texture": ExtResource("1_j488a")
 }],
 "loop": true,
 "name": &"worshipper",
