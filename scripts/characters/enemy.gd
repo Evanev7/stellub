@@ -45,7 +45,9 @@ var fire_on_hit: bool = false
 static var damage_scene_pool: Array[DamageNumber] = []
 var frozen: bool
 var movement_enabled: bool = true
-var enemy_limit = 200
+var enemy_limit: int = 200
+var path_recalculate_time: float = 1
+var player_direction: Vector2
 
 var contact_areas: Array = []
 
@@ -74,6 +76,7 @@ func set_data():
 	default_angle = self.rotation
 	default_scale = resource.SCALE * (0.875 + (unique_multiplier / 8))
 	variance = 1/default_scale.length()
+	path_recalculate_time = 1
 
 
 	load_resource(resource)
@@ -89,8 +92,8 @@ func set_data():
 	add_to_group("enemy")
 	sway()
 
-	if GameState.num_enemies >= enemy_limit:
-		movement_enabled = false
+	#if GameState.num_enemies >= enemy_limit:
+		#movement_enabled = false
 
 func load_resource(resource_to_load: EnemyResource):
 	name = resource_to_load.NAME
@@ -152,9 +155,13 @@ func sway():
 
 # Move the enemy towards the player, handle deletion on death and fire bullets
 # if the fire_delay has elapsed.
-func _physics_process(_delta):
+func _physics_process(delta):
 	sprite.modulate = Color(2, 2, 2)
-	var player_direction = (GameState.player.position - position)
+	if path_recalculate_time >= 0.3:
+		player_direction = (GameState.player.position - position)
+		path_recalculate_time = 0
+	else:
+		path_recalculate_time += delta
 
 	if player_direction.length() > (teleport_back_to_player_range / (GameState.current_area + 1)):
 		var relative_spawn_position: Vector2
@@ -166,7 +173,7 @@ func _physics_process(_delta):
 
 	velocity = player_direction.normalized() * speed
 
-	if GameState.num_enemies < enemy_limit and not frozen:
+	if not frozen: #  GameState.num_enemies < enemy_limit and
 		movement_enabled = true
 		if player_direction.x < 0:
 			sprite.flip_h = (true != flipped)

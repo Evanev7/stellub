@@ -47,12 +47,14 @@ script = ExtResource("2_myijk")
 enemy_handler = NodePath("LogicComponents/EnemyHandler")
 metadata/_edit_vertical_guides_ = []
 
-[node name="TileMap" type="TileMap" parent="YSort" index="0"]
+[node name="TileMap" type="Node2D" parent="YSort" index="0"]
 z_index = -2
 scale = Vector2(0.8, 0.8)
+
+[node name="Layer0" type="TileMapLayer" parent="YSort/TileMap" index="0"]
+use_parent_material = true
+tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0)
 tile_set = SubResource("TileSet_rqhpw")
-format = 2
-layer_0/tile_data = PackedInt32Array(0, 1, 0)
 
 [node name="Player" parent="YSort" index="1" instance=ExtResource("11_syo0k")]
 
@@ -67,7 +69,7 @@ HUD = NodePath("../../HUD")
 z_index = 19
 
 [node name="TerrainGenerator" parent="LogicComponents" index="1" node_paths=PackedStringArray("tile_map", "ysorter") instance=ExtResource("2_p0a1o")]
-tile_map = NodePath("../../YSort/TileMap")
+tile_map = NodePath("../../YSort/TileMap/Layer0")
 ysorter = NodePath("../../YSort")
 objects = Array[PackedScene]([ExtResource("14_kq46c"), ExtResource("15_oeqij"), ExtResource("16_48wth"), ExtResource("17_kyh5d"), ExtResource("18_uw2ke"), ExtResource("19_omeqv")])
 object_spawn_rate = Array[float]([0.3, 0.2, 0.5, 0.4, 0.3, 0.1])

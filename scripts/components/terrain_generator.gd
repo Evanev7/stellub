@@ -1,7 +1,7 @@
 extends Node
 class_name TerrainGenerator
 
-@export var tile_map: TileMap 
+@export var tile_map: TileMapLayer
 @export var ysorter: Node2D
 @export var update_range: Vector2i
 
@@ -13,7 +13,7 @@ class_name TerrainGenerator
 
 @onready var update_tick_rate: float = 1
 @onready var tile_size: Vector2 = tile_map.scale * Vector2(tile_map.tile_set.tile_size)
-@onready var used_cells = tile_map.get_used_cells(0)
+@onready var used_cells = tile_map.get_used_cells()
 
 
 var landing_attempts = 10
@@ -49,14 +49,14 @@ func generate() -> void:
 			var update_coords = player_atlas_coords + Vector2i(x,y)
 			if update_coords not in used_cells:
 				populate(update_coords)
-				used_cells = tile_map.get_used_cells(0)
+				used_cells = tile_map.get_used_cells()
 
 func cliff_generate() -> void:
-	tile_map.set_cell(0,Vector2i(0,0),1,Vector2i(0,0),0)
+	tile_map.set_cell(Vector2i(0,0),1,Vector2i(0,0),0)
 	pass
 
 func populate(coords) -> void:
-	tile_map.set_cell(0,coords,1,Vector2i(0,0),0)
+	tile_map.set_cell(coords,1,Vector2i(0,0),0)
 	coords = Vector2(coords) * tile_size
 	#This could use better handling, it's finnicky right now in a bad way.
 	for index in range(len(objects)):

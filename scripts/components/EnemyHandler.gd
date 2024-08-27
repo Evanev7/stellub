@@ -30,7 +30,7 @@ var maximum_damage_numbers: int = 300
 
 var enemy_rarity_pool: Pool
 var enemy_scene_pool: Array[EnemyBehaviour] = []
-var maximum_enemies: int = 800
+var maximum_enemies: int = 300
 
 @onready var phase_limit = 1
 
