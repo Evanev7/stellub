@@ -1,6 +1,5 @@
 extends Node
 
-@onready var heaven_start: AudioStreamPlayer = $heaven_start
 @onready var heaven_loop: AudioStreamPlayer = $heaven_loop
 @onready var hell_song: AudioStreamPlayer = $hell_song
 @onready var merchant_dialogue = $merchant_dialogue
@@ -10,23 +9,15 @@ extends Node
 @onready var place_upgrade = $place_upgrade
 @onready var main_menu = $main_menu
 @onready var boss_song = $boss_song
+@onready var landing_sfx: AudioStreamPlayer = $LandingSFX
 
 
 var currently_playing_music: AudioStreamPlayer
 
-# Called when the node enters the scene tree for the first time.
-func _process(_delta):
-	if heaven_start.get_playback_position() >= 24.31 and currently_playing_music == heaven_start:
-		_on_heaven_start_finished()
 
 func heaven_start_play():
-	heaven_start.volume_db = -6
-	heaven_start.play()
-	currently_playing_music = heaven_start
-
-func _on_heaven_start_finished():
-	heaven_loop.volume_db = -6
-	heaven_loop.play()
+	heaven_loop.volume_db = 0
+	heaven_loop.play(0)
 	currently_playing_music = heaven_loop
 
 func hell_song_play():

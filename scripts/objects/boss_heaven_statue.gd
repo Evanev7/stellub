@@ -1,10 +1,13 @@
 extends Node
 
-@onready var landing_sfx = $LandingSFX
 @onready var damage: float = GameState.player.hp_max * 0.3
 @onready var hitbox: Area2D = $BossHeavenStatue/Hitbox
+@onready var hurtbox: Area2D = $BossHeavenStatue/Hurtbox
 @onready var boss_heaven_statue = $BossHeavenStatue
 @onready var shadow = $Shadow
+
+@onready var HP_MAX: float = damage
+@onready var hp: float = HP_MAX
 
 
 var following_player: bool = true
@@ -16,6 +19,7 @@ var _drop_time
 
 func _ready():
 	hitbox.monitoring = false
+	hurtbox.monitoring = false
 
 func _physics_process(delta):
 	if following_player:
@@ -29,8 +33,6 @@ func _physics_process(delta):
 
 	if _height < 10:
 		hitbox.monitoring = true
-		boss_heaven_statue.collision_mask = 1
-		boss_heaven_statue.collision_layer = 1
 
 
 func drop(height, drop_time = 0.6, shader_time = 0.6):
@@ -49,8 +51,16 @@ func drop(height, drop_time = 0.6, shader_time = 0.6):
 	tween.chain().tween_callback(disable_damagebox)
 
 func disable_damagebox():
-	landing_sfx.play()
+	SoundManager.landing_sfx.play()
+	hurtbox.monitoring = true
 
 func _on_hitbox_area_entered(area):
 	if area.owner == GameState.player:
 		GameState.player.hurt(self)
+
+func hurt(area):
+	hp -= area.damage
+	if hp <= 0:
+		SoundManager.landing_sfx.play()
+		print("drop an item")
+		queue_free()

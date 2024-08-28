@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="BulletResource" load_steps=6 format=3 uid="uid://ctfcugo2o7mc2"]
 
-[ext_resource type="Texture2D" uid="uid://bhs2v6ujb61d6" path="res://art/bullets/temp_1.png" id="1_cxbib"]
+[ext_resource type="Texture2D" uid="uid://brd0l3nymwv83" path="res://art/bullets/temp_1_resized.png" id="1_a8jj8"]
 [ext_resource type="Script" path="res://scripts/objects/bullet_resource.gd" id="1_unmlb"]
 [ext_resource type="AudioStream" uid="uid://h5elwdsbb4dg" path="res://sounds/explosion.wav" id="3_8h0gv"]
 
@@ -8,7 +8,7 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_cxbib")
+"texture": ExtResource("1_a8jj8")
 }],
 "loop": true,
 "name": &"default",
@@ -26,7 +26,7 @@ description = "Default Upgrade Description"
 animation = SubResource("SpriteFrames_74svo")
 sound = SubResource("AudioStreamRandomizer_4p1kx")
 rarity = 1.0
-size = Vector2(15, 15)
+size = Vector2(8, 8)
 colour = Color(0.796078, 0, 0.188235, 0.631373)
 fire_on_hit = false
 start_range = 0

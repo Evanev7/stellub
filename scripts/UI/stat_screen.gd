@@ -14,19 +14,28 @@ signal restart_game
 @onready var restart_button = %RestartButton
 
 var main = false
+var restarting = false
 
 func _ready():
 	GameState.game_over.connect(game_over)
 	GameState.stat_screen = self
 	%DeathsLabel.hide()
 	%PickupsLabel.hide()
+	%UpgradesLabel.hide()
+	%WeaponsLabel.hide()
+	%BossLabel.hide()
 	%LevelsLabel.show()
 	levels_gained.show()
 	deaths.hide()
 	pickups_gathered.hide()
+	%Upgrades.hide()
+	%Weapons.hide()
+	%Boss.hide()
 	%Restart.text = "RESTART"
 
 func game_over():
+	GameState.player_data.total_upgrades_taken += GameState.upgrades_taken
+	GameState.player_data.total_weapons_taken += GameState.weapons_taken - 1 if GameState.weapons_taken > 0 else 0
 	GameState.save_game()
 	show()
 	var tween: Tween = create_tween()
@@ -68,12 +77,18 @@ func _on_restart_button_pressed():
 			restart()
 		
 func restart():
+	if restarting == true:
+		return
+	else:
+		restarting = true
 	SoundManager.important_select.play()
 	var tween: Tween = create_tween()
 	var tween2: Tween = create_tween()
 	tween.tween_property($CenterContainer, "modulate:a", 0, 1)
 	tween2.tween_property($TextureRect, "self_modulate:a", 0, 1)
-	tween2.tween_callback(hide)
+	tween2.tween_callback(func():
+		hide()
+		restarting = false)
 	restart_game.emit()
 	tween2.tween_callback(get_parent().start_message)
 
@@ -85,10 +100,18 @@ func opened_via_main():
 	main = true
 	%DeathsLabel.show()
 	%PickupsLabel.show()
+	%UpgradesLabel.show()
+	%WeaponsLabel.show()
+	if GameState.player_data.total_boss_kills:
+		%BossLabel.show()
 	%LevelsLabel.hide()
 	levels_gained.hide()
 	deaths.show()
 	pickups_gathered.show()
+	%Upgrades.show()
+	%Weapons.show()
+	if GameState.player_data.total_boss_kills:
+		%Boss.show()
 	%Restart.text = "BACK"
 	
 	enemies_killed.text = str(GameState.player_data.total_enemies_killed)
@@ -98,6 +121,10 @@ func opened_via_main():
 	circles_completed.text = str(GameState.player_data.total_circles_completed)
 	deaths.text = str(GameState.player_data.total_deaths)
 	pickups_gathered.text = str(GameState.player_data.total_pickups_collected)
+	%Upgrades.text = str(GameState.player_data.total_upgrades_taken)
+	%Weapons.text = str(GameState.player_data.total_weapons_taken)
+	if GameState.player_data.total_boss_kills:
+		%Boss.text = str(GameState.player_data.total_boss_kills)
 	
 
 

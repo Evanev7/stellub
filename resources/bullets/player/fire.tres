@@ -1,22 +1,22 @@
 [gd_resource type="Resource" script_class="BulletResource" load_steps=8 format=3 uid="uid://clmx2ku04voo4"]
 
-[ext_resource type="Texture2D" uid="uid://b4d4inkobgtre" path="res://art/objects/soul_1.png" id="1_ah254"]
+[ext_resource type="Texture2D" uid="uid://d3b8pl1fnivob" path="res://art/objects/resized/soul_1.png" id="1_aij7m"]
 [ext_resource type="Script" path="res://scripts/objects/bullet_resource.gd" id="1_iciqk"]
-[ext_resource type="Texture2D" uid="uid://8vk8e031gefk" path="res://art/objects/soul_2.png" id="2_urdvf"]
+[ext_resource type="Texture2D" uid="uid://4frgcel4eh22" path="res://art/objects/resized/soul_2.png" id="2_kp3sa"]
+[ext_resource type="Texture2D" uid="uid://dmdrwikfjy5dj" path="res://art/objects/resized/soul_3.png" id="3_hx4yr"]
 [ext_resource type="AudioStream" uid="uid://c7m6xuqfndntt" path="res://sounds/fire.wav" id="3_p1qhj"]
-[ext_resource type="Texture2D" uid="uid://dtwe6u3g8px0x" path="res://art/objects/soul_3.png" id="3_xorke"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_k7xdv"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_ah254")
+"texture": ExtResource("1_aij7m")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_urdvf")
+"texture": ExtResource("2_kp3sa")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_xorke")
+"texture": ExtResource("3_hx4yr")
 }],
 "loop": true,
 "name": &"default",

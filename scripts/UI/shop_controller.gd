@@ -88,8 +88,11 @@ func loadsave(mode: int):
 
 		for gui_attack in gui_total_attacks:
 			total_upgrades += gui_attack.num_upgrades
-
+		
+		GameState.upgrades_taken = total_upgrades
+		GameState.weapons_taken = new_attacks.size()
 		GameState.player.evolve(total_upgrades / 2 + new_attacks.size() - 1)
+		
 	for total in gui_total_attacks:
 		total.refresh_all()
 

@@ -49,6 +49,8 @@ var souls_collected: float = 0
 var bullets_summoned: int = 0
 var damage_dealt: float = 0
 var circles_completed: int = 0
+var upgrades_taken: int = 0
+var weapons_taken: int = 0
 
 func _ready():
 	Input.set_custom_mouse_cursor(clicky_hand, Input.CURSOR_POINTING_HAND, Vector2i(8,5))
@@ -84,6 +86,8 @@ func reset_statistics():
 	bullets_summoned = 0
 	damage_dealt = 0
 	circles_completed = 1
+	upgrades_taken = 0
+	weapons_taken = 0
 
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed("pause"):
@@ -125,7 +129,10 @@ func handle_debug_input(_event):
 			current_area_node.get_node("LogicComponents/EnemyHandler").spawn_enemy(randi() % 7)
 
 	if Input.is_action_just_pressed("debug_activate_teleporter"): # T
-		current_area_node.get_node("LogicComponents/ShopHandler")._on_activate_teleporter()
+		if GameState.current_area == GameState.CURRENT_AREA.HEAVEN:
+			player.global_position = Vector2(0, -20000)
+		else:
+			current_area_node.get_node("LogicComponents/ShopHandler")._on_activate_teleporter()
 
 	if Input.is_action_just_pressed("debug_print_data"): # P
 		current_area_node.get_node("HUD").show_debug()

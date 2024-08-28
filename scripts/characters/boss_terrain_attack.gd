@@ -43,6 +43,7 @@ func physics_process(delta):
 	else:
 		timer += delta
 		owner.sprite.animation = "hold"
+		owner.blocking = true
 	
 		if fmod(timer, item_drop_gap) > fmod(timer + delta, item_drop_gap) and dropped < num_to_drop:
 			dropped += 1
@@ -55,4 +56,5 @@ func drop_a_brick_on_their_head():
 	
 	if dropped >= num_to_drop:
 		owner.sprite.animation = "boss"
+		owner.blocking = false
 		change_state.emit(self, "randomizer")

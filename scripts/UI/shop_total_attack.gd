@@ -57,13 +57,11 @@ func loadsave(mode: int, attack_node: Attack) -> Attack:
 	var gui_attack_node = get_node("%Attack")
 	var gui_upgrades: Array[Control] = get_gui_upgrades()
 	var player_upgrades: Array[Upgrade] = []
-
+	
 	if mode == LOAD:
 		gui_attack_node.referenced_node = attack_node
 		if attack_node:
 			player_upgrades = get_upgrade_nodes(attack_node)
-
-	num_upgrades = player_upgrades.size()
 
 	gui_attack_node.refresh()
 
@@ -81,13 +79,15 @@ func loadsave(mode: int, attack_node: Attack) -> Attack:
 				player_upgrades.append(gui_upgrades[upgrade_index].referenced_node)
 		gui_upgrades[upgrade_index].refresh()
 
+	num_upgrades = player_upgrades.size()
+	
 	if mode == SAVE:
 		if $%Attack.referenced_node != null:
 			attack_node = $%Attack.referenced_node
 			reattach_nodes(attack_node, player_upgrades)
 			attack_node.control_mode = control_mode
 			attack_node.refresh_bullet_resource()
-
+	
 	return attack_node
 
 

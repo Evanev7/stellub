@@ -45,8 +45,8 @@ offset_bottom = 588.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 15
-theme_override_font_sizes/normal_font_size = 100
 theme_override_font_sizes/italics_font_size = 100
+theme_override_font_sizes/normal_font_size = 100
 bbcode_enabled = true
 text = "[center][i]Ten Thousand Eternities Later...[/i][/center]"
 
@@ -205,6 +205,36 @@ theme_override_font_sizes/font_size = 40
 text = "Pickups Gathered:"
 horizontal_alignment = 2
 
+[node name="UpgradesLabel" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer/ScrollContainer/HBoxContainer/Titles"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.843137, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 0.670588, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 40
+text = "Upgrades Taken:"
+horizontal_alignment = 2
+
+[node name="WeaponsLabel" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer/ScrollContainer/HBoxContainer/Titles"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.843137, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 0.670588, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 40
+text = "Weapons Taken:"
+horizontal_alignment = 2
+
+[node name="BossLabel" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer/ScrollContainer/HBoxContainer/Titles"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.843137, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 0.670588, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 40
+text = "Boss Kills:"
+horizontal_alignment = 2
+
 [node name="Scores" type="VBoxContainer" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer/ScrollContainer/HBoxContainer"]
 layout_mode = 2
 mouse_filter = 2
@@ -288,6 +318,42 @@ text = "10"
 horizontal_alignment = 2
 
 [node name="Pickups" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer/ScrollContainer/HBoxContainer/Scores"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 40
+text = "10"
+horizontal_alignment = 2
+
+[node name="Upgrades" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer/ScrollContainer/HBoxContainer/Scores"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 40
+text = "10"
+horizontal_alignment = 2
+
+[node name="Weapons" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer/ScrollContainer/HBoxContainer/Scores"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 40
+text = "10"
+horizontal_alignment = 2
+
+[node name="Boss" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/StatsPanel/VBoxContainer/ScrollContainer/HBoxContainer/Scores"]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(200, 0)

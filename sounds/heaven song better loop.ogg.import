@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://3l8sas3qqxsf"
+path="res://.godot/imported/heaven song better loop.ogg-b25834b2c5e4623580e3c663d67f7f86.oggvorbisstr"
+
+[deps]
+
+source_file="res://sounds/heaven song better loop.ogg"
+dest_files=["res://.godot/imported/heaven song better loop.ogg-b25834b2c5e4623580e3c663d67f7f86.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=22.33
+bpm=0.0
+beat_count=0
+bar_beats=4

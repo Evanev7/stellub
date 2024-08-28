@@ -1,11 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://cvx0gmeyb27al"]
+[gd_scene load_steps=10 format=3 uid="uid://cvx0gmeyb27al"]
 
 [ext_resource type="Script" path="res://scripts/objects/boss_heaven_statue.gd" id="1_fsf3j"]
 [ext_resource type="Texture2D" uid="uid://bpx5ybtqcrlpp" path="res://art/objects/shadow.png" id="2_dig8n"]
 [ext_resource type="Shader" path="res://boss_heaven_statue.gdshader" id="2_r7nkm"]
 [ext_resource type="Shader" path="res://terrain.gdshader" id="3_l5yki"]
 [ext_resource type="Texture2D" uid="uid://cbj5l5vjksmfv" path="res://art/objects/heaven_statue.png" id="4_ofktj"]
-[ext_resource type="AudioStream" uid="uid://d3t4v8j5d11" path="res://sounds/stone landing.wav" id="6_8ccjc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_idaol"]
 resource_local_to_scene = true
@@ -24,12 +23,6 @@ resource_local_to_scene = true
 shader = ExtResource("3_l5yki")
 shader_parameter/value = 1.0
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_m8w2f")
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_0wdce"]
-random_pitch = 1.03
-random_volume_offset_db = 1.0
-streams_count = 1
-stream_0/stream = ExtResource("6_8ccjc")
 
 [node name="StatueDropper" type="Node"]
 script = ExtResource("1_fsf3j")
@@ -90,9 +83,15 @@ position = Vector2(-67.9156, -66.8819)
 scale = Vector2(0.82462, 0.82462)
 polygon = PackedVector2Array(60, 40, -196, 122, 60, 212, 311, 123)
 
-[node name="LandingSFX" type="AudioStreamPlayer" parent="."]
-stream = SubResource("AudioStreamRandomizer_0wdce")
-bus = &"SFX"
+[node name="Hurtbox" type="Area2D" parent="BossHeavenStatue"]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BossHeavenStatue/Hurtbox"]
+position = Vector2(0, 1)
+scale = Vector2(1.08588, 1.08588)
+polygon = PackedVector2Array(-16, 103, -221, 32, -218, -38, -154, -64, -143, -101, -52, -129, -7, -139, 63, -124, 109, -101, 122, -64, 183, -38, 186, 34)
 
 [connection signal="area_entered" from="BossHeavenStatue/Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="body_entered" from="BossHeavenStatue/Hitbox" to="." method="_on_hitbox_body_entered"]

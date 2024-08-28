@@ -8,6 +8,8 @@ signal boss_health_changed(new_hp, max_hp)
 @export var boss_upgrade: UpgradeResource
 @onready var flap = $flap
 
+var blocking: bool = false
+
 func _ready():
 	super()
 	sprite.animation = "boss"
@@ -52,6 +54,8 @@ func _physics_process(_delta):
 		flap.play()
 
 func hurt(area):
+	if blocking:
+		area.damage /= 3
 	super(area)
 	boss_health_changed.emit(health, resource.MAX_HP*overall_multiplier*unique_multiplier)
 	if dead == true:
@@ -62,5 +66,6 @@ func hurt(area):
 		GameState.player.attack_handler.stop()
 		GameState.player.hide()
 		GameState.player.set_physics_process(false)
+		GameState.player_data.total_boss_kills += 1
 		if SoundManager.currently_playing_music:
 			SoundManager.currently_playing_music.volume_db -= 10

@@ -26,6 +26,8 @@ func _physics_process(delta):
 		state.physics_process(delta)
 
 func switch_state(from_state: State, to_state: String):
+	owner.sprite.animation = "boss"
+	owner.blocking = false
 	if from_state != state:
 		return
 	
