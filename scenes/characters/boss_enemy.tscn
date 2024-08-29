@@ -100,9 +100,9 @@ boss_upgrade = ExtResource("3_q4jo8")
 [node name="AnimatedSprite2D" parent="." index="1"]
 material = SubResource("ShaderMaterial_3auua")
 sprite_frames = ExtResource("5_pj87d")
-animation = &"hold"
+animation = &"boss"
 autoplay = "boss"
-frame_progress = 0.801551
+frame_progress = 0.674034
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="2"]
 position = Vector2(-3, 2)

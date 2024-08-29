@@ -53,7 +53,7 @@ func _ready():
 
 func _physics_process(_delta):
 	move_and_slide()
-	if !flap.playing:
+	if !flap.playing and !blocking:
 		flap.play()
 		
 	eye_sprite.position = lerp(eye_sprite.position, (GameState.player.global_position - eye_sprite.global_position).limit_length(3) + eye_offset, 0.3)

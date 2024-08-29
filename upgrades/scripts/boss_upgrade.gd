@@ -15,6 +15,7 @@ func modify_toplevel(bullet: BulletResource) -> BulletResource:
 	bullet.size *= 3
 	bullet.damage *= 2
 	bullet.angular_velocity /= 5
+	bullet.start_range += 80
 	if bullet.spawned_bullet_resource:
 		bullet.spawned_bullet_resource = modify_toplevel(bullet.spawned_bullet_resource)
 	return bullet
