@@ -31,7 +31,7 @@ func _ready():
 	refresh_bullet_resource()
 	if initial_bullet:
 		icon = initial_bullet.icon
-	_timer = 0.01
+	_timer = 0.001
 	attack_handler = get_parent()
 
 

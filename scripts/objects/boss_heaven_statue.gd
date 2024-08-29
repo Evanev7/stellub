@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 @onready var damage: float = GameState.player.hp_max * 0.3
 @onready var hitbox: Area2D = $BossHeavenStatue/Hitbox
@@ -8,6 +8,7 @@ extends Node
 
 @onready var HP_MAX: float = damage
 @onready var hp: float = HP_MAX
+@onready var attack_handler: AttackHandler = $BossHeavenStatue/AttackHandler
 
 
 var following_player: bool = true
@@ -20,6 +21,7 @@ var _drop_time
 func _ready():
 	hitbox.monitoring = false
 	hurtbox.monitoring = false
+	attack_handler.stop()
 
 func _physics_process(delta):
 	if following_player:
@@ -51,6 +53,8 @@ func drop(height, drop_time = 0.6, shader_time = 0.6):
 	tween.chain().tween_callback(disable_damagebox)
 
 func disable_damagebox():
+	attack_handler.start()
+	SoundManager.landing_sfx.volume_db = 0
 	SoundManager.landing_sfx.play()
 	hurtbox.monitoring = true
 
@@ -60,7 +64,10 @@ func _on_hitbox_area_entered(area):
 
 func hurt(area):
 	hp -= area.damage
+	SoundManager.landing_sfx.volume_db = -10
+	SoundManager.landing_sfx.play(0.6)
 	if hp <= 0:
+		SoundManager.landing_sfx.volume_db = 0
 		SoundManager.landing_sfx.play()
 		print("drop an item")
 		queue_free()

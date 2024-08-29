@@ -85,3 +85,4 @@ func clear_upgrades(attack) -> void:
 func start() -> void:
 	for attack in get_children():
 		attack.timer_active = true
+		attack._timer = 0.01

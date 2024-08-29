@@ -1,10 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://cvx0gmeyb27al"]
+[gd_scene load_steps=13 format=3 uid="uid://cvx0gmeyb27al"]
 
 [ext_resource type="Script" path="res://scripts/objects/boss_heaven_statue.gd" id="1_fsf3j"]
 [ext_resource type="Texture2D" uid="uid://bpx5ybtqcrlpp" path="res://art/objects/shadow.png" id="2_dig8n"]
 [ext_resource type="Shader" path="res://boss_heaven_statue.gdshader" id="2_r7nkm"]
 [ext_resource type="Shader" path="res://terrain.gdshader" id="3_l5yki"]
 [ext_resource type="Texture2D" uid="uid://cbj5l5vjksmfv" path="res://art/objects/heaven_statue.png" id="4_ofktj"]
+[ext_resource type="PackedScene" uid="uid://u1hhvearq4oy" path="res://scenes/components/attack_handler.tscn" id="6_lkuvr"]
+[ext_resource type="PackedScene" uid="uid://be4i0yo3jsk42" path="res://scenes/components/attack.tscn" id="7_l87lk"]
+[ext_resource type="Resource" uid="uid://djfx5xxn1qv5u" path="res://resources/bullets/angel_worshipper_bullet.tres" id="8_wsha2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_idaol"]
 resource_local_to_scene = true
@@ -24,7 +27,7 @@ shader = ExtResource("3_l5yki")
 shader_parameter/value = 1.0
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_m8w2f")
 
-[node name="StatueDropper" type="Node"]
+[node name="StatueDropper" type="Node2D"]
 script = ExtResource("1_fsf3j")
 
 [node name="Shadow" type="Sprite2D" parent="."]
@@ -34,8 +37,6 @@ texture = ExtResource("2_dig8n")
 
 [node name="BossHeavenStatue" type="AnimatableBody2D" parent="."]
 position = Vector2(19, -25)
-collision_layer = 0
-collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="BossHeavenStatue"]
 y_sort_enabled = true
@@ -93,5 +94,10 @@ position = Vector2(0, 1)
 scale = Vector2(1.08588, 1.08588)
 polygon = PackedVector2Array(-16, 103, -221, 32, -218, -38, -154, -64, -143, -101, -52, -129, -7, -139, 63, -124, 109, -101, 122, -64, 183, -38, 186, 34)
 
+[node name="AttackHandler" parent="BossHeavenStatue" instance=ExtResource("6_lkuvr")]
+position = Vector2(-19, 25)
+
+[node name="Attack" parent="BossHeavenStatue/AttackHandler" instance=ExtResource("7_l87lk")]
+initial_bullet = ExtResource("8_wsha2")
+
 [connection signal="area_entered" from="BossHeavenStatue/Hitbox" to="." method="_on_hitbox_area_entered"]
-[connection signal="body_entered" from="BossHeavenStatue/Hitbox" to="." method="_on_hitbox_body_entered"]
