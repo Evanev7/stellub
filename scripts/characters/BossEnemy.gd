@@ -7,10 +7,13 @@ signal boss_health_changed(new_hp, max_hp)
 @export var finite_state_machine: Node
 @export var boss_upgrade: UpgradeResource
 @onready var flap = $flap
+@onready var eye_sprite: Sprite2D = $Sprite2D
+@onready var eye_offset: Vector2 = eye_sprite.position
 
 var blocking: bool = false
 
 func _ready():
+	resource.DAMAGE += GameState.player.hp_max * 0.05
 	super()
 	sprite.animation = "boss"
 	var temp_handler = attack_handler
@@ -52,6 +55,8 @@ func _physics_process(_delta):
 	move_and_slide()
 	if !flap.playing:
 		flap.play()
+		
+	eye_sprite.position = lerp(eye_sprite.position, (GameState.player.global_position - eye_sprite.global_position).limit_length(3) + eye_offset, 0.3)
 
 func hurt(area):
 	if blocking:

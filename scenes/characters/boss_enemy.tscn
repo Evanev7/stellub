@@ -1,10 +1,11 @@
-[gd_scene load_steps=29 format=3 uid="uid://cc07v7n1u6cto"]
+[gd_scene load_steps=30 format=3 uid="uid://cc07v7n1u6cto"]
 
 [ext_resource type="PackedScene" uid="uid://dpjckt12ipcw2" path="res://scenes/characters/enemy.tscn" id="1_wvsit"]
 [ext_resource type="Script" path="res://scripts/characters/BossEnemy.gd" id="2_6g3sa"]
 [ext_resource type="Shader" path="res://scenes/characters/enemy.gdshader" id="3_hd3a3"]
 [ext_resource type="Resource" uid="uid://d4hyik40h0kpq" path="res://upgrades/boss_upgrade.tres" id="3_q4jo8"]
 [ext_resource type="SpriteFrames" uid="uid://fu03tfdn82ry" path="res://resources/enemy/angel_boss_spriteframes.tres" id="5_pj87d"]
+[ext_resource type="Texture2D" uid="uid://b0nhc4gfspv2j" path="res://art/enemies/resized/angel_boss_pupil.png" id="6_77dtl"]
 [ext_resource type="Shape2D" uid="uid://cf1jvctq0mulw" path="res://resources/hitboxes/boss_hitbox.tres" id="6_pa8sf"]
 [ext_resource type="Shape2D" uid="uid://c862hatltraad" path="res://resources/hitboxes/boss_collisionbox.tres" id="7_4refy"]
 [ext_resource type="Script" path="res://scripts/characters/Attack.gd" id="8_wucx7"]
@@ -99,21 +100,26 @@ boss_upgrade = ExtResource("3_q4jo8")
 [node name="AnimatedSprite2D" parent="." index="1"]
 material = SubResource("ShaderMaterial_3auua")
 sprite_frames = ExtResource("5_pj87d")
-animation = &"boss"
+animation = &"hold"
 autoplay = "boss"
-frame_progress = 0.0
+frame_progress = 0.801551
 
-[node name="CollisionShape2D" parent="." index="2"]
+[node name="Sprite2D" type="Sprite2D" parent="." index="2"]
+position = Vector2(-3, 2)
+scale = Vector2(0.265625, 0.265625)
+texture = ExtResource("6_77dtl")
+
+[node name="CollisionShape2D" parent="." index="3"]
 position = Vector2(-2, 3.2857)
 shape = ExtResource("6_pa8sf")
 
-[node name="Hitbox" parent="." index="3"]
+[node name="Hitbox" parent="." index="4"]
 position = Vector2(-2, -11)
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 shape = ExtResource("7_4refy")
 
-[node name="Hurtbox" parent="." index="4"]
+[node name="Hurtbox" parent="." index="5"]
 position = Vector2(-2, -11)
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
@@ -124,7 +130,7 @@ script = ExtResource("8_wucx7")
 control_mode = 1
 initial_bullet = ExtResource("9_ue13c")
 
-[node name="FiniteStateMachine" type="Node" parent="." index="9" node_paths=PackedStringArray("state")]
+[node name="FiniteStateMachine" type="Node" parent="." index="10" node_paths=PackedStringArray("state")]
 script = ExtResource("8_yg6au")
 state = NodePath("BossInit")
 
@@ -161,8 +167,10 @@ script = ExtResource("11_ahao5")
 [node name="HealthInterruptor" type="Node" parent="FiniteStateMachine" index="7"]
 script = ExtResource("16_ibn11")
 
-[node name="flap" type="AudioStreamPlayer" parent="." index="10"]
+[node name="flap" type="AudioStreamPlayer" parent="." index="11"]
 stream = SubResource("AudioStreamRandomizer_igrsw")
 pitch_scale = 0.95
 max_polyphony = 3
 bus = &"SFX"
+
+[connection signal="area_entered" from="Hitbox" to="." method="hit"]
