@@ -15,7 +15,6 @@ var blocking: bool = false
 func _ready():
 	resource.DAMAGE += GameState.player.hp_max * 0.05
 	super()
-	sprite.animation = "boss"
 	var temp_handler = attack_handler
 	attack_handler = GameState.player.attack_handler
 	GameState.player.attack_handler = temp_handler

@@ -121,8 +121,9 @@ func handle_debug_input(_event):
 		current_area_node.get_node("HUD").show_score(player.score, player.level_threshold[player.current_level])
 
 	if Input.is_action_just_pressed("debug_evolve"): ## E
-		#player.evolve()
-		player.attack_handler.get_child(0).add_child(ShopHandler.upgrade_from_res(load("res://upgrades/multi_shot.tres")))
+		player.evolve()
+		#player.attack_handler.get_child(0).add_child(ShopHandler.upgrade_from_res(load("res://upgrades/multi_shot.tres")))
+		(get_node("/root/Hell Area/LogicComponents/PickupHandler") as PickupHandler).spawn_pickup(player.position + Vector2(100,0), randi() % 5)
 
 	if Input.is_action_just_pressed("debug_spawn_enemy"): # L
 		for i in range(100):

@@ -44,7 +44,7 @@ func physics_process(delta):
 		timer += delta
 		owner.sprite.animation = "hold"
 		owner.blocking = true
-	
+
 		if fmod(timer, item_drop_gap) > fmod(timer + delta, item_drop_gap) and dropped < num_to_drop:
 			dropped += 1
 			drop_a_brick_on_their_head()
@@ -53,7 +53,7 @@ func drop_a_brick_on_their_head():
 	var object = statue.instantiate()
 	ysort_node.add_child(object)
 	object.drop(drop_height)
-	
+
 	if dropped >= num_to_drop:
 		owner.sprite.animation = "boss"
 		owner.blocking = false

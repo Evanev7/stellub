@@ -9,7 +9,7 @@ func _ready():
 		if child is State:
 			states[child.name.to_lower()] = child
 			child.connect("change_state", switch_state)
-	
+
 	if state:
 		state.enter()
 
@@ -30,9 +30,9 @@ func switch_state(from_state: State, to_state: String):
 	owner.blocking = false
 	if from_state != state:
 		return
-	
+
 	if state:
 		state.exit()
-	
+
 	state = states[to_state.to_lower()]
 	state.enter()

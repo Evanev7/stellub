@@ -25,7 +25,7 @@ func _ready():
 			GameState.num_xp_pickups += 1
 			sprite.animation = "xp_pickup"
 			sprite.scale = Vector2(0.1, 0.1)
-			add_to_group("xp_pickup") 
+			add_to_group("xp_pickup")
 			var scale_ratio = 0.6+log(value)
 			apply_scale(Vector2(scale_ratio, scale_ratio))
 		hp_pickup:
@@ -43,7 +43,7 @@ func _ready():
 			sprite.modulate = Color(1, 0, 0)
 			value = randi() % 10 + 3
 	sprite.play()
-	
+
 	#Randomly distribute launch_angle according to proper distribution
 	launch_angle = (randi_range(0,1)*2-1)*acos(1-randf()*(1-cos(launch_angle)))
 	add_to_group("pickup")
@@ -63,7 +63,7 @@ func _physics_process(delta):
 func activate():
 	process_mode = Node.PROCESS_MODE_INHERIT
 	activated = true
-	
+
 	# Add functionality to add value to another nearby pickup
 
 func _notification(what):

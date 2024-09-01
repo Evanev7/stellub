@@ -8,6 +8,9 @@ var timer: float = 0
 
 func _ready():
 	owner.give_me_data.emit(self)
+	await get_tree().process_frame
+	await get_tree().process_frame
+	owner.sprite.animation = "boss"
 
 func thanks_for_the_data(path):
 	pathfollow = path

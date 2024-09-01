@@ -12,7 +12,8 @@ signal show_freeze(time)
 @export var STARTING_WEAPON: BulletResource
 
 @export var stat_upgrade: UpgradeResource
-@export var attack_handler: Node2D
+@export var attack_handler: AttackHandler
+var fire_pickup_attack: Attack
 
 @onready var default_scale: Vector2 = self.scale
 @onready var default_pickup_range: Vector2 = $PickupRange.scale
@@ -220,11 +221,12 @@ func get_pickup(area):
 			show_freeze.emit(float(area.value))
 			GameState.player_data.total_pickups_collected += 1
 		Pickup.fire_pickup:
-			if attack_handler.get_node_or_null("Fire"):
-				free_fire_upgrade(float(area.value), true)
-			else:
-				attack_handler.add_attack_from_resource(preload("res://resources/bullets/player/fire.tres"), Attack.CONTROL_MODE.PASSIVE)
-				free_fire_upgrade(float(area.value))
+			if not fire_pickup_attack:
+				fire_pickup_attack = attack_handler.add_attack_from_resource(
+					preload("res://resources/bullets/player/fire.tres"),
+					Attack.CONTROL_MODE.PASSIVE,
+				)
+			free_fire_upgrade(float(area.value))
 			GameState.player_data.total_pickups_collected += 1
 	area.queue_free()
 
@@ -263,17 +265,17 @@ func heal(value):
 func activate_xp_vacuum():
 	get_tree().call_group("xp_pickup", "activate")
 
-func free_fire_upgrade(value, present: bool = false):
-	if present:
-		$FireTimer.wait_time = $FireTimer.time_left + value
+func free_fire_upgrade(value):
+	if not fire_pickup_attack:
+		$FireTimer.wait_time = value
 		$FireTimer.start()
 	else:
-		$FireTimer.wait_time = value
+		$FireTimer.wait_time = $FireTimer.time_left + value
 		$FireTimer.start()
 
 func _on_fire_timer_timeout():
-	if attack_handler.get_node_or_null("Fire"):
-		attack_handler.remove_child(attack_handler.get_node("Fire"))
+	if fire_pickup_attack:
+		attack_handler.remove_child(fire_pickup_attack)
 
 func player_level_up():
 	current_level += 1

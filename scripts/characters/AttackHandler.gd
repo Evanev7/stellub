@@ -10,8 +10,8 @@ func add_attack_from_resource(
 		bullet: BulletResource,
 		control_mode = Attack.CONTROL_MODE.PRIMARY,
 		target: FireFrom = null
-	) -> void:
-	var attack = attack_scene.instantiate()
+	) -> Attack:
+	var attack: Attack = attack_scene.instantiate()
 	attack.attack_name = bullet.name
 	attack.initial_bullet = bullet
 	attack.control_mode = control_mode
@@ -27,6 +27,7 @@ func add_attack_from_resource(
 		attack.add_child(upgrade_node)
 
 	add_child(attack)
+	return attack
 
 
 func get_attack_direction(target_mode) -> FireFrom:
