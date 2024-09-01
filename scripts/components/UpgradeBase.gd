@@ -7,6 +7,7 @@ class_name Upgrade
 @export_multiline var description: String
 @export var skip: bool = false
 var script_data: Dictionary
+var upgrade_name
 
 enum TYPE {STAT, BOSS, SHOP}
 @export var type: TYPE = TYPE.SHOP

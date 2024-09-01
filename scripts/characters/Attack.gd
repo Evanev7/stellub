@@ -14,6 +14,7 @@ var attack_handler: AttackHandler
 @export var initial_bullet: BulletResource
 var bullet: BulletResource
 
+var attack_name: String
 @export_multiline var description: String
 
 

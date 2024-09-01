@@ -80,7 +80,7 @@ func _on_shop_entered(shop_attached_to):
 
 func attack_from_res(bullet: BulletResource) -> Attack:
 	var attack = attack_scene.instantiate()
-	attack.name = bullet.name
+	attack.attack_name = bullet.name
 	attack.initial_bullet = bullet
 	attack.control_mode = Attack.CONTROL_MODE.PASSIVE
 	attack.aim_mode = Attack.AIM_MODE.TARGETED
@@ -100,7 +100,7 @@ static func upgrade_from_res(upgrade_resource: UpgradeResource) -> Upgrade:
 	upgrade_node.script_data = upgrade_resource.script_data
 	upgrade_node.skip = not upgrade_resource.appears_in_inventory
 	upgrade_node.icon = upgrade_resource.icon
-	upgrade_node.name = upgrade_resource.name
+	upgrade_node.upgrade_name = upgrade_resource.name
 	upgrade_node.description = generate_description(upgrade_resource)
 	return upgrade_node
 
@@ -170,6 +170,8 @@ func _on_shop_remove_upgrade(upgrade):
 
 func _on_shop_remove_weapon(weapon):
 	for i in shop_weapons_list.size():
+		# This is probably going to error. Thankfully noone calls it right!!
+		# If this does error, weapon.name should probably weapon.attack_name.
 		if weapon.name == shop_weapons_list[i].name:
 			shop_weapons_list.remove_at(i)
 			break

@@ -12,7 +12,7 @@ func add_attack_from_resource(
 		target: FireFrom = null
 	) -> void:
 	var attack = attack_scene.instantiate()
-	attack.name = bullet.name
+	attack.attack_name = bullet.name
 	attack.initial_bullet = bullet
 	attack.control_mode = control_mode
 	if target:
@@ -20,12 +20,12 @@ func add_attack_from_resource(
 		attack.attack_direction = target
 	else:
 		attack.aim_mode = Attack.AIM_MODE.TARGETED
-	
+
 	for i in range(GameState.player.current_level):
 		var upgrade_node: Upgrade = GameState.player.stat_upgrade.upgrade_script.new()
 		upgrade_node.script_data = GameState.player.stat_upgrade.script_data
 		attack.add_child(upgrade_node)
-		
+
 	add_child(attack)
 
 
@@ -47,7 +47,7 @@ func get_attack_direction(target_mode) -> FireFrom:
 				attack_direction.toward(global_position, get_global_mouse_position())
 			else:
 				attack_direction.toward(global_position, closest_enemy.position)
-	
+
 	return attack_direction
 
 
@@ -66,7 +66,7 @@ func refresh_all_attacks():
 func passive_all_attacks():
 	for attack in get_children():
 		attack.control_mode = Attack.CONTROL_MODE.PASSIVE
-		
+
 func aim_attacks_at_player():
 	for attack in get_children():
 		attack.initial_bullet.target_mode = BulletResource.TARGET_MODE.PLAYER

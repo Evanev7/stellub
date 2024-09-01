@@ -6,7 +6,6 @@ signal gray_out_shop
 var button_texture = preload("res://art/UI/Shop/Button Empty.png")
 var attack_indicator = preload("res://art/UI/clicky finger.png")
 var upgrade_indicator = preload("res://art/UI/shooty finger.png")
-@onready var indicator_type := [attack_indicator, upgrade_indicator]
 @export var overlay: TextureRect
 enum SLOT_TYPE {ATTACK, UPGRADE}
 
@@ -127,8 +126,13 @@ func _make_custom_tooltip(for_text):
 	var tooltip: CenterContainer = tooltip_scene.instantiate()
 	if referenced_node != null:
 		tooltip.get_node("MarginContainer/MarginContainer/VBoxContainer/Desc").text = for_text
-		tooltip.get_node("MarginContainer/MarginContainer/VBoxContainer/Title").text = referenced_node.name
-		tooltip.get_node("MarginContainer/TypeMargin/TypeIndicator").texture = indicator_type[slot_type]
+		match slot_type:
+			SLOT_TYPE.ATTACK:
+				tooltip.get_node("MarginContainer/MarginContainer/VBoxContainer/Title").text = referenced_node.attack_name
+				tooltip.get_node("MarginContainer/TypeMargin/TypeIndicator").texture = attack_indicator
+			SLOT_TYPE.UPGRADE:
+				tooltip.get_node("MarginContainer/MarginContainer/VBoxContainer/Title").text = referenced_node.upgrade_name
+				tooltip.get_node("MarginContainer/TypeMargin/TypeIndicator").texture = upgrade_indicator
 		return tooltip
 
 static func shop_freed():

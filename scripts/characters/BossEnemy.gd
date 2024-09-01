@@ -32,7 +32,7 @@ func _ready():
 	attack_handler.upgrade_all_attacks(boss_upgrade)
 
 	for attack in attack_handler.get_children():
-		if attack.name == "Fire":
+		if attack.attack_name == "Fire":
 			attack_handler.remove_child(attack)
 		for upgrade in attack.get_children():
 			if upgrade.type == Upgrade.TYPE.STAT:
@@ -55,7 +55,7 @@ func _physics_process(_delta):
 	move_and_slide()
 	if !flap.playing and !blocking:
 		flap.play()
-		
+
 	eye_sprite.position = lerp(eye_sprite.position, (GameState.player.global_position - eye_sprite.global_position).limit_length(3) + eye_offset, 0.3)
 
 func hurt(area):
