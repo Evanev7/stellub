@@ -1,7 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://cp7lho542gmeu"]
+[gd_scene load_steps=25 format=3 uid="uid://cp7lho542gmeu"]
 
 [ext_resource type="Script" path="res://scripts/objects/shop.gd" id="1_57dqm"]
 [ext_resource type="Texture2D" uid="uid://b7im0npiawyyl" path="res://art/objects/shop_closed_temp.png" id="1_q80nc"]
+[ext_resource type="Script" path="res://scripts/objects/shop_resource.gd" id="2_620iv"]
 [ext_resource type="Resource" uid="uid://bqdpnkdrgpa8m" path="res://resources/upgrades/multi_shot.tres" id="2_f0gju"]
 [ext_resource type="Resource" uid="uid://bka87xlceqp34" path="res://resources/upgrades/piercing.tres" id="3_ij06j"]
 [ext_resource type="Resource" uid="uid://jb4n38ecfldl" path="res://resources/upgrades/shot_speed.tres" id="4_q05oq"]
@@ -22,6 +23,7 @@ seed = 2
 noise = SubResource("FastNoiseLite_wv655")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ti1vf"]
+resource_local_to_scene = true
 shader = ExtResource("9_3rxiu")
 shader_parameter/line_color = Color(0, 0, 0, 0)
 shader_parameter/line_thickness = 0.0
@@ -75,12 +77,10 @@ particle_flag_disable_z = true
 direction = Vector3(0, -1, 0)
 spread = 90.31
 flatness = 1.0
-gravity = Vector3(1, -200, 0)
 initial_velocity_min = 221.85
 initial_velocity_max = 683.38
 angular_velocity_max = 2000.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
+gravity = Vector3(1, -200, 0)
 scale_max = 5.0
 color = Color(0.862745, 0.560784, 0.227451, 1)
 color_ramp = SubResource("GradientTexture1D_gstae")
@@ -88,7 +88,7 @@ color_ramp = SubResource("GradientTexture1D_gstae")
 [node name="Shop" type="Node2D"]
 scale = Vector2(0.25, 0.25)
 script = ExtResource("1_57dqm")
-shop_resource_list = Array[Resource("res://scripts/objects/shop_resource.gd")]([ExtResource("2_f0gju"), ExtResource("3_ij06j"), ExtResource("4_q05oq"), ExtResource("5_py3kw"), ExtResource("6_eg2mr"), ExtResource("7_kre3s"), ExtResource("8_68ca0")])
+shop_resource_list = Array[ExtResource("2_620iv")]([ExtResource("2_f0gju"), ExtResource("3_ij06j"), ExtResource("4_q05oq"), ExtResource("5_py3kw"), ExtResource("6_eg2mr"), ExtResource("7_kre3s"), ExtResource("8_68ca0")])
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_ti1vf")

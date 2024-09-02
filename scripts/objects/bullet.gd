@@ -86,6 +86,11 @@ func set_data():
 		$Shader.process_mode = Node.PROCESS_MODE_INHERIT
 		$Shader.visible = true
 		vacuum.get_node("CollisionShape2D").shape.radius = data.vacuum_range
+	
+	else:
+		$Shader.visible = false
+		$Shader.process_mode = Node.PROCESS_MODE_DISABLED
+		$BackBufferCopy.copy_mode = BackBufferCopy.COPY_MODE_DISABLED
 
 	if data.activation_delay > 0:
 		collision.set_deferred("disabled", true)
