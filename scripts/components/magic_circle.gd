@@ -142,7 +142,10 @@ func _process(_delta):
 		time_label.text = str(int(success_timer.get_time_left()))
 		if int(success_timer.get_time_left()) % 10 == 0 && success_timer.get_time_left() > 1:
 			spawn_enemies(int(success_timer.get_time_left()) / 10)
-
+	
+	var screen_coords = get_viewport_transform() * global_position
+	var normalized_screen_coords = screen_coords / Vector2(DisplayServer.screen_get_size())
+	RenderingServer.global_shader_parameter_set("circle_position", normalized_screen_coords)
 
 func _on_circle_body_entered(body):
 	if body == GameState.player and not wave_active:
