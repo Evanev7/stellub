@@ -8,6 +8,7 @@ extends Node2D
 
 @onready var HP_MAX: float = damage
 @onready var hp: float = HP_MAX
+@onready var strength: float = 10000
 @onready var attack_handler: AttackHandler = $BossHeavenStatue/AttackHandler
 
 

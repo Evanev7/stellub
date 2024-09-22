@@ -187,3 +187,7 @@ player_position={
 "type": "vec2",
 "value": Vector2(0, 0)
 }
+circle_position={
+"type": "vec2",
+"value": Vector2(0, 0)
+}

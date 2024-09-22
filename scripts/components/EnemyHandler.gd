@@ -148,8 +148,9 @@ func spawn_damage_number(damage_value: float, position: Vector2, size: Vector2):
 	if not damage_number:
 		return
 	var val = damage_value
+	var rand = randf_range(5, 30)
 	damage_number.scale = size
-	damage_number.set_values_and_animate(val, position, val * 20, 100 + 30 * val)
+	damage_number.set_values_and_animate(val, position, rand, 100 + 30 * val)
 
 func get_damage_number() -> DamageNumber:
 	if damage_scene_pool.size() > 0:

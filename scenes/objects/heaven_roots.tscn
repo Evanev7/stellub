@@ -7,7 +7,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fkd4b"]
 shader = ExtResource("2_l8d8p")
-shader_parameter/value = 1.0
+shader_parameter/value = null
 
 [node name="heaven_roots" type="AnimatableBody2D"]
 script = ExtResource("1_gn35x")

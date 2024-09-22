@@ -38,6 +38,7 @@ lifetime_timer = NodePath("../SelfDestruct")
 scale = Vector2(0.121212, 0.121212)
 sprite_frames = ExtResource("2_p3jja")
 animation = &"simple"
+frame = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(7, 0)
