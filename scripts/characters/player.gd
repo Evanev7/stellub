@@ -275,6 +275,8 @@ func free_fire_upgrade(value):
 
 func _on_fire_timer_timeout():
 	if fire_pickup_attack:
+		# This code has thrown an error that needs investigating.
+		# The fire pickup works as intended as far as I can tell.
 		attack_handler.remove_child(fire_pickup_attack)
 
 func player_level_up():

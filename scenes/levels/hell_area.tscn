@@ -49,7 +49,6 @@ metadata/_edit_vertical_guides_ = []
 
 [node name="TileMap" type="Node2D" parent="YSort" index="0"]
 z_index = -2
-scale = Vector2(0.8, 0.8)
 
 [node name="Layer0" type="TileMapLayer" parent="YSort/TileMap" index="0"]
 use_parent_material = true

@@ -25,13 +25,13 @@ func _ready():
 
 func _process(_delta):
 	##Debug ###############################
-	
+
 	if GameState.debug and Input.is_key_pressed(KEY_M): ## Increase score by 10
 		var player_atlas_coords: Vector2i = Vector2i(
 				floori(GameState.player.position.x/tile_size.x),
 				floori(GameState.player.position.y/tile_size.y))
 		populate(player_atlas_coords)
-	
+
 	#######################################
 
 
@@ -43,7 +43,7 @@ func generate() -> void:
 	var player_atlas_coords: Vector2i = Vector2i(
 			floori(GameState.player.position.x/tile_size.x),
 			floori(GameState.player.position.y/tile_size.y))
-	
+
 	for x in range(-update_range.x,update_range.x+1):
 		for y in range(-update_range.y,update_range.y+1):
 			var update_coords = player_atlas_coords + Vector2i(x,y)
@@ -64,20 +64,20 @@ func populate(coords) -> void:
 		var number = poisson(poisson_coefficient)
 		for i in range(number):
 			var object = objects[index].instantiate()
-			
+
 			#This shouldn't be here, it's hard to find later.
 			var random_size_scale = randf_range(0.6, 0.8)
 			var flip_direction = randi_range(0,1)
 			object.scale = Vector2(int(flip_direction)*2-1, 1) * random_size_scale
-			
+
 			coords.x += randf_range(0,tile_size.x)
 			coords.y += randf_range(0,tile_size.y)
-			
+
 			object.position = coords
-			
+
 			#Experimental darkening
 			object.modulate = Color(1.3,1.3,1.3)
-			
+
 			ysorter.add_child(object)
 			object.add_to_group("terrain")
 

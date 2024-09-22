@@ -1,4 +1,4 @@
-extends Node 
+extends Node
 class_name EnemyHandler
 
 signal spawn_shop_on_enemy(pos)
@@ -36,11 +36,11 @@ var maximum_enemies: int = 300
 
 func _ready():
 	GameState.game_over.connect(stop_spawning)
-	
+
 	phase_up_timer.wait_time = 120 # 120
 	if GameState.current_area == GameState.CURRENT_AREA.HEAVEN:
 		phase_up_timer.wait_time /= 2
-	
+
 	for i in range(maximum_damage_numbers):
 		var new_damage_number = damage_scene.instantiate()
 		new_damage_number.on_remove.connect(
@@ -59,19 +59,19 @@ func _on_phase_up_timer_timeout():
 	if damage_scene_pool.size() > 1000:
 		damage_scene_pool.resize(1000)
 	phase_limit += 1
-	
+
 	var new_enemy = []
 	new_enemy.append([phase_limit, enemy_resource_list[clamp(phase_limit, 1, enemy_resource_list.size() - 1)].QUANTITY])
 	enemy_rarity_pool.populate(new_enemy)
-	
+
 	spawn_enemy(phase_limit, GameState.player.position, safe_range, 3.5, overall_multiplier)
 
 
 func _on_spawn_timer_timeout():
 	var resourceID = enemy_rarity_pool.sample()
-	
+
 	spawn_enemy(resourceID)
-	
+
 	if GameState.current_area == GameState.CURRENT_AREA.HEAVEN:
 		spawn_timer.wait_time /= 1.003
 
@@ -89,7 +89,7 @@ func end_freeze():
 	enemies_frozen = false
 	unfreeze_hud.emit()
 	get_tree().call_group("enemy", "end_freeze")
-	
+
 func spawn_enemy(resourceID, centre = GameState.player.position, spawn_range = safe_range, unique_multiplier: float = 1, overall_multi = overall_multiplier):
 	if GameState.num_enemies < maximum_enemies:
 		spawn_queue.push_front([resourceID, centre, spawn_range, unique_multiplier, overall_multi])
@@ -97,11 +97,11 @@ func spawn_enemy(resourceID, centre = GameState.player.position, spawn_range = s
 func really_spawn_enemy(resourceID, centre = GameState.player.position, spawn_range = safe_range, unique_multiplier: float = 1, overall_multi = overall_multiplier):
 	var enemy = get_enemy()
 	GameState.num_enemies += 1
-	
+
 	if resourceID > enemy_resource_list.size() - 1:
 		resourceID = int(randf_range(0, enemy_resource_list.size() - 1))
 		unique_multiplier += enemy_resource_list.size() - resourceID
-		
+
 	enemy.resource = enemy_resource_list[resourceID]
 	enemy.resource.UNIQUE_MULTIPLIER = unique_multiplier
 	enemy.resource.OVERALL_MULTIPLIER = overall_multi
@@ -111,7 +111,7 @@ func really_spawn_enemy(resourceID, centre = GameState.player.position, spawn_ra
 	else:
 		relative_spawn_position = Vector2(spawn_range,0).rotated(randf_range(0, 2*PI))
 	enemy.position = centre + relative_spawn_position
-	
+
 	enemy.dead = false
 	enemy.set_physics_process(true)
 	enemy.sprite.visible = true
@@ -125,9 +125,9 @@ func really_spawn_enemy(resourceID, centre = GameState.player.position, spawn_ra
 	enemy.collider.set_deferred("disabled", false)
 	enemy.hitbox_collisionshape.set_deferred("disabled", false)
 	enemy.hurtbox_collisionshape.set_deferred("disabled", false)
-	
-	
-	
+
+
+
 func get_enemy():
 	if enemy_scene_pool.size() > 0:
 		return enemy_scene_pool.pop_front()
@@ -177,15 +177,15 @@ func start_spawning():
 	damage_scene_pool = []
 	enemy_scene_pool = []
 	enemy_rarity_pool = Pool.new()
-	
+
 	var enemies = []
-	
+
 	if not GameState.current_area == GameState.CURRENT_AREA.BOSS:
 		for i in range(2):
 			enemies.append([i, enemy_resource_list[i].QUANTITY])
 		enemy_rarity_pool.populate(enemies)
-	
-		
+
+
 	for i in range(maximum_enemies):
 		var new_enemy = enemy_scene.instantiate()
 		new_enemy.on_remove.connect(
@@ -194,13 +194,13 @@ func start_spawning():
 		enemy_scene_pool.append(new_enemy)
 		connect_enemy(new_enemy)
 		enemy_ysort.call_deferred("add_child", new_enemy)
-		
+
 	phase_limit = 1
 	spawn_timer.wait_time = default_spawn_time / ((1.02) ** GameState.player.current_level)
 	overall_multiplier = 1 + (GameState.player.current_level / float(600)) * GameState.player.current_level
 	spawn_timer.start()
 	phase_up_timer.start()
-	
+
 func connect_enemy(enemy):
 	enemy.connect("spawn_shop", spawn_shop)
 	enemy.connect("play_damage_sound", play_damage_sound)
