@@ -66,7 +66,7 @@ func set_data():
 	unique_multiplier = resource.UNIQUE_MULTIPLIER
 	overall_multiplier = resource.OVERALL_MULTIPLIER
 
-	health  = resource.MAX_HP * unique_multiplier * overall_multiplier
+	health  = resource.MAX_HP * (unique_multiplier ** 2) * overall_multiplier
 	damage  = resource.DAMAGE * unique_multiplier * overall_multiplier
 	value  = resource.VALUE * unique_multiplier * overall_multiplier
 	strength  = resource.STRENGTH * (0.5 + ((unique_multiplier  * overall_multiplier) / 2))

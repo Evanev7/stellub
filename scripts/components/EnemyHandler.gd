@@ -197,8 +197,8 @@ func start_spawning():
 		enemy_ysort.call_deferred("add_child", new_enemy)
 
 	phase_limit = 1
-	spawn_timer.wait_time = default_spawn_time / ((1.02) ** GameState.player.current_level)
-	overall_multiplier = 1 + (GameState.player.current_level / float(600)) * GameState.player.current_level
+	spawn_timer.wait_time = default_spawn_time / ((1.01) ** GameState.player.current_level)
+	overall_multiplier = 1 + (GameState.player.current_level / float(500)) * GameState.player.current_level
 	spawn_timer.start()
 	phase_up_timer.start()
 
