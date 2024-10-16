@@ -74,37 +74,34 @@ stretch_mode = 0
 script = ExtResource("1_hpu8w")
 overlay = NodePath("Overlay")
 
-[node name="RuneFill" type="TextureRect" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -34.0
-offset_top = -34.0
-offset_right = 116.0
-offset_bottom = 116.0
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.2
+anchor_right = 0.8
+anchor_bottom = 0.8
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.453369, 0.453369)
+
+[node name="RuneFill" type="TextureRect" parent="MarginContainer"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
 texture = ExtResource("3_m54n8")
 expand_mode = 1
 
-[node name="TextureRect2" type="TextureRect" parent="."]
+[node name="MarginContainer2" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -34.0
-offset_top = -34.0
-offset_right = 116.0
-offset_bottom = 116.0
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.2
+anchor_right = 0.8
+anchor_bottom = 0.8
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.458085, 0.458085)
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer2"]
+layout_mode = 2
 texture = ExtResource("4_ce68b")
 expand_mode = 1
 
