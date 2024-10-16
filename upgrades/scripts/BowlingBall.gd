@@ -3,7 +3,7 @@ extends Upgrade
 
 
 func _ready():
-	pass
+	rarity = 3
 
 
 # Change stats on pickup

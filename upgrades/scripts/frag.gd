@@ -3,7 +3,7 @@ extends Upgrade
 var frag_bullet
 #
 func _ready():
-	pass
+	rarity = 3
 
 
 # Change stats on pickup

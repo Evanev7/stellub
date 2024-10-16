@@ -1,11 +1,6 @@
 extends Upgrade
 
 
-#
-func _ready():
-	pass
-
-
 # Change stats on pickup
 func modify_bullet_resource(bullet: BulletResource) -> BulletResource:
 	bullet.fire_delay *= 1.05

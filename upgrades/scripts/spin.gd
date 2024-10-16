@@ -9,6 +9,3 @@ func modify_bullet_resource(bullet: BulletResource) -> BulletResource:
 	else:
 		bullet.angular_velocity *= 1.2
 	return bullet
-
-
-

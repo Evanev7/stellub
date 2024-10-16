@@ -1,6 +1,8 @@
 extends Upgrade
 
-
+func _ready():
+	rarity = 3
+	
 # Change stats on pickup
 func modify_bullet_resource(bullet: BulletResource) -> BulletResource:
 	bullet.knockback /= 2
@@ -14,4 +16,3 @@ func modify_bullet_resource(bullet: BulletResource) -> BulletResource:
 # Used for code to execute before firing
 func pre_fire():
 	pass
-

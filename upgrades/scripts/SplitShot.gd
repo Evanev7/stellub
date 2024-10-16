@@ -1,5 +1,8 @@
 extends Upgrade
 
+func _ready():
+	rarity = 3
+	
 func modify_bullet_resource(bullet: BulletResource) -> BulletResource:
 	bullet.splits += 1
 	

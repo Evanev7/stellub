@@ -4,7 +4,7 @@ var detonator_bullet: BulletResource
 var original_bullet: BulletResource
 #
 func _ready():
-	pass
+	rarity = 2
 
 
 # Change stats on pickup
@@ -19,4 +19,3 @@ func modify_bullet_resource(bullet: BulletResource) -> BulletResource:
 func pre_fire():
 	detonator_bullet.spawned_bullet_resource = original_bullet
 	pass
-
