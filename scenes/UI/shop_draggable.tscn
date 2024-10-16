@@ -1,10 +1,12 @@
-[gd_scene load_steps=18 format=3 uid="uid://domdhv4tthmyh"]
+[gd_scene load_steps=20 format=3 uid="uid://domdhv4tthmyh"]
 
 [ext_resource type="Script" path="res://scripts/UI/shop_draggable.gd" id="1_hpu8w"]
 [ext_resource type="Shader" path="res://scenes/characters/enemy.gdshader" id="1_shuwh"]
 [ext_resource type="Texture2D" uid="uid://bmhkpmre2sxkk" path="res://art/UI/Shop/inventory_weapon_2.png" id="2_ciods"]
 [ext_resource type="Texture2D" uid="uid://btotkcy5ml231" path="res://art/UI/Shop/inventory_weapon_1.png" id="2_gm3x0"]
+[ext_resource type="Texture2D" uid="uid://524i6bt6kkjf" path="res://art/UI/Shop/rune_fill.png" id="3_m54n8"]
 [ext_resource type="Texture2D" uid="uid://irebp7qv1h21" path="res://art/UI/Shop/inventory_weapon_3.png" id="3_m800c"]
+[ext_resource type="Texture2D" uid="uid://c5s5myigxnlme" path="res://art/UI/Shop/rune_outline.png" id="4_ce68b"]
 [ext_resource type="Texture2D" uid="uid://1bs86knuodj1" path="res://art/UI/Shop/inventory_weapon_1_overlay.png" id="4_f3mm2"]
 [ext_resource type="Texture2D" uid="uid://dkyrmpe1abigp" path="res://art/UI/Shop/inventory_weapon_2_overlay.png" id="5_hoc5i"]
 [ext_resource type="Texture2D" uid="uid://cwjfcma7rggi6" path="res://art/UI/Shop/inventory_weapon_3_overlay.png" id="6_0d2cx"]
@@ -71,6 +73,40 @@ ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("1_hpu8w")
 overlay = NodePath("Overlay")
+
+[node name="RuneFill" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -34.0
+offset_top = -34.0
+offset_right = 116.0
+offset_bottom = 116.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.453369, 0.453369)
+texture = ExtResource("3_m54n8")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -34.0
+offset_top = -34.0
+offset_right = 116.0
+offset_bottom = 116.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.458085, 0.458085)
+texture = ExtResource("4_ce68b")
+expand_mode = 1
 
 [node name="TextureRect" type="TextureRect" parent="."]
 z_index = -1

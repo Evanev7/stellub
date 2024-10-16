@@ -15,6 +15,8 @@ static var hue_shift: float = 0.66
 @export var tooltip_scene: PackedScene = preload("res://scenes/UI/Tooltip.tscn")
 @export var slot_type: SLOT_TYPE = SLOT_TYPE.UPGRADE
 @export var is_shop: bool = false
+@onready var rune_fill: TextureRect = $RuneFill
+@onready var rune_outline: TextureRect = $TextureRect2
 static var shop_item_taken
 static var shop_nodes = []
 var referenced_node: Node
@@ -27,6 +29,8 @@ func _ready():
 	add_to_group("draggable")
 
 func refresh() -> void:
+	rune_fill.visible = true
+	rune_outline.visible = true
 	if overlay != null:
 		overlay.visible = false
 	for node in shop_nodes:
@@ -40,10 +44,15 @@ func refresh() -> void:
 			node.modulate = Color(1,1,1,1)
 	if referenced_node:
 		if referenced_node is Upgrade:
+			print(referenced_node.rarity)
+			if referenced_node.rarity < 10:
+				rune_fill.modulate = Color(0.408, 0.082, 0.509)
 			slot_type = SLOT_TYPE.UPGRADE
 			tooltip_text = referenced_node.description
 
 		elif referenced_node is Attack:
+			rune_fill.visible = false
+			rune_outline.visible = false
 			slot_type = SLOT_TYPE.ATTACK
 			tooltip_text = referenced_node.description
 			if overlay != null:
@@ -64,6 +73,8 @@ func refresh() -> void:
 
 	else:
 		texture_normal = null
+		rune_fill.visible = false
+		rune_outline.visible = false
 		tooltip_text = ""
 
 	if not material:

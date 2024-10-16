@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://rnajon2osv8v"]
+[gd_scene load_steps=20 format=3 uid="uid://rnajon2osv8v"]
 
 [ext_resource type="Script" path="res://scripts/UI/shop_controller.gd" id="1_gilh6"]
 [ext_resource type="PackedScene" uid="uid://djihbt4xh14cm" path="res://scenes/UI/gui_rect.tscn" id="2_wac57"]
@@ -6,7 +6,9 @@
 [ext_resource type="Script" path="res://scripts/UI/shop_draggable.gd" id="3_bkygl"]
 [ext_resource type="Texture2D" uid="uid://plujheltwte5" path="res://art/UI/Shop/shop_icon_1.png" id="4_cpqsc"]
 [ext_resource type="Texture2D" uid="uid://frgop0g1x0kk" path="res://art/UI/Shop/shop_icon_2.png" id="5_co0c6"]
+[ext_resource type="Texture2D" uid="uid://524i6bt6kkjf" path="res://art/UI/Shop/rune_fill.png" id="5_d4077"]
 [ext_resource type="Texture2D" uid="uid://cdseftigmx86u" path="res://art/UI/no lmao.png" id="5_gccri"]
+[ext_resource type="Texture2D" uid="uid://c5s5myigxnlme" path="res://art/UI/Shop/rune_outline.png" id="6_345sk"]
 [ext_resource type="PackedScene" uid="uid://jgeavrbmn7f2" path="res://scenes/UI/shop_total_attack.tscn" id="6_egsl6"]
 [ext_resource type="Texture2D" uid="uid://cl6b5kvo832nr" path="res://art/UI/Shop/shop_icon_3.png" id="6_yushe"]
 [ext_resource type="Texture2D" uid="uid://ee7ei07rkxue" path="res://art/UI/Shop/shop_icon_4.png" id="7_rg8cr"]
@@ -88,6 +90,24 @@ stretch_mode = 0
 script = ExtResource("3_bkygl")
 is_shop = true
 
+[node name="RuneFill" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/Shop1"]
+layout_mode = 0
+offset_left = -14.0
+offset_top = -10.0
+offset_right = 216.0
+offset_bottom = 220.0
+texture = ExtResource("5_d4077")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/Shop1"]
+layout_mode = 0
+offset_left = -14.0
+offset_top = -10.0
+offset_right = 217.0
+offset_bottom = 221.0
+texture = ExtResource("6_345sk")
+expand_mode = 1
+
 [node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/Shop1"]
 z_index = -1
 layout_mode = 1
@@ -120,6 +140,24 @@ grow_vertical = 2
 texture = ExtResource("5_co0c6")
 expand_mode = 1
 
+[node name="RuneFill" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/Shop2"]
+layout_mode = 0
+offset_left = -14.0
+offset_top = -10.0
+offset_right = 216.0
+offset_bottom = 220.0
+texture = ExtResource("5_d4077")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer/Shop2"]
+layout_mode = 0
+offset_left = -14.0
+offset_top = -10.0
+offset_right = 217.0
+offset_bottom = 221.0
+texture = ExtResource("6_345sk")
+expand_mode = 1
+
 [node name="HBoxContainer2" type="HBoxContainer" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 40
@@ -145,6 +183,24 @@ grow_vertical = 2
 texture = ExtResource("6_yushe")
 expand_mode = 1
 
+[node name="RuneFill" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer2/Shop3"]
+layout_mode = 0
+offset_left = -14.0
+offset_top = -10.0
+offset_right = 216.0
+offset_bottom = 220.0
+texture = ExtResource("5_d4077")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer2/Shop3"]
+layout_mode = 0
+offset_left = -14.0
+offset_top = -10.0
+offset_right = 217.0
+offset_bottom = 221.0
+texture = ExtResource("6_345sk")
+expand_mode = 1
+
 [node name="Shop4" type="TextureButton" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 clip_contents = true
@@ -165,6 +221,27 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("7_rg8cr")
+expand_mode = 1
+
+[node name="RuneFill" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer2/Shop4"]
+modulate = Color(0.408287, 0.0820263, 0.509471, 1)
+z_index = -1
+layout_mode = 0
+offset_left = -14.0
+offset_top = -10.0
+offset_right = 216.0
+offset_bottom = 220.0
+texture = ExtResource("5_d4077")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer/HBoxContainer2/Shop4"]
+z_index = -1
+layout_mode = 0
+offset_left = -14.0
+offset_top = -10.0
+offset_right = 217.0
+offset_bottom = 221.0
+texture = ExtResource("6_345sk")
 expand_mode = 1
 
 [node name="ShopExit" type="TextureButton" parent="Control/MarginContainer/HBoxContainer/MarginContainer2/UpgradePanel/VBoxContainer"]
