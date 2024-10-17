@@ -11,8 +11,7 @@ shader = ExtResource("4_tv570")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
-shader_parameter/Shift_Hue = null
-shader_parameter/hsl_offset = null
+shader_parameter/hsv_offset = null
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r461e"]
 resource_local_to_scene = true
@@ -20,8 +19,7 @@ shader = ExtResource("4_tv570")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
-shader_parameter/Shift_Hue = null
-shader_parameter/hsl_offset = null
+shader_parameter/hsv_offset = null
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qqa62"]
 resource_local_to_scene = true
@@ -29,8 +27,7 @@ shader = ExtResource("4_tv570")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
-shader_parameter/Shift_Hue = null
-shader_parameter/hsl_offset = null
+shader_parameter/hsv_offset = null
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b0en5"]
 resource_local_to_scene = true
@@ -38,8 +35,7 @@ shader = ExtResource("4_tv570")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
-shader_parameter/Shift_Hue = null
-shader_parameter/hsl_offset = null
+shader_parameter/hsv_offset = null
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c8fej"]
 resource_local_to_scene = true
@@ -47,8 +43,7 @@ shader = ExtResource("4_tv570")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
-shader_parameter/Shift_Hue = null
-shader_parameter/hsl_offset = null
+shader_parameter/hsv_offset = null
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5n63n"]
 resource_local_to_scene = true
@@ -56,8 +51,7 @@ shader = ExtResource("4_tv570")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
-shader_parameter/Shift_Hue = null
-shader_parameter/hsl_offset = null
+shader_parameter/hsv_offset = null
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bj4fk"]
 resource_local_to_scene = true
@@ -65,8 +59,7 @@ shader = ExtResource("4_tv570")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
-shader_parameter/Shift_Hue = null
-shader_parameter/hsl_offset = null
+shader_parameter/hsv_offset = null
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_x46cc"]
 resource_local_to_scene = true
@@ -74,8 +67,7 @@ shader = ExtResource("4_tv570")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
-shader_parameter/Shift_Hue = null
-shader_parameter/hsl_offset = null
+shader_parameter/hsv_offset = null
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4vggo"]
 resource_local_to_scene = true
@@ -83,8 +75,7 @@ shader = ExtResource("4_tv570")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
-shader_parameter/Shift_Hue = null
-shader_parameter/hsl_offset = null
+shader_parameter/hsv_offset = null
 
 [node name="TotalAttack" type="MarginContainer"]
 theme_override_constants/margin_left = 20

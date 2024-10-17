@@ -42,9 +42,10 @@ func refresh() -> void:
 			node.modulate = Color(1,1,1,1)
 	if referenced_node:
 		if referenced_node is Upgrade:
+			if material:
+				material.set_shader_parameter("hsv_offset", Vector3(0., 0., 0.))
 			rune_fill.visible = true
 			rune_outline.visible = true
-			print(referenced_node.upgrade_name, referenced_node.rarity)
 			match referenced_node.rarity:
 				1:
 					rune_fill.modulate = Color(0.1, 0.3, 0.1, 1)
@@ -56,6 +57,8 @@ func refresh() -> void:
 			tooltip_text = referenced_node.description
 
 		elif referenced_node is Attack:
+			if material:
+				material.set_shader_parameter("hsv_offset", Vector3(2., 0., 0.05))
 			rune_fill.visible = false
 			rune_outline.visible = false
 			slot_type = SLOT_TYPE.ATTACK

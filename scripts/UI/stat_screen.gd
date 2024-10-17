@@ -61,7 +61,7 @@ func _on_restart_button_pressed():
 		tween.tween_property($CenterContainer, "modulate:a", 0, 1)
 		tween2.tween_property($TextureRect, "self_modulate:a", 0, 1)
 		tween.tween_callback(hide)
-		tween2.tween_callback(func(): 
+		tween2.tween_callback(func():
 			get_parent().show()
 			main = false
 			)
@@ -75,7 +75,7 @@ func _on_restart_button_pressed():
 			tween.tween_callback(restart)
 		else:
 			restart()
-		
+
 func restart():
 	if restarting == true:
 		return
@@ -113,7 +113,7 @@ func opened_via_main():
 	if GameState.player_data.total_boss_kills:
 		%Boss.show()
 	%Restart.text = "BACK"
-	
+
 	enemies_killed.text = str(GameState.player_data.total_enemies_killed)
 	souls_collected.text = str(int(GameState.player_data.total_souls_collected))
 	bullets_summoned.text = str(GameState.player_data.total_bullets_summoned)
@@ -125,7 +125,7 @@ func opened_via_main():
 	%Weapons.text = str(GameState.player_data.total_weapons_taken)
 	if GameState.player_data.total_boss_kills:
 		%Boss.text = str(GameState.player_data.total_boss_kills)
-	
+
 
 
 func _on_restart_button_mouse_entered():

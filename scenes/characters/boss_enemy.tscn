@@ -30,8 +30,7 @@ shader = ExtResource("3_hd3a3")
 shader_parameter/line_color = Color(0, 0, 0, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
-shader_parameter/Shift_Hue = 0.0
-shader_parameter/hsl_offset = Vector3(0, 0, 0)
+shader_parameter/hsv_offset = null
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_gne13"]
 random_pitch = 1.03

@@ -17,8 +17,7 @@ shader = ExtResource("1_shuwh")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
-shader_parameter/Shift_Hue = null
-shader_parameter/hsl_offset = null
+shader_parameter/hsv_offset = null
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hk60t"]
 

@@ -20,8 +20,7 @@ shader = ExtResource("9_3rxiu")
 shader_parameter/line_color = Color(0, 0, 0, 0)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
-shader_parameter/Shift_Hue = null
-shader_parameter/hsl_offset = null
+shader_parameter/hsv_offset = null
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_k47en")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_r6dcq"]

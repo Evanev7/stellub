@@ -117,7 +117,7 @@ func really_spawn_enemy(resourceID, centre = GameState.player.position, spawn_ra
 	enemy.sprite.visible = true
 	enemy.shadow.visible = true
 	if phase_limit > 5:
-		enemy.sprite.material.set_shader_parameter("Shift_Hue", randf_range(-1.0, 1.0))
+		enemy.sprite.material.set_shader_parameter("hsv_offset", Vector3(randf_range(-1.0, 1.0), 0, 0))
 	enemy.set_data()
 	if enemies_frozen:
 		enemy.freeze()
