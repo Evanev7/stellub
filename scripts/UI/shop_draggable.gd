@@ -111,6 +111,16 @@ func _get_drag_data(_pos: Vector2) -> Variant:
 
 	var drag_preview: Sprite2D = drag_preview_scene.instantiate()
 	drag_preview.texture = texture_normal
+	if referenced_node is Upgrade:
+		match referenced_node.rarity:
+			1:
+				drag_preview.rune_colour = Color(0.1, 0.3, 0.1, 1)
+			2:
+				drag_preview.rune_colour = Color(0.32, 0, 0.32, 1)
+			3:
+				drag_preview.rune_colour = Color(1, 0.81, 0.41, 1)
+	elif referenced_node is Attack:
+		drag_preview.rune_colour = Color(0, 0, 0, 0)
 	drag_preview.apply_scale(Vector2(64.0/texture_normal.get_width(),64.0/texture_normal.get_height()))
 	drag_preview.set_rotation(0.2)
 	owner.add_child(drag_preview)
