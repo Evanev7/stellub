@@ -19,10 +19,10 @@ func add_target(node: Node2D):
 	arrow.width_ratio = width_ratio
 	arrow.screen_height_ratio = screen_height_ratio
 	arrow.margin = margin
-	
+
 	if node.name == "teleporter":
 		arrow.get_node("Arrow").modulate = Color(8, 7, 0)
-	
+
 	arrows.append(arrow)
 	add_child(arrow)
 
@@ -32,4 +32,3 @@ func delete_target(node: Node2D):
 		if arrow.node == node:
 			arrows.erase(arrow)
 			arrow.queue_free()
-	

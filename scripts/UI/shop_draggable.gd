@@ -44,7 +44,7 @@ func refresh() -> void:
 		if referenced_node is Upgrade:
 			rune_fill.visible = true
 			rune_outline.visible = true
-			print(referenced_node.rarity)
+			print(referenced_node.upgrade_name, referenced_node.rarity)
 			match referenced_node.rarity:
 				1:
 					rune_fill.modulate = Color(0.1, 0.3, 0.1, 1)

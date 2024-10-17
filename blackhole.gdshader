@@ -13,4 +13,3 @@ void fragment() {
 	COLOR = texture(screen_texture, SCREEN_UV + offset);
 	//COLOR = vec4(offset,0.,1.);
 }
-

@@ -100,8 +100,9 @@ static func upgrade_from_res(upgrade_resource: UpgradeResource) -> Upgrade:
 	upgrade_node.script_data = upgrade_resource.script_data
 	upgrade_node.skip = not upgrade_resource.appears_in_inventory
 	upgrade_node.icon = upgrade_resource.icon
-	upgrade_node.upgrade_name = upgrade_resource.name
+	upgrade_node.upgrade_name = upgrade_resource.upgrade_name
 	upgrade_node.description = generate_description(upgrade_resource)
+	upgrade_node.rarity = upgrade_resource.rarity
 	return upgrade_node
 
 static func generate_description(upgrade_resource: UpgradeResource) -> String:

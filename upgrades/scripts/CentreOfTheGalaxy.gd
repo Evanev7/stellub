@@ -1,9 +1,4 @@
-extends Upgrade 
-
-
-#
-func _ready():
-	rarity = 2
+extends Upgrade
 
 
 # Change stats on pickup

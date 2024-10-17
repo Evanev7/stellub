@@ -1,11 +1,6 @@
 extends Upgrade
 
 
-#
-func _ready():
-	rarity = 2
-
-
 # Change stats on pickup
 func modify_bullet_resource(bullet: BulletResource) -> BulletResource:
 	bullet.piercing += 6

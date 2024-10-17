@@ -6,10 +6,12 @@
 
 [resource]
 script = ExtResource("2_4wcme")
-name = "stat_up"
+upgrade_name = "stat_up"
 upgrade_script = ExtResource("3_mr4sf")
+rarity = 1
 quantity = 10
 appears_in_shop = false
 appears_in_inventory = false
 icon = ExtResource("1_sy0ao")
+description = "Default Upgrade Description"
 script_data = {}

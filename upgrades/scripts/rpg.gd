@@ -1,11 +1,6 @@
 extends Upgrade
 
 
-#
-func _ready():
-	rarity = 2
-
-
 # Change stats on pickup
 func modify_bullet_resource(bullet: BulletResource) -> BulletResource:
 	bullet.shot_speed = bullet.shot_speed - 400

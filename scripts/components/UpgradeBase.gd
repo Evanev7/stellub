@@ -1,16 +1,15 @@
 extends Node
 class_name Upgrade
 
-## 1 is default
-@export var rarity: int = 1
-@export var icon: CompressedTexture2D
-@export_multiline var description: String
-@export var skip: bool = false
+var rarity: int
+var icon: CompressedTexture2D
+var description: String
+var skip: bool = false
 var script_data: Dictionary
-var upgrade_name
+var upgrade_name: String
 
 enum TYPE {STAT, BOSS, SHOP}
-@export var type: TYPE = TYPE.SHOP
+var type: TYPE = TYPE.SHOP
 
 func _ready():
 	pass

@@ -7,8 +7,9 @@
 
 [resource]
 script = ExtResource("1_ox6ek")
-name = "Split Shot"
+upgrade_name = "Split Shot"
 upgrade_script = ExtResource("3_vsb3q")
+rarity = 3
 quantity = 5
 appears_in_shop = true
 appears_in_inventory = true

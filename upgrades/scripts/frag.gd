@@ -1,9 +1,6 @@
 extends Upgrade
 
 var frag_bullet
-#
-func _ready():
-	rarity = 3
 
 
 # Change stats on pickup

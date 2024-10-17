@@ -1,11 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://jgeavrbmn7f2"]
+[gd_scene load_steps=14 format=3 uid="uid://jgeavrbmn7f2"]
 
 [ext_resource type="Script" path="res://scripts/UI/shop_total_attack.gd" id="1_6mrto"]
 [ext_resource type="Texture2D" uid="uid://bnraeyqy86t88" path="res://art/UI/Mouse_Simple_Key_Dark.png" id="2_d6fa4"]
 [ext_resource type="PackedScene" uid="uid://domdhv4tthmyh" path="res://scenes/UI/shop_draggable.tscn" id="4_pkhjl"]
 [ext_resource type="Shader" path="res://scenes/characters/enemy.gdshader" id="4_tv570"]
-[ext_resource type="PackedScene" uid="uid://brfi6ru7xi17o" path="res://scenes/UI/drag_preview.tscn" id="5_eawka"]
-[ext_resource type="PackedScene" uid="uid://ds30hrmuws83j" path="res://scenes/UI/Tooltip.tscn" id="6_ksiap"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uqp4k"]
 resource_local_to_scene = true
@@ -123,10 +121,7 @@ unique_name_in_owner = true
 material = SubResource("ShaderMaterial_uqp4k")
 custom_minimum_size = Vector2(110, 110)
 layout_mode = 2
-drag_preview_scene = ExtResource("5_eawka")
-tooltip_scene = ExtResource("6_ksiap")
 slot_type = 0
-is_shop = false
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
@@ -139,10 +134,6 @@ unique_name_in_owner = true
 material = SubResource("ShaderMaterial_r461e")
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
-drag_preview_scene = ExtResource("5_eawka")
-tooltip_scene = ExtResource("6_ksiap")
-slot_type = 1
-is_shop = false
 
 [node name="CenterUpgrade2" type="CenterContainer" parent="HBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -152,10 +143,6 @@ unique_name_in_owner = true
 material = SubResource("ShaderMaterial_qqa62")
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
-drag_preview_scene = ExtResource("5_eawka")
-tooltip_scene = ExtResource("6_ksiap")
-slot_type = 1
-is_shop = false
 
 [node name="CenterUpgrade3" type="CenterContainer" parent="HBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -165,10 +152,6 @@ unique_name_in_owner = true
 material = SubResource("ShaderMaterial_b0en5")
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
-drag_preview_scene = ExtResource("5_eawka")
-tooltip_scene = ExtResource("6_ksiap")
-slot_type = 1
-is_shop = false
 
 [node name="CenterUpgrade4" type="CenterContainer" parent="HBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -178,10 +161,6 @@ unique_name_in_owner = true
 material = SubResource("ShaderMaterial_c8fej")
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
-drag_preview_scene = ExtResource("5_eawka")
-tooltip_scene = ExtResource("6_ksiap")
-slot_type = 1
-is_shop = false
 
 [node name="CenterUpgrade5" type="CenterContainer" parent="HBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -191,10 +170,6 @@ unique_name_in_owner = true
 material = SubResource("ShaderMaterial_5n63n")
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
-drag_preview_scene = ExtResource("5_eawka")
-tooltip_scene = ExtResource("6_ksiap")
-slot_type = 1
-is_shop = false
 
 [node name="CenterUpgrade6" type="CenterContainer" parent="HBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -204,10 +179,6 @@ unique_name_in_owner = true
 material = SubResource("ShaderMaterial_bj4fk")
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
-drag_preview_scene = ExtResource("5_eawka")
-tooltip_scene = ExtResource("6_ksiap")
-slot_type = 1
-is_shop = false
 
 [node name="CenterUpgrade7" type="CenterContainer" parent="HBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -217,10 +188,6 @@ unique_name_in_owner = true
 material = SubResource("ShaderMaterial_x46cc")
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
-drag_preview_scene = ExtResource("5_eawka")
-tooltip_scene = ExtResource("6_ksiap")
-slot_type = 1
-is_shop = false
 
 [node name="CenterUpgrade8" type="CenterContainer" parent="HBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -230,9 +197,5 @@ unique_name_in_owner = true
 material = SubResource("ShaderMaterial_4vggo")
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
-drag_preview_scene = ExtResource("5_eawka")
-tooltip_scene = ExtResource("6_ksiap")
-slot_type = 1
-is_shop = false
 
 [connection signal="gui_input" from="HBoxContainer/CenterContainer2/GridContainer/ControlMode" to="." method="_on_control_mode_pressed"]

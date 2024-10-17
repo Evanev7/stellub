@@ -6,8 +6,9 @@
 
 [resource]
 script = ExtResource("2_gleyp")
-name = "Centre of the Galaxy"
+upgrade_name = "Centre of the Galaxy"
 upgrade_script = ExtResource("3_38f0o")
+rarity = 2
 quantity = 8
 appears_in_shop = true
 appears_in_inventory = true

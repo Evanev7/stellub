@@ -3,7 +3,6 @@ extends Node2D
 signal shop_entered(shop)
 signal remove_from_hud(shop)
 
-@export var shop_resource_list: Array[ShopResource]
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var fire_particles: GPUParticles2D = $Fire
@@ -25,8 +24,8 @@ func _on_open_area_entered(body):
 	if body == GameState.player:
 		sprite.play("shop_open")
 		fire_particles.emitting = true
-			
-		
+
+
 func _on_open_area_exited(body):
 	if body == GameState.player:
 		sprite.play("shop_closed")
@@ -39,8 +38,8 @@ func _on_interact_area_entered(body):
 	if body == GameState.player:
 		shop_entered.emit(self)
 		shop_opened = true
-	
-	
+
+
 func remove():
 	shop_opened = false
 	remove_objective_marker()
@@ -52,4 +51,3 @@ func remove():
 
 func remove_objective_marker():
 	remove_from_hud.emit(self)
-	
