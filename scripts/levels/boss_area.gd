@@ -29,7 +29,7 @@ func start_game():
 	$cursor_particles.emitting = true
 
 	HUD.show_health(player.hp, player.hp_max)
-	HUD.show_score(player.score, player.level_threshold[player.current_level])
+	HUD.show_score(player.score, player.level_threshold)
 
 	if GameState.player_data.first_time_boss:
 		await get_tree().create_timer(2.0).timeout
@@ -65,7 +65,7 @@ func _on_player_hp_changed(hp):
 
 
 func _on_player_level_up(_current_level):
-	HUD.change_min_XP(player.level_threshold[player.current_level])
+	HUD.change_min_XP(player.level_threshold)
 	HUD.show_health(player.hp, player.hp_max)
 
 func heres_your_data(who):

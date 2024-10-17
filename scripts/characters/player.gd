@@ -33,7 +33,8 @@ var fire_pickup_attack: Attack
 @onready var camera_2d = $Camera2D
 
 var control_mode: int = 0
-var level_threshold = [10, 20, 30, 50]
+# 10 20 30 50
+var level_threshold = 10
 var current_level: int
 
 var current_evolution: int
@@ -240,23 +241,29 @@ func gain_score(value):
 	tween.tween_property(sprite.material, "shader_parameter/line_thickness", 0, 0.2).from(10.0)
 	tween.tween_callback(func(): sprite.material.set_shader_parameter("line_color", Vector4(0, 0, 0, 0)))
 
-	while score >= level_threshold[current_level]:
+	if score >= level_threshold:
 		level_up.emit(current_level)
 		player_level_up()
-		var current_threshold = level_threshold[current_level]
+		next_threshold(level_threshold)
 
-		if current_threshold > 10000:
-			level_threshold.append(current_threshold * 1.1)
-		elif current_threshold > 2000:
-			level_threshold.append(current_threshold + 500)
-		elif current_threshold > 1000:
-			level_threshold.append(current_threshold + 200)
-		elif current_threshold > 500:
-			level_threshold.append(current_threshold + 100)
-		elif current_threshold > 200:
-			level_threshold.append(current_threshold + 50)
-		elif level_threshold[current_level] > 49:
-			level_threshold.append(current_threshold + 30)
+func next_threshold(current_threshold):
+	if current_threshold > 10000:
+		level_threshold = current_threshold * 1.1
+	elif current_threshold > 2000:
+		level_threshold = current_threshold + 500
+	elif current_threshold > 1000:
+		level_threshold = current_threshold + 200
+	elif current_threshold > 500:
+		level_threshold = current_threshold + 100
+	elif current_threshold > 200:
+		level_threshold = current_threshold + 50
+	elif current_threshold > 49:
+		level_threshold = current_threshold + 30
+	elif current_threshold > 19:
+		level_threshold = current_threshold + 20
+	else:
+		level_threshold = current_threshold + 10
+	assert(level_threshold > current_threshold)
 
 func heal(value):
 	hp = clamp(hp + value, 0, hp_max)

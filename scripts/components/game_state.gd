@@ -118,7 +118,7 @@ func _unhandled_input(_event):
 func handle_debug_input(_event):
 	if Input.is_action_just_pressed("debug_gain_score"): ## R
 		player.gain_score(player.score * 8 + 1)
-		current_area_node.get_node("HUD").show_score(player.score, player.level_threshold[player.current_level])
+		current_area_node.get_node("HUD").show_score(player.score, player.level_threshold)
 
 	if Input.is_action_just_pressed("debug_evolve"): ## E
 		player.evolve()

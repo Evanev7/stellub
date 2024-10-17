@@ -37,7 +37,7 @@ func start_game():
 	$cursor_particles.emitting = true
 
 	HUD.show_health(player.hp, player.hp_max)
-	HUD.show_score(player.score, player.level_threshold[player.current_level])
+	HUD.show_score(player.score, player.level_threshold)
 
 	if GameState.player_data.first_time_heaven:
 		HUD.show_dialogue("Hurry. You MUST make it to the tree.")
@@ -76,7 +76,7 @@ func _on_player_hp_changed(hp):
 
 
 func _on_player_level_up(_current_level):
-	HUD.change_min_XP(player.level_threshold[player.current_level])
+	HUD.change_min_XP(player.level_threshold)
 	HUD.show_health(player.hp, player.hp_max)
 	enemy_handler.spawn_timer.wait_time /= 1.02
 	enemy_handler.overall_multiplier += player.current_level / float(250)

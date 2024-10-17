@@ -66,7 +66,7 @@ func _on_pickup_credit_player(value):
 	if score_display:
 		score_display.show_score(
 			player.score,
-			player.level_threshold[player.current_level]
+			player.level_threshold
 		)
 
 func maths(value_remaining, enemy_value):

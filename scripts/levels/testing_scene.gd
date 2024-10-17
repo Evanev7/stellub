@@ -48,8 +48,8 @@ func start_game():
 	player.start()
 	player.position = $YSort/PlayerStart.position
 	HUD.show_health(player.hp, player.hp_max)
-	HUD.show_score(player.score, player.level_threshold[player.current_level])
-	
+	HUD.show_score(player.score, player.level_threshold)
+
 
 func _on_player_player_death():
 	GameState.game_over.emit()
@@ -64,5 +64,5 @@ func _on_player_hp_changed(hp):
 
 
 func _on_player_level_up(current_level):
-	HUD.change_min_XP(player.level_threshold[player.current_level])
+	HUD.change_min_XP(player.level_threshold)
 	HUD.show_health(player.hp, player.hp_max)
