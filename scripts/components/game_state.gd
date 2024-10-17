@@ -41,7 +41,7 @@ var num_xp_pickups: int = 0
 var num_damage_labels: int = 0
 
 ## SETTINGS
-var player_data = PlayerData: set = set_stats
+var player_data = PlayerData
 
 ## STATS
 var enemies_killed: int = 0
@@ -59,9 +59,6 @@ func _ready():
 	game_over.connect(queue_free_groups)
 	current_area_node = get_parent().get_node("menu")
 	create_or_load_save()
-
-func set_stats(new_stats: PlayerData):
-	player_data = new_stats
 
 func load_area(area: CURRENT_AREA):
 	var area_node = area_scenes[area].instantiate()

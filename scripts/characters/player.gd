@@ -47,7 +47,6 @@ var hp:  float
 var score: float
 var walking: bool = false
 
-
 var invuln: bool = false
 var dead: bool = false
 var current_animation: String
@@ -241,10 +240,12 @@ func gain_score(value):
 	tween.tween_property(sprite.material, "shader_parameter/line_thickness", 0, 0.2).from(10.0)
 	tween.tween_callback(func(): sprite.material.set_shader_parameter("line_color", Vector4(0, 0, 0, 0)))
 
-	if score >= level_threshold:
-		level_up.emit(current_level)
-		player_level_up()
-		next_threshold(level_threshold)
+	for i in range(10):
+		if score >= level_threshold:
+			level_up.emit(current_level)
+			player_level_up()
+			next_threshold(level_threshold)
+		else: break
 
 func next_threshold(current_threshold):
 	if current_threshold > 10000:
