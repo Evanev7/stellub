@@ -48,6 +48,14 @@ func _on_fire_bullet(origin, bullet_type: BulletResource, fire_from: FireFrom):
 	if not (origin is WeakRef):
 		origin = weakref(origin)
 
+	if bullet_type.vacuum:
+
+		var vacuumers = get_tree().get_nodes_in_group("vacuumer")
+		if len(vacuumers) > 10:
+			for i in range(bullet_type.multishot+3):
+				var guy = vacuumers.pop_front()
+				guy.shutdown()
+				guy.remove_from_group("vacuum")
 
 
 	# Iterate over every bullet that's being fired (the number of bullets to fire
@@ -55,6 +63,8 @@ func _on_fire_bullet(origin, bullet_type: BulletResource, fire_from: FireFrom):
 	for index in range(bullet_type.multishot):
 		var bullet = get_bullet()
 		bullet.add_to_group("bullet")
+		if bullet_type.vacuum:
+			bullet.add_to_group("vacuumer")
 
 		var start_position = fire_from.position
 		var inaccuracy_offset = randf_range(-bullet_type.shot_inaccuracy/2,bullet_type.shot_inaccuracy/2)
@@ -81,6 +91,8 @@ func _on_fire_bullet(origin, bullet_type: BulletResource, fire_from: FireFrom):
 		bullet.show()
 		if bullet.collision:
 			bullet.collision.set_deferred("disabled", false)
+
+
 
 func get_bullet() -> Bullet:
 	GameState.bullets_summoned += 1

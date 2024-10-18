@@ -214,5 +214,10 @@ func remove() -> void:
 	set_physics_process(false)
 	hide()
 	remove_from_group("bullet")
+	if is_in_group("vacuum"):
+		remove_from_group("vacuum")
 	_traveled_distance = 0
 	_hit_targets.clear()
+
+func shutdown():
+	$Shader.begin_shutdown = true

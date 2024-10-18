@@ -39,6 +39,7 @@ var num_enemies: int = 0
 var num_bullets: int = 0
 var num_xp_pickups: int = 0
 var num_damage_labels: int = 0
+var num_active_vacuums: int = 0
 
 ## SETTINGS
 var player_data = PlayerData

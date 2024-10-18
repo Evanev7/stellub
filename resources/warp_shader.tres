@@ -11,6 +11,7 @@ point_count = 2
 curve = SubResource("Curve_28fgx")
 
 [resource]
+resource_local_to_scene = true
 shader = ExtResource("1_iaj2y")
 shader_parameter/activator = null
 shader_parameter/curve = SubResource("CurveTexture_n4w0o")

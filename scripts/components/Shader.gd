@@ -2,13 +2,15 @@ extends Sprite2D
 
 @export var shader_activation: float = 1.0
 @export var lifetime_timer: Timer
+@export var timer_map: Curve
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass
-
+var shutdown = 0.2
+var begin_shutdown = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	var windup = lifetime_timer.time_left if lifetime_timer.time_left < shader_activation else 1.0
-	material.set_shader_parameter("activator", windup**0.5)
+func _process(delta):
+	if not begin_shutdown:
+		material.set_shader_parameter("activator", timer_map.sample(lifetime_timer.time_left / lifetime_timer.wait_time))
+	elif shutdown > 0:
+		shutdown -= delta
+		material.set_shader_parameter("activator", shutdown**2)
