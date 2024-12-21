@@ -87,7 +87,7 @@ default_shop_weapons_list = Array[ExtResource("24_wpcp8")]([ExtResource("24_8ykr
 enemy_handler = NodePath("../EnemyHandler")
 ysorter = NodePath("../../YSort")
 objective_marker = NodePath("../../ObjectiveMarker")
-shop_node = NodePath("../../ShopAlt")
+shop_node = NodePath("../../ShopAltAlt")
 teleporter = NodePath("../../YSort/teleporter")
 
 [node name="WeaponHandler" parent="LogicComponents" index="5" node_paths=PackedStringArray("ysorter") instance=ExtResource("17_gx7j2")]

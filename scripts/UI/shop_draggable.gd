@@ -7,7 +7,7 @@ var button_texture = preload("res://art/UI/Shop/Button Empty.png")
 var attack_indicator = preload("res://art/UI/clicky finger.png")
 var upgrade_indicator = preload("res://art/UI/shooty finger.png")
 @export var overlay: TextureRect
-enum SLOT_TYPE {ATTACK, UPGRADE}
+enum SLOT_TYPE {ATTACK, UPGRADE, EITHER}
 
 static var hue_shift: float = 0.66
 
@@ -15,8 +15,8 @@ static var hue_shift: float = 0.66
 @export var tooltip_scene: PackedScene = preload("res://scenes/UI/Tooltip.tscn")
 @export var slot_type: SLOT_TYPE = SLOT_TYPE.UPGRADE
 @export var is_shop: bool = false
-@onready var rune_fill: TextureRect = $MarginContainer/RuneFill
-@onready var rune_outline: TextureRect = $MarginContainer2/TextureRect2
+@onready var rune_fill: TextureRect = %RuneFill
+@onready var rune_outline: TextureRect = %RuneOutline
 static var shop_item_taken
 static var shop_nodes = []
 var referenced_node: Node
@@ -133,7 +133,7 @@ func _can_drop_data(_pos: Vector2, incoming_data) -> bool:
 		return false
 	if incoming_data["referenced_node"] == null:
 		return false
-	if slot_type != incoming_data["slot_type"]:
+	if slot_type != SLOT_TYPE.EITHER and slot_type != incoming_data["slot_type"]:
 		return false
 	if is_shop:
 		return false

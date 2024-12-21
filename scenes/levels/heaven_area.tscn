@@ -71,7 +71,7 @@ attack_scene = ExtResource("18_ub2uf")
 enemy_handler = NodePath("../EnemyHandler")
 ysorter = NodePath("../../YSort")
 objective_marker = NodePath("../../ObjectiveMarker")
-shop_node = NodePath("../../ShopAlt")
+shop_node = NodePath("../../ShopAltAlt")
 teleporter = NodePath("../../YSort/teleporter")
 
 [connection signal="add_objective_marker" from="YSort/teleporter" to="ObjectiveMarker" method="add_target"]

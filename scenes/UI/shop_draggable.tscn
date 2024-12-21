@@ -101,6 +101,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="RuneFill" type="TextureRect" parent="MarginContainer"]
+unique_name_in_owner = true
 modulate = Color(1, 0.81, 0.41, 1)
 z_index = -1
 custom_minimum_size = Vector2(10, 10)
@@ -122,7 +123,8 @@ offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect2" type="TextureRect" parent="MarginContainer2"]
+[node name="RuneOutline" type="TextureRect" parent="MarginContainer2"]
+unique_name_in_owner = true
 z_index = -1
 layout_mode = 2
 texture = ExtResource("4_ce68b")

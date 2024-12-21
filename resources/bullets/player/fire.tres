@@ -1,22 +1,18 @@
-[gd_resource type="Resource" script_class="BulletResource" load_steps=8 format=3 uid="uid://clmx2ku04voo4"]
+[gd_resource type="Resource" script_class="BulletResource" load_steps=4 format=3 uid="uid://clmx2ku04voo4"]
 
-[ext_resource type="Texture2D" uid="uid://d3b8pl1fnivob" path="res://art/objects/resized/soul_1.png" id="1_aij7m"]
 [ext_resource type="Script" path="res://scripts/objects/bullet_resource.gd" id="1_iciqk"]
-[ext_resource type="Texture2D" uid="uid://4frgcel4eh22" path="res://art/objects/resized/soul_2.png" id="2_kp3sa"]
-[ext_resource type="Texture2D" uid="uid://dmdrwikfjy5dj" path="res://art/objects/resized/soul_3.png" id="3_hx4yr"]
-[ext_resource type="AudioStream" uid="uid://c7m6xuqfndntt" path="res://sounds/fire.wav" id="3_p1qhj"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_k7xdv"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_aij7m")
+"texture": null
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_kp3sa")
+"texture": null
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_hx4yr")
+"texture": null
 }],
 "loop": true,
 "name": &"default",
@@ -25,7 +21,6 @@ animations = [{
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_8pp78"]
 streams_count = 1
-stream_0/stream = ExtResource("3_p1qhj")
 
 [resource]
 script = ExtResource("1_iciqk")

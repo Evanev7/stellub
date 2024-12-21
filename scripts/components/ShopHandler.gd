@@ -137,7 +137,7 @@ func _on_spawn_shop(position):
 	var is_weapon_present := false
 
 	if randf() <= 1:
-		for upgrade in upgrade_pool.sample(3):
+		for upgrade in upgrade_pool.sample(7):
 			var upgrade_node = ShopHandler.upgrade_from_res(upgrade)
 			chosen_upgrades.append(upgrade_node)
 		is_weapon_present = true
@@ -145,7 +145,7 @@ func _on_spawn_shop(position):
 		var attack_node = attack_from_res(weapon)
 		chosen_upgrades.append(attack_node)
 	else:
-		for upgrade in upgrade_pool.sample(4):
+		for upgrade in upgrade_pool.sample(8):
 			var upgrade_node = ShopHandler.upgrade_from_res(upgrade)
 			chosen_upgrades.append(upgrade_node)
 

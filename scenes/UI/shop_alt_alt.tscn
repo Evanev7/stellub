@@ -1,0 +1,262 @@
+[gd_scene load_steps=18 format=3 uid="uid://beo602dklhfsi"]
+
+[ext_resource type="Script" path="res://scripts/UI/shop_controller.gd" id="1_j68e7"]
+[ext_resource type="PackedScene" uid="uid://djihbt4xh14cm" path="res://scenes/UI/gui_rect.tscn" id="1_t5llg"]
+[ext_resource type="Texture2D" uid="uid://d01lg7gn1cwqw" path="res://art/UI/Shop/shop_bg.png" id="2_hcfp5"]
+[ext_resource type="PackedScene" uid="uid://domdhv4tthmyh" path="res://scenes/UI/shop_draggable.tscn" id="4_abpt4"]
+[ext_resource type="Shader" path="res://scenes/characters/enemy.gdshader" id="5_ngda6"]
+[ext_resource type="PackedScene" uid="uid://dfp1xkcw3f4ft" path="res://scenes/UI/inventory_node.tscn" id="6_wugwn"]
+[ext_resource type="Texture2D" uid="uid://been84ue6lj66" path="res://art/UI/Pause_Menu/pause_menu_background.png" id="8_gur17"]
+[ext_resource type="Texture2D" uid="uid://cdseftigmx86u" path="res://art/UI/no lmao.png" id="10_3ymwa"]
+[ext_resource type="Texture2D" uid="uid://s6xk2s2tmexy" path="res://art/UI/Shop/shop_icon_5.png" id="11_mwu78"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rpxib"]
+resource_local_to_scene = true
+shader = ExtResource("5_ngda6")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+shader_parameter/value = 1.0
+shader_parameter/hsv_offset = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0mdif"]
+resource_local_to_scene = true
+shader = ExtResource("5_ngda6")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+shader_parameter/value = 1.0
+shader_parameter/hsv_offset = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s454v"]
+resource_local_to_scene = true
+shader = ExtResource("5_ngda6")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+shader_parameter/value = 1.0
+shader_parameter/hsv_offset = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0kq6w"]
+resource_local_to_scene = true
+shader = ExtResource("5_ngda6")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+shader_parameter/value = 1.0
+shader_parameter/hsv_offset = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_si3dv"]
+resource_local_to_scene = true
+shader = ExtResource("5_ngda6")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+shader_parameter/value = 1.0
+shader_parameter/hsv_offset = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ukqvo"]
+resource_local_to_scene = true
+shader = ExtResource("5_ngda6")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+shader_parameter/value = 1.0
+shader_parameter/hsv_offset = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pyyur"]
+resource_local_to_scene = true
+shader = ExtResource("5_ngda6")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+shader_parameter/value = 1.0
+shader_parameter/hsv_offset = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7gd51"]
+resource_local_to_scene = true
+shader = ExtResource("5_ngda6")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+shader_parameter/value = 1.0
+shader_parameter/hsv_offset = null
+
+[node name="ShopAltAlt" type="CanvasLayer"]
+script = ExtResource("1_j68e7")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(943, 891)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 250
+theme_override_constants/margin_right = 160
+
+[node name="GuiRect" parent="CenterContainer/HBoxContainer/MarginContainer" instance=ExtResource("1_t5llg")]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+texture = ExtResource("2_hcfp5")
+region_rect = Rect2(1.78027, -9.34853, 1158.24, 1659.51)
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/HBoxContainer/MarginContainer"]
+z_index = -2
+layout_mode = 2
+texture = ExtResource("2_hcfp5")
+expand_mode = 1
+
+[node name="UpgradePanel" type="MarginContainer" parent="CenterContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/HBoxContainer/MarginContainer/UpgradePanel"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/HBoxContainer/MarginContainer/UpgradePanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Shop1" parent="CenterContainer/HBoxContainer/MarginContainer/UpgradePanel/VBoxContainer/HBoxContainer" instance=ExtResource("4_abpt4")]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_rpxib")
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+slot_type = 2
+is_shop = true
+
+[node name="Shop2" parent="CenterContainer/HBoxContainer/MarginContainer/UpgradePanel/VBoxContainer/HBoxContainer" instance=ExtResource("4_abpt4")]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_0mdif")
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+slot_type = 2
+is_shop = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/HBoxContainer/MarginContainer/UpgradePanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Shop3" parent="CenterContainer/HBoxContainer/MarginContainer/UpgradePanel/VBoxContainer/HBoxContainer2" instance=ExtResource("4_abpt4")]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_s454v")
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+slot_type = 2
+is_shop = true
+
+[node name="Shop4" parent="CenterContainer/HBoxContainer/MarginContainer/UpgradePanel/VBoxContainer/HBoxContainer2" instance=ExtResource("4_abpt4")]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_0kq6w")
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+slot_type = 2
+is_shop = true
+
+[node name="ShopExit" type="TextureButton" parent="CenterContainer/HBoxContainer/MarginContainer/UpgradePanel/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+texture_normal = ExtResource("10_3ymwa")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/HBoxContainer/MarginContainer/UpgradePanel/VBoxContainer/ShopExit"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_mwu78")
+expand_mode = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/HBoxContainer/MarginContainer/UpgradePanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Shop5" parent="CenterContainer/HBoxContainer/MarginContainer/UpgradePanel/VBoxContainer/HBoxContainer3" instance=ExtResource("4_abpt4")]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_si3dv")
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+slot_type = 2
+is_shop = true
+
+[node name="Shop6" parent="CenterContainer/HBoxContainer/MarginContainer/UpgradePanel/VBoxContainer/HBoxContainer3" instance=ExtResource("4_abpt4")]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_ukqvo")
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+slot_type = 2
+is_shop = true
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/HBoxContainer/MarginContainer/UpgradePanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Shop7" parent="CenterContainer/HBoxContainer/MarginContainer/UpgradePanel/VBoxContainer/HBoxContainer4" instance=ExtResource("4_abpt4")]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_pyyur")
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+slot_type = 2
+is_shop = true
+
+[node name="Shop8" parent="CenterContainer/HBoxContainer/MarginContainer/UpgradePanel/VBoxContainer/HBoxContainer4" instance=ExtResource("4_abpt4")]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_7gd51")
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+slot_type = 2
+is_shop = true
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="InventoryNode" parent="CenterContainer/HBoxContainer/CenterContainer" instance=ExtResource("6_wugwn")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Dialogue" type="TextureRect" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1212.0
+offset_top = -208.0
+offset_right = 26.0
+offset_bottom = -67.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("8_gur17")
+expand_mode = 1
+
+[node name="DialogueBox" type="Label" parent="Dialogue"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -323.5
+offset_top = -34.5
+offset_right = 323.5
+offset_bottom = 35.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "You will find me at every site of this type."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="CenterContainer/HBoxContainer/MarginContainer/UpgradePanel/VBoxContainer/ShopExit" to="." method="_on_shop_exit_pressed"]

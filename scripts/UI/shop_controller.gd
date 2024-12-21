@@ -6,7 +6,7 @@ enum {SAVE, LOAD}
 @onready var dialogue_text: Label = $Dialogue/DialogueBox
 
 @export var num_gui_attacks = 3
-@export var num_shop_nodes = 4
+@export var num_shop_nodes = 8
 
 var attached_shop
 
@@ -50,26 +50,11 @@ func get_attack_nodes(parent: Node) -> Array[Attack]:
 	return nodes
 
 
-func get_gui_total_attacks() -> Array[Control]:
-	var gui_total_attacks: Array[Control] = []
-	for index in range(num_gui_attacks):
-		gui_total_attacks.append(get_node("%TotalAttack"+str(index+1)))
-	return gui_total_attacks
-
-func get_gui_attacks() -> Array[ShopDraggable]:
-	var gui_attack: Array[ShopDraggable] = []
-	for total_attack in get_gui_total_attacks():
-		gui_attack.append(total_attack.get_node("%Attack"))
-	return gui_attack
-
-
-
-
 func loadsave(mode: int):
 	var player_attack_handler: Node2D = GameState.player.attack_handler
 	var player_attacks: Array[Attack] = get_attack_nodes(player_attack_handler)
 	var new_attacks: Array[Attack] = []
-	var gui_total_attacks = get_gui_total_attacks()
+	var gui_total_attacks = %InventoryNode.get_gui_total_attacks()
 	if mode == SAVE:
 		detach_nodes(player_attack_handler, player_attacks)
 	for attack_index in range(num_gui_attacks):

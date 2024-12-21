@@ -1,0 +1,214 @@
+[gd_scene load_steps=15 format=3 uid="uid://dfp1xkcw3f4ft"]
+
+[ext_resource type="Texture2D" uid="uid://cdhwlo53alt2h" path="res://art/UI/Shop/inventory_bg.png" id="1_8ih3e"]
+[ext_resource type="Script" path="res://scripts/UI/inventory_node.gd" id="1_db5bu"]
+[ext_resource type="PackedScene" uid="uid://domdhv4tthmyh" path="res://scenes/UI/shop_draggable.tscn" id="2_tlnnr"]
+[ext_resource type="PackedScene" uid="uid://jgeavrbmn7f2" path="res://scenes/UI/shop_total_attack.tscn" id="2_vgfn3"]
+[ext_resource type="Shader" path="res://scenes/characters/enemy.gdshader" id="3_wyu1t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c378e"]
+resource_local_to_scene = true
+shader = ExtResource("3_wyu1t")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+shader_parameter/value = 1.0
+shader_parameter/hsv_offset = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l5rr7"]
+resource_local_to_scene = true
+shader = ExtResource("3_wyu1t")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+shader_parameter/value = 1.0
+shader_parameter/hsv_offset = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4fb46"]
+resource_local_to_scene = true
+shader = ExtResource("3_wyu1t")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+shader_parameter/value = 1.0
+shader_parameter/hsv_offset = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8fyty"]
+resource_local_to_scene = true
+shader = ExtResource("3_wyu1t")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+shader_parameter/value = 1.0
+shader_parameter/hsv_offset = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q15qa"]
+resource_local_to_scene = true
+shader = ExtResource("3_wyu1t")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+shader_parameter/value = 1.0
+shader_parameter/hsv_offset = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pdshe"]
+resource_local_to_scene = true
+shader = ExtResource("3_wyu1t")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+shader_parameter/value = 1.0
+shader_parameter/hsv_offset = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kabfg"]
+resource_local_to_scene = true
+shader = ExtResource("3_wyu1t")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+shader_parameter/value = 1.0
+shader_parameter/hsv_offset = null
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6k81b"]
+
+[sub_resource type="Theme" id="Theme_8eav8"]
+TooltipPanel/styles/panel = SubResource("StyleBoxEmpty_6k81b")
+
+[node name="InventoryNode" type="VBoxContainer"]
+offset_right = 928.0
+offset_bottom = 612.0
+script = ExtResource("1_db5bu")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 50
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+z_index = -1
+layout_mode = 2
+texture = ExtResource("1_8ih3e")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="ShopDraggable" parent="MarginContainer/MarginContainer/HBoxContainer/MarginContainer" instance=ExtResource("2_tlnnr")]
+material = SubResource("ShaderMaterial_c378e")
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+slot_type = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="ShopDraggable" parent="MarginContainer/MarginContainer/HBoxContainer/MarginContainer2" instance=ExtResource("2_tlnnr")]
+material = SubResource("ShaderMaterial_l5rr7")
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+slot_type = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="ShopDraggable" parent="MarginContainer/MarginContainer/HBoxContainer/MarginContainer3" instance=ExtResource("2_tlnnr")]
+material = SubResource("ShaderMaterial_4fb46")
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+slot_type = 2
+
+[node name="MarginContainer4" type="MarginContainer" parent="MarginContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="ShopDraggable" parent="MarginContainer/MarginContainer/HBoxContainer/MarginContainer4" instance=ExtResource("2_tlnnr")]
+material = SubResource("ShaderMaterial_8fyty")
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+slot_type = 2
+
+[node name="MarginContainer5" type="MarginContainer" parent="MarginContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="ShopDraggable" parent="MarginContainer/MarginContainer/HBoxContainer/MarginContainer5" instance=ExtResource("2_tlnnr")]
+material = SubResource("ShaderMaterial_q15qa")
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+slot_type = 2
+
+[node name="MarginContainer6" type="MarginContainer" parent="MarginContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="ShopDraggable" parent="MarginContainer/MarginContainer/HBoxContainer/MarginContainer6" instance=ExtResource("2_tlnnr")]
+material = SubResource("ShaderMaterial_pdshe")
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+slot_type = 2
+
+[node name="MarginContainer7" type="MarginContainer" parent="MarginContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="ShopDraggable" parent="MarginContainer/MarginContainer/HBoxContainer/MarginContainer7" instance=ExtResource("2_tlnnr")]
+material = SubResource("ShaderMaterial_kabfg")
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+slot_type = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer2"]
+layout_mode = 2
+texture = ExtResource("1_8ih3e")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2"]
+z_index = 1
+layout_mode = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 70
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/MarginContainer"]
+layout_mode = 2
+
+[node name="TotalAttack1" parent="MarginContainer2/MarginContainer/VBoxContainer" instance=ExtResource("2_vgfn3")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme = SubResource("Theme_8eav8")
+control_mode = 1
+
+[node name="TotalAttack2" parent="MarginContainer2/MarginContainer/VBoxContainer" instance=ExtResource("2_vgfn3")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="TotalAttack3" parent="MarginContainer2/MarginContainer/VBoxContainer" instance=ExtResource("2_vgfn3")]
+unique_name_in_owner = true
+layout_mode = 2
