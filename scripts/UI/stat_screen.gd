@@ -35,7 +35,7 @@ func _ready():
 
 func game_over():
 	GameState.player_data.total_upgrades_taken += GameState.upgrades_taken
-	GameState.player_data.total_weapons_taken += GameState.weapons_taken - 1 if GameState.weapons_taken > 0 else 0
+	GameState.player_data.total_weapons_taken += max(GameState.weapons_taken.size() - 1, 0)
 	GameState.save_game()
 	show()
 	var tween: Tween = create_tween()

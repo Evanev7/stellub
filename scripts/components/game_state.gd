@@ -12,7 +12,7 @@ var _save: SaveGame
 
 var debug: bool = true
 
-var player: CharacterBody2D
+var player: Player
 var pause_menu: CanvasLayer
 var shop_HUD: CanvasLayer
 var stat_screen: CanvasLayer
@@ -51,7 +51,8 @@ var bullets_summoned: int = 0
 var damage_dealt: float = 0
 var circles_completed: int = 0
 var upgrades_taken: int = 0
-var weapons_taken: int = 0
+# This is a set (i.e. Dictionary[String, Null]) so we can account for uniques.
+var weapons_taken: Dictionary = {}
 
 func _ready():
 	Input.set_custom_mouse_cursor(clicky_hand, Input.CURSOR_POINTING_HAND, Vector2i(8,5))
@@ -85,7 +86,7 @@ func reset_statistics():
 	damage_dealt = 0
 	circles_completed = 1
 	upgrades_taken = 0
-	weapons_taken = 0
+	weapons_taken = {}
 
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed("pause"):

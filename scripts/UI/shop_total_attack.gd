@@ -1,6 +1,7 @@
 extends MarginContainer
+class_name TotalAttack
 
-@export var num_gui_upgrades = 8
+@onready var num_gui_upgrades: int = GameState.player.num_gui_upgrades
 @export var control_mode: Attack.CONTROL_MODE = Attack.CONTROL_MODE.PASSIVE
 
 @export var lmb_texture: CompressedTexture2D = preload("res://art/UI/Mouse_Left_Key_Dark.png")
@@ -8,10 +9,23 @@ extends MarginContainer
 @export var nmb_texture: CompressedTexture2D = preload("res://art/UI/Mouse_Simple_Key_Dark.png")
 
 enum {SAVE, LOAD}
-var num_upgrades: int = 0
+@onready var attack_id = get_own_index()
 
 func _ready():
-	update_control_texture()
+	%Attack.inventory_location = "Attack%s" % str(attack_id)
+	for index in range(1,num_gui_upgrades+1):
+		get_node("%Upgrade" + str(index)).inventory_location = "Attack%s:Upgrade%s" % [str(attack_id), str(index)]
+
+func get_own_index() -> int:
+	var count = 1
+	for child in get_parent().get_children():
+		if child == self:
+			return count
+		if child is TotalAttack:
+			count += 1
+	assert(false, "Self  not found in parents children!!")
+	# Godot isn't smart enough to realise that this can never occur.
+	return -1
 
 func update_control_texture():
 	var gui_control_node: TextureButton = get_node("%ControlMode")
@@ -21,81 +35,6 @@ func update_control_texture():
 		gui_control_node.texture_normal = rmb_texture
 	else:
 		gui_control_node.texture_normal = nmb_texture
-
-
-func get_upgrade_nodes(attack_node) -> Array[Upgrade]:
-	var upgrades: Array[Upgrade] = []
-	for upgrade in attack_node.get_children():
-		if upgrade is Upgrade and upgrade.skip == false:
-			upgrades.append(upgrade)
-	return upgrades
-
-
-func get_gui_upgrades() -> Array[Control]:
-	var gui_upgrades: Array[Control] = []
-	for upgrade_index in range(num_gui_upgrades):
-		gui_upgrades.append(get_node("%Upgrade"+str(upgrade_index+1)))
-	return gui_upgrades
-
-func reattach_nodes(parent, children):
-	for child in children:
-		if child.get_parent():
-			child.get_parent().remove_child(child)
-	for child in children:
-		parent.add_child(child)
-
-func detach_nodes(parent, children):
-	for child in children:
-		parent.remove_child(child)
-
-func attach_nodes(parent, children):
-	for child in children:
-		parent.add_child(child)
-
-
-func loadsave(mode: int, attack_node: Attack) -> Attack:
-	var gui_attack_node = get_node("%Attack")
-	var gui_upgrades: Array[Control] = get_gui_upgrades()
-	var player_upgrades: Array[Upgrade] = []
-
-	if mode == LOAD:
-		gui_attack_node.referenced_node = attack_node
-		if attack_node:
-			player_upgrades = get_upgrade_nodes(attack_node)
-
-	gui_attack_node.refresh()
-
-	if mode == SAVE and attack_node:
-		attack_node.control_mode = control_mode
-	for upgrade_index in range(num_gui_upgrades):
-		if mode == LOAD:
-			if upgrade_index >= len(player_upgrades):
-				gui_upgrades[upgrade_index].referenced_node = null
-				continue
-			else:
-				gui_upgrades[upgrade_index].referenced_node = player_upgrades[upgrade_index]
-		if mode == SAVE:
-			if gui_upgrades[upgrade_index].referenced_node != null:
-				player_upgrades.append(gui_upgrades[upgrade_index].referenced_node)
-		gui_upgrades[upgrade_index].refresh()
-
-	num_upgrades = player_upgrades.size()
-
-	if mode == SAVE:
-		if $%Attack.referenced_node != null:
-			attack_node = $%Attack.referenced_node
-			reattach_nodes(attack_node, player_upgrades)
-			attack_node.control_mode = control_mode
-			attack_node.refresh_bullet_resource()
-
-	return attack_node
-
-
-func refresh_all():
-	$%Attack.refresh()
-	for i in range(num_gui_upgrades):
-		get_node("%Upgrade"+str(i+1)).refresh()
-
 
 func _on_control_mode_pressed(event: InputEvent):
 	if event.is_action_pressed("primary_fire"):
@@ -108,5 +47,23 @@ func _on_control_mode_pressed(event: InputEvent):
 			control_mode = Attack.CONTROL_MODE.SECONDARY
 		else:
 			control_mode = Attack.CONTROL_MODE.PASSIVE
-
+	
+	if %Attack.referenced_node:
+		(%Attack.referenced_node as Attack).control_mode = control_mode
+	
 	update_control_texture()
+
+
+func _on_draw() -> void:
+	var attack = GameState.player.inventory.get("Attack%s" % str(attack_id))
+	if attack != null:
+		control_mode = attack.control_mode
+	update_control_texture()
+
+
+func _on_hidden() -> void:
+	if not is_node_ready():
+		return
+	var attack = GameState.player.inventory.get("Attack%s" % str(attack_id))
+	if attack != null:
+		attack.control_mode = control_mode

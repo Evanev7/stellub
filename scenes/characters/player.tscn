@@ -248,7 +248,7 @@ color_ramp = SubResource("GradientTexture1D_dwkf2")
 hue_variation_min = -0.04
 hue_variation_max = 0.03
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("attack_handler")]
+[node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
 scale = Vector2(0.05, 0.05)
 motion_mode = 1
@@ -256,7 +256,6 @@ platform_on_leave = 2
 script = ExtResource("1_m0lvq")
 STARTING_WEAPON = ExtResource("35_8awst")
 stat_upgrade = ExtResource("3_b8qp8")
-attack_handler = NodePath("AttackHandler")
 
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 26

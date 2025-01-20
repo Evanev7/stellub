@@ -1,15 +1,21 @@
 extends VBoxContainer
 
-@export var num_gui_attacks: int = 3
+@onready var num_inventory_slots: int = GameState.player.num_inventory_slots
 
-func get_gui_total_attacks() -> Array[Control]:
-	var gui_total_attacks: Array[Control] = []
-	for index in range(num_gui_attacks):
-		gui_total_attacks.append(get_node("%TotalAttack"+str(index+1)))
-	return gui_total_attacks
+func _ready():
+	for index in range(1,num_inventory_slots+1):
+		get_node("%Inventory"+str(index)).inventory_location = "Inventory%s" % index
 
-func get_gui_attacks() -> Array[ShopDraggable]:
-	var gui_attack: Array[ShopDraggable] = []
-	for total_attack in get_gui_total_attacks():
-		gui_attack.append(total_attack.get_node("%Attack"))
-	return gui_attack
+func _on_hidden() -> void:
+	if not is_node_ready():
+		return
+	for draggable in get_tree().get_nodes_in_group("draggable"):
+		draggable.save_self()
+	GameState.player.load_inventory()
+
+
+func _on_draw() -> void:
+	if not is_node_ready():
+		return
+	for draggable in get_tree().get_nodes_in_group("draggable"):
+		draggable.load_self()

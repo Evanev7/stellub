@@ -5,11 +5,6 @@ class_name AttackHandler
 @export var attack_scene: PackedScene
 
 var attack_direction: FireFrom = FireFrom.new()
-# Array[Attack | Upgrade]
-var inventory: Array
-var placeholder_upgrades_1: Array[Upgrade] = []
-var placeholder_upgrades_2: Array[Upgrade] = []
-var placeholder_upgrades_3: Array[Upgrade] = []
 
 func add_attack_from_resource(
 		bullet: BulletResource,

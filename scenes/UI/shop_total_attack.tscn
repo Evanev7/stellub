@@ -189,4 +189,6 @@ material = SubResource("ShaderMaterial_4vggo")
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 
+[connection signal="draw" from="." to="." method="_on_draw"]
+[connection signal="hidden" from="." to="." method="_on_hidden"]
 [connection signal="gui_input" from="HBoxContainer/CenterContainer2/GridContainer/ControlMode" to="." method="_on_control_mode_pressed"]

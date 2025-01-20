@@ -20,13 +20,15 @@ static var hue_shift: float = 0.66
 static var shop_item_taken
 static var shop_nodes = []
 var referenced_node: Node
+var inventory_location: String = ""
 
-func _ready():
+func _ready() -> void:
 	if get_node_or_null("AnimationPlayer"):
 		$AnimationPlayer.set_speed_scale(randf_range(2.5, 4))
 	if is_shop and self not in shop_nodes:
 		shop_nodes.append(self)
 	add_to_group("draggable")
+
 
 func refresh() -> void:
 	if overlay != null:
@@ -65,7 +67,7 @@ func refresh() -> void:
 			tooltip_text = referenced_node.description
 			if overlay != null:
 				overlay.visible = true
-
+		
 		if referenced_node.get("icon") != null:
 			if referenced_node.icon is CompressedTexture2D:
 				texture_normal = referenced_node.icon
@@ -78,37 +80,48 @@ func refresh() -> void:
 					texture_normal.set_frame_texture(frame, referenced_node.icon.get_frame_texture("default", frame))
 		else:
 			texture_normal = null
-
+	
 	else:
 		texture_normal = null
 		rune_fill.visible = false
 		rune_outline.visible = false
 		tooltip_text = ""
-
+	
 	if not material:
 		return
-
+	
 	match slot_type:
 		SLOT_TYPE.ATTACK:
 			material.set_shader_parameter("hsl_offset", [hue_shift,0,0])
 		SLOT_TYPE.UPGRADE:
 			material.set_shader_parameter("hsl_offset", [0,0,0])
 
-func _get_drag_data(_pos: Vector2) -> Variant:
+func load_self() -> void:
+	if inventory_location != "":
+		if inventory_location in GameState.player.inventory.keys():
+			referenced_node = GameState.player.inventory[inventory_location]
+	refresh()
+
+func save_self() -> void:
+	# A little hacky
+	if inventory_location != "" and is_visible_in_tree():
+		GameState.player.inventory[inventory_location] = referenced_node
+
+func _get_drag_data(_pos: Vector2) -> Dictionary:
 	var data = {
 		"origin_node" = self,
 		"referenced_node" = referenced_node,
 		"slot_type" = slot_type,
 		"is_shop" = is_shop
 	}
-
+	
 	SoundManager.select.play()
-
+	
 	if not referenced_node:
 		return {}
 	if shop_item_taken and is_shop:
 		return {}
-
+	
 	var drag_preview: Sprite2D = drag_preview_scene.instantiate()
 	drag_preview.texture = texture_normal
 	if referenced_node is Upgrade:
@@ -124,7 +137,7 @@ func _get_drag_data(_pos: Vector2) -> Variant:
 	drag_preview.apply_scale(Vector2(64.0/texture_normal.get_width(),64.0/texture_normal.get_height()))
 	drag_preview.set_rotation(0.2)
 	owner.add_child(drag_preview)
-
+	
 	return data
 
 
@@ -151,7 +164,7 @@ func _drop_data(_pos: Vector2, data) -> void:
 	refresh()
 	data["origin_node"].refresh()
 
-func _make_custom_tooltip(for_text):
+func _make_custom_tooltip(for_text: String):
 	var tooltip: CenterContainer = tooltip_scene.instantiate()
 	if referenced_node != null:
 		tooltip.get_node("MarginContainer/MarginContainer/VBoxContainer/Desc").text = for_text
@@ -164,5 +177,5 @@ func _make_custom_tooltip(for_text):
 				tooltip.get_node("MarginContainer/TypeMargin/TypeIndicator").texture = upgrade_indicator
 		return tooltip
 
-static func shop_freed():
+static func shop_freed() -> void:
 	shop_item_taken = false

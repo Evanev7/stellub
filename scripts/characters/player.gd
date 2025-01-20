@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 signal hp_changed(hp)
 signal player_death
@@ -12,7 +13,11 @@ signal show_freeze(time)
 @export var STARTING_WEAPON: BulletResource
 
 @export var stat_upgrade: UpgradeResource
-@export var attack_handler: AttackHandler
+@onready var attack_handler: AttackHandler = $AttackHandler
+@onready var inventory: Dictionary
+@onready var num_gui_upgrades = 8
+@onready var num_gui_attacks = 3
+@onready var num_inventory_slots = 7
 var fire_pickup_attack: Attack
 
 @onready var default_scale: Vector2 = self.scale
@@ -154,12 +159,13 @@ func set_default_stats():
 		attack.queue_free()
 	# If starting weapon is normal bullet
 	STARTING_WEAPON.target_mode = BulletResource.TARGET_MODE.MOUSE
-	attack_handler.add_attack_from_resource(STARTING_WEAPON)
+	add_attack_from_resource(STARTING_WEAPON)
 
 func add_attack_from_resource(bullet: BulletResource):
 	var modes = Attack.CONTROL_MODE
 	var available_modes = [modes.PRIMARY, modes.SECONDARY, modes.TERTIARY, modes.PASSIVE]
-	attack_handler.add_attack_from_resource(bullet, available_modes[control_mode])
+	var attack = attack_handler.add_attack_from_resource(bullet, available_modes[control_mode])
+	inventory["Attack%s" % attack_handler.get_child_count()] = attack
 	control_mode = clamp(control_mode + 1, 0, 3)
 
 # Called when the player gets hurt. Body can be either a bullet OR an enemy.
@@ -191,7 +197,48 @@ func hurt(body):
 		set_physics_process(false)
 		player_death.emit()
 
-
+func load_inventory() -> void:
+	# Constructrs the attack_handler from the inventory dict.
+	# Potential memory leak! 
+	# If we null an item without freeing() it, it will exist in memory indefinitely.
+	# I know how to address this, but will only do so if it's clearly a problem.
+	
+	# Player stats
+	var total_upgrades: int = 0
+	
+	# Nuke the attack handler tree
+	for attack in attack_handler.get_children():
+		for upgrade in attack.get_children():
+			attack.remove_child(upgrade)
+		attack_handler.remove_child(attack)
+	
+	# Then figure out what nodes need attaching
+	var realised_attacks: Array[Node] = []
+	var realised_upgrades: Array[Array] = []
+	for attack_index in range(1,num_gui_attacks+1):
+		var attack = inventory.get("Attack%s" % attack_index)
+		if attack == null:
+			continue
+		realised_attacks.append(attack)
+		realised_upgrades.append([])
+		for upgrade_index in range(1,num_gui_upgrades+1):
+			var upgrade = inventory.get("Attack%s:Upgrade%s" % [attack_index, upgrade_index])
+			if upgrade == null:
+				continue
+			realised_upgrades[-1].append(upgrade)
+	
+	# Then attach the nodes to the player
+	for attack_index in range(realised_attacks.size()):
+		var attack = realised_attacks[attack_index]
+		for upgrade in realised_upgrades[attack_index]:
+			attack.add_child(upgrade)
+		total_upgrades += realised_upgrades[attack_index].size()
+		attack_handler.add_child(attack)
+		# Setting Set membership - null doesn't matter here, just needs a value.
+		GameState.weapons_taken[attack.attack_name] = null
+		GameState.player_data.unique_weapon_names[attack.attack_name] = null
+	
+	GameState.player.evolve(total_upgrades / 2 + realised_attacks.size() - 1)
 
 func activate_pickup(area):
 	if area.is_in_group("pickup"):

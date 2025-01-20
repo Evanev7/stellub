@@ -99,7 +99,8 @@ theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="ShopDraggable" parent="MarginContainer/MarginContainer/HBoxContainer/MarginContainer" instance=ExtResource("2_tlnnr")]
+[node name="Inventory1" parent="MarginContainer/MarginContainer/HBoxContainer/MarginContainer" instance=ExtResource("2_tlnnr")]
+unique_name_in_owner = true
 material = SubResource("ShaderMaterial_c378e")
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
@@ -111,7 +112,8 @@ theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="ShopDraggable" parent="MarginContainer/MarginContainer/HBoxContainer/MarginContainer2" instance=ExtResource("2_tlnnr")]
+[node name="Inventory2" parent="MarginContainer/MarginContainer/HBoxContainer/MarginContainer2" instance=ExtResource("2_tlnnr")]
+unique_name_in_owner = true
 material = SubResource("ShaderMaterial_l5rr7")
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
@@ -123,7 +125,8 @@ theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="ShopDraggable" parent="MarginContainer/MarginContainer/HBoxContainer/MarginContainer3" instance=ExtResource("2_tlnnr")]
+[node name="Inventory3" parent="MarginContainer/MarginContainer/HBoxContainer/MarginContainer3" instance=ExtResource("2_tlnnr")]
+unique_name_in_owner = true
 material = SubResource("ShaderMaterial_4fb46")
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
@@ -135,7 +138,8 @@ theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="ShopDraggable" parent="MarginContainer/MarginContainer/HBoxContainer/MarginContainer4" instance=ExtResource("2_tlnnr")]
+[node name="Inventory4" parent="MarginContainer/MarginContainer/HBoxContainer/MarginContainer4" instance=ExtResource("2_tlnnr")]
+unique_name_in_owner = true
 material = SubResource("ShaderMaterial_8fyty")
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
@@ -147,7 +151,8 @@ theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="ShopDraggable" parent="MarginContainer/MarginContainer/HBoxContainer/MarginContainer5" instance=ExtResource("2_tlnnr")]
+[node name="Inventory5" parent="MarginContainer/MarginContainer/HBoxContainer/MarginContainer5" instance=ExtResource("2_tlnnr")]
+unique_name_in_owner = true
 material = SubResource("ShaderMaterial_q15qa")
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
@@ -159,7 +164,8 @@ theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="ShopDraggable" parent="MarginContainer/MarginContainer/HBoxContainer/MarginContainer6" instance=ExtResource("2_tlnnr")]
+[node name="Inventory6" parent="MarginContainer/MarginContainer/HBoxContainer/MarginContainer6" instance=ExtResource("2_tlnnr")]
+unique_name_in_owner = true
 material = SubResource("ShaderMaterial_pdshe")
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
@@ -171,7 +177,8 @@ theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="ShopDraggable" parent="MarginContainer/MarginContainer/HBoxContainer/MarginContainer7" instance=ExtResource("2_tlnnr")]
+[node name="Inventory7" parent="MarginContainer/MarginContainer/HBoxContainer/MarginContainer7" instance=ExtResource("2_tlnnr")]
+unique_name_in_owner = true
 material = SubResource("ShaderMaterial_kabfg")
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
@@ -212,3 +219,6 @@ layout_mode = 2
 [node name="TotalAttack3" parent="MarginContainer2/MarginContainer/VBoxContainer" instance=ExtResource("2_vgfn3")]
 unique_name_in_owner = true
 layout_mode = 2
+
+[connection signal="draw" from="." to="." method="_on_draw"]
+[connection signal="hidden" from="." to="." method="_on_hidden"]
