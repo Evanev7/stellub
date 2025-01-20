@@ -11,6 +11,7 @@ signal remove_from_hud(shop)
 var chosen_upgrades
 var is_weapon_present
 var shop_opened = false
+@onready var items_taken = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

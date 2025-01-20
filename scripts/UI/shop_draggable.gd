@@ -1,7 +1,6 @@
 extends TextureButton
 class_name ShopDraggable
 
-signal gray_out_shop
 
 var button_texture = preload("res://art/UI/Shop/Button Empty.png")
 var attack_indicator = preload("res://art/UI/clicky finger.png")
@@ -17,31 +16,28 @@ static var hue_shift: float = 0.66
 @export var is_shop: bool = false
 @onready var rune_fill: TextureRect = %RuneFill
 @onready var rune_outline: TextureRect = %RuneOutline
-static var shop_item_taken
-static var shop_nodes = []
+const MAX_ITEMS_TAKEN: int = 2
+static var items_taken: int = 0
+static var shop_nodes: Array[Node] = []
 var referenced_node: Node
 var inventory_location: String = ""
 
 func _ready() -> void:
 	if get_node_or_null("AnimationPlayer"):
 		$AnimationPlayer.set_speed_scale(randf_range(2.5, 4))
+	add_to_group("draggable")
 	if is_shop and self not in shop_nodes:
 		shop_nodes.append(self)
-	add_to_group("draggable")
 
 
 func refresh() -> void:
 	if overlay != null:
 		overlay.visible = false
-	for node in shop_nodes:
-		if not node:
-			shop_nodes.erase(node)
-	if shop_item_taken and is_shop:
-		for node in shop_nodes:
-			node.modulate = Color(0.6,0.6,0.6,1)
-	elif is_shop:
-		for node in shop_nodes:
-			node.modulate = Color(1,1,1,1)
+	if is_shop:
+		if items_taken >= MAX_ITEMS_TAKEN:
+			modulate = Color(0.6,0.6,0.6,1)
+		else:
+			modulate = Color(1,1,1,1)
 	if referenced_node:
 		if referenced_node is Upgrade:
 			if material:
@@ -107,20 +103,13 @@ func save_self() -> void:
 	if inventory_location != "" and is_visible_in_tree():
 		GameState.player.inventory[inventory_location] = referenced_node
 
-func _get_drag_data(_pos: Vector2) -> Dictionary:
-	var data = {
-		"origin_node" = self,
-		"referenced_node" = referenced_node,
-		"slot_type" = slot_type,
-		"is_shop" = is_shop
-	}
-	
+func _get_drag_data(_pos: Vector2):
 	SoundManager.select.play()
 	
 	if not referenced_node:
-		return {}
-	if shop_item_taken and is_shop:
-		return {}
+		return null
+	if items_taken >= MAX_ITEMS_TAKEN and is_shop:
+		return null
 	
 	var drag_preview: Sprite2D = drag_preview_scene.instantiate()
 	drag_preview.texture = texture_normal
@@ -138,31 +127,45 @@ func _get_drag_data(_pos: Vector2) -> Dictionary:
 	drag_preview.set_rotation(0.2)
 	owner.add_child(drag_preview)
 	
-	return data
+	return self
 
 
-func _can_drop_data(_pos: Vector2, incoming_data) -> bool:
-	if incoming_data == {}:
+func _can_drop_data(_pos: Vector2, inbound_node) -> bool:
+	if inbound_node == null:
+		print("Dragging empty slot 1")
 		return false
-	if incoming_data["referenced_node"] == null:
+	if inbound_node.referenced_node == null:
+		print("Dragging empty slot 2")
 		return false
-	if slot_type != SLOT_TYPE.EITHER and slot_type != incoming_data["slot_type"]:
+	if slot_type == SLOT_TYPE.ATTACK and inbound_node.slot_type == SLOT_TYPE.UPGRADE \
+		or slot_type == SLOT_TYPE.UPGRADE and inbound_node.slot_type == SLOT_TYPE.ATTACK:
+		print("Invalid inbound type")
 		return false
 	if is_shop:
+		print("Can't drop into shop")
+		return false
+	if inbound_node.is_shop and referenced_node != null:
+		print("Can't swap shop item")
 		return false
 	return true
 
 
-func _drop_data(_pos: Vector2, data) -> void:
-	data["origin_node"].referenced_node = referenced_node
-	referenced_node = data["referenced_node"]
-	if data["is_shop"]:
-		shop_item_taken = true
-		gray_out_shop.emit()
-
+func _drop_data(_pos: Vector2, inbound_node) -> void:
+	print(inventory_location)
+	print(inbound_node.referenced_node, " foo ", referenced_node)
+	var ref = referenced_node
+	referenced_node = inbound_node.referenced_node
+	inbound_node.referenced_node = ref
+	print(inbound_node.referenced_node, " foo ", referenced_node)
+	if inbound_node.is_shop:
+		items_taken += 1
+	
 	SoundManager.place_upgrade.play()
 	refresh()
-	data["origin_node"].refresh()
+	inbound_node.refresh()
+	if inbound_node.is_shop:
+		for node in shop_nodes:
+			node.refresh()
 
 func _make_custom_tooltip(for_text: String):
 	var tooltip: CenterContainer = tooltip_scene.instantiate()
@@ -178,4 +181,4 @@ func _make_custom_tooltip(for_text: String):
 		return tooltip
 
 static func shop_freed() -> void:
-	shop_item_taken = false
+	items_taken = 0

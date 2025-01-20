@@ -157,6 +157,7 @@ func set_default_stats():
 	## Weapon Stats
 	for attack in attack_handler.get_children():
 		attack.queue_free()
+	inventory = {}
 	# If starting weapon is normal bullet
 	STARTING_WEAPON.target_mode = BulletResource.TARGET_MODE.MOUSE
 	add_attack_from_resource(STARTING_WEAPON)
@@ -238,7 +239,9 @@ func load_inventory() -> void:
 		GameState.weapons_taken[attack.attack_name] = null
 		GameState.player_data.unique_weapon_names[attack.attack_name] = null
 	
-	GameState.player.evolve(total_upgrades / 2 + realised_attacks.size() - 1)
+	evolve(total_upgrades / 2 + realised_attacks.size() - 1)
+	
+	attack_handler.refresh_all_attacks()
 
 func activate_pickup(area):
 	if area.is_in_group("pickup"):

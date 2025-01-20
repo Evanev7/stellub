@@ -79,11 +79,6 @@ func close_shop():
 	clear_shop()
 
 
-func _on_shop_item_taken():
-	for i in range(num_shop_nodes):
-		get_node("%Shop"+str(i+1)).disabled = true
-
-
 func _gray_out_shop():
 	for index in range(num_shop_nodes):
 		get_node("%Shop"+str(index+1)).refresh()
