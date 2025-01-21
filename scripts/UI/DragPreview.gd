@@ -5,7 +5,6 @@ var rune_colour: Color
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print(rune_colour)
 	rune_fill.self_modulate = rune_colour
 
 

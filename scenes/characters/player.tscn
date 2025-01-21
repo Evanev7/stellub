@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://cnepphpba8e8u"]
+[gd_scene load_steps=64 format=3 uid="uid://cnepphpba8e8u"]
 
 [ext_resource type="Script" path="res://scripts/characters/player.gd" id="1_m0lvq"]
 [ext_resource type="Resource" uid="uid://qdvp5rtjvnll" path="res://upgrades/stat_upgrade.tres" id="3_b8qp8"]
@@ -33,6 +33,8 @@
 [ext_resource type="Texture2D" uid="uid://b4drtmyr37f11" path="res://art/player/level 5/player_5_1.png" id="31_v4gbo"]
 [ext_resource type="Texture2D" uid="uid://d4hct8jpb8rpj" path="res://art/player/level 6/player_6_1.png" id="32_jmb7j"]
 [ext_resource type="PackedScene" uid="uid://u1hhvearq4oy" path="res://scenes/components/attack_handler.tscn" id="32_ju527"]
+[ext_resource type="Texture2D" uid="uid://dq7pfggy6c8qk" path="res://art/player/level 5/player_5_2.png" id="34_bwxfa"]
+[ext_resource type="Texture2D" uid="uid://tw68d2ajmvyw" path="res://art/player/level 5/player_5_3.png" id="35_2yhye"]
 [ext_resource type="Resource" uid="uid://ccpb4udi5owpj" path="res://resources/bullets/player/player_bullet.tres" id="35_8awst"]
 [ext_resource type="AudioStream" uid="uid://by71ab3bqy54q" path="res://sounds/vacuum.wav" id="35_hr2l7"]
 [ext_resource type="Texture2D" uid="uid://bpx5ybtqcrlpp" path="res://art/objects/shadow.png" id="35_ikv2g"]
@@ -40,6 +42,7 @@
 [ext_resource type="AudioStream" uid="uid://h5elwdsbb4dg" path="res://sounds/explosion.wav" id="35_uypww"]
 [ext_resource type="AudioStream" uid="uid://dvmyi1ab7aafi" path="res://sounds/hp_pickup.wav" id="36_1j732"]
 [ext_resource type="AudioStream" uid="uid://brney5rm6n7qw" path="res://sounds/level_up.wav" id="36_ik3c3"]
+[ext_resource type="Texture2D" uid="uid://b65jr3uyr86se" path="res://art/player/level 5/player_5_4.png" id="36_snxqm"]
 [ext_resource type="AudioStream" uid="uid://umpxr80y1hgh" path="res://sounds/pickup.wav" id="36_ys6vg"]
 [ext_resource type="Texture2D" uid="uid://bhs2v6ujb61d6" path="res://art/bullets/temp_1.png" id="38_uyywf"]
 [ext_resource type="AudioStream" uid="uid://r5ctaqmle1nc" path="res://sounds/particle_mace.wav" id="39_qx4df"]
@@ -175,6 +178,15 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("31_v4gbo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_bwxfa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_2yhye")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_snxqm")
 }],
 "loop": true,
 "name": &"level 5",
@@ -288,7 +300,7 @@ texture = ExtResource("35_ikv2g")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_j1jo8")
 sprite_frames = SubResource("SpriteFrames_whc3w")
-animation = &"level 1"
+animation = &"level 5"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.2, 1.2)
@@ -355,8 +367,8 @@ explosiveness = 0.3
 [node name="FireTimer" type="Timer" parent="."]
 one_shot = true
 
-[connection signal="area_entered" from="Hurtbox" to="." method="hurt"]
 [connection signal="area_entered" from="Hurtbox" to="." method="get_pickup"]
+[connection signal="area_entered" from="Hurtbox" to="." method="hurt"]
 [connection signal="area_entered" from="PickupRange" to="." method="activate_pickup"]
 [connection signal="timeout" from="IFrames" to="." method="_on_i_frames_timeout"]
 [connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]
