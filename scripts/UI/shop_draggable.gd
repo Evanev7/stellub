@@ -167,7 +167,8 @@ func _drop_data(_pos: Vector2, inbound_node) -> void:
 	inbound_node.refresh()
 	if inbound_node.is_shop:
 		for node in shop_nodes:
-			node.refresh()
+			if is_instance_valid(node):
+				node.refresh()
 
 
 func _make_custom_tooltip(for_text: String):
