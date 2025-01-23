@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends MarginContainer
 
 signal go_back
 
@@ -45,4 +45,5 @@ func _on_fps_pressed():
 
 
 func _on_back_mouse_entered():
+	print("wawawewa")
 	SoundManager.button_hover.play()

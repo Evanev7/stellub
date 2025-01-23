@@ -28,9 +28,12 @@ func _ready() -> void:
 	add_to_group("draggable")
 	if is_shop and self not in shop_nodes:
 		shop_nodes.append(self)
+	GameState.game_over.connect(func(): referenced_node = null)
+	GameState.game_over.connect(func(): shop_nodes = [])
 
 
 func refresh() -> void:
+	load_self()
 	if overlay != null:
 		overlay.visible = false
 	if is_shop:
@@ -96,7 +99,6 @@ func load_self() -> void:
 	if inventory_location != "":
 		if inventory_location in GameState.player.inventory.keys():
 			referenced_node = GameState.player.inventory[inventory_location]
-	refresh()
 
 func save_self() -> void:
 	# A little hacky
@@ -137,8 +139,8 @@ func _can_drop_data(_pos: Vector2, inbound_node) -> bool:
 	if inbound_node.referenced_node == null:
 		print("Dragging empty slot 2")
 		return false
-	if slot_type == SLOT_TYPE.ATTACK and inbound_node.slot_type == SLOT_TYPE.UPGRADE \
-		or slot_type == SLOT_TYPE.UPGRADE and inbound_node.slot_type == SLOT_TYPE.ATTACK:
+	if slot_type == SLOT_TYPE.ATTACK and inbound_node.slot_type != SLOT_TYPE.ATTACK \
+		or slot_type == SLOT_TYPE.UPGRADE and inbound_node.slot_type != SLOT_TYPE.UPGRADE:
 		print("Invalid inbound type")
 		return false
 	if is_shop:
@@ -151,21 +153,22 @@ func _can_drop_data(_pos: Vector2, inbound_node) -> bool:
 
 
 func _drop_data(_pos: Vector2, inbound_node) -> void:
-	print(inventory_location)
-	print(inbound_node.referenced_node, " foo ", referenced_node)
 	var ref = referenced_node
 	referenced_node = inbound_node.referenced_node
 	inbound_node.referenced_node = ref
-	print(inbound_node.referenced_node, " foo ", referenced_node)
 	if inbound_node.is_shop:
 		items_taken += 1
 	
 	SoundManager.place_upgrade.play()
+	# Save must come before refresh
+	save_self()
 	refresh()
+	inbound_node.save_self()
 	inbound_node.refresh()
 	if inbound_node.is_shop:
 		for node in shop_nodes:
 			node.refresh()
+
 
 func _make_custom_tooltip(for_text: String):
 	var tooltip: CenterContainer = tooltip_scene.instantiate()

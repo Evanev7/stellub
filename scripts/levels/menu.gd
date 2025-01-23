@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var options_menu: CanvasLayer = $options_menu
+@onready var options_menu = $options_menu
 @onready var stat_screen: CanvasLayer = $stat_screen
 @onready var loading_screen: TextureRect = $"Main Menu/LoadingScreen"
 @onready var credits_screen = $credits_screen

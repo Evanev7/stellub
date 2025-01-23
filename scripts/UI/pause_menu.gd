@@ -1,7 +1,8 @@
 extends CanvasLayer
 
 @export var main_menu_scene: PackedScene
-@onready var options_menu: CanvasLayer = $OptionsMenu
+@onready var options_menu = %OptionsMenu
+@onready var inventory = %InventoryNode
 
 func _ready():
 	GameState.pause_menu = self
@@ -12,15 +13,20 @@ func _ready():
 func _on_hud_open_pause_menu():
 	GameState.pause_game()
 	visible = true
+	options_menu.visible = false
+	inventory.visible = true
 
 func _on_continue_pressed():
 	SoundManager.select.play()
 	GameState.unpause_game()
 	visible = false
+	options_menu.visible = false
+	inventory.visible = true
 
 func _on_options_pressed():
 	SoundManager.select.play()
 	options_menu.visible = true
+	inventory.visible = false
 
 func _on_exit_pressed():
 	SoundManager.select.play()
@@ -32,6 +38,7 @@ func _on_exit_pressed():
 
 func _on_options_menu_go_back():
 	options_menu.visible = false
+	inventory.visible = true
 
 func _on_button_mouse_entered():
 	SoundManager.button_hover.play()

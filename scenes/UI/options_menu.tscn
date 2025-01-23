@@ -9,7 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://csifdlbjdrodm" path="res://sounds/normal_shot.wav" id="6_6ip6c"]
 [ext_resource type="Texture2D" uid="uid://cgt5paocwd1un" path="res://art/UI/Pause_Menu/pause_menu_bottom_button.png" id="7_rmdax"]
 
-[sub_resource type="Image" id="Image_f3pch"]
+[sub_resource type="Image" id="Image_iyupd"]
 data = {
 "data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 1, 30, 30, 30, 51, 28, 28, 28, 99, 27, 27, 27, 121, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 27, 27, 27, 121, 26, 26, 26, 98, 30, 30, 30, 51, 255, 255, 255, 1, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 36, 36, 36, 14, 26, 26, 26, 95, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 95, 36, 36, 36, 14, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 36, 36, 36, 14, 26, 26, 26, 118, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 80, 80, 80, 144, 147, 147, 147, 173, 170, 170, 170, 186, 170, 170, 170, 186, 146, 146, 146, 173, 78, 78, 78, 144, 26, 26, 26, 128, 26, 26, 26, 118, 36, 36, 36, 14, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 1, 26, 26, 26, 95, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 117, 117, 117, 159, 180, 180, 180, 192, 180, 180, 180, 192, 180, 180, 180, 192, 180, 180, 180, 192, 180, 180, 180, 192, 180, 180, 180, 192, 115, 115, 115, 159, 26, 26, 26, 128, 26, 26, 26, 95, 255, 255, 255, 1, 255, 255, 255, 0, 255, 255, 255, 0, 30, 30, 30, 51, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 80, 80, 80, 144, 180, 180, 180, 192, 180, 180, 180, 192, 180, 180, 180, 192, 180, 180, 180, 192, 180, 180, 180, 192, 180, 180, 180, 192, 180, 180, 180, 192, 179, 179, 179, 191, 76, 76, 76, 143, 26, 26, 26, 128, 30, 30, 30, 50, 255, 255, 255, 0, 255, 255, 255, 0, 28, 28, 28, 99, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 147, 147, 147, 173, 180, 180, 180, 192, 180, 180, 180, 192, 180, 180, 180, 192, 180, 180, 180, 192, 180, 180, 180, 192, 180, 180, 180, 192, 180, 180, 180, 192, 180, 180, 180, 192, 146, 146, 146, 173, 26, 26, 26, 128, 26, 26, 26, 98, 255, 255, 255, 0, 255, 255, 255, 0, 27, 27, 27, 121, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 170, 170, 170, 186, 180, 180, 180, 192, 180, 180, 180, 192, 180, 180, 180, 192, 180, 180, 180, 192, 180, 180, 180, 192, 180, 180, 180, 192, 180, 180, 180, 192, 180, 180, 180, 192, 170, 170, 170, 186, 26, 26, 26, 128, 27, 27, 27, 121, 255, 255, 255, 0, 255, 255, 255, 0, 27, 27, 27, 121, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 170, 170, 170, 186, 180, 180, 180, 192, 180, 180, 180, 192, 180, 180, 180, 192, 180, 180, 180, 192, 180, 180, 180, 192, 180, 180, 180, 192, 180, 180, 180, 192, 180, 180, 180, 192, 170, 170, 170, 185, 26, 26, 26, 128, 27, 27, 27, 120, 255, 255, 255, 0, 255, 255, 255, 0, 26, 26, 26, 98, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 146, 146, 146, 173, 180, 180, 180, 192, 180, 180, 180, 192, 180, 180, 180, 192, 180, 180, 180, 192, 180, 180, 180, 192, 180, 180, 180, 192, 180, 180, 180, 192, 180, 180, 180, 192, 145, 145, 145, 172, 26, 26, 26, 128, 26, 26, 26, 98, 255, 255, 255, 0, 255, 255, 255, 0, 30, 30, 30, 51, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 78, 78, 78, 144, 180, 180, 180, 192, 180, 180, 180, 192, 180, 180, 180, 192, 180, 180, 180, 192, 180, 180, 180, 192, 180, 180, 180, 192, 180, 180, 180, 192, 179, 179, 179, 191, 76, 76, 76, 143, 26, 26, 26, 128, 30, 30, 30, 50, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 1, 26, 26, 26, 95, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 115, 115, 115, 159, 179, 179, 179, 191, 180, 180, 180, 192, 180, 180, 180, 192, 180, 180, 180, 192, 180, 180, 180, 192, 179, 179, 179, 191, 115, 115, 115, 158, 26, 26, 26, 128, 27, 27, 27, 94, 255, 255, 255, 1, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 36, 36, 36, 14, 26, 26, 26, 118, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 76, 76, 76, 143, 146, 146, 146, 173, 170, 170, 170, 186, 170, 170, 170, 185, 145, 145, 145, 172, 76, 76, 76, 143, 26, 26, 26, 128, 26, 26, 26, 118, 36, 36, 36, 14, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 36, 36, 36, 14, 26, 26, 26, 95, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 27, 27, 27, 94, 36, 36, 36, 14, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 1, 30, 30, 30, 50, 26, 26, 26, 98, 27, 27, 27, 121, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 26, 26, 26, 128, 27, 27, 27, 120, 26, 26, 26, 98, 30, 30, 30, 50, 255, 255, 255, 1, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
 "format": "RGBA8",
@@ -19,9 +19,9 @@ data = {
 }
 
 [sub_resource type="ImageTexture" id="ImageTexture_sso85"]
-image = SubResource("Image_f3pch")
+image = SubResource("Image_iyupd")
 
-[sub_resource type="Image" id="Image_qoo3u"]
+[sub_resource type="Image" id="Image_m8ox7"]
 data = {
 "data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 1, 29, 29, 29, 26, 30, 30, 30, 50, 29, 29, 29, 61, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 29, 29, 29, 61, 31, 31, 31, 49, 29, 29, 29, 26, 255, 255, 255, 1, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 36, 36, 36, 7, 32, 32, 32, 48, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 32, 32, 32, 48, 36, 36, 36, 7, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 36, 36, 36, 7, 30, 30, 30, 59, 28, 28, 28, 64, 79, 79, 79, 77, 134, 134, 134, 99, 151, 151, 151, 108, 151, 151, 151, 108, 133, 133, 133, 98, 77, 77, 77, 76, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 30, 30, 30, 59, 36, 36, 36, 7, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 1, 32, 32, 32, 48, 28, 28, 28, 64, 113, 113, 113, 88, 160, 160, 160, 112, 160, 160, 160, 112, 160, 160, 160, 112, 160, 160, 160, 112, 160, 160, 160, 112, 160, 160, 160, 112, 111, 111, 111, 87, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 32, 32, 32, 48, 255, 255, 255, 1, 255, 255, 255, 0, 255, 255, 255, 0, 29, 29, 29, 26, 28, 28, 28, 64, 79, 79, 79, 77, 160, 160, 160, 112, 160, 160, 160, 112, 160, 160, 160, 112, 160, 160, 160, 112, 160, 160, 160, 112, 160, 160, 160, 112, 160, 160, 160, 112, 160, 160, 160, 112, 77, 77, 77, 76, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 30, 30, 30, 25, 255, 255, 255, 0, 255, 255, 255, 0, 30, 30, 30, 50, 28, 28, 28, 64, 134, 134, 134, 99, 160, 160, 160, 112, 160, 160, 160, 112, 160, 160, 160, 112, 160, 160, 160, 112, 160, 160, 160, 112, 160, 160, 160, 112, 160, 160, 160, 112, 160, 160, 160, 112, 133, 133, 133, 98, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 31, 31, 31, 49, 255, 255, 255, 0, 255, 255, 255, 0, 29, 29, 29, 61, 28, 28, 28, 64, 151, 151, 151, 108, 160, 160, 160, 112, 160, 160, 160, 112, 160, 160, 160, 112, 160, 160, 160, 112, 160, 160, 160, 112, 160, 160, 160, 112, 160, 160, 160, 112, 160, 160, 160, 112, 151, 151, 151, 108, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 29, 29, 29, 61, 255, 255, 255, 0, 255, 255, 255, 0, 29, 29, 29, 61, 28, 28, 28, 64, 151, 151, 151, 108, 160, 160, 160, 112, 160, 160, 160, 112, 160, 160, 160, 112, 160, 160, 160, 112, 160, 160, 160, 112, 160, 160, 160, 112, 160, 160, 160, 112, 160, 160, 160, 112, 151, 151, 151, 108, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 29, 29, 29, 60, 255, 255, 255, 0, 255, 255, 255, 0, 31, 31, 31, 49, 28, 28, 28, 64, 133, 133, 133, 98, 160, 160, 160, 112, 160, 160, 160, 112, 160, 160, 160, 112, 160, 160, 160, 112, 160, 160, 160, 112, 160, 160, 160, 112, 160, 160, 160, 112, 160, 160, 160, 112, 133, 133, 133, 98, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 31, 31, 31, 49, 255, 255, 255, 0, 255, 255, 255, 0, 29, 29, 29, 26, 28, 28, 28, 64, 77, 77, 77, 76, 160, 160, 160, 112, 160, 160, 160, 112, 160, 160, 160, 112, 160, 160, 160, 112, 160, 160, 160, 112, 160, 160, 160, 112, 160, 160, 160, 112, 160, 160, 160, 112, 77, 77, 77, 76, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 30, 30, 30, 25, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 1, 32, 32, 32, 48, 28, 28, 28, 64, 111, 111, 111, 87, 160, 160, 160, 112, 160, 160, 160, 112, 160, 160, 160, 112, 160, 160, 160, 112, 160, 160, 160, 112, 160, 160, 160, 112, 111, 111, 111, 87, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 32, 32, 32, 47, 255, 255, 255, 1, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 36, 36, 36, 7, 30, 30, 30, 59, 28, 28, 28, 64, 77, 77, 77, 76, 133, 133, 133, 98, 151, 151, 151, 108, 151, 151, 151, 108, 133, 133, 133, 98, 77, 77, 77, 76, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 30, 30, 30, 59, 36, 36, 36, 7, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 36, 36, 36, 7, 32, 32, 32, 48, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 32, 32, 32, 47, 36, 36, 36, 7, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 1, 30, 30, 30, 25, 31, 31, 31, 49, 29, 29, 29, 61, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 29, 29, 29, 60, 31, 31, 31, 49, 30, 30, 30, 25, 255, 255, 255, 1, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
 "format": "RGBA8",
@@ -31,7 +31,7 @@ data = {
 }
 
 [sub_resource type="ImageTexture" id="ImageTexture_sp48e"]
-image = SubResource("Image_qoo3u")
+image = SubResource("Image_m8ox7")
 
 [sub_resource type="Theme" id="Theme_ocssl"]
 CheckButton/icons/checked = SubResource("ImageTexture_sso85")
@@ -56,41 +56,42 @@ corner_radius_bottom_left = 4
 HSlider/styles/grabber_area = SubResource("StyleBoxFlat_ik47e")
 HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_5brqb")
 
-[node name="OptionsMenu" type="CanvasLayer" node_paths=PackedStringArray("master_slider", "sfx_slider", "music_slider", "master_test", "SFX_test", "damage_numbers_enabled", "fps_enabled")]
+[node name="OptionsMenu" type="MarginContainer" node_paths=PackedStringArray("master_slider", "sfx_slider", "music_slider", "master_test", "SFX_test", "damage_numbers_enabled", "fps_enabled")]
+offset_right = 600.0
+offset_bottom = 513.0
 script = ExtResource("1_jrqa7")
-master_slider = NodePath("TextureRect/Volume/MasterSlider")
-sfx_slider = NodePath("TextureRect/Volume/SFXSlider")
-music_slider = NodePath("TextureRect/Volume/MusicSlider")
-master_test = NodePath("Master")
-SFX_test = NodePath("SFX")
-damage_numbers_enabled = NodePath("TextureRect2/DamageNumbers")
-fps_enabled = NodePath("TextureRect2/FPS")
+master_slider = NodePath("MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/MarginContainer/Volume/MasterSlider")
+sfx_slider = NodePath("MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/MarginContainer/Volume/SFXSlider")
+music_slider = NodePath("MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/MarginContainer/Volume/MusicSlider")
+master_test = NodePath("MarginContainer/Master")
+SFX_test = NodePath("MarginContainer/SFX")
+damage_numbers_enabled = NodePath("MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/TextureRect2/DamageNumbers")
+fps_enabled = NodePath("MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/TextureRect2/FPS")
 
 [node name="OptionsBG" type="TextureRect" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -540.0
-offset_top = -377.0
-offset_right = 539.0
-offset_bottom = 377.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 texture = ExtResource("1_pcs38")
 expand_mode = 1
 
-[node name="TempTitle" type="Label" parent="OptionsBG"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -68.0
-offset_top = 63.0
-offset_right = 68.0
-offset_bottom = 115.0
-grow_horizontal = 2
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 150
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 150
+theme_override_constants/margin_bottom = 50
+
+[node name="Master" type="AudioStreamPlayer" parent="MarginContainer"]
+stream = ExtResource("5_klcf8")
+
+[node name="SFX" type="AudioStreamPlayer" parent="MarginContainer"]
+stream = ExtResource("6_6ip6c")
+bus = &"SFX"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="TempTitle" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 9
@@ -99,15 +100,45 @@ text = "OPTIONS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect2" type="TextureRect" parent="."]
-offset_left = 617.0
-offset_top = 379.0
-offset_right = 878.0
-offset_bottom = 805.0
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="CenterContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Back" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CenterContainer"]
+layout_mode = 2
+texture_normal = ExtResource("7_rmdax")
+texture_hover = ExtResource("1_pcs38")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CenterContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Back2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CenterContainer/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 28
+text = "BACK
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 400)
+layout_mode = 2
 texture = ExtResource("7_rmdax")
 expand_mode = 1
 
-[node name="Volume" type="Label" parent="TextureRect2"]
+[node name="Volume" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/TextureRect2"]
 layout_mode = 0
 offset_left = 58.0
 offset_top = 73.0
@@ -121,7 +152,7 @@ text = "SETTINGS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="FPS" type="CheckButton" parent="TextureRect2"]
+[node name="FPS" type="CheckButton" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/TextureRect2"]
 layout_mode = 0
 offset_left = 26.0
 offset_top = 163.0
@@ -135,7 +166,7 @@ theme_override_fonts/font = ExtResource("4_eyrb2")
 theme_override_font_sizes/font_size = 27
 text = "FPS (TOP RIGHT)"
 
-[node name="DamageNumbers" type="CheckButton" parent="TextureRect2"]
+[node name="DamageNumbers" type="CheckButton" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/TextureRect2"]
 layout_mode = 0
 offset_left = 26.0
 offset_top = 127.0
@@ -149,32 +180,30 @@ theme_override_fonts/font = ExtResource("4_eyrb2")
 theme_override_font_sizes/font_size = 27
 text = "Damage Numbers"
 
-[node name="TextureRect" type="TextureRect" parent="."]
-offset_left = 1394.0
-offset_top = 277.0
-offset_right = 1950.0
-offset_bottom = 792.0
-rotation = 1.5708
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = -10
+theme_override_constants/margin_bottom = -10
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
 texture = ExtResource("2_c4rcp")
 expand_mode = 1
+flip_h = true
+flip_v = true
 
-[node name="Volume" type="VBoxContainer" parent="TextureRect"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -183.999
-offset_top = 117.5
-offset_right = 50.0012
-offset_bottom = 485.5
-grow_horizontal = 2
-grow_vertical = 2
-rotation = -1.5708
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="Volume" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/MarginContainer"]
+layout_mode = 2
 theme_override_constants/separation = 19
 
-[node name="Volume" type="Label" parent="TextureRect/Volume"]
+[node name="Volume" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/MarginContainer/Volume"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -185,7 +214,7 @@ text = "VOLUME
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Master" type="Label" parent="TextureRect/Volume"]
+[node name="Master" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/MarginContainer/Volume"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -196,7 +225,7 @@ text = "Master
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MasterSlider" type="HSlider" parent="TextureRect/Volume"]
+[node name="MasterSlider" type="HSlider" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/MarginContainer/Volume"]
 layout_mode = 2
 theme = SubResource("Theme_kbrp5")
 max_value = 1.0
@@ -205,7 +234,7 @@ value = 0.5
 script = ExtResource("3_mybf6")
 bus_name = "Master"
 
-[node name="SFX" type="Label" parent="TextureRect/Volume"]
+[node name="SFX" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/MarginContainer/Volume"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -216,7 +245,7 @@ text = "SFX
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SFXSlider" type="HSlider" parent="TextureRect/Volume"]
+[node name="SFXSlider" type="HSlider" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/MarginContainer/Volume"]
 layout_mode = 2
 theme = SubResource("Theme_kbrp5")
 max_value = 1.0
@@ -225,7 +254,7 @@ value = 0.5
 script = ExtResource("3_mybf6")
 bus_name = "SFX"
 
-[node name="Music" type="Label" parent="TextureRect/Volume"]
+[node name="Music" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/MarginContainer/Volume"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -236,7 +265,7 @@ text = "Music
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MusicSlider" type="HSlider" parent="TextureRect/Volume"]
+[node name="MusicSlider" type="HSlider" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/MarginContainer/Volume"]
 layout_mode = 2
 theme = SubResource("Theme_kbrp5")
 max_value = 1.0
@@ -245,48 +274,9 @@ value = 0.5
 script = ExtResource("3_mybf6")
 bus_name = "Music"
 
-[node name="Master" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_klcf8")
-
-[node name="SFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_6ip6c")
-bus = &"SFX"
-
-[node name="Back" type="TextureButton" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -359.0
-offset_top = -253.0
-offset_right = -71.0
-offset_bottom = -163.0
-grow_horizontal = 2
-grow_vertical = 2
-texture_normal = ExtResource("7_rmdax")
-texture_hover = ExtResource("1_pcs38")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="Back" type="Label" parent="Back"]
-layout_mode = 0
-offset_left = 87.0
-offset_top = 23.0
-offset_right = 204.0
-offset_bottom = 65.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 9
-theme_override_font_sizes/font_size = 28
-text = "BACK
-"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[connection signal="pressed" from="TextureRect2/FPS" to="." method="_on_fps_pressed"]
-[connection signal="pressed" from="TextureRect2/DamageNumbers" to="." method="_on_damage_numbers_pressed"]
-[connection signal="value_changed" from="TextureRect/Volume/MasterSlider" to="." method="_on_master_slider_value_changed"]
-[connection signal="value_changed" from="TextureRect/Volume/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
-[connection signal="mouse_entered" from="Back" to="." method="_on_back_mouse_entered"]
-[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CenterContainer/Back" to="." method="_on_back_mouse_entered"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CenterContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/TextureRect2/FPS" to="." method="_on_fps_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/TextureRect2/DamageNumbers" to="." method="_on_damage_numbers_pressed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/MarginContainer/Volume/MasterSlider" to="." method="_on_master_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/MarginContainer/Volume/SFXSlider" to="." method="_on_sfx_slider_value_changed"]

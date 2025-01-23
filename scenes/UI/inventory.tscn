@@ -165,8 +165,10 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="OptionsMenu" parent="." instance=ExtResource("5_wgtf4")]
+[node name="OptionsMenu" parent="Control/MarginContainer/HBoxContainer/CenterContainer" instance=ExtResource("5_wgtf4")]
+unique_name_in_owner = true
 visible = false
+layout_mode = 2
 
 [connection signal="mouse_entered" from="Control/MarginContainer/HBoxContainer/MarginContainer2/MarginContainer/Control/VBoxContainer/CenterContainer/Continue" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="Control/MarginContainer/HBoxContainer/MarginContainer2/MarginContainer/Control/VBoxContainer/CenterContainer/Continue" to="." method="_on_continue_pressed"]
@@ -174,4 +176,4 @@ visible = false
 [connection signal="pressed" from="Control/MarginContainer/HBoxContainer/MarginContainer2/MarginContainer/Control/VBoxContainer/CenterContainer2/Options" to="." method="_on_options_pressed"]
 [connection signal="mouse_entered" from="Control/MarginContainer/HBoxContainer/MarginContainer2/MarginContainer/Control/VBoxContainer/CenterContainer3/Exit" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="Control/MarginContainer/HBoxContainer/MarginContainer2/MarginContainer/Control/VBoxContainer/CenterContainer3/Exit" to="." method="_on_exit_pressed"]
-[connection signal="go_back" from="OptionsMenu" to="." method="_on_options_menu_go_back"]
+[connection signal="go_back" from="Control/MarginContainer/HBoxContainer/CenterContainer/OptionsMenu" to="." method="_on_options_menu_go_back"]
