@@ -336,6 +336,7 @@ func _on_fire_timer_timeout():
 		# This code has thrown an error that needs investigating.
 		# The fire pickup works as intended as far as I can tell.
 		attack_handler.remove_child(fire_pickup_attack)
+		fire_pickup_attack.queue_free()
 		fire_pickup_attack = null
 
 func player_level_up():
