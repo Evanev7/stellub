@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://7pekoii3l4xw"]
 
 [ext_resource type="Texture2D" uid="uid://8sqypof0cjjv" path="res://art/objects/pillar.png" id="1_a203t"]
-[ext_resource type="Script" path="res://scripts/objects/terrain.gd" id="1_dp1h5"]
+[ext_resource type="Script" uid="uid://dbr3xe016m12b" path="res://scripts/objects/terrain.gd" id="1_dp1h5"]
 [ext_resource type="PackedScene" uid="uid://cicwqsj3byj4u" path="res://scenes/components/spawn_collision_handler.tscn" id="1_uvxol"]
-[ext_resource type="Shader" path="res://terrain.gdshader" id="2_3g832"]
+[ext_resource type="Shader" uid="uid://cxa63oc1u8tmo" path="res://terrain.gdshader" id="2_3g832"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_58g3w"]
 seed = 3

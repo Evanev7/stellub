@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="BulletResource" load_steps=7 format=3 uid="uid://b3v62pkd6hntd"]
 
-[ext_resource type="Script" path="res://scripts/objects/bullet_resource.gd" id="1_3xi33"]
+[ext_resource type="Script" uid="uid://3a0hmo2rakj" path="res://scripts/objects/bullet_resource.gd" id="1_3xi33"]
 [ext_resource type="Texture2D" uid="uid://du2jqxky0h3op" path="res://art/bullets/player/Shotgun.png" id="2_ls4ep"]
 [ext_resource type="AudioStream" uid="uid://csd5resv0mgp0" path="res://sounds/shotgun.wav" id="4_dktcp"]
 

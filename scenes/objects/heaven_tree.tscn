@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://b0xtya0pbmlje"]
 
-[ext_resource type="Script" path="res://scripts/objects/terrain.gd" id="1_ctott"]
+[ext_resource type="Script" uid="uid://dbr3xe016m12b" path="res://scripts/objects/terrain.gd" id="1_ctott"]
 [ext_resource type="PackedScene" uid="uid://cicwqsj3byj4u" path="res://scenes/components/spawn_collision_handler.tscn" id="1_nxqri"]
 [ext_resource type="Texture2D" uid="uid://c008b3o2gyquv" path="res://art/objects/heaven_tree.png" id="2_in73l"]
-[ext_resource type="Shader" path="res://terrain.gdshader" id="2_y2v36"]
+[ext_resource type="Shader" uid="uid://cxa63oc1u8tmo" path="res://terrain.gdshader" id="2_y2v36"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_enwcm"]
 shader = ExtResource("2_y2v36")

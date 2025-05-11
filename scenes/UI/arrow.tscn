@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://n5yok0nwfdbl"]
 
-[ext_resource type="Script" path="res://scripts/UI/arrow.gd" id="1_37vqa"]
+[ext_resource type="Script" uid="uid://djqvoonbg23qk" path="res://scripts/UI/arrow.gd" id="1_37vqa"]
 [ext_resource type="Texture2D" uid="uid://br4o3dujegkr8" path="res://art/objects/objective_marker.png" id="2_7jqfs"]
 
 [node name="Arrow" type="CanvasLayer"]

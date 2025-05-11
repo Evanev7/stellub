@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="BulletResource" load_steps=8 format=3 uid="uid://cnwaewfb52b8q"]
 
 [ext_resource type="Texture2D" uid="uid://c8pnpbue35ehb" path="res://art/objects/magic circle.png" id="1_b3imx"]
-[ext_resource type="Script" path="res://scripts/objects/bullet_resource.gd" id="1_m3io2"]
+[ext_resource type="Script" uid="uid://3a0hmo2rakj" path="res://scripts/objects/bullet_resource.gd" id="1_m3io2"]
 [ext_resource type="Texture2D" uid="uid://chboqlvuq0nbb" path="res://art/bullets/player/Forcefield.png" id="2_yko5n"]
 [ext_resource type="AudioStream" uid="uid://c5mrt3o8dm37o" path="res://sounds/spooky appear.wav" id="3_3es0x"]
 

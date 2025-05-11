@@ -1,24 +1,26 @@
-[gd_scene load_steps=43 format=3 uid="uid://becv1p1t26cqn"]
+[gd_scene load_steps=46 format=3 uid="uid://becv1p1t26cqn"]
 
 [ext_resource type="PackedScene" uid="uid://dilk21k2nncq2" path="res://scenes/levels/level_template.tscn" id="1_r76pt"]
 [ext_resource type="PackedScene" uid="uid://cnepphpba8e8u" path="res://scenes/characters/player.tscn" id="2_8lak5"]
 [ext_resource type="Texture2D" uid="uid://dvrx1ijrwk8a2" path="res://art/backgrounds/hell_level_1.png" id="2_l856x"]
-[ext_resource type="Script" path="res://scripts/levels/testing_scene.gd" id="2_qynr5"]
+[ext_resource type="Script" uid="uid://43te0x7fry6u" path="res://scripts/levels/testing_scene.gd" id="2_qynr5"]
+[ext_resource type="Script" uid="uid://3a0hmo2rakj" path="res://scripts/objects/bullet_resource.gd" id="3_75u41"]
 [ext_resource type="Resource" uid="uid://8ogmebrr77xx" path="res://resources/bullets/player/black_hole.tres" id="3_v4fmx"]
 [ext_resource type="Resource" uid="uid://ctfcugo2o7mc2" path="res://resources/bullets/player/bomb.tres" id="4_oxy8t"]
 [ext_resource type="PackedScene" uid="uid://41p1qgrud4ej" path="res://scenes/components/terrain_generator.tscn" id="4_sec0a"]
 [ext_resource type="PackedScene" uid="uid://cwtvi2ph44p4d" path="res://scenes/UI/cursor_particles.tscn" id="5_bqwyw"]
-[ext_resource type="Script" path="res://scripts/characters/AttackHandler.gd" id="5_nhkgm"]
+[ext_resource type="Script" uid="uid://cdwsnks8vejjj" path="res://scripts/characters/AttackHandler.gd" id="5_nhkgm"]
 [ext_resource type="Resource" uid="uid://ddg1gj4fvtt6o" path="res://resources/bullets/player/frag.tres" id="5_rbu1q"]
 [ext_resource type="Resource" uid="uid://mj43n3p12xvv" path="res://resources/bullets/player/melee_bullet_example.tres" id="6_pkc5g"]
 [ext_resource type="PackedScene" uid="uid://be4i0yo3jsk42" path="res://scenes/components/attack.tscn" id="6_xedn3"]
 [ext_resource type="Resource" uid="uid://cttw5mxt1sn0l" path="res://resources/bullets/player/orbital_laser.tres" id="7_ndxb8"]
 [ext_resource type="Resource" uid="uid://coqyd5d8e6rm8" path="res://resources/bullets/player/particle_mace.tres" id="8_510hi"]
-[ext_resource type="Script" path="res://scripts/components/EnemyHandler.gd" id="9_115bt"]
+[ext_resource type="Script" uid="uid://ifytj63lbvci" path="res://scripts/components/EnemyHandler.gd" id="9_115bt"]
 [ext_resource type="Resource" uid="uid://ccpb4udi5owpj" path="res://resources/bullets/player/player_bullet.tres" id="9_wcob5"]
 [ext_resource type="Resource" uid="uid://b3v62pkd6hntd" path="res://resources/bullets/player/shotgun.tres" id="10_477hd"]
 [ext_resource type="PackedScene" uid="uid://dpjckt12ipcw2" path="res://scenes/characters/enemy.tscn" id="10_ogami"]
-[ext_resource type="Resource" uid="uid://dldq0lmweq825" path="res://upgrades/auto_fire.tres" id="11_pq5xh"]
+[ext_resource type="Resource" uid="uid://dldq0lmweq825" path="res://upgrades/randomiser.tres" id="11_pq5xh"]
+[ext_resource type="Script" uid="uid://cq3doagxi0d83" path="res://upgrades/upgrade_resource.gd" id="12_1sx3p"]
 [ext_resource type="Resource" uid="uid://d2j0rt7130hds" path="res://upgrades/bomb.tres" id="12_nhjdn"]
 [ext_resource type="Resource" uid="uid://dgnonhlostgr1" path="res://upgrades/bowling_ball.tres" id="13_k6pal"]
 [ext_resource type="Resource" uid="uid://ctfombpw6rgc5" path="res://upgrades/centre_of_the_galaxy.tres" id="14_s85e5"]
@@ -35,9 +37,10 @@
 [ext_resource type="Resource" uid="uid://daslelns8qmfv" path="res://resources/enemy/angel_crusader.tres" id="25_voduk"]
 [ext_resource type="Resource" uid="uid://bnoj3uq3e6s17" path="res://resources/enemy/angel_warrior.tres" id="26_5o86x"]
 [ext_resource type="Resource" uid="uid://djjvchiit0f0n" path="res://resources/enemy/angel_worshipper.tres" id="27_bq1nd"]
+[ext_resource type="Script" uid="uid://cdlw3mkx7g3fb" path="res://scripts/characters/enemy_resource.gd" id="27_tacut"]
 [ext_resource type="Resource" uid="uid://dsohorrvm3oyi" path="res://resources/enemy/big_guy.tres" id="28_8do4v"]
 [ext_resource type="Resource" uid="uid://doalqpgaptgxa" path="res://resources/enemy/demon_dog.tres" id="29_8jv8q"]
-[ext_resource type="Resource" path="res://resources/enemy/demon_lord.tres" id="30_ubs4e"]
+[ext_resource type="Resource" uid="uid://cde86qx4smawg" path="res://resources/enemy/demon_lord.tres" id="30_ubs4e"]
 [ext_resource type="Resource" uid="uid://bqyg0clrpkdim" path="res://resources/enemy/demon_skeleton.tres" id="31_gov7d"]
 [ext_resource type="Resource" uid="uid://dh8xipsw2bu5w" path="res://resources/enemy/demon_skull.tres" id="32_po36n"]
 
@@ -55,9 +58,9 @@ script = ExtResource("2_qynr5")
 enemy_handler = NodePath("LogicComponents/EnemyHandler")
 attack_handler = NodePath("YSort/Player/AttackHandler2")
 attack = NodePath("YSort/Player/AttackHandler2/Attack")
-attacks_list = Array[Resource("res://scripts/objects/bullet_resource.gd")]([ExtResource("3_v4fmx"), ExtResource("4_oxy8t"), ExtResource("5_rbu1q"), ExtResource("6_pkc5g"), ExtResource("7_ndxb8"), ExtResource("8_510hi"), ExtResource("9_wcob5"), ExtResource("10_477hd")])
-upgrades_list = Array[Resource("res://upgrades/upgrade_resource.gd")]([ExtResource("11_pq5xh"), ExtResource("12_nhjdn"), ExtResource("13_k6pal"), ExtResource("14_s85e5"), ExtResource("15_cb4rk"), ExtResource("16_crfgn"), ExtResource("17_sbok3"), ExtResource("18_ksbj1"), ExtResource("19_sqyu8"), ExtResource("20_s2c34"), ExtResource("21_6f3qy"), ExtResource("22_36hi6"), ExtResource("23_uuti4"), ExtResource("24_atfyc")])
-enemies_list = Array[Resource("res://scripts/characters/enemy_resource.gd")]([ExtResource("25_voduk"), ExtResource("26_5o86x"), ExtResource("27_bq1nd"), ExtResource("28_8do4v"), ExtResource("29_8jv8q"), ExtResource("30_ubs4e"), ExtResource("31_gov7d"), ExtResource("32_po36n")])
+attacks_list = Array[ExtResource("3_75u41")]([ExtResource("3_v4fmx"), ExtResource("4_oxy8t"), ExtResource("5_rbu1q"), ExtResource("6_pkc5g"), ExtResource("7_ndxb8"), ExtResource("8_510hi"), ExtResource("9_wcob5"), ExtResource("10_477hd")])
+upgrades_list = Array[ExtResource("12_1sx3p")]([ExtResource("11_pq5xh"), ExtResource("12_nhjdn"), ExtResource("13_k6pal"), ExtResource("14_s85e5"), ExtResource("15_cb4rk"), ExtResource("16_crfgn"), ExtResource("17_sbok3"), ExtResource("18_ksbj1"), ExtResource("19_sqyu8"), ExtResource("20_s2c34"), ExtResource("21_6f3qy"), ExtResource("22_36hi6"), ExtResource("23_uuti4"), ExtResource("24_atfyc")])
+enemies_list = Array[ExtResource("27_tacut")]([ExtResource("25_voduk"), ExtResource("26_5o86x"), ExtResource("27_bq1nd"), ExtResource("28_8do4v"), ExtResource("29_8jv8q"), ExtResource("30_ubs4e"), ExtResource("31_gov7d"), ExtResource("32_po36n")])
 
 [node name="PlayerStart" parent="YSort" index="0"]
 position = Vector2(605, 332)

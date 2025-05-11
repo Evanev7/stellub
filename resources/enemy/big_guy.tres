@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="EnemyResource" load_steps=5 format=3 uid="uid://dsohorrvm3oyi"]
 
-[ext_resource type="Script" path="res://scripts/characters/enemy_resource.gd" id="1_0n1ll"]
+[ext_resource type="Script" uid="uid://cdlw3mkx7g3fb" path="res://scripts/characters/enemy_resource.gd" id="1_0n1ll"]
 [ext_resource type="SpriteFrames" uid="uid://deadwh4a4bg0" path="res://resources/enemy/big_guy_spriteframes.tres" id="1_1tbam"]
 [ext_resource type="Shape2D" uid="uid://b7f6lyn73q1su" path="res://resources/hitboxes/angel_warrior_collisionbox.tres" id="2_wuwbw"]
 [ext_resource type="Shape2D" uid="uid://d3xxud6dm5v4" path="res://resources/hitboxes/angel_crusader_hitbox.tres" id="3_n6qir"]
@@ -9,6 +9,7 @@
 script = ExtResource("1_0n1ll")
 NAME = "big_Guy"
 ANIMATION = ExtResource("1_1tbam")
+QUANTITY = 10
 FLIP_H = false
 FLOATING = false
 SPEED = 10

@@ -1,12 +1,12 @@
 [gd_scene load_steps=13 format=3 uid="uid://dpjckt12ipcw2"]
 
-[ext_resource type="Script" path="res://scripts/characters/enemy.gd" id="1_oyorq"]
+[ext_resource type="Script" uid="uid://bmhqpjykcr7xo" path="res://scripts/characters/enemy.gd" id="1_oyorq"]
 [ext_resource type="PackedScene" uid="uid://1bd6uenu01av" path="res://scenes/UI/damage_number.tscn" id="2_orbdq"]
 [ext_resource type="Resource" uid="uid://p0ytgmgbgkky" path="res://resources/enemy/boss.tres" id="2_quvqc"]
-[ext_resource type="Shader" path="res://scenes/characters/enemy.gdshader" id="3_30b5x"]
+[ext_resource type="Shader" uid="uid://jpb78ruf507j" path="res://scenes/characters/enemy.gdshader" id="3_30b5x"]
 [ext_resource type="Texture2D" uid="uid://bpx5ybtqcrlpp" path="res://art/objects/shadow.png" id="3_m06xu"]
 [ext_resource type="SpriteFrames" uid="uid://6xmqo1j5gqfr" path="res://resources/enemy/demon_dog_spriteframes.tres" id="6_dy24l"]
-[ext_resource type="Script" path="res://scripts/characters/AttackHandler.gd" id="6_hcyh0"]
+[ext_resource type="Script" uid="uid://cdwsnks8vejjj" path="res://scripts/characters/AttackHandler.gd" id="6_hcyh0"]
 [ext_resource type="PackedScene" uid="uid://cicwqsj3byj4u" path="res://scenes/components/spawn_collision_handler.tscn" id="7_ckcoh"]
 [ext_resource type="PackedScene" uid="uid://be4i0yo3jsk42" path="res://scenes/components/attack.tscn" id="8_70e2t"]
 
@@ -22,8 +22,8 @@ shader = ExtResource("3_30b5x")
 shader_parameter/line_color = Color(1, 0, 0, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
-shader_parameter/hsv_offset = null
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_k47en")
+shader_parameter/hsv_offset = Vector3(0, 0, 0)
 
 [node name="Enemy" type="CharacterBody2D"]
 scale = Vector2(0.7, 0.7)

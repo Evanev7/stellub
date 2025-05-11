@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="UpgradeResource" load_steps=5 format=3 uid="uid://b1rd0nm53sjuw"]
 
 [ext_resource type="Texture2D" uid="uid://c8pnpbue35ehb" path="res://art/objects/magic circle.png" id="1_0a7wd"]
-[ext_resource type="Script" path="res://upgrades/upgrade_resource.gd" id="1_v7rqm"]
+[ext_resource type="Script" uid="uid://cq3doagxi0d83" path="res://upgrades/upgrade_resource.gd" id="1_v7rqm"]
 [ext_resource type="Resource" uid="uid://ddg1gj4fvtt6o" path="res://resources/bullets/player/frag.tres" id="2_bxpvf"]
-[ext_resource type="Script" path="res://upgrades/scripts/frag.gd" id="3_vmpvv"]
+[ext_resource type="Script" uid="uid://bakrcaxkf3853" path="res://upgrades/scripts/frag.gd" id="3_vmpvv"]
 
 [resource]
 script = ExtResource("1_v7rqm")

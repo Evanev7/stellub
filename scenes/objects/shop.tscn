@@ -1,8 +1,8 @@
 [gd_scene load_steps=17 format=3 uid="uid://cp7lho542gmeu"]
 
-[ext_resource type="Script" path="res://scripts/objects/shop.gd" id="1_57dqm"]
+[ext_resource type="Script" uid="uid://b1luu36ylwxsc" path="res://scripts/objects/shop.gd" id="1_57dqm"]
 [ext_resource type="Texture2D" uid="uid://b7im0npiawyyl" path="res://art/objects/shop_closed_temp.png" id="1_q80nc"]
-[ext_resource type="Shader" path="res://scenes/characters/enemy.gdshader" id="9_3rxiu"]
+[ext_resource type="Shader" uid="uid://jpb78ruf507j" path="res://scenes/characters/enemy.gdshader" id="9_3rxiu"]
 [ext_resource type="Texture2D" uid="uid://b5mt5cva70064" path="res://art/player/shop_open_temp_1.png" id="10_5uu55"]
 [ext_resource type="Texture2D" uid="uid://c132jakthswn3" path="res://art/player/shop_open_temp_2.png" id="11_sggqh"]
 [ext_resource type="Texture2D" uid="uid://l7dsv62mfjt6" path="res://art/player/shop_open_temp_3.png" id="12_ww30d"]
@@ -20,8 +20,8 @@ shader = ExtResource("9_3rxiu")
 shader_parameter/line_color = Color(0, 0, 0, 0)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
-shader_parameter/hsv_offset = null
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_k47en")
+shader_parameter/hsv_offset = Vector3(0, 0, 0)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_r6dcq"]
 animations = [{

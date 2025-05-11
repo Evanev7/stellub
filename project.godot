@@ -23,7 +23,7 @@ resources_spreadsheet_view/fold_docks=false
 
 config/name="Faustian Hell"
 run/main_scene="res://scenes/levels/menu.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/image="res://art/faustian_hell.png"
 config/icon="res://art/faustian_hell_square.png"
 

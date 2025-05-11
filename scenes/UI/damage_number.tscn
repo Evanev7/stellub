@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://1bd6uenu01av"]
 
-[ext_resource type="Script" path="res://scripts/UI/damage_number.gd" id="1_clafu"]
+[ext_resource type="Script" uid="uid://cc23h2n6kad4v" path="res://scripts/UI/damage_number.gd" id="1_clafu"]
 
 [sub_resource type="Animation" id="Animation_qx5ki"]
 resource_name = "rise_and_fade"
@@ -54,7 +54,7 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5rwbh"]
 _data = {
-"rise_and_fade": SubResource("Animation_qx5ki")
+&"rise_and_fade": SubResource("Animation_qx5ki")
 }
 
 [node name="damage_number" type="Node2D"]

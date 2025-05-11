@@ -1,9 +1,9 @@
 [gd_scene load_steps=17 format=3 uid="uid://cnrpegq0voiht"]
 
-[ext_resource type="Script" path="res://scripts/components/EnemyHandler.gd" id="1_cf55n"]
+[ext_resource type="Script" uid="uid://ifytj63lbvci" path="res://scripts/components/EnemyHandler.gd" id="1_cf55n"]
 [ext_resource type="PackedScene" uid="uid://dpjckt12ipcw2" path="res://scenes/characters/enemy.tscn" id="2_pkjwx"]
 [ext_resource type="Resource" uid="uid://daslelns8qmfv" path="res://resources/enemy/angel_crusader.tres" id="3_4eu8f"]
-[ext_resource type="Script" path="res://scripts/characters/enemy_resource.gd" id="3_bkb0l"]
+[ext_resource type="Script" uid="uid://cdlw3mkx7g3fb" path="res://scripts/characters/enemy_resource.gd" id="3_bkb0l"]
 [ext_resource type="Resource" uid="uid://bnoj3uq3e6s17" path="res://resources/enemy/angel_warrior.tres" id="4_x12ry"]
 [ext_resource type="Resource" uid="uid://djjvchiit0f0n" path="res://resources/enemy/angel_worshipper.tres" id="5_a5jlr"]
 [ext_resource type="Resource" uid="uid://bqyg0clrpkdim" path="res://resources/enemy/demon_skeleton.tres" id="6_0fggt"]

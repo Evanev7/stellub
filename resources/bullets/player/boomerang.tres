@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="BulletResource" load_steps=7 format=3 uid="uid://cyahshf3y21ai"]
 
-[ext_resource type="Script" path="res://scripts/objects/bullet_resource.gd" id="1_3cnji"]
+[ext_resource type="Script" uid="uid://3a0hmo2rakj" path="res://scripts/objects/bullet_resource.gd" id="1_3cnji"]
 [ext_resource type="Texture2D" uid="uid://bmlj0f8k87tjw" path="res://art/bullets/player/Boomerang.png" id="1_iyb0m"]
 [ext_resource type="AudioStream" uid="uid://31ou8mmtpl2h" path="res://sounds/boomerang.wav" id="6_r3ghb"]
 

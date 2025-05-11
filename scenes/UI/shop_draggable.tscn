@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=3 uid="uid://domdhv4tthmyh"]
 
-[ext_resource type="Script" path="res://scripts/UI/shop_draggable.gd" id="1_hpu8w"]
-[ext_resource type="Shader" path="res://scenes/characters/enemy.gdshader" id="1_shuwh"]
+[ext_resource type="Script" uid="uid://cwy27ovdembxs" path="res://scripts/UI/shop_draggable.gd" id="1_hpu8w"]
+[ext_resource type="Shader" uid="uid://jpb78ruf507j" path="res://scenes/characters/enemy.gdshader" id="1_shuwh"]
 [ext_resource type="Texture2D" uid="uid://bmhkpmre2sxkk" path="res://art/UI/Shop/inventory_weapon_2.png" id="2_ciods"]
 [ext_resource type="Texture2D" uid="uid://btotkcy5ml231" path="res://art/UI/Shop/inventory_weapon_1.png" id="2_gm3x0"]
 [ext_resource type="Texture2D" uid="uid://524i6bt6kkjf" path="res://art/UI/Shop/rune_fill.png" id="3_m54n8"]
@@ -17,7 +17,7 @@ shader = ExtResource("1_shuwh")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
-shader_parameter/hsv_offset = null
+shader_parameter/hsv_offset = Vector3(0, 0, 0)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hk60t"]
 
@@ -60,7 +60,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4kitx"]
 _data = {
-"new_animation": SubResource("Animation_ru23g")
+&"new_animation": SubResource("Animation_ru23g")
 }
 
 [node name="ShopDraggable" type="TextureButton" node_paths=PackedStringArray("overlay")]
@@ -144,6 +144,6 @@ expand_mode = 1
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 callback_mode_method = 1
 libraries = {
-"": SubResource("AnimationLibrary_4kitx")
+&"": SubResource("AnimationLibrary_4kitx")
 }
 autoplay = "new_animation"

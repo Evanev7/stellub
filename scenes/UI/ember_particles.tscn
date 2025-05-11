@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cx84pw0whxyxq"]
 
-[ext_resource type="Script" path="res://scripts/UI/ember_particles.gd" id="1_d6gwp"]
-[ext_resource type="Script" path="res://scripts/gpu_particles_fix.gd" id="2_h22cw"]
+[ext_resource type="Script" uid="uid://b60ad7212jafi" path="res://scripts/UI/ember_particles.gd" id="1_d6gwp"]
+[ext_resource type="Script" uid="uid://bticgkr25so82" path="res://scripts/gpu_particles_fix.gd" id="2_h22cw"]
 
 [sub_resource type="Gradient" id="Gradient_dwmwu"]
 offsets = PackedFloat32Array(0.0042735, 0.145299, 0.461538, 0.888889, 1)

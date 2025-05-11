@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="BulletResource" load_steps=7 format=3 uid="uid://8ogmebrr77xx"]
 
 [ext_resource type="SpriteFrames" uid="uid://cbfq7bqkgh3ti" path="res://resources/bullets/player/player_bullet_spriteframes.tres" id="1_h814f"]
-[ext_resource type="Script" path="res://scripts/objects/bullet_resource.gd" id="1_rvk35"]
+[ext_resource type="Script" uid="uid://3a0hmo2rakj" path="res://scripts/objects/bullet_resource.gd" id="1_rvk35"]
 [ext_resource type="Texture2D" uid="uid://ds74sncp2hj42" path="res://art/bullets/player/BlackHole_0000.png" id="2_qe82o"]
 [ext_resource type="Texture2D" uid="uid://bj5f01ak7rna2" path="res://art/bullets/player/BlackHole_0002.png" id="3_fckp8"]
 [ext_resource type="Texture2D" uid="uid://cns0avfuxo6b3" path="res://art/bullets/player/BlackHole_0004.png" id="4_xfnne"]

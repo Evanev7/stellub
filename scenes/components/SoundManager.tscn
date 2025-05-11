@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://cjiqgr0g1hxqn"]
 
-[ext_resource type="Script" path="res://scripts/components/SoundManager.gd" id="1_ml4oo"]
+[ext_resource type="Script" uid="uid://cqwsvt4ruygt2" path="res://scripts/components/SoundManager.gd" id="1_ml4oo"]
 [ext_resource type="AudioStream" uid="uid://3l8sas3qqxsf" path="res://sounds/heaven song better loop.ogg" id="3_ojewk"]
 [ext_resource type="AudioStream" uid="uid://c5mrt3o8dm37o" path="res://sounds/spooky appear.wav" id="4_1imy8"]
 [ext_resource type="AudioStream" uid="uid://c2b0vixnfa58r" path="res://sounds/hell song.wav" id="4_o0ust"]

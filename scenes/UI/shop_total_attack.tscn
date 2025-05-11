@@ -1,9 +1,9 @@
 [gd_scene load_steps=14 format=3 uid="uid://jgeavrbmn7f2"]
 
-[ext_resource type="Script" path="res://scripts/UI/shop_total_attack.gd" id="1_6mrto"]
+[ext_resource type="Script" uid="uid://x4uaana06al6" path="res://scripts/UI/shop_total_attack.gd" id="1_6mrto"]
 [ext_resource type="Texture2D" uid="uid://bnraeyqy86t88" path="res://art/UI/Mouse_Simple_Key_Dark.png" id="2_d6fa4"]
 [ext_resource type="PackedScene" uid="uid://domdhv4tthmyh" path="res://scenes/UI/shop_draggable.tscn" id="4_pkhjl"]
-[ext_resource type="Shader" path="res://scenes/characters/enemy.gdshader" id="4_tv570"]
+[ext_resource type="Shader" uid="uid://jpb78ruf507j" path="res://scenes/characters/enemy.gdshader" id="4_tv570"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uqp4k"]
 resource_local_to_scene = true
@@ -11,7 +11,7 @@ shader = ExtResource("4_tv570")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
-shader_parameter/hsv_offset = null
+shader_parameter/hsv_offset = Vector3(0, 0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r461e"]
 resource_local_to_scene = true
@@ -19,7 +19,7 @@ shader = ExtResource("4_tv570")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
-shader_parameter/hsv_offset = null
+shader_parameter/hsv_offset = Vector3(0, 0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qqa62"]
 resource_local_to_scene = true
@@ -27,7 +27,7 @@ shader = ExtResource("4_tv570")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
-shader_parameter/hsv_offset = null
+shader_parameter/hsv_offset = Vector3(0, 0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b0en5"]
 resource_local_to_scene = true
@@ -35,7 +35,7 @@ shader = ExtResource("4_tv570")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
-shader_parameter/hsv_offset = null
+shader_parameter/hsv_offset = Vector3(0, 0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c8fej"]
 resource_local_to_scene = true
@@ -43,7 +43,7 @@ shader = ExtResource("4_tv570")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
-shader_parameter/hsv_offset = null
+shader_parameter/hsv_offset = Vector3(0, 0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5n63n"]
 resource_local_to_scene = true
@@ -51,7 +51,7 @@ shader = ExtResource("4_tv570")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
-shader_parameter/hsv_offset = null
+shader_parameter/hsv_offset = Vector3(0, 0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bj4fk"]
 resource_local_to_scene = true
@@ -59,7 +59,7 @@ shader = ExtResource("4_tv570")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
-shader_parameter/hsv_offset = null
+shader_parameter/hsv_offset = Vector3(0, 0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_x46cc"]
 resource_local_to_scene = true
@@ -67,7 +67,7 @@ shader = ExtResource("4_tv570")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
-shader_parameter/hsv_offset = null
+shader_parameter/hsv_offset = Vector3(0, 0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4vggo"]
 resource_local_to_scene = true
@@ -75,7 +75,7 @@ shader = ExtResource("4_tv570")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
-shader_parameter/hsv_offset = null
+shader_parameter/hsv_offset = Vector3(0, 0, 0)
 
 [node name="TotalAttack" type="MarginContainer"]
 theme_override_constants/margin_left = 20

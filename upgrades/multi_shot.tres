@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="UpgradeResource" load_steps=4 format=3 uid="uid://x1q84ou5be48"]
 
 [ext_resource type="Texture2D" uid="uid://cy2ajprj0e7h5" path="res://art/bullets/player/simple_bullet_1.png" id="1_r8ls4"]
-[ext_resource type="Script" path="res://upgrades/upgrade_resource.gd" id="2_jyngl"]
-[ext_resource type="Script" path="res://upgrades/scripts/MultiShot.gd" id="3_uie6h"]
+[ext_resource type="Script" uid="uid://cq3doagxi0d83" path="res://upgrades/upgrade_resource.gd" id="2_jyngl"]
+[ext_resource type="Script" uid="uid://fwxtc5b1ggtd" path="res://upgrades/scripts/MultiShot.gd" id="3_uie6h"]
 
 [resource]
 script = ExtResource("2_jyngl")

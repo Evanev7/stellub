@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://d2qk4vahd2ews"]
 
 [ext_resource type="PackedScene" uid="uid://cicwqsj3byj4u" path="res://scenes/components/spawn_collision_handler.tscn" id="1_mea4a"]
-[ext_resource type="Script" path="res://scripts/objects/terrain.gd" id="1_q31ji"]
-[ext_resource type="Shader" path="res://terrain.gdshader" id="2_rd5fa"]
+[ext_resource type="Script" uid="uid://dbr3xe016m12b" path="res://scripts/objects/terrain.gd" id="1_q31ji"]
+[ext_resource type="Shader" uid="uid://cxa63oc1u8tmo" path="res://terrain.gdshader" id="2_rd5fa"]
 [ext_resource type="Texture2D" uid="uid://drwttjbgfkqig" path="res://art/objects/bones.png" id="3_apk22"]
 [ext_resource type="Texture2D" uid="uid://cvfhxovb8ktg4" path="res://art/objects/bones_overlay.png" id="4_e4xew"]
 

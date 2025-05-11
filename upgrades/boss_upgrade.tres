@@ -1,12 +1,13 @@
 [gd_resource type="Resource" script_class="UpgradeResource" load_steps=3 format=3 uid="uid://d4hyik40h0kpq"]
 
-[ext_resource type="Script" path="res://upgrades/upgrade_resource.gd" id="1_8vnst"]
-[ext_resource type="Script" path="res://upgrades/scripts/boss_upgrade.gd" id="2_wirjb"]
+[ext_resource type="Script" uid="uid://cq3doagxi0d83" path="res://upgrades/upgrade_resource.gd" id="1_8vnst"]
+[ext_resource type="Script" uid="uid://bxhjmv2s1xpbg" path="res://upgrades/scripts/boss_upgrade.gd" id="2_wirjb"]
 
 [resource]
 script = ExtResource("1_8vnst")
-name = "Boss Upgrade"
+upgrade_name = ""
 upgrade_script = ExtResource("2_wirjb")
+rarity = 1
 quantity = 10
 appears_in_shop = false
 appears_in_inventory = false

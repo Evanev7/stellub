@@ -1,6 +1,6 @@
 [gd_scene load_steps=26 format=3 uid="uid://yaht8i4bkv2u"]
 
-[ext_resource type="Script" path="res://scripts/UI/HUD.gd" id="1_tsnwf"]
+[ext_resource type="Script" uid="uid://x3jcwrii64ke" path="res://scripts/UI/HUD.gd" id="1_tsnwf"]
 [ext_resource type="Texture2D" uid="uid://dl1gspa35j2xu" path="res://art/UI/vignette2.png" id="2_i7f4k"]
 [ext_resource type="Texture2D" uid="uid://pi6nxes80imt" path="res://art/UI/Black_Background/black_bg_1.png" id="2_nhpms"]
 [ext_resource type="Texture2D" uid="uid://cexobhotuupu4" path="res://art/UI/XP_Bar_Outline.png" id="2_rugy2"]
@@ -20,7 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://been84ue6lj66" path="res://art/UI/Pause_Menu/pause_menu_background.png" id="7_ordnq"]
 [ext_resource type="Texture2D" uid="uid://dtwe6u3g8px0x" path="res://art/objects/soul_3.png" id="8_1s2d6"]
 [ext_resource type="AudioStream" uid="uid://c355h3avvx8ss" path="res://sounds/spooky intro ambience reversed.ogg" id="9_dti2o"]
-[ext_resource type="Script" path="res://scripts/UI/Tutorial.gd" id="20_tkvb0"]
+[ext_resource type="Script" uid="uid://dv4ri2c26tao1" path="res://scripts/UI/Tutorial.gd" id="20_tkvb0"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_y7i4i"]
 frames = 3

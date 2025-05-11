@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="UpgradeResource" load_steps=4 format=3 uid="uid://nh3ysny8kvkt"]
 
 [ext_resource type="Texture2D" uid="uid://c8bduam0tg1y5" path="res://art/objects/magic circle barrier.png" id="1_d0faa"]
-[ext_resource type="Script" path="res://upgrades/upgrade_resource.gd" id="2_nj71a"]
-[ext_resource type="Script" path="res://upgrades/scripts/vacuum.gd" id="3_2spmq"]
+[ext_resource type="Script" uid="uid://cq3doagxi0d83" path="res://upgrades/upgrade_resource.gd" id="2_nj71a"]
+[ext_resource type="Script" uid="uid://0ymc0s0y0bp4" path="res://upgrades/scripts/vacuum.gd" id="3_2spmq"]
 
 [resource]
 script = ExtResource("2_nj71a")

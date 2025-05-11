@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://d23ddhgery8pq"]
 
-[ext_resource type="Script" path="res://scripts/characters/BossSpawner.gd" id="1_vq2wp"]
+[ext_resource type="Script" uid="uid://t4ssam0p0v3y" path="res://scripts/characters/BossSpawner.gd" id="1_vq2wp"]
 [ext_resource type="PackedScene" uid="uid://cc07v7n1u6cto" path="res://scenes/characters/boss_enemy.tscn" id="2_lhfsm"]
 [ext_resource type="Resource" uid="uid://p0ytgmgbgkky" path="res://resources/enemy/boss.tres" id="6_q7r1j"]
 

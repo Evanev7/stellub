@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cgv8mmrupk5ag"]
 
 [ext_resource type="Texture2D" uid="uid://8sqypof0cjjv" path="res://art/objects/pillar.png" id="1_5ktuh"]
-[ext_resource type="Script" path="res://scripts/objects/weapon.gd" id="1_qxh8w"]
+[ext_resource type="Script" uid="uid://tvgq140ap22w" path="res://scripts/objects/weapon.gd" id="1_qxh8w"]
 [ext_resource type="Resource" uid="uid://mj43n3p12xvv" path="res://resources/bullets/player/melee_bullet_example.tres" id="2_ycxpi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ef0ui"]

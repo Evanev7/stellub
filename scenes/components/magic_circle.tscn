@@ -1,10 +1,10 @@
 [gd_scene load_steps=16 format=3 uid="uid://bdsxfxpria0gp"]
 
-[ext_resource type="Script" path="res://scripts/components/magic_circle.gd" id="1_114ni"]
+[ext_resource type="Script" uid="uid://by3naq04ws5kn" path="res://scripts/components/magic_circle.gd" id="1_114ni"]
 [ext_resource type="PackedScene" uid="uid://cicwqsj3byj4u" path="res://scenes/components/spawn_collision_handler.tscn" id="3_4838f"]
 [ext_resource type="PackedScene" uid="uid://bk5hh7qxofgw5" path="res://scenes/objects/pillar_broken.tscn" id="3_ae15p"]
 [ext_resource type="PackedScene" uid="uid://7pekoii3l4xw" path="res://scenes/objects/pillar.tscn" id="4_ciroy"]
-[ext_resource type="Shader" path="res://scenes/characters/enemy.gdshader" id="5_tumd1"]
+[ext_resource type="Shader" uid="uid://jpb78ruf507j" path="res://scenes/characters/enemy.gdshader" id="5_tumd1"]
 [ext_resource type="Texture2D" uid="uid://c1nhkla47hafg" path="res://art/objects/magic_circle_active.png" id="5_w6cpg"]
 [ext_resource type="Texture2D" uid="uid://umt1s3isip1" path="res://art/objects/magic_circle_cleared.png" id="6_2klxm"]
 [ext_resource type="Texture2D" uid="uid://c8bduam0tg1y5" path="res://art/objects/magic circle barrier.png" id="6_b21vk"]
@@ -24,7 +24,7 @@ shader = ExtResource("5_tumd1")
 shader_parameter/line_color = Color(0.517647, 0.411765, 1, 1)
 shader_parameter/line_thickness = 6.479
 shader_parameter/value = 1.0
-shader_parameter/hsv_offset = null
+shader_parameter/hsv_offset = Vector3(0, 0, 0)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2c16o"]
 animations = [{

@@ -1,12 +1,12 @@
 [gd_scene load_steps=11 format=3 uid="uid://dg6c8see5s58b"]
 
 [ext_resource type="PackedScene" uid="uid://dilk21k2nncq2" path="res://scenes/levels/level_template.tscn" id="1_god74"]
-[ext_resource type="Script" path="res://scripts/levels/boss_area.gd" id="2_58lyh"]
+[ext_resource type="Script" uid="uid://cnci2syo6w8b2" path="res://scripts/levels/boss_area.gd" id="2_58lyh"]
 [ext_resource type="Texture2D" uid="uid://b3kwbsbykqq30" path="res://art/objects/Boss_Arena_ground.png" id="2_tmx4t"]
 [ext_resource type="PackedScene" uid="uid://d23ddhgery8pq" path="res://scenes/characters/boss.tscn" id="4_sqdkq"]
 [ext_resource type="PackedScene" uid="uid://cnrpegq0voiht" path="res://scenes/components/enemy_handler.tscn" id="5_4wr2n"]
 [ext_resource type="Resource" uid="uid://p0ytgmgbgkky" path="res://resources/enemy/boss.tres" id="6_j8u0c"]
-[ext_resource type="Script" path="res://scripts/characters/enemy_resource.gd" id="6_ta7ik"]
+[ext_resource type="Script" uid="uid://cdlw3mkx7g3fb" path="res://scripts/characters/enemy_resource.gd" id="6_ta7ik"]
 [ext_resource type="PackedScene" uid="uid://ugulpxhu6v48" path="res://scenes/components/pickup_handler.tscn" id="6_yvi7m"]
 
 [sub_resource type="Curve2D" id="Curve2D_i2xvs"]

@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="UpgradeResource" load_steps=5 format=3 uid="uid://c7p72w4p6xr5n"]
 
 [ext_resource type="Texture2D" uid="uid://b6y7giikvs0aa" path="res://art/bullets/enemies/bullet_orange.png" id="1_8p5me"]
-[ext_resource type="Script" path="res://upgrades/upgrade_resource.gd" id="1_ox6ek"]
+[ext_resource type="Script" uid="uid://cq3doagxi0d83" path="res://upgrades/upgrade_resource.gd" id="1_ox6ek"]
 [ext_resource type="AudioStream" uid="uid://htq6o2hlabug" path="res://sounds/split_shot_randomizer.tres" id="3_dxk3a"]
-[ext_resource type="Script" path="res://upgrades/scripts/SplitShot.gd" id="3_vsb3q"]
+[ext_resource type="Script" uid="uid://dsinptfyqyv2n" path="res://upgrades/scripts/SplitShot.gd" id="3_vsb3q"]
 
 [resource]
 script = ExtResource("1_ox6ek")

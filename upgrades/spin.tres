@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="UpgradeResource" load_steps=4 format=3 uid="uid://c5t0pc3plmn8t"]
 
 [ext_resource type="Texture2D" uid="uid://f112eqcb2m3n" path="res://art/objects/hp_pickup_3.png" id="1_sqve4"]
-[ext_resource type="Script" path="res://upgrades/upgrade_resource.gd" id="1_sxakh"]
-[ext_resource type="Script" path="res://upgrades/scripts/spin.gd" id="3_1pwxr"]
+[ext_resource type="Script" uid="uid://cq3doagxi0d83" path="res://upgrades/upgrade_resource.gd" id="1_sxakh"]
+[ext_resource type="Script" uid="uid://dwkrwe86mdtvr" path="res://upgrades/scripts/spin.gd" id="3_1pwxr"]
 
 [resource]
 script = ExtResource("1_sxakh")

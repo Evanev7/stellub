@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="BulletResource" load_steps=9 format=3 uid="uid://cttw5mxt1sn0l"]
 
 [ext_resource type="Texture2D" uid="uid://4wjxcbqqugcw" path="res://art/bullets/player/orbital_laser_1.png" id="1_1diqs"]
-[ext_resource type="Script" path="res://scripts/objects/bullet_resource.gd" id="1_eucd2"]
+[ext_resource type="Script" uid="uid://3a0hmo2rakj" path="res://scripts/objects/bullet_resource.gd" id="1_eucd2"]
 [ext_resource type="Texture2D" uid="uid://buo1t76hvepgm" path="res://art/bullets/player/Orbital_0000.png" id="2_7q06m"]
 [ext_resource type="Texture2D" uid="uid://28gt0cvun4x4" path="res://art/bullets/player/orbital_laser_2.png" id="2_a62v2"]
 [ext_resource type="Texture2D" uid="uid://q1ieepxy76ny" path="res://art/bullets/player/Orbital_0004.png" id="3_5i8yg"]

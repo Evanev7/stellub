@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://kdeab812xwhx"]
 
-[ext_resource type="Script" path="res://scripts/components/BulletHandler.gd" id="1_0hnc5"]
+[ext_resource type="Script" uid="uid://df573b12egmca" path="res://scripts/components/BulletHandler.gd" id="1_0hnc5"]
 [ext_resource type="PackedScene" uid="uid://dldkm6m8ux87t" path="res://scenes/objects/bullet.tscn" id="2_v0gfm"]
 
 [node name="BulletHandler" type="Node"]

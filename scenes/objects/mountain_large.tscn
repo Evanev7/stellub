@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://j8g4suxt2pa2"]
 
 [ext_resource type="Texture2D" uid="uid://cjvdy45l44e6u" path="res://art/objects/mountain_large.png" id="1_2w6ix"]
-[ext_resource type="Script" path="res://scripts/objects/terrain.gd" id="1_3mx5e"]
-[ext_resource type="Script" path="res://scripts/components/object_spawn_resource.gd" id="1_18eee"]
+[ext_resource type="Script" uid="uid://dbr3xe016m12b" path="res://scripts/objects/terrain.gd" id="1_3mx5e"]
+[ext_resource type="Script" uid="uid://jmcb6tee16hn" path="res://scripts/components/object_spawn_resource.gd" id="1_18eee"]
 [ext_resource type="PackedScene" uid="uid://cicwqsj3byj4u" path="res://scenes/components/spawn_collision_handler.tscn" id="2_71e2b"]
-[ext_resource type="Shader" path="res://terrain.gdshader" id="3_di1dl"]
+[ext_resource type="Shader" uid="uid://cxa63oc1u8tmo" path="res://terrain.gdshader" id="3_di1dl"]
 
 [sub_resource type="Resource" id="Resource_ggss2"]
 script = ExtResource("1_18eee")

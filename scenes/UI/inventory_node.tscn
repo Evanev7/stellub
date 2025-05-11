@@ -1,10 +1,10 @@
 [gd_scene load_steps=15 format=3 uid="uid://dfp1xkcw3f4ft"]
 
 [ext_resource type="Texture2D" uid="uid://cdhwlo53alt2h" path="res://art/UI/Shop/inventory_bg.png" id="1_8ih3e"]
-[ext_resource type="Script" path="res://scripts/UI/inventory_node.gd" id="1_db5bu"]
+[ext_resource type="Script" uid="uid://36w4v44lfalc" path="res://scripts/UI/inventory_node.gd" id="1_db5bu"]
 [ext_resource type="PackedScene" uid="uid://domdhv4tthmyh" path="res://scenes/UI/shop_draggable.tscn" id="2_tlnnr"]
 [ext_resource type="PackedScene" uid="uid://jgeavrbmn7f2" path="res://scenes/UI/shop_total_attack.tscn" id="2_vgfn3"]
-[ext_resource type="Shader" path="res://scenes/characters/enemy.gdshader" id="3_wyu1t"]
+[ext_resource type="Shader" uid="uid://jpb78ruf507j" path="res://scenes/characters/enemy.gdshader" id="3_wyu1t"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c378e"]
 resource_local_to_scene = true
@@ -12,7 +12,7 @@ shader = ExtResource("3_wyu1t")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
-shader_parameter/hsv_offset = null
+shader_parameter/hsv_offset = Vector3(0, 0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l5rr7"]
 resource_local_to_scene = true
@@ -20,7 +20,7 @@ shader = ExtResource("3_wyu1t")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
-shader_parameter/hsv_offset = null
+shader_parameter/hsv_offset = Vector3(0, 0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4fb46"]
 resource_local_to_scene = true
@@ -28,7 +28,7 @@ shader = ExtResource("3_wyu1t")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
-shader_parameter/hsv_offset = null
+shader_parameter/hsv_offset = Vector3(0, 0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8fyty"]
 resource_local_to_scene = true
@@ -36,7 +36,7 @@ shader = ExtResource("3_wyu1t")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
-shader_parameter/hsv_offset = null
+shader_parameter/hsv_offset = Vector3(0, 0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q15qa"]
 resource_local_to_scene = true
@@ -44,7 +44,7 @@ shader = ExtResource("3_wyu1t")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
-shader_parameter/hsv_offset = null
+shader_parameter/hsv_offset = Vector3(0, 0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pdshe"]
 resource_local_to_scene = true
@@ -52,7 +52,7 @@ shader = ExtResource("3_wyu1t")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
-shader_parameter/hsv_offset = null
+shader_parameter/hsv_offset = Vector3(0, 0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kabfg"]
 resource_local_to_scene = true
@@ -60,7 +60,7 @@ shader = ExtResource("3_wyu1t")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
-shader_parameter/hsv_offset = null
+shader_parameter/hsv_offset = Vector3(0, 0, 0)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6k81b"]
 

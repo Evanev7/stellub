@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="BulletResource" load_steps=7 format=3 uid="uid://coqyd5d8e6rm8"]
 
 [ext_resource type="Texture2D" uid="uid://dltol0vlrfgha" path="res://art/bullets/player/ParticleMace.png" id="1_2xt5k"]
-[ext_resource type="Script" path="res://scripts/objects/bullet_resource.gd" id="1_dhlpd"]
+[ext_resource type="Script" uid="uid://3a0hmo2rakj" path="res://scripts/objects/bullet_resource.gd" id="1_dhlpd"]
 [ext_resource type="AudioStream" uid="uid://dwjbwpak7yy6k" path="res://sounds/particle_mace_1.wav" id="3_h5ijo"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_l1ll2"]

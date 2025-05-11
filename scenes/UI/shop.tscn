@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://dyhf18b3orycs"]
 
-[ext_resource type="Script" path="res://scripts/UI/shop_controller.gd" id="1_5yppk"]
-[ext_resource type="Script" path="res://scripts/UI/shop_draggable.gd" id="1_xieai"]
+[ext_resource type="Script" uid="uid://eykgkjgkwequ" path="res://scripts/UI/shop_controller.gd" id="1_5yppk"]
+[ext_resource type="Script" uid="uid://cwy27ovdembxs" path="res://scripts/UI/shop_draggable.gd" id="1_xieai"]
 [ext_resource type="Texture2D" uid="uid://dxtmrmjab36ky" path="res://art/UI/programmer 'art'.png" id="2_smx32"]
 [ext_resource type="PackedScene" uid="uid://jgeavrbmn7f2" path="res://scenes/UI/shop_total_attack.tscn" id="3_b1a8l"]
 [ext_resource type="Texture2D" uid="uid://cdseftigmx86u" path="res://art/UI/no lmao.png" id="4_tjav5"]

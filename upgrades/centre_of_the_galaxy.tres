@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="UpgradeResource" load_steps=4 format=3 uid="uid://ctfombpw6rgc5"]
 
 [ext_resource type="Texture2D" uid="uid://dtwe6u3g8px0x" path="res://art/objects/soul_3.png" id="1_1fbjo"]
-[ext_resource type="Script" path="res://upgrades/upgrade_resource.gd" id="2_gleyp"]
-[ext_resource type="Script" path="res://upgrades/scripts/CentreOfTheGalaxy.gd" id="3_38f0o"]
+[ext_resource type="Script" uid="uid://cq3doagxi0d83" path="res://upgrades/upgrade_resource.gd" id="2_gleyp"]
+[ext_resource type="Script" uid="uid://ws176mbg0wfw" path="res://upgrades/scripts/CentreOfTheGalaxy.gd" id="3_38f0o"]
 
 [resource]
 script = ExtResource("2_gleyp")

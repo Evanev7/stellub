@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://cviqooaayaf5j"]
 
-[ext_resource type="Script" path="res://scripts/objects/terrain.gd" id="1_l1s7x"]
+[ext_resource type="Script" uid="uid://dbr3xe016m12b" path="res://scripts/objects/terrain.gd" id="1_l1s7x"]
 [ext_resource type="PackedScene" uid="uid://cicwqsj3byj4u" path="res://scenes/components/spawn_collision_handler.tscn" id="1_syb8g"]
-[ext_resource type="Shader" path="res://terrain.gdshader" id="2_pj57o"]
+[ext_resource type="Shader" uid="uid://cxa63oc1u8tmo" path="res://terrain.gdshader" id="2_pj57o"]
 [ext_resource type="Texture2D" uid="uid://dmm7btuk18mak" path="res://art/objects/heaven_hole.png" id="3_pmnl8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sqjdm"]

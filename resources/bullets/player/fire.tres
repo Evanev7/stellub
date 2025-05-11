@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="BulletResource" load_steps=4 format=3 uid="uid://clmx2ku04voo4"]
 
-[ext_resource type="Script" path="res://scripts/objects/bullet_resource.gd" id="1_iciqk"]
+[ext_resource type="Script" uid="uid://3a0hmo2rakj" path="res://scripts/objects/bullet_resource.gd" id="1_iciqk"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_k7xdv"]
 animations = [{

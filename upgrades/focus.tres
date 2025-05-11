@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="UpgradeResource" load_steps=4 format=3 uid="uid://bus2a8p1nxapb"]
 
 [ext_resource type="Texture2D" uid="uid://bmhmd16c5xoww" path="res://art/UI/shooty finger.png" id="1_rn4tp"]
-[ext_resource type="Script" path="res://upgrades/upgrade_resource.gd" id="1_vcail"]
-[ext_resource type="Script" path="res://upgrades/scripts/focus.gd" id="2_38ww1"]
+[ext_resource type="Script" uid="uid://cq3doagxi0d83" path="res://upgrades/upgrade_resource.gd" id="1_vcail"]
+[ext_resource type="Script" uid="uid://cavddome53f3v" path="res://upgrades/scripts/focus.gd" id="2_38ww1"]
 
 [resource]
 script = ExtResource("1_vcail")

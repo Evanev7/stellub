@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="BulletResource" load_steps=5 format=3 uid="uid://ddg1gj4fvtt6o"]
 
 [ext_resource type="SpriteFrames" uid="uid://cbfq7bqkgh3ti" path="res://resources/bullets/player/player_bullet_spriteframes.tres" id="1_8pdgb"]
-[ext_resource type="Script" path="res://scripts/objects/bullet_resource.gd" id="1_m651b"]
+[ext_resource type="Script" uid="uid://3a0hmo2rakj" path="res://scripts/objects/bullet_resource.gd" id="1_m651b"]
 [ext_resource type="AudioStream" uid="uid://d3adxm8olqcsu" path="res://sounds/frag.wav" id="3_krj0j"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_obxr8"]

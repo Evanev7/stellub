@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=3 uid="uid://dldkm6m8ux87t"]
 
 [ext_resource type="Material" uid="uid://6vtco3gw7ve7" path="res://resources/warp_shader.tres" id="1_dilvh"]
-[ext_resource type="Script" path="res://scripts/objects/bullet.gd" id="1_vy7io"]
+[ext_resource type="Script" uid="uid://ldjjxgsddj0w" path="res://scripts/objects/bullet.gd" id="1_vy7io"]
 [ext_resource type="PackedScene" uid="uid://creqcpfcm3j5d" path="res://scenes/components/bullet_vacuum.tscn" id="2_jy2wq"]
 [ext_resource type="SpriteFrames" uid="uid://cbfq7bqkgh3ti" path="res://resources/bullets/player/player_bullet_spriteframes.tres" id="2_p3jja"]
 [ext_resource type="Texture2D" uid="uid://clyycn7uujclo" path="res://art/icon.svg" id="4_2d6mg"]
-[ext_resource type="Script" path="res://scripts/components/Shader.gd" id="5_5b5w5"]
+[ext_resource type="Script" uid="uid://dqxcujn2ws5lf" path="res://scripts/components/Shader.gd" id="5_5b5w5"]
 
 [sub_resource type="Curve" id="Curve_kwdjf"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.138614, 1), 0.0, 0.0, 0, 0, Vector2(0.49505, 1), 0.0, 0.0, 0, 0, Vector2(0.831683, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]

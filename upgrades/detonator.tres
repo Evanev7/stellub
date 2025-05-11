@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="UpgradeResource" load_steps=5 format=3 uid="uid://ci7uxv4m433dh"]
 
 [ext_resource type="Texture2D" uid="uid://bhs2v6ujb61d6" path="res://art/bullets/temp_1.png" id="1_3qwq0"]
-[ext_resource type="Script" path="res://upgrades/upgrade_resource.gd" id="2_0irco"]
+[ext_resource type="Script" uid="uid://cq3doagxi0d83" path="res://upgrades/upgrade_resource.gd" id="2_0irco"]
 [ext_resource type="Resource" uid="uid://br0f34os0blmt" path="res://upgrades/detonator_shot.tres" id="3_nqynk"]
-[ext_resource type="Script" path="res://upgrades/scripts/Detonator.gd" id="3_y3h6l"]
+[ext_resource type="Script" uid="uid://061nlrn026x" path="res://upgrades/scripts/Detonator.gd" id="3_y3h6l"]
 
 [resource]
 script = ExtResource("2_0irco")

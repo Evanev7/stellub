@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bb58r60s2313s"]
 
 [ext_resource type="Texture2D" uid="uid://c1kp8vwhvhqq6" path="res://art/objects/god_rays_one.png" id="1_04ek0"]
-[ext_resource type="Script" path="res://scripts/components/spawn_collision_handler.gd" id="2_8mtyh"]
+[ext_resource type="Script" uid="uid://bvbperm46nlsn" path="res://scripts/components/spawn_collision_handler.gd" id="2_8mtyh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tlt7e"]
 radius = 1507.89
@@ -39,7 +39,7 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nh2n3"]
 _data = {
-"pulse": SubResource("Animation_hyp0t")
+&"pulse": SubResource("Animation_hyp0t")
 }
 
 [node name="god_rays" type="Sprite2D"]

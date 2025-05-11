@@ -1,9 +1,9 @@
 [gd_scene load_steps=22 format=3 uid="uid://cv66w30at2uv0"]
 
 [ext_resource type="PackedScene" uid="uid://dilk21k2nncq2" path="res://scenes/levels/level_template.tscn" id="1_kbvse"]
-[ext_resource type="Script" path="res://scripts/levels/heaven_area.gd" id="2_0y2ur"]
+[ext_resource type="Script" uid="uid://c5rdtqhw5vmbg" path="res://scripts/levels/heaven_area.gd" id="2_0y2ur"]
 [ext_resource type="PackedScene" uid="uid://ugulpxhu6v48" path="res://scenes/components/pickup_handler.tscn" id="2_pdelf"]
-[ext_resource type="Script" path="res://scripts/characters/enemy_resource.gd" id="3_0dc4r"]
+[ext_resource type="Script" uid="uid://cdlw3mkx7g3fb" path="res://scripts/characters/enemy_resource.gd" id="3_0dc4r"]
 [ext_resource type="PackedScene" uid="uid://cnrpegq0voiht" path="res://scenes/components/enemy_handler.tscn" id="4_81g8t"]
 [ext_resource type="PackedScene" uid="uid://dfrum4te4lpmr" path="res://scenes/objects/teleporter.tscn" id="5_h7u4d"]
 [ext_resource type="Texture2D" uid="uid://448fgucckiyr" path="res://art/backgrounds/heaven_area_1.png" id="6_83hdw"]

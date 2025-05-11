@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="UpgradeResource" load_steps=4 format=3 uid="uid://caeytpd302r1q"]
 
 [ext_resource type="Texture2D" uid="uid://4wjxcbqqugcw" path="res://art/bullets/player/orbital_laser_1.png" id="1_ymuef"]
-[ext_resource type="Script" path="res://upgrades/upgrade_resource.gd" id="2_n5r0g"]
-[ext_resource type="Script" path="res://upgrades/scripts/drill.gd" id="3_dagnk"]
+[ext_resource type="Script" uid="uid://cq3doagxi0d83" path="res://upgrades/upgrade_resource.gd" id="2_n5r0g"]
+[ext_resource type="Script" uid="uid://bi22rlefiohy" path="res://upgrades/scripts/drill.gd" id="3_dagnk"]
 
 [resource]
 script = ExtResource("2_n5r0g")

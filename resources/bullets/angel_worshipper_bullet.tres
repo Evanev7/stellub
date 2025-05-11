@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="BulletResource" load_steps=3 format=3 uid="uid://djfx5xxn1qv5u"]
 
 [ext_resource type="SpriteFrames" uid="uid://d35p6avthydix" path="res://resources/bullets/angel_worshipper_spriteframes.tres" id="1_apf0g"]
-[ext_resource type="Script" path="res://scripts/objects/bullet_resource.gd" id="1_ntmv1"]
+[ext_resource type="Script" uid="uid://3a0hmo2rakj" path="res://scripts/objects/bullet_resource.gd" id="1_ntmv1"]
 
 [resource]
 script = ExtResource("1_ntmv1")

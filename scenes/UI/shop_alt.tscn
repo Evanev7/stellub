@@ -1,9 +1,9 @@
 [gd_scene load_steps=20 format=3 uid="uid://rnajon2osv8v"]
 
-[ext_resource type="Script" path="res://scripts/UI/shop_controller.gd" id="1_gilh6"]
+[ext_resource type="Script" uid="uid://eykgkjgkwequ" path="res://scripts/UI/shop_controller.gd" id="1_gilh6"]
 [ext_resource type="PackedScene" uid="uid://djihbt4xh14cm" path="res://scenes/UI/gui_rect.tscn" id="2_wac57"]
 [ext_resource type="Texture2D" uid="uid://d01lg7gn1cwqw" path="res://art/UI/Shop/shop_bg.png" id="3_acfq1"]
-[ext_resource type="Script" path="res://scripts/UI/shop_draggable.gd" id="3_bkygl"]
+[ext_resource type="Script" uid="uid://cwy27ovdembxs" path="res://scripts/UI/shop_draggable.gd" id="3_bkygl"]
 [ext_resource type="Texture2D" uid="uid://plujheltwte5" path="res://art/UI/Shop/shop_icon_1.png" id="4_cpqsc"]
 [ext_resource type="Texture2D" uid="uid://frgop0g1x0kk" path="res://art/UI/Shop/shop_icon_2.png" id="5_co0c6"]
 [ext_resource type="Texture2D" uid="uid://524i6bt6kkjf" path="res://art/UI/Shop/rune_fill.png" id="5_d4077"]

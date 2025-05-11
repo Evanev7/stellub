@@ -1,10 +1,10 @@
 [gd_scene load_steps=18 format=3 uid="uid://beo602dklhfsi"]
 
-[ext_resource type="Script" path="res://scripts/UI/shop_controller.gd" id="1_j68e7"]
+[ext_resource type="Script" uid="uid://eykgkjgkwequ" path="res://scripts/UI/shop_controller.gd" id="1_j68e7"]
 [ext_resource type="PackedScene" uid="uid://djihbt4xh14cm" path="res://scenes/UI/gui_rect.tscn" id="1_t5llg"]
 [ext_resource type="Texture2D" uid="uid://d01lg7gn1cwqw" path="res://art/UI/Shop/shop_bg.png" id="2_hcfp5"]
 [ext_resource type="PackedScene" uid="uid://domdhv4tthmyh" path="res://scenes/UI/shop_draggable.tscn" id="4_abpt4"]
-[ext_resource type="Shader" path="res://scenes/characters/enemy.gdshader" id="5_ngda6"]
+[ext_resource type="Shader" uid="uid://jpb78ruf507j" path="res://scenes/characters/enemy.gdshader" id="5_ngda6"]
 [ext_resource type="PackedScene" uid="uid://dfp1xkcw3f4ft" path="res://scenes/UI/inventory_node.tscn" id="6_wugwn"]
 [ext_resource type="Texture2D" uid="uid://been84ue6lj66" path="res://art/UI/Pause_Menu/pause_menu_background.png" id="8_gur17"]
 [ext_resource type="Texture2D" uid="uid://cdseftigmx86u" path="res://art/UI/no lmao.png" id="10_3ymwa"]
@@ -16,7 +16,7 @@ shader = ExtResource("5_ngda6")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
-shader_parameter/hsv_offset = null
+shader_parameter/hsv_offset = Vector3(0, 0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0mdif"]
 resource_local_to_scene = true
@@ -24,7 +24,7 @@ shader = ExtResource("5_ngda6")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
-shader_parameter/hsv_offset = null
+shader_parameter/hsv_offset = Vector3(0, 0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s454v"]
 resource_local_to_scene = true
@@ -32,7 +32,7 @@ shader = ExtResource("5_ngda6")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
-shader_parameter/hsv_offset = null
+shader_parameter/hsv_offset = Vector3(0, 0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0kq6w"]
 resource_local_to_scene = true
@@ -40,7 +40,7 @@ shader = ExtResource("5_ngda6")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
-shader_parameter/hsv_offset = null
+shader_parameter/hsv_offset = Vector3(0, 0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_si3dv"]
 resource_local_to_scene = true
@@ -48,7 +48,7 @@ shader = ExtResource("5_ngda6")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
-shader_parameter/hsv_offset = null
+shader_parameter/hsv_offset = Vector3(0, 0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ukqvo"]
 resource_local_to_scene = true
@@ -56,7 +56,7 @@ shader = ExtResource("5_ngda6")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
-shader_parameter/hsv_offset = null
+shader_parameter/hsv_offset = Vector3(0, 0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pyyur"]
 resource_local_to_scene = true
@@ -64,7 +64,7 @@ shader = ExtResource("5_ngda6")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
-shader_parameter/hsv_offset = null
+shader_parameter/hsv_offset = Vector3(0, 0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7gd51"]
 resource_local_to_scene = true
@@ -72,7 +72,7 @@ shader = ExtResource("5_ngda6")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
-shader_parameter/hsv_offset = null
+shader_parameter/hsv_offset = Vector3(0, 0, 0)
 
 [node name="ShopAltAlt" type="CanvasLayer"]
 script = ExtResource("1_j68e7")

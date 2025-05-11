@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="BulletResource" load_steps=10 format=3 uid="uid://dgv7ken3yi2xv"]
 
-[ext_resource type="Script" path="res://scripts/objects/bullet_resource.gd" id="1_43cmv"]
+[ext_resource type="Script" uid="uid://3a0hmo2rakj" path="res://scripts/objects/bullet_resource.gd" id="1_43cmv"]
 [ext_resource type="Texture2D" uid="uid://dxtmrmjab36ky" path="res://art/UI/programmer 'art'.png" id="1_hot7l"]
 [ext_resource type="Texture2D" uid="uid://bn7313mo7f2eo" path="res://art/bullets/player/Laser_0000.png" id="2_y47dq"]
 [ext_resource type="Texture2D" uid="uid://wd4ptiw6us1k" path="res://art/bullets/player/Laser_0002.png" id="3_ysax8"]

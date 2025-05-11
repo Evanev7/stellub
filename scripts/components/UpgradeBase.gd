@@ -12,18 +12,18 @@ enum TYPE {STAT, BOSS, SHOP}
 var type: TYPE = TYPE.SHOP
 
 func _ready():
-	pass
+    pass
 
 
 # Change stats on pickup
 func modify_bullet_resource(bullet: BulletResource) -> BulletResource:
-	return bullet
+    return bullet
 
 
 # Used for code to execute before firing
 func pre_fire():
-	pass
+    pass
 
 
 func modify_toplevel(bullet: BulletResource) -> BulletResource:
-	return bullet
+    return bullet

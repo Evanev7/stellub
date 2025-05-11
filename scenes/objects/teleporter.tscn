@@ -1,8 +1,8 @@
 [gd_scene load_steps=25 format=3 uid="uid://dfrum4te4lpmr"]
 
-[ext_resource type="Script" path="res://scripts/objects/teleporter.gd" id="1_jufu7"]
+[ext_resource type="Script" uid="uid://cbo2ev6mnmv7f" path="res://scripts/objects/teleporter.gd" id="1_jufu7"]
 [ext_resource type="Texture2D" uid="uid://3l52y5uhoccl" path="res://art/objects/teleporter_active_1.png" id="2_4qqtc"]
-[ext_resource type="Shader" path="res://terrain.gdshader" id="2_cpmhd"]
+[ext_resource type="Shader" uid="uid://cxa63oc1u8tmo" path="res://terrain.gdshader" id="2_cpmhd"]
 [ext_resource type="Texture2D" uid="uid://s0uvuelmllng" path="res://art/objects/teleporter_active_2.png" id="3_23s6l"]
 [ext_resource type="PackedScene" uid="uid://cicwqsj3byj4u" path="res://scenes/components/spawn_collision_handler.tscn" id="3_40rsx"]
 [ext_resource type="Texture2D" uid="uid://bqdfyj2cj3j4v" path="res://art/objects/teleporter_active_3.png" id="4_edm0n"]

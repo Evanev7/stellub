@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="UpgradeResource" load_steps=4 format=3 uid="uid://dldq0lmweq825"]
 
 [ext_resource type="Texture2D" uid="uid://bw0olwfct1s4n" path="res://art/objects/arrow-temp.png" id="1_5vwyq"]
-[ext_resource type="Script" path="res://upgrades/upgrade_resource.gd" id="2_3i2p0"]
-[ext_resource type="Script" path="res://upgrades/scripts/randomiser.gd" id="3_soy0d"]
+[ext_resource type="Script" uid="uid://cq3doagxi0d83" path="res://upgrades/upgrade_resource.gd" id="2_3i2p0"]
+[ext_resource type="Script" uid="uid://bw7cpyhkkrd1e" path="res://upgrades/scripts/randomiser.gd" id="3_soy0d"]
 
 [resource]
 script = ExtResource("2_3i2p0")

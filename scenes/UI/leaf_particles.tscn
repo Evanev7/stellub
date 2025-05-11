@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://c02sdl5hadl40"]
 
-[ext_resource type="Script" path="res://scripts/UI/leaf_particles.gd" id="1_f44o4"]
+[ext_resource type="Script" uid="uid://bp3tgduvstvth" path="res://scripts/UI/leaf_particles.gd" id="1_f44o4"]
 [ext_resource type="Texture2D" uid="uid://b6rvvnhuqvw2" path="res://art/objects/leaf_particle_other.png" id="2_lagjx"]
 
 [sub_resource type="Gradient" id="Gradient_ohakr"]
@@ -13,18 +13,17 @@ width = 2048
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uqwv5"]
 lifetime_randomness = 0.4
+particle_flag_disable_z = true
 emission_shape = 3
 emission_box_extents = Vector3(300, 5, 1)
-particle_flag_disable_z = true
 direction = Vector3(0.5, 1, 0)
 spread = 30.0
-gravity = Vector3(0, 0, 0)
 initial_velocity_min = 100.0
 initial_velocity_max = 200.0
 angular_velocity_min = 3.0
 angular_velocity_max = 200.0
-orbit_velocity_min = 0.0
 orbit_velocity_max = 0.01
+gravity = Vector3(0, 0, 0)
 linear_accel_min = 0.2
 linear_accel_max = 0.4
 scale_min = 0.1

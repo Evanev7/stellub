@@ -1,11 +1,11 @@
 [gd_scene load_steps=64 format=3 uid="uid://cnepphpba8e8u"]
 
-[ext_resource type="Script" path="res://scripts/characters/player.gd" id="1_m0lvq"]
+[ext_resource type="Script" uid="uid://4v5pp4fn64q4" path="res://scripts/characters/player.gd" id="1_m0lvq"]
 [ext_resource type="Resource" uid="uid://qdvp5rtjvnll" path="res://upgrades/stat_upgrade.tres" id="3_b8qp8"]
 [ext_resource type="Texture2D" uid="uid://kwiitmwbn82r" path="res://art/player/level 0/player_0_1.png" id="3_ik71x"]
 [ext_resource type="Texture2D" uid="uid://6fmtfmpb5kvf" path="res://art/player/level 0/player_0_2.png" id="4_p28ir"]
 [ext_resource type="Texture2D" uid="uid://q4hnsccll683" path="res://art/player/level 0/player_0_3.png" id="5_3s83j"]
-[ext_resource type="Shader" path="res://scenes/characters/enemy.gdshader" id="5_rv610"]
+[ext_resource type="Shader" uid="uid://jpb78ruf507j" path="res://scenes/characters/enemy.gdshader" id="5_rv610"]
 [ext_resource type="Texture2D" uid="uid://bjg8vyygbxi04" path="res://art/player/level 0/player_0_4.png" id="6_g2igm"]
 [ext_resource type="Texture2D" uid="uid://o0msfnfm4y7o" path="res://art/player/level 0/player_0_5.png" id="7_4eppl"]
 [ext_resource type="Texture2D" uid="uid://tmp2otav6p5l" path="res://art/player/level 0/player_0_6.png" id="8_kdnob"]
@@ -38,7 +38,7 @@
 [ext_resource type="Resource" uid="uid://ccpb4udi5owpj" path="res://resources/bullets/player/player_bullet.tres" id="35_8awst"]
 [ext_resource type="AudioStream" uid="uid://by71ab3bqy54q" path="res://sounds/vacuum.wav" id="35_hr2l7"]
 [ext_resource type="Texture2D" uid="uid://bpx5ybtqcrlpp" path="res://art/objects/shadow.png" id="35_ikv2g"]
-[ext_resource type="Script" path="res://scripts/characters/Camera2D.gd" id="35_ixbcx"]
+[ext_resource type="Script" uid="uid://dgrdf1o0w25ic" path="res://scripts/characters/Camera2D.gd" id="35_ixbcx"]
 [ext_resource type="AudioStream" uid="uid://h5elwdsbb4dg" path="res://sounds/explosion.wav" id="35_uypww"]
 [ext_resource type="AudioStream" uid="uid://dvmyi1ab7aafi" path="res://sounds/hp_pickup.wav" id="36_1j732"]
 [ext_resource type="AudioStream" uid="uid://brney5rm6n7qw" path="res://sounds/level_up.wav" id="36_ik3c3"]
@@ -64,8 +64,8 @@ shader = ExtResource("5_rv610")
 shader_parameter/line_color = Color(0, 0, 0, 0)
 shader_parameter/line_thickness = 0.0
 shader_parameter/value = 1.0
-shader_parameter/hsv_offset = null
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_nhcwl")
+shader_parameter/hsv_offset = Vector3(0, 0, 0)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_whc3w"]
 animations = [{
@@ -360,15 +360,15 @@ bus = &"SFX"
 z_index = 51
 emitting = false
 amount = 30
-process_material = SubResource("ParticleProcessMaterial_fjti8")
 texture = ExtResource("38_uyywf")
 explosiveness = 0.3
+process_material = SubResource("ParticleProcessMaterial_fjti8")
 
 [node name="FireTimer" type="Timer" parent="."]
 one_shot = true
 
-[connection signal="area_entered" from="Hurtbox" to="." method="get_pickup"]
 [connection signal="area_entered" from="Hurtbox" to="." method="hurt"]
+[connection signal="area_entered" from="Hurtbox" to="." method="get_pickup"]
 [connection signal="area_entered" from="PickupRange" to="." method="activate_pickup"]
 [connection signal="timeout" from="IFrames" to="." method="_on_i_frames_timeout"]
 [connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://ck84xpcgl0pv7"]
 
-[ext_resource type="Script" path="res://scripts/levels/menu.gd" id="1_we8ni"]
+[ext_resource type="Script" uid="uid://b7t2h67krlem8" path="res://scripts/levels/menu.gd" id="1_we8ni"]
 [ext_resource type="Texture2D" uid="uid://cy7rcqst0p6lf" path="res://art/faustian_hell.png" id="2_2caip"]
 [ext_resource type="Texture2D" uid="uid://been84ue6lj66" path="res://art/UI/Pause_Menu/pause_menu_background.png" id="2_d3q7b"]
 [ext_resource type="SpriteFrames" uid="uid://buhg63ostt083" path="res://resources/objects/soul_pickup.tres" id="3_msxq3"]

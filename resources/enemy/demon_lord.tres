@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="EnemyResource" load_steps=5 format=3 uid="uid://cde86qx4smawg"]
 
-[ext_resource type="Script" path="res://scripts/characters/enemy_resource.gd" id="1_5cwm5"]
+[ext_resource type="Script" uid="uid://cdlw3mkx7g3fb" path="res://scripts/characters/enemy_resource.gd" id="1_5cwm5"]
 [ext_resource type="SpriteFrames" uid="uid://cjvxmcnq3xtj6" path="res://resources/enemy/demon_lord_spriteframes.tres" id="1_sxpx7"]
 [ext_resource type="Shape2D" uid="uid://bphvspsv4dssk" path="res://resources/hitboxes/demon_lord_collisionbox.tres" id="2_4uolh"]
 [ext_resource type="Shape2D" uid="uid://d8q2wi5ojvhv" path="res://resources/hitboxes/demon_lord_hitbox.tres" id="3_thjei"]

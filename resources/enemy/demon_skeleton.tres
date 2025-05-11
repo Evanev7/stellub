@@ -3,22 +3,24 @@
 [ext_resource type="SpriteFrames" uid="uid://bpernxx6xbtyn" path="res://resources/enemy/demon_skeleton_spriteframes.tres" id="1_h2j8b"]
 [ext_resource type="Shape2D" uid="uid://0e7jt1gqqywj" path="res://resources/hitboxes/demon_skeleton_collisionbox.tres" id="2_ms3en"]
 [ext_resource type="Shape2D" uid="uid://q26ka3qri44y" path="res://resources/hitboxes/demon_skeleton_hitbox.tres" id="3_yanws"]
-[ext_resource type="Script" path="res://scripts/characters/enemy_resource.gd" id="4_gkli7"]
+[ext_resource type="Script" uid="uid://cdlw3mkx7g3fb" path="res://scripts/characters/enemy_resource.gd" id="4_gkli7"]
 
 [resource]
 script = ExtResource("4_gkli7")
 NAME = "demon_skeleton"
 ANIMATION = ExtResource("1_h2j8b")
+QUANTITY = 10
+FLIP_H = true
+FLOATING = false
 SPEED = 80.0
 MAX_HP = 7.0
 DAMAGE = 3.0
 VALUE = 3.0
-FLIP_H = true
-FLOATING = false
 STRENGTH = 1.0
 SCALE = Vector2(0.7, 0.7)
 COLLISION_ROTATION = 0.0
 HITBOX = ExtResource("3_yanws")
 HURTBOX = ExtResource("3_yanws")
 COLLIDER = ExtResource("2_ms3en")
-SPAWN_RATE = 0.0
+UNIQUE_MULTIPLIER = 1.0
+OVERALL_MULTIPLIER = 1.0
